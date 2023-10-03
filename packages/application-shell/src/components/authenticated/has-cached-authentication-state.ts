@@ -3,7 +3,6 @@ import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 import { STORAGE_KEYS, OIDC_CLAIMS } from '../../constants';
 import { buildOidcScope } from '../../utils/oidc';
-// import * as oidcStorage from '../../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 

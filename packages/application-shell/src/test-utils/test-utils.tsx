@@ -39,7 +39,6 @@ import {
   type TSdkMock,
 } from '@commercetools-frontend/sdk/test-utils';
 import ApplicationEntryPoint from '../components/application-entry-point';
-// import createApolloClient from '../configure-apollo';
 import { createReduxStore } from '../configure-store';
 
 // These default values get merged with the values provided by the test from

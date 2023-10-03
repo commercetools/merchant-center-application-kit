@@ -19,7 +19,6 @@ import {
 } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-// import { useMcQuery } from '../hooks/apollo-hooks';
 import {
   type TRenderAppWithReduxOptions,
   renderApp,

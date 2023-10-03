@@ -25,7 +25,6 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS } from '../../constants';
-// import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';

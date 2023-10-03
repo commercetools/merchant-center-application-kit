@@ -11,7 +11,6 @@ import { OIDC_RESPONSE_TYPES } from '../../constants';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import getMcOrigin from '../../utils/get-mc-origin';
 import { buildOidcScope } from '../../utils/oidc';
-// import * as oidcStorage from '../../utils/oidc-storage';
 import type { AuthorizeSessionState } from '../authenticated/types';
 import Redirector from '../redirector';
 

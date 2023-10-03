@@ -13,14 +13,12 @@ import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
-// import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TProject,
   TFetchUserProjectsQuery,
   TFetchUserProjectsQueryVariables,
 } from '../../types/generated/mc';
 import { location } from '../../utils/location';
-// import * as oidcStorage from '../../utils/oidc-storage';
 import messages from './messages';
 import ProjectsQuery from './project-switcher.mc.graphql';
 

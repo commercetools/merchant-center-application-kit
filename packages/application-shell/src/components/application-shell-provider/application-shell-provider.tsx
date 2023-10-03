@@ -11,9 +11,7 @@ import {
 } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-// import createApolloClient from '../../configure-apollo';
 import internalReduxStore from '../../configure-store';
-// import { setCachedApolloClient } from '../../utils/apollo-client-runtime-cache';
 import ApplicationLoader from '../application-loader';
 import ApplicationPageTitle from '../application-page-title';
 import Authenticated from '../authenticated';

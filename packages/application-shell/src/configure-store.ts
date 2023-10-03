@@ -31,13 +31,6 @@ import { requestsInFlightReducer } from './components/requests-in-flight-loader'
 import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
-// import {
-// getCorrelationId,
-// selectProjectKeyFromUrl,
-// selectTeamIdFromStorage,
-// selectUserId,
-// } from './utils';
-// import * as oidcStorage from './utils/oidc-storage';
 
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {

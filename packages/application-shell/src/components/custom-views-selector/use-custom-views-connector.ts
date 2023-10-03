@@ -3,7 +3,6 @@ import {
   CustomViewData,
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
-// import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TFetchCustomViewsByLocatorQuery,
   TFetchCustomViewsByLocatorQueryVariables,

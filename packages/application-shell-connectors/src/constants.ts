@@ -35,14 +35,3 @@ export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';
-
-// // OIDC params
-// export const OIDC_RESPONSE_TYPES = { ID_TOKEN: 'id_token' };
-// export const OIDC_CLAIMS = {
-//   OPEN_ID: 'openid',
-//   PROJECT_KEY: 'project_key',
-//   TEAM_ID: 'team_id',
-//   APPLICATION_ID: 'application_id',
-//   VIEW: 'view',
-//   MANAGE: 'manage',
-// };

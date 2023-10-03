@@ -12,7 +12,6 @@ import type {
   TLocalizedField,
 } from '@commercetools-frontend/constants';
 import { getSupportedLocales } from '@commercetools-frontend/l10n';
-// import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
