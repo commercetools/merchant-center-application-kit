@@ -1,15 +1,15 @@
-import { CustomViewData } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   screen,
   renderApp,
   waitFor,
   fireEvent,
-} from '../../../test-utils/dist/commercetools-frontend-application-shell-test-utils.cjs.js';
+} from '@commercetools-frontend/application-shell/test-utils';
+import { CustomViewData } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   TCustomViewSize,
   TCustomViewType,
-} from '../../types/generated/settings';
+} from '../../../types/generated/settings';
 import CustomViewLoader from './custom-view-loader';
 
 const mockShowNotification = jest.fn();

@@ -1,10 +1,10 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,

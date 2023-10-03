@@ -8,8 +8,8 @@ import {
 } from 'react';
 import { ClassNames, type CSSObject } from '@emotion/react';
 import Modal, { type Props as ModalProps } from 'react-modal';
-import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import ModalPageTopBar from './modal-page-top-bar';
 import {
   TRANSITION_DURATION,

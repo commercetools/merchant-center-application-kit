@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import {
+  CustomViewLoader,
   InfoMainPage,
   useModalState,
 } from '@commercetools-frontend/application-components';
-import { CustomViewLoader } from '@commercetools-frontend/application-shell';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import { DEMO_CUSTOM_VIEW } from './constants';
