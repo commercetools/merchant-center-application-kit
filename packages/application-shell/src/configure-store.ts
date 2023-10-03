@@ -20,7 +20,7 @@ import {
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  type ApplicationWindow
+  type ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
@@ -32,14 +32,12 @@ import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 // import {
-  // getCorrelationId,
-  // selectProjectKeyFromUrl,
-  // selectTeamIdFromStorage,
-  // selectUserId,
+// getCorrelationId,
+// selectProjectKeyFromUrl,
+// selectTeamIdFromStorage,
+// selectUserId,
 // } from './utils';
 // import * as oidcStorage from './utils/oidc-storage';
-
-
 
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {

@@ -2,7 +2,10 @@ import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
 import type { OptionProps, ValueContainerProps } from 'react-select';
-import { useMcQuery, oidcStorage } from '@commercetools-frontend/application-shell-connectors';
+import {
+  useMcQuery,
+  oidcStorage,
+} from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';

@@ -49,4 +49,7 @@ export {
   executeHttpClientRequest,
 } from './utils/http-client';
 export * as oidcStorage from './utils/oidc-storage';
-export { setCachedApolloClient, getCachedApolloClient } from './utils/apollo-client-runtime-cache';
+export {
+  setCachedApolloClient,
+  getCachedApolloClient,
+} from './utils/apollo-client-runtime-cache';

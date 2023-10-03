@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
 import {
   LOGOUT_REASONS,
-  type ApplicationWindow
+  type ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import getMcOrigin from '../../utils/get-mc-origin';

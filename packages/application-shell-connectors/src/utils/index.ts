@@ -6,7 +6,4 @@ export { default as getCorrelationId } from './get-correlation-id';
 export { default as getMcApiUrl } from './get-mc-api-url';
 // export { default as getPreviousProjectKey } from './get-previous-project-key';
 export { createApolloContextForProxyForwardTo } from './apollo-context';
-export {
-  isLoggerEnabled,
-  default as logger,
-} from './logger'
+export { isLoggerEnabled, default as logger } from './logger';
