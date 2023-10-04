@@ -38,6 +38,7 @@ describe('when user is authenticated', () => {
 
 describe('navigation menu', () => {
   beforeEach(() => {
+    cy.viewport(1250, 800);
     cy.loginToMerchantCenter({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
       initialRoute: URL_APP_KIT_PLAYGROUND,
