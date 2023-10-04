@@ -145,11 +145,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     observerRef.current = new IntersectionObserver(callbackFn, {
       rootMargin: '-100% 0px 0px 0px', // we want to observe if the submenu crosses the bottom line of the viewport - therefore we set the root element top margin to -100% of the viewport height
     });
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
+    return () => observerRef.current?.disconnect();
   }, []);
 
   useLayoutEffect(() => {
@@ -160,11 +156,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     if (observer && currentSubmenuRef) {
       observer.observe(currentSubmenuRef);
     }
-    return () => {
-      if (observer && currentSubmenuRef) {
-        observer.unobserve(currentSubmenuRef);
-      }
-    };
+    return () => observer?.disconnect();
   }, [
     menuItemIdentifier,
     props.isMenuOpen,
