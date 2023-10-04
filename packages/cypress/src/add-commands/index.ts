@@ -1,4 +1,4 @@
-import { Matcher } from '@testing-library/dom';
+import { Matcher as TMatcher } from '@testing-library/dom';
 import 'cypress-real-events';
 import {
   loginByForm,
@@ -8,6 +8,7 @@ import {
 } from './login';
 
 export type CommandLoginOptions = TCommandLoginOptions;
+export type Matcher = TMatcher;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;

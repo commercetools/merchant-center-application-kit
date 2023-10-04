@@ -64,7 +64,9 @@ describe('navigation menu', () => {
   });
   it('should show submenu on hover', () => {
     cy.findAllByText('Initial').should('exist');
-    cy.findAllByRole('menuitem').first().trigger('mouseover');
-    cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
+    cy.navigationMenuHover('State Machines');
+    cy.findByRole('link', { name: 'Echo Server', timeout: 1000 }).should(
+      'be.visible'
+    );
   });
 });
