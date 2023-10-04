@@ -276,8 +276,9 @@ type MenuItemProps = {
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
+  identifier?: string;
 };
-const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
+const MenuItem = (props: MenuItemProps) => {
   return (
     <li
       role="menuitem"
@@ -289,9 +290,9 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
+      data-menuitem={props.identifier}
     >
       <div
-        ref={ref}
         className={
           props.hasSubmenu
             ? styles['item-link']
@@ -302,7 +303,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
       </div>
     </li>
   );
-});
+};
 
 MenuItem.displayName = 'MenuItem';
 

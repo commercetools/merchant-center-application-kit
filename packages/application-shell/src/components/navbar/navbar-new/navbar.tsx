@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { css } from '@emotion/react';
 import classnames from 'classnames';
+import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -103,20 +104,23 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
-  const menuItemRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
-  const menuItemBoundingClientRect =
-    menuItemRef.current?.getBoundingClientRect();
-  const menuItemTop = menuItemBoundingClientRect?.top || 0;
-  const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
+  const menuItemIdentifier = snakeCase(props.menu.key);
 
   const callbackFn: IntersectionObserverCallback = useCallback(
     (entries) => {
+      const menuItemBoundingClientRect = document
+        .querySelector(`[data-menuitem="${menuItemIdentifier}"]`)
+        ?.getBoundingClientRect();
+      const menuItemTop = menuItemBoundingClientRect?.top || 0;
+      const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
+
       const [entry] = entries;
+
       const doesSubmenuFitWithinViewportBelowMenuItem =
         entry.boundingClientRect.height +
           (props.isMenuOpen ? menuItemTop : menuItemBottom) >
@@ -135,7 +139,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         );
       }
     },
-    [menuItemBottom, menuItemTop, props.isMenuOpen]
+    [props.isMenuOpen, menuItemIdentifier]
   );
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(callbackFn, {
@@ -152,8 +156,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       }
     };
   }, [
-    menuItemBottom,
-    menuItemTop,
+    menuItemIdentifier,
     props.isMenuOpen,
     props.handleToggleItem,
     callbackFn,
@@ -193,7 +196,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
-        ref={menuItemRef}
         hasSubmenu={hasSubmenu}
         isActive={props.isActive}
         isMainMenuRouteActive={isMainMenuRouteActive}
@@ -201,6 +203,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onClick={props.handleToggleItem}
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
+        identifier={menuItemIdentifier}
       >
         {/* menu-item should be a link only if it doesn't contain a submenu */}
         {!hasSubmenu ? (
