@@ -41,10 +41,13 @@ Cypress.Commands.add('hover', { prevSubject: true }, (subject: JQuery) => {
   cy.wrap(subject).realHover();
 });
 
-Cypress.Commands.add('navigationMenuHover', (textMatcher: Matcher) => {
-  cy.findByTestId('left-navigation')
-    .findByText(textMatcher)
-    .parents('[role="menuitem"]')
-    .first()
-    .realHover();
-});
+Cypress.Commands.add(
+  'showNavigationSubmenuItems',
+  (menuItemTextMatcher: Matcher) => {
+    cy.findByTestId('left-navigation')
+      .findByText(menuItemTextMatcher)
+      .parents('[role="menuitem"]')
+      .first()
+      .realHover();
+  }
+);

@@ -39,11 +39,11 @@ declare namespace Cypress {
      * It will make the submenu links panel to appear.
      *
      * @example
-     *    cy.navigationMenuHover('navigation_item_menu_text_matcher')
+     *    cy.showNavigationSubmenuItems('navigation_item_menu_text_matcher')
      */
-    navigationMenuHover(
+    showNavigationSubmenuItems(
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
-      options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').Matcher
+      menuItemTextMatcher: import('./dist/commercetools-frontend-cypress-add-commands.cjs').Matcher
     ): Chainable<Subject>;
   }
 }

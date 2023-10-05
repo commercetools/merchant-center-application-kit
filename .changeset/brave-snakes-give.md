@@ -8,7 +8,7 @@ Added new comands to manage `hover` events.
   ```js
   cy.get('button').hover();
   ```
-- `navigationMenuHover`: New command to trigger a `hover` event on a navigation menu item. This will make the sublinks of that menu item visible.
+- `showNavigationSubmenuItems`: New command to trigger a `hover` event on a navigation menu item. This will make the sublinks of that menu item visible.
   ```js
-  cy.navigationMenuHover('Discounts');
+  cy.showNavigationSubmenuItems('Discounts');
   ```
