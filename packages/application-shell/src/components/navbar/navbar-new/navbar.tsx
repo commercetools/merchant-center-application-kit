@@ -202,22 +202,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
       >
-        {/* menu-item should be a link only if it doesn't contain a submenu */}
-        {!hasSubmenu ? (
-          <MenuItemLink
-            linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
-            useFullRedirectsForLinks={props.useFullRedirectsForLinks}
-            onClick={props.onMenuItemClick}
-          >
-            <ItemContainer
-              labelAllLocales={props.menu.labelAllLocales}
-              defaultLabel={props.menu.defaultLabel}
-              applicationLocale={props.applicationLocale}
-              icon={props.menu.icon}
-              isMenuOpen={props.isMenuOpen}
-            />
-          </MenuItemLink>
-        ) : (
+        <MenuItemLink
+          linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
+          useFullRedirectsForLinks={props.useFullRedirectsForLinks}
+          onClick={props.onMenuItemClick}
+        >
           <ItemContainer
             labelAllLocales={props.menu.labelAllLocales}
             defaultLabel={props.menu.defaultLabel}
@@ -225,7 +214,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
             icon={props.menu.icon}
             isMenuOpen={props.isMenuOpen}
           />
-        )}
+        </MenuItemLink>
         <MenuGroup
           id={props.menu.key}
           level={2}

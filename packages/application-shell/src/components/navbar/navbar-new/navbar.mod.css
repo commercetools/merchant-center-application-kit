@@ -83,15 +83,9 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  padding: var(--spacing-25);
   width: var(--item-size);
   position: relative;
   display: block;
-}
-
-.item-link-no-submenu {
-  width: 100%;
-  height: 100%;
 }
 
 :global(.body__menu-open) .item-link {
@@ -425,8 +419,7 @@
 
 .item-link:hover .sublist-collapsed__active,
 .item-link:hover .sublist-collapsed__active__above,
-.item-link:hover .sublist-expanded__active,
-.item-link-no-submenu:hover .sublist-collapsed__active {
+.item-link:hover .sublist-expanded__active {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -442,9 +435,7 @@
 }
 
 .item-link:hover .sublist-collapsed__active.sublist-collapsed__empty,
-.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty,
-.item-link-no-submenu:hover
-  .sublist-collapsed__active.sublist-collapsed__empty {
+.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty {
   visibility: hidden;
 }
 

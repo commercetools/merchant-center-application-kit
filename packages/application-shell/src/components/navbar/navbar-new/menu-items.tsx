@@ -290,14 +290,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
-      <div
-        ref={ref}
-        className={
-          props.hasSubmenu
-            ? styles['item-link']
-            : styles['item-link-no-submenu']
-        }
-      >
+      <div ref={ref} className={styles['item-link']}>
         {props.children}
       </div>
     </li>
