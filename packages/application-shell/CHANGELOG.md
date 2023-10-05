@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.8.3
+
+### Patch Changes
+
+- [#3249](https://github.com/commercetools/merchant-center-application-kit/pull/3249) [`9d8b6fc04`](https://github.com/commercetools/merchant-center-application-kit/commit/9d8b6fc04d9b6cf788cb58b7dba9faa177ddf5e3) Thanks [@chloe0592](https://github.com/chloe0592)! - First level navigation menu items are clickable again even it they have submenu items.
+
+- [#3247](https://github.com/commercetools/merchant-center-application-kit/pull/3247) [`689cc6e32`](https://github.com/commercetools/merchant-center-application-kit/commit/689cc6e3239e2f795c3525cd0202a639f632f416) Thanks [@kark](https://github.com/kark)! - Fix performance issues with the new Navbar
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.8.3
+  - @commercetools-frontend/application-components@22.8.3
+  - @commercetools-frontend/application-config@22.8.3
+  - @commercetools-frontend/application-shell-connectors@22.8.3
+  - @commercetools-frontend/assets@22.8.3
+  - @commercetools-frontend/browser-history@22.8.3
+  - @commercetools-frontend/constants@22.8.3
+  - @commercetools-frontend/i18n@22.8.3
+  - @commercetools-frontend/l10n@22.8.3
+  - @commercetools-frontend/notifications@22.8.3
+  - @commercetools-frontend/permissions@22.8.3
+  - @commercetools-frontend/react-notifications@22.8.3
+  - @commercetools-frontend/sdk@22.8.3
+  - @commercetools-frontend/sentry@22.8.3
+  - @commercetools-frontend/url-utils@22.8.3
+
 ## 22.8.2
 
 ### Patch Changes
