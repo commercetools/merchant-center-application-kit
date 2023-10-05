@@ -1,11 +1,11 @@
 import { Matcher as TMatcher } from '@testing-library/dom';
-import 'cypress-real-events';
 import {
   loginByForm,
   loginByOidc,
   isLocalhost,
   type CommandLoginOptions as TCommandLoginOptions,
 } from './login';
+import { realHover } from './real-hover';
 
 export type CommandLoginOptions = TCommandLoginOptions;
 export type Matcher = TMatcher;
@@ -37,9 +37,7 @@ Cypress.Commands.add('loginByOidc', (commandOptions: CommandLoginOptions) => {
   loginByOidc(commandOptions);
 });
 
-Cypress.Commands.add('hover', { prevSubject: true }, (subject: JQuery) => {
-  cy.wrap(subject).realHover();
-});
+Cypress.Commands.add('hover', { prevSubject: true }, realHover);
 
 Cypress.Commands.add(
   'showNavigationSubmenuItems',
@@ -48,6 +46,7 @@ Cypress.Commands.add(
       .findByText(menuItemTextMatcher)
       .parents('[role="menuitem"]')
       .first()
-      .realHover();
+      // Refers to the custom command "hover"
+      .hover();
   }
 );

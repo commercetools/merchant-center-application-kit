@@ -41,7 +41,6 @@
     "@commercetools-frontend/application-shell": "22.8.2",
     "@manypkg/get-packages": "1.1.3",
     "@types/semver": "^7.5.1",
-    "cypress-real-events": "1.10.3",
     "semver": "7.5.2",
     "uuid": "9.0.0"
   },

@@ -1899,9 +1899,6 @@ importers:
       '@types/semver':
         specifier: ^7.5.1
         version: 7.5.1
-      cypress-real-events:
-        specifier: 1.10.3
-        version: 1.10.3(cypress@12.12.0)
       semver:
         specifier: 7.5.2
         version: 7.5.2
@@ -17423,14 +17420,6 @@ packages:
     dependencies:
       find-pkg: 0.1.2
       fs-exists-sync: 0.1.0
-    dev: false
-
-  /cypress-real-events@1.10.3(cypress@12.12.0):
-    resolution: {integrity: sha512-YN3fn+CJIAM638sE6uMvv2/n3PsWowdd0rOiN6ZoyezNAMyENfuQHvccLKZpN+apGfQZYetCml6QXLYgDid2fg==}
-    peerDependencies:
-      cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x
-    dependencies:
-      cypress: 12.12.0
     dev: false
 
   /cypress@12.12.0:
