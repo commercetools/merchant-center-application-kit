@@ -13,8 +13,6 @@
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const cy: any;
 
 export interface RealHoverOptions {
   /**
@@ -196,7 +194,8 @@ function getElementPositionXY(htmlElement: HTMLElement) {
 
 function getCypressElementCoordinates(
   // @ts-ignore
-  jqueryEl: JQuery,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  jqueryEl: any,
   position: Position | undefined,
   scrollBehavior?: ScrollBehaviorOptions
 ) {
@@ -242,7 +241,8 @@ const keyToModifierBitMap: Record<string, number> = {
 
 export async function realHover(
   // @ts-ignore
-  subject: JQuery,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  subject: any,
   options: RealHoverOptions = {}
 ) {
   const { x, y } = getCypressElementCoordinates(
