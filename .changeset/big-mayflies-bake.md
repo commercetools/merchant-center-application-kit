@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Navigation menu item is again clickable even if it has submenu.
+First level navigation menu items are clickable again even it they have submenu items.
