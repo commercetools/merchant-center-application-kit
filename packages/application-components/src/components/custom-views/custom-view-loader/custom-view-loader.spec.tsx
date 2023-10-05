@@ -1,11 +1,11 @@
-import {
-  screen,
-  renderApp,
-  waitFor,
-  fireEvent,
-} from '@commercetools-frontend/application-shell/test-utils';
 import { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  screen,
+  renderComponent,
+  fireEvent,
+  waitFor,
+} from '../../../test-utils';
 import {
   TCustomViewSize,
   TCustomViewType,
@@ -64,8 +64,10 @@ describe('CustomViewLoader', () => {
   });
 
   it('should render a custom view', async () => {
-    renderApp(
-      <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={jest.fn()} />
+    const projectKey = 'test-with-big-data';
+    renderComponent(
+      <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={jest.fn()} />,
+      { projectKey }
     );
 
     const iFrame = screen.getByTitle(
@@ -75,7 +77,7 @@ describe('CustomViewLoader', () => {
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
     expect(iFrame.getAttribute('src')).toContain(
-      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/test-with-big-data`
+      `/custom-views/${TEST_CUSTOM_VIEW.id}/projects/${projectKey}`
     );
   });
 
@@ -85,7 +87,9 @@ describe('CustomViewLoader', () => {
       url: 'https://example.com/',
     };
 
-    renderApp(<CustomViewLoader customView={customView} onClose={jest.fn()} />);
+    renderComponent(
+      <CustomViewLoader customView={customView} onClose={jest.fn()} />
+    );
 
     fireEvent.load(
       screen.getByTitle(`Custom View: ${TEST_CUSTOM_VIEW.defaultLabel}`)
@@ -104,7 +108,7 @@ describe('CustomViewLoader', () => {
       type: 'InvalidType',
     };
 
-    renderApp(
+    renderComponent(
       <CustomViewLoader
         // @ts-expect-error: we are testing an unknown type
         customView={customView}
@@ -125,7 +129,7 @@ describe('CustomViewLoader', () => {
   it('should call onClose when the custom view is closed', async () => {
     const onCloseMock = jest.fn();
 
-    renderApp(
+    renderComponent(
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
     );
 

@@ -1153,9 +1153,6 @@ importers:
       '@commercetools-frontend/application-config':
         specifier: 22.8.2
         version: link:../application-config
-      '@commercetools-frontend/application-shell':
-        specifier: 22.8.2
-        version: link:../application-shell
       '@commercetools-frontend/application-shell-connectors':
         specifier: 22.8.2
         version: link:../application-shell-connectors

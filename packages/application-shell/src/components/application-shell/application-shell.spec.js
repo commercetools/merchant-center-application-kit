@@ -20,6 +20,7 @@ import {
   LOGOUT_REASONS,
   SHOW_LOADING,
   HIDE_LOADING,
+  STORAGE_KEYS,
 } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
@@ -31,7 +32,6 @@ import {
   LegacyApplicationNavbarSubmenuMock,
   CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
-import { STORAGE_KEYS } from '../../constants';
 import { MAIN_NAVIGATION } from '../../feature-toggles';
 import { location } from '../../utils/location';
 import { getBrowserHistory } from '../application-shell-provider/utils';
