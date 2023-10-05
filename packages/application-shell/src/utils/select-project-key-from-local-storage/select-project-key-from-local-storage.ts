@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS } from '@commercetools-frontend/constants';
 
 // Attempt to load the `projectKey` from localStorage
 export default function selectProjectKeyFromLocalStorage() {

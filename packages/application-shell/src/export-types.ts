@@ -1,12 +1,13 @@
-import type { TApolloContext as ApolloContext } from './utils/apollo-context';
+// Re-export types for backwards compatibility
 import type {
-  TFetcher,
-  TFetcherResponse,
-  THeaders,
-  TConfig,
-  TOptions,
+  TApolloContext as ApolloContext,
+  THttpClientFetcher as TFetcher,
+  THttpClientFetcherResponse as TFetcherResponse,
+  THttpClientHeaders as THeaders,
+  THttpClientConfig as TConfig,
+  THttpClientOptions as TOptions,
   TForwardToAudiencePolicy as ForwardToAudiencePolicy,
-} from './utils/http-client';
+} from '@commercetools-frontend/application-shell-connectors';
 
 export type TApolloContext = ApolloContext;
 export type TForwardToAudiencePolicy = ForwardToAudiencePolicy;

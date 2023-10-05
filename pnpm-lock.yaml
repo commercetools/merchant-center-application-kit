@@ -1151,13 +1151,10 @@ importers:
         specifier: 22.8.4
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 22.8.1
+        specifier: 22.8.4
         version: link:../application-config
-      '@commercetools-frontend/application-shell':
-        specifier: 22.8.1
-        version: link:../application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.8.1
+        specifier: 22.8.4
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
         specifier: 22.8.4
@@ -1461,9 +1458,6 @@ importers:
       '@commercetools-uikit/text':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
-      '@commercetools/http-user-agent':
-        specifier: 3.0.0
-        version: 3.0.0
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
@@ -1521,9 +1515,6 @@ importers:
       '@types/uuid':
         specifier: ^9.0.3
         version: 9.0.3
-      apollo-link-logger:
-        specifier: 2.0.1
-        version: 2.0.1(@apollo/client@3.7.14)
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
@@ -1609,9 +1600,6 @@ importers:
       '@types/testing-library__jest-dom':
         specifier: ^5.14.9
         version: 5.14.9
-      headers-polyfill:
-        specifier: 3.1.2
-        version: 3.1.2
       jest:
         specifier: 29.5.0
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -1639,9 +1627,6 @@ importers:
       redux:
         specifier: 4.2.1
         version: 4.2.1
-      wait-for-observables:
-        specifier: 1.0.3
-        version: 1.0.3
 
   packages/application-shell-connectors:
     dependencies:
@@ -1651,12 +1636,21 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.22.15
         version: 7.22.15
+      '@commercetools-frontend/application-config':
+        specifier: 22.8.4
+        version: link:../application-config
+      '@commercetools-frontend/browser-history':
+        specifier: 22.8.4
+        version: link:../browser-history
       '@commercetools-frontend/constants':
         specifier: 22.8.4
         version: link:../constants
       '@commercetools-frontend/sentry':
         specifier: 22.8.4
         version: link:../sentry
+      '@commercetools/http-user-agent':
+        specifier: 3.0.0
+        version: 3.0.0
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
@@ -1669,6 +1663,9 @@ importers:
       '@types/react':
         specifier: ^17.0.56
         version: 17.0.56
+      apollo-link-logger:
+        specifier: 2.0.1
+        version: 2.0.1(@apollo/client@3.7.14)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1678,10 +1675,19 @@ importers:
       moment-timezone:
         specifier: ^0.5.40
         version: 0.5.40
+      omit-empty-es:
+        specifier: 1.1.3
+        version: 1.1.3
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
       tiny-warning:
+        specifier: 1.0.3
+        version: 1.0.3
+      uuid:
+        specifier: 9.0.0
+        version: 9.0.0
+      wait-for-observables:
         specifier: 1.0.3
         version: 1.0.3
     devDependencies:
@@ -1694,12 +1700,18 @@ importers:
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
+      headers-polyfill:
+        specifier: 3.1.2
+        version: 3.1.2
       jest:
         specifier: 29.5.0
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
       jest-mock:
         specifier: 29.5.0
         version: 29.5.0
+      msw:
+        specifier: 0.49.3
+        version: 0.49.3(typescript@5.0.4)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -14934,7 +14946,7 @@ packages:
     resolution: {integrity: sha512-kzRaCqXnpzWs+3z5ABPQiVke+iq0KXkHo8xiWV4RPTi5Yli0l97BEQuhXV1s7+aSU/fu1kUuxgS4MsQ0fRuygw==}
     engines: {node: '>=14.16'}
     dependencies:
-      type-fest: 3.8.0
+      type-fest: 3.13.1
     dev: false
 
   /ansi-html-community@0.0.8:
@@ -15097,7 +15109,7 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.2.0
       es-abstract: 1.21.2
-      get-intrinsic: 1.2.0
+      get-intrinsic: 1.2.1
       is-string: 1.0.7
 
   /array-iterate@1.1.4:
@@ -15143,7 +15155,7 @@ packages:
       define-properties: 1.2.0
       es-abstract: 1.21.2
       es-shim-unscopables: 1.0.0
-      get-intrinsic: 1.2.0
+      get-intrinsic: 1.2.1
 
   /arraybuffer.prototype.slice@1.0.2:
     resolution: {integrity: sha512-yMBKppFur/fbHu9/6USUe03bZ4knMYiwFBcyiaXB8Go0qNehwX6inYPzK9U0NeQvGxKthcmHcaR8P5MStSRBAw==}
@@ -21094,13 +21106,6 @@ packages:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
 
-  /get-intrinsic@1.2.0:
-    resolution: {integrity: sha512-L049y6nFOuom5wGyRc3/gdTLO94dySVKRACj1RmJZBQXlbTMhtNIgkWkUHq+jYmZvKf14EW1EoJnnjbmoHij0Q==}
-    dependencies:
-      function-bind: 1.1.1
-      has: 1.0.3
-      has-symbols: 1.0.3
-
   /get-intrinsic@1.2.1:
     resolution: {integrity: sha512-2DcsyfABl+gVHEfCOaTrWgyt+tb6MSEGmKq+kI5HwLbIYgjgmMcV8KQ41uaKz1xxUcn9tJtgFbQUEVcEbd0FYw==}
     dependencies:
@@ -22371,7 +22376,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -29563,7 +29568,7 @@ packages:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
       call-bind: 1.0.2
-      get-intrinsic: 1.2.0
+      get-intrinsic: 1.2.1
       object-inspect: 1.12.3
 
   /signal-exit@3.0.7:
@@ -30074,7 +30079,7 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.2.0
       es-abstract: 1.21.2
-      get-intrinsic: 1.2.0
+      get-intrinsic: 1.2.1
       has-symbols: 1.0.3
       internal-slot: 1.0.5
       regexp.prototype.flags: 1.4.3
@@ -31253,12 +31258,6 @@ packages:
   /type-fest@3.13.1:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
-    dev: true
-
-  /type-fest@3.8.0:
-    resolution: {integrity: sha512-FVNSzGQz9Th+/9R6Lvv7WIAkstylfHN2/JYxkyhhmKFYh9At2DST8t6L6Lref9eYO8PXFTfG9Sg1Agg0K3vq3Q==}
-    engines: {node: '>=14.16'}
-    dev: false
 
   /type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
@@ -32154,7 +32153,7 @@ packages:
     resolution: {integrity: sha512-fUXfx0u7LcoQRTTpWv8ghCrbf0bsgB/T8mxYlOph3RV3/9dMQGFq8HN/9rgzfvaCNLWBQoaLI0+61NyUjYYMYQ==}
     dependencies:
       tslib: 1.14.1
-    dev: true
+    dev: false
 
   /wait-on@7.0.1(debug@4.3.4):
     resolution: {integrity: sha512-9AnJE9qTjRQOlTZIldAaf/da2eW0eSRSgcqq85mXQja/DW3MriHxkpODDSUEg+Gri/rKEcXUZHe+cevvYItaog==}
@@ -32903,7 +32902,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

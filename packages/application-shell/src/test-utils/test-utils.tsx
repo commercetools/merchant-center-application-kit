@@ -24,6 +24,7 @@ import invariant from 'tiny-invariant';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
   ApplicationContextProvider,
+  createApolloClient,
   type TProviderProps,
 } from '@commercetools-frontend/application-shell-connectors';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
@@ -38,7 +39,6 @@ import {
   type TSdkMock,
 } from '@commercetools-frontend/sdk/test-utils';
 import ApplicationEntryPoint from '../components/application-entry-point';
-import createApolloClient from '../configure-apollo';
 import { createReduxStore } from '../configure-store';
 
 // These default values get merged with the values provided by the test from

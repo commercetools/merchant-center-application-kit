@@ -1,9 +1,10 @@
 import type { ServerError, ServerParseError } from '@apollo/client';
 import type { ErrorResponse } from '@apollo/client/link/error';
 import type { GraphQLError } from 'graphql';
-
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { SUPPORTED_HEADERS } from '../constants';
+import {
+  GRAPHQL_TARGETS,
+  SUPPORTED_HEADERS,
+} from '@commercetools-frontend/constants';
 import type { TApolloContext } from '../utils/apollo-context';
 
 type TTokenRetryGraphQlTarget =

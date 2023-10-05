@@ -1,12 +1,12 @@
+import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import {
   CustomViewData,
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
-import { useMcQuery } from '../../hooks/apollo-hooks';
-import type {
+import {
   TFetchCustomViewsByLocatorQuery,
   TFetchCustomViewsByLocatorQueryVariables,
-} from '../../types/generated/settings';
+} from '../../../types/generated/settings';
 import FetchCustomViewsQuery from './fetch-custom-views-by-locator.settings.graphql';
 
 type TUseCustomViewsFetcherParams = {

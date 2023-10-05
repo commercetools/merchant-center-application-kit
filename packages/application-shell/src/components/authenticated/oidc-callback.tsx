@@ -1,9 +1,9 @@
 import jwtDecode from 'jwt-decode';
 import { decode } from 'qss';
 import { useLocation } from 'react-router-dom';
+import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import * as oidcStorage from '../../utils/oidc-storage';
 import Redirector from '../redirector';
 import OidcCallbackErrorPage from './oidc-callback-error-page';
 import type { AuthorizeSessionState } from './types';

@@ -1,7 +1,7 @@
 import { mocked } from 'jest-mock';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS } from '@commercetools-frontend/constants';
 import { renderApp, waitFor } from '../../test-utils';
 import type {
   TAmILoggedInQuery,

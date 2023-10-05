@@ -1,5 +1,5 @@
 import { screen, render, waitFor } from '@testing-library/react';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS } from '@commercetools-frontend/constants';
 import ProjectDataLocale from './project-data-locale';
 
 beforeEach(() => {

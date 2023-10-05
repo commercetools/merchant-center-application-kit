@@ -1,11 +1,11 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import styled from '@emotion/styled';
-import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,

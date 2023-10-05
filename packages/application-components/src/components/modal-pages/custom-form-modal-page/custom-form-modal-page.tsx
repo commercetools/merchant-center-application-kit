@@ -1,6 +1,5 @@
 import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import type { CSSObject } from '@emotion/react';
-import { CustomViewsSelector } from '@commercetools-frontend/application-shell';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import {

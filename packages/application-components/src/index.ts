@@ -44,6 +44,8 @@ export type { TPageContentFull } from './components/page-content-containers/page
 
 // Custom views
 export { default as CustomPanel } from './components/custom-views/custom-panel';
+export { default as CustomViewLoader } from './components/custom-views/custom-view-loader';
+export { default as CustomViewsSelector } from './components/custom-views/custom-views-selector';
 
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
