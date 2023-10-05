@@ -1461,9 +1461,6 @@ importers:
       '@commercetools-uikit/text':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
-      '@commercetools/http-user-agent':
-        specifier: 3.0.0
-        version: 3.0.0
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
@@ -1521,9 +1518,6 @@ importers:
       '@types/uuid':
         specifier: ^9.0.3
         version: 9.0.3
-      apollo-link-logger:
-        specifier: 2.0.1
-        version: 2.0.1(@apollo/client@3.7.14)
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
@@ -1609,9 +1603,6 @@ importers:
       '@types/testing-library__jest-dom':
         specifier: ^5.14.9
         version: 5.14.9
-      headers-polyfill:
-        specifier: 3.1.2
-        version: 3.1.2
       jest:
         specifier: 29.5.0
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -1639,9 +1630,6 @@ importers:
       redux:
         specifier: 4.2.1
         version: 4.2.1
-      wait-for-observables:
-        specifier: 1.0.3
-        version: 1.0.3
 
   packages/application-shell-connectors:
     dependencies:
@@ -32192,6 +32180,7 @@ packages:
     resolution: {integrity: sha512-fUXfx0u7LcoQRTTpWv8ghCrbf0bsgB/T8mxYlOph3RV3/9dMQGFq8HN/9rgzfvaCNLWBQoaLI0+61NyUjYYMYQ==}
     dependencies:
       tslib: 1.14.1
+    dev: false
 
   /wait-on@7.0.1(debug@4.3.4):
     resolution: {integrity: sha512-9AnJE9qTjRQOlTZIldAaf/da2eW0eSRSgcqq85mXQja/DW3MriHxkpODDSUEg+Gri/rKEcXUZHe+cevvYItaog==}
