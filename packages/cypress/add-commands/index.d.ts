@@ -40,8 +40,6 @@ declare namespace Cypress {
      *
      * @example
      *    cy.navigationMenuHover('navigation_item_menu_text_matcher')
-     *
-     * @deprecated Use the more generic {@link cy.loginToMerchantCenter} command as it automatically detects which login mechanism to use.
      */
     navigationMenuHover(
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
