@@ -1,6 +1,8 @@
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS } from '../../constants';
+import {
+  GRAPHQL_TARGETS,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 import type {
   TAmILoggedInQuery,
   TAmILoggedInQueryVariables,

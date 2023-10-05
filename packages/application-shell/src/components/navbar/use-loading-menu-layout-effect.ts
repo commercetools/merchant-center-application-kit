@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
 import isNil from 'lodash/isNil';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS } from '@commercetools-frontend/constants';
 
 const useLoadingMenuLayoutEffect = () => {
   const cachedIsForcedMenuOpen = window.localStorage.getItem(

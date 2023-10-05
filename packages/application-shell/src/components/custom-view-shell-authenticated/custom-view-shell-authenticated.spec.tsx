@@ -2,10 +2,12 @@ import { Mock } from 'jest-mock';
 import { graphql } from 'msw';
 import { screen, render } from '@testing-library/react';
 import { setupServer } from 'msw/node';
-import type { CustomViewData } from '@commercetools-frontend/constants';
+import {
+  STORAGE_KEYS,
+  type CustomViewData,
+} from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { UserMock, ProjectMock } from '../../../../../graphql-test-utils';
-import { STORAGE_KEYS } from '../../constants';
 import { TCustomViewType } from '../../types/generated/settings';
 import ApplicationShellProvider from '../application-shell-provider';
 import CustomViewAuthenticatedShell from './custom-view-shell-authenticated';

@@ -20,6 +20,7 @@ import {
 import {
   SHOW_LOADING,
   HIDE_LOADING,
+  SUPPORTED_HEADERS,
   type ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import {
@@ -28,7 +29,6 @@ import {
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 

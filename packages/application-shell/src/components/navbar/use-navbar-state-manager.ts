@@ -11,9 +11,12 @@ import {
   useMcQuery,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS, WINDOW_SIZES } from '../../constants';
+import { WINDOW_SIZES } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TNavbarMenu } from '../../types/generated/proxy';
 import type {

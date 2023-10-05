@@ -1,5 +1,5 @@
 import { ReactNode, useCallback, useState } from 'react';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS } from '@commercetools-frontend/constants';
 
 type RenderFnArgs = {
   locale: string;

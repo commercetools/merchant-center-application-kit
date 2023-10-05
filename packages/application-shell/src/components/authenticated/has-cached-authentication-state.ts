@@ -1,7 +1,9 @@
 import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-
-import { STORAGE_KEYS, OIDC_CLAIMS } from '../../constants';
+import {
+  type ApplicationWindow,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
+import { OIDC_CLAIMS } from '../../constants';
 import { buildOidcScope } from '../../utils/oidc';
 
 declare let window: ApplicationWindow;
