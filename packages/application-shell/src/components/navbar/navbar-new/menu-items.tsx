@@ -292,15 +292,7 @@ const MenuItem = (props: MenuItemProps) => {
       onMouseLeave={props.onMouseLeave}
       data-menuitem={props.identifier}
     >
-      <div
-        className={
-          props.hasSubmenu
-            ? styles['item-link']
-            : styles['item-link-no-submenu']
-        }
-      >
-        {props.children}
-      </div>
+      <div className={styles['item-link']}>{props.children}</div>
     </li>
   );
 };
