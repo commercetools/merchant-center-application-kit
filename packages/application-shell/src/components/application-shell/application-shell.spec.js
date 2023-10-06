@@ -1442,7 +1442,7 @@ describe('With new navbar', () => {
       const groupId = submenuTooltip.getAttribute('aria-owns');
 
       // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-      const submenuContainer = container.querySelector(`#${groupId}`);
+      const submenuContainer = container.querySelector(`#group-${groupId}`);
       // The submenu container should not be expanded when the menu is not active.
       expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
 
