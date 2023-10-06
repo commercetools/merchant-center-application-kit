@@ -143,6 +143,11 @@
   padding: var(--spacing-30) var(--spacing-25);
 }
 
+.expander:hover {
+  background-color: var(--color-primary-40);
+  cursor: pointer;
+}
+
 /* divider */
 .expander::before {
   content: '';
