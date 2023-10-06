@@ -132,7 +132,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
       key="expander"
-      className={classnames(styles['list-item'], styles.expander, {
+      className={classnames(styles.expander, {
         [styles.hidden]: !props.isVisible,
       })}
     >
