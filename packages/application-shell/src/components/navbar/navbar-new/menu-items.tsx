@@ -218,6 +218,14 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
           props.isSubmenuAboveMenuItem,
           props.submenuVerticalPosition
         )};
+      
+      // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
+      ${
+        props.submenuVerticalPosition === 0 &&
+        css`
+          visibility: hidden;
+        `
+      }
 
         // additional styling of the pseudo-element enabling smooth coursor movement
         ::before {
