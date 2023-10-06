@@ -224,7 +224,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           />
         </MenuItemLink>
         <MenuGroup
-          id={props.menu.key}
+          id={`group-${props.menu.key}`}
           level={2}
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
