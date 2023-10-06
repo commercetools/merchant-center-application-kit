@@ -145,7 +145,6 @@
 
 .expander:hover {
   background-color: var(--color-primary-40);
-  cursor: pointer;
 }
 
 /* divider */
@@ -171,6 +170,7 @@
 
 .expand-icon:hover {
   background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
 
 .item--bottom {
