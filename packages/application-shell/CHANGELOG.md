@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-shell
 
+## 22.8.4
+
+### Patch Changes
+
+- [#3256](https://github.com/commercetools/merchant-center-application-kit/pull/3256) [`a009c4281`](https://github.com/commercetools/merchant-center-application-kit/commit/a009c4281dc37df9e776ec4b1e923340fe20cd5f) Thanks [@kark](https://github.com/kark)! - Fix wrong submenu position on menu expand button click
+
+- [#3259](https://github.com/commercetools/merchant-center-application-kit/pull/3259) [`b7414e2f7`](https://github.com/commercetools/merchant-center-application-kit/commit/b7414e2f735c1bb160ee33f22b518f55022ec0f1) Thanks [@kark](https://github.com/kark)! - Improve user experience by not showing Navbar subemnu on first render when its vertical position is evaluated to 0
+
+- [#3258](https://github.com/commercetools/merchant-center-application-kit/pull/3258) [`f7c1da442`](https://github.com/commercetools/merchant-center-application-kit/commit/f7c1da4424c95d3c403fba3470455a6b09ef3cca) Thanks [@kark](https://github.com/kark)! - Resolve the issue of the Navbar causing Chrome tab crashes when DevTools are open
+
+- [#3260](https://github.com/commercetools/merchant-center-application-kit/pull/3260) [`71cce1fdf`](https://github.com/commercetools/merchant-center-application-kit/commit/71cce1fdf050050cc0d92f1472a5df82b45ca5b9) Thanks [@ddouglasz](https://github.com/ddouglasz)! - fix issue with NavBar submenu having a border radius at the bottom when expander icon is hovered on, when navbar is collapsed.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.8.4
+  - @commercetools-frontend/application-components@22.8.4
+  - @commercetools-frontend/application-config@22.8.4
+  - @commercetools-frontend/application-shell-connectors@22.8.4
+  - @commercetools-frontend/assets@22.8.4
+  - @commercetools-frontend/browser-history@22.8.4
+  - @commercetools-frontend/constants@22.8.4
+  - @commercetools-frontend/i18n@22.8.4
+  - @commercetools-frontend/l10n@22.8.4
+  - @commercetools-frontend/notifications@22.8.4
+  - @commercetools-frontend/permissions@22.8.4
+  - @commercetools-frontend/react-notifications@22.8.4
+  - @commercetools-frontend/sdk@22.8.4
+  - @commercetools-frontend/sentry@22.8.4
+  - @commercetools-frontend/url-utils@22.8.4
+
 ## 22.8.3
 
 ### Patch Changes
