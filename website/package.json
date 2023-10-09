@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "22.8.3",
+  "version": "22.8.4",
   "private": true,
   "browserslist": [">0.25%", "not dead and supports es6-module"],
   "scripts": {

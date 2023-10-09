@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.8.4
+
+### Patch Changes
+
+- [#3254](https://github.com/commercetools/merchant-center-application-kit/pull/3254) [`3a0e42017`](https://github.com/commercetools/merchant-center-application-kit/commit/3a0e42017c01ec063215c0f9051a778a0a6f92a5) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss to v8.4.31 [security]
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.8.4
+  - @commercetools-frontend/application-config@22.8.4
+  - @commercetools-frontend/assets@22.8.4
+  - @commercetools-frontend/babel-preset-mc-app@22.8.4
+  - @commercetools-frontend/constants@22.8.4
+  - @commercetools-frontend/mc-dev-authentication@22.8.4
+  - @commercetools-frontend/mc-html-template@22.8.4
+
 ## 22.8.3
 
 ### Patch Changes
