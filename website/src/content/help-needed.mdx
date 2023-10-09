@@ -124,6 +124,27 @@ See [Page reloading behavior](/concepts/merchant-center-proxy-router#page-reload
 
 In the browser, the session token is stored in a secure cookie named `mcAccessToken` and is valid for 30 days.
 
+# Granular permissions for Custom Application local development
+
+In specific scenarios, there may be a requirement for local development and login using a user account with restricted permissions. This feature is available from version 22.5.0 onwards.
+
+Kindly be aware that this is regarded as a workaround and it is recommended for development teams with prior experience in Custom Application configuration and installation, as it requires a certain configuration overhead.
+
+To enable this option, it's necessary to fulfill the following configurational prerequisites in the Merchant Center (which can be done only with administrator rights): 
+
+1. Custom Application [configuration](https://docs.commercetools.com/merchant-center/managing-custom-applications#configuring-custom-applications), with a specific emphasis on assigning the [Application ID](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application).
+
+<Info>
+
+Custom Application URL is not relevant at this point and any acceptable value can be provided in the registration form.
+
+</Info>
+
+2. Custom Application [installation](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) 
+3. [Establishing a designated team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilizing an existing one) and obtaining the `teamId` from the Merchant Center URL (`/account/organizations/**organizationId**/teams/**teamId**/members`).
+4. [Assigning relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
+
+This process should lead to obtaining `applicationId` and `teamId` which then have to be provided as (env.production.applicationId)[/api-reference/application-config#envproductionapplicationid] and (env.development.teamId)[/api-reference/application-config#envdevelopmentteamid] respectively in the Custom Application configuration file.
 
 # Limitations
 
