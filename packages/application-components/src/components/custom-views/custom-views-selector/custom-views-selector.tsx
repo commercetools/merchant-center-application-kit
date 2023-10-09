@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { CustomViewData } from '@commercetools-frontend/constants';
 import Constraints from '@commercetools-uikit/constraints';
@@ -12,9 +12,14 @@ import { useCustomViewsConnector } from './use-custom-views-connector';
 
 const COMPONENT_HEIGHT = '56px';
 
-type TCustmoViewSelectorProps = {
-  customViewLocatorCode?: string;
+type TCustomViewSelectorBaseProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
+};
+type TCustomViewSelectorProps = TCustomViewSelectorBaseProps & {
+  customViewLocatorCode?: string;
+};
+type TCustomViewSelectorWithRequiredProps = TCustomViewSelectorBaseProps & {
+  customViewLocatorCode: string;
 };
 
 type TWrapperProps = {
@@ -31,31 +36,19 @@ const Container = styled.div`
   padding: ${designTokens.spacing25} ${designTokens.spacing60};
 `;
 
-function CustomViewSelector(props: TCustmoViewSelectorProps) {
-  const { customViewLocatorCode, onCustomViewsResolved } = props;
+function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
   const [selectedCustomView, setSelectedCustomView] =
     useState<CustomViewData | null>(null);
   const { customViews, error, loading } = useCustomViewsConnector({
-    customViewLocatorCode,
+    customViewLocatorCode: props.customViewLocatorCode,
   });
 
+  const { onCustomViewsResolved } = props;
   useEffect(() => {
     if (!loading && !error && onCustomViewsResolved) {
       onCustomViewsResolved(customViews);
     }
   }, [customViews, error, loading, onCustomViewsResolved]);
-
-  const openCustomView = useCallback((customView: CustomViewData) => {
-    setSelectedCustomView(customView);
-  }, []);
-
-  const onCustomViewClosed = useCallback(() => {
-    setSelectedCustomView(null);
-  }, []);
-
-  if (!props.customViewLocatorCode) {
-    return null;
-  }
 
   if (error) {
     // TODO: add error handling
@@ -84,7 +77,9 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
                 key={customView.id}
                 label={customView.defaultLabel}
                 size="medium"
-                onClick={() => openCustomView(customView)}
+                onClick={() => {
+                  setSelectedCustomView(customView);
+                }}
               />
             ))}
           </Spacings.Inline>
@@ -92,7 +87,9 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
           {selectedCustomView && (
             <CustomViewLoader
               customView={selectedCustomView}
-              onClose={onCustomViewClosed}
+              onClose={() => {
+                setSelectedCustomView(null);
+              }}
             />
           )}
         </Constraints.Horizontal>
@@ -101,4 +98,16 @@ function CustomViewSelector(props: TCustmoViewSelectorProps) {
   );
 }
 
-export default CustomViewSelector;
+const CustomViewSelectorOrNothing = (props: TCustomViewSelectorProps) => {
+  if (!props.customViewLocatorCode) {
+    return null;
+  }
+  return (
+    <CustomViewSelector
+      {...props}
+      customViewLocatorCode={props.customViewLocatorCode}
+    />
+  );
+};
+
+export default CustomViewSelectorOrNothing;

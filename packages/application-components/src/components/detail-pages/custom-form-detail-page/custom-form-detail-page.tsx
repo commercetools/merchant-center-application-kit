@@ -90,11 +90,9 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
 
   return (
     <PageWrapper>
-      {Boolean(props.customViewLocatorCode) && (
-        <CustomViewsSelector
-          customViewLocatorCode={props.customViewLocatorCode}
-        />
-      )}
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <DetailPageContainer>
         <PageTopBar
           color="neutral"

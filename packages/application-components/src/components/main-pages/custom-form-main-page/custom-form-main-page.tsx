@@ -70,11 +70,9 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
 
   return (
     <PageWrapper>
-      {Boolean(props.customViewLocatorCode) && (
-        <CustomViewsSelector
-          customViewLocatorCode={props.customViewLocatorCode}
-        />
-      )}
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <MainPageContainer>
         <Spacings.Stack scale="l">
           {props.customTitleRow || (

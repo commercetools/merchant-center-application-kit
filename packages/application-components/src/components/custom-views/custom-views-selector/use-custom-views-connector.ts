@@ -10,7 +10,7 @@ import {
 import FetchCustomViewsQuery from './fetch-custom-views-by-locator.settings.graphql';
 
 type TUseCustomViewsFetcherParams = {
-  customViewLocatorCode?: string;
+  customViewLocatorCode: string;
 };
 type TUseCustomViewsFetcher = (props: TUseCustomViewsFetcherParams) => {
   customViews: CustomViewData[];
@@ -26,12 +26,11 @@ export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
     TFetchCustomViewsByLocatorQueryVariables
   >(FetchCustomViewsQuery, {
     variables: {
-      customViewLocatorCode: customViewLocatorCode || '',
+      customViewLocatorCode,
     },
     context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
-    skip: !customViewLocatorCode,
   });
 
   return {

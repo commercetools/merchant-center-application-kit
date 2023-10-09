@@ -162,11 +162,9 @@ const ModalPage = (props: Props) => {
             },
           }}
         >
-          {Boolean(props.customViewLocatorCode) && (
-            <CustomViewsSelector
-              customViewLocatorCode={props.customViewLocatorCode}
-            />
-          )}
+          <CustomViewsSelector
+            customViewLocatorCode={props.customViewLocatorCode}
+          />
           <ModalPageTopBar
             color={props.topBarColor}
             onClose={handleClose}

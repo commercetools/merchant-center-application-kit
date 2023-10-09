@@ -65,11 +65,9 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
 
   return (
     <PageWrapper>
-      {Boolean(props.customViewLocatorCode) && (
-        <CustomViewsSelector
-          customViewLocatorCode={props.customViewLocatorCode}
-        />
-      )}
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <TabularPageContainer color="surface">
         {props.customTitleRow || (
           <PageHeaderTitle
