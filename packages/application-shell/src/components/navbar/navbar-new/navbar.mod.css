@@ -143,6 +143,10 @@
   padding: var(--spacing-30) var(--spacing-25);
 }
 
+.expander:hover {
+  background-color: var(--color-primary-40);
+}
+
 /* divider */
 .expander::before {
   content: '';
@@ -166,6 +170,7 @@
 
 .expand-icon:hover {
   background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
 
 .item--bottom {
