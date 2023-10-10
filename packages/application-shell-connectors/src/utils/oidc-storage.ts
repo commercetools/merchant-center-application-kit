@@ -1,4 +1,7 @@
-import { STORAGE_KEYS, LOGIN_STRATEGY_OIDC } from '../constants';
+import {
+  STORAGE_KEYS,
+  LOGIN_STRATEGY_OIDC,
+} from '@commercetools-frontend/constants';
 
 const getSessionToken = (): string | null =>
   window.sessionStorage.getItem(STORAGE_KEYS.SESSION_TOKEN);

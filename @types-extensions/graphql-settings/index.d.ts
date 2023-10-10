@@ -10,6 +10,14 @@ declare module '*/fetch-project-extension-image-regex.settings.graphql' {
   export default defaultDocument;
 }
 
+declare module '*/fetch-custom-views-by-locator.settings.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const FetchCustomViewsByLocator: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module '*/fetch-project-extensions-navbar.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

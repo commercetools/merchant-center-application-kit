@@ -34,6 +34,10 @@ type InfoDetailPageProps = {
    */
   previousPathLabel?: string | MessageDescriptor;
   /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
+  /**
    * Function called when back button is pressed.
    */
   onPreviousPathClick: (
@@ -47,6 +51,7 @@ const InfoDetailPage = (props: InfoDetailPageProps) => (
     subtitle={props.subtitle}
     customTitleRow={props.customTitleRow}
     previousPathLabel={props.previousPathLabel}
+    customViewLocatorCode={props.customViewLocatorCode}
     onPreviousPathClick={props.onPreviousPathClick}
   >
     {props.children}

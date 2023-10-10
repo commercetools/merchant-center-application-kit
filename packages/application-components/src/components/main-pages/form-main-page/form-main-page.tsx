@@ -63,6 +63,10 @@ type FormMainPageProps = {
    */
   iconLeftSecondaryButton?: ReactElement;
   /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
+  /**
    * Called when the primary button is clicked.
    */
   onPrimaryButtonClick: (event: SyntheticEvent) => void;
@@ -82,6 +86,7 @@ const FormMainPage = (props: FormMainPageProps) => {
       title={props.title}
       subtitle={props.subtitle}
       customTitleRow={props.customTitleRow}
+      customViewLocatorCode={props.customViewLocatorCode}
       hideControls={props.hideControls}
       formControls={
         <>

@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -55,6 +56,10 @@ type TTabularDetailPageProps = {
    * Determines if the form controls should be rendered.
    */
   hideControls: boolean;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
 
   // PageTopBar props:
   /**
@@ -81,6 +86,9 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
 
   return (
     <PageWrapper>
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <TabularPageContainer color="neutral">
         <PageTopBar
           color="neutral"

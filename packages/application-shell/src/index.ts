@@ -3,33 +3,29 @@ export { default as version } from './version';
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
 export { default as ApplicationPageTitle } from './components/application-page-title';
-export { default as CustomViewLoader } from './components/custom-view-loader';
 export { default as CustomViewShell } from './components/custom-view-shell';
-export { default as createApolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
-export {
-  getMcApiUrl,
-  selectUserId,
-  selectProjectKeyFromUrl,
-  createApolloContextForProxyForwardTo,
-} from './utils';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as ConfigureIntlProvider } from './components/configure-intl-provider';
 export { default as SuspendedRoute } from './components/suspended-route';
+export { default as useRoutesCreator } from './hooks/use-routes-creator';
+
 export {
+  buildApiUrl,
+  createApolloClient,
+  createApolloContextForProxyForwardTo,
+  createHttpClientOptions,
+  executeHttpClientRequest,
+  getMcApiUrl,
+  selectUserId,
+  selectProjectKeyFromUrl,
   useMcQuery,
   useMcLazyQuery,
   useMcMutation,
-} from './hooks/apollo-hooks';
-export { default as useRoutesCreator } from './hooks/use-routes-creator';
-export {
-  buildApiUrl,
-  createHttpClientOptions,
-  executeHttpClientRequest,
-} from './utils/http-client';
+} from '@commercetools-frontend/application-shell-connectors';
 
 export {
   entryPointUriPathToPermissionKeys,

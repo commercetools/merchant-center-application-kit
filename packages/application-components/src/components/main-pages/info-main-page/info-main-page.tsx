@@ -12,9 +12,13 @@ type InfoMainPageProps = {
    */
   subtitle?: string | ReactElement;
   /**
-   * Replaces the title/subtitle row with a custom one (for special use cases)
+   * Replaces the title/subtitle row with a custom one (for special use cases).
    */
   customTitleRow?: ReactNode;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
   /**
    * Any React node displayed as the content within the page.
    */
@@ -27,6 +31,7 @@ const InfoMainPage = (props: InfoMainPageProps) => {
       title={props.title}
       subtitle={props.subtitle}
       customTitleRow={props.customTitleRow}
+      customViewLocatorCode={props.customViewLocatorCode}
       hideDivider={true}
     >
       {props.children}

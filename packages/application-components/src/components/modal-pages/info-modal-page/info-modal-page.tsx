@@ -20,6 +20,10 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -48,6 +52,7 @@ const InfoModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     getParentSelector={props.getParentSelector}
     afterOpenStyles={props.afterOpenStyles}
+    customViewLocatorCode={props.customViewLocatorCode}
   >
     <PageHeader title={props.title} subtitle={props.subtitle} />
     <ContentWrapper>{props.children}</ContentWrapper>

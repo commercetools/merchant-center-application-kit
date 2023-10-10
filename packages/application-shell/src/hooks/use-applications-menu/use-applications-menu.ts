@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import type { QueryFunctionOptions } from '@apollo/client/react';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  useApplicationContext,
+  useMcQuery,
+} from '@commercetools-frontend/application-shell-connectors';
 import type {
   ApplicationWindow,
   ApplicationMenuLinksForDevelopmentConfig,
   TLocalizedField,
 } from '@commercetools-frontend/constants';
 import { getSupportedLocales } from '@commercetools-frontend/l10n';
-import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,

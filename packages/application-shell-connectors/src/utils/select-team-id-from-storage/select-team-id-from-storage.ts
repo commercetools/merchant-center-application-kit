@@ -1,5 +1,7 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS } from '../../constants';
+import {
+  type ApplicationWindow,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 
 declare let window: ApplicationWindow;
 

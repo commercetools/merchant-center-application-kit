@@ -2,14 +2,13 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { IntlProvider, useIntl } from 'react-intl';
+import { InfoMainPage } from '@commercetools-frontend/application-components';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import Card from '@commercetools-uikit/card';
-import Constraints from '@commercetools-uikit/constraints';
 import DateTimeInput from '@commercetools-uikit/date-time-input';
 import Grid from '@commercetools-uikit/grid';
 import Label from '@commercetools-uikit/label';
 import Spacings from '@commercetools-uikit/spacings';
-import Text from '@commercetools-uikit/text';
 
 import messages from './messages';
 
@@ -137,34 +136,29 @@ LocaleExampleWrapper.propTypes = {
 };
 
 function FormattersDemo() {
+  const intl = useIntl();
   return (
-    <Spacings.Inset>
-      <Spacings.Stack scale="xl">
-        <Spacings.Stack>
-          <Constraints.Horizontal max={16}>
-            <Text.Headline as="h1" intlMessage={messages.title} />
-            <Text.Subheadline as="h4" intlMessage={messages.subtitle} />
-          </Constraints.Horizontal>
-        </Spacings.Stack>
-
-        <Grid
-          gridGap="16px"
-          gridAutoColumns="1fr"
-          gridTemplateColumns="repeat(3, 1fr)"
-        >
-          {DEMO_LOCALES.map((locale) => (
-            <Grid.Item key={locale}>
-              <LocaleExampleWrapper
-                locale={locale}
-                date={getSampleDate()}
-                timeZone={DEMO_TIMEZONE}
-                money={DEMO_MONEY_PRICE}
-              />
-            </Grid.Item>
-          ))}
-        </Grid>
-      </Spacings.Stack>
-    </Spacings.Inset>
+    <InfoMainPage
+      title={intl.formatMessage(messages.title)}
+      subtitle={intl.formatMessage(messages.subtitle)}
+    >
+      <Grid
+        gridGap="16px"
+        gridAutoColumns="1fr"
+        gridTemplateColumns="repeat(3, 1fr)"
+      >
+        {DEMO_LOCALES.map((locale) => (
+          <Grid.Item key={locale}>
+            <LocaleExampleWrapper
+              locale={locale}
+              date={getSampleDate()}
+              timeZone={DEMO_TIMEZONE}
+              money={DEMO_MONEY_PRICE}
+            />
+          </Grid.Item>
+        ))}
+      </Grid>
+    </InfoMainPage>
   );
 }
 

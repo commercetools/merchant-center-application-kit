@@ -1,12 +1,12 @@
 import { ApolloLink } from '@apollo/client';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import omitEmpty from 'omit-empty-es';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import type {
-  ApplicationWindow,
-  TGraphQLTargets,
+import {
+  GRAPHQL_TARGETS,
+  SUPPORTED_HEADERS,
+  type ApplicationWindow,
+  type TGraphQLTargets,
 } from '@commercetools-frontend/constants';
-import { SUPPORTED_HEADERS } from '../constants';
 import { selectProjectKeyFromUrl, selectTeamIdFromStorage } from '../utils';
 import type { TApolloContext } from '../utils/apollo-context';
 import { createHttpClientOptions, type THeaders } from '../utils/http-client';

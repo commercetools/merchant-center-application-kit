@@ -4,6 +4,7 @@ import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -46,6 +47,10 @@ type TTabularMainPageProps = {
    * Determines if the form controls should be rendered.
    */
   hideControls: boolean;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
 };
 
 const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
@@ -60,6 +65,9 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
 
   return (
     <PageWrapper>
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <TabularPageContainer color="surface">
         {props.customTitleRow || (
           <PageHeaderTitle
