@@ -50,7 +50,6 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
       onCustomViewsResolved(customViews);
     }
   }, [customViews, error, loading, onCustomViewsResolved]);
-
   if (error) {
     reportErrorToSentry(error, {
       extra: {

@@ -12,7 +12,15 @@ import ApplicationPlaygroundRoutes from '../../routes';
 import { renderApplicationWithRedux } from '../../test-utils';
 import * as StateMock from '../../test-utils/test-data/state';
 
-const mockServer = setupServer();
+const mockServer = setupServer(
+  graphql.query('FetchCustomViewsByLocator', (req, res, ctx) =>
+    res(
+      ctx.data({
+        allCustomViewsInstallationsByLocator: [],
+      })
+    )
+  )
+);
 afterEach(() => mockServer.resetHandlers());
 beforeAll(() =>
   mockServer.listen({
