@@ -1,5 +1,25 @@
 # @commercetools-applications/merchant-center-custom-view-template-starter-typescript
 
+## 22.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`fe0b5f7f5`](https://github.com/commercetools/merchant-center-application-kit/commit/fe0b5f7f5bedaab4850d38d0c1df29650689b96e), [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1), [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1)]:
+  - @commercetools-frontend/application-components@22.9.0
+  - @commercetools-frontend/constants@22.9.0
+  - @commercetools-frontend/application-shell-connectors@22.9.0
+  - @commercetools-frontend/application-shell@22.9.0
+  - @commercetools-frontend/mc-scripts@22.9.0
+  - @commercetools-frontend/actions-global@22.9.0
+  - @commercetools-frontend/application-config@22.9.0
+  - @commercetools-frontend/permissions@22.9.0
+  - @commercetools-frontend/mc-dev-authentication@22.9.0
+  - @commercetools-frontend/i18n@22.9.0
+  - @commercetools-frontend/l10n@22.9.0
+  - @commercetools-frontend/assets@22.9.0
+  - @commercetools-frontend/eslint-config-mc-app@22.9.0
+  - @commercetools-frontend/jest-preset-mc-app@22.9.0
+
 ## 22.8.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/jest-stylelint-runner",
-  "version": "22.8.4",
+  "version": "22.9.0",
   "description": "Jest runner that will transform css with postcss before running stylelint",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
