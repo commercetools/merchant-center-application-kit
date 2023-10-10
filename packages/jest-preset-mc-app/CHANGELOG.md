@@ -1,5 +1,14 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.9.1
+
+### Patch Changes
+
+- [#3262](https://github.com/commercetools/merchant-center-application-kit/pull/3262) [`d4765a2bb`](https://github.com/commercetools/merchant-center-application-kit/commit/d4765a2bb9be81220b22601178104886da86b8dc) Thanks [@abreu-ct](https://github.com/abreu-ct)! - Adds `Request` and `Response` from `node-fetch` as globals to the Jest preset.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.9.1
+
 ## 22.9.0
 
 ### Patch Changes
