@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { CustomViewData } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import Constraints from '@commercetools-uikit/constraints';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { SidebarCollapseIcon } from '@commercetools-uikit/icons';
@@ -51,11 +52,11 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
   }, [customViews, error, loading, onCustomViewsResolved]);
 
   if (error) {
-    // TODO: add error handling
-    console.error(
-      `Error fetching Custom Views for locator: "${props.customViewLocatorCode}".`,
-      error
-    );
+    reportErrorToSentry(error, {
+      extra: {
+        customViewLocatorCode: props.customViewLocatorCode,
+      },
+    });
     return null;
   }
 
