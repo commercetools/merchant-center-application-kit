@@ -38,6 +38,7 @@ describe('when user is authenticated', () => {
 
 describe('navigation menu', () => {
   beforeEach(() => {
+    cy.viewport(1250, 800);
     cy.loginToMerchantCenter({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
       initialRoute: URL_APP_KIT_PLAYGROUND,
@@ -63,7 +64,9 @@ describe('navigation menu', () => {
   });
   it('should show submenu on hover', () => {
     cy.findAllByText('Initial').should('exist');
-    cy.findAllByRole('menuitem').first().trigger('mouseover');
-    cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
+    cy.showNavigationSubmenuItems('State Machines');
+    cy.findByRole('link', { name: 'Echo Server', timeout: 1000 }).should(
+      'be.visible'
+    );
   });
 });
