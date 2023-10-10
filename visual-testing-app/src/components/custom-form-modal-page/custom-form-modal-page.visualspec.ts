@@ -7,6 +7,7 @@ describe.each`
   ${'custom-form-modal-page-default-controls'}
   ${'custom-form-modal-page-custom-controls'}
   ${'custom-form-modal-page-hidden-controls'}
+  ${'custom-form-modal-page-custom-views-selector'}
 `('CustomFormModalPage $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/custom-form-modal-page/${path}`);

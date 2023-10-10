@@ -7,6 +7,7 @@ import {
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/custom-form-detail-page';
@@ -120,6 +121,11 @@ export const Component = () => (
             <CustomFormDetailPage.FormDeleteButton onClick={() => undefined} />
           </>
         }
+      />
+    </Spec>
+    <Spec label="CustomFormDetailPage - Custom Views selector" size="xl">
+      <CustomFormDetailPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
       />
     </Spec>
   </Suite>

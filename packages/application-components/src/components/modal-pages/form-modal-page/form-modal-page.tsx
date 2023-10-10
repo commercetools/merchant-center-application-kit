@@ -22,6 +22,10 @@ type Props = {
   title: string;
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
   children: ReactNode;
   zIndex?: number;
   /**
@@ -83,6 +87,7 @@ const FormModalPage = (props: Props) => (
         />
       </>
     }
+    customViewLocatorCode={props.customViewLocatorCode}
   >
     {props.children}
   </CustomFormModalPage>
