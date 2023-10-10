@@ -9,6 +9,7 @@ import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import CustomViewLoader from '../custom-view-loader';
+import messages from './messages';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
 const COMPONENT_HEIGHT = '56px';
@@ -70,7 +71,7 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
           >
             <Spacings.Inline scale="xs" alignItems="center">
               <SidebarCollapseIcon size="medium" color="neutral60" />
-              <Text.Detail tone="secondary">Custom Views:</Text.Detail>
+              <Text.Detail tone="secondary" intlMessage={messages.title} />
             </Spacings.Inline>
             {customViews.map((customView) => (
               <SecondaryButton
