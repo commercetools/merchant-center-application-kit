@@ -7,6 +7,7 @@ describe.each`
   ${'info-modal-long'}
   ${'info-modal-two'}
   ${'info-modal-nested'}
+  ${'info-modal-with-custom-views-selector'}
 `('InfoModalPage $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/info-modal-page/${path}`);

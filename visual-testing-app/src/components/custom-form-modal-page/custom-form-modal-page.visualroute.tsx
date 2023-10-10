@@ -8,6 +8,7 @@ import {
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/custom-form-modal-page';
@@ -127,6 +128,14 @@ export const Component = () => (
                 </>
               }
               hideControls
+            />
+          ),
+        },
+        {
+          path: 'custom-form-modal-page-custom-views-selector',
+          spec: (
+            <ModalPageWithPortalParentSelector
+              customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
             />
           ),
         },

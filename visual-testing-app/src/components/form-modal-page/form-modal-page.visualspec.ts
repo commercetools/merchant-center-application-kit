@@ -8,6 +8,7 @@ describe.each`
   ${'form-modal-secondary-disabled'}
   ${'form-modal-long'}
   ${'form-modal-hidden-controls'}
+  ${'form-modal-custom-views-selector'}
 `('FormModalPage $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/form-modal-page/${path}`);

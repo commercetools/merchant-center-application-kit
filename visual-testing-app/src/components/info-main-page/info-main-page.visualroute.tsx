@@ -2,12 +2,14 @@ import type { ReactNode } from 'react';
 import { InfoMainPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/info-main-page';
 
 type InfoMainPageContainerProps = {
   customTitleRow?: ReactNode;
+  customViewLocatorCode?: string;
 };
 
 const InfoMainPageContainer = (props: InfoMainPageContainerProps) => (
@@ -37,6 +39,11 @@ export const Component = () => (
     </Spec>
     <Spec label="InfoMainPage with customTitleRow">
       <InfoMainPageContainer customTitleRow={<h2>John Doe</h2>} />
+    </Spec>
+    <Spec label="InfoMainPage with Custom Views selector">
+      <InfoMainPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
     </Spec>
   </Suite>
 );

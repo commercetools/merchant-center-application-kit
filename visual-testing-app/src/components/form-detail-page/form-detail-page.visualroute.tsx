@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { FormDetailPage } from '@commercetools-frontend/application-components';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-detail-page';
@@ -66,6 +67,11 @@ export const Component = () => (
     </Spec>
     <Spec label="FormDetailPage - With hidden controls" size="xl">
       <DetailPageContainer hideControls={true} />
+    </Spec>
+    <Spec label="FormDetailPage = With Custom Views selector" size="xl">
+      <DetailPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
     </Spec>
   </Suite>
 );

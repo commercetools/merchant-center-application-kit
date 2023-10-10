@@ -3,12 +3,14 @@ import { FormMainPage } from '@commercetools-frontend/application-components';
 import { RevertIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-main-page';
 
 type FormMainPageContainerProps = {
   customTitleRow?: ReactNode;
+  customViewLocatorCode?: string;
 };
 
 const FormMainPageContainer = (props: FormMainPageContainerProps) => (
@@ -19,6 +21,7 @@ const FormMainPageContainer = (props: FormMainPageContainerProps) => (
       labelPrimaryButton="Save"
       labelSecondaryButton="Revert changes"
       iconLeftSecondaryButton={<RevertIcon />}
+      customViewLocatorCode={props.customViewLocatorCode}
       onSecondaryButtonClick={() => {}}
       onPrimaryButtonClick={() => {}}
       {...props}
@@ -43,6 +46,11 @@ export const Component = () => (
     </Spec>
     <Spec label="FormMainPage with customTitleRow">
       <FormMainPageContainer customTitleRow={<h2>John Doe</h2>} />
+    </Spec>
+    <Spec label="FormMainPage with Custom Views selector">
+      <FormMainPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
     </Spec>
   </Suite>
 );
