@@ -1,5 +1,29 @@
 # @commercetools-frontend/cypress
 
+## 22.9.0
+
+### Minor Changes
+
+- [#3248](https://github.com/commercetools/merchant-center-application-kit/pull/3248) [`b2e151d38`](https://github.com/commercetools/merchant-center-application-kit/commit/b2e151d38b4b89cf57a5b977ab0338230c269eb6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Add new Cypress commands to manage real `hover` events, as Cypress events are simulated.
+
+  - `hover`: New chainable command to trigger a real `hover` event on the element. Cypress does not support this out-of-the-box ([reference](https://docs.cypress.io/api/commands/hover)).
+
+    ```js
+    cy.get('button').hover();
+    ```
+
+  - `showNavigationSubmenuItems`: New command to trigger a `hover` event on a navigation menu item of the Merchant Center. This will make the submenu of that menu item visible.
+
+    ```js
+    cy.showNavigationSubmenuItems('Discounts');
+    ```
+
+### Patch Changes
+
+- Updated dependencies [[`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1)]:
+  - @commercetools-frontend/application-shell@22.9.0
+  - @commercetools-frontend/application-config@22.9.0
+
 ## 22.8.4
 
 ### Patch Changes

@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.9.0
+
+### Patch Changes
+
+- [#3242](https://github.com/commercetools/merchant-center-application-kit/pull/3242) [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Expose HTTP utilities from `application-shell-connectors` package.
+
+  - `buildApiUrl`
+  - `createApolloClient`
+  - `createApolloContextForProxyForwardTo`
+  - `createHttpClientOptions`
+  - `executeHttpClientRequest`
+  - `getMcApiUrl`
+  - `selectUserId`
+  - `selectProjectKeyFromUrl`
+  - `useMcQuery`
+  - `useMcLazyQuery`
+  - `useMcMutation`
+
+  For backwards compatibility these are also exported from the `application-shell` package.
+
+- Updated dependencies [[`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1)]:
+  - @commercetools-frontend/constants@22.9.0
+  - @commercetools-frontend/application-config@22.9.0
+  - @commercetools-frontend/sentry@22.9.0
+  - @commercetools-frontend/browser-history@22.9.0
+
 ## 22.8.4
 
 ### Patch Changes

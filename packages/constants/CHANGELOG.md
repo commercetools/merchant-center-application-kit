@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.9.0
+
+### Patch Changes
+
+- [#3242](https://github.com/commercetools/merchant-center-application-kit/pull/3242) [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Expose new constants `SUPPORTED_HEADERS` and `STORAGE_KEYS`
+
 ## 22.8.4
 
 ## 22.8.3

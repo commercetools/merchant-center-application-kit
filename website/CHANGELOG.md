@@ -1,5 +1,12 @@
 # @commercetools-website/custom-applications
 
+## 22.9.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.9.0
+
 ## 22.8.4
 
 ### Patch Changes
