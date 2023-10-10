@@ -15,7 +15,6 @@ import {
   tokenRetryLink,
   loggerLink,
 } from './apollo-links';
-import { mockResolvers } from './apollo-mock-resolvers';
 import { getMcApiUrl } from './utils';
 import { isLoggerEnabled } from './utils/logger';
 
@@ -77,8 +76,6 @@ const createApolloClient = (
   const customCacheConfig = options?.cache ?? {};
   return new ApolloClient({
     link: createApolloLink(options),
-    // TODO: Temporary while developing the custom views feature since we don't have backend data yet
-    resolvers: mockResolvers,
     // https://www.apollographql.com/docs/react/caching/cache-configuration/
     cache: new InMemoryCache({
       ...customCacheConfig,

@@ -1,5 +1,5 @@
 query FetchCustomViewsByLocator($customViewLocatorCode: String!) {
-  allCustomViewsInstallationsByLocator(locator: $customViewLocatorCode) @client {
+  allCustomViewsInstallationsByLocator(locator: $customViewLocatorCode) {
     id
     customView {
       id
