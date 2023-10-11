@@ -71,7 +71,6 @@
   },
   "devDependencies": {
     "@apollo/client": "3.7.14",
-    "@commercetools-frontend/application-shell": "workspace:*",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
