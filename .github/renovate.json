@@ -3,32 +3,32 @@
   "separateMajorMinor": true,
   "packageRules": [
     {
-      "sourceUrlPrefixes": ["https://github.com/commercetools/ui-kit"],
+      "packagePatterns": ["*"],
+      "updateTypes": ["minor", "patch"],
+      "groupName": "all dependencies",
+      "groupSlug": "all"
+    },
+    {
+      "matchSourceUrls": ["https://github.com/commercetools/ui-kit"],
       "groupName": "all ui-kit packages"
     },
     {
-      "sourceUrlPrefixes": [
+      "matchSourceUrls": [
         "https://github.com/commercetools/commercetools-docs-kit"
       ],
       "groupName": "all docs-kit packages"
     },
     {
-      "sourceUrlPrefixes": ["https://github.com/commercetools/test-data"],
+      "matchSourceUrls": ["https://github.com/commercetools/test-data"],
       "groupName": "all test-data packages"
     },
     {
-      "sourceUrlPrefixes": ["https://github.com/tdeekens/flopflip"],
+      "matchSourceUrls": ["https://github.com/tdeekens/flopflip"],
       "groupName": "all flopflip packages"
     },
     {
-      "sourceUrlPrefixes": ["https://github.com/gregberge/svgr"],
+      "matchSourceUrls": ["https://github.com/gregberge/svgr"],
       "groupName": "all svgr packages"
-    },
-    {
-      "packagePatterns": ["*"],
-      "updateTypes": ["minor", "patch"],
-      "groupName": "all dependencies",
-      "groupSlug": "all"
     },
     {
       "matchPackageNames": ["postcss-custom-properties"],
