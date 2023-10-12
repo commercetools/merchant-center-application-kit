@@ -10,17 +10,20 @@
     },
     {
       "matchSourceUrls": ["https://github.com/commercetools/ui-kit"],
-      "groupName": "all ui-kit packages"
+      "groupName": "all ui-kit packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
     },
     {
       "matchSourceUrls": [
         "https://github.com/commercetools/commercetools-docs-kit"
       ],
-      "groupName": "all docs-kit packages"
+      "groupName": "all docs-kit packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
     },
     {
       "matchSourceUrls": ["https://github.com/commercetools/test-data"],
-      "groupName": "all test-data packages"
+      "groupName": "all test-data packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
     },
     {
       "matchSourceUrls": ["https://github.com/tdeekens/flopflip"],
