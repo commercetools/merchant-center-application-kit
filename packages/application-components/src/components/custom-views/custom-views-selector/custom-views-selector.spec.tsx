@@ -1,9 +1,6 @@
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
-import {
-  screen,
-  renderApp,
-} from '@commercetools-frontend/application-shell/test-utils';
+import { screen, renderComponent } from '../../../test-utils';
 import CustomViewsSelector from './custom-views-selector';
 
 const locators = {
@@ -75,7 +72,7 @@ describe('CustomViewsSelector', () => {
       )
     );
     const onCustomViewsResolved = jest.fn();
-    renderApp(
+    renderComponent(
       <CustomViewsSelector
         customViewLocatorCode={locators.productDetailsGeneral}
         onCustomViewsResolved={onCustomViewsResolved}
@@ -97,7 +94,7 @@ describe('CustomViewsSelector', () => {
   });
 
   it('should not render anything if no custom view locator code is provided', () => {
-    renderApp(<CustomViewsSelector />);
+    renderComponent(<CustomViewsSelector />);
     const label = screen.queryByText(/Custom Views/i);
     expect(label).not.toBeInTheDocument();
   });

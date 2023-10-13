@@ -1,18 +1,22 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory, type MemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Router } from 'react-router-dom';
 import {
+  createApolloClient,
   ApplicationContextProvider,
-  TApplicationContext,
+  type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
 import type { TProjectGraphql } from '../../../../test-data/project';
 import * as ProjectMock from '../../../../test-data/project';
 
 type CustomRenderOptions = {
   locale: string;
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
   route: string;
   history: MemoryHistory;
   environment?: TApplicationContext<{}>['environment'];
@@ -38,31 +42,38 @@ const customRender = (
   node: ReactNode,
   {
     locale = 'en',
+    apolloClient,
     route = '/',
     history = createMemoryHistory({ initialEntries: [route] }),
     environment = defaultEnvironment,
     projectKey = 'default-project-key',
     ...rtlOptions
   }: Partial<CustomRenderOptions> = {}
-) => ({
-  ...render(
-    <ApplicationContextProvider
-      environment={environment}
-      project={ProjectMock.random()
-        .key(projectKey)
-        .buildGraphql<TProjectGraphql>()}
-    >
-      <IntlProvider locale={locale}>
-        <Router history={history}>{node}</Router>
-      </IntlProvider>
-    </ApplicationContextProvider>,
-    rtlOptions
-  ),
-  // adding `history` to the returned utilities to allow us
-  // to reference it in our tests (just try to avoid using
-  // this to test implementation details).
-  history,
-});
+) => {
+  const client = apolloClient ?? createApolloClient();
+
+  return {
+    ...render(
+      <ApolloProvider client={client}>
+        <ApplicationContextProvider
+          environment={environment}
+          project={ProjectMock.random()
+            .key(projectKey)
+            .buildGraphql<TProjectGraphql>()}
+        >
+          <IntlProvider locale={locale}>
+            <Router history={history}>{node}</Router>
+          </IntlProvider>
+        </ApplicationContextProvider>
+      </ApolloProvider>,
+      rtlOptions
+    ),
+    // adding `history` to the returned utilities to allow us
+    // to reference it in our tests (just try to avoid using
+    // this to test implementation details).
+    history,
+  };
+};
 
 // re-export everything
 export * from '@testing-library/react';
