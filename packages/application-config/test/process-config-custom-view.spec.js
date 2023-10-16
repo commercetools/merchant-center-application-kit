@@ -36,11 +36,11 @@ describe('processing a simple config', () => {
         url: 'https://avengers.app',
         permissions: [
           {
-            name: 'viewCustomViewId/123',
+            name: 'view',
             oAuthScopes: ['view_products'],
           },
           {
-            name: 'manageCustomViewId/123',
+            name: 'manage',
             oAuthScopes: [],
           },
         ],
@@ -73,11 +73,11 @@ describe('processing a simple config', () => {
             url: 'https://avengers.app',
             permissions: [
               {
-                name: 'viewCustomViewId/123',
+                name: 'view',
                 oAuthScopes: ['view_products'],
               },
               {
-                name: 'manageCustomViewId/123',
+                name: 'manage',
                 oAuthScopes: [],
               },
             ],
@@ -124,11 +124,11 @@ describe('processing a simple config', () => {
           url: 'https://avengers.app',
           permissions: [
             {
-              name: 'viewCustomViewId/123',
+              name: 'view',
               oAuthScopes: ['view_products'],
             },
             {
-              name: 'manageCustomViewId/123',
+              name: 'manage',
               oAuthScopes: [],
             },
           ],

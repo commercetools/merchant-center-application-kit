@@ -1,4 +1,5 @@
 import upperFirst from 'lodash/upperFirst';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
@@ -88,8 +89,11 @@ function entryPointUriPathToResourceAccesses<
   entryPointUriPath: string,
   permissionGroupNames?: PermissionGroupName[]
 ): TImplicitCustomApplicationResourceAccesses<PermissionGroupName> {
-  const resourceAccessKey =
-    formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
+  const resourceAccessKey = formatEntryPointUriPathToResourceAccessKey(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH === entryPointUriPath
+      ? ''
+      : entryPointUriPath
+  );
 
   const defaultResourceAccesses = {
     view: `view${resourceAccessKey}`,
@@ -128,9 +132,12 @@ function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
 ): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
   const resourceAccesses =
     entryPointUriPathToResourceAccesses<PermissionGroupName>(
-      entryPointUriPath,
+      CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH === entryPointUriPath
+        ? ''
+        : entryPointUriPath,
       permissionGroupNames ?? []
     );
+
   return Object.entries(resourceAccesses).reduce(
     (permissionKeys, [resourceAccessKey, resourceAccessValue]) => ({
       ...permissionKeys,

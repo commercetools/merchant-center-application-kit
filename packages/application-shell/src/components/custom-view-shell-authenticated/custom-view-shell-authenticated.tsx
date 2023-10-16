@@ -2,10 +2,11 @@ import { type ReactNode } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import type {
-  ApplicationWindow,
-  CustomViewData,
+import {
+  type ApplicationWindow,
+  type CustomViewData,
 } from '@commercetools-frontend/constants';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
@@ -26,7 +27,9 @@ type TCustomViewWithPermissionCheckProps = {
 const CustomViewWithPermissionCheck = (
   props: TCustomViewWithPermissionCheckProps
 ) => {
-  const permissionKeys = entryPointUriPathToPermissionKeys(props.customViewId);
+  const permissionKeys = entryPointUriPathToPermissionKeys(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH
+  );
 
   // Require View permission to render the application.
   const canView = useIsAuthorized({
