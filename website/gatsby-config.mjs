@@ -15,6 +15,7 @@ const config = {
     title: 'Custom Applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
+    breadcrumbs: 'Composable Commerce',
     beta: false,
     betaLink:
       'https://docs.commercetools.com/offering/api-contract#public-beta',
