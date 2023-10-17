@@ -16,7 +16,7 @@ https://www.npmjs.com
 \/.+\/api$
 \/.+\/api\/
 \/.+\/checkout
-\/.+\/conntect
+\/.+\/connect
 \/.+\/custom-applications\/playground
 \/.+\/docs\/composable-commerce
 \/.+\/docs\/frontend
