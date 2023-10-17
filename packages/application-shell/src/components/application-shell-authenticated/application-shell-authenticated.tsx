@@ -384,9 +384,6 @@ export const ApplicationShellAuthenticated = (
                                                 props.onMenuItemClick
                                               }
                                               isLoading={isLoading}
-                                              isNewNavigationEnabled={
-                                                isNewNavigationEnabled
-                                              }
                                               isNewNavigationEnabledEvaluationReady={
                                                 isNewNavigationEnabledEvaluationReady
                                               }
