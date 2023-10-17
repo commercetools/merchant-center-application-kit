@@ -15,7 +15,11 @@ https://www.npmjs.com
 
 \/.+\/api$
 \/.+\/api\/
+\/.+\/checkout
+\/.+\/conntect
 \/.+\/custom-applications\/playground
+\/.+\/docs\/composable-commerce
+\/.+\/docs\/frontend
 \/.+\/docs\/login
 \/.+\/import-export
 \/.+\/merchant-center
