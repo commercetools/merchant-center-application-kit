@@ -145,5 +145,5 @@ jobs:
           paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
           config: website/linkinator.config.json
           markdown: false
-          urlRewriteReplace: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app
-          urlRewriteSearch: https://docs.commercetools.com
+          urlRewriteSearch: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app
+          urlRewriteReplace: https://docs.commercetools.com
