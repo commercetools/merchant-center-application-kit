@@ -1,7 +1,9 @@
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import type { CSSObject } from '@emotion/react';
+import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
+import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -34,9 +36,9 @@ type Props = {
   title: string;
   isOpen: boolean;
   /**
-   * This code is used to configure which Custom Views are available for this page.
+   * These codes are used to configure which Custom Views are available for every tab.
    */
-  customViewLocatorCode?: string;
+  customViewLocatorCodes?: Record<string, LocationDescriptor>;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -65,6 +67,10 @@ const defaultProps: Pick<Props, 'hideControls'> = {
 };
 
 const TabularModalPage = (props: Props) => {
+  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
+    props.customViewLocatorCodes
+  );
+
   return (
     <ModalPage
       title={props.title}
@@ -77,7 +83,7 @@ const TabularModalPage = (props: Props) => {
       getParentSelector={props.getParentSelector}
       shouldDelayOnClose={props.shouldDelayOnClose}
       afterOpenStyles={props.afterOpenStyles}
-      customViewLocatorCode={props.customViewLocatorCode}
+      customViewLocatorCode={currentCustomViewLocatorCode}
     >
       <TabularPageContainer color="neutral">
         {props.customTitleRow || (
