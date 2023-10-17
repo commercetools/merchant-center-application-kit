@@ -318,7 +318,6 @@ export type TNavbarProps = {
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   isLoading: boolean;
-  isNewNavigationEnabledEvaluationReady: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -333,7 +332,6 @@ const NavBar = (props: TNavbarProps) => {
     allCustomApplicationsNavbarMenu,
   } = useNavbarStateManager({
     environment: props.environment,
-    newNavigation: true,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
@@ -368,11 +366,6 @@ const NavBar = (props: TNavbarProps) => {
   // Render the loading navbar as long as all the data
   // hasn't been loaded, or if the project does not exist.
   if (props.isLoading || typeof applicationLocale === 'undefined') {
-    // Do not render anything until we have the feature flag remote value fetched so
-    // we avoid a flick effect in case it is 'true' (different value from the default one)
-    if (!props.isNewNavigationEnabledEvaluationReady) {
-      return null;
-    }
     return <NavBarSkeleton isExpanded={isMenuOpen} />;
   }
 
