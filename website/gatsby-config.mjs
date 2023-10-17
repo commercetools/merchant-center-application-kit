@@ -32,7 +32,7 @@ const config = {
         colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
         gaTrackingIds: ['G-XGR7PSLVB2', 'UA-38285631-3'],
         hubspotTrackingCode: '4784080',
-        overrideDefaultConfigurationData: ['**/top-*'],
+        overrideDefaultConfigurationData: ['**/top-*', '**/footer*'],
       },
     },
     'gatsby-plugin-pnpm',
