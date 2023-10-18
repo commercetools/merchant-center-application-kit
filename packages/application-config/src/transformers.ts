@@ -1,3 +1,4 @@
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import { LOADED_CONFIG_TYPES } from './constants';
 import {
   entryPointUriPathToResourceAccesses,
@@ -59,8 +60,10 @@ const getPermissions = (
   const permissionKeys = entryPointUriPathToResourceAccesses(
     (appConfig as JSONSchemaForCustomApplicationConfigurationFiles)
       .entryPointUriPath ||
-      (appConfig as JSONSchemaForCustomViewConfigurationFiles).env.production
-        .customViewId,
+      // In case the `entryPointUriPath` is not defined it is because the
+      // configuration is for a custom view. In this case we use the
+      // default entry point uri path.
+      CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
     additionalPermissionNames
   ) as Record<string, string>;
 
