@@ -138,11 +138,6 @@ const renderApp = (ui, options = {}) => {
   };
 };
 
-const renderAppWithNewNavbar = (ui, options = {}) =>
-  renderApp(ui, {
-    ...options,
-  });
-
 const getDefaultMockResolvers = (mocks = {}) => {
   const mockedProjects = Array.isArray(mocks.projects)
     ? mocks.projects
@@ -213,7 +208,14 @@ beforeEach(() => {
   jest.clearAllMocks();
 
   mockServer.use(...getDefaultMockResolvers());
-
+  window.IntersectionObserver = jest.fn(() => {
+    const instance = {
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    };
+    return instance;
+  });
   window.localStorage.getItem.mockImplementation((key) => {
     switch (key) {
       case STORAGE_KEYS.IS_AUTHENTICATED:
@@ -229,6 +231,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   mockServer.resetHandlers();
+  window.IntersectionObserver.mockReset();
 });
 beforeAll(() =>
   mockServer.listen({
@@ -1201,258 +1204,223 @@ describe('when navbar menu items do not match given data fences', () => {
     });
   });
 });
-describe('With new navbar', () => {
-  function getMenuItemBasedOnTooltipLabel(mainMenuLabel) {
-    return (menuItem) =>
-      // eslint-disable-next-line testing-library/no-node-access
-      menuItem.querySelector('[aria-owns]').innerHTML === mainMenuLabel.value;
-  }
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-
-    mockServer.use(...getDefaultMockResolvers());
-    window.IntersectionObserver = jest.fn(() => {
-      const instance = {
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
-      };
-      return instance;
-    });
-    window.localStorage.getItem.mockImplementation((key) => {
-      switch (key) {
-        case STORAGE_KEYS.IS_AUTHENTICATED:
-          return 'true';
-        case STORAGE_KEYS.IS_FORCED_MENU_OPEN:
-          return 'true';
-        case STORAGE_KEYS.ACTIVE_PROJECT_KEY:
-          return null;
-        default:
-          return null;
-      }
-    });
-  });
-  afterEach(() => {
-    mockServer.resetHandlers();
-    window.IntersectionObserver.mockReset();
-  });
-  beforeAll(() =>
-    mockServer.listen({
-      onUnhandledRequest: 'error',
-    })
-  );
-  afterAll(() => mockServer.close());
-  describe('navbar menu links interactions', () => {
-    // TODO: Refactor to utilize React Testing Library's query methods after Navbar accessibility improvements
-    async function checkLinksInteractions({
-      container,
-      findByLeftNavigation,
-      mainMenuLabel,
-      mainSubmenuLabel,
-    }) {
-      // Check the relationships between the menu items of a group
-      const leftNavigation = await findByLeftNavigation();
-      const submenuTooltip = Array.from(
-        leftNavigation
-          // eslint-disable-next-line testing-library/no-node-access
-          .querySelectorAll('[aria-owns]')
-      ).find((tooltip) => tooltip.innerHTML === mainMenuLabel.value);
-
-      const groupId = submenuTooltip.getAttribute('aria-owns');
-
-      // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-      const submenuContainer = container.querySelector(`#group-${groupId}`);
-      // The submenu container should not be expanded when the menu is not active.
-      expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
-
-      const getMainMenuItem = getMenuItemBasedOnTooltipLabel(mainMenuLabel);
-
-      const menuItem = within(container)
-        .getAllByRole('menuitem')
-        .find(getMainMenuItem);
-
-      // Hover over menu item
-      fireEvent.mouseOver(menuItem);
-      // The submenu container should be expanded
-      expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
-
-      const submenuLink = within(container)
-        .getByText(mainSubmenuLabel.value)
+function getMenuItemBasedOnTooltipLabel(mainMenuLabel) {
+  return (menuItem) =>
+    // eslint-disable-next-line testing-library/no-node-access
+    menuItem.querySelector('[aria-owns]').innerHTML === mainMenuLabel.value;
+}
+describe('navbar menu links interactions', () => {
+  // TODO: Refactor to utilize React Testing Library's query methods after Navbar accessibility improvements
+  async function checkLinksInteractions({
+    container,
+    findByLeftNavigation,
+    mainMenuLabel,
+    mainSubmenuLabel,
+  }) {
+    // Check the relationships between the menu items of a group
+    const leftNavigation = await findByLeftNavigation();
+    const submenuTooltip = Array.from(
+      leftNavigation
         // eslint-disable-next-line testing-library/no-node-access
-        .closest('a');
+        .querySelectorAll('[aria-owns]')
+    ).find((tooltip) => tooltip.innerHTML === mainMenuLabel.value);
 
-      // Go to the link
-      fireEvent.click(submenuLink);
+    const groupId = submenuTooltip.getAttribute('aria-owns');
 
-      // Ensure that the link becomes active
-      expect(submenuLink).toHaveAttribute('aria-current', 'page');
-    }
-    describe('when rendering navbar menu links from local config', () => {
-      it('should render links with all the correct state attributes', async () => {
-        const menuLinks = createTestNavBarMenuLinksConfig();
-        const {
-          container,
-          findByLeftNavigation,
-          waitForLeftNavigationToBeLoaded,
-        } = renderAppWithNewNavbar(null, {
-          environment: {
-            __DEVELOPMENT__: {
-              menuLinks,
-            },
+    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
+    const submenuContainer = container.querySelector(`#group-${groupId}`);
+    // The submenu container should not be expanded when the menu is not active.
+    expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
+
+    const getMainMenuItem = getMenuItemBasedOnTooltipLabel(mainMenuLabel);
+
+    const menuItem = within(container)
+      .getAllByRole('menuitem')
+      .find(getMainMenuItem);
+
+    // Hover over menu item
+    fireEvent.mouseOver(menuItem);
+    // The submenu container should be expanded
+    expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
+
+    const submenuLink = within(container)
+      .getByText(mainSubmenuLabel.value)
+      // eslint-disable-next-line testing-library/no-node-access
+      .closest('a');
+
+    // Go to the link
+    fireEvent.click(submenuLink);
+
+    // Ensure that the link becomes active
+    expect(submenuLink).toHaveAttribute('aria-current', 'page');
+  }
+  describe('when rendering navbar menu links from local config', () => {
+    it('should render links with all the correct state attributes', async () => {
+      const menuLinks = createTestNavBarMenuLinksConfig();
+      const {
+        container,
+        findByLeftNavigation,
+        waitForLeftNavigationToBeLoaded,
+      } = renderApp(null, {
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
           },
-        });
-
-        const applicationLocale = 'en';
-        const mainMenuLabel = menuLinks.labelAllLocales.find(
-          (localized) => localized.locale === applicationLocale
-        );
-        const mainSubmenuLabel = menuLinks.submenuLinks[0].labelAllLocales.find(
-          (localized) => localized.locale === applicationLocale
-        );
-
-        // Wait for the loading nav container to disappear
-        await waitForLeftNavigationToBeLoaded();
-        await checkLinksInteractions({
-          container,
-          findByLeftNavigation,
-          mainMenuLabel,
-          mainSubmenuLabel,
-        });
+        },
       });
-    });
-    describe('when rendering navbar menu links from remote config and custom applications', () => {
-      beforeEach(() => {
-        mockServer.resetHandlers();
-        mockServer.use(
-          graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) => {
-            return res(
-              ctx.data({
-                projectExtension: ProjectExtensionMock.build({
-                  installedApplications:
-                    CustomApplicationInstallationMock.buildList(1),
-                }),
-              })
-            );
-          }),
-          graphql
-            .link(`${window.location.origin}/api/graphql`)
-            .query('FetchApplicationsMenu', (req, res, ctx) =>
-              res(
-                ctx.data({
-                  applicationsMenu: {
-                    __typename: 'ApplicationsMenu',
-                    appBar: ApplicationAppbarMenuMock.buildList(1),
-                    navBar: LegacyApplicationNavbarMenuMock.buildList(1, {
-                      labelAllLocales: [
-                        {
-                          __typename: 'LocalizedField',
-                          locale: 'en',
-                          value: 'Products',
-                        },
-                      ],
-                      submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
-                        labelAllLocales: [
-                          {
-                            __typename: 'LocalizedField',
-                            locale: 'en',
-                            value: 'Add product',
-                          },
-                        ],
-                      }),
-                    }),
-                  },
-                })
-              )
-            ),
-          graphql
-            .link(`${window.location.origin}/api/graphql`)
-            .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
-              res(ctx.data({ allFeatureToggles: [] }))
-            ),
-          ...getDefaultMockResolvers()
-        );
-      });
-      it('should render links with all the correct state attributes', async () => {
-        const {
-          container,
-          findByLeftNavigation,
-          waitForLeftNavigationToBeLoaded,
-        } = renderAppWithNewNavbar(null, {
-          environment: {
-            servedByProxy: 'true',
-          },
-        });
-        // Wait for the loading nav container to disappear
-        await waitForLeftNavigationToBeLoaded();
-
-        // Check links from internal applications menu
-        await checkLinksInteractions({
-          container,
-          findByLeftNavigation,
-          mainMenuLabel: { value: 'Products' },
-          mainSubmenuLabel: { value: 'Add product' },
-        });
-
-        // Check links from custom applications menu
-        await checkLinksInteractions({
-          container,
-          findByLeftNavigation,
-          mainMenuLabel: { value: 'My application' },
-          mainSubmenuLabel: { value: 'Something new' },
-        });
-      });
-    });
-  });
-  describe('when navbar menu items are hidden', () => {
-    beforeEach(() => {
-      mockServer.resetHandlers();
-      mockServer.use(
-        ...getDefaultMockResolvers({
-          projects: [
-            ProjectMock.build({
-              ...createTestAppliedPermissions({
-                allAppliedMenuVisibilities: [
-                  {
-                    __typename: 'AppliedMenuVisibilities',
-                    name: 'hideFoo',
-                    value: true,
-                  },
-                ],
-              }),
-            }),
-          ],
-        })
-      );
-    });
-    it('should not render hidden menu items', async () => {
-      const menuLinks = createTestNavBarMenuLinksConfig({
-        menuVisibility: 'hideFoo',
-        submenuLinks: [],
-      });
-
-      const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } =
-        renderAppWithNewNavbar(null, {
-          environment: {
-            __DEVELOPMENT__: {
-              menuLinks,
-            },
-          },
-        });
-      await waitForLeftNavigationToBeLoaded();
-      // Get the nav container, to narrow down the search area
-      const container = await findByLeftNavigation();
-      const navbarRendered = within(container);
 
       const applicationLocale = 'en';
       const mainMenuLabel = menuLinks.labelAllLocales.find(
         (localized) => localized.locale === applicationLocale
       );
-      await waitFor(() => {
-        expect(
-          navbarRendered.queryByText(mainMenuLabel.value)
-        ).not.toBeInTheDocument();
+      const mainSubmenuLabel = menuLinks.submenuLinks[0].labelAllLocales.find(
+        (localized) => localized.locale === applicationLocale
+      );
+
+      // Wait for the loading nav container to disappear
+      await waitForLeftNavigationToBeLoaded();
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
+        mainMenuLabel,
+        mainSubmenuLabel,
       });
+    });
+  });
+  describe('when rendering navbar menu links from remote config and custom applications', () => {
+    beforeEach(() => {
+      mockServer.resetHandlers();
+      mockServer.use(
+        graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) => {
+          return res(
+            ctx.data({
+              projectExtension: ProjectExtensionMock.build({
+                installedApplications:
+                  CustomApplicationInstallationMock.buildList(1),
+              }),
+            })
+          );
+        }),
+        graphql
+          .link(`${window.location.origin}/api/graphql`)
+          .query('FetchApplicationsMenu', (req, res, ctx) =>
+            res(
+              ctx.data({
+                applicationsMenu: {
+                  __typename: 'ApplicationsMenu',
+                  appBar: ApplicationAppbarMenuMock.buildList(1),
+                  navBar: LegacyApplicationNavbarMenuMock.buildList(1, {
+                    labelAllLocales: [
+                      {
+                        __typename: 'LocalizedField',
+                        locale: 'en',
+                        value: 'Products',
+                      },
+                    ],
+                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
+                      labelAllLocales: [
+                        {
+                          __typename: 'LocalizedField',
+                          locale: 'en',
+                          value: 'Add product',
+                        },
+                      ],
+                    }),
+                  }),
+                },
+              })
+            )
+          ),
+        graphql
+          .link(`${window.location.origin}/api/graphql`)
+          .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
+            res(ctx.data({ allFeatureToggles: [] }))
+          ),
+        ...getDefaultMockResolvers()
+      );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const {
+        container,
+        findByLeftNavigation,
+        waitForLeftNavigationToBeLoaded,
+      } = renderApp(null, {
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      // Wait for the loading nav container to disappear
+      await waitForLeftNavigationToBeLoaded();
+
+      // Check links from internal applications menu
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
+        mainMenuLabel: { value: 'Products' },
+        mainSubmenuLabel: { value: 'Add product' },
+      });
+
+      // Check links from custom applications menu
+      await checkLinksInteractions({
+        container,
+        findByLeftNavigation,
+        mainMenuLabel: { value: 'My application' },
+        mainSubmenuLabel: { value: 'Something new' },
+      });
+    });
+  });
+});
+describe('when navbar menu items are hidden', () => {
+  beforeEach(() => {
+    mockServer.resetHandlers();
+    mockServer.use(
+      ...getDefaultMockResolvers({
+        projects: [
+          ProjectMock.build({
+            ...createTestAppliedPermissions({
+              allAppliedMenuVisibilities: [
+                {
+                  __typename: 'AppliedMenuVisibilities',
+                  name: 'hideFoo',
+                  value: true,
+                },
+              ],
+            }),
+          }),
+        ],
+      })
+    );
+  });
+  it('should not render hidden menu items', async () => {
+    const menuLinks = createTestNavBarMenuLinksConfig({
+      menuVisibility: 'hideFoo',
+      submenuLinks: [],
+    });
+
+    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
+      null,
+      {
+        environment: {
+          __DEVELOPMENT__: {
+            menuLinks,
+          },
+        },
+      }
+    );
+    await waitForLeftNavigationToBeLoaded();
+    // Get the nav container, to narrow down the search area
+    const container = await findByLeftNavigation();
+    const navbarRendered = within(container);
+
+    const applicationLocale = 'en';
+    const mainMenuLabel = menuLinks.labelAllLocales.find(
+      (localized) => localized.locale === applicationLocale
+    );
+    await waitFor(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
     });
   });
 });
