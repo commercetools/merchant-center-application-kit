@@ -1,7 +1,9 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
+import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
+import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
@@ -57,9 +59,9 @@ type TTabularDetailPageProps = {
    */
   hideControls: boolean;
   /**
-   * This code is used to configure which Custom Views are available for this page.
+   * These codes are used to configure which Custom Views are available for every tab.
    */
-  customViewLocatorCode?: string;
+  customViewLocatorCodes?: Record<string, LocationDescriptor>;
 
   // PageTopBar props:
   /**
@@ -79,6 +81,10 @@ const defaultProps: Pick<TTabularDetailPageProps, 'hideControls'> = {
 };
 
 const TabularDetailPage = (props: TTabularDetailPageProps) => {
+  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
+    props.customViewLocatorCodes
+  );
+
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
     'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
@@ -87,7 +93,7 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
   return (
     <PageWrapper>
       <CustomViewsSelector
-        customViewLocatorCode={props.customViewLocatorCode}
+        customViewLocatorCode={currentCustomViewLocatorCode}
       />
       <TabularPageContainer color="neutral">
         <PageTopBar
