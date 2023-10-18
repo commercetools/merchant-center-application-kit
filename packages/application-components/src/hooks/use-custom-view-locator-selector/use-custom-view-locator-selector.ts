@@ -14,7 +14,7 @@ const useCustomViewLocatorSelector = (
       return matchPath(location.pathname, {
         // strip the search, otherwise the path won't match
         path: pathWithoutSearch(locator),
-        exact: false,
+        exact: true,
         strict: false,
       });
     }

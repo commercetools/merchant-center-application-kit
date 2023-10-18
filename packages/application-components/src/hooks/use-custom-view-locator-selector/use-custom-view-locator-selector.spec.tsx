@@ -7,6 +7,7 @@ const mockConfig = {
   'locator-a': '/route/locator-a',
   'locator-b': '/route/locator-b',
   'locator-c': '/route/locator-c',
+  'locator-nested': '/route/locator-a/nested',
 };
 
 const createMockHistory = (location: string) =>
@@ -21,10 +22,11 @@ const render = (location: string) =>
 
 describe('useCustomViewLocatorSelector', () => {
   it.each`
-    location              | expectedLocator
-    ${'/route/locator-a'} | ${'locator-a'}
-    ${'/route/locator-b'} | ${'locator-b'}
-    ${'/route/locator-c'} | ${'locator-c'}
+    location                     | expectedLocator
+    ${'/route/locator-a'}        | ${'locator-a'}
+    ${'/route/locator-b'}        | ${'locator-b'}
+    ${'/route/locator-c'}        | ${'locator-c'}
+    ${'/route/locator-a/nested'} | ${'locator-nested'}
   `(
     'should return the view locator code based on the current location',
     ({
