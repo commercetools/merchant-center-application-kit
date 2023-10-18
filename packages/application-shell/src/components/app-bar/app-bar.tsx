@@ -39,16 +39,6 @@ const AppBar = (props: Props) => {
     >
       <Spacings.Inline>
         <div
-          css={css`
-            display: block;
-            float: left;
-            width: 28px;
-            height: 32px;
-            margin-left: 20px;
-          `}
-        ></div>
-
-        <div
           id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
           css={css`
             display: flex;
