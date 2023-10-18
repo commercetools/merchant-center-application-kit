@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
-import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
