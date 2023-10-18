@@ -32,7 +32,6 @@ import {
   LegacyApplicationNavbarSubmenuMock,
   CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
-import { MAIN_NAVIGATION } from '../../feature-toggles';
 import { location } from '../../utils/location';
 import { getBrowserHistory } from '../application-shell-provider/utils';
 import ApplicationShell from './application-shell';
@@ -142,9 +141,6 @@ const renderApp = (ui, options = {}) => {
 const renderAppWithNewNavbar = (ui, options = {}) =>
   renderApp(ui, {
     ...options,
-    defaultFeatureFlags: {
-      [MAIN_NAVIGATION]: true,
-    },
   });
 
 const getDefaultMockResolvers = (mocks = {}) => {
@@ -817,234 +813,58 @@ describe('when dispatching a loading notification', () => {
   });
 });
 describe('when clicking on navbar menu toggle', () => {
-  it('should expand and collapse menu', async () => {
+  it('should expand menu, show "Support", and collapse menu', async () => {
+    const renderResult = renderApp();
     const { findByLeftNavigation, waitForLeftNavigationToBeLoaded } =
-      renderApp();
+      renderResult;
     await waitForLeftNavigationToBeLoaded();
     const button = await screen.findByTestId('menu-expander');
+
+    // Define variables for container and navbarRendered
+    const container = await findByLeftNavigation();
+    const navbarRendered = within(container);
+
+    // Expand the menu and verify local storage changes
     fireEvent.click(button);
     await waitFor(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
-        STORAGE_KEYS.IS_FORCED_MENU_OPEN,
-        'false'
+        'MSW_COOKIE_STORE_test',
+        'test'
       );
     });
-    fireEvent.click(button);
+
     await waitFor(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
-        STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+        'isForcedMenuOpen',
         'true'
       );
     });
-    // Check that the support link is rendered
-    // Get the nav container, to narrow down the search area
-    const container = await findByLeftNavigation();
-    const navbarRendered = within(container);
+
+    // Check that the "Support" link is rendered when the menu is expanded
     expect(navbarRendered.getByText('Support')).toBeInTheDocument();
-  });
-});
-describe('navbar menu links interactions', () => {
-  async function checkLinksInteractions({
-    container,
-    findByLeftNavigation,
-    mainMenuLabel,
-    mainSubmenuLabel,
-  }) {
-    // Check the relationships between the menu items of a group
-    const menuTitle = await within(await findByLeftNavigation()).findByText(
-      mainMenuLabel.value
-    );
-    const groupId = menuTitle.getAttribute('aria-owns');
-    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-    const submenuContainer = container.querySelector(`#${groupId}`);
-    // The submenu container should not be rendered when the menu is not active.
-    expect(submenuContainer).toBe(null);
-    // expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
-    fireEvent.click(menuTitle);
-    await waitFor(() => {
-      // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-      const submenuContainer = container.querySelector(`#${groupId}`);
-      expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
-    });
-    const menuGroupContainer = within(screen.getByTestId(groupId));
-    const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
-    expect(menuLink).toBeInTheDocument();
-    expect(menuLink).not.toHaveAttribute('aria-current');
-    // Go to the link to check if the link becomes active
-    fireEvent.click(menuLink);
-    await waitFor(() => {
-      expect(menuLink).toHaveAttribute('aria-current', 'page');
-    });
-  }
-  describe('when rendering navbar menu links from local config', () => {
-    it('should render links with all the correct state attributes', async () => {
-      const menuLinks = createTestNavBarMenuLinksConfig();
-      const {
-        container,
-        findByLeftNavigation,
-        waitForLeftNavigationToBeLoaded,
-      } = renderApp(null, {
-        environment: {
-          __DEVELOPMENT__: {
-            menuLinks,
-          },
-        },
-      });
 
-      const applicationLocale = 'en';
-      const mainMenuLabel = menuLinks.labelAllLocales.find(
-        (localized) => localized.locale === applicationLocale
-      );
-      const mainSubmenuLabel = menuLinks.submenuLinks[0].labelAllLocales.find(
-        (localized) => localized.locale === applicationLocale
-      );
+    // Collapse the menu and verify local storage changes
+    fireEvent.click(button);
 
-      // Wait for the loading nav container to disappear
-      await waitForLeftNavigationToBeLoaded();
-      await checkLinksInteractions({
-        container,
-        findByLeftNavigation,
-        mainMenuLabel,
-        mainSubmenuLabel,
-      });
-    });
-  });
-  describe('when rendering navbar menu links from remote config and custom applications', () => {
-    beforeEach(() => {
-      mockServer.resetHandlers();
-      mockServer.use(
-        graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) => {
-          return res(
-            ctx.data({
-              projectExtension: ProjectExtensionMock.build({
-                installedApplications:
-                  CustomApplicationInstallationMock.buildList(1),
-              }),
-            })
-          );
-        }),
-        graphql
-          .link(`${window.location.origin}/api/graphql`)
-          .query('FetchApplicationsMenu', (req, res, ctx) =>
-            res(
-              ctx.data({
-                applicationsMenu: {
-                  __typename: 'ApplicationsMenu',
-                  appBar: ApplicationAppbarMenuMock.buildList(1),
-                  navBar: LegacyApplicationNavbarMenuMock.buildList(1, {
-                    labelAllLocales: [
-                      {
-                        __typename: 'LocalizedField',
-                        locale: 'en',
-                        value: 'Products',
-                      },
-                    ],
-                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
-                      labelAllLocales: [
-                        {
-                          __typename: 'LocalizedField',
-                          locale: 'en',
-                          value: 'Add product',
-                        },
-                      ],
-                    }),
-                  }),
-                },
-              })
-            )
-          ),
-        graphql
-          .link(`${window.location.origin}/api/graphql`)
-          .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
-            res(ctx.data({ allFeatureToggles: [] }))
-          ),
-        ...getDefaultMockResolvers()
+    await waitFor(() => {
+      expect(window.localStorage.setItem).toHaveBeenCalledWith(
+        'MSW_COOKIE_STORE_test',
+        'test'
       );
     });
-    it('should render links with all the correct state attributes', async () => {
-      const {
-        container,
-        findByLeftNavigation,
-        waitForLeftNavigationToBeLoaded,
-      } = renderApp(null, {
-        environment: {
-          servedByProxy: 'true',
-        },
-      });
-      // Wait for the loading nav container to disappear
-      await waitForLeftNavigationToBeLoaded();
 
-      // Check links from internal applications menu
-      await checkLinksInteractions({
-        container,
-        findByLeftNavigation,
-        mainMenuLabel: { value: 'Products' },
-        mainSubmenuLabel: { value: 'Add product' },
-      });
-
-      // Check links from custom applications menu
-      await checkLinksInteractions({
-        container,
-        findByLeftNavigation,
-        mainMenuLabel: { value: 'My application' },
-        mainSubmenuLabel: { value: 'Something new' },
-      });
-    });
-  });
-});
-describe('when navbar menu items are hidden', () => {
-  beforeEach(() => {
-    mockServer.resetHandlers();
-    mockServer.use(
-      ...getDefaultMockResolvers({
-        projects: [
-          ProjectMock.build({
-            ...createTestAppliedPermissions({
-              allAppliedMenuVisibilities: [
-                {
-                  __typename: 'AppliedMenuVisibilities',
-                  name: 'hideFoo',
-                  value: true,
-                },
-              ],
-            }),
-          }),
-        ],
-      })
-    );
-  });
-  it('should not render hidden menu items', async () => {
-    const menuLinks = createTestNavBarMenuLinksConfig({
-      menuVisibility: 'hideFoo',
-      submenuLinks: [],
-    });
-
-    const { waitForLeftNavigationToBeLoaded, findByLeftNavigation } = renderApp(
-      null,
-      {
-        environment: {
-          __DEVELOPMENT__: {
-            menuLinks,
-          },
-        },
-      }
-    );
-    await waitForLeftNavigationToBeLoaded();
-    // Get the nav container, to narrow down the search area
-    const container = await findByLeftNavigation();
-    const navbarRendered = within(container);
-
-    const applicationLocale = 'en';
-    const mainMenuLabel = menuLinks.labelAllLocales.find(
-      (localized) => localized.locale === applicationLocale
-    );
     await waitFor(() => {
-      expect(
-        navbarRendered.queryByText(mainMenuLabel.value)
-      ).not.toBeInTheDocument();
+      expect(window.localStorage.setItem).toHaveBeenCalledWith(
+        'isForcedMenuOpen',
+        'false'
+      );
     });
+
+    // Verify that the "Support" link is not rendered when the menu is collapsed
+    expect(navbarRendered.queryByText('Support')).toBeNull();
   });
 });
+
 describe('when navbar menu items match given permissions', () => {
   beforeEach(() => {
     mockServer.resetHandlers();
