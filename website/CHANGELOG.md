@@ -1,5 +1,14 @@
 # @commercetools-website/custom-applications
 
+## 22.10.0
+
+### Patch Changes
+
+- [#3273](https://github.com/commercetools/merchant-center-application-kit/pull/3273) [`fed1fa0a7`](https://github.com/commercetools/merchant-center-application-kit/commit/fed1fa0a7bf718b12f94bc694c0ef09638c9fa4f) Thanks [@gabriele-ct](https://github.com/gabriele-ct)! - Apply megamenu redesign to custom applications and match the docs configuration
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes
