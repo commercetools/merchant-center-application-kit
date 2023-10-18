@@ -89,11 +89,10 @@ function entryPointUriPathToResourceAccesses<
   entryPointUriPath: string,
   permissionGroupNames?: PermissionGroupName[]
 ): TImplicitCustomApplicationResourceAccesses<PermissionGroupName> {
-  const resourceAccessKey = formatEntryPointUriPathToResourceAccessKey(
+  const resourceAccessKey =
     CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH === entryPointUriPath
       ? ''
-      : entryPointUriPath
-  );
+      : formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
 
   const defaultResourceAccesses = {
     view: `view${resourceAccessKey}`,
@@ -132,9 +131,7 @@ function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
 ): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
   const resourceAccesses =
     entryPointUriPathToResourceAccesses<PermissionGroupName>(
-      CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH === entryPointUriPath
-        ? ''
-        : entryPointUriPath,
+      entryPointUriPath,
       permissionGroupNames ?? []
     );
 
