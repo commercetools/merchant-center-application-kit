@@ -20,7 +20,6 @@ import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 
 type TCustomViewWithPermissionCheckProps = {
-  customViewId: string;
   children?: ReactNode;
 };
 
@@ -99,9 +98,7 @@ function CustomViewShellAuthenticated(
                               projectDataLocale={props.dataLocale}
                               environment={props.environment}
                             >
-                              <CustomViewWithPermissionCheck
-                                customViewId={props.customViewConfig.id}
-                              >
+                              <CustomViewWithPermissionCheck>
                                 {props.children}
                               </CustomViewWithPermissionCheck>
                             </ApplicationContextProvider>
