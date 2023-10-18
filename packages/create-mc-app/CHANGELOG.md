@@ -1,5 +1,7 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.10.0
+
 ## 22.9.1
 
 ## 22.9.0

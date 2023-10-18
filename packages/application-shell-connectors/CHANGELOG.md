@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.10.0
+
+### Minor Changes
+
+- [#3269](https://github.com/commercetools/merchant-center-application-kit/pull/3269) [`6398b1946`](https://github.com/commercetools/merchant-center-application-kit/commit/6398b1946f24ee89b241f3f2eb7dd6d68de6e105) Thanks [@ragafus](https://github.com/ragafus)! - Allow `TypedDocumentNode` as a type for query and mutation params in MC Apollo hooks
+
+### Patch Changes
+
+- Updated dependencies [[`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079)]:
+  - @commercetools-frontend/application-config@22.10.0
+  - @commercetools-frontend/browser-history@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+  - @commercetools-frontend/sentry@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes
