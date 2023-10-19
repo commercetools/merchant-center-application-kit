@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-removing old navigation files and feature flag
+We've removed components supporting the old navigation menu as we've already migrated to the new one.

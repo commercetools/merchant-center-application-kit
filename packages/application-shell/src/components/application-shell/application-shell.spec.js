@@ -819,9 +819,8 @@ describe('when dispatching a loading notification', () => {
 });
 describe('when clicking on navbar menu toggle', () => {
   it('should expand menu, show "Support", and collapse menu', async () => {
-    const renderResult = renderApp();
     const { findByLeftNavigation, waitForLeftNavigationToBeLoaded } =
-      renderResult;
+      renderApp();
     await waitForLeftNavigationToBeLoaded();
     const button = await screen.findByTestId('menu-expander');
 
