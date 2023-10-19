@@ -26,13 +26,13 @@ import {
   SidebarCollapseIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import { DIMENSIONS } from '../../../constants';
+import { DIMENSIONS } from '../../constants';
 import type {
   TDataFence,
   TActionRight,
   TLocalizedField,
-} from '../../../types/generated/proxy';
-import { location } from '../../../utils/location';
+} from '../../types/generated/proxy';
+import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import compiledStyles from /* preval */ './navbar.styles';
 
@@ -44,24 +44,24 @@ type TProjectPermissions = {
   dataFences: TNormalizedDataFences | null;
 };
 
-const HeartIcon = lazy(() => import('../legacy-icons/heart'));
-const PaperclipIcon = lazy(() => import('../legacy-icons/paperclip'));
-const PluginIcon = lazy(() => import('../legacy-icons/plugin'));
-const RocketIcon = lazy(() => import('../legacy-icons/rocket'));
-const StarIcon = lazy(() => import('../legacy-icons/star'));
+const HeartIcon = lazy(() => import('./legacy-icons/heart'));
+const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
+const PluginIcon = lazy(() => import('./legacy-icons/plugin'));
+const RocketIcon = lazy(() => import('./legacy-icons/rocket'));
+const StarIcon = lazy(() => import('./legacy-icons/star'));
 const ConnectedSquareIcon = lazy(
-  () => import('../legacy-icons/connected-square')
+  () => import('./legacy-icons/connected-square')
 );
-const WorldIcon = lazy(() => import('../legacy-icons/world'));
-const TreeStructureIcon = lazy(() => import('../legacy-icons/tree-structure'));
-const UserFilledIcon = lazy(() => import('../legacy-icons/user-filled'));
-const SpeedometerIcon = lazy(() => import('../legacy-icons/speedometer'));
-const TagMultiIcon = lazy(() => import('../legacy-icons/tag-multi'));
-const CartIcon = lazy(() => import('../legacy-icons/cart'));
-const BoxIcon = lazy(() => import('../legacy-icons/box'));
-const GearIcon = lazy(() => import('../legacy-icons/gear'));
+const WorldIcon = lazy(() => import('./legacy-icons/world'));
+const TreeStructureIcon = lazy(() => import('./legacy-icons/tree-structure'));
+const UserFilledIcon = lazy(() => import('./legacy-icons/user-filled'));
+const SpeedometerIcon = lazy(() => import('./legacy-icons/speedometer'));
+const TagMultiIcon = lazy(() => import('./legacy-icons/tag-multi'));
+const CartIcon = lazy(() => import('./legacy-icons/cart'));
+const BoxIcon = lazy(() => import('./legacy-icons/box'));
+const GearIcon = lazy(() => import('./legacy-icons/gear'));
 const ListWithSearchIcon = lazy(
-  () => import('../legacy-icons/list-with-search')
+  () => import('./legacy-icons/list-with-search')
 );
 
 type IconProps = Parameters<typeof BackIcon>[0];

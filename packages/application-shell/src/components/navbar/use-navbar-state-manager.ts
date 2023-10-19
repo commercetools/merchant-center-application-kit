@@ -28,7 +28,6 @@ import nonNullable from './non-nullable';
 
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
-  newNavigation?: boolean;
 };
 type State = {
   activeItemIndex?: string;
@@ -150,9 +149,7 @@ const useNavbarStateManager = (props: HookProps) => {
   const checkSize = useCallback(
     throttle(() => {
       const shouldOpen = window.innerWidth > WINDOW_SIZES.STANDARD;
-      const canExpandMenu =
-        window.innerWidth >
-        (props.newNavigation ? WINDOW_SIZES.WIDE : WINDOW_SIZES.NARROW);
+      const canExpandMenu = window.innerWidth > WINDOW_SIZES.WIDE;
 
       // If the screen is small, we should always keep the menu closed,
       // no matter the settings.

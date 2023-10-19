@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { DIMENSIONS } from '../../../constants';
+import { DIMENSIONS } from '../../constants';
 
 type TNavBarSkeletonProps = {
   isExpanded: boolean;
