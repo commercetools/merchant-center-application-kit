@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-config
 
+## 22.10.0
+
+### Minor Changes
+
+- [#3272](https://github.com/commercetools/merchant-center-application-kit/pull/3272) [`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We refactored the formatter functions to transform entry points to resource access names so it uses simplified names only for Custom Views (upcoming feature).
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes

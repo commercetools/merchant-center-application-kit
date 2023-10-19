@@ -17,7 +17,7 @@ jest.mock('@commercetools-frontend/sentry');
 const mockedProject = ProjectMock.build({
   key: 'test-1',
   name: 'Test 1',
-  allAppliedPermissions: [{ name: 'canViewMyCustomViewId', value: true }],
+  allAppliedPermissions: [{ name: 'canView', value: true }],
 });
 const mockedUser = UserMock.build({
   defaultProjectKey: 'test-1',

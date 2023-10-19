@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 22.10.0
+
+### Minor Changes
+
+- [#3272](https://github.com/commercetools/merchant-center-application-kit/pull/3272) [`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We refactored the formatter functions to transform entry points to resource access names so it uses simplified names only for Custom Views (upcoming feature).
+
+### Patch Changes
+
+- [#3270](https://github.com/commercetools/merchant-center-application-kit/pull/3270) [`6bef6add7`](https://github.com/commercetools/merchant-center-application-kit/commit/6bef6add77b7567de18e447b4881caf8e7b10393) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages to v13.1.5
+
+- Updated dependencies [[`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079), [`669a46bf7`](https://github.com/commercetools/merchant-center-application-kit/commit/669a46bf718e2d6eb50bed5813463ed8a2c8dae3), [`6398b1946`](https://github.com/commercetools/merchant-center-application-kit/commit/6398b1946f24ee89b241f3f2eb7dd6d68de6e105)]:
+  - @commercetools-frontend/application-config@22.10.0
+  - @commercetools-frontend/application-components@22.10.0
+  - @commercetools-frontend/application-shell-connectors@22.10.0
+  - @commercetools-frontend/permissions@22.10.0
+  - @commercetools-frontend/actions-global@22.10.0
+  - @commercetools-frontend/assets@22.10.0
+  - @commercetools-frontend/browser-history@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+  - @commercetools-frontend/i18n@22.10.0
+  - @commercetools-frontend/l10n@22.10.0
+  - @commercetools-frontend/notifications@22.10.0
+  - @commercetools-frontend/react-notifications@22.10.0
+  - @commercetools-frontend/sdk@22.10.0
+  - @commercetools-frontend/sentry@22.10.0
+  - @commercetools-frontend/url-utils@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes

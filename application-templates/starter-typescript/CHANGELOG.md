@@ -1,5 +1,25 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079), [`669a46bf7`](https://github.com/commercetools/merchant-center-application-kit/commit/669a46bf718e2d6eb50bed5813463ed8a2c8dae3), [`6bef6add7`](https://github.com/commercetools/merchant-center-application-kit/commit/6bef6add77b7567de18e447b4881caf8e7b10393), [`6398b1946`](https://github.com/commercetools/merchant-center-application-kit/commit/6398b1946f24ee89b241f3f2eb7dd6d68de6e105)]:
+  - @commercetools-frontend/application-config@22.10.0
+  - @commercetools-frontend/application-shell@22.10.0
+  - @commercetools-frontend/application-components@22.10.0
+  - @commercetools-frontend/application-shell-connectors@22.10.0
+  - @commercetools-frontend/mc-dev-authentication@22.10.0
+  - @commercetools-frontend/mc-scripts@22.10.0
+  - @commercetools-frontend/permissions@22.10.0
+  - @commercetools-frontend/actions-global@22.10.0
+  - @commercetools-frontend/assets@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+  - @commercetools-frontend/eslint-config-mc-app@22.10.0
+  - @commercetools-frontend/i18n@22.10.0
+  - @commercetools-frontend/jest-preset-mc-app@22.10.0
+  - @commercetools-frontend/l10n@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes

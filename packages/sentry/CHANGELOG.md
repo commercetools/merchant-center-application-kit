@@ -1,5 +1,13 @@
 # @commercetools-frontend/sentry
 
+## 22.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+
 ## 22.9.1
 
 ### Patch Changes
