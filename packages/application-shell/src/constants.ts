@@ -1,15 +1,12 @@
 export const DIMENSIONS = {
   header: '56px',
   headerItemDivider: '24px',
-  navMenu: '64px',
-  navMenuExpanded: '245px',
+  navMenu: '80px',
+  navMenuExpanded: '256px',
   navMenuItemHeight: '48px',
-  newNavMenu: '80px',
-  newNavMenuExpanded: '256px',
 } as const;
 
 export const WINDOW_SIZES = {
-  NARROW: 918,
   STANDARD: 1024,
   WIDE: 1200,
 } as const;

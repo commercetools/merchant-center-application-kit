@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
-import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -15,7 +14,6 @@ import UserSettingsMenu from '../user-settings-menu';
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
   projectKeyFromUrl?: string;
-  isNewNavigationEnabled: boolean;
 };
 
 const AppBar = (props: Props) => {
@@ -39,25 +37,6 @@ const AppBar = (props: Props) => {
       data-test="top-navigation"
     >
       <Spacings.Inline>
-        <div
-          css={css`
-            display: block;
-            float: left;
-            width: 28px;
-            height: 32px;
-            margin-left: 20px;
-          `}
-        >
-          {!props.isNewNavigationEnabled &&
-            (!props.user ? (
-              <img src={LogoSVG} width="100%" alt="Logo" />
-            ) : (
-              <a href={`/${previousProjectKey || ''}`}>
-                <img src={LogoSVG} width="100%" alt="Logo" />
-              </a>
-            ))}
-        </div>
-
         <div
           id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
           css={css`

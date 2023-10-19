@@ -232,7 +232,7 @@ export const Component = () => (
     <Spec label="TabularDetailPage - with Custom Views selector" size="xl">
       <TabularDetailPageContainer
         customViewLocatorCodes={{
-          [CUSTOM_VIEW_LOCATORS.productDetails]: routePath,
+          [CUSTOM_VIEW_LOCATORS.productDetails]: '/tabular-detail-page/tab-one',
         }}
       >
         <Content />
