@@ -231,7 +231,7 @@ export const Component = () => (
     <Spec label="TabularMainPage - with Custom Views selector" size="xl">
       <TabularMainPageContainer
         customViewLocatorCodes={{
-          [CUSTOM_VIEW_LOCATORS.productDetails]: routePath,
+          [CUSTOM_VIEW_LOCATORS.productDetails]: '/tabular-main-page/tab-one',
         }}
       >
         <Content />

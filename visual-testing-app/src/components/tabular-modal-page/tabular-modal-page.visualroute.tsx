@@ -275,7 +275,8 @@ export const Component = () => (
           spec: (
             <ModalPageWithPortalParentSelector
               customViewLocatorCodes={{
-                [CUSTOM_VIEW_LOCATORS.productDetails]: routePath,
+                [CUSTOM_VIEW_LOCATORS.productDetails]:
+                  '/tabular-modal-page/tabular-modal-page-default-with-custom-views-selector/tab-one',
               }}
             >
               <Content />
