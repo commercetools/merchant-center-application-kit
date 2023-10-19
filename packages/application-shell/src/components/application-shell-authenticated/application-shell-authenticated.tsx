@@ -33,7 +33,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
-import NavBar from '../navbar/navbar';
+import NavBar from '../navbar';
 import ProjectContainer from '../project-container';
 import ProjectDataLocale from '../project-data-locale';
 import QuickAccess from '../quick-access';
