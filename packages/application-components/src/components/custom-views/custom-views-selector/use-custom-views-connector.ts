@@ -1,7 +1,9 @@
+import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import {
   CustomViewData,
   GRAPHQL_TARGETS,
+  featureFlags,
 } from '@commercetools-frontend/constants';
 import {
   TFetchCustomViewsByLocatorQuery,
@@ -21,6 +23,10 @@ type TUseCustomViewsFetcher = (props: TUseCustomViewsFetcherParams) => {
 export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
   customViewLocatorCode,
 }) => {
+  const areCustomViewsEnabled =
+    useFeatureToggle(featureFlags.CUSTOM_VIEWS) &&
+    process.env.DISABLE_CUSTOM_VIEWS_FEATURE !== 'true';
+
   const { data, error, loading } = useMcQuery<
     TFetchCustomViewsByLocatorQuery,
     TFetchCustomViewsByLocatorQueryVariables
@@ -31,6 +37,7 @@ export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
     context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
+    skip: !areCustomViewsEnabled,
   });
 
   return {

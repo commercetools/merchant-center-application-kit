@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
+import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory, type MemoryHistory } from 'history';
@@ -11,6 +12,7 @@ import {
   ApplicationContextProvider,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
+import { featureFlags } from '@commercetools-frontend/constants';
 import type { TProjectGraphql } from '../../../../test-data/project';
 import * as ProjectMock from '../../../../test-data/project';
 
@@ -51,21 +53,26 @@ const customRender = (
   }: Partial<CustomRenderOptions> = {}
 ) => {
   const client = apolloClient ?? createApolloClient();
+  const flags = {
+    [featureFlags.CUSTOM_VIEWS]: true,
+  };
 
   return {
     ...render(
-      <ApolloProvider client={client}>
-        <ApplicationContextProvider
-          environment={environment}
-          project={ProjectMock.random()
-            .key(projectKey)
-            .buildGraphql<TProjectGraphql>()}
-        >
-          <IntlProvider locale={locale}>
-            <Router history={history}>{node}</Router>
-          </IntlProvider>
-        </ApplicationContextProvider>
-      </ApolloProvider>,
+      <TestProviderFlopFlip flags={flags}>
+        <ApolloProvider client={client}>
+          <ApplicationContextProvider
+            environment={environment}
+            project={ProjectMock.random()
+              .key(projectKey)
+              .buildGraphql<TProjectGraphql>()}
+          >
+            <IntlProvider locale={locale}>
+              <Router history={history}>{node}</Router>
+            </IntlProvider>
+          </ApplicationContextProvider>
+        </ApolloProvider>
+      </TestProviderFlopFlip>,
       rtlOptions
     ),
     // adding `history` to the returned utilities to allow us

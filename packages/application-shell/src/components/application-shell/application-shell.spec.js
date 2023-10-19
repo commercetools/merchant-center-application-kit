@@ -21,6 +21,7 @@ import {
   SHOW_LOADING,
   HIDE_LOADING,
   STORAGE_KEYS,
+  featureFlags,
 } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
@@ -32,7 +33,6 @@ import {
   LegacyApplicationNavbarSubmenuMock,
   CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
-import { MAIN_NAVIGATION } from '../../feature-toggles';
 import { location } from '../../utils/location';
 import { getBrowserHistory } from '../application-shell-provider/utils';
 import ApplicationShell from './application-shell';
@@ -143,7 +143,7 @@ const renderAppWithNewNavbar = (ui, options = {}) =>
   renderApp(ui, {
     ...options,
     defaultFeatureFlags: {
-      [MAIN_NAVIGATION]: true,
+      [featureFlags.MAIN_NAVIGATION]: true,
     },
   });
 

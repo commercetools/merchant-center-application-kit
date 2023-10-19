@@ -1182,13 +1182,13 @@ importers:
         version: 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/flat-button':
         specifier: ^16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/hooks':
         specifier: ^16.7.3
         version: 16.7.3(react@17.0.2)
       '@commercetools-uikit/icon-button':
         specifier: ^16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/icons':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
@@ -1197,16 +1197,16 @@ importers:
         version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/messages':
         specifier: ^16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/primary-button':
         specifier: ^16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/secondary-button':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/secondary-icon-button':
         specifier: ^16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/spacings':
         specifier: ^16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
@@ -1222,6 +1222,9 @@ importers:
       '@emotion/styled':
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
+      '@flopflip/react-broadcast':
+        specifier: 13.1.5
+        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@react-hook/latest':
         specifier: 1.0.3
         version: 1.0.3(react@17.0.2)
@@ -1291,7 +1294,7 @@ importers:
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
       msw:
         specifier: 0.49.3
-        version: 0.49.3(typescript@5.0.4)
+        version: 0.49.3(typescript@5.2.2)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -1300,7 +1303,7 @@ importers:
         version: 17.0.2(react@17.0.2)
       react-intl:
         specifier: ^6.4.5
-        version: 6.4.5(react@17.0.2)(typescript@5.0.4)
+        version: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-router-dom:
         specifier: 5.3.4
         version: 5.3.4(react@17.0.2)
@@ -2952,6 +2955,9 @@ importers:
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
+      '@flopflip/react-broadcast':
+        specifier: 13.1.5
+        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       apollo-link-rest:
         specifier: ^0.9.0
         version: 0.9.0(@apollo/client@3.7.14)(graphql@16.8.1)(qs@6.11.2)
@@ -3078,7 +3084,7 @@ importers:
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/icon-button':
         specifier: 16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/icons':
         specifier: 16.7.3
         version: 16.7.3(@types/react@17.0.56)(react@17.0.2)
@@ -3093,16 +3099,19 @@ importers:
         version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/text-field':
         specifier: 16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/text-input':
         specifier: 16.7.3
-        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)(typescript@5.0.4)
+        version: 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)(typescript@5.2.2)
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
+      '@flopflip/react-broadcast':
+        specifier: 13.1.5
+        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@rollup/plugin-graphql':
         specifier: 2.0.3
         version: 2.0.3(graphql@16.8.1)(rollup@2.79.1)
@@ -3141,7 +3150,7 @@ importers:
         version: 17.0.2(react@17.0.2)
       react-intl:
         specifier: ^6.4.5
-        version: 6.4.5(react@17.0.2)(typescript@5.0.4)
+        version: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-redux:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2)(react@17.0.2)
@@ -6941,7 +6950,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.7.3(@types/react@17.0.56)(react@18.2.0)
@@ -7477,7 +7486,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/flat-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
@@ -7521,7 +7530,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/flat-button': 16.7.3(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
@@ -7552,7 +7561,7 @@ packages:
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -7563,7 +7572,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
@@ -7813,7 +7822,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -7851,7 +7860,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -8068,7 +8077,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -8091,7 +8100,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -8177,7 +8186,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -8238,7 +8247,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -8261,7 +8270,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -8467,7 +8476,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -8483,7 +8492,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -8499,7 +8508,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -8515,7 +8524,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -9753,6 +9762,22 @@ packages:
       - typescript
     dev: false
 
+  /@flopflip/react-broadcast@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-wKZOxodr0A7cX0k8uyuyfwrliYcXlsh43xgkUGoll1o2Gp6Ry0UAHS5rlDI/vhABu7tZrfMW0uZJyJ+zeFqfFg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0.0
+      react-dom: ^16.8 || ^17.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@flopflip/react': 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@flopflip/types': 13.1.5(typescript@5.0.4)
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      use-sync-external-store: 1.2.0(react@17.0.2)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /@flopflip/react-broadcast@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
     resolution: {integrity: sha512-wKZOxodr0A7cX0k8uyuyfwrliYcXlsh43xgkUGoll1o2Gp6Ry0UAHS5rlDI/vhABu7tZrfMW0uZJyJ+zeFqfFg==}
     peerDependencies:
@@ -9765,6 +9790,25 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       use-sync-external-store: 1.2.0(react@17.0.2)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
+  /@flopflip/react@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-JcPeBADsz8M4rk/1na9hahsLdd0ccyiQ5UEdiQfZSfMgISDx1HF6J4SDmw+Gfsa+FlWwvs4bcPNqf9z2juCdnQ==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0.0
+      react-dom: ^16.8 || ^17.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@flopflip/types': 13.1.5(typescript@5.0.4)
+      '@types/react-is': 17.0.5
+      lodash: 4.17.21
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-is: 18.2.0
+      tiny-warning: 1.0.3
+      ts-deepmerge: 6.2.0
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -9794,6 +9838,15 @@ packages:
       '@flopflip/types': 13.1.5(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
+    dev: false
+
+  /@flopflip/types@13.1.5(typescript@5.0.4):
+    resolution: {integrity: sha512-Ackdcl1dgmAFOgqbTprXYvzWcJ6qM/vVeHF82VzQwfu2Q3H9qnRwgWdPAVJz8mNxKkDTbmGDenjxcNhwVi8yuQ==}
+    peerDependencies:
+      typescript: 4.x || 5.x
+    dependencies:
+      launchdarkly-js-client-sdk: 3.1.4
+      typescript: 5.0.4
     dev: false
 
   /@flopflip/types@13.1.5(typescript@5.2.2):

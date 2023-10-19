@@ -18,7 +18,9 @@
  */
 
 export const MAIN_NAVIGATION = 'newMainNavigationBar';
+export const CUSTOM_VIEWS = 'enableCustomViews';
 
 export const FLAGS = {
   [MAIN_NAVIGATION]: false,
+  [CUSTOM_VIEWS]: false,
 };
