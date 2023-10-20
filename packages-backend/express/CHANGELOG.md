@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 22.11.0
+
 ## 22.10.0
 
 ## 22.9.1

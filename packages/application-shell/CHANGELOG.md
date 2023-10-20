@@ -1,5 +1,32 @@
 # @commercetools-frontend/application-shell
 
+## 22.11.0
+
+### Minor Changes
+
+- [#3282](https://github.com/commercetools/merchant-center-application-kit/pull/3282) [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Moved feature flags constants from `@commercetools-frontend/application-components` package to `@commercetools-frontend/constants` one.
+
+### Patch Changes
+
+- [#3277](https://github.com/commercetools/merchant-center-application-kit/pull/3277) [`3e11bae8a`](https://github.com/commercetools/merchant-center-application-kit/commit/3e11bae8a39c3f1ea47cd2fc032a04bde5077d9d) Thanks [@chloe0592](https://github.com/chloe0592)! - We've removed components supporting the old navigation menu as we've already migrated to the new one.
+
+- Updated dependencies [[`0c4936402`](https://github.com/commercetools/merchant-center-application-kit/commit/0c493640240fde1f7300070b6c19c67d5f203e8e), [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016), [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016)]:
+  - @commercetools-frontend/application-components@22.11.0
+  - @commercetools-frontend/constants@22.11.0
+  - @commercetools-frontend/actions-global@22.11.0
+  - @commercetools-frontend/application-config@22.11.0
+  - @commercetools-frontend/application-shell-connectors@22.11.0
+  - @commercetools-frontend/react-notifications@22.11.0
+  - @commercetools-frontend/sdk@22.11.0
+  - @commercetools-frontend/sentry@22.11.0
+  - @commercetools-frontend/permissions@22.11.0
+  - @commercetools-frontend/i18n@22.11.0
+  - @commercetools-frontend/l10n@22.11.0
+  - @commercetools-frontend/assets@22.11.0
+  - @commercetools-frontend/browser-history@22.11.0
+  - @commercetools-frontend/notifications@22.11.0
+  - @commercetools-frontend/url-utils@22.11.0
+
 ## 22.10.0
 
 ### Minor Changes

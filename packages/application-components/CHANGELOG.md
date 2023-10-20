@@ -1,5 +1,25 @@
 # @commercetools-frontend/application-components
 
+## 22.11.0
+
+### Minor Changes
+
+- [#3282](https://github.com/commercetools/merchant-center-application-kit/pull/3282) [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update `CustomViewsSelector` component to be aware of the feature flags we will be using to roll out the custom views feature.
+
+### Patch Changes
+
+- [#3280](https://github.com/commercetools/merchant-center-application-kit/pull/3280) [`0c4936402`](https://github.com/commercetools/merchant-center-application-kit/commit/0c493640240fde1f7300070b6c19c67d5f203e8e) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix url matching in `useCustomViewLocator` hook.
+
+- Updated dependencies [[`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016)]:
+  - @commercetools-frontend/constants@22.11.0
+  - @commercetools-frontend/actions-global@22.11.0
+  - @commercetools-frontend/application-config@22.11.0
+  - @commercetools-frontend/application-shell-connectors@22.11.0
+  - @commercetools-frontend/sentry@22.11.0
+  - @commercetools-frontend/i18n@22.11.0
+  - @commercetools-frontend/l10n@22.11.0
+  - @commercetools-frontend/assets@22.11.0
+
 ## 22.10.0
 
 ### Minor Changes
