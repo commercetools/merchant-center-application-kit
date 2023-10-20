@@ -21,6 +21,7 @@ import {
   SHOW_LOADING,
   HIDE_LOADING,
   STORAGE_KEYS,
+  featureFlags,
 } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
