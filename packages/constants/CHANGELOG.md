@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.11.0
+
+### Minor Changes
+
+- [#3282](https://github.com/commercetools/merchant-center-application-kit/pull/3282) [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Moved feature flags constants from `@commercetools-frontend/application-components` package to `@commercetools-frontend/constants` one.
+
 ## 22.10.0
 
 ## 22.9.1
