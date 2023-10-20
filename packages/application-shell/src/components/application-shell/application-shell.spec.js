@@ -110,9 +110,6 @@ const renderApp = (ui, options = {}) => {
     ...(renderNodeAsChildren
       ? { children: jsxElem }
       : { render: () => jsxElem }),
-    defaultFeatureFlags: {
-      [featureFlags.MAIN_NAVIGATION]: true,
-    },
   };
   const initialRoute = route || `/`;
   const testHistory = createEnhancedHistory(

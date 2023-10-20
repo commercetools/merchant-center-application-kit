@@ -24,7 +24,7 @@ function CustomPanelDemo() {
   return (
     <InfoMainPage
       title="Custom Views - Custom Panel"
-      customViewLocatorCode="products.product_details.general"
+      customViewLocatorCode="products.product_variant_details.images"
       onPreviousPathClick={() => false}
     >
       <Spacings.Stack scale="m">
