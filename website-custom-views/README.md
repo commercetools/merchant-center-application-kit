@@ -1,4 +1,4 @@
-# Documentation website (Custom Applications)
+# Documentation website (Custom Views)
 
 The website is available at https://docs.commercetools.com and is built using the commercetools [Gatsby theme](https://github.com/commercetools/commercetools-docs-kit) and deployed to Vercel.
 

@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: '["website/src"]'
+          files: '["website/src","website-custom-views/src"]'
           reporter: github-pr-review
           filter_mode: diff_context
           fail_on_error: true

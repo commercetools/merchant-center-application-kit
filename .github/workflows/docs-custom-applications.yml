@@ -1,4 +1,4 @@
-name: Documentation workflow
+name: Documentation for Custom Applications
 
 # The event triggers are configured as following:
 # - on branch main, trigger the workflow on every push
@@ -60,7 +60,7 @@ jobs:
         run: pnpm build
 
       - name: Building docs website
-        run: pnpm build:website
+        run: pnpm build:website:custom-applications
         env:
           NODE_OPTIONS: '--max-old-space-size=6144'
           GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32

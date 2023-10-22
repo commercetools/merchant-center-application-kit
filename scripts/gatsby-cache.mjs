@@ -62,7 +62,10 @@ const commands = [
 const workspaceRoot = findRootSync(process.cwd());
 const globalPublicPath = path.join(workspaceRoot.rootDir, 'public');
 const globalCachePath = path.join(workspaceRoot.rootDir, '.cache');
-const gatsbyWebsites = ['@commercetools-website/custom-applications'];
+const gatsbyWebsites = [
+  '@commercetools-website/custom-applications',
+  '@commercetools-website/custom-views',
+];
 
 const moveFolderFromTo = async (from, to) => {
   await fs.promises.mkdir(from, { recursive: true });

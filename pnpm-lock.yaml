@@ -3361,6 +3361,106 @@ importers:
         specifier: 4.4.9
         version: 4.4.9(@types/node@18.17.14)
 
+  website-custom-views:
+    dependencies:
+      '@commercetools-docs/gatsby-theme-docs':
+        specifier: 22.8.2
+        version: 22.8.2(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
+      '@commercetools-docs/ui-kit':
+        specifier: 22.8.0
+        version: 22.8.0(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
+      '@commercetools-frontend/assets':
+        specifier: workspace:*
+        version: link:../packages/assets
+      '@commercetools-uikit/card':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/grid':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/icons':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/spacings-inline':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react@18.2.0)
+      '@commercetools-uikit/spacings-stack':
+        specifier: ^16.7.3
+        version: 16.7.3(@types/react@17.0.56)(react@18.2.0)
+      '@emotion/react':
+        specifier: 11.11.0
+        version: 11.11.0(@types/react@17.0.56)(react@18.2.0)
+      '@emotion/styled':
+        specifier: 11.11.0
+        version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
+      '@gatsbyjs/reach-router':
+        specifier: ^2.0.1
+        version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
+      gatsby:
+        specifier: ^5.12.4
+        version: 5.12.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      gatsby-cli:
+        specifier: ^5.12.1
+        version: 5.12.1
+      gatsby-core-utils:
+        specifier: ^4.12.0
+        version: 4.12.0
+      gatsby-link:
+        specifier: 5.9.0
+        version: 5.9.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
+      gatsby-plugin-mdx:
+        specifier: 3.20.0
+        version: 3.20.0(patch_hash=gnfct6xrlmmxne5piiaxu4y5fq)(@mdx-js/mdx@1.6.22)(@mdx-js/react@1.6.22)(gatsby@5.12.4)(react-dom@18.2.0)(react@18.2.0)
+      gatsby-react-router-scroll:
+        specifier: ^6.12.0
+        version: 6.12.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
+      gatsby-script:
+        specifier: ^2.12.0
+        version: 2.12.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
+      mitt:
+        specifier: ^1.2.0
+        version: 1.2.0
+      node-html-parser:
+        specifier: ^5.4.2
+        version: 5.4.2
+      prop-types:
+        specifier: 15.8.1
+        version: 15.8.1
+      raw-loader:
+        specifier: 4.0.2
+        version: 4.0.2(webpack@5.82.1)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-intl:
+        specifier: ^6.4.5
+        version: 6.4.5(react@18.2.0)(typescript@5.2.2)
+      shallow-compare:
+        specifier: ^1.2.2
+        version: 1.2.2
+    devDependencies:
+      '@svgr/cli':
+        specifier: 6.5.1
+        version: 6.5.1
+      gatsby-plugin-pnpm:
+        specifier: 1.2.10
+        version: 1.2.10(gatsby@5.12.4)
+      linkinator:
+        specifier: 5.0.1
+        version: 5.0.1
+      prettier:
+        specifier: 2.8.8
+        version: 2.8.8
+      start-server-and-test:
+        specifier: 2.0.0
+        version: 2.0.0
+
 packages:
 
   /7zip-bin@5.2.0:
@@ -4604,6 +4704,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.17
       '@babel/helper-plugin-utils': 7.22.5
+    dev: false
 
   /@babel/plugin-syntax-typescript@7.22.5(@babel/core@7.23.0):
     resolution: {integrity: sha512-1mS2o03i7t1c6VzH6fdQ3OA8tcEIxwG18zIPRp+UY1Ihv6W+XZzBCVxExF9upussPXJ0xE9XRHwMoNs1ep/nRQ==}
@@ -5732,6 +5833,7 @@ packages:
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.22.17)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-typescript': 7.22.5(@babel/core@7.22.17)
+    dev: false
 
   /@babel/plugin-transform-typescript@7.22.15(@babel/core@7.23.0):
     resolution: {integrity: sha512-1uirS0TnijxvQLnlv5wQBwOX3E1wCFX7ITv+9pBV2wKEk4K+M5tqDaoNXnTH8tjEIYHLO98MwiTWO04Ggz4XuA==}
@@ -5998,7 +6100,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-unicode-sets-regex': 7.22.5(@babel/core@7.23.0)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.23.0)
-      '@babel/types': 7.22.17
+      '@babel/types': 7.23.0
       babel-plugin-polyfill-corejs2: 0.4.5(@babel/core@7.23.0)
       babel-plugin-polyfill-corejs3: 0.8.3(@babel/core@7.23.0)
       babel-plugin-polyfill-regenerator: 0.5.2(@babel/core@7.23.0)
@@ -6082,6 +6184,7 @@ packages:
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.22.17)
       '@babel/plugin-transform-modules-commonjs': 7.22.15(@babel/core@7.22.17)
       '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.22.17)
+    dev: false
 
   /@babel/preset-typescript@7.22.15(@babel/core@7.23.0):
     resolution: {integrity: sha512-HblhNmh6yM+cU4VwbBRpxFhxsTdfS1zsvH9W+gEjD0ARV9+8B4sNfpI6GuhePti84nuvhiwKS539jKPFHskA9A==}
@@ -6786,7 +6889,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -6941,7 +7044,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.7.3(@types/react@17.0.56)(react@18.2.0)
@@ -6981,7 +7084,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -7317,7 +7420,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
@@ -7390,7 +7493,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -7413,7 +7516,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -7436,7 +7539,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -7456,7 +7559,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -7477,7 +7580,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/flat-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)(typescript@5.0.4)
@@ -7521,7 +7624,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/flat-button': 16.7.3(@types/react@17.0.56)(react@18.2.0)(typescript@5.2.2)
@@ -7563,7 +7666,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
@@ -7610,7 +7713,7 @@ packages:
       react-intl: 6.x
       react-router-dom: 5.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.7.3(@types/react@17.0.56)(react@18.2.0)
@@ -7832,7 +7935,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -7851,7 +7954,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -8467,7 +8570,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -8483,7 +8586,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -8499,7 +8602,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@17.0.2)
@@ -8515,7 +8618,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
@@ -17180,7 +17283,7 @@ packages:
       postcss-modules-scope: 3.0.0(postcss@8.4.31)
       postcss-modules-values: 4.0.0(postcss@8.4.31)
       postcss-value-parser: 4.2.0
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       semver: 7.5.2
       webpack: 5.88.2
 
@@ -17218,7 +17321,7 @@ packages:
       jest-worker: 26.6.2
       p-limit: 3.1.0
       postcss: 8.4.31
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       serialize-javascript: 5.0.1
       source-map: 0.6.1
       webpack: 5.88.2
@@ -19178,7 +19281,7 @@ packages:
       jest-worker: 27.5.1
       micromatch: 4.0.5
       normalize-path: 3.0.0
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /eslint@7.32.0:
@@ -19767,7 +19870,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /file-match@1.0.2:
@@ -20247,13 +20350,13 @@ packages:
     requiresBuild: true
     dependencies:
       '@babel/code-frame': 7.22.13
-      '@babel/core': 7.22.17
-      '@babel/generator': 7.22.15
+      '@babel/core': 7.23.0
+      '@babel/generator': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/preset-typescript': 7.22.15(@babel/core@7.22.17)
-      '@babel/runtime': 7.22.15
+      '@babel/preset-typescript': 7.22.15(@babel/core@7.23.0)
+      '@babel/runtime': 7.23.2
       '@babel/template': 7.22.15
-      '@babel/types': 7.22.17
+      '@babel/types': 7.23.0
       '@jridgewell/trace-mapping': 0.3.19
       '@types/common-tags': 1.8.2
       better-opn: 2.1.1
@@ -20714,7 +20817,7 @@ packages:
       react: ^18.0.0 || ^0.0.0
       react-dom: ^18.0.0 || ^0.0.0
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@gatsbyjs/reach-router': 2.0.1(react-dom@18.2.0)(react@18.2.0)
       prop-types: 15.8.1
       react: 18.2.0
@@ -23743,15 +23846,6 @@ packages:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
     dev: false
 
-  /joi@17.9.1:
-    resolution: {integrity: sha512-FariIi9j6QODKATGBrEX7HZcja8Bsh3rfdGYy/Sb65sGlZWK/QWesU1ghk7aJWDj95knjXlQfSmzFSPPkLVsfw==}
-    dependencies:
-      '@hapi/hoek': 9.3.0
-      '@hapi/topo': 5.1.0
-      '@sideway/address': 4.1.4
-      '@sideway/formula': 3.0.1
-      '@sideway/pinpoint': 2.0.0
-
   /joi@17.9.2:
     resolution: {integrity: sha512-Itk/r+V4Dx0V3c7RLFdRh12IOjySm2/WGPMubBT92cQvRfYZhPM2W0hZlctjj72iES8jsRCwp7S/cRmWBnJ4nw==}
     dependencies:
@@ -25584,7 +25678,7 @@ packages:
       webpack: ^4.4.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
       webpack-sources: 1.4.3
 
@@ -26277,7 +26371,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /nullthrows@1.1.1:
@@ -27924,7 +28018,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.82.1(uglify-js@3.17.4)
     dev: false
 
@@ -27935,7 +28029,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /rc@1.2.8:
@@ -28108,7 +28202,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.5.1
       react: 17.0.2
-      tslib: 2.5.0
+      tslib: 2.6.2
       typescript: 5.0.4
 
   /react-intl@6.4.5(react@17.0.2)(typescript@5.2.2):
@@ -28130,7 +28224,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.5.1
       react: 17.0.2
-      tslib: 2.5.0
+      tslib: 2.6.2
       typescript: 5.2.2
 
   /react-intl@6.4.5(react@18.2.0)(typescript@5.2.2):
@@ -28152,7 +28246,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.5.1
       react: 18.2.0
-      tslib: 2.5.0
+      tslib: 2.6.2
       typescript: 5.2.2
     dev: false
 
@@ -30256,7 +30350,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /style-loader@3.3.2(webpack@5.82.1):
@@ -30691,7 +30785,7 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.19
       jest-worker: 27.5.1
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       serialize-javascript: 6.0.1
       terser: 5.16.9
       webpack: 5.88.2
@@ -31793,7 +31887,7 @@ packages:
       file-loader: 6.2.0(webpack@5.88.2)
       loader-utils: 2.0.4
       mime-types: 2.1.35
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /url-parse-lax@3.0.0:
@@ -32190,7 +32284,7 @@ packages:
     hasBin: true
     dependencies:
       axios: 0.27.2(debug@4.3.4)
-      joi: 17.9.1
+      joi: 17.9.2
       lodash: 4.17.21
       minimist: 1.2.8
       rxjs: 7.8.0
@@ -32297,7 +32391,7 @@ packages:
       memfs: 3.5.0
       mime-types: 2.1.35
       range-parser: 1.2.1
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.88.2
 
   /webpack-dev-middleware@5.3.3(webpack@5.82.1):

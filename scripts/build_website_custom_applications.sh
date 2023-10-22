@@ -7,7 +7,7 @@ echo "Preparing production builds"
 pnpm compile-intl
 node scripts/gatsby-cache.mjs pre
 
-echo "Building documentation websites"
+echo "Building documentation websites (Custom Applications)"
 
 pnpm --filter @commercetools-website/custom-applications run build
 pnpm --filter @commercetools-website/components-playground run build
