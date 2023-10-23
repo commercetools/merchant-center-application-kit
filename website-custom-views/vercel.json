@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "github": {
+    "enabled": false
+  },
+  "rewrites": [
+    {
+      "source": "/custom-views",
+      "destination": "/"
+    },
+    {
+      "source": "/custom-views/(.*)",
+      "destination": "/$1"
+    }
+  ]
+}
