@@ -45,7 +45,7 @@ jobs:
           path: |
             .cache
             public
-          key: ${{ runner.os }}-gatsby-docs-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-gatsby-docs-custom-apps-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-gatsby-docs-v1-
 
