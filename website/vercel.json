@@ -3,6 +3,7 @@
   "github": {
     "enabled": false
   },
+  "outputDirectory": "vercel-public",
   "rewrites": [
     {
       "source": "/custom-applications",

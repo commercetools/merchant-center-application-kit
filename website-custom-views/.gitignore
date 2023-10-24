@@ -1,2 +1,2 @@
 versions.js
-static/schema.json
+static/*.schema.json
