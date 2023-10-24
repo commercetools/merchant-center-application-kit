@@ -47,7 +47,7 @@ jobs:
             public
           key: ${{ runner.os }}-gatsby-docs-custom-views-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-docs-v1-
+            ${{ runner.os }}-gatsby-docs-custom-views-v1-
 
       - name: Install dependencies
         run: pnpm install
