@@ -14,7 +14,7 @@ pnpm --filter @commercetools-website/components-playground run build
 
 node scripts/gatsby-cache.mjs post
 
-echo "Merging websites into one folder"
+echo "Moving public folders into vercel-public"
 
 rm -rf vercel-public
 cp -R public/website vercel-public

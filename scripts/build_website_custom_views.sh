@@ -13,7 +13,7 @@ pnpm --filter @commercetools-website/custom-views run build
 
 node scripts/gatsby-cache.mjs post
 
-echo "Merging websites into one folder"
+echo "Moving public folder into vercel-public-custom-views"
 
 rm -rf vercel-public-custom-views
 cp -R public/website-custom-views vercel-public-custom-views
