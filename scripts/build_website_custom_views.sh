@@ -16,4 +16,5 @@ node scripts/gatsby-cache.mjs post @commercetools-website/custom-views
 echo "Moving public folder into vercel-public-custom-views"
 
 rm -rf vercel-public-custom-views
+mkdir -p public
 cp -R public/website-custom-views vercel-public-custom-views

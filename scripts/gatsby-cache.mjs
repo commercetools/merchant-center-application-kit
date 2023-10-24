@@ -94,7 +94,7 @@ const run = async () => {
     cli
       .command(command.name, command.description)
       .usage(`${command.name} \n\n ${command.description}`)
-      .action(async ({ website }) => {
+      .action(async (website) => {
         await Promise.all(
           packages
             .filter((workspace) => workspace.packageJson.name === website)
