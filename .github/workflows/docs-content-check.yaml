@@ -34,7 +34,7 @@ jobs:
         uses: errata-ai/vale-action@reviewdog
         with:
           version: 2.18.0
-          files: '["website/src"]'
+          files: '["website/src","website-custom-views/src"]'
           reporter: github-pr-review
           filter_mode: diff_context
           fail_on_error: true
