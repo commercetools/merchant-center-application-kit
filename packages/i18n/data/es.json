@@ -53,7 +53,7 @@
   "ErrorApologizer.title": "¡Lo sentimos! se ha producido un error inesperado.",
   "FailedAuthentication.paragraph1": "Por favor, inténtelo de nuevo o contacte con el administrador del sistema para aclarar cualquier duda.",
   "FailedAuthentication.title": "No podemos permitirle usar el Merchant Center.",
-  "LocaleSwitcher.localesLabel": "Menú de configuraciones regionales",
+  "LocaleSwitcher.localesLabel": "Menú de idiomas",
   "NavBar.MCSupport.title": "Soporte (en inglés)",
   "Notification.hideNotification": "Ocultar notificación",
   "PageNotFound.paragraph1": "El elemento que usted busca pudo haber sido eliminado, no existe o el URL se introdujo de forma incorrecta. Revise el URL e inténtelo de nuevo. Por favor, póngase en contacto con el administrador del sistema o <a>Servicio de asistencia</a> de commercetools si tiene cualquier otra pregunta.",
