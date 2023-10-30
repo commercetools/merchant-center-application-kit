@@ -114,6 +114,7 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
       props.containerSelectorToPreventScrollingOnOpen ?? 'main';
     const zIndex = props.zIndex ?? 10000;
     const baseModalZIndex = props.baseModalZIndex ?? 1000;
+    const modalWidthTransition = 'width 150ms cubic-bezier(1, 0, 0.58, 1)';
 
     const portalsContainerRef = useRef<HTMLDivElement>(null);
     const globalNotificationsElementDimensions = useObserverElementDimensions(
@@ -188,10 +189,12 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                 right: 0;
                 bottom: 0;
                 z-index: ${zIndex};
+                transition: ${modalWidthTransition};
               }
 
               .ReactModal__Body--open.body__menu-open #${PORTALS_CONTAINER_ID} {
                 width: calc(100% - ${offsetLeftOnExpandedMenu});
+                transition: ${modalWidthTransition};
               }
             `,
             // Apply styles for stacking layers.
@@ -217,6 +220,7 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                     100% -
                       (${indentationSize} * ${stackingLayer.indentationLevel})
                   );
+                  transition: ${modalWidthTransition};
                 }
               `
             ),
