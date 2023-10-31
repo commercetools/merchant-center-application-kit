@@ -8,8 +8,8 @@
  *
  * Usage:
  *
- * node scripts/gatsby-cache.mjs pre
- * node scripts/gatsby-cache.mjs post
+ * node scripts/gatsby-cache.mjs pre <website>
+ * node scripts/gatsby-cache.mjs post <website>
  *
  * This script requires node.js v14.14.0 or higher
  */
@@ -24,7 +24,7 @@ const cli = cac('gatsby-cache');
 
 const commands = [
   {
-    name: 'pre',
+    name: 'pre <website>',
     description:
       "Extract each Gatsby website's specific {.cache,public} folders from the root directory to each workspace.",
     action: async ({
@@ -41,7 +41,7 @@ const commands = [
     },
   },
   {
-    name: 'post',
+    name: 'post <website>',
     description:
       "Extract each Gatsby website's specific {.cache,public} folders from each workspace to the root directory.",
     action: async ({
@@ -62,7 +62,6 @@ const commands = [
 const workspaceRoot = findRootSync(process.cwd());
 const globalPublicPath = path.join(workspaceRoot.rootDir, 'public');
 const globalCachePath = path.join(workspaceRoot.rootDir, '.cache');
-const gatsbyWebsites = ['@commercetools-website/custom-applications'];
 
 const moveFolderFromTo = async (from, to) => {
   await fs.promises.mkdir(from, { recursive: true });
@@ -95,12 +94,10 @@ const run = async () => {
     cli
       .command(command.name, command.description)
       .usage(`${command.name} \n\n ${command.description}`)
-      .action(async () => {
+      .action(async (website) => {
         await Promise.all(
           packages
-            .filter((workspace) =>
-              gatsbyWebsites.includes(workspace.packageJson.name)
-            )
+            .filter((workspace) => workspace.packageJson.name === website)
             .map(async (workspace) => {
               const namespaceKey = path.basename(workspace.dir);
 

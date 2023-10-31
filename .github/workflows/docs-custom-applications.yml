@@ -1,0 +1,150 @@
+name: Documentation for Custom Applications
+
+# The event triggers are configured as following:
+# - on branch main, trigger the workflow on every push
+# - on any pull request, trigger the workflow
+# This is to avoid running the workflow twice on pull requests.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build_and_deploy_docs:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+      # default to being a preview deployment
+      DEPLOY_DOCS_ENV: Preview
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          run_install: false
+
+      - name: Setup Node (uses version in .nvmrc)
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: pnpm
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+            public
+          key: ${{ runner.os }}-gatsby-docs-custom-applications-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-docs-custom-applications-v1-
+
+      - name: Install dependencies
+        run: pnpm install
+        env:
+          # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L14-L18
+          # https://github.com/marketplace/actions/cypress-io#custom-install
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Building packages
+        run: pnpm build
+
+      - name: Building docs website
+        run: pnpm build:website:custom-applications
+        env:
+          NODE_OPTIONS: '--max-old-space-size=6144'
+          GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32
+
+      - name: Detect if is a production deployment (documentation)
+        if: github.event_name == 'push' && github.ref_name == 'main'
+        run: |
+          echo "DEPLOY_DOCS_ENV=Production" >> $GITHUB_ENV
+
+      - name: Deploy to Vercel (Production)
+        if: ${{ env.DEPLOY_DOCS_ENV == 'Production' }}
+        id: deploy-docs-to-vercel-production
+        uses: amondnet/vercel-action@v25
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scope: commercetools
+          vercel-args: '--prod --local-config website/vercel.json'
+          vercel-project-name: merchant-center-application-kit
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS }}
+
+      - name: Initialize GitHub Deployment
+        if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
+        uses: bobheadxi/deployments@v1.4.0
+        id: start-deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ env.DEPLOY_DOCS_ENV }}
+          ref: ${{ github.head_ref }}
+
+      - name: Deploy to Vercel (Preview)
+        if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
+        id: deploy-docs-to-vercel-preview
+        uses: amondnet/vercel-action@v25
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scope: commercetools
+          vercel-args: '--local-config website/vercel.json'
+          vercel-project-name: merchant-center-application-kit
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS }}
+          # there are length restrictions to domains and only *.commercetools.vercel.app works
+          # reliably for generated subdomains. No branch name domain because branch names can be long.
+          alias-domains: |
+            appkit-sha-${{ github.sha }}.commercetools.vercel.app
+            appkit-pr-{{PR_NUMBER}}.commercetools.vercel.app
+
+      - name: Update GitHub Deployment Status
+        if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
+        uses: bobheadxi/deployments@v1.4.0
+        id: finish_deployment
+        with:
+          step: finish
+          override: false
+          auto_inactive: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          env: ${{ steps.start-deployment.outputs.env }}
+          env_url: ${{ steps.deploy-docs-to-vercel-preview.outputs.preview-url }}
+          deployment_id: ${{ steps.start-deployment.outputs.deployment_id }}
+
+  link-check:
+    name: 'Check links'
+
+    needs: build_and_deploy_docs
+
+    if: github.event_name != 'push' && github.ref_name != 'main'
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check links
+        uses: JustinBeckwith/linkinator-action@v1.10.4
+        with:
+          paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
+          config: website/linkinator.config.json
+          markdown: false
+          urlRewriteReplace: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app
+          urlRewriteSearch: https://docs.commercetools.com

@@ -1,4 +1,4 @@
-name: Documentation workflow
+name: Documentation for Custom Views
 
 # The event triggers are configured as following:
 # - on branch main, trigger the workflow on every push
@@ -45,9 +45,9 @@ jobs:
           path: |
             .cache
             public
-          key: ${{ runner.os }}-gatsby-docs-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-gatsby-docs-custom-views-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-docs-v1-
+            ${{ runner.os }}-gatsby-docs-custom-views-v1-
 
       - name: Install dependencies
         run: pnpm install
@@ -60,7 +60,7 @@ jobs:
         run: pnpm build
 
       - name: Building docs website
-        run: pnpm build:website
+        run: pnpm build:website:custom-views
         env:
           NODE_OPTIONS: '--max-old-space-size=6144'
           GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32
@@ -77,11 +77,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
-          vercel-args: '--prod'
-          vercel-project-name: merchant-center-application-kit
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
+          vercel-args: '--prod --local-config website-custom-views/vercel.json'
+          vercel-project-name: application-kit-custom-views
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS_CUSTOM_VIEWS }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS_CUSTOM_VIEWS }}
 
       - name: Initialize GitHub Deployment
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
@@ -100,15 +100,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
-          vercel-project-name: merchant-center-application-kit
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
+          vercel-args: '--local-config website-custom-views/vercel.json'
+          vercel-project-name: application-kit-custom-views
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS_CUSTOM_VIEWS }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN_DOCS_CUSTOM_VIEWS }}
           # there are length restrictions to domains and only *.commercetools.vercel.app works
           # reliably for generated subdomains. No branch name domain because branch names can be long.
           alias-domains: |
-            appkit-sha-${{ github.sha }}.commercetools.vercel.app
-            appkit-pr-{{PR_NUMBER}}.commercetools.vercel.app
+            appkit-cv-sha-${{ github.sha }}.commercetools.vercel.app
+            appkit-cv-pr-{{PR_NUMBER}}.commercetools.vercel.app
 
       - name: Update GitHub Deployment Status
         if: ${{ env.DEPLOY_DOCS_ENV == 'Preview' }}
@@ -142,8 +143,8 @@ jobs:
       - name: Check links
         uses: JustinBeckwith/linkinator-action@v1.10.4
         with:
-          paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
-          config: website/linkinator.config.json
+          paths: https://appkit-cv-sha-${{ github.sha }}.commercetools.vercel.app/custom-views
+          config: website-custom-views/linkinator.config.json
           markdown: false
-          urlRewriteReplace: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app
+          urlRewriteReplace: https://appkit-cv-sha-${{ github.sha }}.commercetools.vercel.app
           urlRewriteSearch: https://docs.commercetools.com

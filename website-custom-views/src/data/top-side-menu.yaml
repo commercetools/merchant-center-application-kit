@@ -1,0 +1,14 @@
+- label: Sign up
+  href: /../getting-started/initial-setup
+- label: Log in
+  href: /../docs/login
+- label: Support
+  href: /../offering/support
+- label: Status
+  href: https://status.commercetools.com
+- label: Offering
+  href: /../offering/
+- label: Tech Blog
+  href: https://techblog.commercetools.com
+- label: Integrations
+  href: https://marketplace.commercetools.com
