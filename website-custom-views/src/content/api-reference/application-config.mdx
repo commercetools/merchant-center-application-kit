@@ -1,0 +1,788 @@
+---
+title: Application Config
+---
+
+import ApplicationIcons from '../../components/application-icons.js'
+
+<Warning>
+
+TO BE UPDATED
+
+</Warning>
+
+<Subtitle>
+
+A Custom View configuration file defines the necessary requirements to develop and build your application.
+
+</Subtitle>
+
+The configuration of a Custom View is typically defined in a JSON file `custom-view-config.json` in the root of your project directory (next to `package.json`).
+
+# Supported file extensions
+
+The configuration file can be defined in different syntax formats, but it is expected that the file is named `custom-application-config`.
+
+The following file extensions can be used: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`.
+
+For example:
+
+```js title="custom-view-config.mjs"
+import { entryPointUriPath } from './constants';
+
+const name = 'Test application';
+
+/**
+ * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ */
+const config = {
+  name,
+  entryPointUriPath,
+  // ...
+};
+module.exports = config;
+```
+
+```js title="./constants.js"
+const entryPointUriPath = 'test';
+module.exports = { entryPointUriPath };
+```
+
+# Editor support
+
+To facilitate the usage of the application config, you should instruct your editor to provide hints and code completion (IntelliSense) depending on the format of the configuration file.
+
+## JSON schema support for VSCode
+
+When using JSON files, you can take advantage of the [JSON schema for the application config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
+
+```json title=".vscode/settings.json"
+"json.schemas": [
+  {
+    "fileMatch": ["/custom-view-config.json"],
+    "url": "https://docs.commercetools.com/custom-view/schema.json"
+  }
+]
+```
+
+![Example validation of the JSON schema in the editor](/images/custom-application-config-schema-validation.png 'Example validation of the JSON schema in the editor')
+
+Other editors might have different settings.
+
+## Using JSDoc @type expression
+
+For non-JSON files, you can annotate the configuration object with a JSDOc `@type` tag, pointing it to the exported TypeScript declaration of the `@commercetools-frontend/application-config` package.
+
+```js title="custom-view-config.js"
+/**
+ * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ */
+const config = {
+  // ...
+}
+
+module.exports = config;
+```
+
+For TypeScript files `.ts`, you can import the type directly instead.
+
+```ts title="custom-view-config.ts"
+import type { ConfigOptions } from '@commercetools-frontend/application-config';
+
+const config: ConfigOptions = {
+  // ...
+};
+
+export default config;
+```
+
+# Configuration properties
+
+To learn more about the application config properties, read the following.
+
+## `name`
+
+The name of the Custom View, for information purposes.
+
+```json
+{
+  "name": "The Avengers app"
+}
+```
+
+## `description`
+
+An optional description of the Custom View, for information purposes.
+
+```json
+{
+  "description": "Manage your favourite Avengers"
+}
+```
+
+## `entryPointUriPath`
+
+The **unique identifier** of the Custom View, similarly to the `projectKey` of the Composable Commerce APIs. This value determines the route at which the Custom View is [served by the Merchant Center Proxy](/concepts/merchant-center-proxy-router).
+
+```
+/:projectKey/:entryPointUriPath
+```
+
+The value is considered unique within each [cloud Region](/concepts/merchant-center-api#cloud-regions) environment, meaning that there can't be any duplicates.
+
+Choosing the `entryPointUriPath` is important and should be done carefully as it affects routing and permissions.
+
+```json
+{
+  "entryPointUriPath": "avengers"
+}
+```
+
+The `entryPointUriPath` value must adhere to the following restrictions:
+
+* Only lowercase alphanumeric characters are allowed.
+* Must be between 2 and 64 characters.
+* Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
+
+Furthermore, the `entryPointUriPath` value is bound to user permissions of the Custom View and is used to [derive the unique name of the user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
+
+<Warning>
+
+Some values are reserved for internal usage and cannot be used:
+
+* `account`
+* `audit-log`
+* `dashboard`
+* `categories`
+* `change-history`
+* `customers`
+* `exports`
+* `discounts`
+* `operations`
+* `impex`
+* `imports`
+* `imports-exports`
+* `orders`
+* `products`
+* `settings`
+* `welcome`
+* `disabled`
+* `standalone-prices`
+
+Note that the list can be extended at any time. _Last update 2022-08-11_.
+
+</Warning>
+
+<Info>
+
+Even though the `entryPointUriPath` is a unique identifier of a Custom View, and thus should be defined statically in the source code, it can also be defined dynamically via environment variables using the [environment placeholders](#using-variable-placeholders).
+
+This may be the case if the Custom View is to be deployed in different environments.
+
+We explain this further in the [help section](/help-needed/#using-a-test-or-staging-environment-for-my-custom-application).
+
+</Info>
+
+## `cloudIdentifier`
+
+The [identifier of the cloud Region](/concepts/merchant-center-api#cloud-identifiers) that the Custom View uses to connect to Composable Commerce. The values map to the actual Merchant Center API URL for that Region.
+
+Supported values are:
+
+* `gcp-au`
+* `gcp-eu`
+* `gcp-us`
+* `aws-fra`
+* `aws-ohio`
+* `aws-cn`
+
+```json
+{
+  "cloudIdentifier": "gcp-eu"
+}
+```
+
+<Info>
+
+If a cloud Region is not listed in the values above, you can override the value by adding a `mcApiUrl` property to the Custom View config file with the full origin URL.
+
+</Info>
+
+## `mcApiUrl`
+
+The origin URL of the [Merchant Center API](/concepts/merchant-center-api#hostnames).
+
+<Info>
+
+The value takes precedence over the `cloudIdentifier`. Use this only if the `cloudIdentifier` does not contain a value for the environment you want to connect to.
+
+</Info>
+
+## `env`
+
+An object holding environment specific configurations, for example `development` or `production`. Which environment is used depends on the environment variable `MC_APP_ENV`. If `MC_APP_ENV` isn't set, `NODE_ENV` will be used. If neither is set, it defaults to `development`.
+
+<Info>
+
+The `MC_APP_ENV` is useful if you want to run the production build of the Custom View locally. In this case the `NODE_ENV` needs to be set to `production`. However, because the application runs locally, you need to have the URL references pointing to localhost, thus the `MC_APP_ENV` needs to be set to `development`.
+
+</Info>
+
+## `env.development.initialProjectKey`
+
+A `projectKey` of a commercetools Project you have access to. To be used as the default Project upon login in development.
+
+```json
+{
+  "env": {
+    "development": {
+      "initialProjectKey": "my-project-key"
+    }
+  }
+}
+```
+
+<Info>
+
+Local development and login are only allowed for users being part of the `Administrators` Team of your Organization.
+
+</Info>
+
+## `env.production.applicationId`
+
+The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
+
+```json
+{
+  "env": {
+    "production": {
+      "applicationId": "ckvtahxl90097sys6har1e6n3"
+    }
+  }
+}
+```
+
+<Info>
+
+As long as you are developing the Custom View locally, you can define any random value as it's a required field.
+
+</Info>
+
+## `env.production.url`
+
+The full URL value where the Custom View is hosted at. The Merchant Center serves Custom Views on its own domain, but requests are internally forwarded to this URL. See [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router) for more information.
+
+```json
+{
+  "env": {
+    "production": {
+      "url": "https://avengers.app"
+    }
+  }
+}
+```
+
+<Info>
+
+This value is also used to configure the [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) HTTP headers to allow the browser to request data from the application domain.
+
+</Info>
+
+## `env.production.cdnUrl`
+
+The full URL value where the Custom View [static assets](/development/going-to-production#about-static-assets) are hosted, for example when using an external CDN.
+
+```json
+{
+  "env": {
+    "production": {
+      "cdnUrl": "https://cdn.avengers.app"
+    }
+  }
+}
+```
+
+<Info>
+
+If the static assets are hosted alongside the Custom View, you can omit this option and the Custom View `env.production.url` value will be used instead.
+
+</Info>
+
+## `additionalEnv`
+
+An optional object that should be used to inject properties used within your Custom View. These properties are then made available to the [runtime application environment](#runtime-application-environment).
+
+For example, if the Custom View should reference an external API, or have links to certain support pages:
+
+```json
+{
+  "additionalEnv": {
+    "trackingSentry": "https://000@sentry.io/000",
+    "avengersSupportUrl": "https://support.avengers.app"
+  }
+}
+```
+
+## `oAuthScopes`
+
+The configuration for [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions).
+
+<Info>
+
+You can have "view-only" or "manage-only" OAuth Scopes and leave the other list field empty, as long as at least one OAuth Scope is specified.
+
+Alternatively, if at least one additional permission group is configured in [additionalOAuthScopes](#additionaloauthscopes),  both "view-only" or "manage-only" OAuth Scopes list fields can be left empty.
+
+</Info>
+
+## `oAuthScopes.view`
+
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `View` permission.
+
+```json
+{
+  "oAuthScopes": {
+    "view": ["view_states"],
+  }
+}
+```
+
+## `oAuthScopes.manage`
+
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `Manage` permission.
+
+```json
+{
+  "oAuthScopes": {
+    "manage": ["manage_orders"]
+  }
+}
+```
+
+<Info>
+
+Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
+
+</Info>
+
+## `additionalOAuthScopes`
+
+<Info>
+
+This feature is available from version `21.21.0` onwards.
+
+</Info>
+
+The optional configuration for defining more granular [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions#permission-groups).
+
+## `additionalOAuthScopes.*.name`
+
+A unique name for the additional permission group.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+    }
+  ]
+}
+```
+
+The name value must adhere to the following restrictions:
+
+* Only lowercase alphabetic characters are allowed.
+* Must be between 2 and 64 characters.
+* Hyphens are allowed except as leading, trailing, and adjacent characters.
+
+## `additionalOAuthScopes.*.view`
+
+A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `View<GroupName>` permission.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": ["view_products"],
+      "manage": []
+    },
+    {
+      "name": "merch",
+      "view": ["view_categories"],
+      "manage": []
+    }
+  ]
+}
+```
+
+## `additionalOAuthScopes.*.manage`
+
+A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `Manage<GroupName>` permission.
+
+```json
+{
+  "additionalOAuthScopes": [
+    {
+      "name": "movies",
+      "view": [],
+      "manage": ["manage_products"]
+    },
+    {
+      "name": "merch",
+      "view": [],
+      "manage": ["manage_categories"]
+    }
+  ]
+}
+```
+
+## `headers`
+
+An optional object to configure HTTP headers used by the Custom View.
+
+## `headers.csp`
+
+An optional object to extend the default [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) directives. The following directives are allowed to be used:
+
+- `connect-src`
+- `font-src`
+- `frame-src`
+- `img-src`
+- `script-src`
+- `style-src`
+
+```json
+{
+  "headers": {
+    "csp": {
+      "connect-src": ["https://api.stripe.com"],
+      "frame-src": ["https://js.stripe.com", "https://hooks.stripe.com"],
+      "script-src": ["https://js.stripe.com"]
+    }
+  }
+}
+```
+
+<Info>
+
+The required [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) headers are inferred by default from the `cloudIdentifier` and the `env.production.url`. This includes the hostname where the Custom View is hosted and the hostname of the Merchant Center API Gateway.
+
+</Info>
+
+## `headers.permissionsPolicies`
+
+An optional object to configure the [HTTP `Permission-Policy` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy).
+
+```json
+{
+  "headers": {
+    "permissionsPolicies": {
+      "microphone": "()",
+      "camera": "()",
+      "payment": "()",
+      "usb": "()",
+      "geolocation": "()"
+    }
+  }
+}
+```
+
+## `headers.strictTransportSecurity`
+
+An optional list to extend the [HTTP `Strict-Transport-Security` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security).
+
+```json
+{
+  "headers": {
+    "strictTransportSecurity": ["includeSubDomains", "preload"]
+  }
+}
+```
+
+## `icon`
+
+The visual identifier of the Custom View in the Merchant Center. You can choose one of the following predefined icons by referencing it with the special expansion-like syntax `${path:}`:
+
+```json
+{
+  "icon": "${path:@commercetools-frontend/assets/application-icons/<icon_name>.svg}"
+}
+```
+
+<ApplicationIcons />
+
+## `mainMenuLink`
+
+An object describing the main link to the Custom View in the Merchant Center main navigation.
+
+## `mainMenuLink.defaultLabel`
+
+The label to be rendered if there is no matching localized label for the user locale.
+
+```json
+{
+  "mainMenuLink": {
+    "defaultLabel": "The Avengers"
+  }
+}
+```
+
+## `mainMenuLink.labelAllLocales`
+
+A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
+
+```json
+{
+  "mainMenuLink": {
+    "labelAllLocales": [
+      { "locale": "en", "value": "The Avengers" },
+      { "locale": "de", "value": "Die Avengers" },
+    ]
+  }
+}
+```
+
+Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
+
+## `mainMenuLink.permissions`
+
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom View. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
+
+```json
+{
+  "mainMenuLink": {
+    "permissions": ["ViewAvengers"]
+  }
+}
+```
+
+<Info>
+
+The values of the user permissions for the Custom View are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
+
+</Info>
+
+## `submenuLinks`
+
+A list of objects describing the sub-links to the Custom View in the Merchant Center main navigation.
+
+## `submenuLinks.*.uriPath`
+
+The URI path relative to the `entryPointUriPath` of the Custom View.<br />
+For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPath: new`, the menu link results in `/avengers/new`.
+
+```json
+{
+  "submenuLinks": [
+    {
+      "uriPath": "new"
+    }
+  ]
+}
+```
+
+<Info>
+
+The main navigation links in the Merchant Center are marked as active based on an **exact match strategy** with the current page route.
+
+For example, if a sub-link is set as `new` and the current page route is `/avengers/new`, the link is marked as active. However, if the page route is at `/avengers` or `/avengers/123` instead of `/avengers/new`, the link doesn't match and isn't marked as active.
+
+Be aware of how you configure the sub-links and how they're supposed to match with the application routes:
+
+* Avoid using `/` as the sub-link. While this is technically allowed, you're adding a duplicated menu link because it's the same as the `mainMenuLink`.
+* Avoid sublinks to routes that redirect to other routes because they'll never match. For example, if you have a main page with sub-routes such as `/avengers/config/general` and `/avengers/config/new`, and the routes are configured to redirect from `/avengers/config` to `/avengers/config/general`, defining the sub-link `/avengers/config` will never match any route because of the redirect.
+
+</Info>
+
+## `submenuLinks.*.defaultLabel`
+
+The label to be rendered if there is no matching localized label for the user locale.
+
+```json
+{
+  "submenuLinks": [
+    {
+      "defaultLabel": "Create Avenger"
+    }
+  ]
+}
+```
+
+## `submenuLinks.*.labelAllLocales`
+
+A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
+
+```json
+{
+  "submenuLinks": [
+    {
+      "labelAllLocales": [
+        { "locale": "en", "value": "Create Avenger" },
+        { "locale": "de", "value": "Avenger anlegen" },
+      ]
+    }
+  ]
+}
+```
+
+Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
+
+## `submenuLinks.*.permissions`
+
+A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom View. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
+
+```json
+{
+  "submenuLinks": [
+    {
+      "permissions": ["ManageAvengers"]
+    }
+  ]
+}
+```
+
+<Info>
+
+The values of the user permissions for the Custom View are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
+
+</Info>
+
+# Using variable placeholders
+
+Variable placeholders are a way of injecting certain information into the "static" configuration file.
+
+## Environment variable references
+
+To make the application config more reusable across different environments, you can use references to environment variables within the application config file.
+
+References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
+
+Imagine developing a Custom View that can be used in the same Regions (Europe and North America) as the Composable Commerce APIs. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
+
+```json
+{
+  "cloudIdentifier": "${env:CLOUD_IDENTIFIER}"
+}
+```
+
+The `CLOUD_IDENTIFIER` environment variable can be provided in various ways.
+
+For example:
+- as an inline environment variable when running a script command
+
+  ```console
+  CLOUD_IDENTIFIER=gcp-eu mc-scripts start
+  ```
+
+- using a [dotenv](https://github.com/motdotla/dotenv) file
+
+  ```bash title=".env-eu"
+  CLOUD_IDENTIFIER=gcp-eu
+  ```
+
+  ```console
+  mc-scripts --env .env-eu start
+  ```
+
+- by defining the environment variables in your CI service
+
+You can also pass multiple references to the same value:
+
+```json
+{
+  "additionalEnv": {
+    "authorityUrl": "https://${env:IDP_URL}/${env:IDP_ID}"
+  }
+}
+```
+
+## Intl message references
+
+<Info>
+
+This feature is available from version `20.8.0` onwards.
+
+</Info>
+
+References for Intl messages are specified with a special expansion-like syntax `${}` together with the prefix key `intl:`. For example, to load a translation message from the `en.json` file named `Menu.Avengers`, you would use `${intl:en:Menu.Avengers}`.
+
+This is useful when specifying [menu link labels](#mainmenulink).
+
+```json
+{
+  "mainMenuLink": {
+    "defaultLabel": "${intl:en:Menu.Avengers}",
+    "labelAllLocales": [
+      { "locale": "en", "value": "${intl:en:Menu.Avengers}" },
+      { "locale": "de", "value": "${intl:de:Menu.Avengers}" }
+    ]
+  }
+}
+```
+
+The reference placeholder assumes that the Custom View has the translation files in one of the following locations:
+
+* `<app_root>/src/i18n/data/<locale>.json`
+* `<app_root>/i18n/data/<locale>.json`
+
+## File path references
+
+<Info>
+
+This feature is available from version `20.8.0` onwards.
+
+</Info>
+
+References to files are specified with a special expansion-like syntax `${}` together with the prefix key `path:`.
+
+This is useful when specifying the [`icon`](#icon) of the Custom View.
+
+```json
+{
+  "icon": "${path:./app.svg}"
+}
+```
+
+You can use a path relative to the application folder or a path to a module.
+
+```json
+{
+  "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}"
+}
+```
+
+# Runtime application environment
+
+Much of the information specified in the application config is injected into the runtime environment and available via the global variable `window.app`.
+
+It is recommended to always pass the value to the `<ApplicationShell>`.
+
+```jsx highlightLines="3"
+const EntryPoint = () => (
+  <ApplicationShell
+    environment={window.app}
+    // other props
+  />
+);
+```
+
+The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
+
+```jsx
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+
+const MyComponent = () => {
+  const applicationName = useApplicationContext(
+    context => context.environment.applicationName
+  );
+  return (<div>{`Welcome to the application ${applicationName}!`}</div>);
+};
+```
+
+<Info>
+
+All the properties defined in the `additionalEnv` object are made available to the `context.environment` object.<br/>
+See [Custom user properties](/api-reference/commercetools-frontend-application-shell-connectors#custom-user-properties) for more information.
+
+</Info>
+

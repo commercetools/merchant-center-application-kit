@@ -1,0 +1,57 @@
+---
+title: Going to Production
+---
+
+When it's time to take your Custom View to production, you need to follow certain steps like building the production bundles.
+
+<Info>
+
+Make sure that your [Custom View is properly configured](/api-reference/application-config).
+
+</Info>
+
+# Building production bundles
+
+The production bundles are created by running the CLI `build` command:
+
+```console
+mc-scripts build
+```
+
+All the necessary static assets are created in the `public` directory.
+
+<Info>
+
+By default, the `build` command compiles the `index.html`, included in the `public` folder. You can opt-out of the compilation step by using the option `--build-only`. See [`compile-html` command](/api-reference/cli#compile-html) for more information.
+
+</Info>
+
+# Assigning the Application ID
+
+Before deploying the Custom View to production, make sure to provide the [Custom View ID](/api-reference/application-config#envproductionapplicationid) that you got when you configured the Custom View in the Merchant Center.
+
+The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
+
+# Assigning the production URL
+
+In the Custom View config make sure to provide the [production URL](/api-reference/application-config#envproductionurl) where the Custom View will be hosted.
+
+# Deploying the production bundles
+
+Deploying and hosting Custom Views is managed by you. This allows you to choose whatever hosting solution works best for you.
+
+See [Deployment Examples](/deployment-examples) to quickly get up and running with some of the common cloud hosting providers.
+
+## Configuring rewrite rules
+
+A Custom View is a Single-Page Application that uses client-side routing. Therefore, you need to instruct your hosting provider to rewrite all requests to serve the `index.html`.
+
+Most of the [Deployment Examples](/deployment-examples) explain how to do that in regards to the hosting provider.
+
+See [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router) for more information on how the Merchant Center serves Custom Views.
+
+# About Static Assets
+
+Depending on where you want to host your Custom View you might choose to keep the static assets (JS, CSS, etc.) in the same location as the `index.html` or to have them served by something like a CDN.
+
+If you choose to have them hosted in a separate location, you need to configure the [CDN URL](/api-reference/application-config#envproductioncdnurl) in the Custom View config.
