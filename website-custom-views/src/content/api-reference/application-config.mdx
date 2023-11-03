@@ -4,12 +4,6 @@ title: Application Config
 
 import ApplicationIcons from '../../components/application-icons.js'
 
-<Warning>
-
-TO BE UPDATED
-
-</Warning>
-
 <Subtitle>
 
 A Custom View configuration file defines the necessary requirements to develop and build your application.
@@ -27,24 +21,14 @@ The following file extensions can be used: `.json`, `.js`, `.cjs`, `.mjs`, `.ts`
 For example:
 
 ```js title="custom-view-config.mjs"
-import { entryPointUriPath } from './constants';
-
-const name = 'Test application';
-
 /**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomView}
  */
 const config = {
-  name,
-  entryPointUriPath,
+  name: 'Test custom view',
   // ...
 };
 module.exports = config;
-```
-
-```js title="./constants.js"
-const entryPointUriPath = 'test';
-module.exports = { entryPointUriPath };
 ```
 
 # Editor support
@@ -74,7 +58,7 @@ For non-JSON files, you can annotate the configuration object with a JSDOc `@typ
 
 ```js title="custom-view-config.js"
 /**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomView}
  */
 const config = {
   // ...
@@ -86,9 +70,9 @@ module.exports = config;
 For TypeScript files `.ts`, you can import the type directly instead.
 
 ```ts title="custom-view-config.ts"
-import type { ConfigOptions } from '@commercetools-frontend/application-config';
+import type { ConfigOptionsForCustomView } from '@commercetools-frontend/application-config';
 
-const config: ConfigOptions = {
+const config: ConfigOptionsForCustomView = {
   // ...
 };
 
@@ -101,7 +85,9 @@ To learn more about the application config properties, read the following.
 
 ## `name`
 
-The name of the Custom View, for information purposes.
+The name of the Custom View.
+
+It will be used in the Merchant Center when a user is presented with a list of Custom Views avaiable for a specific view.
 
 ```json
 {
@@ -118,69 +104,6 @@ An optional description of the Custom View, for information purposes.
   "description": "Manage your favourite Avengers"
 }
 ```
-
-## `entryPointUriPath`
-
-The **unique identifier** of the Custom View, similarly to the `projectKey` of the Composable Commerce APIs. This value determines the route at which the Custom View is [served by the Merchant Center Proxy](/concepts/merchant-center-proxy-router).
-
-```
-/:projectKey/:entryPointUriPath
-```
-
-The value is considered unique within each [cloud Region](/concepts/merchant-center-api#cloud-regions) environment, meaning that there can't be any duplicates.
-
-Choosing the `entryPointUriPath` is important and should be done carefully as it affects routing and permissions.
-
-```json
-{
-  "entryPointUriPath": "avengers"
-}
-```
-
-The `entryPointUriPath` value must adhere to the following restrictions:
-
-* Only lowercase alphanumeric characters are allowed.
-* Must be between 2 and 64 characters.
-* Underscores and hyphens are allowed except as leading, trailing, and adjacent characters.
-
-Furthermore, the `entryPointUriPath` value is bound to user permissions of the Custom View and is used to [derive the unique name of the user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions).
-
-<Warning>
-
-Some values are reserved for internal usage and cannot be used:
-
-* `account`
-* `audit-log`
-* `dashboard`
-* `categories`
-* `change-history`
-* `customers`
-* `exports`
-* `discounts`
-* `operations`
-* `impex`
-* `imports`
-* `imports-exports`
-* `orders`
-* `products`
-* `settings`
-* `welcome`
-* `disabled`
-* `standalone-prices`
-
-Note that the list can be extended at any time. _Last update 2022-08-11_.
-
-</Warning>
-
-<Info>
-
-Even though the `entryPointUriPath` is a unique identifier of a Custom View, and thus should be defined statically in the source code, it can also be defined dynamically via environment variables using the [environment placeholders](#using-variable-placeholders).
-
-This may be the case if the Custom View is to be deployed in different environments.
-
-We explain this further in the [help section](/help-needed/#using-a-test-or-staging-environment-for-my-custom-application).
-
-</Info>
 
 ## `cloudIdentifier`
 
@@ -247,7 +170,7 @@ Local development and login are only allowed for users being part of the `Admini
 
 </Info>
 
-## `env.production.applicationId`
+## `env.production.customViewId`
 
 The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
 
@@ -255,7 +178,7 @@ The Custom View ID is provided when you add a Custom View in the Merchant Center
 {
   "env": {
     "production": {
-      "applicationId": "ckvtahxl90097sys6har1e6n3"
+      "customViewId": "ckvtahxl90097sys6har1e6n3"
     }
   }
 }
@@ -499,153 +422,127 @@ An optional list to extend the [HTTP `Strict-Transport-Security` header](https:/
 }
 ```
 
-## `icon`
+## labelAllLocales
 
-The visual identifier of the Custom View in the Merchant Center. You can choose one of the following predefined icons by referencing it with the special expansion-like syntax `${path:}`:
+An optional list of localized fields `{ locale, value }` with translated labels for each custom view locale, available in the user profile.
+
+These values will be used when presenting the user with a list of available Custom Views in the Merchant Center views.
+If they are not configured, the `name` values will be used instead.
 
 ```json
 {
-  "icon": "${path:@commercetools-frontend/assets/application-icons/<icon_name>.svg}"
+  "labelAllLocales": [
+    { "locale": "en", "value": "The Avengers" },
+    { "locale": "de", "value": "Die Avengers" }
+  ]
 }
 ```
 
-<ApplicationIcons />
+## `type`
 
-## `mainMenuLink`
-
-An object describing the main link to the Custom View in the Merchant Center main navigation.
-
-## `mainMenuLink.defaultLabel`
-
-The label to be rendered if there is no matching localized label for the user locale.
+The required type of Custom View.
+Currently we only support the `CustomPanel` value.
 
 ```json
 {
-  "mainMenuLink": {
-    "defaultLabel": "The Avengers"
+  "type": "CustomPanel"
+}
+```
+
+## `typeSettings`
+
+Depending on the Custom View type, different settings might be required.
+
+## `typeSettings.size`
+
+In case the `CustomPanel` type is used, the `size` property is required. It defines the size of the Custom View panel.
+
+Supported values are: `SMALL`, `LARGE`.
+
+```json
+{
+  "type": "CustomPanel",
+  "typeSettings": {
+    "size": "SMALL"
   }
 }
 ```
 
-## `mainMenuLink.labelAllLocales`
+## `locators`
 
-A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
+Since Custom Views are rendered in the context of native Merchant Center applications, you need to set in which specific views the Custom View should be rendered.
 
-```json
-{
-  "mainMenuLink": {
-    "labelAllLocales": [
-      { "locale": "en", "value": "The Avengers" },
-      { "locale": "de", "value": "Die Avengers" },
-    ]
-  }
-}
-```
-
-Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
-
-## `mainMenuLink.permissions`
-
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom View. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
+This configuration property is a list of codes which represent every Merchant Center view where the Custom View can be rendered.
 
 ```json
 {
-  "mainMenuLink": {
-    "permissions": ["ViewAvengers"]
-  }
+  "locators": ["products.product_details.general"]
 }
 ```
 
-<Info>
+The locator codes follow the pattern `<application>.<view>.<subview>`.
+The following list contains all the currently available locators:
 
-The values of the user permissions for the Custom View are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
+### Products application
 
-</Info>
+* `products.product_details.general`
+* `products.product_details.variants`
+* `products.product_details.search`
+* `products.product_details.selections`
+* `products.product_variant_details.general`
+* `products.product_variant_details.images`
+* `products.product_variant_details.prices`
+* `products.product_variant_details.inventory`
+* `products.product_variant_images.add_image`
+* `products.product_variant_images.add_price`
+* `products.product_variant_images.edit_price`
 
-## `submenuLinks`
+### Categories application
 
-A list of objects describing the sub-links to the Custom View in the Merchant Center main navigation.
+* `categories.category_details.general`
+* `categories.category_details.products`
+* `categories.category_details.external_search`
+* `categories.category_products.manage_storefront_order`
 
-## `submenuLinks.*.uriPath`
+### Customers application
 
-The URI path relative to the `entryPointUriPath` of the Custom View.<br />
-For example, given the `entryPointUriPath: avengers`, and the (sub)route `uriPath: new`, the menu link results in `/avengers/new`.
+* `customers.customer_details.general`
+* `customers.customer_details.custom_fields`
+* `customers.customer_details.addresses`
+* `customers.customer_details.orders`
+* `customers.customer_addresses.new_adress`
+* `customers.customer_addresses.edit_address`
+* `customers.customer_orders.order_detail`
 
-```json
-{
-  "submenuLinks": [
-    {
-      "uriPath": "new"
-    }
-  ]
-}
-```
+### Orders application
 
-<Info>
+* `orders.order_details.general`
+* `orders.order_details.custom_fields`
+* `orders.order_details.shipping_and_delivery`
+* `orders.order_details.returns`
+* `orders.order_details.payments`
+* `orders.order_shipping_and_delivery.create_delivery`
+* `orders.order_shipping_and_delivery.edit_delivery`
+* `orders.order_shipping_and_delivery.add_parcel`
+* `orders.order_returns.create_return`
+* `orders.order_returns.edit_return`
 
-The main navigation links in the Merchant Center are marked as active based on an **exact match strategy** with the current page route.
+### Prices application
 
-For example, if a sub-link is set as `new` and the current page route is `/avengers/new`, the link is marked as active. However, if the page route is at `/avengers` or `/avengers/123` instead of `/avengers/new`, the link doesn't match and isn't marked as active.
+* `standalone_prices.standalone_price_details`
 
-Be aware of how you configure the sub-links and how they're supposed to match with the application routes:
+### Discounts application
 
-* Avoid using `/` as the sub-link. While this is technically allowed, you're adding a duplicated menu link because it's the same as the `mainMenuLink`.
-* Avoid sublinks to routes that redirect to other routes because they'll never match. For example, if you have a main page with sub-routes such as `/avengers/config/general` and `/avengers/config/new`, and the routes are configured to redirect from `/avengers/config` to `/avengers/config/general`, defining the sub-link `/avengers/config` will never match any route because of the redirect.
+* `discounts.product_discount_details.general`
+* `discounts.product_discount_details.custom_details`
+* `discounts.cart_discount_details.general`
+* `discounts.cart_discount_details.custom_details`
+* `discounts.discount_code_details.general`
+* `discounts.discount_code_details.custom_details`
 
-</Info>
+### Operations application
 
-## `submenuLinks.*.defaultLabel`
-
-The label to be rendered if there is no matching localized label for the user locale.
-
-```json
-{
-  "submenuLinks": [
-    {
-      "defaultLabel": "Create Avenger"
-    }
-  ]
-}
-```
-
-## `submenuLinks.*.labelAllLocales`
-
-A list of localized fields `{ locale, value }` with translated labels for each application locale, available in the user profile.
-
-```json
-{
-  "submenuLinks": [
-    {
-      "labelAllLocales": [
-        { "locale": "en", "value": "Create Avenger" },
-        { "locale": "de", "value": "Avenger anlegen" },
-      ]
-    }
-  ]
-}
-```
-
-Labels can also be references using the i18n translation files. See [Intl message references](#intl-message-references) for more information.
-
-## `submenuLinks.*.permissions`
-
-A list of the [user permissions](/concepts/oauth-scopes-and-user-permissions#user-permissions) specific to your Custom View. Users must have at least one of the specified permissions to see the link in the Merchant Center main navigation. Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
-
-```json
-{
-  "submenuLinks": [
-    {
-      "permissions": ["ManageAvengers"]
-    }
-  ]
-}
-```
-
-<Info>
-
-The values of the user permissions for the Custom View are always derived from the `entryPointUriPath`. See [Applying user permissions](/development/permissions#applying-user-permissions) for more information.
-
-</Info>
+* `operations.import_log_details`
 
 # Using variable placeholders
 
@@ -706,17 +603,14 @@ This feature is available from version `20.8.0` onwards.
 
 References for Intl messages are specified with a special expansion-like syntax `${}` together with the prefix key `intl:`. For example, to load a translation message from the `en.json` file named `Menu.Avengers`, you would use `${intl:en:Menu.Avengers}`.
 
-This is useful when specifying [menu link labels](#mainmenulink).
+This is useful when specifying [Custom View labels](#labelAllLocales).
 
 ```json
 {
-  "mainMenuLink": {
-    "defaultLabel": "${intl:en:Menu.Avengers}",
-    "labelAllLocales": [
-      { "locale": "en", "value": "${intl:en:Menu.Avengers}" },
-      { "locale": "de", "value": "${intl:de:Menu.Avengers}" }
-    ]
-  }
+  "labelAllLocales": [
+    { "locale": "en", "value": "${intl:en:Menu.Avengers}" },
+    { "locale": "de", "value": "${intl:de:Menu.Avengers}" }
+  ]
 }
 ```
 
