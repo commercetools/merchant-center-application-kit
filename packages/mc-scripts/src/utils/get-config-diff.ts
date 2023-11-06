@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import {
   sanitizeSvg,
   type CustomApplicationData,
+  type CustomViewData,
 } from '@commercetools-frontend/application-config';
 
 // Since not all terminal supports colors, to make things more consistent for testing purposes,
@@ -20,8 +21,8 @@ const green = (str: string) => {
 const indent = (indentLevel: number) => '  '.repeat(indentLevel);
 
 type TGetStringDiffParams = {
-  previousValue?: string;
-  nextValue?: string;
+  previousValue?: string | null;
+  nextValue?: string | null;
   label: string;
   indentLevel?: number;
 };
@@ -202,6 +203,40 @@ const getLabelAllLocalesDiff = ({
   return null;
 };
 
+type TTypeSettings = CustomViewData['typeSettings'];
+type TTypeSettingsDiffParams = {
+  previousValue: TTypeSettings;
+  nextValue: TTypeSettings;
+};
+
+const getTypeSettingsDiff = ({
+  previousValue,
+  nextValue,
+}: TTypeSettingsDiffParams) => {
+  const nonNullablePreviousValue = previousValue || {};
+  const nonNullableNextValue = nextValue || {};
+  const indentLevel = 1;
+  const typeSettingsDiff: string[] = [
+    `${indent(indentLevel - 1)}type settings changed`,
+  ];
+
+  Object.keys(nonNullablePreviousValue).forEach((key) => {
+    const typeSettingDiff = getStringDiff({
+      previousValue: nonNullablePreviousValue[key as keyof TTypeSettings],
+      nextValue: nonNullableNextValue[key as keyof TTypeSettings],
+      label: key,
+      indentLevel,
+    });
+    if (typeSettingDiff) {
+      typeSettingsDiff.push(typeSettingDiff);
+    }
+  });
+
+  if (typeSettingsDiff.length > 1) return typeSettingsDiff.join('\n');
+
+  return null;
+};
+
 type TMainMenuLink = CustomApplicationData['mainMenuLink'];
 type TGetMainMenuLinkDiffParams = {
   previousValue: TMainMenuLink;
@@ -357,7 +392,7 @@ const getSubmenuLinksDiff = ({
 
 // Compute diff changes of the Custom Application config.
 // NOTE: Only known keys are evaluated.
-const getConfigDiff = (
+export const getCustomApplicationConfigDiff = (
   oldConfig: CustomApplicationData,
   newConfig: CustomApplicationData
 ) => {
@@ -436,4 +471,91 @@ const getConfigDiff = (
   return diff.join('\n');
 };
 
-export default getConfigDiff;
+// Compute diff changes of the Custom Application config.
+// NOTE: Only known keys are evaluated.
+export const getCustomViewConfigDiff = (
+  oldConfig: CustomViewData,
+  newConfig: CustomViewData
+) => {
+  const diff: string[] = [];
+
+  // Default Label
+  const nameDiff = getStringDiff({
+    previousValue: oldConfig.defaultLabel,
+    nextValue: newConfig.defaultLabel,
+    label: 'defaultLabel',
+  });
+  if (nameDiff) {
+    diff.push(nameDiff);
+  }
+
+  // Description
+  const descriptionDiff = getStringDiff({
+    previousValue: oldConfig.description,
+    nextValue: newConfig.description,
+    label: 'description',
+  });
+  if (descriptionDiff) {
+    diff.push(descriptionDiff);
+  }
+
+  // URL
+  const urlDiff = getStringDiff({
+    previousValue: oldConfig.url,
+    nextValue: newConfig.url,
+    label: 'url',
+  });
+  if (urlDiff) {
+    diff.push(urlDiff);
+  }
+
+  // Type
+  const typeDiff = getStringDiff({
+    previousValue: oldConfig.type,
+    nextValue: newConfig.type,
+    label: 'type',
+  });
+  if (typeDiff) {
+    diff.push(typeDiff);
+  }
+
+  // Permissions
+  const permissionsDiff = getPermissionsDiff({
+    previousValue: oldConfig.permissions,
+    nextValue: newConfig.permissions,
+  });
+  if (permissionsDiff) {
+    diff.push(permissionsDiff);
+  }
+
+  // Label All Locales
+  const labelsDiff = getLabelAllLocalesDiff({
+    previousValue: oldConfig.labelAllLocales,
+    nextValue: newConfig.labelAllLocales,
+    indentLevel: 3,
+  });
+  if (labelsDiff) {
+    diff.push(labelsDiff);
+  }
+
+  // Type settings
+  const typeSettingsDiff = getTypeSettingsDiff({
+    previousValue: oldConfig.typeSettings,
+    nextValue: newConfig.typeSettings,
+  });
+  if (typeSettingsDiff) {
+    diff.push(typeSettingsDiff);
+  }
+
+  // Locators
+  const locatorsDiff = getArrayDiff({
+    previousValue: oldConfig.locators,
+    nextValue: newConfig.locators,
+    label: 'locators',
+  });
+  if (locatorsDiff) {
+    diff.push(locatorsDiff);
+  }
+
+  return diff.join('\n');
+};

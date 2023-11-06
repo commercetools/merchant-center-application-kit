@@ -1,4 +1,4 @@
-import getConfigDiff from './get-config-diff';
+import { getCustomApplicationConfigDiff } from './get-config-diff';
 
 const createTestConfig = (customConfig = {}) => ({
   id: 'id',
@@ -19,7 +19,9 @@ const createTestConfig = (customConfig = {}) => ({
 
 describe('when there are no changes', () => {
   it('should display no diff', () => {
-    expect(getConfigDiff(createTestConfig(), createTestConfig())).toBe('');
+    expect(
+      getCustomApplicationConfigDiff(createTestConfig(), createTestConfig())
+    ).toBe('');
   });
 });
 describe('when there are changes', () => {
@@ -30,7 +32,8 @@ describe('when there are changes', () => {
       url: 'https://updated-test.com',
       icon: '<svg><path fill="#ffffff"></path></svg>',
     });
-    expect(getConfigDiff(createTestConfig(), newConfig)).toMatchInlineSnapshot(`
+    expect(getCustomApplicationConfigDiff(createTestConfig(), newConfig))
+      .toMatchInlineSnapshot(`
       "name changed: <color-red>test name</color-red> => <color-green>updated test name</color-green>
       description changed: <color-red>test description</color-red> => <color-green>updated description</color-green>
       url changed: <color-red>https://test.com</color-red> => <color-green>https://updated-test.com</color-green>
@@ -41,7 +44,9 @@ describe('when there are changes', () => {
     const newConfig = createTestConfig({
       description: undefined,
     });
-    expect(getConfigDiff(createTestConfig(), newConfig)).toMatchInlineSnapshot(
+    expect(
+      getCustomApplicationConfigDiff(createTestConfig(), newConfig)
+    ).toMatchInlineSnapshot(
       `"description removed: <color-red>test description</color-red>"`
     );
   });
@@ -90,7 +95,8 @@ describe('when there are changes', () => {
       ],
     });
 
-    expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+    expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+      .toMatchInlineSnapshot(`
       "permissions changed
         "viewMyTestApp" changed
           oauth scope added: <color-green>view_channel</color-green>
@@ -124,7 +130,8 @@ describe('when there are changes', () => {
         },
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "mainMenuLink changed
           permissions changed
             applied permission added: <color-green>ViewMyTestApp</color-green>"
@@ -147,7 +154,8 @@ describe('when there are changes', () => {
         },
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "mainMenuLink changed
           permissions changed
             applied permission removed: <color-red>ViewMyTestApp</color-red>"
@@ -170,7 +178,8 @@ describe('when there are changes', () => {
         },
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "mainMenuLink changed
           labelAllLocales changed
             locale added: <color-green>de</color-green>"
@@ -193,7 +202,8 @@ describe('when there are changes', () => {
         },
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "mainMenuLink changed
           labelAllLocales changed
             locale removed: <color-red>de</color-red>"
@@ -234,7 +244,8 @@ describe('when there are changes', () => {
         },
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "mainMenuLink changed
           defaultLabel changed: <color-red>Avengers</color-red> => <color-green>Justice League</color-green>
           permissions changed
@@ -270,7 +281,8 @@ describe('when there are changes', () => {
         ],
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "submenuLink changed
           menu link added: <color-green>my-test-app/new</color-green>"
       `);
@@ -296,7 +308,8 @@ describe('when there are changes', () => {
         submenuLinks: [],
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "submenuLink changed
           menu link removed: <color-red>my-test-app/new</color-red>"
       `);
@@ -342,7 +355,8 @@ describe('when there are changes', () => {
         ],
       });
 
-      expect(getConfigDiff(oldConfig, newConfig)).toMatchInlineSnapshot(`
+      expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+        .toMatchInlineSnapshot(`
         "submenuLink changed
           menu link "my-test-app/new" changed
             defaultLabel changed: <color-red>New Avenger</color-red> => <color-green>Add Avenger</color-green>
