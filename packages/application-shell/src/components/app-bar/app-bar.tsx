@@ -26,6 +26,7 @@ const AppBar = (props: Props) => {
       css={css`
         background-color: ${uikitDesignTokens.colorSurface};
         box-shadow: ${appKitDesignTokens.shadowForAppbar};
+        padding: 0 40px;
         min-height: ${DIMENSIONS.header};
         position: relative;
         width: 100%;
@@ -36,16 +37,6 @@ const AppBar = (props: Props) => {
       `}
       data-test="top-navigation"
     >
-      <Spacings.Inline>
-        <div
-          id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
-          css={css`
-            display: flex;
-            flex: 1;
-          `}
-        />
-      </Spacings.Inline>
-
       <div
         css={css`
           float: right;
@@ -58,8 +49,6 @@ const AppBar = (props: Props) => {
       >
         <Spacings.Inline scale="m" alignItems="center">
           <Spacings.Inline scale="m" alignItems="center">
-            {/* This node is used by a react portal */}
-            <div id={CONTAINERS.LOCALE_SWITCHER} />
             {(() => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
@@ -80,25 +69,32 @@ const AppBar = (props: Props) => {
               if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
+            {/* This node is used by a react portal */}
+            <div id={CONTAINERS.LOCALE_SWITCHER} />
           </Spacings.Inline>
-          <div
-            css={css`
-              border-left: 1px ${uikitDesignTokens.colorNeutral90} solid;
-              height: ${DIMENSIONS.headerItemDivider};
-            `}
-          />
-          {props.user ? (
-            <UserSettingsMenu
-              language={props.user.language}
-              firstName={props.user.firstName}
-              lastName={props.user.lastName}
-              gravatarHash={props.user.gravatarHash}
-              email={props.user.email}
+          <Spacings.Inline>
+            <div
+              id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
+              css={css`
+                display: flex;
+                flex: 1;
+              `}
             />
-          ) : (
-            <LoadingPlaceholder shape="dot" size="l" />
-          )}
+          </Spacings.Inline>
         </Spacings.Inline>
+      </div>
+      <div>
+        {props.user ? (
+          <UserSettingsMenu
+            language={props.user.language}
+            firstName={props.user.firstName}
+            lastName={props.user.lastName}
+            gravatarHash={props.user.gravatarHash}
+            email={props.user.email}
+          />
+        ) : (
+          <LoadingPlaceholder shape="dot" size="l" />
+        )}
       </div>
     </div>
   );
