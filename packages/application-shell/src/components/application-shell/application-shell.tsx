@@ -58,9 +58,9 @@ type TStrictModeEnablementProps = {
 
 const StrictModeEnablement = (props: TStrictModeEnablementProps) => {
   if (props.enableReactStrictMode) {
-    return <StrictMode>{children}</StrictMode>;
+    return <StrictMode>{props.children}</StrictMode>;
   } else {
-    return <>{children}</>;
+    return <>{props.children}</>;
   }
 };
 
