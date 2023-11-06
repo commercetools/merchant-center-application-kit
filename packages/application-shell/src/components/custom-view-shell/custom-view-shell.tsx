@@ -4,6 +4,7 @@ import {
   useRef,
   useState,
   Suspense,
+  StrictMode,
   type ReactNode,
 } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
@@ -45,10 +46,24 @@ type THostEventData = {
 type TCustomViewShellProps = {
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   disableDevHost?: boolean;
+  enableReactStrictMode?: boolean;
   children: ReactNode;
 };
 
 const browserLocale = getBrowserLocale(window);
+
+type TStrictModeEnablementProps = {
+  enableReactStrictMode?: boolean;
+  children?: ReactNode;
+};
+
+function StrictModeEnablement(props: TStrictModeEnablementProps) {
+  if (props.enableReactStrictMode) {
+    return <StrictMode>{props.children}</StrictMode>;
+  } else {
+    return <>{props.children}</>;
+  }
+}
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
@@ -160,19 +175,23 @@ function CustomViewShell(props: TCustomViewShellProps) {
 const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
   if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
     return (
-      <Suspense fallback={<ApplicationLoader />}>
-        <CustomViewDevHost applicationMessages={props.applicationMessages}>
-          <CustomViewShell applicationMessages={props.applicationMessages}>
-            {props.children}
-          </CustomViewShell>
-        </CustomViewDevHost>
-      </Suspense>
+      <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
+        <Suspense fallback={<ApplicationLoader />}>
+          <CustomViewDevHost applicationMessages={props.applicationMessages}>
+            <CustomViewShell applicationMessages={props.applicationMessages}>
+              {props.children}
+            </CustomViewShell>
+          </CustomViewDevHost>
+        </Suspense>
+      </StrictModeEnablement>
     );
   }
   return (
-    <CustomViewShell applicationMessages={props.applicationMessages}>
-      {props.children}
-    </CustomViewShell>
+    <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
+      <CustomViewShell applicationMessages={props.applicationMessages}>
+        {props.children}
+      </CustomViewShell>
+    </StrictModeEnablement>
   );
 };
 
