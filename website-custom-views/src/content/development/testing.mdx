@@ -209,7 +209,7 @@ User permissions are bound to a Project and can vary depending on the permission
 
 By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) do not assign any pre-defined permissions. You need to explicitly provide them in your test setup. The following fields can be used to assign the different granular permission values:
 
-* `project.allAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
+* `projectLllAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
 
   * `name`: The name of the user permissions prefixed with `can`. For example `canViewChannels`.
   * `value`: If `true`, the resource permission is applied to the user.
@@ -217,48 +217,18 @@ By default, the [`test-utils`](/api-reference/commercetools-frontend-application
 In our example application, we can apply this as following:
 
 ```js title="channels.spec.js" highlightLines="10-17"
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import { renderCustomView } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
 import ApplicationRoutes from '../../routes';
 
-const renderApp = (options = {}) => {
-  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderAppWithRedux(<ApplicationRoutes />, {
-    route,
-    entryPointUriPath,
-    project: {
-      allAppliedPermissions: [
-        {
-          name: 'canViewChannels',
-          value: true,
-        },
-      ],
-    },
-    ...options,
-  });
-};
-```
-
-To help define the list of applied permissions, you can use the helper function [`mapResourceAccessToAppliedPermissions`](/api-reference/commercetools-frontend-application-shell#mapresourceaccesstoappliedpermissions).
-
-
-```js title="channels.spec.js" highlightLines="3,5,13-15"
-import {
-  renderAppWithRedux,
-  mapResourceAccessToAppliedPermissions,
-} from '@commercetools-frontend/application-shell/test-utils';
-import { PERMISSIONS } from '../../constants';
-
-const renderApp = (options = {}) => {
-  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderAppWithRedux(<ApplicationRoutes />, {
-    route,
-    entryPointUriPath,
-    project: {
-      allAppliedPermissions: mapResourceAccessToAppliedPermissions([
-        PERMISSIONS.View
-      ])
-    },
+const renderView = (options = {}) => {
+  renderCustomViews(<ApplicationRoutes />, {
+    projectAllAppliedPermissions: [
+      {
+        name: 'canViewChannels',
+        value: true,
+      },
+    ],
     ...options,
   });
 };
@@ -329,11 +299,6 @@ We also recommend to define some constants:
 
 ```js title="cypress/support/constants.js"
 export const projectKey = Cypress.env('PROJECT_KEY');
-
-// TODO: define the actual `entryPointUriPath` of your Custom View
-export const entryPointUriPath = '';
-
-export const applicationBaseRoute = `/${projectKey}/${entryPointUriPath}`;
 ```
 
 Finally, in the `cypress.json` you should set the `baseUrl` to `http://localhost:3001`.
