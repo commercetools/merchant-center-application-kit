@@ -2,12 +2,6 @@
 title: Testing
 ---
 
-<Warning>
-
-TO BE UPDATED
-
-</Warning>
-
 In the previous sections we learned several aspects of developing your Custom View, like fetching data, building your User Interface, etc.<br />
 At this point the basic functionalities of your application are in place. It's time to write some tests to facilitate further development.
 
@@ -118,39 +112,37 @@ it('should render channels', async () => {
 });
 ```
 
-## Testing the application
+## Testing the Custom View
 
 To test the actual Custom View, you should use the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) package, as it provides the necessary setup to render a Custom View within a test environment.
 
-Most of the time you want to render your application from one of the top-level components, for example your routes. This is a great way to also implicitly test your routes and to navigate between them.
+The main function you would want to use from that package is named `renderCustomView`.
 
-We recommend writing a function, for example `renderApp`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
+We recommend writing a function, for example `renderView`, to encapsulate the basic test setup, so that your actual test remains as clean as possible.
 
 ```js title="channels.spec.js"
 import {
   fireEvent,
   screen,
-  renderAppWithRedux,
+  renderCustomView,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
 import ApplicationRoutes from '../../routes';
 
-const renderApp = (options = {}) => {
-  const route = options.route || `/my-project/${entryPointUriPath}/channels`;
-  renderAppWithRedux(<ApplicationRoutes />, {
-    route,
-    entryPointUriPath,
-    // ...
-    ...options,
+const renderView = (options = {}) => {
+  renderCustomView({
+    locale: options.locale || 'en',
+    projectKey: options.projectKey || 'my-project',
+    children: <ApplicationRoutes />,
   });
 };
 
 it('should render channels', async () => {
   mockServer.use(/* See mock setup */);
 
-  renderApp();
+  renderView();
 
-  await screen.findByText('channel-key-0');
+  await screen.findByText('Channel no. 0');
 });
 ```
 
@@ -163,11 +155,7 @@ With this simple test we implicitly have tested the following things:
 
 From here you can enhance the test to do other things, especially testing the user interactions. For example:
 
-* We can simulate that the user clicks on a table row, opening the channels detail page.
-* We can simulate that the user clicks on an "Add channel" button, fills out the form, and saves a new channel.
 * We can simulate that the user paginates through the table, or use search and filters.
-
-You get the idea.
 
 Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
 
@@ -198,18 +186,18 @@ it('should render channels and paginate to second page', async () => {
     })
   );
 
-  renderApp();
+  renderView();
 
   // First page
-  await screen.findByText('channel-key-0');
-  expect(screen.queryByText('channel-key-22')).not.toBeInTheDocument();
+  await screen.findByText('Channel no. 0');
+  expect(screen.queryByText('Channel no. 22')).not.toBeInTheDocument();
 
   // Go to second page
   fireEvent.click(screen.getByLabelText('Next page'));
 
   // Second page
-  await screen.findByText('channel-key-22');
-  expect(screen.queryByText('channel-key-0')).not.toBeInTheDocument();
+  await screen.findByText('Channel no. 22');
+  expect(screen.queryByText('Channel no. 0')).not.toBeInTheDocument();
 });
 ```
 

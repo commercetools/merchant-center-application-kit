@@ -1,0 +1,93 @@
+---
+title: Deploying to Google Cloud with Static Web Apps
+---
+
+This deployment example refers to [Google Cloud Static Web Apps](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#0)
+
+# Prerequisites
+
+Before you get started, you need to have:
+
+- A [Google account](https://accounts.google.com/SignUp).
+- A [valid domain](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#1) that you own or manage.
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A Custom View [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+
+# Configuration
+
+In your Custom View config, provide the [Custom View ID](/api-reference/application-config#envproductionapplicationid) you got when you configured the Custom View in the Merchant Center.
+
+
+```json title="custom-view-config.json"
+{
+  "env": {
+    "production": {
+      "customViewId": "ckvtahxl90097sys6har1e6n3",
+      "url": "https://<custom_domain>"
+    }
+  }
+}
+```
+
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom View config.
+
+```json title="custom-view-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "customViewId": "${env:CUSTOM_VIEW_ID}",
+      "url": "https://<custom_domain>"
+    }
+  }
+}
+```
+
+# Set up Google Cloud
+
+To host the production bundles of your Custom View you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google Cloud and [configure](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#3) the bucket.
+
+## Configuring the bucket
+
+Depending on the access options you choose, if you want to configure permissions, select the created bucket, go to the permissions tab and click the `Add` link. For the `New principals` field, select `AllUsers` and for the `Role`, search for `Storage Object Viewer`. Click `Save` to make the bucket publicly accessible.
+
+# Domain verification
+
+Creating buckets with domain names requires to verify the ownership of the domain.
+
+<Info>
+
+Google does not provide a domain by default when using Google Cloud Storage. If you don't have an existing domain, then there are many services through which you can register a new domain, such as [Google Domains](https://domains.google.com/).
+
+</Info>
+
+We recommend following the instructions for [Domain-named bucket verification](https://cloud.google.com/storage/docs/domain-name-verification) to configure things properly.
+
+Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using Google Domain Name Service, in your domain [configuration](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#2), add a new record that points your domain to the IP address of the load balancer you created.
+
+# Connect Google Cloud with GitHub Actions
+
+One of the ways to deploy to Google Cloud Storage (GCS) is to use [Cloud Storage Uploader](https://github.com/google-github-actions/upload-cloud-storage) GitHub Action. Follow the instructions to integrate it with your repository CI.
+
+## Configuring rewrite rules
+
+A Custom View is a Single-Page Application that uses client-side routing. Therefore, you need to [edit website configuration](https://cloud.google.com/storage/docs/hosting-static-website#specialty-pages) for your bucket to rewrite all requests to serve the `index.html`.
+
+
+# Production bundles
+
+The main command to create the production bundles is `mc-scripts build`. The output folder is `public`.<br />
+See [Going to production](/development/going-to-production) for more information.
+
+# Test your deployment
+
+In the Merchant Center, you can now follow the [steps to install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
+
+<Warning>
+
+The Custom View won't render if you try to access it directly via the deployment URL, as it needs to be served within the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
+
+Therefore, Preview deployments are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Warning>

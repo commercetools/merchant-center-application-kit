@@ -1,0 +1,78 @@
+---
+title: Deploying to Surge
+---
+
+This deployment example refers to [Surge](https://surge.sh/).
+
+# Prerequisites
+
+Before you get started, you need to have:
+
+- A [Surge](https://surge.sh) account, using the `surge` CLI.
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A Custom View [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+
+# Configuration
+
+In your Custom View config, provide the [Custom View ID](/api-reference/application-config#envproductionapplicationid) you got when you configured the Custom View in the Merchant Center.
+
+Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Surge project. You can keep the standard Surge URL `https://<project>.surge.sh` or provide your custom domain.
+
+```json title="custom-view-config.json"
+{
+  "env": {
+    "production": {
+      "customViewId": "ckvtahxl90097sys6har1e6n3",
+      "url": "https://<project>.surge.sh"
+    }
+  }
+}
+```
+
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom View config.
+
+```json title="custom-view-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "customViewId": "${env:CUSTOM_VIEW_ID}",
+      "url": "https://<project>.surge.sh"
+    }
+  }
+}
+```
+
+# Production bundles
+
+The main command to create the production bundles is `mc-scripts build`. The output folder is `public`, which is what is going to be uploaded to Surge.<br />
+See [Going to production](/development/going-to-production) for more information.
+
+<Info>
+
+To properly [support client-side routing](https://surge.sh/help/adding-a-200-page-for-client-side-routing), you need to rename the `index.html` file to `200.html` before uploading the static files.
+
+</Info>
+
+# Deploying to Surge
+
+Use the [Surge CLI](https://www.npmjs.com/package/surge) to upload the static files.
+
+```console
+surge public https://<project>.surge.sh
+```
+
+That's it!
+
+# Test your deployment
+
+In the Merchant Center you can now [follow the steps to install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
+
+<Warning>
+
+The Custom View won't render if you try to access it directly via the deployment URL, as it needs to be served within the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
+
+Therefore, Preview deployments are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Warning>
