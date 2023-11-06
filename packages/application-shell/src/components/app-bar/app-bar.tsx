@@ -26,7 +26,7 @@ const AppBar = (props: Props) => {
       css={css`
         background-color: ${uikitDesignTokens.colorSurface};
         box-shadow: ${appKitDesignTokens.shadowForAppbar};
-        padding: ${appKitDesignTokens.paddingForAppbar};
+        padding: 0 40px;
         min-height: ${DIMENSIONS.header};
         position: relative;
         width: 100%;
