@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react';
 import type { RenderResult } from '@testing-library/react';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import type { CustomViewData } from '@commercetools-frontend/constants';
+import {
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  type CustomViewData,
+} from '@commercetools-frontend/constants';
 import { TCustomViewType } from '../types/generated/settings';
 import { renderApp } from './test-utils';
 
@@ -23,6 +26,7 @@ const testCustomViewData: CustomViewData = {
 type TRenderCustomViewParams = {
   locale: string;
   projectKey?: string;
+  projectAllAppliedPermissions?: { name: string; value: boolean }[];
   customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
   children: ReactNode;
@@ -45,6 +49,10 @@ export const renderCustomView = (
       locale: props.locale,
       project: {
         key: props.projectKey,
+        allAppliedPermissions: props.projectAllAppliedPermissions || [],
+      },
+      environment: {
+        entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
       },
     }
   );
