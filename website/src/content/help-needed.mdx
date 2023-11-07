@@ -134,7 +134,7 @@ Please note that this is considered a workaround and is recommended for developm
 
 </Info>
 
-In specific scenarios, there may be a requirement for local development and login using a user account with restricted permissions.
+By default, developing a Custom Application requires to be part of the `Administrators` team. Sometimes though your organization might not be willing to grant administrator access to developers for security reasons and instead grant access using a normal team.
 
 To enable this option, fulfill the following configurational prerequisites in the Merchant Center (which can be done only with administrator rights): 
 
@@ -148,10 +148,6 @@ For local development and login the Custom Application does not have to be deplo
 
 2. [Install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) 
 3. [Establish a designated team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilize an existing one) and obtain the `teamId` from the Merchant Center URL
-
-```
-/account/organizations/<organizationId>/teams/<teamId>/members
-```
 4. [Invite users to the team](https://docs.commercetools.com/merchant-center/teams#invite-users-to-a-team)
 5. [Assign relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
 
