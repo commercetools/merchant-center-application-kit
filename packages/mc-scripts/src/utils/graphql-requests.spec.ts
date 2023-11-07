@@ -23,9 +23,9 @@ beforeAll(() =>
 afterAll(() => mockServer.close());
 
 const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
-const applicationIdentifier = '__local:test-custom-app';
 
 describe('fetch user organizations', () => {
+  const applicationIdentifier = '__local:test-custom-app';
   beforeEach(() => {
     mockServer.use(
       graphql.query('FetchMyOrganizationsFromCli', (_req, res, ctx) => {
@@ -56,6 +56,7 @@ describe('fetch user organizations', () => {
 });
 
 describe('Custom Applications', () => {
+  const applicationIdentifier = '__local:test-custom-app';
   describe('fetch custom application data', () => {
     beforeEach(() => {
       mockServer.use(
@@ -223,6 +224,7 @@ describe('Custom Applications', () => {
 });
 describe('Custom Views', () => {
   const customViewId = 'custom-view-id';
+  const applicationIdentifier = '__local:@@custom-view-host@@';
   describe('fetch custom view data', () => {
     beforeEach(() => {
       mockServer.use(
@@ -247,11 +249,11 @@ describe('Custom Views', () => {
                   permissions: [
                     {
                       oAuthScopes: ['view_products', 'view_customers'],
-                      name: 'viewTestCustomView',
+                      name: 'view',
                     },
                     {
                       oAuthScopes: [],
-                      name: 'manageTestCustomView',
+                      name: 'manage',
                     },
                   ],
                   labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
@@ -266,6 +268,7 @@ describe('Custom Views', () => {
       const organizationExtensionForCustomView = await fetchCustomView({
         customViewId,
         mcApiUrl,
+        applicationIdentifier,
       });
       expect(organizationExtensionForCustomView?.customView?.id).toEqual(
         customViewId
@@ -298,11 +301,11 @@ describe('Custom Views', () => {
                 permissions: [
                   {
                     oAuthScopes: ['view_products', 'view_customers'],
-                    name: 'viewNewTestCustomView',
+                    name: 'view',
                   },
                   {
                     oAuthScopes: [],
-                    name: 'manageNewTestCustomView',
+                    name: 'manage',
                   },
                 ],
               },
@@ -330,15 +333,16 @@ describe('Custom Views', () => {
           permissions: [
             {
               oAuthScopes: ['view_products', 'view_customers'],
-              name: 'viewNewTestCustomView',
+              name: 'view',
             },
             {
               oAuthScopes: [],
-              name: 'manageNewTestCustomView',
+              name: 'manage',
             },
           ],
           labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
         },
+        applicationIdentifier,
       });
       expect(createdCustomViewData?.id).toEqual(customViewId);
     });
@@ -378,15 +382,16 @@ describe('Custom Views', () => {
           permissions: [
             {
               oAuthScopes: ['view_products', 'view_customers'],
-              name: 'viewNewTestCustomView',
+              name: 'view',
             },
             {
               oAuthScopes: [],
-              name: 'manageNewTestCustomView',
+              name: 'manage',
             },
           ],
           labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
         },
+        applicationIdentifier,
       });
       expect(updatedCustomAppsData?.id).toEqual(customViewId);
     });

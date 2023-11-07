@@ -256,6 +256,7 @@ type TCreateOrUpdateCustomView = {
   localCustomEntityData: CustomViewData;
   customViewId: string;
   options: TCliCommandConfigSyncOptions;
+  applicationIdentifier: string;
 };
 
 async function createOrUpdateCustomView({
@@ -263,16 +264,19 @@ async function createOrUpdateCustomView({
   localCustomEntityData,
   customViewId,
   options,
+  applicationIdentifier,
 }: TCreateOrUpdateCustomView) {
   const fetchedCustomView = await fetchCustomView({
     mcApiUrl,
     customViewId,
+    applicationIdentifier,
   });
 
   if (!fetchedCustomView) {
     const userOrganizations = await fetchUserOrganizations({
       mcApiUrl,
       customViewId,
+      applicationIdentifier,
     });
 
     let organizationId: string, organizationName: string;
@@ -348,6 +352,7 @@ async function createOrUpdateCustomView({
       mcApiUrl,
       organizationId,
       data,
+      applicationIdentifier,
     });
 
     // This check is technically not necessary, as the `graphql-request` client
@@ -442,6 +447,7 @@ async function createOrUpdateCustomView({
     organizationId: fetchedCustomView.organizationId,
     data: omit(localCustomEntityData, ['id']),
     customViewId: fetchedCustomView?.customView?.id || '',
+    applicationIdentifier,
   });
 
   console.log(chalk.green(`Custom View updated.`));
@@ -473,6 +479,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
     createOrUpdateCustomView({
       mcApiUrl,
       localCustomEntityData,
+      applicationIdentifier,
       customViewId: customViewId || localCustomEntityData.id,
       options,
     });
