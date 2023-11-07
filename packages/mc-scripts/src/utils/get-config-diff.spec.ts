@@ -1,3 +1,4 @@
+import { TCustomViewType, TCustomViewSize } from '../generated/settings';
 import {
   getCustomApplicationConfigDiff,
   getCustomViewConfigDiff,
@@ -29,9 +30,9 @@ const createTestCustomViewConfig = (customConfig = {}) => ({
     'products.product_variant_details.images',
     'customers.customer_details.custom_fields',
   ],
-  type: 'CustomPanel',
+  type: TCustomViewType.CustomPanel,
   typeSettings: {
-    size: 'LARGE',
+    size: TCustomViewSize.Large,
   },
   permissions: [],
   labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
@@ -501,15 +502,11 @@ describe('Custom View Config Diff', () => {
     });
 
     it('should display diff for "typeSettings"', () => {
-      const oldConfig = createTestCustomViewConfig({
-        typeSettings: {
-          size: 'LARGE',
-        },
-      });
+      const oldConfig = createTestCustomViewConfig();
 
       const newConfig = createTestCustomViewConfig({
         typeSettings: {
-          size: 'SMALL',
+          size: TCustomViewSize.Small,
         },
       });
 
