@@ -24,14 +24,24 @@ import {
 
 const credentialsStorage = new CredentialsStorage();
 
-const getMcUrlLink = (
-  mcApiUrl: string,
-  organizationId: string,
-  customEntityId: string
-) => {
+type TGetMcUrlLink = {
+  mcApiUrl: string;
+  organizationId: string;
+  customEntityId: string;
+  isCustomView?: boolean;
+};
+
+const getMcUrlLink = ({
+  mcApiUrl,
+  organizationId,
+  customEntityId,
+  isCustomView,
+}: TGetMcUrlLink) => {
   const mcUrl = mcApiUrl.replace('mc-api', 'mc');
-  const customAppLink = `${mcUrl}/account/organizations/${organizationId}/custom-applications/owned/${customEntityId}`;
-  return customAppLink;
+  const customEntityLink = `${mcUrl}/account/organizations/${organizationId}/custom-${
+    isCustomView ? 'views' : 'applications'
+  }/owned/${customEntityId}`;
+  return customEntityLink;
 };
 
 const checkIfCustomApplicationConfigData = (
@@ -152,11 +162,11 @@ async function createOrUpdateCustomApplication({
       throw new Error('Failed to create the Custom Application.');
     }
 
-    const customAppLink = getMcUrlLink(
+    const customAppLink = getMcUrlLink({
       mcApiUrl,
       organizationId,
-      createdCustomApplication.id
-    );
+      customEntityId: createdCustomApplication.id,
+    });
     console.log(
       chalk.green(
         `Custom Application created.\nPlease update the "env.production.applicationId" field in your local Custom Application config file with the following value: "${chalk.green(
@@ -172,11 +182,11 @@ async function createOrUpdateCustomApplication({
     return;
   }
 
-  const customAppLink = getMcUrlLink(
+  const customAppLink = getMcUrlLink({
     mcApiUrl,
-    fetchedCustomApplication.organizationId,
-    fetchedCustomApplication.application.id
-  );
+    organizationId: fetchedCustomApplication.organizationId,
+    customEntityId: fetchedCustomApplication.application.id,
+  });
 
   const configDiff = getCustomApplicationConfigDiff(
     fetchedCustomApplication.application as CustomApplicationData,
@@ -353,11 +363,12 @@ async function createOrUpdateCustomView({
       throw new Error('Failed to create the Custom View.');
     }
 
-    const customViewLink = getMcUrlLink(
+    const customViewLink = getMcUrlLink({
       mcApiUrl,
       organizationId,
-      createdCustomView.id
-    );
+      customEntityId: createdCustomView.id,
+      isCustomView: true,
+    });
     console.log(
       chalk.green(
         `Custom View created.\nPlease update the "env.production.customViewId" field in your local Custom View config file with the following value: "${chalk.green(
@@ -373,11 +384,12 @@ async function createOrUpdateCustomView({
     return;
   }
 
-  const customViewLink = getMcUrlLink(
+  const customViewLink = getMcUrlLink({
     mcApiUrl,
-    fetchedCustomView.organizationId,
-    fetchedCustomView.customView.id
-  );
+    organizationId: fetchedCustomView.organizationId,
+    customEntityId: fetchedCustomView?.customView?.id || '',
+    isCustomView: true,
+  });
 
   const configDiff = getCustomViewConfigDiff(
     fetchedCustomView.customView as unknown as CustomViewData,
@@ -434,7 +446,7 @@ async function createOrUpdateCustomView({
     mcApiUrl,
     organizationId: fetchedCustomView.organizationId,
     data: omit(localCustomEntityData, ['id']),
-    customViewId: fetchedCustomView.customView.id,
+    customViewId: fetchedCustomView?.customView?.id || '',
   });
 
   console.log(chalk.green(`Custom View updated.`));
