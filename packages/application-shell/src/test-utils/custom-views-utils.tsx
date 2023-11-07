@@ -34,8 +34,8 @@ type TRenderCustomViewParams = {
   customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
-  environment: Partial<TProviderProps<{}>['environment']>;
-  user: Partial<TProviderProps<{}>['user']>;
+  environment?: Partial<TProviderProps<{}>['environment']>;
+  user?: Partial<TProviderProps<{}>['user']>;
   children: ReactNode;
 };
 
