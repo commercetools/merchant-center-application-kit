@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import type { RenderResult } from '@testing-library/react';
-import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  CustomViewContextProvider,
+  type TProviderProps,
+} from '@commercetools-frontend/application-shell-connectors';
 import {
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
   type CustomViewData,
@@ -31,6 +34,8 @@ type TRenderCustomViewParams = {
   customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
+  environment: Partial<TProviderProps<{}>['environment']>;
+  user: Partial<TProviderProps<{}>['user']>;
   children: ReactNode;
 };
 
@@ -55,8 +60,10 @@ export const renderCustomView = (
         allAppliedPermissions: props.projectAllAppliedPermissions || [],
       },
       environment: {
+        ...(props.environment || {}),
         entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
       },
+      user: props.user,
     }
   );
 };
