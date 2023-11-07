@@ -64,7 +64,6 @@ type TCreateCustomViewOptions = {
   mcApiUrl: string;
   organizationId: string;
   data: TCustomViewDraftDataInput;
-  customViewId: string;
 };
 type TFetchUserOrganizationsOptions = {
   mcApiUrl: string;
@@ -267,7 +266,6 @@ const createCustomView = async ({
   mcApiUrl,
   organizationId,
   data,
-  customViewId,
 }: TCreateCustomViewOptions) => {
   const createdCustomViewData = await requestWithTokenRetry<
     TCreateCustomViewFromCliMutation,
@@ -279,7 +277,6 @@ const createCustomView = async ({
     },
     mcApiUrl,
     headers: {
-      'x-custom-view-id': customViewId,
       'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
   });

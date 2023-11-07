@@ -44,14 +44,10 @@ const getMcUrlLink = ({
   return customEntityLink;
 };
 
-const checkIfCustomApplicationConfigData = (
-  localCustomEntityData: CustomApplicationData | CustomViewData
-): localCustomEntityData is CustomApplicationData => {
-  return (
-    (localCustomEntityData as CustomApplicationData).entryPointUriPath !==
-    undefined
-  );
-};
+const isCustomViewData = (
+  data: CustomApplicationData | CustomViewData
+): data is CustomViewData =>
+  (data as CustomApplicationData).entryPointUriPath === undefined;
 
 type TCreateOrUpdateCustomApplication = {
   mcApiUrl: string;
@@ -352,7 +348,6 @@ async function createOrUpdateCustomView({
       mcApiUrl,
       organizationId,
       data,
-      customViewId,
     });
 
     // This check is technically not necessary, as the `graphql-request` client
@@ -474,22 +469,18 @@ async function run(options: TCliCommandConfigSyncOptions) {
     );
   }
 
-  const isCustomApplicationConfigData = checkIfCustomApplicationConfigData(
-    localCustomEntityData
-  );
-
-  if (isCustomApplicationConfigData) {
-    createOrUpdateCustomApplication({
-      mcApiUrl,
-      localCustomEntityData,
-      applicationIdentifier,
-      options,
-    });
-  } else {
+  if (isCustomViewData(localCustomEntityData)) {
     createOrUpdateCustomView({
       mcApiUrl,
       localCustomEntityData,
       customViewId: customViewId || localCustomEntityData.id,
+      options,
+    });
+  } else {
+    createOrUpdateCustomApplication({
+      mcApiUrl,
+      localCustomEntityData,
+      applicationIdentifier,
       options,
     });
   }
