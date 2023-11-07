@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import type { RenderResult } from '@testing-library/react';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -29,6 +30,7 @@ type TRenderCustomViewParams = {
   projectAllAppliedPermissions?: { name: string; value: boolean }[];
   customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
   children: ReactNode;
 };
 
@@ -46,6 +48,7 @@ export const renderCustomView = (
       {props.children}
     </CustomViewContextProvider>,
     {
+      apolloClient: props.apolloClient,
       locale: props.locale,
       project: {
         key: props.projectKey,
