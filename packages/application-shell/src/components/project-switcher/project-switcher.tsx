@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
 import type { OptionProps, ValueContainerProps } from 'react-select';
+import { components } from 'react-select';
 import {
   useMcQuery,
   oidcStorage,
@@ -180,6 +181,18 @@ const ProjectSwitcher = (props: Props) => {
           Option: ProjectSwitcherOption,
           ValueContainer: (valueContainerProps) => (
             <ProjectSwitcherValueContainer {...valueContainerProps} />
+          ),
+          MenuList: (props) => (
+            <div
+              css={css`
+                width: max-content;
+                max-width: ${designTokens.constraint6};
+              `}
+            >
+              <components.MenuList {...props}>
+                {props.children}
+              </components.MenuList>
+            </div>
           ),
         }}
         isClearable={false}

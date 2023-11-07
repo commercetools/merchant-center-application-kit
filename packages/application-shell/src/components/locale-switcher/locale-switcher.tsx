@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
 import type { SingleValueProps, ValueContainerProps } from 'react-select';
+import { components } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { WorldIcon } from '@commercetools-uikit/icons';
@@ -60,7 +61,6 @@ const LocaleSwitcher = (props: Props) => {
     <div
       css={css`
         position: relative;
-        width: ${designTokens.constraint4};
       `}
     >
       <AccessibleHidden>
@@ -82,10 +82,23 @@ const LocaleSwitcher = (props: Props) => {
             <SingleValue {...valueProps} />
           ),
           ValueContainer: PatchedValueContainer,
+          MenuList: (props) => (
+            <div
+              css={css`
+                width: max-content;
+                max-width: ${designTokens.constraint6};
+              `}
+            >
+              <components.MenuList {...props}>
+                {props.children}
+              </components.MenuList>
+            </div>
+          ),
         }}
         isClearable={false}
         backspaceRemovesValue={false}
         isSearchable={false}
+        horizontalConstraint={'auto'}
       />
     </div>
   );
