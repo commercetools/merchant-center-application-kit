@@ -7,7 +7,7 @@ import {
 
 export type TCustomViewContext = {
   hostUrl: string;
-  config: CustomViewData;
+  customViewConfig: CustomViewData;
 };
 
 export type TMergedContext = TApplicationContext<{}> & TCustomViewContext;
@@ -24,7 +24,7 @@ const CustomViewContextProvider = (props: TCustomViewContextProviderProps) => {
   const contextValue = useMemo<TCustomViewContext>(
     () => ({
       hostUrl: props.hostUrl,
-      config: props.customViewConfig,
+      customViewConfig: props.customViewConfig,
     }),
     [props.hostUrl, props.customViewConfig]
   );
