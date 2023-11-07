@@ -237,6 +237,26 @@ const getTypeSettingsDiff = ({
   return null;
 };
 
+type TLocatorsDiffParams = {
+  previousValue: CustomViewData['locators'];
+  nextValue: CustomViewData['locators'];
+};
+const getLocatorsDiff = ({ previousValue, nextValue }: TLocatorsDiffParams) => {
+  const diff: string[] = [];
+
+  const locatorsDiff = getArrayDiff({
+    previousValue: previousValue,
+    nextValue: nextValue,
+    label: 'locators',
+    indentLevel: 1,
+  });
+  if (locatorsDiff) {
+    diff.push('locators changed');
+    diff.push(locatorsDiff);
+  }
+  return diff.join('\n');
+};
+
 type TMainMenuLink = CustomApplicationData['mainMenuLink'];
 type TGetMainMenuLinkDiffParams = {
   previousValue: TMainMenuLink;
@@ -471,7 +491,7 @@ export const getCustomApplicationConfigDiff = (
   return diff.join('\n');
 };
 
-// Compute diff changes of the Custom Application config.
+// Compute diff changes of the Custom View config.
 // NOTE: Only known keys are evaluated.
 export const getCustomViewConfigDiff = (
   oldConfig: CustomViewData,
@@ -532,7 +552,7 @@ export const getCustomViewConfigDiff = (
   const labelsDiff = getLabelAllLocalesDiff({
     previousValue: oldConfig.labelAllLocales,
     nextValue: newConfig.labelAllLocales,
-    indentLevel: 3,
+    indentLevel: 1,
   });
   if (labelsDiff) {
     diff.push(labelsDiff);
@@ -548,10 +568,9 @@ export const getCustomViewConfigDiff = (
   }
 
   // Locators
-  const locatorsDiff = getArrayDiff({
+  const locatorsDiff = getLocatorsDiff({
     previousValue: oldConfig.locators,
     nextValue: newConfig.locators,
-    label: 'locators',
   });
   if (locatorsDiff) {
     diff.push(locatorsDiff);
