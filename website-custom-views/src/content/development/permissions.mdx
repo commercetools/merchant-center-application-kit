@@ -72,45 +72,6 @@ In this scenario, the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewD
 
 A Custom View allows, for example, to check and evaluate if certain user permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities.
 
-## In menu links
-
-In the Custom View config, the menu links allow defining the level of required access by providing the name of the requested user permission.
-
-```json
-{
-  "mainMenuLink": {
-    "permissions": ["ViewChannels"]
-  },
-  "submenuLinks": [
-    {
-      "permissions": ["ManageChannels"]
-    }
-  ]
-}
-```
-
-This determines which links should be visible or not, depending on the permissions assigned to the user.
-
-<Info>
-
-Leaving the list of permissions empty makes the menu link always visible (no restrictions are applied).
-
-</Info>
-
-In case you defined the permissions in a `constants` file, we recommend to reference them in the Custom View config as well. To do so, the config file needs to be converted to a JS file (instead of JSON), for example using the `.mjs` file extension.
-
-```js title="custom-application-config.mjs"
-import { entryPointUriPath, PERMISSIONS } from './src/constants';
-
-const config = {
-  entryPointUriPath,
-  mainMenuLink: {
-    permissions: [PERMISSIONS.View]
-  },
-  // ...
-};
-export default config;
-```
 
 ## In routes
 

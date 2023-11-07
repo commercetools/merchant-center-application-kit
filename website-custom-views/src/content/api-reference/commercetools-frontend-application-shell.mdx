@@ -11,7 +11,7 @@ TO BE UPDATED
 
 <Subtitle>
 
-React component that ties together all the main functionalities of the Custom Applications.
+React component that ties together all the main functionalities of the Custom Views.
 
 </Subtitle>
 
@@ -37,19 +37,22 @@ npm --save install @apollo/client react react-dom react-intl react-redux react-r
 
 # Components
 
-## ApplicationShell
+## CustomViewShell
 
-This is the main component that contains all the general logic to render a Custom Application.<br />
-The `ApplicationShell` component is expected to be rendered as the top-level component of your application.
+This is the main component that contains all the general logic to render a Custom View.<br />
+The `CustomViewShell` component is expected to be rendered as the top-level component of your application.
 
 ### Usage
 
-We recommend to render the application content as `children` of `<ApplicationShell>` instead of the `render` prop.
+We recommend to render the application content as `children` of `<CustomViewShell>`.
 
-This allows the `<ApplicationShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom Application won't be able to access the Custom Application route.
+This allows the `<CustomViewShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom View won't be able to access the Custom View route.
+
+Bear in mind you're not required to use routes in your Custom View. Use them only if you need to have different views.
+
 
 ```jsx title="entry-point.js"
-import { ApplicationShell } from '@commercetools-frontend/application-shell';
+import { CustomViewShell } from '@commercetools-frontend/application-shell';
 
 const loadMessages = async (locale) => {
   // ...
@@ -60,12 +63,11 @@ const AsyncApplicationRoutes = React.lazy(
 );
 
 const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
+  <CustomViewShell
     applicationMessages={loadMessages}
   >
     <AsyncApplicationRoutes />
-  </ApplicationShell>
+  </CustomViewShell>
 );
 export default EntryPoint;
 ```
@@ -79,64 +81,20 @@ export default EntryPoint;
 **object** or **func**\
 This is either an object containing all the translated messages, grouped by locale<br/>`{ en: { Welcome: "Welcome" }, de: { Welcome: "Wilkommen" } }`<br/>or a function that returns a Promise that resolves to such an object.<br/>The function is called with a `locale` parameter. See [Importing translations](/development/translations#importing-translations).
 
-#### `environment`
-
-**object**\
-The application runtime environment, which is exposed in `window.app`. See [Runtime configuration](/api-reference/application-config#runtime-application-environment). |
-
 #### `children`
 
 **node**\
-Instead of using the `render` prop, render your application component as children of `<ApplicationShell>`.<br/>By doing so, the `<ApplicationShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`.<br/>This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.
+Instead of using the `render` prop, render your application component as children of `<CustomViewShell>`.<br/>By doing so, the `<CustomViewShell>` pre-configures the main application routes according to the `entryPointUriPath` defined in the `custom-application-config.json`.<br/>This is an opt-int behavior as a replacement of the `render` prop, to simplify the entry point setup.
 
 #### `render`
 
 **func** *(optional)*\
-The render function is called when the `<ApplicationShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized.<br/>It's **recommended to use** the `children` prop to benefit from a simpler setup.
+The render function is called when the `<CustomViewShell>` is ready to render the actual application. This is the case when the required data (user, project) has been fetched and the application context has been initialized.<br/>It's **recommended to use** the `children` prop to benefit from a simpler setup.
 
 #### `apolloClient`
 
 **ApolloClient** *(optional)* \
 An optional instance of [ApolloClient](https://www.apollographql.com/docs/react/) to be used instead of the default one. This is usually the case when you need to configure the Apollo cache. See [`createApolloClient`](#createapolloclient).
-
-## ApplicationPageTitle
-
-<Info>
-
-This feature is available from version `21.15.0` onwards.
-
-</Info>
-
-Use this component to overwrite the document's default `<title>`.
-
-### Usage
-
-We recommend using this component on pages with a human-readable resource identifier, for example, a Product name on the product details page.
-
-```js
-import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
-
-<ApplicationPageTitle additionalParts={['Red shoes']} />;
-// Red shoes - Products - my-shop - Merchant Center
-```
-
-When the `<ApplicationPageTitle>` component is used multiple times, the last one rendered will overwrite the previous ones.
-
-<Info>
-
-Please refer to the [Mapping guidelines](/development/human-readable-page-title#mapping-guidelines) to understand when to overwrite the title and when not.
-
-</Info>
-
-### Properties
-
-<ChildSectionsNav parent="properties-1" />
-
-#### `additionalParts`
-
-**string[]**\
-A list of parts to be prepended to the default page title, separated by `-`.
-
 
 # Hooks
 
@@ -161,14 +119,14 @@ Configures global event listeners to catch unexpected errors and report them to 
 ```js title="entry-point.js" highlightLines="6"
 import {
   setupGlobalErrorListener,
-  ApplicationShell,
+  CustomViewShell,
 } from '@commercetools-frontend/application-shell';
 
 setupGlobalErrorListener();
 
 const EntryPoint = () => {
   return (
-    <ApplicationShell
+    <CustomViewShell
       apolloClient={apolloClient}
       // ...other props
     />
@@ -190,7 +148,7 @@ createApolloClient({
 
 Available options are:
 
-* `cache` (optional): Configuration of the [Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration) in relation to the data requirements of your Custom Application.
+* `cache` (optional): Configuration of the [Apollo cache](https://www.apollographql.com/docs/react/caching/cache-configuration) in relation to the data requirements of your Custom View.
 
 * `restLink` (optional): Instance of the [Apollo REST link](https://www.apollographql.com/docs/react/api/link/apollo-link-rest/).
 
@@ -219,11 +177,11 @@ const configureApollo = () =>
 export default configureApollo
 ```
 
-The new Apollo Client instance must be explicitly passed to the `<ApplicationShell>`.
+The new Apollo Client instance must be explicitly passed to the `<CustomViewShell>`.
 
 ```js title="entry-point.js"
 import {
-  ApplicationShell,
+  CustomViewShell,
 } from '@commercetools-frontend/application-shell';
 import configureApolloClient from '../../apollo-client';
 
@@ -231,7 +189,7 @@ const apolloClient = configureApolloClient();
 
 const EntryPoint = () => {
   return (
-    <ApplicationShell
+    <CustomViewShell
       apolloClient={apolloClient}
       // ...other props
     />
@@ -242,10 +200,10 @@ const EntryPoint = () => {
 Furthermore, in your tests you also need to create a new instance of your custom Apollo Client and pass it to the test utils.
 
 ```js
-import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import { renderCustomView } from '@commercetools-frontend/application-shell/test-utils';
 import configureApolloClient from '../../apollo-client';
 
-renderAppWithRedux({
+renderCustomView({
   apolloClient: configureApolloClient(),
   // ...
 });
@@ -418,7 +376,7 @@ const apiEndpoint = buildApiUrl('/proxy/ctp/channels');
 
 # Test utils
 
-The package provides a separate entry point with utilities for testing Custom Applications.
+The package provides a separate entry point with utilities for testing Custom Views.
 
 ```js
 import { /**/ } from '@commercetools-frontend/application-shell/test-utils';
@@ -426,7 +384,7 @@ import { /**/ } from '@commercetools-frontend/application-shell/test-utils';
 
 Most of the utility functions related to [React Testing Library](https://github.com/testing-library/react-testing-library), as the recommended testing approach. See [Testing](/development/testing) for more information.
 
-In general the `test-utils` simulate the components-under-test as if it was rendered by the `<ApplicationShell>` and provide the necessary setup to fully test a Custom Application. This includes things like Apollo, React Intl, React Router, etc.
+In general the `test-utils` simulate the components-under-test as if it was rendered by the `<CustomViewShell>` and provide the necessary setup to fully test a Custom View. This includes things like Apollo, React Intl, React Router, etc.
 
 ## renderApp
 
@@ -474,7 +432,7 @@ Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` ar
 #### `apolloClient`
 
 **ApolloClient**\
-Pass a custom instance of Apollo client, useful when your Custom Application has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.
+Pass a custom instance of Apollo client, useful when your Custom View has some custom cache policies. You can use the exported function `createApolloClient` of `@commercetools-frontend/application-shell`.
 
 #### `route`
 
@@ -484,7 +442,7 @@ The route the user is on, like `/test-project/products`. Defaults to `/`.
 #### `disableAutomaticEntryPointRoutes`
 
 **boolean**\
-Pass `true` if you are using the `render` prop for the `<ApplicationShell>` instead of the `children` prop.
+Pass `true` if you are using the `render` prop for the `<CustomViewShell>` instead of the `children` prop.
 
 #### `history`
 

@@ -155,7 +155,7 @@ At commercetools we use [Transifex](https://www.transifex.com/) as our translati
 
 # Importing translations
 
-The JSON files containing the translations need to be loaded within the application. The `<ApplicationShell>` expects a `applicationMessages` prop that is used to load the messages in the `react-intl` provider.<br />
+The JSON files containing the translations need to be loaded within the application. The `<CustomViewShell>` expects a `applicationMessages` prop that is used to load the messages in the `react-intl` provider.<br />
 The `applicationMessages` prop can either be a JSON object or a function returning a Promise with the loaded messages.
 
 To keep the bundle size low, the application should only load the messages for a specific locale and not all of them. This can be achieved by using the [Code-Splitting](https://reactjs.org/docs/code-splitting.html) feature.

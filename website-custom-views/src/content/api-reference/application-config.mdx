@@ -2,8 +2,6 @@
 title: Application Config
 ---
 
-import ApplicationIcons from '../../components/application-icons.js'
-
 <Subtitle>
 
 A Custom View configuration file defines the necessary requirements to develop and build your application.
@@ -619,54 +617,17 @@ The reference placeholder assumes that the Custom View has the translation files
 * `<app_root>/src/i18n/data/<locale>.json`
 * `<app_root>/i18n/data/<locale>.json`
 
-## File path references
-
-<Info>
-
-This feature is available from version `20.8.0` onwards.
-
-</Info>
-
-References to files are specified with a special expansion-like syntax `${}` together with the prefix key `path:`.
-
-This is useful when specifying the [`icon`](#icon) of the Custom View.
-
-```json
-{
-  "icon": "${path:./app.svg}"
-}
-```
-
-You can use a path relative to the application folder or a path to a module.
-
-```json
-{
-  "icon": "${path:@commercetools-frontend/assets/application-icons/rocket.svg}"
-}
-```
-
 # Runtime application environment
 
 Much of the information specified in the application config is injected into the runtime environment and available via the global variable `window.app`.
 
-It is recommended to always pass the value to the `<ApplicationShell>`.
-
-```jsx highlightLines="3"
-const EntryPoint = () => (
-  <ApplicationShell
-    environment={window.app}
-    // other props
-  />
-);
-```
-
 The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
 
 ```jsx
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
 
 const MyComponent = () => {
-  const applicationName = useApplicationContext(
+  const applicationName = useCustomViewContext(
     context => context.environment.applicationName
   );
   return (<div>{`Welcome to the application ${applicationName}!`}</div>);
