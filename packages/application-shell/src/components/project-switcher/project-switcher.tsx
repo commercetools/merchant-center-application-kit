@@ -30,16 +30,12 @@ type Props = {
 type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
   label: string;
 };
-type CustomValueContainerProps = ValueContainerProps & {
-  projectCount: number;
-};
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
 export const ProjectSwitcherValueContainer = ({
-  projectCount,
   ...restProps
-}: CustomValueContainerProps) => {
+}: ValueContainerProps) => {
   return (
     <div
       css={css`
@@ -57,21 +53,6 @@ export const ProjectSwitcherValueContainer = ({
           {restProps.children}
         </SelectInput.ValueContainer>
       </div>
-      <span
-        css={css`
-          width: 26px;
-          height: 26px;
-          border-radius: 100%;
-          background: ${designTokens.colorNeutral};
-          color: ${designTokens.colorSurface};
-          font-size: ${designTokens.fontSize30};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-      >
-        {projectCount}
-      </span>
     </div>
   );
 };
@@ -165,11 +146,7 @@ const ProjectSwitcher = (props: Props) => {
   if (loading) return null;
 
   return (
-    <div
-      css={css`
-        width: ${designTokens.constraint6};
-      `}
-    >
+    <div>
       <AccessibleHidden>
         <span id={PROJECT_SWITCHER_LABEL_ID}>
           <FormattedMessage {...messages.projectsLabel} />
@@ -202,18 +179,14 @@ const ProjectSwitcher = (props: Props) => {
         components={{
           Option: ProjectSwitcherOption,
           ValueContainer: (valueContainerProps) => (
-            <ProjectSwitcherValueContainer
-              {...valueContainerProps}
-              projectCount={
-                (data && data.user && data.user.projects.results.length) || 0
-              }
-            />
+            <ProjectSwitcherValueContainer {...valueContainerProps} />
           ),
         }}
         isClearable={false}
         backspaceRemovesValue={false}
         placeholder={intl.formatMessage(messages.searchPlaceholder)}
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
+        horizontalConstraint={'auto'}
       />
     </div>
   );

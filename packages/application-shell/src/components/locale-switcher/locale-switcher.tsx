@@ -8,9 +8,6 @@ import { WorldIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import messages from './messages';
 
-type CustomSingleValueProps = SingleValueProps & {
-  localeCount: number;
-};
 type Props = {
   projectDataLocale: string;
   setProjectDataLocale: (locale: string) => void;
@@ -19,7 +16,7 @@ type Props = {
 
 const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
-export const SingleValue = (props: CustomSingleValueProps) => {
+export const SingleValue = (props: SingleValueProps) => {
   return (
     <div
       css={css`
@@ -37,21 +34,6 @@ export const SingleValue = (props: CustomSingleValueProps) => {
         `}
       >
         {props.children}
-      </span>
-      <span
-        css={css`
-          width: 26px;
-          height: 26px;
-          border-radius: 100%;
-          background: ${designTokens.colorNeutral};
-          color: ${designTokens.colorSurface};
-          font-size: ${designTokens.fontSize30};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-      >
-        {props.localeCount}
       </span>
     </div>
   );
@@ -97,10 +79,7 @@ const LocaleSwitcher = (props: Props) => {
         }))}
         components={{
           SingleValue: (valueProps: SingleValueProps) => (
-            <SingleValue
-              {...valueProps}
-              localeCount={props.availableLocales.length}
-            />
+            <SingleValue {...valueProps} />
           ),
           ValueContainer: PatchedValueContainer,
         }}
