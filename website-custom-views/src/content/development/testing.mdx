@@ -207,9 +207,9 @@ This should give you a basic idea on how you can approach testing your Custom Vi
 
 User permissions are bound to a Project and can vary depending on the permissions assigned to the Team where the user is a member of.
 
-By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) do not assign any pre-defined permissions. You need to explicitly provide them in your test setup. The following fields can be used to assign the different granular permission values:
+By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) assigns the pre-defined permissions for the user to be able to view the Custom View. If you need to test with more permissions, you need to explicitly provide them in your test setup. The following field can be used to assign the different granular permission values:
 
-* `projectLllAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
+* `projectAllAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
 
   * `name`: The name of the user permissions prefixed with `can`. For example `canViewChannels`.
   * `value`: If `true`, the resource permission is applied to the user.
@@ -222,14 +222,16 @@ import { entryPointUriPath } from '../../constants/application';
 import ApplicationRoutes from '../../routes';
 
 const renderView = (options = {}) => {
-  renderCustomViews(<ApplicationRoutes />, {
+  renderCustomView({
+    locale: options.locale || 'en',
+    projectKey: options.projectKey || 'my-project',
     projectAllAppliedPermissions: [
       {
         name: 'canViewChannels',
         value: true,
       },
     ],
-    ...options,
+    children: <ApplicationRoutes />,
   });
 };
 ```
@@ -262,7 +264,7 @@ The `.env` file should be git ignored. On CI, you can define environment variabl
 In the `cypress/plugins/index.js` file, you need to configure the `task` for Custom Views and to load the environment variables:
 
 ```js title="cypress/plugins/index.js"
-const customApplications = require('@commercetools-frontend/cypress/task');
+const customViews = require('@commercetools-frontend/cypress/task');
 
 module.exports = (on, cypressConfig) => {
   // Load the config
@@ -273,7 +275,7 @@ module.exports = (on, cypressConfig) => {
   }
 
   on('task', {
-    ...customApplications,
+    ...customViews,
   });
 
   return {
@@ -306,7 +308,7 @@ Finally, in the `cypress.json` you should set the `baseUrl` to `http://localhost
 At this point the setup is done. You can start writing your tests.
 
 ```js title="cypress/integration/channels.js"
-import { entryPointUriPath } from '../support/constants';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 
 describe('Channels', () => {
   beforeEach(() => {
