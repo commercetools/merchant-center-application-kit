@@ -43,7 +43,7 @@ export { default as PageContentFull } from './components/page-content-containers
 export type { TPageContentFull } from './components/page-content-containers/page-content-full';
 
 // Custom views
-export { default as CustomPanel } from './components/custom-views/custom-panel';
+export { default as Drawer } from './components/drawer';
 export { default as CustomViewLoader } from './components/custom-views/custom-view-loader';
 export { default as CustomViewsSelector } from './components/custom-views/custom-views-selector';
 

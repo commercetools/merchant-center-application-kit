@@ -61,6 +61,10 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
+
+// naming of `xlarge` should be discussed, I didn't know what to name it
+export type TModalPageSize = 'small' | 'large' | 'xlarge';
+
 type Props = {
   /**
    * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
@@ -87,15 +91,12 @@ type Props = {
   currentPathLabel?: string;
   previousPathLabel?: Label;
   hidePathLabel?: boolean;
-  size?: 'small' | 'large';
+  size?: TModalPageSize;
+  hideTopBar?: boolean;
 };
-const defaultProps: Pick<
-  Props,
-  'getParentSelector' | 'shouldDelayOnClose' | 'size'
-> = {
+const defaultProps: Pick<Props, 'getParentSelector' | 'shouldDelayOnClose'> = {
   getParentSelector: getDefaultParentSelector,
   shouldDelayOnClose: true,
-  size: 'large',
 };
 
 const ModalPage = (props: Props) => {
@@ -165,13 +166,15 @@ const ModalPage = (props: Props) => {
           <CustomViewsSelector
             customViewLocatorCode={props.customViewLocatorCode}
           />
-          <ModalPageTopBar
-            color={props.topBarColor}
-            onClose={handleClose}
-            currentPathLabel={props.currentPathLabel}
-            previousPathLabel={props.previousPathLabel}
-            hidePathLabel={props.hidePathLabel}
-          />
+          {!props.hideTopBar && (
+            <ModalPageTopBar
+              color={props.topBarColor}
+              onClose={handleClose}
+              currentPathLabel={props.currentPathLabel}
+              previousPathLabel={props.previousPathLabel}
+              hidePathLabel={props.hidePathLabel}
+            />
+          )}
           {props.children}
         </Modal>
       )}

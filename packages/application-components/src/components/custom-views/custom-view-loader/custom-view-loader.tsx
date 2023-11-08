@@ -11,7 +11,7 @@ import {
   CustomViewData,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import CustomPanel from '../custom-panel';
+import Drawer from '../../drawer';
 import messages from './messages';
 
 type TCustomViewIframeMessage = {
@@ -130,10 +130,12 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   ].join('/');
 
   return (
-    <CustomPanel
+    <Drawer
+      isOpen
       title={`Custom View: ${props.customView.defaultLabel}`}
       onClose={props.onClose}
-      size={panelSize}
+      // small is 10, but what is large? is it 20? or 30?
+      size={panelSize === 'small' ? 10 : 20}
     >
       <CustomPanelIframe
         id={`custom-view-${props.customView.id}`}
@@ -143,7 +145,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         src={iFrameUrl}
         onLoad={onLoadSuccessHandler}
       />
-    </CustomPanel>
+    </Drawer>
   );
 }
 
