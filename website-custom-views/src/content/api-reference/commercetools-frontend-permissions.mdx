@@ -41,7 +41,7 @@ import { useIsAuthorized } from '@commercetools-frontend/permissions';
 
 const CreateButton = () => {
   const canManage = useIsAuthorized({
-    demandedPermissions: ['ManageAvengers']
+    demandedPermissions: ['Manage']
   });
   return (
     <PrimaryButton
@@ -54,7 +54,7 @@ const CreateButton = () => {
 
 ### Options
 
-* `demandedPermissions`: A list of user permissions of the Custom Application that need to be evaluated against the applied user permissions.
+* `demandedPermissions`: A list of user permissions of the Custom View that need to be evaluated against the applied user permissions.
 
   <Info>
 
