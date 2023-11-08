@@ -130,28 +130,30 @@ In the browser, the session token is stored in a secure cookie named `mcAccessTo
 
 This feature is available from version `22.5.0` onwards.
 
-Please note that this is considered a workaround and is recommended for development teams with prior experience in Custom Application configuration and installation, as it requires a certain configuration overhead.
+This method requires additional configuration and setup and is only recommended for development teams with prior experience in Custom Application development and installation.
 
 </Info>
 
-By default, developing a Custom Application requires to be part of the `Administrators` team. Sometimes though your organization might not be willing to grant administrator access to developers for security reasons and instead grant access using a normal team.
+By default, developing a Custom Application requires you to be a member of the `Administrators` Team. However, for security reasons, your Organization might not be willing to grant administrator access to developers. In this case, an Organization can grant access using a regular team.
 
-To enable this option, fulfill the following configurational prerequisites in the Merchant Center (which can be done only with administrator rights): 
+To enable this option, you must complete the following prerequisites in the Merchant Center (which can be done only with administrator rights):
 
-1. [Configure the Custom Application in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications#configuring-custom-applications), with an emphasis on assigning the [Application ID](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-the-application-id)
+1. [Configure the Custom Application in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications#configuring-custom-applications)
 
 <Info>
 
-For local development and login the Custom Application does not have to be deployed, and `Application URL` is not relevant. Therefore, any acceptable value can be provided in the registration form.
+For local development the Custom Application does not have to be deployed, and `Application URL` is not relevant. Therefore, any acceptable value can be provided in the registration form.
 
 </Info>
 
-2. [Install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) 
-3. [Establish a designated team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilize an existing one) and obtain the `teamId` from the Merchant Center URL
-4. [Invite users to the team](https://docs.commercetools.com/merchant-center/teams#invite-users-to-a-team)
-5. [Assign relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
+2. [Assign the Application ID](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-the-application-id)
+3. [Install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) 
+4. [Create a team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilize an existing one) 
+5. Obtain the `teamId` from the Merchant Center URL
+6. [Invite users to the team](https://docs.commercetools.com/merchant-center/teams#invite-users-to-a-team)
+7. [Assign relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
 
-Fulfilling the prerequisites leads to obtaining `applicationId` and `teamId` which then need to be provided as [`env.production.applicationId`](/api-reference/application-config#envproductionapplicationid) and [`env.development.teamId`](/api-reference/application-config#envdevelopmentteamid), respectively, in the Custom Application configuration file.
+After completing these steps, you will have an `applicationId` and a `teamId`. You must provide these values for [`env.production.applicationId`](/api-reference/application-config#envproductionapplicationid) and [`env.development.teamId`](/api-reference/application-config#envdevelopmentteamid), respectively, in the Custom Application configuration file.
 
 This process allows any member of the configured team to log in and perform local development for the Custom Application. 
 
