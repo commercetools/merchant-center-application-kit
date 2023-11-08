@@ -58,11 +58,7 @@ const LocaleSwitcher = (props: Props) => {
     [setProjectDataLocale]
   );
   return (
-    <div
-      css={css`
-        position: relative;
-      `}
-    >
+    <div>
       <AccessibleHidden>
         <span id={LOCALE_SWITCHER_LABEL_ID}>
           <FormattedMessage {...messages.localesLabel} />
