@@ -1,5 +1,8 @@
 import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
-import { entryPointUriPathToPermissionKeys } from './formatters';
+import {
+  entryPointUriPathToPermissionKeys,
+  resolveCustomViewResourceAccesses,
+} from './formatters';
 
 describe.each`
   entryPointUriPath                        | formattedResourceAccessKey
@@ -74,6 +77,26 @@ describe.each`
       );
       expect(permissionKeys.View).toBe(`View${formattedResourceAccessKey}`);
       expect(permissionKeys.Manage).toBe(`Manage${formattedResourceAccessKey}`);
+    });
+  }
+);
+
+describe.each`
+  permissionGroupNames | formattedResourceAccessKeyAdditionalName
+  ${undefined}         | ${''}
+  ${['books']}         | ${'Books'}
+  ${['the-books']}     | ${'TheBooks'}
+  ${['the-movies']}    | ${'TheMovies'}
+`(
+  'resolving Custom Views  resource accesses',
+  ({ permissionGroupNames, formattedResourceAccessKeyAdditionalName }) => {
+    it(`should format correctly`, () => {
+      expect(resolveCustomViewResourceAccesses(permissionGroupNames)).toEqual({
+        view: `view`,
+        manage: `manage`,
+        [`view${formattedResourceAccessKeyAdditionalName}`]: `view${formattedResourceAccessKeyAdditionalName}`,
+        [`manage${formattedResourceAccessKeyAdditionalName}`]: `manage${formattedResourceAccessKeyAdditionalName}`,
+      });
     });
   }
 );

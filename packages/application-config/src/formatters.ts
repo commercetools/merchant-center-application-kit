@@ -12,6 +12,10 @@ type TImplicitCustomApplicationResourceAccesses<
   string
 >;
 
+type TImplicitCustomViewResourceAccesses<
+  PermissionGroupName extends string = ''
+> = TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
+
 type TImplicitCustomApplicationPermissionKeys<
   PermissionGroupName extends string = ''
 > = Record<
@@ -118,6 +122,15 @@ function entryPointUriPathToResourceAccesses<
   };
 }
 
+function resolveCustomViewResourceAccesses<PermissionGroupName extends string>(
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomViewResourceAccesses<PermissionGroupName> {
+  return entryPointUriPathToResourceAccesses(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+    permissionGroupNames || []
+  );
+}
+
 function entryPointUriPathToPermissionKeys(
   entryPointUriPath: string
 ): TImplicitCustomApplicationPermissionKeys<''>;
@@ -149,4 +162,5 @@ export {
   entryPointUriPathToPermissionKeys,
   formatEntryPointUriPathToResourceAccessKey,
   formatPermissionGroupNameToResourceAccessKey,
+  resolveCustomViewResourceAccesses,
 };
