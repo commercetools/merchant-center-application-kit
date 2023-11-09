@@ -66,8 +66,8 @@
   pages:
     - title: CLI
       path: /api-reference/cli
-    - title: Application Config
-      path: /api-reference/application-config
+    - title: Custom View Config
+      path: /api-reference/custom-view-config
     - title: Create MC App
       path: /api-reference/create-mc-app
     - title: Custom Webpack Config
