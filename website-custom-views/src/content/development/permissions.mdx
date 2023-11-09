@@ -2,34 +2,26 @@
 title: Permissions
 ---
 
-<Warning>
-
-TO BE UPDATED
-
-</Warning>
-
 As we learned in [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions), each Custom View has a unique pair of default user permissions at its disposal: "view" and "manage." Additionally, you can use more granular permission groups to cover strict business requirements.
-
-The values of the user permissions are derived from the application `entryPointUriPath`.
 
 When developing a Custom View you might want to enforce these user permissions in some parts of your application. For example, performing certain actions like creating, updating, or deleting a resource should only be possible if the user has "manage" permission.
 
 # Defining constants
 
-The user permissions can be computed using the `entryPointUriPathToPermissionKeys` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
+The user permissions can be computed using the `resolveCustomViewResourceAccesses` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
 
 ```js title="constants.js"
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
+import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
 
 export const entryPointUriPath = 'channels';
 
-export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
+export const PERMISSIONS = resolveCustomViewResourceAccesses();
 ```
 
-The `PERMISSIONS` variable contains a `View` and `Manage` properties, with the values being the computed values based on the `entryPointUriPath`:
+The `PERMISSIONS` variable contains a `View` and `Manage` properties:
 
-* `PERMISSIONS.View`: maps to `ViewChannels`.
-* `PERMISSIONS.Manage`: maps to `ManageChannels`.
+* `PERMISSIONS.View`: maps to `View`.
+* `PERMISSIONS.Manage`: maps to `Manage`.
 
 You can then use the `PERMISSIONS` variable to reference the permission in the application code.
 
@@ -37,34 +29,31 @@ You can then use the `PERMISSIONS` variable to reference the permission in the a
 
 This feature is available from version `21.21.0` onwards.
 
-When using [additional permission groups](/concepts/oauth-scopes-and-user-permissions#permission-groups), you must also provide the unique group to the `entryPointUriPathToPermissionKeys` function to generate the correct permission keys.
+When using [additional permission groups](/concepts/oauth-scopes-and-user-permissions#permission-groups), you must also provide the unique group to the `resolveCustomViewResourceAccesses` function to generate the correct permission keys.
 
 The group names can be exported and referenced also in the Custom View config file.
 
 ```js title="constants.js" highlightLines="5-8, 12"
-import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-shell/ssr';
-
-export const entryPointUriPath = 'channels';
+import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
 
 export const groupNames = {
   delivery: 'delivery',
   promotion: 'promotion',
 };
 
-export const PERMISSIONS = entryPointUriPathToPermissionKeys(
-  entryPointUriPath,
+export const PERMISSIONS = resolveCustomViewResourceAccesses(
   ['delivery', 'promotion']
 );
 ```
 
-In this scenario, the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the `entryPointUriPath` and the provided permission group names:
+In this scenario, the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names:
 
-* `PERMISSIONS.View`: maps to `ViewChannels`.
-* `PERMISSIONS.Manage`: maps to `ManageChannels`.
-* `PERMISSIONS.ViewDelivery`: maps to `ViewChannelsDelivery`.
-* `PERMISSIONS.ManageDelivery`: maps to `ManageChannelsDelivery`.
-* `PERMISSIONS.ViewPromotion`: maps to `ViewChannelsPromotion`.
-* `PERMISSIONS.ManagePromotion`: maps to `ManageChannelsPromotion`.
+* `PERMISSIONS.View`: maps to `View`.
+* `PERMISSIONS.Manage`: maps to `Manage`.
+* `PERMISSIONS.ViewDelivery`: maps to `ViewDelivery`.
+* `PERMISSIONS.ManageDelivery`: maps to `ManageDelivery`.
+* `PERMISSIONS.ViewPromotion`: maps to `ViewPromotion`.
+* `PERMISSIONS.ManagePromotion`: maps to `ManagePromotion`.
 
 </Info>
 
@@ -87,7 +76,7 @@ import { PERMISSIONS } from './constants';
 import ChannelsCreate from './components/channels-create';
 import ChannelsList from './components/channels-list';
 
-const ApplicationRoutes = () => {
+const CustomViewRoutes = () => {
   const match = useRouteMatch();
   const canManage = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.Manage],
