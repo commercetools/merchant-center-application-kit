@@ -62,8 +62,7 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 
-// naming of `xlarge` should be discussed, I didn't know what to name it
-export type TModalPageSize = 'small' | 'large' | 'xlarge';
+export type TModalPageSize = 10 | 20 | 30;
 
 type Props = {
   /**

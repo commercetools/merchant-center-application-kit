@@ -1,5 +1,4 @@
 import type { ReactElement, ReactNode, SyntheticEvent } from 'react';
-import { css } from '@emotion/react';
 import styled, { type CSSObject } from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
@@ -75,18 +74,11 @@ const ContentWrapper = styled.div`
   padding: ${designTokens.spacing50};
 `;
 
-const getModalPageSize = (size: TDrawerSize) => {
-  switch (size) {
-    case 10:
-      return 'small';
-    case 20:
-      return 'large';
-    case 30:
-      return 'xlarge';
-    default:
-      return 'small';
-  }
-};
+const HeaderWrapper = styled.div`
+  padding: ${designTokens.spacing40} 40px;
+  border-bottom: 1px solid
+    ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
+`;
 
 function Drawer(props: TDrawerProps) {
   const intl = useIntl();
@@ -96,22 +88,16 @@ function Drawer(props: TDrawerProps) {
       hidePathLabel
       hideTopBar
       onClose={props.onClose}
-      size={getModalPageSize(props.size)}
+      size={props.size}
       title={props.title}
       afterOpenStyles={props.afterOpenStyles}
       customViewLocatorCode={props.customViewLocatorCode}
       getParentSelector={props.getParentSelector}
       shouldDelayOnClose={props.shouldDelayOnClose}
       topBarColor={props.topBarColor}
-      zIndex={props.zIndex} // should this be allowed to be set since drawers won't be nested inside each other?
+      zIndex={props.zIndex}
     >
-      <div
-        css={css`
-          padding: ${designTokens.spacing40} 40px;
-          border-bottom: 1px solid
-            ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
-        `}
-      >
+      <HeaderWrapper>
         <Spacings.Stack>
           <Spacings.Inline justifyContent="space-between">
             <PageHeaderTitle
@@ -158,7 +144,7 @@ function Drawer(props: TDrawerProps) {
             )}
           </Spacings.Inline>
         </Spacings.Stack>
-      </div>
+      </HeaderWrapper>
 
       <ContentWrapper>{props.children}</ContentWrapper>
     </ModalPage>

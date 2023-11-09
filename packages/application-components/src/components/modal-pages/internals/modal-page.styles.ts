@@ -11,11 +11,11 @@ type StyleProps = {
 
 const getContainerSize = (size?: TModalPageSize) => {
   switch (size) {
-    case 'small':
+    case 10:
       return '600px !important';
-    case 'large':
+    case 20:
       return '900px !important';
-    case 'xlarge':
+    case 30:
       return '1200px !important';
     default:
       return '100%';
@@ -30,12 +30,7 @@ export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   width: ${getContainerSize(_props.size)};
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    270deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(238, 238, 238, 0) 100%
-  );
-  background-blend-mode: darken;
+  background-color: ${customProperties.colorSurface};
   box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
   outline: 0;
   transform: translate3d(30px, 0, 0);
