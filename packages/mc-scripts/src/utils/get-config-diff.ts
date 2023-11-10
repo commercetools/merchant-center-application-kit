@@ -500,13 +500,13 @@ export const getCustomViewConfigDiff = (
   const diff: string[] = [];
 
   // Default Label
-  const nameDiff = getStringDiff({
+  const defaultLabelDiff = getStringDiff({
     previousValue: oldConfig.defaultLabel,
     nextValue: newConfig.defaultLabel,
     label: 'defaultLabel',
   });
-  if (nameDiff) {
-    diff.push(nameDiff);
+  if (defaultLabelDiff) {
+    diff.push(defaultLabelDiff);
   }
 
   // Description

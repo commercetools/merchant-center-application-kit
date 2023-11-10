@@ -1,6 +1,11 @@
 import { graphql } from 'msw';
+import {
+  CustomView,
+  CustomViewPermission,
+  type TCustomViewGraphql,
+} from '@commercetools-test-data/custom-view';
 import { setupServer } from 'msw/node';
-import { TCustomViewType, TCustomViewSize } from '../generated/settings';
+import type { TCustomViewDraftDataInput } from '../generated/settings';
 import {
   createCustomApplication,
   updateCustomApplication,
@@ -225,6 +230,11 @@ describe('Custom Applications', () => {
 describe('Custom Views', () => {
   const customViewId = 'custom-view-id';
   const applicationIdentifier = '__local:@@custom-view-host@@';
+  const customView: TCustomViewGraphql = CustomView.random()
+    .id(customViewId)
+    .defaultLabel('Avengers')
+    .permissions([CustomViewPermission.presets.ViewOnlyPermissions()])
+    .buildGraphql();
   describe('fetch custom view data', () => {
     beforeEach(() => {
       mockServer.use(
@@ -233,31 +243,7 @@ describe('Custom Views', () => {
             ctx.data({
               organizationExtensionForCustomView: {
                 organizationId: 'organization-id',
-                customView: {
-                  id: customViewId,
-                  url: 'https://test.com',
-                  defaultLabel: 'Test name',
-                  description: 'Test description',
-                  type: 'CustomPanel',
-                  typeSettings: {
-                    size: 'SMALL',
-                  },
-                  locators: [
-                    'products.product_variant_details.images',
-                    'customers.customer_details.custom_fields',
-                  ],
-                  permissions: [
-                    {
-                      oAuthScopes: ['view_products', 'view_customers'],
-                      name: 'view',
-                    },
-                    {
-                      oAuthScopes: [],
-                      name: 'manage',
-                    },
-                  ],
-                  labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
-                },
+                customView,
               },
             })
           );
@@ -285,30 +271,7 @@ describe('Custom Views', () => {
         graphql.mutation('CreateCustomViewFromCli', (_req, res, ctx) => {
           return res(
             ctx.data({
-              createCustomView: {
-                id: customViewId,
-                url: 'https://test.com',
-                defaultLabel: 'New Test name',
-                description: 'Test description',
-                locators: [
-                  'products.product_variant_details.images',
-                  'customers.customer_details.custom_fields',
-                ],
-                type: 'CustomPanel',
-                typeSettings: {
-                  size: 'LARGE',
-                },
-                permissions: [
-                  {
-                    oAuthScopes: ['view_products', 'view_customers'],
-                    name: 'view',
-                  },
-                  {
-                    oAuthScopes: [],
-                    name: 'manage',
-                  },
-                ],
-              },
+              createCustomView: customView,
             })
           );
         })
@@ -318,30 +281,7 @@ describe('Custom Views', () => {
       const createdCustomViewData = await createCustomView({
         mcApiUrl,
         organizationId: 'organization-id',
-        data: {
-          url: 'https://test.com',
-          defaultLabel: 'New Test name',
-          description: 'Test description',
-          locators: [
-            'products.product_variant_details.images',
-            'customers.customer_details.custom_fields',
-          ],
-          type: TCustomViewType['CustomPanel'],
-          typeSettings: {
-            size: TCustomViewSize.Large,
-          },
-          permissions: [
-            {
-              oAuthScopes: ['view_products', 'view_customers'],
-              name: 'view',
-            },
-            {
-              oAuthScopes: [],
-              name: 'manage',
-            },
-          ],
-          labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
-        },
+        data: customView as TCustomViewDraftDataInput,
         applicationIdentifier,
       });
       expect(createdCustomViewData?.id).toEqual(customViewId);
@@ -367,30 +307,7 @@ describe('Custom Views', () => {
         mcApiUrl,
         organizationId: 'organization-id',
         customViewId,
-        data: {
-          url: 'https://test.com',
-          defaultLabel: 'New Test name',
-          description: 'Test description',
-          locators: [
-            'products.product_variant_details.images',
-            'customers.customer_details.custom_fields',
-          ],
-          type: TCustomViewType['CustomPanel'],
-          typeSettings: {
-            size: TCustomViewSize.Small,
-          },
-          permissions: [
-            {
-              oAuthScopes: ['view_products', 'view_customers'],
-              name: 'view',
-            },
-            {
-              oAuthScopes: [],
-              name: 'manage',
-            },
-          ],
-          labelAllLocales: [{ locale: 'en', value: 'custom-view' }],
-        },
+        data: customView as TCustomViewDraftDataInput,
         applicationIdentifier,
       });
       expect(updatedCustomAppsData?.id).toEqual(customViewId);
