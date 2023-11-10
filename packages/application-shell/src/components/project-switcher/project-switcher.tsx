@@ -1,7 +1,11 @@
 import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
-import type { OptionProps, ValueContainerProps } from 'react-select';
+import type {
+  OptionProps,
+  ValueContainerProps,
+  MenuListProps,
+} from 'react-select';
 import { components } from 'react-select';
 import {
   useMcQuery,
@@ -130,6 +134,19 @@ const mapProjectsToOptions = memoize((projects) =>
   }))
 );
 
+const CustomMenuList = (props: MenuListProps) => {
+  return (
+    <div
+      css={css`
+        width: max-content;
+        max-width: ${designTokens.constraint6};
+      `}
+    >
+      <components.MenuList {...props}>{props.children}</components.MenuList>
+    </div>
+  );
+};
+
 const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const ProjectSwitcher = (props: Props) => {
@@ -182,18 +199,7 @@ const ProjectSwitcher = (props: Props) => {
           ValueContainer: (valueContainerProps) => (
             <ProjectSwitcherValueContainer {...valueContainerProps} />
           ),
-          MenuList: (props) => (
-            <div
-              css={css`
-                width: max-content;
-                max-width: ${designTokens.constraint6};
-              `}
-            >
-              <components.MenuList {...props}>
-                {props.children}
-              </components.MenuList>
-            </div>
-          ),
+          MenuList: CustomMenuList,
         }}
         isClearable={false}
         backspaceRemovesValue={false}

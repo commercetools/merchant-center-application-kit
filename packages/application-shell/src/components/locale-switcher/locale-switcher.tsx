@@ -1,7 +1,11 @@
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
-import type { SingleValueProps, ValueContainerProps } from 'react-select';
+import type {
+  SingleValueProps,
+  ValueContainerProps,
+  MenuListProps,
+} from 'react-select';
 import { components } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
@@ -49,6 +53,19 @@ const PatchedValueContainer = (props: ValueContainerProps) => (
 );
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
+const CustomMenuList = (props: MenuListProps) => {
+  return (
+    <div
+      css={css`
+        width: max-content;
+        max-width: ${designTokens.constraint6};
+      `}
+    >
+      <components.MenuList {...props}>{props.children}</components.MenuList>
+    </div>
+  );
+};
+
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
   const handleSelection = useCallback(
@@ -78,18 +95,7 @@ const LocaleSwitcher = (props: Props) => {
             <SingleValue {...valueProps} />
           ),
           ValueContainer: PatchedValueContainer,
-          MenuList: (props) => (
-            <div
-              css={css`
-                width: max-content;
-                max-width: ${designTokens.constraint6};
-              `}
-            >
-              <components.MenuList {...props}>
-                {props.children}
-              </components.MenuList>
-            </div>
-          ),
+          MenuList: CustomMenuList,
         }}
         isClearable={false}
         backspaceRemovesValue={false}
