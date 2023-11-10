@@ -38,9 +38,7 @@ type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
-export const ProjectSwitcherValueContainer = ({
-  ...restProps
-}: ValueContainerProps) => {
+export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
   return (
     <div
       css={css`
@@ -196,9 +194,7 @@ const ProjectSwitcher = (props: Props) => {
         }}
         components={{
           Option: ProjectSwitcherOption,
-          ValueContainer: (valueContainerProps) => (
-            <ProjectSwitcherValueContainer {...valueContainerProps} />
-          ),
+          ValueContainer,
           MenuList: CustomMenuList,
         }}
         isClearable={false}

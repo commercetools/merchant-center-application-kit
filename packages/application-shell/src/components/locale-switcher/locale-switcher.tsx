@@ -91,9 +91,7 @@ const LocaleSwitcher = (props: Props) => {
           value: locale,
         }))}
         components={{
-          SingleValue: (valueProps: SingleValueProps) => (
-            <SingleValue {...valueProps} />
-          ),
+          SingleValue,
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
         }}
