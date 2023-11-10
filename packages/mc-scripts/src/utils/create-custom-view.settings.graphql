@@ -1,0 +1,8 @@
+mutation CreateCustomViewFromCli(
+  $organizationId: String!
+  $data: CustomViewDraftDataInput!
+) {
+  createCustomView(organizationId: $organizationId, data: $data) {
+    id
+  }
+}
