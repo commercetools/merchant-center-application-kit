@@ -17,6 +17,8 @@ const getContainerSize = (size?: TModalPageSize) => {
       return '900px !important';
     case 30:
       return '1200px !important';
+    case 'scale':
+      return '100%';
     default:
       return '100%';
   }
@@ -31,7 +33,7 @@ export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
-  box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
   transform: translate3d(30px, 0, 0);
   transition: transform ${TRANSITION_DURATION}ms ease;

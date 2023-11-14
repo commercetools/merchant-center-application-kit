@@ -62,7 +62,7 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 
-export type TModalPageSize = 10 | 20 | 30;
+export type TModalPageSize = 10 | 20 | 30 | 'scale';
 
 type Props = {
   /**
@@ -93,7 +93,11 @@ type Props = {
   size?: TModalPageSize;
   hideTopBar?: boolean;
 };
-const defaultProps: Pick<Props, 'getParentSelector' | 'shouldDelayOnClose'> = {
+const defaultProps: Pick<
+  Props,
+  'getParentSelector' | 'shouldDelayOnClose' | 'size'
+> = {
+  size: 'scale',
   getParentSelector: getDefaultParentSelector,
   shouldDelayOnClose: true,
 };

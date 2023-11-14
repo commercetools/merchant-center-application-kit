@@ -24,7 +24,7 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 
-type TDrawerSize = 10 | 20 | 30;
+type TDrawerSize = 10 | 20 | 30 | 'scale';
 
 type TDrawerProps = {
   size: TDrawerSize;

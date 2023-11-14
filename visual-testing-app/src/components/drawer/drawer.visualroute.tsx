@@ -8,7 +8,7 @@ function TestComponent({
   size,
   hideControls,
 }: {
-  size: 10 | 20 | 30;
+  size: 10 | 20 | 30 | 'scale';
   hideControls: boolean;
 }) {
   const history = useHistory();
@@ -28,17 +28,20 @@ function TestComponent({
 
 const Content = () => (
   <Switch>
-    <Route path={`${routePath}/drawer-xlarge`}>
-      <TestComponent size={30} hideControls={false} />
-    </Route>
-    <Route path={`${routePath}/drawer-large`}>
-      <TestComponent size={20} hideControls={false} />
+    <Route path={`${routePath}/drawer-small-without-controls`}>
+      <TestComponent size={10} hideControls />
     </Route>
     <Route path={`${routePath}/drawer-small`}>
       <TestComponent size={10} hideControls={false} />
     </Route>
-    <Route path={`${routePath}/drawer-small-without-controls`}>
-      <TestComponent size={10} hideControls />
+    <Route path={`${routePath}/drawer-large`}>
+      <TestComponent size={20} hideControls={false} />
+    </Route>
+    <Route path={`${routePath}/drawer-xlarge`}>
+      <TestComponent size={30} hideControls={false} />
+    </Route>
+    <Route path={`${routePath}/drawer-scale`}>
+      <TestComponent size="scale" hideControls={false} />
     </Route>
   </Switch>
 );
@@ -50,11 +53,7 @@ export const Component = () => (
       basePath={routePath}
       pages={[
         {
-          path: 'drawer-xlarge',
-          spec: <Content />,
-        },
-        {
-          path: 'drawer-large',
+          path: 'drawer-small-without-controls',
           spec: <Content />,
         },
         {
@@ -62,7 +61,15 @@ export const Component = () => (
           spec: <Content />,
         },
         {
-          path: 'drawer-small-without-controls',
+          path: 'drawer-large',
+          spec: <Content />,
+        },
+        {
+          path: 'drawer-xlarge',
+          spec: <Content />,
+        },
+        {
+          path: 'drawer-scale',
           spec: <Content />,
         },
       ]}
