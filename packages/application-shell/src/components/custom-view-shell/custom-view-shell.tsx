@@ -7,6 +7,7 @@ import {
   StrictMode,
   type ReactNode,
 } from 'react';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -44,6 +45,7 @@ type THostEventData = {
 };
 
 type TCustomViewShellProps = {
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   disableDevHost?: boolean;
   enableReactStrictMode?: boolean;
@@ -134,6 +136,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
     <ApplicationShellProvider
       environment={window.app}
       applicationMessages={props.applicationMessages}
+      apolloClient={props.apolloClient}
     >
       {({ isAuthenticated }) => {
         if (isAuthenticated) {
