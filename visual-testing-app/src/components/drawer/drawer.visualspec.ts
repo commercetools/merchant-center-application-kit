@@ -3,10 +3,11 @@ import { HOST } from '../../constants';
 
 describe.each`
   path
-  ${'drawer-xlarge'}
-  ${'drawer-large'}
-  ${'drawer-small'}
   ${'drawer-small-without-controls'}
+  ${'drawer-small'}
+  ${'drawer-large'}
+  ${'drawer-xlarge'}
+  ${'drawer-scale'}
 `('Drawer $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/drawer/${path}`);
