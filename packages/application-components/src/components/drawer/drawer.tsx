@@ -106,7 +106,6 @@ function Drawer(props: TDrawerProps) {
               subtitle={
                 props.subtitle && <Text.Detail>{props.subtitle}</Text.Detail>
               }
-              truncate
             />
             {props.onClose && (
               <SecondaryIconButton

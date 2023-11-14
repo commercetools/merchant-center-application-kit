@@ -4,6 +4,7 @@ import { HOST } from '../../constants';
 describe.each`
   path
   ${'drawer-small-without-controls'}
+  ${'drawer-small-with-long-title'}
   ${'drawer-small'}
   ${'drawer-large'}
   ${'drawer-xlarge'}
