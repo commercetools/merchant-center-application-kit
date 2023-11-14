@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-config': minor
 ---
 
-Introducing the new `resolveCustomViewResourceAccesses` helper which allows calculating the resource accesses for a Custom View.
+Add new helper functions `computeCustomViewPermissionsKeys` and `computeCustomViewResourceAccesses` to compute the permission names for Custom Views.
