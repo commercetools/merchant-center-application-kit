@@ -122,10 +122,19 @@ function entryPointUriPathToResourceAccesses<
   };
 }
 
-function resolveCustomViewResourceAccesses<PermissionGroupName extends string>(
+function computeCustomViewResourceAccesses<PermissionGroupName extends string>(
   permissionGroupNames?: PermissionGroupName[]
 ): TImplicitCustomViewResourceAccesses<PermissionGroupName> {
   return entryPointUriPathToResourceAccesses(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+    permissionGroupNames || []
+  );
+}
+
+function computeCustomViewPermissionsKeys<PermissionGroupName extends string>(
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
+  return entryPointUriPathToPermissionKeys(
     CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
     permissionGroupNames || []
   );
@@ -162,5 +171,6 @@ export {
   entryPointUriPathToPermissionKeys,
   formatEntryPointUriPathToResourceAccessKey,
   formatPermissionGroupNameToResourceAccessKey,
-  resolveCustomViewResourceAccesses,
+  computeCustomViewResourceAccesses,
+  computeCustomViewPermissionsKeys,
 };
