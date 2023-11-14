@@ -12,8 +12,6 @@
   pages:
     - title: OAuth Scopes and User Permissions
       path: /concepts/oauth-scopes-and-user-permissions
-    - title: Merchant Center Proxy Router
-      path: /concepts/merchant-center-proxy-router
     - title: Merchant Center API
       path: /concepts/merchant-center-api
     - title: Integrate with your own API
