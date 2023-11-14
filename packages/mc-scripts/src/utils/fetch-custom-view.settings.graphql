@@ -1,0 +1,23 @@
+query FetchCustomViewFromCli($customViewId: String!) {
+  organizationExtensionForCustomView(customViewId: $customViewId) {
+    organizationId
+    customView {
+      id
+      defaultLabel
+      labelAllLocales {
+        locale
+        value
+      }
+      url
+      type
+      typeSettings {
+        size
+      }
+      locators
+      permissions {
+        name
+        oAuthScopes
+      }
+    }
+  }
+}

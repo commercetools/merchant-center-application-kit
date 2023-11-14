@@ -235,11 +235,17 @@ A `projectKey` of a commercetools Project you have access to. To be used as the 
 }
 ```
 
+## `env.development.teamId`
+
 <Info>
 
-Local development and login are only allowed for users being part of the `Administrators` Team of your Organization.
+Local development is allowed for users belonging to the `Administrators` Team of your Organization with no additional configuration required.
 
 </Info>
+
+If you need to apply more granular permissions for local development of a Custom Application, specify the `teamId` of the user's team.
+
+For more information, see [Granular permissions for local development](/help-needed#granular-permissions-for-local-development).
 
 ## `env.production.applicationId`
 
