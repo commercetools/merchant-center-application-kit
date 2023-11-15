@@ -22,16 +22,10 @@ We recommend creating a new Custom View using [`create-mc-app`](/api-reference/c
 npx @commercetools-frontend/create-mc-app@latest \
   my-new-custom-view-project \
   --application-type custom-view \
-  --template starter-typescript
+  --template starter
 ```
 
 To start with a [TypeScript](https://www.typescriptlang.org/) project, use the `--template=starter-typescript` flag. Read more about TypeScript in the [Adding TypeScript](/development/adding-typescript) page.
-
-<Info>
-
-Local development and login are only allowed for users being part of the `Administrators` Team of your Organization. Therefore, choose a Project that is part of an Organization where you are an administrator of.
-
-</Info>
 
 After the installation is complete, follow the instructions to start the development server:
 
@@ -63,6 +57,17 @@ One of the important parts of a Custom View is the configuration file: `custom-v
 We recommend making yourself familiar the [Application Config](/api-reference/application-config).
 
 By default the starter template is configured to use the [HTTP APIs in the GCP-EU Region](https://docs.commercetools.com/api/general-concepts#regions). If you plan to run the Custom View in another environment, change the `cloudIdentifier` accordingly (see [list of cloud identifiers](/concepts/merchant-center-api#cloud-identifiers)).
+
+## User access for local development
+
+To start developing your Custom Application locally, choose a Project belonging to an Organization in which you are a member of the `Administrators` Team.
+
+<Info>
+
+As of version `22.5.0`, you have the option of assigning granular permissions to teams to enable local development. For more information, see [Granular permissions for local development](/help-needed#granular-permissions-for-local-development).
+
+</Info>
+
 
 # Related
 

@@ -32,6 +32,38 @@ It is recommended to always keep your browser up-to-date for **security** reason
 
 </Warning>
 
+# Granular permissions for local development
+
+<Info>
+
+This feature is available from version `22.5.0` onwards.
+
+This method requires additional configuration and setup and is only recommended for development teams with prior experience in Custom Views development and installation.
+
+</Info>
+
+By default, developing a Custom View requires you to be a member of the `Administrators` Team. However, for security reasons, your Organization might not be willing to grant administrator access to developers. In this case, an Organization can grant access using a regular team.
+
+To enable this option, you must complete the following prerequisites in the Merchant Center (which can be done only with administrator rights):
+
+1. [Configure the Custom View in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-views#configuring-custom-views)
+
+<Info>
+
+For local development the Custom View does not have to be deployed, and `Custom View URL` is not relevant. Therefore, any acceptable value can be provided in the registration form.
+
+</Info>
+
+2. [Assign the Custom View ID](https://docs.commercetools.com/merchant-center/managing-custom-views#assigning-the-custom-view-id)
+3. [Install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-views#installing-a-custom-view)
+4. [Create a team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilize an existing one)
+5. Obtain the `teamId` from the Merchant Center URL
+6. [Invite users to the team](https://docs.commercetools.com/merchant-center/teams#invite-users-to-a-team)
+7. [Assign relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
+
+After completing these steps, you will have an `customViewId` and a `teamId`. You must provide these values for [`env.production.customViewId`](/api-reference/custom-view-config#envproductioncustomviewid) and [`env.development.teamId`](/api-reference/application-config#envdevelopmentteamid), respectively, in the Custom View configuration file.
+
+This process allows any member of the configured team to log in and perform local development for the Custom View.
 
 # Limitations
 
@@ -53,9 +85,3 @@ To change the OAuth Scopes:
 When a Custom View state is changed from **Ready** to **Draft**, it is uninstalled from all Organizations and Projects. Thus, when installing the Custom View again, [Team permissions must be assigned](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)  again.
 
 </Info>
-
-## Project access is not automatically updated for newly created Projects
-
-When a new Project is created in the Organization, the Project cannot be accessed despite the **Project access** setting being configured to **Install for all projects of this organization** for an installed Custom View.
-
-To grant access, [the Project access must be updated manually](https://docs.commercetools.com/merchant-center/managing-custom-applications#updating-projects-access) for the installed Custom View.
