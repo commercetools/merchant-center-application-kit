@@ -63,6 +63,7 @@ const NotificationsTriggers = () => {
 
 const NotificationsPlayground = (props) => {
   const dialogState = useModalState();
+  const dialogStateInDrawer = useModalState();
   const drawerState = useModalState();
   const route = useRouteMatch();
   const history = useHistory();
@@ -111,8 +112,18 @@ const NotificationsPlayground = (props) => {
           title={`Drawer ${props.level}`}
           onClose={drawerState.closeModal}
         >
-          Drawer content here
-          <NotificationsPlayground level={props.level + 1} />
+          <p>Drawer content here</p>
+          <FlatButton
+            label={`Open dialog ${props.level}`}
+            onClick={dialogStateInDrawer.openModal}
+          />
+          <InfoDialog
+            isOpen={dialogStateInDrawer.isModalOpen}
+            title={`Dialog ${props.level}`}
+            onClose={dialogStateInDrawer.closeModal}
+          >
+            Hello
+          </InfoDialog>
         </Drawer>
       </Spacings.Stack>
     </Spacings.Inset>
