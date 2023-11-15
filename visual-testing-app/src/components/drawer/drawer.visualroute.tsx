@@ -1,5 +1,8 @@
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { Drawer } from '@commercetools-frontend/application-components';
+import {
+  Drawer,
+  InfoModalPage,
+} from '@commercetools-frontend/application-components';
 import { Suite, NestedPages } from '../../test-utils';
 
 export const routePath = '/drawer';
@@ -16,7 +19,7 @@ function TestComponent(props: ContainerProps) {
       subtitle="Drawer subtitle"
       {...props}
     >
-      <p>This is the drawer content ({props.size || 10})</p>
+      {props.children}
     </Drawer>
   );
 }
@@ -24,25 +27,48 @@ function TestComponent(props: ContainerProps) {
 const Content = () => (
   <Switch>
     <Route path={`${routePath}/drawer-small-without-controls`}>
-      <TestComponent hideControls />
+      <TestComponent hideControls>
+        <p>This is the drawer content</p>
+      </TestComponent>
     </Route>
     <Route path={`${routePath}/drawer-small-with-long-title`}>
       <TestComponent
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-      />
+      >
+        <p>This is the drawer content</p>
+      </TestComponent>
     </Route>
     <Route path={`${routePath}/drawer-small`}>
-      <TestComponent />
+      <TestComponent>
+        <p>This is the drawer content</p>
+      </TestComponent>
     </Route>
     <Route path={`${routePath}/drawer-large`}>
-      <TestComponent size={20} />
+      <TestComponent size={20}>
+        <p>This is the drawer content</p>
+      </TestComponent>
     </Route>
     <Route path={`${routePath}/drawer-xlarge`}>
-      <TestComponent size={30} />
+      <TestComponent size={30}>
+        <p>This is the drawer content</p>
+      </TestComponent>
+    </Route>
+    <Route path={`${routePath}/drawer-large-with-info-modal`}>
+      <TestComponent size={30}>
+        <InfoModalPage
+          isOpen
+          title="Modal page within drawer"
+          onClose={() => {}}
+        >
+          This is the content from InfoModalPage
+        </InfoModalPage>
+      </TestComponent>
     </Route>
     <Route path={`${routePath}/drawer-scale`}>
-      <TestComponent size="scale" />
+      <TestComponent size="scale">
+        <p>This is the drawer content</p>
+      </TestComponent>
     </Route>
   </Switch>
 );
@@ -67,6 +93,10 @@ export const Component = () => (
         },
         {
           path: 'drawer-large',
+          spec: <Content />,
+        },
+        {
+          path: 'drawer-large-with-info-modal',
           spec: <Content />,
         },
         {

@@ -7,6 +7,7 @@ describe.each`
   ${'drawer-small-with-long-title'}
   ${'drawer-small'}
   ${'drawer-large'}
+  ${'drawer-large-with-info-modal'}
   ${'drawer-xlarge'}
   ${'drawer-scale'}
 `('Drawer $path', ({ path }) => {

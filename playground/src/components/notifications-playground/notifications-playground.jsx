@@ -112,6 +112,7 @@ const NotificationsPlayground = (props) => {
           onClose={drawerState.closeModal}
         >
           Drawer content here
+          <NotificationsPlayground level={props.level + 1} />
         </Drawer>
       </Spacings.Stack>
     </Spacings.Inset>
