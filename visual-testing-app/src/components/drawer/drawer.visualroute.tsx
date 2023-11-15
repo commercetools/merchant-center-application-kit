@@ -59,6 +59,7 @@ const Content = () => {
       </Route>
       <Route path={`${routePath}/drawer-large-with-info-dialog`}>
         <TestComponent size={30}>
+          <p>This is the drawer content</p>
           <InfoDialog
             isOpen={dialogState.isModalOpen}
             onClose={dialogState.closeModal}
