@@ -69,11 +69,6 @@ const Content = () => {
           </InfoDialog>
         </TestComponent>
       </Route>
-      <Route path={`${routePath}/drawer-scale`}>
-        <TestComponent size="scale">
-          <p>This is the drawer content</p>
-        </TestComponent>
-      </Route>
     </Switch>
   );
 };
@@ -106,10 +101,6 @@ export const Component = () => (
         },
         {
           path: 'drawer-xlarge',
-          spec: <Content />,
-        },
-        {
-          path: 'drawer-scale',
           spec: <Content />,
         },
       ]}

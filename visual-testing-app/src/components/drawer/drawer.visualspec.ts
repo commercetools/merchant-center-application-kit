@@ -9,7 +9,6 @@ describe.each`
   ${'drawer-large'}
   ${'drawer-large-with-info-dialog'}
   ${'drawer-xlarge'}
-  ${'drawer-scale'}
 `('Drawer $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/drawer/${path}`);
