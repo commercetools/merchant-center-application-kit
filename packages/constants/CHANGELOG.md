@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.12.0
+
+### Minor Changes
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
 ## 22.11.0
 
 ### Minor Changes
