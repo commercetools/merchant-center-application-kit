@@ -245,7 +245,7 @@ jobs:
 
     steps:
       - id: test-template
-        uses: .github/actions/test-template-action@v1
+        uses: ./.github/actions/test-template-action
         with:
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
