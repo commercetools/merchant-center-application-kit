@@ -244,9 +244,13 @@ jobs:
       TERM: xterm
 
     steps:
-      - id: test-template
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test Custom View typescript starter template
         uses: ./.github/actions/test-template-action
         with:
+          template-name: template-custom-view-starter-javascript
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
           mc-api-url: ${{ secrets.MC_API_URL }}

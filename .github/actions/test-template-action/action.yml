@@ -2,6 +2,9 @@ name: 'Test template'
 description: 'Tests MC Extension template'
 
 inputs:
+  template-name:
+    description: 'Name of the template to test'
+    required: true
   host-gcp-staging:
     description: 'Host of the GCP staging environment'
     required: true
