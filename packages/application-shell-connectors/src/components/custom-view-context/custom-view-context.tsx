@@ -1,10 +1,16 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import type { CustomViewData } from '@commercetools-frontend/constants';
+import {
+  type TApplicationContext,
+  useApplicationContext,
+} from '../application-context';
 
 export type TCustomViewContext = {
   hostUrl: string;
-  config: CustomViewData;
+  customViewConfig: CustomViewData;
 };
+
+export type TMergedContext = TApplicationContext<{}> & TCustomViewContext;
 
 export type TCustomViewContextProviderProps = {
   hostUrl: string;
@@ -18,7 +24,7 @@ const CustomViewContextProvider = (props: TCustomViewContextProviderProps) => {
   const contextValue = useMemo<TCustomViewContext>(
     () => ({
       hostUrl: props.hostUrl,
-      config: props.customViewConfig,
+      customViewConfig: props.customViewConfig,
     }),
     [props.hostUrl, props.customViewConfig]
   );
@@ -29,23 +35,24 @@ const CustomViewContextProvider = (props: TCustomViewContextProviderProps) => {
 
 // Use function overloading to declare two possible signatures with two
 // distict return types, based on the selector function argument.
-function useCustomViewContextHook(): TCustomViewContext;
+function useCustomViewContextHook(): TMergedContext;
 function useCustomViewContextHook<SelectedContext>(
-  selector: (context: TCustomViewContext) => SelectedContext
+  selector: (context: TMergedContext) => SelectedContext
 ): SelectedContext;
 
 // Then implement the function. Typescript will pick the appropriate signature
 // based on the function arguments.
 function useCustomViewContextHook<SelectedContext>(
-  selector?: (context: TCustomViewContext) => SelectedContext
+  selector?: (context: TMergedContext) => SelectedContext
 ) {
-  const context = useContext(Context);
   // Because of the way the CustomViewShell configures the Context.Provider,
   // we ensure that, when we read from the context, we always get actual
   // context object and not the initial value.
   // Therefore, we can safely cast the value to be out `TCustomViewContext` type.
-  const customViewContext = context as TCustomViewContext;
-  return selector ? selector(customViewContext) : customViewContext;
+  const customViewContext = useContext(Context) as TCustomViewContext;
+  const applicationContext = useApplicationContext();
+  const mergedContext = { ...applicationContext, ...customViewContext };
+  return selector ? selector(mergedContext) : mergedContext;
 }
 
 // This is a workaround to trick babel/rollup to correctly export the function.

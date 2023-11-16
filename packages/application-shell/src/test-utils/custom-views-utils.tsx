@@ -1,7 +1,14 @@
 import type { ReactNode } from 'react';
+import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import type { RenderResult } from '@testing-library/react';
-import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import type { CustomViewData } from '@commercetools-frontend/constants';
+import {
+  CustomViewContextProvider,
+  type TProviderProps,
+} from '@commercetools-frontend/application-shell-connectors';
+import {
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  type CustomViewData,
+} from '@commercetools-frontend/constants';
 import { TCustomViewType } from '../types/generated/settings';
 import { renderApp } from './test-utils';
 
@@ -23,8 +30,12 @@ const testCustomViewData: CustomViewData = {
 type TRenderCustomViewParams = {
   locale: string;
   projectKey?: string;
+  projectAllAppliedPermissions?: { name: string; value: boolean }[];
   customViewHostUrl?: string;
   customViewConfig?: Partial<CustomViewData>;
+  apolloClient?: ApolloClient<NormalizedCacheObject>;
+  environment?: Partial<TProviderProps<{}>['environment']>;
+  user?: Partial<TProviderProps<{}>['user']>;
   children: ReactNode;
 };
 
@@ -42,10 +53,17 @@ export const renderCustomView = (
       {props.children}
     </CustomViewContextProvider>,
     {
+      apolloClient: props.apolloClient,
       locale: props.locale,
       project: {
         key: props.projectKey,
+        allAppliedPermissions: props.projectAllAppliedPermissions || [],
       },
+      environment: {
+        ...(props.environment || {}),
+        entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+      },
+      user: props.user,
     }
   );
 };
