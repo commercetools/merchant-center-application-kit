@@ -18,7 +18,7 @@ import {
   getAfterOpenContainerAnimation,
   getBeforeCloseOverlayAnimation,
   getBeforeCloseContainerAnimation,
-  getTransitionDuration,
+  stylesBySize,
 } from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -90,7 +90,7 @@ type Props = {
   currentPathLabel?: string;
   previousPathLabel?: Label;
   hidePathLabel?: boolean;
-  size?: TModalPageSize;
+  size: TModalPageSize;
   hideTopBar?: boolean;
 };
 const defaultProps: Pick<
@@ -114,7 +114,8 @@ const ModalPage = (props: Props) => {
     };
   }, [props.isOpen]);
   const { onClose } = props;
-  const TRANSITION_DURATION = getTransitionDuration(props.size);
+
+  const TRANSITION_DURATION = stylesBySize[props.size].transitionTime;
 
   const handleClose = useCallback(
     (event) => {
@@ -154,7 +155,7 @@ const ModalPage = (props: Props) => {
                 : makeClassName(
                     props.afterOpenStyles ?? getAfterOpenContainerAnimation()
                   ),
-            beforeClose: makeClassName(getBeforeCloseContainerAnimation()),
+            beforeClose: makeClassName(getBeforeCloseContainerAnimation(props)),
           }}
           contentLabel={props.title}
           parentSelector={props.getParentSelector}
