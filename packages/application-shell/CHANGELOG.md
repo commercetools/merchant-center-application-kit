@@ -1,5 +1,40 @@
 # @commercetools-frontend/application-shell
 
+## 22.12.0
+
+### Minor Changes
+
+- [#3287](https://github.com/commercetools/merchant-center-application-kit/pull/3287) [`e987dbfbc`](https://github.com/commercetools/merchant-center-application-kit/commit/e987dbfbc6473b631e86f57e843e6d7267d8cd04) Thanks [@tdeekens](https://github.com/tdeekens)! - The `ApplicationShell` and `CustomViewShell` not support an optional `enableReactStrictMode` prop to render their `children` in [Strict Mode](https://react.dev/reference/react/StrictMode).
+
+- [#3292](https://github.com/commercetools/merchant-center-application-kit/pull/3292) [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Extend the `renderCustomView` test utility to allow more parameters to control how Custom Views are rendered in the testing context.
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+### Patch Changes
+
+- [#3296](https://github.com/commercetools/merchant-center-application-kit/pull/3296) [`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages
+
+- [#3288](https://github.com/commercetools/merchant-center-application-kit/pull/3288) [`41b15c7cb`](https://github.com/commercetools/merchant-center-application-kit/commit/41b15c7cb6773f92a83a1a16f5d8462fccd09da2) Thanks [@chloe0592](https://github.com/chloe0592)! - Reposition of the App bar elements
+
+- [#3293](https://github.com/commercetools/merchant-center-application-kit/pull/3293) [`828189d5d`](https://github.com/commercetools/merchant-center-application-kit/commit/828189d5d2cda9e7d628d2db3c9e33cd4ae57110) Thanks [@chloe0592](https://github.com/chloe0592)! - Removing the counters from locale and project switcher in the app bar.
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a), [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`41b15c7cb`](https://github.com/commercetools/merchant-center-application-kit/commit/41b15c7cb6773f92a83a1a16f5d8462fccd09da2), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2), [`b5dde0308`](https://github.com/commercetools/merchant-center-application-kit/commit/b5dde030825750d21d80fbdbfceb995de2f07fb2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/application-components@22.12.0
+  - @commercetools-frontend/application-shell-connectors@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/i18n@22.12.0
+  - @commercetools-frontend/permissions@22.12.0
+  - @commercetools-frontend/actions-global@22.12.0
+  - @commercetools-frontend/react-notifications@22.12.0
+  - @commercetools-frontend/sdk@22.12.0
+  - @commercetools-frontend/sentry@22.12.0
+  - @commercetools-frontend/l10n@22.12.0
+  - @commercetools-frontend/assets@22.12.0
+  - @commercetools-frontend/browser-history@22.12.0
+  - @commercetools-frontend/notifications@22.12.0
+  - @commercetools-frontend/url-utils@22.12.0
+
 ## 22.11.0
 
 ### Minor Changes

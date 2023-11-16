@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.12.0
+
+### Minor Changes
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+### Patch Changes
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a), [`41b15c7cb`](https://github.com/commercetools/merchant-center-application-kit/commit/41b15c7cb6773f92a83a1a16f5d8462fccd09da2), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/application-components@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/mc-dev-authentication@22.12.0
+  - @commercetools-frontend/mc-html-template@22.12.0
+  - @commercetools-frontend/assets@22.12.0
+  - @commercetools-frontend/babel-preset-mc-app@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes
