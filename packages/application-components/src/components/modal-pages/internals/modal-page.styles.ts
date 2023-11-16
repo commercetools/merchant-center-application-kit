@@ -3,6 +3,7 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import type { TModalPageSize } from './modal-page';
 
 export const TRANSITION_DURATION = 200;
+export const LONGER_TRANSITION_DURATION = 300;
 
 type StyleProps = {
   zIndex?: number;
@@ -17,12 +18,26 @@ const getContainerSize = (size?: TModalPageSize) => {
       return '900px !important';
     case 30:
       return '1200px !important';
-    case 'scale':
-      return '100%';
     default:
       return '100%';
   }
 };
+
+const getTransformationSize = (size?: TModalPageSize) => {
+  switch (size) {
+    case 10:
+      return '600px';
+    case 20:
+      return '900px';
+    case 30:
+      return '1200px';
+    default:
+      return '30px';
+  }
+};
+
+export const getTransitionDuration = (size?: TModalPageSize) =>
+  size === 'scale' ? TRANSITION_DURATION : LONGER_TRANSITION_DURATION;
 
 export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   position: absolute;
@@ -35,8 +50,8 @@ export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   background-color: ${customProperties.colorSurface};
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
-  transform: translate3d(30px, 0, 0);
-  transition: transform ${TRANSITION_DURATION}ms ease;
+  transform: translate3d(${getTransformationSize(_props.size)}, 0, 0);
+  transition: transform ${getTransitionDuration(_props.size)}ms ease;
 `;
 
 export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`

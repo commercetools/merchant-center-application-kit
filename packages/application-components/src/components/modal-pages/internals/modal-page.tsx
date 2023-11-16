@@ -12,13 +12,13 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import ModalPageTopBar from './modal-page-top-bar';
 import {
-  TRANSITION_DURATION,
   getOverlayStyles,
   getContainerStyles,
   getAfterOpenOverlayAnimation,
   getAfterOpenContainerAnimation,
   getBeforeCloseOverlayAnimation,
   getBeforeCloseContainerAnimation,
+  getTransitionDuration,
 } from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -114,6 +114,8 @@ const ModalPage = (props: Props) => {
     };
   }, [props.isOpen]);
   const { onClose } = props;
+  const TRANSITION_DURATION = getTransitionDuration(props.size);
+
   const handleClose = useCallback(
     (event) => {
       if (props.shouldDelayOnClose) {
@@ -128,7 +130,7 @@ const ModalPage = (props: Props) => {
       }
       onClose && onClose(event);
     },
-    [onClose, props.shouldDelayOnClose]
+    [onClose, props.shouldDelayOnClose, TRANSITION_DURATION]
   );
   return (
     <ClassNames>
