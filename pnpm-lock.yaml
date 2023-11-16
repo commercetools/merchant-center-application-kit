@@ -1223,8 +1223,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
-        specifier: 13.1.5
-        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@react-hook/latest':
         specifier: 1.0.3
         version: 1.0.3(react@17.0.2)
@@ -1474,20 +1474,20 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/combine-adapters':
-        specifier: 13.1.5
-        version: 13.1.5(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(typescript@5.2.2)
       '@flopflip/http-adapter':
-        specifier: 13.1.5
-        version: 13.1.5(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(typescript@5.2.2)
       '@flopflip/launchdarkly-adapter':
-        specifier: 13.1.5
-        version: 13.1.5(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(typescript@5.2.2)
       '@flopflip/react-broadcast':
-        specifier: 13.1.5
-        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@flopflip/types':
-        specifier: 13.1.5
-        version: 13.1.5(typescript@5.2.2)
+        specifier: 13.1.6
+        version: 13.1.6(typescript@5.2.2)
       '@reduxjs/toolkit':
         specifier: 1.9.5
         version: 1.9.5(react-redux@7.2.9)(react@17.0.2)
@@ -2959,8 +2959,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
-        specifier: 13.1.5
-        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+        specifier: 13.1.7
+        version: 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       apollo-link-rest:
         specifier: ^0.9.0
         version: 0.9.0(@apollo/client@3.7.14)(graphql@16.8.1)(qs@6.11.2)
@@ -3113,8 +3113,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
-        specifier: 13.1.5
-        version: 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+        specifier: 13.1.7
+        version: 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@rollup/plugin-graphql':
         specifier: 2.0.3
         version: 2.0.3(graphql@16.8.1)(rollup@2.79.1)
@@ -3926,6 +3926,19 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.22.17
+      '@babel/helper-environment-visitor': 7.22.5
+      '@babel/helper-module-imports': 7.22.15
+      '@babel/helper-simple-access': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      '@babel/helper-validator-identifier': 7.22.15
+
+  /@babel/helper-module-transforms@7.22.17(@babel/core@7.23.0):
+    resolution: {integrity: sha512-XouDDhQESrLHTpnBtCKExJdyY4gJCdrvH2Pyv8r8kovX2U8G0dRUOT45T9XlbLtuu9CLXP15eusnkprhoPV5iQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.23.0
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-simple-access': 7.22.5
@@ -5230,7 +5243,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.22.17(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-modules-commonjs@7.22.15(@babel/core@7.22.17):
@@ -5251,7 +5264,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.22.17(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-simple-access': 7.22.5
 
@@ -5275,7 +5288,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-hoist-variables': 7.22.5
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.22.17(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-identifier': 7.22.15
 
@@ -5296,7 +5309,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.22.17(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-named-capturing-groups-regex@7.22.5(@babel/core@7.22.17):
@@ -5653,7 +5666,7 @@ packages:
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.0)
-      '@babel/types': 7.23.0
+      '@babel/types': 7.22.17
 
   /@babel/plugin-transform-react-pure-annotations@7.22.5(@babel/core@7.22.17):
     resolution: {integrity: sha512-gP4k85wx09q+brArVinTXhWiyzLl9UpmGva0+mWyKxk6JZequ05x3eUcIUE+FyttPKJFRRVtAvQaJ6YF9h1ZpA==}
@@ -6112,7 +6125,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-unicode-sets-regex': 7.22.5(@babel/core@7.23.0)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.23.0)
-      '@babel/types': 7.23.0
+      '@babel/types': 7.22.17
       babel-plugin-polyfill-corejs2: 0.4.5(@babel/core@7.23.0)
       babel-plugin-polyfill-corejs3: 0.8.3(@babel/core@7.23.0)
       babel-plugin-polyfill-regenerator: 0.5.2(@babel/core@7.23.0)
@@ -6150,7 +6163,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/types': 7.23.0
+      '@babel/types': 7.22.17
       esutils: 2.0.3
 
   /@babel/preset-react@7.22.15(@babel/core@7.22.17):
@@ -7189,7 +7202,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.7.3(@types/react@17.0.56)(react@18.2.0)
@@ -7615,7 +7628,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@17.0.2)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -7661,7 +7674,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 16.7.3(@types/react@17.0.56)(react@18.2.0)
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
@@ -7858,7 +7871,7 @@ packages:
       react-intl: 6.x
       react-router-dom: 5.x
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/icons': 16.7.3(@types/react@17.0.56)(react@18.2.0)
@@ -9529,7 +9542,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.23.0)
 
@@ -9963,38 +9976,38 @@ packages:
       '@floating-ui/core': 1.2.6
     dev: false
 
-  /@flopflip/adapter-utilities@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-O2a1Z52LYR+oGrqHa0SMNaO78KcgZs+NfRfW1PnfWlPTtib/dhRglhnnywOW8iZ4xStml6Ohdh8EcD1t7Hs0Dg==}
+  /@flopflip/adapter-utilities@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-2NRfU6myisfv7J9yJ4nkvaBuMmwisU8vgeIcucR22aXRn+NrZS7zfSGa2QwYdaI8hbTEqff31Bx0mxY+wfXAOg==}
     peerDependencies:
       typescript: 4.x || 5.x
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
       globalthis: 1.0.3
       lodash: 4.17.21
       typescript: 5.2.2
     dev: false
 
-  /@flopflip/combine-adapters@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-pzIwZuYyKmYc5AtBOzfa0rE+eLtfGzVv3Ls192KYXxC/+K4hyFV9eY8aknpqoo+5R27SzKIzxrhWkZdfhSWxyQ==}
+  /@flopflip/combine-adapters@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-+rR8iiEQ+CcqEIxem/o9FD6ygTzaAHQAAANHBv2gSxuVHyu8ljQdLxQFYapcvtBGvH+uv3atKkvRiyZNZv/HsQ==}
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/adapter-utilities': 13.1.5(typescript@5.2.2)
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/adapter-utilities': 13.1.7(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
       mitt: 3.0.1
       tiny-warning: 1.0.3
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/http-adapter@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-W6bSe1pgCHhAHQ1QRhobQ3vji8lNGI73hhxWprXAHuNzM1LSS4jJ8QKxvKDzPradIuaWhe0XtHLkfEioQQSRZw==}
+  /@flopflip/http-adapter@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-qAJRGy4pNH9tt7SybHDlUZOwer1Nsp9PGsbSGySzAQoa+6k/1q0tm2dPGGSB7mIcQ+unQOIvH7nw0SBPG0+aBw==}
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/adapter-utilities': 13.1.5(typescript@5.2.2)
-      '@flopflip/localstorage-cache': 13.1.5(typescript@5.2.2)
-      '@flopflip/sessionstorage-cache': 13.1.5(typescript@5.2.2)
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/adapter-utilities': 13.1.7(typescript@5.2.2)
+      '@flopflip/localstorage-cache': 13.1.7(typescript@5.2.2)
+      '@flopflip/sessionstorage-cache': 13.1.7(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
       lodash: 4.17.21
       mitt: 3.0.1
       tiny-warning: 1.0.3
@@ -10002,12 +10015,12 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/launchdarkly-adapter@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-wf/WCsX230ju68svvtskOPL021RV1CehxmnnX7mcN7nyOfR3IP/TQUpxMcOiKTea//2cEwkxCwLPF07SMCFumA==}
+  /@flopflip/launchdarkly-adapter@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-FgPxZU9WAmP486tkV0I3SURqeEHr7uG+VlD41Zmk3IhoUOkWWi1ha285VgF/jglWpzc30mhkPLDzrplDKICtAg==}
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/adapter-utilities': 13.1.5(typescript@5.2.2)
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/adapter-utilities': 13.1.7(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
       debounce-fn: 4.0.0
       launchdarkly-js-client-sdk: 3.1.4
       lodash: 4.17.21
@@ -10018,23 +10031,23 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/localstorage-cache@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-RvfmDsODqhzDAzs7zA8P5l07QxC9EwN/vzxzZARuYcyZ9hM9VU8G2Llf2KKZ1Zoiet4k1EEalsGwKWLJ+zGaCQ==}
+  /@flopflip/localstorage-cache@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-XvvBBLDwngqYWKmz1GfzxUqjdtkWMYmMSZ+c/BWovsVQWIbimrx6tHjzB0pYKtdTdxBt0hjals9a+BgKIU9p3g==}
     dependencies:
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/react-broadcast@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
-    resolution: {integrity: sha512-wKZOxodr0A7cX0k8uyuyfwrliYcXlsh43xgkUGoll1o2Gp6Ry0UAHS5rlDI/vhABu7tZrfMW0uZJyJ+zeFqfFg==}
+  /@flopflip/react-broadcast@13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-l+eEkTxvdJUOnASvnGSBIOIVGrwuWc5JDbZyS+mA3jVSPbSGjO/Ap4rK9y+2xJ3/C52dc4QJaUKLn+h57Axg9g==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/react': 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@flopflip/types': 13.1.5(typescript@5.0.4)
+      '@flopflip/react': 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@flopflip/types': 13.1.7(typescript@5.0.4)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       use-sync-external-store: 1.2.0(react@17.0.2)
@@ -10042,15 +10055,15 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/react-broadcast@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-wKZOxodr0A7cX0k8uyuyfwrliYcXlsh43xgkUGoll1o2Gp6Ry0UAHS5rlDI/vhABu7tZrfMW0uZJyJ+zeFqfFg==}
+  /@flopflip/react-broadcast@13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-l+eEkTxvdJUOnASvnGSBIOIVGrwuWc5JDbZyS+mA3jVSPbSGjO/Ap4rK9y+2xJ3/C52dc4QJaUKLn+h57Axg9g==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/react': 13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/react': 13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       use-sync-external-store: 1.2.0(react@17.0.2)
@@ -10058,15 +10071,15 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/react@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
-    resolution: {integrity: sha512-JcPeBADsz8M4rk/1na9hahsLdd0ccyiQ5UEdiQfZSfMgISDx1HF6J4SDmw+Gfsa+FlWwvs4bcPNqf9z2juCdnQ==}
+  /@flopflip/react@13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-ak6TZ45qs1ACcpeTzE91W+0RVThXncSVKoX9w+cfvprAki0G2oIeaUhdpat1RNgCReyXWTkAFX7rw0TJ/5mYUA==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/types': 13.1.5(typescript@5.0.4)
-      '@types/react-is': 17.0.5
+      '@flopflip/types': 13.1.7(typescript@5.0.4)
+      '@types/react-is': 17.0.7
       lodash: 4.17.21
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -10077,15 +10090,15 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/react@13.1.5(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-JcPeBADsz8M4rk/1na9hahsLdd0ccyiQ5UEdiQfZSfMgISDx1HF6J4SDmw+Gfsa+FlWwvs4bcPNqf9z2juCdnQ==}
+  /@flopflip/react@13.1.7(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-ak6TZ45qs1ACcpeTzE91W+0RVThXncSVKoX9w+cfvprAki0G2oIeaUhdpat1RNgCReyXWTkAFX7rw0TJ/5mYUA==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0.0
       react-dom: ^16.8 || ^17.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.2
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
-      '@types/react-is': 17.0.5
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
+      '@types/react-is': 17.0.7
       lodash: 4.17.21
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -10096,16 +10109,25 @@ packages:
       - typescript
     dev: false
 
-  /@flopflip/sessionstorage-cache@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-yz4Ay19Wdds4qj5R6unjOSrzgnhsleQaGMIvLJWX0JKE96Ee5AhYpFjqTbvXud9VwQ5TYSZyo5aq64Oe+72aXQ==}
+  /@flopflip/sessionstorage-cache@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-ajucDBh/RAfJNHC/FiKNSE1BkBoS2Mf1BrjOMgLn9VMen8JE2+mts+TvsosIseXrQQLYPfiwZEYmuA1y8WHyiw==}
     dependencies:
-      '@flopflip/types': 13.1.5(typescript@5.2.2)
+      '@flopflip/types': 13.1.7(typescript@5.2.2)
     transitivePeerDependencies:
       - typescript
     dev: false
 
-  /@flopflip/types@13.1.5(typescript@5.0.4):
-    resolution: {integrity: sha512-Ackdcl1dgmAFOgqbTprXYvzWcJ6qM/vVeHF82VzQwfu2Q3H9qnRwgWdPAVJz8mNxKkDTbmGDenjxcNhwVi8yuQ==}
+  /@flopflip/types@13.1.6(typescript@5.2.2):
+    resolution: {integrity: sha512-t1743rEb/qB+wgejvtvt91LEjWQpfDuQr8RMtwfufP5yJcv+Ampq8q6hnsMwQbpf2v67qPCdHX5Neya6U3W5jw==}
+    peerDependencies:
+      typescript: 4.x || 5.x
+    dependencies:
+      launchdarkly-js-client-sdk: 3.1.4
+      typescript: 5.2.2
+    dev: false
+
+  /@flopflip/types@13.1.7(typescript@5.0.4):
+    resolution: {integrity: sha512-i+p/EmSNYADsbR3nX525sYNae0zNS9Y1P5lQZgvE/QtPH4OWWmaE+DjwSCFYV8tsvhtz8bq+6wUb0tave3H6zQ==}
     peerDependencies:
       typescript: 4.x || 5.x
     dependencies:
@@ -10113,8 +10135,8 @@ packages:
       typescript: 5.0.4
     dev: false
 
-  /@flopflip/types@13.1.5(typescript@5.2.2):
-    resolution: {integrity: sha512-Ackdcl1dgmAFOgqbTprXYvzWcJ6qM/vVeHF82VzQwfu2Q3H9qnRwgWdPAVJz8mNxKkDTbmGDenjxcNhwVi8yuQ==}
+  /@flopflip/types@13.1.7(typescript@5.2.2):
+    resolution: {integrity: sha512-i+p/EmSNYADsbR3nX525sYNae0zNS9Y1P5lQZgvE/QtPH4OWWmaE+DjwSCFYV8tsvhtz8bq+6wUb0tave3H6zQ==}
     peerDependencies:
       typescript: 4.x || 5.x
     dependencies:
@@ -14268,8 +14290,8 @@ packages:
       '@types/react': 17.0.56
     dev: false
 
-  /@types/react-is@17.0.5:
-    resolution: {integrity: sha512-mTTgVYfA8fLtyyuppoO7hQJWLV5TNivNKle5vBryoOwlA5158/4UgcZFOx59po/zC0K2ZBEv/IRATlxdVJRVQA==}
+  /@types/react-is@17.0.7:
+    resolution: {integrity: sha512-WrTEiT+c6rgq36QApoy0063uAOdltCrhF0QMXLIgYPaTvIdQhAB8hPb5oGGqX18xToElNILS9UprwU6GyINcJg==}
     dependencies:
       '@types/react': 17.0.56
     dev: false
