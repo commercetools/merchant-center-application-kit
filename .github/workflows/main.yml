@@ -252,6 +252,7 @@ jobs:
         with:
           template-name: template-starter-typescript
           e2e-tests-command: test:e2e:template-starter
+          typecheck-command: typecheck:starter:custom-applications
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
           mc-api-url: ${{ secrets.MC_API_URL }}
