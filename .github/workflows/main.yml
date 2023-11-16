@@ -198,6 +198,10 @@ jobs:
       - name: Installing Cypress binary
         run: pnpm cypress install && pnpm cypress cache list
 
+      - name: Listing files
+        shell: bash
+        run: ls -la
+
       - name: Running End-to-End tests for Starter template application
         run: pnpm start-server-and-test 'pnpm template-starter-typescript:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:template-starter'
         env:
