@@ -134,7 +134,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       isOpen
       title={`Custom View: ${props.customView.defaultLabel}`}
       onClose={props.onClose}
-      size={panelSize === 'small' ? 10 : 'scale'}
+      size={panelSize === 'small' ? 10 : 30}
     >
       <CustomPanelIframe
         id={`custom-view-${props.customView.id}`}
