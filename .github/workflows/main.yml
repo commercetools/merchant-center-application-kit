@@ -250,7 +250,8 @@ jobs:
       - name: Test Custom View typescript starter template
         uses: ./.github/actions/test-template-action
         with:
-          template-name: template-custom-view-starter-javascript
+          template-name: template-starter-typescript
+          e2e-tests-command: test:e2e:template-starter
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
           mc-api-url: ${{ secrets.MC_API_URL }}
