@@ -73,9 +73,13 @@ runs:
       shell: bash
       run: pnpm cypress install && pnpm cypress cache list
 
+    - name: Listing files in main template directory
+      shell: bash
+      run: ls -la ./application-templates/starter-typescript
+
     - name: Listing files in 'public' directory
       shell: bash
-      run: ls -la
+      run: ls -la ./application-templates/starter-typescript/public
 
     - name: Running End-to-End tests for Starter template (${{ inputs.template-name }})
       shell: bash
