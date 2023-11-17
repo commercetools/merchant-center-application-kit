@@ -20,12 +20,12 @@ const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
   throw new Error('Missing required environment variable "TEMPLATE_NAME"');
 }
-const applicationType = process.env.APPLICATION_TYPE;
-if (!applicationType) {
-  throw new Error(
-    'Missing required environment variable "APPLICATION_TYPE" (either "custom-application" or "custom-view")'
-  );
-}
+// const applicationType = process.env.APPLICATION_TYPE;
+// if (!applicationType) {
+//   throw new Error(
+//     'Missing required environment variable "APPLICATION_TYPE" (either "custom-application" or "custom-view")'
+//   );
+// }
 const initialProjectKey = process.env.CTP_INITIAL_PROJECT_KEY;
 if (!initialProjectKey) {
   throw new Error(
@@ -50,7 +50,7 @@ const createAppCmdResult = shelljs.exec(
     applicationName,
     `--template=${templateName}`,
     `--template-version=${branchName}`,
-    `--appliation-type=${applicationType}`,
+    // `--application-type=${applicationType}`,
     `--initial-project-key=${initialProjectKey}`,
     `--yes`,
     '--skip-install',
