@@ -70,7 +70,7 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
 
-  test_starter_template:
+  test_custom_app_starter_js_template:
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -86,50 +86,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
-
-      - name: Testing Starter application development server
-        run: pnpm start-server-and-test 'pnpm template-starter:start' http-get://127.0.0.1:3001 'exit 0'
-        env:
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-      - name: Building Starter template application
-        run: pnpm template-starter:build
-        env:
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-      # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
-      # https://github.com/marketplace/actions/cypress-io#custom-install
-      - name: Restoring Cypress cache
-        # restore / cache the binary ourselves on Linux
-        # see https://github.com/actions/cache
-        id: cache-cypress
-        uses: actions/cache@v3
+      - name: Test Custom Application javascript starter template
+        uses: ./.github/actions/test-template-action
         with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          template-name: template-starter
+          e2e-tests-command: test:e2e:template-starter
+          host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+          playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+          mc-api-url: ${{ secrets.MC_API_URL }}
+          cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+          cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      - name: Installing Cypress binary
-        run: pnpm cypress install && pnpm cypress cache list
-
-      - name: Running End-to-End tests for Starter template application
-        run: pnpm start-server-and-test 'pnpm template-starter:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:template-starter'
-        env:
-          NODE_ENV: test
-          CYPRESS_CI: "true"
-          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
-          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-  test_starter_template_installation:
+  test_custom_app_starter_js_template_installation:
     runs-on: ubuntu-latest
 
     if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
@@ -150,7 +119,7 @@ jobs:
           TEMPLATE_NAME: starter
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-  test_starter_template_typescript:
+  test_custom_app_starter_ts_template:
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -166,57 +135,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
-
-      - name: Testing Starter application development server
-        run: pnpm start-server-and-test 'pnpm template-starter-typescript:start' http-get://127.0.0.1:3001 'exit 0'
-        env:
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-      - name: Building Starter template application
-        run: pnpm template-starter-typescript:build
-        env:
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-      - name: Running static type checking
-        run: pnpm typecheck:starter:custom-applications
-
-      # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
-      # https://github.com/marketplace/actions/cypress-io#custom-install
-      - name: Restoring Cypress cache
-        # restore / cache the binary ourselves on Linux
-        # see https://github.com/actions/cache
-        id: cache-cypress
-        uses: actions/cache@v3
+      - name: Test Custom Application typescript starter template
+        uses: ./.github/actions/test-template-action
         with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          template-name: template-starter-typescript
+          e2e-tests-command: test:e2e:template-starter
+          typecheck-command: typecheck:starter:custom-applications
+          host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+          playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+          mc-api-url: ${{ secrets.MC_API_URL }}
+          cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+          cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      - name: Installing Cypress binary
-        run: pnpm cypress install && pnpm cypress cache list
-
-      - name: Listing files in 'public' directory
-        shell: bash
-        run: ls -la
-
-      - name: Running End-to-End tests for Starter template application
-        run: pnpm start-server-and-test 'pnpm template-starter-typescript:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:template-starter'
-        env:
-          NODE_ENV: test
-          CYPRESS_CI: "true"
-          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
-          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-  test_starter_template_typescript_installation:
+  test_custom_app_starter_ts_template_installation:
     runs-on: ubuntu-latest
 
     if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
@@ -237,34 +169,106 @@ jobs:
           TEMPLATE_NAME: starter-typescript
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-  test_custom_view_starter_template:
+  # TODO: Uncomment when we have Custom View e2e tests implemented
+  # test_custom_view_starter_js_template:
+  #   runs-on: ubuntu-latest
+
+  #   timeout-minutes: 15
+
+  #   # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+  #   env:
+  #     # prevents extra Cypress installation progress messages
+  #     CI: 1
+  #     # avoid warnings like "tput: No value for $TERM and no -T specified"
+  #     TERM: xterm
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Test Custom View javascript starter template
+  #       uses: ./.github/actions/test-template-action
+  #       with:
+  #         template-name: template-custom-view-starter-javascript
+  #         e2e-tests-command: TO_BE_CREATED
+  #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+  #         playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+  #         mc-api-url: ${{ secrets.MC_API_URL }}
+  #         cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+  #         cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+  #         cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+  test_custom_view_starter_js_template_installation:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
 
-    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
-    env:
-      # prevents extra Cypress installation progress messages
-      CI: 1
-      # avoid warnings like "tput: No value for $TERM and no -T specified"
-      TERM: xterm
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test Custom View typescript starter template
-        uses: ./.github/actions/test-template-action
-        with:
-          template-name: template-starter-typescript
-          e2e-tests-command: test:e2e:template-starter
-          typecheck-command: typecheck:starter:custom-applications
-          host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
-          playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
-          mc-api-url: ${{ secrets.MC_API_URL }}
-          cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
-          cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      - name: Installing and building template starter
+        run: node ./scripts/install-template.mjs
+        env:
+          APPLICATION_TYPE: custom-view
+          TEMPLATE_NAME: starter
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+  # TODO: Uncomment when we have Custom View e2e tests implemented
+  # test_custom_view_starter_ts_template:
+  #   runs-on: ubuntu-latest
+
+  #   timeout-minutes: 15
+
+  #   # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+  #   env:
+  #     # prevents extra Cypress installation progress messages
+  #     CI: 1
+  #     # avoid warnings like "tput: No value for $TERM and no -T specified"
+  #     TERM: xterm
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Test Custom View typescript starter template
+  #       uses: ./.github/actions/test-template-action
+  #       with:
+  #         template-name: template-custom-view-starter-typescript
+  #         e2e-tests-command: TO_BE_CREATED
+  #         typecheck-command: typecheck:starter:custom-views
+  #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+  #         playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+  #         mc-api-url: ${{ secrets.MC_API_URL }}
+  #         cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+  #         cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+  #         cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+  test_custom_view_starter_ts_template_installation:
+    runs-on: ubuntu-latest
+
+    if: github.ref != 'refs/heads/main' && github.head_ref != 'changeset-release/main'
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      - name: Installing and building template starter
+        run: node ./scripts/install-template.mjs
+        env:
+          APPLICATION_TYPE: custom-view
+          TEMPLATE_NAME: starter-typescript
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
   test_playground:
     runs-on: ubuntu-latest

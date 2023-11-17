@@ -4,6 +4,15 @@ import path from 'node:path';
 import { findRootSync } from '@manypkg/find-root';
 import shelljs from 'shelljs';
 
+const doesFileExist = (filePath) => {
+  try {
+    fs.accessSync(filePath);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 const applicationName = 'my-starter-app';
 const workspaceRoot = findRootSync(process.cwd());
 const binaryPath = path.join(
@@ -20,12 +29,12 @@ const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
   throw new Error('Missing required environment variable "TEMPLATE_NAME"');
 }
-// const applicationType = process.env.APPLICATION_TYPE;
-// if (!applicationType) {
-//   throw new Error(
-//     'Missing required environment variable "APPLICATION_TYPE" (either "custom-application" or "custom-view")'
-//   );
-// }
+const applicationType = process.env.APPLICATION_TYPE;
+if (!applicationType) {
+  throw new Error(
+    'Missing required environment variable "APPLICATION_TYPE" (either "custom-application" or "custom-view")'
+  );
+}
 const initialProjectKey = process.env.CTP_INITIAL_PROJECT_KEY;
 if (!initialProjectKey) {
   throw new Error(
@@ -50,7 +59,7 @@ const createAppCmdResult = shelljs.exec(
     applicationName,
     `--template=${templateName}`,
     `--template-version=${branchName}`,
-    // `--application-type=${applicationType}`,
+    `--application-type=${applicationType}`,
     `--initial-project-key=${initialProjectKey}`,
     `--yes`,
     '--skip-install',
@@ -77,3 +86,16 @@ console.log('==> Assert application version');
 assert.strictEqual(applicationPkgJson.version, '1.0.0');
 console.log('==> Assert dependency versions to not use "workspace:" protocol');
 assert.doesNotMatch(applicationPkgJsonRaw, /workspace:/);
+
+console.log('==> Assert application config file exists');
+if (applicationType === 'custom-application') {
+  assert.strictEqual(
+    doesFileExist(path.join(applicationPath, 'custom-application-config.mjs')),
+    true
+  );
+} else if (applicationType === 'custom-view') {
+  assert.strictEqual(
+    doesFileExist(path.join(applicationPath, 'custom-view-config.mjs')),
+    true
+  );
+}

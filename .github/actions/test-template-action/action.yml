@@ -10,7 +10,7 @@ inputs:
     required: true
   typecheck-command:
     description: 'Command to run the typecheck'
-    required: true
+    required: false
   host-gcp-staging:
     description: 'Host of the GCP staging environment'
     required: true
@@ -55,6 +55,7 @@ runs:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
     - name: Running static type checking
+      if: ${{ inputs.typecheck-command != '' }}
       shell: bash
       run: pnpm ${{ inputs.typecheck-command }}
 
