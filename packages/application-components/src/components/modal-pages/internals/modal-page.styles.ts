@@ -2,9 +2,6 @@ import { css, type SerializedStyles } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
 import type { TModalPageSize } from './modal-page';
 
-const TRANSITION_DURATION = 200;
-const LONGER_TRANSITION_DURATION = 300;
-
 type StyleProps = {
   zIndex?: number;
   size: TModalPageSize;
@@ -13,19 +10,19 @@ type StyleProps = {
 export const stylesBySize = {
   '10': {
     width: '600px',
-    transitionTime: LONGER_TRANSITION_DURATION,
+    transitionTime: 200,
   },
   '20': {
     width: '900px',
-    transitionTime: LONGER_TRANSITION_DURATION,
+    transitionTime: 200,
   },
   '30': {
     width: '1200px',
-    transitionTime: LONGER_TRANSITION_DURATION,
+    transitionTime: 200,
   },
   scale: {
     width: '100%',
-    transitionTime: TRANSITION_DURATION,
+    transitionTime: 300,
   },
 };
 
