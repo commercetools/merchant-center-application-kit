@@ -266,24 +266,6 @@ jobs:
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      - name: Installing Cypress binary
-        shell: bash
-        run: pnpm cypress install && pnpm cypress cache list
-
-      - name: Running End-to-End tests for Starter template (${{ inputs.template-name }})
-        run: pnpm start-server-and-test 'pnpm ${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'pnpm ${{ inputs.e2e-tests-command }}'
-        env:
-          NODE_ENV: test
-          CYPRESS_CI: "true"
-          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
-          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-          CYPRESS_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-
-
   test_playground:
     runs-on: ubuntu-latest
 
