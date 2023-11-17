@@ -8,21 +8,11 @@ import { isSemVer } from './utils';
 const throwIfApplicationTypeIsNotSupported = (
   applicationType: TApplicationType
 ) => {
-  switch (applicationType) {
-    case applicationTypes['custom-view']: {
-      if (process.env.ENABLE_EXPERIMENTAL_CUSTOM_VIEWS !== 'true') {
-        throw new Error(`Custom Views generation is not yet supported.`);
-      }
-      break;
-    }
-    case applicationTypes['custom-application']:
-      break;
-    default: {
-      const applicationTypesList = Object.keys(applicationTypes).toString();
-      throw new Error(
-        `The provided application type "${applicationType}" does not exist. Available types are "${applicationTypesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
-      );
-    }
+  const applicationTypesList = Object.keys(applicationTypes).toString();
+  if (!Object.values(applicationTypesList).includes(applicationType)) {
+    throw new Error(
+      `The provided application type "${applicationType}" does not exist. Available types are "${applicationTypesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
+    );
   }
 };
 
