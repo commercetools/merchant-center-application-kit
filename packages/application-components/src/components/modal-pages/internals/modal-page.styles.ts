@@ -26,13 +26,13 @@ export const stylesBySize = {
   },
 };
 
-export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
+export const getContainerStyles = (props: StyleProps): SerializedStyles => css`
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
-  width: ${_props.size !== 'scale'
-    ? `${stylesBySize[_props.size].width} !important`
+  width: ${props.size !== 'scale'
+    ? `${stylesBySize[props.size].width} !important`
     : stylesBySize.scale.width};
   display: flex;
   flex-direction: column;
@@ -40,11 +40,11 @@ export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
   transform: translate3d(
-    ${_props.size !== 'scale' ? stylesBySize[_props.size].width : '30px'},
+    ${props.size !== 'scale' ? stylesBySize[props.size].width : '30px'},
     0,
     0
   );
-  transition: transform ${stylesBySize[_props.size].transitionTime}ms ease;
+  transition: transform ${stylesBySize[props.size].transitionTime}ms ease;
 `;
 
 export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
