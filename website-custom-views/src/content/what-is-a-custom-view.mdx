@@ -1,26 +1,26 @@
 ---
-title: What is a Custom Application?
+title: What is a Custom View?
 ---
 
-A Custom Application is a set of UI tools and components to extend the existing functionality of the [Merchant Center](https://commercetools.com/features/business-tooling).
+A Custom View is a set of UI tools and components to extend the existing pages of the [Merchant Center](https://commercetools.com/features/business-tooling).
 
-Merchants can implement specific business requirements in a Custom Application and use it in their Merchant Center Projects by configuring and installing Custom Applications into their commercetools Organizations.
+Merchants can implement specific business requirements in a Custom View and use it in their Merchant Center Projects by configuring and installing Custom Views into their commercetools Organizations.
 
-A Custom Application is developed and managed by merchants.
+A Custom View is developed and managed by merchants.
 
-![Merchants Overview](/images/custom-applications-merchants-overview.png)
+![Merchants Overview](/images/custom-views-merchants-overview.png)
 
-# Custom Applications Features
+# Custom Views Features
 
-Using Custom Applications enables merchants to:
+Using Custom Views enables merchants to:
 
-* Extend the functionality of the Merchant Center
+* Extend the functionality of the specific pages of the Merchant Center
 * Tailor to specific business requirements and use-cases
 * Integrate the Composable Commerce APIs and the Merchant Center with external services.
 
-Developing Custom Applications allows developers to:
+Developing Custom Views allows developers to:
 
-* Use existing tools to develop and build Custom Applications.
+* Use existing tools to develop and build Custom Views.
 * Focus on implementing the right features instead of configuration.
 * Provide a seamless user experience via commercetools Design System and UI components.
 
@@ -33,12 +33,27 @@ For more information on what to do next, we recommend the following sections:
     title="Getting Started"
     href="/getting-started"
   >
-    Learn more about getting started with Custom Applications.
+    Learn more about getting started with Custom Views.
   </Card>
   <Card
     title="Development guidelines"
     href="/development"
   >
-    Learn more about how to develop, test, and build your Custom Application.
+    Learn more about how to develop, test, and build your Custom Views.
   </Card>
 </Cards> -->
+
+# Custom Views vs Custom Applications
+
+With introducing Custom Views a user can now chose between this new feature and [Custom Applications](https://docs.commercetools.com/custom-applications) when considering extending the Merchant Center. Below we would like to provide some recommended use cases that we see as a good fit for these two features.
+
+Good use cases for Custom Views:
+  - Showing 3rd party data related to a Composable Commerce entity (like logs, memos, tracking information, etc)
+  - Triggering actions related to a Composable Commerce entity (like re-indexing or customer password reset)
+  - Show Composable Commerce data in the context of other relevant Composable Commerce information (like orders for a product)
+
+Good use cases for Custom Applications:
+  - Introduce a full multi-page solution for a functionality available via the 3rd party API (inventory tracking, customer support, etc)
+  - Introduce custom flows for a Composable Commerce entity (custom product or discount review process)
+  - Introduce UI for complex logics on top of Composable Commerce API (product bundles, etc)
+
