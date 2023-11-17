@@ -50,7 +50,7 @@ runs:
 
     - name: Building Starter template
       shell: bash
-      run: pnpm template-starter:build
+      run: pnpm ${{ inputs.template-name }}:build
       env:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
