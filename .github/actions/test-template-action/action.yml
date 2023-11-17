@@ -75,7 +75,7 @@ runs:
 
     - name: Listing files in 'public' directory
       shell: bash
-      run: ls -la ./public
+      run: ls -la
 
     - name: Running End-to-End tests for Starter template (${{ inputs.template-name }})
       shell: bash
