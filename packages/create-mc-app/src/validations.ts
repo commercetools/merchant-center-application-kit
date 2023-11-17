@@ -8,10 +8,10 @@ import { isSemVer } from './utils';
 const throwIfApplicationTypeIsNotSupported = (
   applicationType: TApplicationType
 ) => {
-  const applicationTypesList = Object.keys(applicationTypes).toString();
+  const applicationTypesList = Object.keys(applicationTypes);
   if (!Object.values(applicationTypesList).includes(applicationType)) {
     throw new Error(
-      `The provided application type "${applicationType}" does not exist. Available types are "${applicationTypesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
+      `The provided application type "${applicationType.toString()}" does not exist. Available types are "${applicationTypesList}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
     );
   }
 };
