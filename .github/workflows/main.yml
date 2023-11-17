@@ -146,6 +146,7 @@ jobs:
       - name: Installing and building template starter
         run: node ./scripts/install-template.mjs
         env:
+          APPLICATION_TYPE: custom-application
           TEMPLATE_NAME: starter
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
@@ -232,6 +233,7 @@ jobs:
       - name: Installing and building template starter
         run: node ./scripts/install-template.mjs
         env:
+          APPLICATION_TYPE: custom-application
           TEMPLATE_NAME: starter-typescript
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
