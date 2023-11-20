@@ -26,7 +26,7 @@ const createTestMenuConfig = (key, custom = {}) => ({
 const createGraphqlResponse = (custom = {}) => ({
   applicationsMenu: {
     appBar: [createTestMenuConfig('projects')],
-    navBar: [],
+    navBarGroups: [],
   },
   ...custom,
 });
