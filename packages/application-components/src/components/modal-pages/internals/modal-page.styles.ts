@@ -1,26 +1,50 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import { customProperties } from '@commercetools-uikit/design-system';
-
-export const TRANSITION_DURATION = 200;
+import type { TModalPageSize } from './modal-page';
 
 type StyleProps = {
   zIndex?: number;
-  size?: 'small' | 'large';
+  size: TModalPageSize;
 };
 
-export const getContainerStyles = (_props: StyleProps): SerializedStyles => css`
+export const stylesBySize = {
+  '10': {
+    width: '600px',
+    transitionTime: 200,
+  },
+  '20': {
+    width: '900px',
+    transitionTime: 200,
+  },
+  '30': {
+    width: '1200px',
+    transitionTime: 200,
+  },
+  scale: {
+    width: '100%',
+    transitionTime: 300,
+  },
+};
+
+export const getContainerStyles = (props: StyleProps): SerializedStyles => css`
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
-  width: ${_props.size === 'small' ? '600px !important' : '100%'};
+  width: ${props.size !== 'scale'
+    ? `${stylesBySize[props.size].width} !important`
+    : stylesBySize.scale.width};
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
-  box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
-  transform: translate3d(30px, 0, 0);
-  transition: transform ${TRANSITION_DURATION}ms ease;
+  transform: translate3d(
+    ${props.size !== 'scale' ? stylesBySize[props.size].width : '30px'},
+    0,
+    0
+  );
+  transition: transform ${stylesBySize[props.size].transitionTime}ms ease;
 `;
 
 export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
@@ -33,9 +57,9 @@ export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(32, 62, 72, 0.5);
+  background-color: hsla(195, 35%, 20%, 0.05);
   opacity: 0;
-  transition: opacity ${TRANSITION_DURATION}ms ease;
+  transition: transform ${stylesBySize[props.size].transitionTime}ms ease;
 `;
 
 export const getAfterOpenContainerAnimation = (): SerializedStyles => css`
@@ -46,8 +70,15 @@ export const getAfterOpenOverlayAnimation = (): SerializedStyles => css`
   opacity: 1 !important;
 `;
 
-export const getBeforeCloseContainerAnimation = (): SerializedStyles => css`
-  transform: translate3d(30px, 0, 0) !important;
+export const getBeforeCloseContainerAnimation = (
+  props: StyleProps
+): SerializedStyles => css`
+  transform: translate3d(
+    ${props.size !== 'scale' ? stylesBySize[props.size].width : '30px'},
+    ,
+    0,
+    0
+  ) !important;
 `;
 
 export const getBeforeCloseOverlayAnimation = (): SerializedStyles => css`

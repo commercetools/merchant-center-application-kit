@@ -4,9 +4,11 @@ import styled from '@emotion/styled';
 import Text from '@commercetools-uikit/text';
 import { designTokens as appKitDesignTokens } from '../../theming';
 
+type TTitleSize = 'big' | 'medium' | 'small';
+
 type Props = {
   title: string;
-  titleSize: 'big' | 'small';
+  titleSize: TTitleSize;
   truncate: boolean;
   subtitle?: string | ReactElement;
   children?: never;
@@ -27,6 +29,12 @@ const Title = (props: TitleProps) => {
     case 'big':
       return (
         <Text.Headline as="h1" title={props.title} truncate={props.truncate}>
+          {props.title}
+        </Text.Headline>
+      );
+    case 'medium':
+      return (
+        <Text.Headline as="h2" title={props.title} truncate={props.truncate}>
           {props.title}
         </Text.Headline>
       );
