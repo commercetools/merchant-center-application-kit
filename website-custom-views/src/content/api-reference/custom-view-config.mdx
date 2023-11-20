@@ -476,7 +476,7 @@ Supported values are: `SMALL`, `LARGE`.
 
 Since Custom Views are rendered in the context of native Merchant Center applications, you need to set in which specific views the Custom View should be rendered.
 
-This configuration property is a list of codes which represent every Merchant Center view where the Custom View can be rendered.
+This configuration property is a list of identifiers of Merchant Center locations where the Custom View is allowed to be rendered.
 
 ```json
 {
@@ -484,7 +484,8 @@ This configuration property is a list of codes which represent every Merchant Ce
 }
 ```
 
-The locator codes follow the pattern `<application>.<view>.<subview>`.
+A locator follows the pattern `<application>.<view>.<subview>`.
+
 The following list contains all the currently available locators:
 
 ### Products application

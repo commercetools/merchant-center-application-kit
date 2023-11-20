@@ -211,7 +211,7 @@ By default, the [`test-utils`](/api-reference/commercetools-frontend-application
 
 * `projectAllAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
 
-  * `name`: The name of the user permissions prefixed with `can`. For example `canViewChannels`.
+  * `name`: The name of the user permissions prefixed with `can`. For example `canView`.
   * `value`: If `true`, the resource permission is applied to the user.
 
 In our example application, we can apply this as following:
@@ -227,7 +227,7 @@ const renderView = (options = {}) => {
     projectKey: options.projectKey || 'my-project',
     projectAllAppliedPermissions: [
       {
-        name: 'canViewChannels',
+        name: 'canView',
         value: true,
       },
     ],
