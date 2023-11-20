@@ -17,7 +17,7 @@ type TLargeIconWrapperProps = {
 };
 
 // Component to have a larger clickable surface
-const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
+export const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
   <span
     css={css`
       display: flex;
