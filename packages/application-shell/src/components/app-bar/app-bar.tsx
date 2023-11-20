@@ -88,7 +88,7 @@ const AppBar = (props: Props) => {
           display: flex;
         `}
       >
-        <div id="extra-menu"></div>
+        <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}
