@@ -83,7 +83,12 @@ const AppBar = (props: Props) => {
           </Spacings.Inline>
         </Spacings.Inline>
       </div>
-      <div>
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}
