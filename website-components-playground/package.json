@@ -40,7 +40,7 @@
     "@commercetools-frontend/application-config": "workspace:*",
     "@types/history": "^4.7.11",
     "@types/react": "^17.0.56",
-    "@types/react-dom": "^17.0.19",
+    "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "4.1.0",
     "vite": "4.4.9"
