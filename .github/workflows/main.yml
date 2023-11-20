@@ -91,7 +91,7 @@ jobs:
         with:
           application-type: custom-application
           template-name: starter
-          e2e-tests-command: test:e2e:template-starter
+          e2e-tests-command: test:e2e:template-custom-application-starter
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
           mc-api-url: ${{ secrets.MC_API_URL }}
@@ -141,7 +141,7 @@ jobs:
         with:
           application-type: custom-application
           template-name: starter-typescript
-          e2e-tests-command: test:e2e:template-starter
+          e2e-tests-command: test:e2e:template-custom-application-starter
           typecheck-command: typecheck:starter:custom-applications
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -174,38 +174,31 @@ jobs:
   test_custom_view_starter_js_template:
     runs-on: ubuntu-latest
 
+    timeout-minutes: 15
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Test Custom View javascript starter template
-        run: echo \"No e2e tests implemented yet\"
-  # TODO: Uncomment when we have Custom View e2e tests implemented
-  # test_custom_view_starter_js_template:
-  #   runs-on: ubuntu-latest
-
-  #   timeout-minutes: 15
-
-  #   # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
-  #   env:
-  #     # prevents extra Cypress installation progress messages
-  #     CI: 1
-  #     # avoid warnings like "tput: No value for $TERM and no -T specified"
-  #     TERM: xterm
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-
-  #     - name: Test Custom View javascript starter template
-  #       uses: ./.github/actions/test-template-action
-  #       with:
-  #         application-type: custom-view
-  #         template-name: starter
-  #         e2e-tests-command: TO_BE_CREATED
-  #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
-  #         playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
-  #         mc-api-url: ${{ secrets.MC_API_URL }}
-  #         cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
-  #         cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-  #         cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+        uses: ./.github/actions/test-template-action
+        with:
+          application-type: custom-view
+          template-name: starter
+          e2e-tests-command: test:e2e:template-custom-view-starter
+          host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+          playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+          mc-api-url: ${{ secrets.MC_API_URL }}
+          cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+          cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
   test_custom_view_starter_js_template_installation:
     runs-on: ubuntu-latest
@@ -231,39 +224,32 @@ jobs:
   test_custom_view_starter_ts_template:
     runs-on: ubuntu-latest
 
+    timeout-minutes: 15
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Test Custom View typescript starter template
-        run: echo \"No e2e tests implemented yet\"
-  # TODO: Uncomment when we have Custom View e2e tests implemented
-  # test_custom_view_starter_ts_template:
-  #   runs-on: ubuntu-latest
-
-  #   timeout-minutes: 15
-
-  #   # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
-  #   env:
-  #     # prevents extra Cypress installation progress messages
-  #     CI: 1
-  #     # avoid warnings like "tput: No value for $TERM and no -T specified"
-  #     TERM: xterm
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-
-  #     - name: Test Custom View typescript starter template
-  #       uses: ./.github/actions/test-template-action
-  #       with:
-  #         application-type: custom-view
-  #         template-name: starter-typescript
-  #         e2e-tests-command: TO_BE_CREATED
-  #         typecheck-command: typecheck:starter:custom-views
-  #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
-  #         playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
-  #         mc-api-url: ${{ secrets.MC_API_URL }}
-  #         cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
-  #         cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
-  #         cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+        uses: ./.github/actions/test-template-action
+        with:
+          application-type: custom-view
+          template-name: starter-typescript
+          e2e-tests-command: test:e2e:template-custom-view-starter
+          typecheck-command: typecheck:starter:custom-views
+          host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
+          playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
+          mc-api-url: ${{ secrets.MC_API_URL }}
+          cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
+          cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
   test_custom_view_starter_ts_template_installation:
     runs-on: ubuntu-latest
