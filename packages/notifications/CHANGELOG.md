@@ -1,5 +1,7 @@
 # @commercetools-frontend/notifications
 
+## 22.13.0
+
 ## 22.12.0
 
 ## 22.11.0
