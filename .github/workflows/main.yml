@@ -89,7 +89,8 @@ jobs:
       - name: Test Custom Application javascript starter template
         uses: ./.github/actions/test-template-action
         with:
-          template-name: template-starter
+          application-type: custom-application
+          template-name: starter
           e2e-tests-command: test:e2e:template-starter
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -138,7 +139,8 @@ jobs:
       - name: Test Custom Application typescript starter template
         uses: ./.github/actions/test-template-action
         with:
-          template-name: template-starter-typescript
+          application-type: custom-application
+          template-name: starter-typescript
           e2e-tests-command: test:e2e:template-starter
           typecheck-command: typecheck:starter:custom-applications
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
@@ -169,6 +171,12 @@ jobs:
           TEMPLATE_NAME: starter-typescript
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
+  test_custom_view_starter_js_template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Custom View javascript starter template
+        run: echo \"No e2e tests implemented yet\"
   # TODO: Uncomment when we have Custom View e2e tests implemented
   # test_custom_view_starter_js_template:
   #   runs-on: ubuntu-latest
@@ -189,7 +197,8 @@ jobs:
   #     - name: Test Custom View javascript starter template
   #       uses: ./.github/actions/test-template-action
   #       with:
-  #         template-name: template-custom-view-starter-javascript
+  #         application-type: custom-view
+  #         template-name: starter
   #         e2e-tests-command: TO_BE_CREATED
   #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
   #         playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -219,6 +228,12 @@ jobs:
           TEMPLATE_NAME: starter
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
+  test_custom_view_starter_ts_template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Custom View typescript starter template
+        run: echo \"No e2e tests implemented yet\"
   # TODO: Uncomment when we have Custom View e2e tests implemented
   # test_custom_view_starter_ts_template:
   #   runs-on: ubuntu-latest
@@ -239,7 +254,8 @@ jobs:
   #     - name: Test Custom View typescript starter template
   #       uses: ./.github/actions/test-template-action
   #       with:
-  #         template-name: template-custom-view-starter-typescript
+  #         application-type: custom-view
+  #         template-name: starter-typescript
   #         e2e-tests-command: TO_BE_CREATED
   #         typecheck-command: typecheck:starter:custom-views
   #         host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}

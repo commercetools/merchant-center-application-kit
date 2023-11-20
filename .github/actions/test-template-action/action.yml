@@ -2,6 +2,9 @@ name: 'Test template'
 description: 'Tests MC Extension template'
 
 inputs:
+  application-type:
+    description: 'Type of the application'
+    required: true
   template-name:
     description: 'Name of the template to test'
     required: true
@@ -33,15 +36,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    # - name: Checkout
-    #   uses: actions/checkout@v4
-
     - name: Installing dependencies and building packages
       uses: ./.github/actions/ci
 
     - name: Testing Starter template development server
       shell: bash
-      run: pnpm start-server-and-test 'pnpm ${{ inputs.template-name }}:start' http-get://127.0.0.1:3001 'exit 0'
+      run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start' http-get://127.0.0.1:3001 'exit 0'
       env:
         HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
         APP_ID: ${{ inputs.playground-application-id }}
@@ -50,7 +50,7 @@ runs:
 
     - name: Building Starter template
       shell: bash
-      run: pnpm ${{ inputs.template-name }}:build
+      run: pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:build
       env:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
@@ -74,9 +74,9 @@ runs:
       shell: bash
       run: pnpm cypress install && pnpm cypress cache list
 
-    - name: Running End-to-End tests for Starter template (${{ inputs.template-name }})
+    - name: Running End-to-End tests for Starter template (template-${{ inputs.application-type }}-${{ inputs.template-name }})
       shell: bash
-      run: pnpm start-server-and-test 'pnpm ${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'pnpm ${{ inputs.e2e-tests-command }}'
+      run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'pnpm ${{ inputs.e2e-tests-command }}'
       env:
         NODE_ENV: test
         CYPRESS_CI: "true"
