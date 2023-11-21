@@ -1,9 +1,12 @@
 import {
   forwardRef,
   lazy,
-  MouseEventHandler,
+  type MouseEventHandler,
+  type FocusEventHandler,
+  type MouseEvent,
   type ReactNode,
   type SyntheticEvent,
+  useCallback,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -138,6 +141,12 @@ const MenuExpander = (props: MenuExpanderProps) => {
     >
       <div
         onClick={props.onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            props.onClick(e as unknown as MouseEvent<HTMLDivElement>);
+          }
+        }}
+        tabIndex={0}
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
@@ -281,7 +290,9 @@ type MenuItemProps = {
   isMainMenuRouteActive?: boolean;
   isMenuOpen: boolean;
   onClick: MouseEventHandler<HTMLElement>;
-  onMouseEnter?: MouseEventHandler<HTMLElement>;
+  onMouseEnter?:
+    | MouseEventHandler<HTMLElement>
+    | FocusEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
@@ -296,8 +307,9 @@ const MenuItem = (props: MenuItemProps) => {
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
       })}
       onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
+      onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
       onMouseLeave={props.onMouseLeave}
+      onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
     >
       <div className={styles['item-link']}>{props.children}</div>
@@ -341,10 +353,24 @@ const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
 
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
+  const handler = useCallback(
+    (event) => {
+      if (props.linkTo && props.useFullRedirectsForLinks) {
+        event.preventDefault();
+        redirectTo(props.linkTo);
+      } else if (props.onClick) {
+        event.persist();
+        props.onClick(event);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [props.onClick, props.linkTo, props.useFullRedirectsForLinks]
+  );
   if (props.linkTo) {
     return (
       <NavLinkWrapper {...props}>
         <NavLink
+          tabIndex={0}
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
@@ -353,15 +379,8 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
               ? styles['text-link-sublist']
               : styles['text-link']
           }
-          onClick={(event) => {
-            if (props.linkTo && props.useFullRedirectsForLinks) {
-              event.preventDefault();
-              redirectTo(props.linkTo);
-            } else if (props.onClick) {
-              event.persist();
-              props.onClick(event);
-            }
-          }}
+          onClick={handler}
+          onFocus={handler}
         >
           <NavLinkClickableContentWrapper {...props}>
             {props.children}

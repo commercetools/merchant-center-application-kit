@@ -105,7 +105,8 @@
   transition: var(--left-navigation-transition);
 }
 
-.list-item:hover .icon {
+.list-item:hover .icon,
+.list-item:focus-within .icon {
   /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
   transform: scale(1.2);
 }
@@ -143,7 +144,8 @@
   padding: var(--spacing-30) var(--spacing-25);
 }
 
-.expander:hover {
+.expander:hover,
+.expander:focus {
   background-color: var(--color-primary-40);
 }
 
@@ -168,7 +170,8 @@
   align-items: center;
 }
 
-.expand-icon:hover {
+.expand-icon:hover,
+.expand-icon:focus {
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
 }
@@ -178,9 +181,16 @@
   bottom: var(--expander-height);
 }
 
-.list-item:not(.item_menu__active):hover {
+.list-item:not(.item_menu__active):hover,
+.list-item:not(.item_menu__active):focus-within {
   background-color: var(--color-primary-40);
   border-radius: var(--border-radius-8);
+}
+
+.list-item:not(.item_menu__active):focus,
+.list-item:not(.item_menu-collapsed):focus-within {
+  outline: auto 1px Highlight;
+  outline-offset: 1px;
 }
 
 .item_menu-open {
@@ -217,16 +227,19 @@
   animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
-.list-item:hover .title {
+.list-item:hover .title,
+.list-item:focus-within .title {
   margin-left: calc(var(--spacing-25) + 2px);
 }
 
-.list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
+.list-item:not(.item__active):hover .icon > svg *:not([fill='none']),
+.list-item:not(.item__active):focus-within .icon > svg *:not([fill='none']) {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   fill: var(--color-for-navbar-icon-when-active);
 }
 
-.list-item:not(.item__active):hover .title {
+.list-item:not(.item__active):hover .title,
+.list-item:not(.item__active):focus-within .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
 }
@@ -281,7 +294,8 @@
   background: var(--color-accent-30);
 }
 
-.sublist-item:not(.sublist-item__active):hover {
+.sublist-item:not(.sublist-item__active):hover,
+.sublist-item:not(.sublist-item__active):focus-within {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -339,6 +353,11 @@
     var(--spacing-30);
 }
 
+.sublist-item:focus-within {
+  outline: auto 1px Highlight;
+  outline-offset: 1px;
+}
+
 .navlink-clickable-content {
   height: 100%;
   width: 100%;
@@ -349,6 +368,13 @@
 .item_menu__active {
   background: var(--color-accent-30);
   border-radius: var(--border-radius-8);
+}
+
+.item_menu__active:focus-within .list-item {
+  background: var(--color-accent-30);
+  border-radius: var(--border-radius-8);
+  outline: auto 1px Highlight;
+  outline-offset: 1px;
 }
 
 .list-item.item__active .item-icon-text {
@@ -369,7 +395,8 @@
 }
 
 .support-menu {
-  padding: 0 var(--spacing-30) var(--spacing-20) var(--spacing-30);
+  padding: var(--spacing-10) var(--spacing-30) var(--spacing-20)
+    var(--spacing-30);
   height: calc(var(--item-size) + var(--spacing-20));
 }
 
@@ -424,7 +451,10 @@
 
 .item-link:hover .sublist-collapsed__active,
 .item-link:hover .sublist-collapsed__active__above,
-.item-link:hover .sublist-expanded__active {
+.item-link:hover .sublist-expanded__active,
+.item-link:focus-within .sublist-collapsed__active,
+.item-link:focus-within .sublist-collapsed__active__above,
+.item-link:focus-within .sublist-expanded__active {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -440,11 +470,15 @@
 }
 
 .item-link:hover .sublist-collapsed__active.sublist-collapsed__empty,
-.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty {
+.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty,
+.item-link:focus-within .sublist-collapsed__active.sublist-collapsed__empty,
+.item-link:focus-within
+  .sublist-collapsed__active__above.sublist-collapsed__empty {
   visibility: hidden;
 }
 
-.item-link:hover .sublist-expanded__active {
+.item-link:hover .sublist-expanded__active,
+.item-link:focus-within .sublist-expanded__active {
   left: var(--sublist-indentation-when-expanded);
 }
 
