@@ -4990,7 +4990,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-environment-visitor': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.20
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-remap-async-to-generator': 7.22.17(@babel/core@7.23.0)
       '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.23.0)
@@ -5127,8 +5127,8 @@ packages:
       '@babel/core': 7.23.0
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-compilation-targets': 7.22.15
-      '@babel/helper-environment-visitor': 7.22.5
-      '@babel/helper-function-name': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-function-name': 7.23.0
       '@babel/helper-optimise-call-expression': 7.22.5
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-replace-supers': 7.22.9(@babel/core@7.23.0)
@@ -7063,16 +7063,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.12.0:
-    resolution: {integrity: sha512-Mqkt0poc4SdOD7iys4U+QH+AubLf3lQAjFkyaYFmgxoeCPXIJMlCEgmx9+yPocSck44HlAFUlrCohxDivw87sQ==}
+  /@commercetools-frontend/application-config@22.13.0:
+    resolution: {integrity: sha512-+l1cJHo5bQKikOOHiDW68C+/5m4jckKwbtLGsjo3T+VylBO6Fxa+s6Q74uSQ9102sUDolay6OtImps2scEfbmQ==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.12.0
-      '@commercetools-frontend/constants': 22.12.0
+      '@commercetools-frontend/babel-preset-mc-app': 22.13.0
+      '@commercetools-frontend/constants': 22.13.0
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -7090,8 +7090,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.12.0:
-    resolution: {integrity: sha512-Gz+uAFpYOg75LJX6HtrXBkcI3xWacSjAwMfhNFs+G3Ye5ut9UYIydWIKfBXECN1ZZHmF2y/5kixmDYi+f25lSA==}
+  /@commercetools-frontend/babel-preset-mc-app@22.13.0:
+    resolution: {integrity: sha512-JpAET50CQgh4H/Dgln4LStttQaojJPNjBuwOC2QBLyaMFvGWuAlwCceI2THJk7siXtbhU8Qq2qCZmIG+2ojqgw==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7123,8 +7123,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.12.0:
-    resolution: {integrity: sha512-y8zsbmrlaenYMPTcG02wvNczWL6aDNjrpFxZ7XQRpm/pgBap0zpABTHzV0+i2oMH+3mPQNKd4AkcV28rttfvTg==}
+  /@commercetools-frontend/constants@22.13.0:
+    resolution: {integrity: sha512-VbAtaAJEjl2os21Xj5xA1rrZ/x8iooVza6n2/F2npPWcEEJIJmPOe3u37zZk41y/Q4/AZf1+E8XpKlStIfhLYg==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7196,8 +7196,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.12.0
-      '@commercetools-frontend/constants': 22.12.0
+      '@commercetools-frontend/application-config': 22.13.0
+      '@commercetools-frontend/constants': 22.13.0
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -7281,7 +7281,7 @@ packages:
       '@commercetools-uikit/utils': 16.7.3(react@18.2.0)
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.0)(@types/react@17.0.56)(react@18.2.0)
-      '@types/react-is': 17.0.7
+      '@types/react-is': 17.0.4
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 18.2.0
@@ -8369,7 +8369,7 @@ packages:
       react: 17.x
       react-intl: 6.x
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/design-system': 16.7.3(@types/react@17.0.56)
       '@commercetools-uikit/text': 16.7.3(@types/react@17.0.56)(react-intl@6.4.5)(react@18.2.0)
@@ -22267,17 +22267,10 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /gatsby-sharp@1.12.0:
-    resolution: {integrity: sha512-5MbTPKfzkOCtwT74+FZTUFKaul/2UyF10apvMcmIKomq71/jHf6wJx+rHtSdgyq19r4VWL8DGG2CKgSpe0z9GQ==}
-    engines: {node: '>=18.0.0'}
-    requiresBuild: true
-    dependencies:
-      sharp: 0.32.6
-    optional: true
-
   /gatsby-sharp@1.12.1:
     resolution: {integrity: sha512-e7lqA74UZau7MOktc9V+sNh86a8oNZPFIsY5Atk+C0sGlzHx0IcivsJjwLHJ6OF11SIC38a9z2wE8Nl6YiG/Ig==}
     engines: {node: '>=18.0.0'}
+    requiresBuild: true
     dependencies:
       sharp: 0.32.6
 
@@ -22542,7 +22535,7 @@ packages:
       xstate: 4.38.2
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.12.0
+      gatsby-sharp: 1.12.1
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
