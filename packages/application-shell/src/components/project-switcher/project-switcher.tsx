@@ -202,6 +202,7 @@ const ProjectSwitcher = (props: Props) => {
         placeholder={intl.formatMessage(messages.searchPlaceholder)}
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
+        appearance="quiet"
       />
     </div>
   );
