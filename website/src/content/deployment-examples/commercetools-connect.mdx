@@ -1,0 +1,99 @@
+---
+title: Deploying to commercetools Connect
+---
+
+# Prerequisite
+
+Before you get started, you need to have:
+
+- A commercetools account and a Project.
+- A Custom Application configured in the Merchant Center.
+- Access to connect APIs can be accessed using Client credentials Authorization flow with commercetools Project
+
+# Configuration
+
+Create a connector using starter template
+Download custom applications template inside an application folder of connector (Note: connector can have multiple applications)
+Update custom-application-config.mjs to use environment variables that can differ for each connect deployment
+
+```ts
+const config = {
+  name: 'custom applications',
+  entryPointUriPath,
+  cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
+  env: {
+    development: {
+      initialProjectKey: '${env:CTP_PROJECT_KEY}',
+    },
+    production: {
+      applicationId: '${env:APPLICATION_ID}',
+      url: '${env:APPLICATION_URL}',
+    },
+  },
+  oAuthScopes: {
+    view: ['view_products'],
+    manage: ['manage_products'],
+  },
+  icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
+  mainMenuLink: {
+    defaultLabel: 'Template starter',
+    labelAllLocales: [],
+    permissions: [PERMISSIONS.View],
+  },
+  submenuLinks: [
+    {
+      uriPath: 'channels',
+      defaultLabel: 'Channels',
+      labelAllLocales: [],
+      permissions: [PERMISSIONS.View],
+    },
+  ],
+};
+
+export default config;
+```
+
+Configure custom application in connect.yaml with name as the folder name of the custom application and needed standard , secured configurations as defined in custom-application-config.mjs (Note: APPLICATION_URL will be automatically provided by connect and doesn't need to be defined as configuration for connect)
+
+```yml
+deployAs:
+  - name: sample-custom-application
+    applicationType: mc-app
+    endpoint: /
+    configuration:
+      standardConfiguration:
+        - key: CTP_PROJECT_KEY
+          description: project key from commercetools composable commerce project
+          default: "your-project"
+        - key: CTP_REGION
+          description: region of commercetools composable commerce project
+          required: true
+        - key: APPLICATION_ID
+          description: the custom application id
+          required: true
+        - key: CLOUD_IDENTIFIER
+          description: the cloud identifier
+          default: "gcp-eu"
+      securedConfiguration:
+        - key: CTP_CLIENT_ID
+          description: client id from commercetools composable commerce project
+          required: true
+        - key: CTP_CLIENT_SECRET
+          description: client secret from commercetools composable commerce project
+```
+
+
+# Deployment to connect
+
+## Create the connector
+Use preview or publish flow for preparing connector for deployment
+Create a custom application in your organization to fetch Application ID (Note- dummy http://test.com can be configured as Application URL since its not generated yet)
+Deploy connector providing all configuration values along with application id in last step
+Fetch Application Url from deployment using Deployment API . Its part deployment.applications[x].url
+Update Application Url in in merchant center custom application setup
+
+
+# Test your deployment
+
+In the Merchant Center you can now follow the steps to install the Custom Application and access it in your Projects.
+
