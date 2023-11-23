@@ -68,6 +68,10 @@ const getImportChunk = (locale: string): Promise<TranslationsData> => {
       return import(
         /* webpackChunkName: "timezone-data-fr-FR" */ '../data/time-zones/fr-FR.json'
       );
+    case 'pt-BR':
+      return import(
+        /* webpackChunkName: "timezone-data-pt-BR" */ '../data/time-zones/pt-BR.json'
+      );
     case 'zh-CN':
       return import(
         /* webpackChunkName: "timezone-data-zh-CN" */ '../data/time-zones/zh-CN.json'

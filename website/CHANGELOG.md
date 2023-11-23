@@ -1,5 +1,169 @@
 # @commercetools-website/custom-applications
 
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.12.0
+
+## 22.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.11.0
+
+## 22.10.0
+
+### Patch Changes
+
+- [#3273](https://github.com/commercetools/merchant-center-application-kit/pull/3273) [`fed1fa0a7`](https://github.com/commercetools/merchant-center-application-kit/commit/fed1fa0a7bf718b12f94bc694c0ef09638c9fa4f) Thanks [@gabriele-ct](https://github.com/gabriele-ct)! - Apply megamenu redesign to custom applications and match the docs configuration
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.10.0
+
+## 22.9.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.9.1
+
+## 22.9.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.9.0
+
+## 22.8.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.8.4
+
+## 22.8.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.8.3
+
+## 22.8.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.8.2
+
+## 22.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.8.1
+
+## 22.8.0
+
+### Patch Changes
+
+- [#3205](https://github.com/commercetools/merchant-center-application-kit/pull/3205) [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.3`
+
+- [#3157](https://github.com/commercetools/merchant-center-application-kit/pull/3157) [`b920f424c`](https://github.com/commercetools/merchant-center-application-kit/commit/b920f424c109a906cf8db7012fd65d4ec3a8e113) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.1.5 [security]
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Include new JSON schema for Custom Views
+
+- Updated dependencies [[`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178)]:
+  - @commercetools-frontend/assets@22.8.0
+
+## 22.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.7.1
+
+## 22.7.0
+
+### Patch Changes
+
+- [#3186](https://github.com/commercetools/merchant-center-application-kit/pull/3186) [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.0`
+
+- [#3176](https://github.com/commercetools/merchant-center-application-kit/pull/3176) [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies to version `16.6.1`
+
+- [#3181](https://github.com/commercetools/merchant-center-application-kit/pull/3181) [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.7.0
+
+## 22.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.6.0
+
+## 22.5.0
+
+### Patch Changes
+
+- [#3136](https://github.com/commercetools/merchant-center-application-kit/pull/3136) [`2aa732d60`](https://github.com/commercetools/merchant-center-application-kit/commit/2aa732d601aa20eb131f3953132f3bb39fada524) Thanks [@renovate](https://github.com/apps/renovate)! - Update [linkinator](https://github.com/commercetools/merchant-center-application-kit/pull/3136) dependency.
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.5.0
+
+## 22.4.0
+
+### Minor Changes
+
+- [#3103](https://github.com/commercetools/merchant-center-application-kit/pull/3103) [`fbc0f74be`](https://github.com/commercetools/merchant-center-application-kit/commit/fbc0f74bededcfd0531ad8abc1d630b492c68d82) Thanks [@renovate](https://github.com/apps/renovate)! - Update `start-server-and-test` dependency.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.4.0
+
+## 22.3.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.3.4
+
+## 22.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.3.3
+
+## 22.3.2
+
+### Patch Changes
+
+- [#3121](https://github.com/commercetools/merchant-center-application-kit/pull/3121) [`14f31aae4`](https://github.com/commercetools/merchant-center-application-kit/commit/14f31aae4aa55b30c3b46ac670ef711d13461d1e) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.3.2
+
+## 22.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`8e814adfb`](https://github.com/commercetools/merchant-center-application-kit/commit/8e814adfbc09daadc884dac78be4a5e5c0d5492c), [`b38784748`](https://github.com/commercetools/merchant-center-application-kit/commit/b387847485f79c48a1c026a23afb45f5a77877aa)]:
+  - @commercetools-frontend/assets@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

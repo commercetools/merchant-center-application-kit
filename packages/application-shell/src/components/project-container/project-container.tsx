@@ -11,9 +11,13 @@ import {
 } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  DOMAINS,
+  LOGOUT_REASONS,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
-import { CONTAINERS, STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
+import { CONTAINERS, SUSPENSION_REASONS } from '../../constants';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import ApplicationEntryPoint from '../application-entry-point';
 import ApplicationLoader from '../application-loader';

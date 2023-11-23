@@ -358,6 +358,10 @@
     "language": "English",
     "country": "Cameroon"
   },
+  "en-CQ": {
+    "language": "English",
+    "country": "Sark"
+  },
   "en-CX": {
     "language": "English",
     "country": "Christmas Island"
@@ -1764,7 +1768,7 @@
   },
   "tr-TR": {
     "language": "Turkish",
-    "country": "Turkey"
+    "country": "Türkiye"
   },
   "ts": {
     "language": "Tsonga"

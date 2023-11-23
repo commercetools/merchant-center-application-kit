@@ -9,15 +9,16 @@ import {
 import { ClassNames, type CSSObject } from '@emotion/react';
 import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import ModalPageTopBar from './modal-page-top-bar';
 import {
-  TRANSITION_DURATION,
   getOverlayStyles,
   getContainerStyles,
   getAfterOpenOverlayAnimation,
   getAfterOpenContainerAnimation,
   getBeforeCloseOverlayAnimation,
   getBeforeCloseContainerAnimation,
+  stylesBySize,
 } from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -60,6 +61,9 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
+
+export type TModalPageSize = 10 | 20 | 30 | 'scale';
+
 type Props = {
   /**
    * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
@@ -67,6 +71,10 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
+  /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -81,8 +89,15 @@ type Props = {
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
   previousPathLabel?: Label;
+  hidePathLabel?: boolean;
+  size: TModalPageSize;
+  hideTopBar?: boolean;
 };
-const defaultProps: Pick<Props, 'getParentSelector' | 'shouldDelayOnClose'> = {
+const defaultProps: Pick<
+  Props,
+  'getParentSelector' | 'shouldDelayOnClose' | 'size'
+> = {
+  size: 'scale',
   getParentSelector: getDefaultParentSelector,
   shouldDelayOnClose: true,
 };
@@ -99,6 +114,9 @@ const ModalPage = (props: Props) => {
     };
   }, [props.isOpen]);
   const { onClose } = props;
+
+  const TRANSITION_DURATION = stylesBySize[props.size].transitionTime;
+
   const handleClose = useCallback(
     (event) => {
       if (props.shouldDelayOnClose) {
@@ -113,7 +131,7 @@ const ModalPage = (props: Props) => {
       }
       onClose && onClose(event);
     },
-    [onClose, props.shouldDelayOnClose]
+    [onClose, props.shouldDelayOnClose, TRANSITION_DURATION]
   );
   return (
     <ClassNames>
@@ -137,7 +155,7 @@ const ModalPage = (props: Props) => {
                 : makeClassName(
                     props.afterOpenStyles ?? getAfterOpenContainerAnimation()
                   ),
-            beforeClose: makeClassName(getBeforeCloseContainerAnimation()),
+            beforeClose: makeClassName(getBeforeCloseContainerAnimation(props)),
           }}
           contentLabel={props.title}
           parentSelector={props.getParentSelector}
@@ -151,12 +169,18 @@ const ModalPage = (props: Props) => {
             },
           }}
         >
-          <ModalPageTopBar
-            color={props.topBarColor}
-            onClose={handleClose}
-            currentPathLabel={props.currentPathLabel}
-            previousPathLabel={props.previousPathLabel}
+          <CustomViewsSelector
+            customViewLocatorCode={props.customViewLocatorCode}
           />
+          {!props.hideTopBar && (
+            <ModalPageTopBar
+              color={props.topBarColor}
+              onClose={handleClose}
+              currentPathLabel={props.currentPathLabel}
+              previousPathLabel={props.previousPathLabel}
+              hidePathLabel={props.hidePathLabel}
+            />
+          )}
           {props.children}
         </Modal>
       )}

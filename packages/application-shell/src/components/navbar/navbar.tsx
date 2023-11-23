@@ -1,5 +1,15 @@
-import { MouseEventHandler, useEffect, useMemo } from 'react';
+import {
+  type MouseEventHandler,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+  useRef,
+} from 'react';
+import { css } from '@emotion/react';
 import classnames from 'classnames';
+import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
 import type { RouteComponentProps } from 'react-router-dom';
@@ -16,8 +26,10 @@ import type {
   TNormalizedActionRights,
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
+import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
+import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
 import {
@@ -25,17 +37,18 @@ import {
   RestrictedMenuItem,
   MenuItem,
   MenuItemLink,
-  IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
+  ItemContainer,
   Faded,
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
 import messages from './messages';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import NavBarSkeleton from './navbar-skeleton';
 import compiledStyles from /* preval */ './navbar.styles';
+
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from './non-nullable';
 import useNavbarStateManager from './use-navbar-state-manager';
 
@@ -76,7 +89,84 @@ const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
 const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
-const ApplicationMenu = (props: ApplicationMenuProps) => {
+const getIsSubmenuRouteActive = (
+  uriPath: ApplicationMenuProps['menu']['submenu'][number]['uriPath'],
+  props: ApplicationMenuProps
+) =>
+  Boolean(
+    matchPath(props.location.pathname, {
+      path: `/${props.projectKey}/${uriPath}`,
+      exact: true,
+      strict: false,
+    })
+  );
+
+export const ApplicationMenu = (props: ApplicationMenuProps) => {
+  const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
+  const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const submenuRef = useRef<HTMLUListElement>(null);
+
+  const hasSubmenu =
+    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
+
+  const menuItemIdentifier = snakeCase(props.menu.key);
+
+  const callbackFn: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const menuItemBoundingClientRect = document
+        .querySelector(`[data-menuitem="${menuItemIdentifier}"]`)
+        ?.getBoundingClientRect();
+      const menuItemTop = menuItemBoundingClientRect?.top || 0;
+      const menuItemBottom = menuItemBoundingClientRect?.bottom || 0;
+
+      const [entry] = entries;
+
+      const doesSubmenuFitWithinViewportBelowMenuItem =
+        entry.boundingClientRect.height +
+          (props.isMenuOpen ? menuItemTop : menuItemBottom) >
+        window.innerHeight;
+      // if the submenu does not fit at the bottom of the viewport (below the menu item)
+      if (doesSubmenuFitWithinViewportBelowMenuItem) {
+        setIsSubmenuAboveMenuItem(true);
+        setSubmenuVerticalPosition(
+          window.innerHeight - (props.isMenuOpen ? menuItemBottom : menuItemTop)
+        );
+        // show the submenu above the menu item
+      } else {
+        setIsSubmenuAboveMenuItem(false);
+        setSubmenuVerticalPosition(
+          props.isMenuOpen ? menuItemTop : menuItemBottom
+        );
+      }
+    },
+    [menuItemIdentifier, props.isMenuOpen]
+  );
+
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useLayoutEffect(() => {
+    observerRef.current = new IntersectionObserver(callbackFn, {
+      rootMargin: '-100% 0px 0px 0px', // we want to observe if the submenu crosses the bottom line of the viewport - therefore we set the root element top margin to -100% of the viewport height
+    });
+    return () => observerRef.current?.disconnect();
+  }, [callbackFn, props.isMenuOpen]);
+
+  useLayoutEffect(() => {
+    const currentSubmenuRef = submenuRef.current;
+    const observer = observerRef.current;
+    if (!currentSubmenuRef) return;
+
+    if (observer && currentSubmenuRef) {
+      observer.observe(currentSubmenuRef);
+    }
+    return () => observer?.disconnect();
+  }, [
+    menuItemIdentifier,
+    props.isMenuOpen,
+    props.handleToggleItem,
+    callbackFn,
+  ]);
+
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
       path: `/${props.projectKey}/${props.menu.uriPath}`,
@@ -84,8 +174,6 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       strict: false,
     })
   );
-  const hasSubmenu =
-    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
   useEffect(() => {
     // On first render, check which menu is active for the current application and expand
@@ -99,14 +187,6 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
-
-  const isMainMenuItemALink =
-    // 1. When the navbar is collapsed
-    !props.isMenuOpen ||
-    // 2. When there is no submenu
-    !hasSubmenu ||
-    // 3. When the submenu group is active/visible
-    props.isActive;
 
   return (
     <RestrictedMenuItem
@@ -126,45 +206,54 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
         isMainMenuRouteActive={isMainMenuRouteActive}
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
-        onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
-        onMouseLeave={props.isMenuOpen ? undefined : props.shouldCloseMenuFly}
+        onMouseEnter={props.handleToggleItem}
+        onMouseLeave={props.shouldCloseMenuFly}
+        identifier={menuItemIdentifier}
       >
         <MenuItemLink
-          linkTo={
-            isMainMenuItemALink
-              ? `/${props.projectKey}/${props.menu.uriPath}`
-              : undefined
-          }
+          linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
           useFullRedirectsForLinks={props.useFullRedirectsForLinks}
           onClick={props.onMenuItemClick}
         >
-          <div className={styles['item-icon-text']}>
-            <div className={styles['icon-container']}>
-              <div
-                className={classnames(styles.icon, {
-                  [styles.icon__active]:
-                    props.isActive || isMainMenuRouteActive,
-                })}
-              >
-                <IconSwitcher icon={props.menu.icon} size="scale" />
-              </div>
-            </div>
-            <div className={styles.title} aria-owns={`group-${props.menu.key}`}>
-              <MenuLabel
-                labelAllLocales={props.menu.labelAllLocales}
-                defaultLabel={props.menu.defaultLabel}
-                applicationLocale={props.applicationLocale}
-              />
-            </div>
-          </div>
+          <ItemContainer
+            labelAllLocales={props.menu.labelAllLocales}
+            defaultLabel={props.menu.defaultLabel}
+            applicationLocale={props.applicationLocale}
+            icon={props.menu.icon}
+            isMenuOpen={props.isMenuOpen}
+          />
         </MenuItemLink>
         <MenuGroup
-          id={props.menu.key}
+          id={`group-${props.menu.key}`}
           level={2}
           isActive={props.isActive}
           isExpanded={props.isMenuOpen}
           hasSubmenu={hasSubmenu}
+          submenuVerticalPosition={submenuVerticalPosition}
+          isSubmenuAboveMenuItem={isSubmenuAboveMenuItem}
+          ref={submenuRef}
         >
+          {!props.isMenuOpen && (
+            <div
+              className={styles['tooltip-container']}
+              css={css`
+                ${isSubmenuAboveMenuItem
+                  ? 'bottom'
+                  : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+              `}
+            >
+              <div
+                className={styles['tooltip']}
+                aria-owns={`group-${props.menu.key}`}
+              >
+                <MenuLabel
+                  labelAllLocales={props.menu.labelAllLocales}
+                  defaultLabel={props.menu.defaultLabel}
+                  applicationLocale={props.applicationLocale}
+                />
+              </div>
+            </div>
+          )}
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
                 <RestrictedMenuItem
@@ -182,7 +271,14 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                       : undefined
                   }
                 >
-                  <li className={styles['sublist-item']}>
+                  <li
+                    className={classnames(styles['sublist-item'], {
+                      [styles['sublist-item__active']]: getIsSubmenuRouteActive(
+                        submenu.uriPath,
+                        props
+                      ),
+                    })}
+                  >
                     <div className={styles.text}>
                       <MenuItemLink
                         linkTo={`/${props.projectKey}/${submenu.uriPath}`}
@@ -193,6 +289,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                           props.useFullRedirectsForLinks
                         }
                         onClick={props.onMenuItemClick}
+                        isSubmenuLink
                       >
                         <MenuLabel
                           labelAllLocales={submenu.labelAllLocales}
@@ -212,14 +309,15 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 };
 ApplicationMenu.displayName = 'ApplicationMenu';
 
-type TNavbarProps = {
-  applicationLocale: string;
+export type TNavbarProps = {
+  applicationLocale?: string;
   projectKey: string;
   environment: TApplicationContext<{
     useFullRedirectsForLinks?: boolean;
   }>['environment'];
   project: TFetchProjectQuery['project'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  isLoading: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
   const {
@@ -263,8 +361,26 @@ const NavBar = (props: TNavbarProps) => {
     [props.project]
   );
 
+  const applicationLocale = props.applicationLocale;
+
+  // Render the loading navbar as long as all the data
+  // hasn't been loaded, or if the project does not exist.
+  if (props.isLoading || typeof applicationLocale === 'undefined') {
+    return <NavBarSkeleton isExpanded={isMenuOpen} />;
+  }
+
   return (
     <NavBarLayout ref={navBarNode}>
+      <div className={styles['navigation-header']}>
+        <div className={styles['icon-container']}>
+          <div className={styles['icon']}>
+            <img src={LogoSVG} width="100%" alt="Logo" />
+          </div>
+        </div>
+        {isMenuOpen ? (
+          <div className={styles['title']}>Merchant Center</div>
+        ) : null}
+      </div>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
           {allInternalApplicationsNavbarMenu.map((menu) => {
@@ -281,14 +397,13 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
               />
             );
           })}
-          <MenuItemDivider />
           {allCustomApplicationsNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
@@ -303,7 +418,7 @@ const NavBar = (props: TNavbarProps) => {
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 projectPermissions={projectPermissions}
                 menuVisibilities={menuVisibilities}
-                applicationLocale={props.applicationLocale}
+                applicationLocale={applicationLocale}
                 projectKey={props.projectKey}
                 useFullRedirectsForLinks={useFullRedirectsForLinks}
                 onMenuItemClick={props.onMenuItemClick}
@@ -313,40 +428,42 @@ const NavBar = (props: TNavbarProps) => {
         </div>
         <div className={styles['fixed-menu']}>
           <Faded />
-          <MenuItem
-            hasSubmenu={false}
-            isActive={false}
-            isMenuOpen={isMenuOpen}
-            onClick={() => {
-              handleToggleItem('fixed-support');
-            }}
-            onMouseEnter={
-              isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
-            }
-            onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
-          >
-            <a
-              href={SUPPORT_PORTAL_URL}
-              rel="noopener noreferrer"
-              target="_blank"
+          <div className={styles['support-menu']}>
+            <MenuItem
+              hasSubmenu={false}
+              isActive={false}
+              isMenuOpen={isMenuOpen}
+              onClick={() => {
+                handleToggleItem('fixed-support');
+              }}
+              onMouseEnter={
+                isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
+              }
+              onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
             >
-              <div className={styles['item-icon-text']}>
-                <div className={styles['icon-container']}>
-                  <div
-                    className={classnames(styles.icon, {
-                      [styles.icon__active]:
-                        activeItemIndex === 'fixed-support',
-                    })}
-                  >
-                    <SupportIcon size="scale" />
+              <a
+                href={SUPPORT_PORTAL_URL}
+                rel="noopener noreferrer"
+                target="_blank"
+                className={styles['text-link']}
+              >
+                <div className={styles['item-icon-text']}>
+                  <div className={styles['icon-container']}>
+                    <div className={styles['icon']}>
+                      <SupportIcon size="scale" />
+                    </div>
                   </div>
+                  {isMenuOpen ? (
+                    <div className={styles.title}>
+                      <FormattedMessage
+                        {...messages['NavBar.MCSupport.title']}
+                      />
+                    </div>
+                  ) : null}
                 </div>
-                <div className={styles.title}>
-                  <FormattedMessage {...messages['NavBar.MCSupport.title']} />
-                </div>
-              </div>
-            </a>
-          </MenuItem>
+              </a>
+            </MenuItem>
+          </div>
           <MenuExpander
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}

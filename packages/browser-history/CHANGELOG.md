@@ -1,5 +1,49 @@
 # @commercetools-frontend/browser-history
 
+## 22.13.0
+
+## 22.12.0
+
+## 22.11.0
+
+## 22.10.0
+
+## 22.9.1
+
+## 22.9.0
+
+## 22.8.4
+
+## 22.8.3
+
+## 22.8.2
+
+## 22.8.1
+
+## 22.8.0
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 22.7.1
+
+## 22.7.0
+
+## 22.6.0
+
+## 22.5.0
+
+## 22.4.0
+
+## 22.3.4
+
+## 22.3.3
+
+## 22.3.2
+
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

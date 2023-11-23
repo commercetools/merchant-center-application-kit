@@ -7,11 +7,16 @@ import {
 } from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
-import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  useMcQuery,
+  type TApplicationContext,
+} from '@commercetools-frontend/application-shell-connectors';
+import {
+  GRAPHQL_TARGETS,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS } from '../../constants';
-import { useMcQuery } from '../../hooks/apollo-hooks';
+import { WINDOW_SIZES } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TNavbarMenu } from '../../types/generated/proxy';
 import type {
@@ -41,6 +46,8 @@ const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
+
+const isForcedMenuOpenDefaultValue = false;
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -125,8 +132,15 @@ const useNavbarStateManager = (props: HookProps) => {
     STORAGE_KEYS.IS_FORCED_MENU_OPEN
   );
   const isForcedMenuOpen = isNil(cachedIsForcedMenuOpen)
-    ? null
+    ? isForcedMenuOpenDefaultValue
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
+
+  if (isNil(cachedIsForcedMenuOpen)) {
+    window.localStorage.setItem(
+      STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+      String(isForcedMenuOpen)
+    );
+  }
 
   const [state, dispatch] = useReducer<
     (prevState: State, action: Action) => State
@@ -134,8 +148,8 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const checkSize = useCallback(
     throttle(() => {
-      const shouldOpen = window.innerWidth > 1024;
-      const canExpandMenu = window.innerWidth > 918;
+      const shouldOpen = window.innerWidth > WINDOW_SIZES.STANDARD;
+      const canExpandMenu = window.innerWidth > WINDOW_SIZES.WIDE;
 
       // If the screen is small, we should always keep the menu closed,
       // no matter the settings.
@@ -144,6 +158,11 @@ const useNavbarStateManager = (props: HookProps) => {
           // and resets the state to avoid conflicts
           dispatch({ type: 'reset' });
         }
+      } else if (isForcedMenuOpen) {
+        dispatch({
+          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          payload: true,
+        });
       } else if (canExpandMenu && state.isExpanderVisible !== true) {
         dispatch({ type: 'setIsExpanderVisible' });
       } else if (isNil(isForcedMenuOpen) && state.isMenuOpen !== shouldOpen) {

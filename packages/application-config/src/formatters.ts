@@ -1,4 +1,5 @@
 import upperFirst from 'lodash/upperFirst';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
@@ -10,6 +11,10 @@ type TImplicitCustomApplicationResourceAccesses<
   | `manage${Capitalize<CamelCase<PermissionGroupName>>}`,
   string
 >;
+
+type TImplicitCustomViewResourceAccesses<
+  PermissionGroupName extends string = ''
+> = TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
 
 type TImplicitCustomApplicationPermissionKeys<
   PermissionGroupName extends string = ''
@@ -89,7 +94,9 @@ function entryPointUriPathToResourceAccesses<
   permissionGroupNames?: PermissionGroupName[]
 ): TImplicitCustomApplicationResourceAccesses<PermissionGroupName> {
   const resourceAccessKey =
-    formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH === entryPointUriPath
+      ? ''
+      : formatEntryPointUriPathToResourceAccessKey(entryPointUriPath);
 
   const defaultResourceAccesses = {
     view: `view${resourceAccessKey}`,
@@ -115,6 +122,24 @@ function entryPointUriPathToResourceAccesses<
   };
 }
 
+function computeCustomViewResourceAccesses<PermissionGroupName extends string>(
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomViewResourceAccesses<PermissionGroupName> {
+  return entryPointUriPathToResourceAccesses(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+    permissionGroupNames || []
+  );
+}
+
+function computeCustomViewPermissionsKeys<PermissionGroupName extends string>(
+  permissionGroupNames?: PermissionGroupName[]
+): TImplicitCustomApplicationPermissionKeys<PermissionGroupName> {
+  return entryPointUriPathToPermissionKeys(
+    CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+    permissionGroupNames || []
+  );
+}
+
 function entryPointUriPathToPermissionKeys(
   entryPointUriPath: string
 ): TImplicitCustomApplicationPermissionKeys<''>;
@@ -131,6 +156,7 @@ function entryPointUriPathToPermissionKeys<PermissionGroupName extends string>(
       entryPointUriPath,
       permissionGroupNames ?? []
     );
+
   return Object.entries(resourceAccesses).reduce(
     (permissionKeys, [resourceAccessKey, resourceAccessValue]) => ({
       ...permissionKeys,
@@ -145,4 +171,6 @@ export {
   entryPointUriPathToPermissionKeys,
   formatEntryPointUriPathToResourceAccessKey,
   formatPermissionGroupNameToResourceAccessKey,
+  computeCustomViewResourceAccesses,
+  computeCustomViewPermissionsKeys,
 };

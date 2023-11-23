@@ -1,29 +1,66 @@
 :root {
   --expander-height: 50px;
-  --faded-height: 32px;
+  --expander-size: 40px;
   --icon-size: 24px;
-  --icon-container-offset: 4px;
+  --icon-size-hover: 28px;
+  --item-size: 48px;
   --item-height: 56px;
-  --item-width: 64px;
-  --submenu-margin: calc(
-    var(--icon-size) + var(--spacing-m) + var(--icon-container-offset) + 4px
-  );
+  --sublist-indentation-when-collapsed: 72px;
+  --sublist-indentation-when-expanded: 248px;
+  --sublist-width: 253px;
+  --left-navigation-transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
 
   /* Left navigation */
-  --width-left-navigation: 64px;
-  --width-left-navigation-when-expanded: 245px;
-  --width-left-navigation-sublist: 205px;
+  --width-left-navigation: 80px;
+  --width-left-navigation-when-expanded: 256px;
+}
+
+@keyframes visible {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Left Nav */
 
 .left-navigation {
-  display: flex;
-  flex-grow: 1;
+  display: grid;
   width: var(--width-left-navigation);
-  z-index: 19999;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar);
+  background: var(--color-primary);
+  height: 100%;
+  grid-template-rows: 56px 1fr;
+  transition: var(--left-navigation-transition);
+}
+
+.navigation-header {
+  background-color: var(--color-accent-10);
+  color: var(--color-surface);
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--spacing-30);
+}
+
+.navigation-header .icon-container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation-header .title {
+  font-weight: 600;
+  margin-left: var(--spacing-20);
+  transition: var(--left-navigation-transition);
+  animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
+}
+
+.navigation-header .icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .list {
@@ -35,17 +72,9 @@
   flex: 1 1 0;
 }
 
-:global(.body__menu-open) .scrollable-menu {
-  flex: 1 1 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .list-item {
-  width: var(--item-width);
-  min-height: var(--item-height);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar);
+  min-height: var(--item-size);
+  background: var(--color-primary);
   margin: 0;
   list-style: none;
   cursor: pointer;
@@ -54,10 +83,13 @@
 .item-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  padding: var(--spacing-m);
-  width: 100%;
+  width: var(--item-size);
   position: relative;
   display: block;
+}
+
+:global(.body__menu-open) .item-link {
+  width: 100%;
 }
 
 .list-item .item-icon-text {
@@ -70,54 +102,75 @@
 .list-item .icon {
   width: var(--icon-size);
   height: var(--icon-size);
+  transition: var(--left-navigation-transition);
 }
+
+.list-item:hover .icon {
+  /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+  transform: scale(1.2);
+}
+
 .list-item .icon > svg *:not([fill='none']) {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  fill: var(--color-for-navbar-icon);
-}
-.list-item .icon__active > svg *:not([fill='none']) {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  fill: var(--color-for-navbar-icon-when-active);
+  fill: var(--color-surface);
 }
 
 .list-item .title {
   flex: 1;
-  font-weight: 500;
+  font-weight: 600;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
-  display: none;
   opacity: 0;
-  transition: all 0.25s ease-in-out;
+  transition: var(--left-navigation-transition);
   text-align: left;
   text-decoration: none;
+  z-index: 1;
 }
 
 .expander {
-  border-top: 1px solid var(--color-neutral-40);
-  height: var(--expander-height);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 0%,
+    var(--color-primary-25) 100%
+  );
+  padding: var(--spacing-30) var(--spacing-25);
 }
 
 .expander:hover {
-  background: transparent !important;
+  background-color: var(--color-primary-40);
+}
+
+/* divider */
+.expander::before {
+  content: '';
+  position: absolute;
+  top: var(--item-height);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  width: calc(100% - 2 * var(--spacing-30));
 }
 
 .expand-icon {
-  align-items: center;
-  border-radius: 32px;
-  cursor: pointer;
+  height: var(--expander-size);
+  width: var(--expander-size);
+  border-radius: var(--border-radius-4);
+  padding: var(--spacing-20);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
-  height: var(--icon-size);
   justify-content: center;
-  transform: translateX(0) rotateZ(0deg);
-  width: var(--icon-size);
+  align-items: center;
+}
+
+.expand-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
 
 .item--bottom {
@@ -125,86 +178,57 @@
   bottom: var(--expander-height);
 }
 
-.list-item:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar-when-hovered);
-}
-
-.item__active .title {
-  opacity: 1;
-  display: block;
-  transition: all 0.2s ease;
+.list-item:not(.item_menu__active):hover {
+  background-color: var(--color-primary-40);
+  border-radius: var(--border-radius-8);
 }
 
 .item_menu-open {
   height: auto !important;
 }
 
-/* NO SUBMENU */
-
 .item_menu-collapsed .item-link {
   text-align: center;
-}
-
-.item__no-submenu .title {
-  border-bottom: 0;
-}
-
-.item__no-submenu .sublist {
-  padding-top: 40px;
-}
-
-/* left-nav open */
-
-:global(.body__menu-open) .title {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
-  font-weight: 500;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  line-height: var(--line-height-for-navbar-link);
 }
 
 :global(.body__menu-open) .left-navigation {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   box-shadow: var(--shadow-for-navbar);
+  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item {
   height: auto;
-  min-height: var(--item-height);
-  transition: max-height 0.15s ease-out;
+  min-height: var(--item-size);
   overflow: hidden;
+  width: 100%;
 }
 
-:global(.body__menu-open) .left-navigation,
-:global(.body__menu-open) .list-item {
+:global(.body__menu-open) .left-navigation {
   width: var(--width-left-navigation-when-expanded);
+  transition: var(--left-navigation-transition);
 }
 
 :global(.body__menu-open) .list-item .title {
-  display: block;
   opacity: 1;
-  margin-left: var(--spacing-m);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
+  margin-left: var(--spacing-25);
+  color: var(--color-surface);
+  transition: var(--left-navigation-transition);
+  animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
 }
+
+.list-item:hover .title {
+  margin-left: calc(var(--spacing-25) + 2px);
+}
+
 .list-item:not(.item__active):hover .icon > svg *:not([fill='none']) {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   fill: var(--color-for-navbar-icon-when-active);
 }
-.list-item .title:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
-}
+
 .list-item:not(.item__active):hover .title {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
-}
-
-:global(.body__menu-open) .expand-icon {
-  transform: translateX(0) rotateZ(180deg);
 }
 
 :global(.body__menu-open) .item__active {
@@ -212,60 +236,33 @@
   transition: max-height 0.25s ease-in;
 }
 
-:global(.body__menu-open) .sublist {
-  position: relative;
-  z-index: 1;
-  left: 0;
-  margin: 0 0 0 var(--submenu-margin);
-  padding: var(--spacing-m) 0 0;
-  background-color: transparent;
-}
-
-:global(.body__menu-open) .sublist.sublist-no-children {
-  border: 0;
-}
-
-:global(.body__menu-open) .title-copy {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
-  text-decoration: none;
-  transition: all 0.15s ease;
-}
-
-:global(.body__menu-open) .title-copy:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link-when-hovered);
-}
-
-:global(.body__menu-open) .expander {
-  min-height: 50px;
-  justify-content: flex-end;
-  padding: var(--spacing-m);
-}
-
 /*  Second level menu */
 
 .sublist {
-  padding: 75px var(--spacing-l) var(--spacing-m);
+  padding: var(--spacing-30);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-navbar-link);
-  position: absolute;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar);
-  top: 0;
-  left: 64px;
+  left: var(--sublist-indentation-when-collapsed);
   z-index: -1;
   list-style: none;
-  opacity: 0.01;
-  visibility: hidden;
+  position: fixed;
+  display: none;
+}
+
+/* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+.sublist-expanded__active::before,
+.sublist-collapsed__active::before,
+.sublist-collapsed__active__above::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: calc(var(--sublist-width) + var(--spacing-20));
+  height: var(--item-size);
+  left: calc(-1 * var(--spacing-20));
 }
 
 .sublist__inactive {
@@ -273,17 +270,25 @@
 }
 
 .sublist-item {
-  padding: var(--spacing-s) 0 0;
-}
-.sublist-item:first-of-type {
-  padding: 0;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  transition: padding-left 150ms ease-out;
 }
 
-.sublist-item:hover {
+.sublist-item__active {
+  border-radius: var(--border-radius-4);
+  background: var(--color-accent-30);
+}
+
+.sublist-item:not(.sublist-item__active):hover {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
+  border-radius: var(--border-radius-4);
+  background: var(--color-primary-95);
+  padding-left: var(--spacing-20);
 }
 
 .text {
@@ -293,49 +298,79 @@
   font-size: var(--font-size-for-navbar-link);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-navbar-link);
+  width: 100%;
+  height: 100%;
 }
 
 .text-link {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link);
   text-decoration: none;
-  transition: all 0.15s ease;
+  display: flex;
+  padding: var(--spacing-25);
+  align-items: center;
+  justify-content: center;
 }
 
-.text-link:hover {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link-when-hovered);
+:global(.body__menu-open) .text-link {
+  justify-content: start;
+}
+
+.text-link-sublist-wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+}
+
+.text-link-sublist {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--color-solid);
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-hovered);
+  text-decoration: none;
+  flex: 1;
+  padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+    var(--spacing-30);
+}
+
+.navlink-clickable-content {
+  height: 100%;
+  width: 100%;
 }
 
 /* Item active */
 .item__active,
 .item_menu__active {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background: var(--background-color-for-navbar-when-active);
+  background: var(--color-accent-30);
+  border-radius: var(--border-radius-8);
 }
 
 .list-item.item__active .item-icon-text {
-  width: calc(
-    var(--width-left-navigation-sublist) + var(--width-left-navigation) -
-      var(--spacing-m) * 2
-  );
   justify-content: flex-start;
 }
+
 .list-item .icon-container {
-  width: calc(var(--icon-size) + var(--icon-container-offset) * 2);
+  width: auto;
   display: flex;
   justify-content: center;
   align-self: flex-start;
 }
+
 .fixed-menu .list-item .item-icon-text {
-  justify-content: flex-start;
+  justify-content: center;
   display: flex;
   width: 100%;
 }
-.fixed-menu .list-item .icon-container {
-  /* empty block */
+
+.support-menu {
+  padding: 0 var(--spacing-30) var(--spacing-20) var(--spacing-30);
+  height: calc(var(--item-size) + var(--spacing-20));
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
@@ -343,42 +378,74 @@
   width: auto;
 }
 
-.list-item.item__active .item-icon-text .title {
-  margin-left: 40px;
-}
-.item_menu-collapsed.list-item.item__active .item-icon-text .title {
-  max-height: 44px;
-  overflow: hidden;
-  /* stylelint-disable-next-line value-no-vendor-prefix */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-:global(.body__menu-open) .list-item.item__active .item-icon-text .title {
-  margin-left: var(--spacing-m);
-}
-
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
   margin-left: 0;
 }
 
-.list-item.item__active .sublist {
-  width: var(--width-left-navigation-sublist);
-  min-height: 100%;
+.tooltip-container {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: var(--item-size);
+  visibility: visible;
 }
 
-:global(.body__menu-open) .list-item.item__active .sublist {
-  width: calc(100% - var(--submenu-margin));
+.tooltip {
+  padding: var(--spacing-10) calc(var(--spacing-20) + var(--spacing-10));
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  border-radius: var(--border-radius-4);
+  background: var(--color-accent-10);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-size: var(--font-size-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  line-height: var(--line-height-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link);
+  color: var(--color-surface);
+  max-height: var(--item-size);
+  visibility: inherit;
 }
 
 .sublist-expanded__active,
-.sublist-collapsed__active {
+.sublist-collapsed__active,
+.sublist-collapsed__active__above {
   opacity: 1;
-  visibility: visible;
+  display: none;
   text-align: left;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   background-color: var(--background-color-for-navbar-when-active);
+}
+
+.item-link:hover .sublist-collapsed__active,
+.item-link:hover .sublist-collapsed__active__above,
+.item-link:hover .sublist-expanded__active {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  background-color: var(--color-surface);
+  /* TODO: add design tokens instead hard-coded values */
+  min-height: 50px;
+  width: var(--sublist-width);
+  border-radius: var(--border-radius-8);
+  /* z-index value must be higher than AppBar's z-index */
+  z-index: 20001;
+  box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
+}
+
+.item-link:hover .sublist-collapsed__active.sublist-collapsed__empty,
+.item-link:hover .sublist-collapsed__active__above.sublist-collapsed__empty {
+  visibility: hidden;
+}
+
+.item-link:hover .sublist-expanded__active {
+  left: var(--sublist-indentation-when-expanded);
 }
 
 .highlighted,
@@ -407,14 +474,43 @@
 
 .scrollable-menu {
   flex: 1 1 0;
-  padding-bottom: var(--faded-height);
-  /* 
-    FIXME: Make the navbar scrollable in collapsed state.
-    NOTE: do not use `overflow-x: hidden; overflow-y: auto;` as this prevents submenus from showing up on hover 
-  */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: var(--spacing-30) var(--spacing-30) var(--item-size);
+  width: var(--width-left-navigation);
+  box-sizing: border-box;
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-40) transparent;
+}
+
+:global(.body__menu-open) .scrollable-menu {
+  width: var(--width-left-navigation-when-expanded);
+}
+
+.scrollable-menu:hover {
+  overflow-y: scroll;
+  padding-right: 8px;
+}
+
+.scrollable-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-menu::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-40);
+  border-radius: var(--border-radius-8);
 }
 
 .fixed-menu {
-  flex: 0 0 0;
   position: relative;
+  width: var(--width-left-navigation);
+}
+
+:global(.body__menu-open) .fixed-menu {
+  width: var(--width-left-navigation-when-expanded);
 }

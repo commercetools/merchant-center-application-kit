@@ -21,6 +21,10 @@ const getUiKitChunkImport = (locale: string): Promise<TI18NImportData> => {
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-uikit/i18n/compiled-data/fr-FR.json'
       );
+    case 'pt-BR':
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-pt-BR" */ '@commercetools-uikit/i18n/compiled-data/pt-BR.json'
+      );
     case 'zh-CN':
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-uikit/i18n/compiled-data/zh-CN.json'
@@ -46,6 +50,10 @@ const getAppKitChunkImport = (locale: string): Promise<TI18NImportData> => {
     case 'fr-FR':
       return import(
         /* webpackChunkName: "i18n-app-kit-locale-fr-FR" */ '../compiled-data/fr-FR.json'
+      );
+    case 'pt-BR':
+      return import(
+        /* webpackChunkName: "i18n-app-kit-locale-pt-BR" */ '../compiled-data/pt-BR.json'
       );
     case 'zh-CN':
       return import(

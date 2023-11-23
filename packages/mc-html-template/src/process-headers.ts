@@ -1,9 +1,9 @@
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import { HTTP_SECURITY_HEADERS } from '@commercetools-frontend/constants';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlScripts from /* preval */ './load-html-scripts';
 import createAssetHash from './utils/create-asset-hash';
 import sanitizeAppEnvironment from './utils/sanitize-app-environment';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 type TCspDirectiveValue = string | string[] | undefined;
 type TCspDirective = Record<string, TCspDirectiveValue>;
@@ -99,6 +99,8 @@ const processHeaders = (
         // htmlStylesHashes.map(assetHash => `'${assetHash}'`)
       ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
+      // Required for Custom Views
+      'frame-src': ["'self'"],
     },
     isMcDevEnv
       ? {

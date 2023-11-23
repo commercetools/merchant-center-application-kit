@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sentry",
-  "version": "22.3.0",
+  "version": "22.13.0",
   "description": "Components to set up Sentry for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -18,20 +18,20 @@
   "module": "dist/commercetools-frontend-sentry.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.20.13",
-    "@babel/runtime-corejs3": "^7.20.13",
-    "@commercetools-frontend/browser-history": "22.3.0",
-    "@commercetools-frontend/constants": "22.3.0",
-    "@sentry/react": "7.51.2",
-    "@sentry/types": "7.51.2",
-    "@sentry/tracing": "7.51.2",
+    "@babel/runtime": "^7.22.15",
+    "@babel/runtime-corejs3": "^7.22.15",
+    "@commercetools-frontend/browser-history": "22.13.0",
+    "@commercetools-frontend/constants": "22.13.0",
+    "@sentry/browser": "7.64.0",
+    "@sentry/react": "7.64.0",
+    "@sentry/types": "7.64.0",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.53",
+    "@types/react": "^17.0.56",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
     "@emotion/react": "11.11.0",
-    "@types/jest": "^29.5.1",
+    "@types/jest": "^29.5.4",
     "jest": "29.5.0",
     "react": "17.0.2",
     "sentry-testkit": "5.0.5",

@@ -1,9 +1,12 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
+import type { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
+import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -46,6 +49,10 @@ type TTabularMainPageProps = {
    * Determines if the form controls should be rendered.
    */
   hideControls: boolean;
+  /**
+   * These codes are used to configure which Custom Views are available for every tab.
+   */
+  customViewLocatorCodes?: Record<string, LocationDescriptor>;
 };
 
 const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
@@ -53,6 +60,10 @@ const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
 };
 
 const TabularMainPage = (props: TTabularMainPageProps) => {
+  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
+    props.customViewLocatorCodes
+  );
+
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
     'TabularMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
@@ -60,6 +71,9 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
 
   return (
     <PageWrapper>
+      <CustomViewsSelector
+        customViewLocatorCode={currentCustomViewLocatorCode}
+      />
       <TabularPageContainer color="surface">
         {props.customTitleRow || (
           <PageHeaderTitle

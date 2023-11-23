@@ -1,3 +1,5 @@
+import type { TCustomView } from './types/generated/settings';
+
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
 
@@ -149,6 +151,10 @@ export type TLocalizedField = {
   locale: string;
   value: string;
 };
+export type TPermissionData = {
+  name: string;
+  oAuthScopes: string[];
+};
 export type ApplicationMenuLinksForDevelopmentConfig = {
   icon: string;
   defaultLabel: string;
@@ -165,6 +171,8 @@ export type ApplicationOidcForDevelopmentConfig = {
   authorizeUrl: string;
   initialProjectKey?: string;
   teamId?: string;
+  applicationId?: string;
+  customViewId?: string;
   oAuthScopes?: {
     view: string[];
     manage: string[];
@@ -175,35 +183,106 @@ export type ApplicationOidcForDevelopmentConfig = {
     manage: string[];
   }[];
 };
+export type CustomViewData = {
+  id: string;
+  defaultLabel: string;
+  labelAllLocales: TLocalizedField[];
+  description?: string;
+  url: string;
+  permissions: TPermissionData[];
+  locators: string[];
+  type: TCustomView['type'];
+  typeSettings?: TCustomView['typeSettings'];
+};
+
+export type ApplicationRuntimeEnvironmentForDevelopment = {
+  oidc?: ApplicationOidcForDevelopmentConfig;
+  menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+  customViewHostUrl?: string;
+  customViewConfig?: CustomViewData;
+};
+
+export type ApplicationRuntimeEnvironment = {
+  // @deprecated: use `applicationIdentifier`
+  applicationId: string;
+  applicationIdentifier: string;
+  applicationName: string;
+  entryPointUriPath: string;
+  customViewId?: string;
+  revision: string;
+  env: string;
+  location: string;
+  cdnUrl: string;
+  mcApiUrl: string;
+  frontendHost: string;
+  servedByProxy: boolean;
+  // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
+  ldClientSideId?: string;
+  trackingSentry?: string;
+  // Development-only configuration
+  __DEVELOPMENT__?: ApplicationRuntimeEnvironmentForDevelopment;
+};
 
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
-  app: {
-    applicationId: string;
-    applicationName: string;
-    entryPointUriPath: string;
-    revision: string;
-    env: string;
-    location: string;
-    cdnUrl: string;
-    mcApiUrl: string;
-    frontendHost: string;
-    servedByProxy: boolean;
-    // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
-    ldClientSideId?: string;
-    trackingSentry?: string;
-    // Properties for OIDC-like workflow for development
-    __DEVELOPMENT__?: {
-      oidc?: ApplicationOidcForDevelopmentConfig;
-      menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
-    };
-  };
+  app: ApplicationRuntimeEnvironment;
 }
+
+// Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
+export const CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH = '@@custom-view-host@@';
+
+export const SUPPORTED_HEADERS = {
+  ACCEPT: 'Accept',
+  ACCEPT_VERSION: 'Accept-version',
+  AUTHORIZATION: 'Authorization',
+  CONTENT_TYPE: 'Content-Type',
+  X_APPLICATION_ID: 'X-Application-Id',
+  X_CUSTOM_VIEW_ID: 'X-Custom-View-Id',
+  X_CORRELATION_ID: 'X-Correlation-Id',
+  X_FEATURE_FLAG: 'X-Feature-Flag',
+  X_FORWARD_TO: 'X-Forward-To',
+  X_FORWARD_TO_AUDIENCE_POLICY: 'X-Forward-To-Audience-Policy',
+  X_FORWARD_TO_CLAIMS: 'X-Forward-To-Claims',
+  X_GRAPHQL_TARGET: 'X-Graphql-Target',
+  X_GRAPHQL_OPERATION_NAME: 'X-Graphql-Operation-Name',
+  X_PROJECT_KEY: 'X-Project-Key',
+  X_TEAM_ID: 'X-Team-Id',
+  X_TOKEN_RETRY: 'X-Force-Token',
+  X_USER_AGENT: 'X-User-Agent',
+} as const;
+
+export const STORAGE_KEYS = {
+  NONCE: 'nonce',
+  IS_AUTHENTICATED: 'isAuthenticated',
+  SESSION_TOKEN: 'sessionToken',
+  SESSION_SCOPE: 'sessionScope',
+  ACTIVE_PROJECT_KEY: 'activeProjectKey',
+  ACTIVE_TEAM_ID: 'activeTeamId',
+  SELECTED_DATA_LOCALE: 'selectedDataLocale',
+  IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
+  LOGIN_STRATEGY: 'loginStrategy',
+} as const;
 
 export const HTTP_SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'X-XSS-Protection': '1; mode=block',
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
+  'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'same-origin',
 } as const;
+
+// Custom Views events (messages sent between the host application and the custom view)
+export const CUSTOM_VIEWS_EVENTS_NAMES = {
+  CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
+  CUSTOM_VIEW_INITIALIZATION: 'custom-view-initialization',
+};
+export const CUSTOM_VIEWS_EVENTS_META = {
+  SOURCE: 'mc-host-application',
+  DESTINATION_PREFIX: 'custom-view-',
+};
+
+// SSO
+export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
+export const LOGIN_STRATEGY_DEFAULT = 'default';
+export const LOGIN_STRATEGY_OIDC = 'oidc';
+export const LOGIN_STRATEGY_SSO = 'sso';

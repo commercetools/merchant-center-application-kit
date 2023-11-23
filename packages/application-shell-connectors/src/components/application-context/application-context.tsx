@@ -146,6 +146,7 @@ export const mapProjectToApplicationContextProject = (
     languages: project.languages,
     ownerId: project.owner.id,
     ownerName: project.owner.name,
+    sampleDataImportDataset: project.sampleDataImportDataset,
   };
 };
 

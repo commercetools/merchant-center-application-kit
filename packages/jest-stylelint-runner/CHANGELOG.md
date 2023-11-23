@@ -1,5 +1,49 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 22.13.0
+
+## 22.12.0
+
+## 22.11.0
+
+## 22.10.0
+
+## 22.9.1
+
+## 22.9.0
+
+## 22.8.4
+
+### Patch Changes
+
+- [#3254](https://github.com/commercetools/merchant-center-application-kit/pull/3254) [`3a0e42017`](https://github.com/commercetools/merchant-center-application-kit/commit/3a0e42017c01ec063215c0f9051a778a0a6f92a5) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency postcss to v8.4.31 [security]
+
+## 22.8.3
+
+## 22.8.2
+
+## 22.8.1
+
+## 22.8.0
+
+## 22.7.1
+
+## 22.7.0
+
+## 22.6.0
+
+## 22.5.0
+
+## 22.4.0
+
+## 22.3.4
+
+## 22.3.3
+
+## 22.3.2
+
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

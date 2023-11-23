@@ -13,6 +13,7 @@ jest.mock('moment/dist/locale/de-at', () => {});
 jest.mock('moment/dist/locale/es', () => {});
 jest.mock('moment/dist/locale/es-mx', () => {});
 jest.mock('moment/dist/locale/fr', () => {});
+jest.mock('moment/dist/locale/pt-br', () => {});
 
 const demoDate = new Date('2022-07-15T07:15:22.000Z');
 const demoTimeZone = 'Europe/Berlin';
@@ -37,8 +38,9 @@ describe('Formatters demo', () => {
     ${'es'}    | ${'15/07/2022 9:15'}    | ${'10.362,50 €'}
     ${'es-MX'} | ${'15/07/2022 9:15'}    | ${'EUR 10,362.50'}
     ${'fr-FR'} | ${'15/07/2022 09:15'}   | ${'10 362,50 €'}
+    ${'pt-BR'} | ${'15/07/2022 09:15'}   | ${'€ 10.362,50'}
   `(
-    'should render examples based on different locales (%s)',
+    'should render example for locale $locale',
     async ({ locale, expectedDate, expectedMoney }) => {
       render(
         <LocaleExampleWrapper

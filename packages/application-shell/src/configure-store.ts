@@ -10,24 +10,27 @@ import {
 import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
 import thunk from 'redux-thunk';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import {
+  getCorrelationId,
+  selectProjectKeyFromUrl,
+  selectTeamIdFromStorage,
+  selectUserId,
+  oidcStorage,
+} from '@commercetools-frontend/application-shell-connectors';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  SUPPORTED_HEADERS,
+  type ApplicationWindow,
+} from '@commercetools-frontend/constants';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { SUPPORTED_HEADERS } from './constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
-import {
-  getCorrelationId,
-  selectProjectKeyFromUrl,
-  selectTeamIdFromLocalStorage,
-  selectUserId,
-} from './utils';
-import * as oidcStorage from './utils/oidc-storage';
 
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {
@@ -61,8 +64,9 @@ const getAdditionalHeaders = (): Headers | undefined => {
     [SUPPORTED_HEADERS.AUTHORIZATION]: sessionToken
       ? `Bearer ${sessionToken}`
       : undefined,
-    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
-    [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromLocalStorage(),
+    [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationIdentifier,
+    [SUPPORTED_HEADERS.X_CUSTOM_VIEW_ID]: window.app.customViewId,
+    [SUPPORTED_HEADERS.X_TEAM_ID]: selectTeamIdFromStorage(),
   });
 };
 

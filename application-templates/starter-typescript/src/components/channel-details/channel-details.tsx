@@ -66,8 +66,8 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
             }),
           }),
         });
-      } catch (graphQLErrors) {
-        const transformedErrors = transformErrors(graphQLErrors);
+      } catch (error) {
+        const transformedErrors = transformErrors(error);
         if (transformedErrors.unmappedErrors.length > 0) {
           showApiErrorNotification({
             errors:

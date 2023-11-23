@@ -18,6 +18,7 @@ import {
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/tabular-modal-page';
@@ -265,6 +266,19 @@ export const Component = () => (
               <Content />
               <Content />
               <Content />
+              <Content />
+            </ModalPageWithPortalParentSelector>
+          ),
+        },
+        {
+          path: 'tabular-modal-page-default-with-custom-views-selector',
+          spec: (
+            <ModalPageWithPortalParentSelector
+              customViewLocatorCodes={{
+                [CUSTOM_VIEW_LOCATORS.productDetails]:
+                  '/tabular-modal-page/tabular-modal-page-default-with-custom-views-selector/tab-one',
+              }}
+            >
               <Content />
             </ModalPageWithPortalParentSelector>
           ),

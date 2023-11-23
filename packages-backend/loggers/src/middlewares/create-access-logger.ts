@@ -1,8 +1,23 @@
+import type { Request } from 'express';
 import expressWinston from 'express-winston';
 import winston from 'winston';
 import type { TAccessLoggerOptions } from '../types';
 
 type TAccessLoggerMiddleware = ReturnType<typeof expressWinston.logger>;
+
+const parseIps = (request: Request) => {
+  const forwardedFor = request.headers['x-forwarded-for'];
+
+  if (!forwardedFor) {
+    return [];
+  }
+
+  const remoteAddresses = Array.isArray(forwardedFor)
+    ? forwardedFor
+    : forwardedFor.split(',');
+
+  return remoteAddresses;
+};
 
 const createAccessLoggerMiddleware = (
   options: TAccessLoggerOptions = {}
@@ -23,14 +38,17 @@ const createAccessLoggerMiddleware = (
     colorize: !options.json,
     skip: (req) =>
       Boolean(options.silent) || ignoreUrls.includes(req.originalUrl),
-    dynamicMeta: (req) => ({
-      ip: req.ip,
-      ips: req.ips,
-      hostname: req.hostname,
-      ...(req.connection.remoteAddress
-        ? { remoteAddress: req.connection.remoteAddress }
-        : {}),
-    }),
+    dynamicMeta: (req) => {
+      const remoteAddress = req.socket?.remoteAddress;
+      const proxyIps = parseIps(req);
+      const [clientIp] = proxyIps;
+      return {
+        clientIp: clientIp ?? remoteAddress,
+        proxyIps,
+        hostname: req.hostname,
+        ...(remoteAddress ? { remoteAddress } : {}),
+      };
+    },
   });
 };
 

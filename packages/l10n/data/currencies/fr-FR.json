@@ -41,7 +41,7 @@
   },
   "BAM": {
     "label": "mark convertible bosniaque",
-    "symbol": "KM"
+    "symbol": "КМ"
   },
   "BBD": {
     "label": "dollar barbadien",
@@ -137,7 +137,7 @@
   },
   "CNY": {
     "label": "yuan renminbi chinois",
-    "symbol": "￥"
+    "symbol": "¥"
   },
   "COP": {
     "label": "peso colombien",
@@ -181,7 +181,7 @@
   },
   "DZD": {
     "label": "dinar algérien",
-    "symbol": "DA"
+    "symbol": "د.ج.‏"
   },
   "EGP": {
     "label": "livre égyptienne",
@@ -193,7 +193,7 @@
   },
   "ETB": {
     "label": "birr éthiopien",
-    "symbol": "Br"
+    "symbol": "ብር"
   },
   "EUR": {
     "label": "euro",
@@ -277,7 +277,7 @@
   },
   "IRR": {
     "label": "riyal iranien",
-    "symbol": "ریال"
+    "symbol": "IRR"
   },
   "ISK": {
     "label": "couronne islandaise",
@@ -332,7 +332,7 @@
     "symbol": "₸"
   },
   "LAK": {
-    "label": "kip loatien",
+    "label": "kip laotien",
     "symbol": "₭"
   },
   "LBP": {
@@ -341,7 +341,7 @@
   },
   "LKR": {
     "label": "roupie srilankaise",
-    "symbol": "Rs."
+    "symbol": "රු."
   },
   "LRD": {
     "label": "dollar libérien",
@@ -357,7 +357,7 @@
   },
   "MAD": {
     "label": "dirham marocain",
-    "symbol": "MAD"
+    "symbol": "د.م.‏"
   },
   "MDL": {
     "label": "leu moldave",
@@ -369,7 +369,7 @@
   },
   "MKD": {
     "label": "denar macédonien",
-    "symbol": "den"
+    "symbol": "ден"
   },
   "MMK": {
     "label": "kyat myanmarais",
@@ -385,7 +385,7 @@
   },
   "MRO": {
     "label": "ouguiya mauritanien (1973–2017)",
-    "symbol": "UM"
+    "symbol": "أ.م.‏"
   },
   "MUR": {
     "label": "roupie mauricienne",
@@ -501,7 +501,7 @@
   },
   "SDG": {
     "label": "livre soudanaise",
-    "symbol": "SDG"
+    "symbol": "ج.س."
   },
   "SEK": {
     "label": "couronne suédoise",
@@ -537,7 +537,7 @@
   },
   "SYP": {
     "label": "livre syrienne",
-    "symbol": "LS"
+    "symbol": "ل.س.‏"
   },
   "SZL": {
     "label": "lilangeni swazi",
@@ -553,7 +553,7 @@
   },
   "TND": {
     "label": "dinar tunisien",
-    "symbol": "DT"
+    "symbol": "د.ت.‏"
   },
   "TOP": {
     "label": "pa’anga tongan",
@@ -585,7 +585,7 @@
   },
   "USD": {
     "label": "dollar des États-Unis",
-    "symbol": "US$"
+    "symbol": "$"
   },
   "USN": {
     "label": "dollar des Etats-Unis (jour suivant)",
@@ -601,7 +601,7 @@
   },
   "UZS": {
     "label": "sum ouzbek",
-    "symbol": "soʻm"
+    "symbol": "сўм"
   },
   "VEF": {
     "label": "bolivar vénézuélien (2008–2018)",

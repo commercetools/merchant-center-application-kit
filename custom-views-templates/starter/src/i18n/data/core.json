@@ -1,0 +1,6 @@
+{
+  "Channels.demoHint": "This page demonstrates how you can develop a component following some of the Merchant Center UX Guidelines and development best practices. For instance, fetching data using GraphQL, displaying data in a paginated table, writing functional tests, etc.",
+  "Channels.noResults": "There are no channels available in this project.",
+  "Channels.subtitle": "Logged-id user: {firstName} {lastName}",
+  "Channels.title": "Channels list"
+}

@@ -1,6 +1,10 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import execa from 'execa';
-import type { TCliTaskOptions, TPackageManager } from './types';
+import type {
+  TApplicationType,
+  TCliTaskOptions,
+  TPackageManager,
+} from './types';
 
 const isSemVer = (version: string) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
@@ -27,6 +31,17 @@ const getPreferredPackageManager = (
   return 'npm';
 };
 
+const getInstallCommand = (options: TCliTaskOptions): string => {
+  const packageManager = getPreferredPackageManager(options);
+
+  switch (packageManager) {
+    case 'npm':
+      return 'npm install --legacy-peer-deps';
+    default:
+      return `${packageManager} install`;
+  }
+};
+
 const slugify = (name: string) => name.toLowerCase().replace(/_/gi, '-');
 
 const upperFirst = (value: string) =>
@@ -46,6 +61,9 @@ const resolveFilePathByExtension = (requestedModule: string) => {
   return `${requestedModule}${fileExtension}`;
 };
 
+const isCustomView = (applicationType: TApplicationType) =>
+  applicationType === 'custom-view';
+
 export {
   isSemVer,
   shouldUseYarn,
@@ -54,4 +72,6 @@ export {
   upperFirst,
   resolveFilePathByExtension,
   getPreferredPackageManager,
+  getInstallCommand,
+  isCustomView,
 };

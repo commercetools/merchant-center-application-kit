@@ -2,7 +2,9 @@ packages:
 - packages/*
 - packages-backend/*
 - application-templates/*
+- custom-views-templates/*
 - playground
 - visual-testing-app
 - website
 - website-components-playground
+- website-custom-views

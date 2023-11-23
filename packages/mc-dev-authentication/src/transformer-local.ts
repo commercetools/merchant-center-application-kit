@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import pages from /* preval */ './pages';
 import type { TCompiledHtml } from './types';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 

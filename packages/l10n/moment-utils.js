@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+const supportedLocales = require('./supported-locales');
 
 function getListOfAvailableLocalesWithMatchingMomentLocale() {
   // Use the languages data from the `l10n` package to determine which locales

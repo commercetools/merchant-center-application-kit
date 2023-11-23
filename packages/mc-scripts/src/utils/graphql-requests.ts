@@ -9,50 +9,72 @@ import type {
 import type {
   TCreateCustomApplicationFromCliMutation,
   TCreateCustomApplicationFromCliMutationVariables,
+  TCreateCustomViewFromCliMutation,
+  TCreateCustomViewFromCliMutationVariables,
   TCustomApplicationDraftDataInput,
+  TCustomViewDraftDataInput,
   TFetchCustomApplicationFromCliQuery,
   TFetchCustomApplicationFromCliQueryVariables,
+  TFetchCustomViewFromCliQuery,
+  TFetchCustomViewFromCliQueryVariables,
   TUpdateCustomApplicationFromCliMutation,
   TUpdateCustomApplicationFromCliMutationVariables,
+  TUpdateCustomViewFromCliMutation,
+  TUpdateCustomViewFromCliMutationVariables,
 } from '../generated/settings';
 import CreateCustomApplicationFromCli from './create-custom-application.settings.graphql';
+import CreateCustomViewFromCli from './create-custom-view.settings.graphql';
 import CredentialsStorage from './credentials-storage';
 import FetchCustomApplicationFromCli from './fetch-custom-application.settings.graphql';
+import FetchCustomViewFromCli from './fetch-custom-view.settings.graphql';
 import FetchMyOrganizationsFromCli from './fetch-user-organizations.core.graphql';
 import UpdateCustomApplicationFromCli from './update-custom-application.settings.graphql';
+import UpdateCustomViewFromCli from './update-custom-view.settings.graphql';
 import userAgent from './user-agent';
 
 type TFetchCustomApplicationOptions = {
   mcApiUrl: string;
   entryPointUriPath: string;
+  applicationIdentifier: string;
+};
+type TFetchCustomViewOptions = {
+  mcApiUrl: string;
+  customViewId: string;
+  applicationIdentifier: string;
 };
 type TUpdateCustomApplicationOptions = {
   mcApiUrl: string;
   applicationId: string;
   organizationId: string;
   data: TCustomApplicationDraftDataInput;
+  applicationIdentifier: string;
+};
+type TUpdateCustomViewOptions = {
+  mcApiUrl: string;
+  customViewId: string;
+  organizationId: string;
+  data: TCustomViewDraftDataInput;
+  applicationIdentifier: string;
 };
 type TCreateCustomApplicationOptions = {
   mcApiUrl: string;
   organizationId: string;
   data: TCustomApplicationDraftDataInput;
+  applicationIdentifier: string;
+};
+type TCreateCustomViewOptions = {
+  mcApiUrl: string;
+  organizationId: string;
+  data: TCustomViewDraftDataInput;
+  applicationIdentifier: string;
 };
 type TFetchUserOrganizationsOptions = {
   mcApiUrl: string;
+  applicationIdentifier: string;
+  customViewId?: string;
 };
 
 const credentialsStorage = new CredentialsStorage();
-
-const client = new GraphQLClient(
-  '', // <-- Set on demand
-  {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'x-user-agent': userAgent,
-    },
-  }
-);
 
 async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
   document: DocumentNode,
@@ -65,11 +87,15 @@ async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
 ): Promise<Data> {
   const token = credentialsStorage.getToken(requestOptions.mcApiUrl);
 
-  client.setEndpoint(`${requestOptions.mcApiUrl}/graphql`);
-  client.setHeaders(requestOptions.headers);
-  if (token) {
-    client.setHeader('x-mc-cli-access-token', token);
-  }
+  const client = new GraphQLClient(`${requestOptions.mcApiUrl}/graphql`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-user-agent': userAgent,
+      ...(token ? { 'x-mc-cli-access-token': token } : {}),
+      ...requestOptions.headers,
+    },
+  });
 
   try {
     const result = await client.rawRequest<Data, QueryVariables>(
@@ -133,6 +159,7 @@ async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
 const fetchCustomApplication = async ({
   mcApiUrl,
   entryPointUriPath,
+  applicationIdentifier,
 }: TFetchCustomApplicationOptions) => {
   const customAppData = await requestWithTokenRetry<
     TFetchCustomApplicationFromCliQuery,
@@ -141,10 +168,31 @@ const fetchCustomApplication = async ({
     variables: { entryPointUriPath },
     mcApiUrl,
     headers: {
+      'x-application-id': applicationIdentifier,
       'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
   });
   return customAppData.organizationExtensionForCustomApplication;
+};
+
+const fetchCustomView = async ({
+  mcApiUrl,
+  customViewId,
+  applicationIdentifier,
+}: TFetchCustomViewOptions) => {
+  const customViewData = await requestWithTokenRetry<
+    TFetchCustomViewFromCliQuery,
+    TFetchCustomViewFromCliQueryVariables
+  >(FetchCustomViewFromCli, {
+    variables: { customViewId },
+    mcApiUrl,
+    headers: {
+      'x-custom-view-id': customViewId,
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+  return customViewData.organizationExtensionForCustomView;
 };
 
 const updateCustomApplication = async ({
@@ -152,6 +200,7 @@ const updateCustomApplication = async ({
   applicationId,
   organizationId,
   data,
+  applicationIdentifier,
 }: TUpdateCustomApplicationOptions) => {
   const updatedCustomAppsData = await requestWithTokenRetry<
     TUpdateCustomApplicationFromCliMutation,
@@ -164,16 +213,44 @@ const updateCustomApplication = async ({
     },
     mcApiUrl,
     headers: {
+      'x-application-id': applicationIdentifier,
       'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
   });
   return updatedCustomAppsData.updateCustomApplication;
 };
 
+const updateCustomView = async ({
+  mcApiUrl,
+  organizationId,
+  data,
+  customViewId,
+  applicationIdentifier,
+}: TUpdateCustomViewOptions) => {
+  const updatedCustomViewData = await requestWithTokenRetry<
+    TUpdateCustomViewFromCliMutation,
+    TUpdateCustomViewFromCliMutationVariables
+  >(UpdateCustomViewFromCli, {
+    variables: {
+      organizationId,
+      customViewId,
+      data,
+    },
+    mcApiUrl,
+    headers: {
+      'x-custom-view-id': customViewId,
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+  return updatedCustomViewData.updateCustomView;
+};
+
 const createCustomApplication = async ({
   mcApiUrl,
   organizationId,
   data,
+  applicationIdentifier,
 }: TCreateCustomApplicationOptions) => {
   const createdCustomAppData = await requestWithTokenRetry<
     TCreateCustomApplicationFromCliMutation,
@@ -185,14 +262,40 @@ const createCustomApplication = async ({
     },
     mcApiUrl,
     headers: {
+      'x-application-id': applicationIdentifier,
       'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
   });
   return createdCustomAppData.createCustomApplication;
 };
 
+const createCustomView = async ({
+  mcApiUrl,
+  organizationId,
+  data,
+  applicationIdentifier,
+}: TCreateCustomViewOptions) => {
+  const createdCustomViewData = await requestWithTokenRetry<
+    TCreateCustomViewFromCliMutation,
+    TCreateCustomViewFromCliMutationVariables
+  >(CreateCustomViewFromCli, {
+    variables: {
+      organizationId,
+      data,
+    },
+    mcApiUrl,
+    headers: {
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+  return createdCustomViewData.createCustomView;
+};
+
 const fetchUserOrganizations = async ({
   mcApiUrl,
+  applicationIdentifier,
+  customViewId,
 }: TFetchUserOrganizationsOptions) => {
   const userOrganizations = await requestWithTokenRetry<
     TFetchMyOrganizationsFromCliQuery,
@@ -200,6 +303,10 @@ const fetchUserOrganizations = async ({
   >(FetchMyOrganizationsFromCli, {
     mcApiUrl,
     headers: {
+      'x-application-id': applicationIdentifier,
+      ...(customViewId && {
+        'x-custom-view-id': customViewId,
+      }),
       'x-graphql-target': GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
     },
   });
@@ -208,7 +315,10 @@ const fetchUserOrganizations = async ({
 
 export {
   fetchCustomApplication,
+  fetchCustomView,
   updateCustomApplication,
   createCustomApplication,
   fetchUserOrganizations,
+  createCustomView,
+  updateCustomView,
 };

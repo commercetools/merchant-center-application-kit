@@ -1,8 +1,10 @@
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-
-import { STORAGE_KEYS, OIDC_CLAIMS } from '../../constants';
+import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
+import {
+  type ApplicationWindow,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
+import { OIDC_CLAIMS } from '../../constants';
 import { buildOidcScope } from '../../utils/oidc';
-import * as oidcStorage from '../../utils/oidc-storage';
 
 declare let window: ApplicationWindow;
 
@@ -51,6 +53,7 @@ const hasCachedAuthenticationState = (): boolean => {
         additionalOAuthScopes:
           window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
         teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
+        applicationId: window.app.__DEVELOPMENT__?.oidc?.applicationId,
       });
       // Omit the project key from the check. This allows to switch projects
       // without having to log in again.

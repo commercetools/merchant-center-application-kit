@@ -1,9 +1,21 @@
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
+import { LOADED_CONFIG_TYPES } from './constants';
 import {
   entryPointUriPathToResourceAccesses,
   formatEntryPointUriPathToResourceAccessKey,
 } from './formatters';
-import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
-import type { CustomApplicationData } from './types';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
+import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
+import type {
+  LoadedConfigType,
+  CustomApplicationData,
+  CustomViewData,
+} from './types';
+import type {
+  TCustomViewPermission,
+  TCustomViewType,
+  TCustomViewTypeSettings,
+} from './types/generated/settings';
 import {
   validateEntryPointUriPath,
   validateSubmenuLinks,
@@ -26,7 +38,9 @@ const computeUriPath = (uriPath: string, entryPointUriPath: string) => {
 };
 
 const getPermissions = (
-  appConfig: JSONSchemaForCustomApplicationConfigurationFiles
+  appConfig:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
 ) => {
   const additionalResourceAccessKeyToOauthScopeMap = (
     appConfig.additionalOAuthScopes || []
@@ -44,7 +58,12 @@ const getPermissions = (
     appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];
 
   const permissionKeys = entryPointUriPathToResourceAccesses(
-    appConfig.entryPointUriPath,
+    (appConfig as JSONSchemaForCustomApplicationConfigurationFiles)
+      .entryPointUriPath ||
+      // In case the `entryPointUriPath` is not defined it is because the
+      // configuration is for a custom view. In this case we use the
+      // default entry point uri path.
+      CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
     additionalPermissionNames
   ) as Record<string, string>;
 
@@ -92,4 +111,39 @@ function transformCustomApplicationConfigToData(
   };
 }
 
-export { transformCustomApplicationConfigToData };
+function transformCustomViewConfigToData(
+  customViewConfig: JSONSchemaForCustomViewConfigurationFiles
+): CustomViewData {
+  validateAdditionalOAuthScopes(customViewConfig);
+
+  return {
+    id: customViewConfig.env.production.customViewId,
+    defaultLabel: customViewConfig.name,
+    labelAllLocales: customViewConfig.labelAllLocales,
+    description: customViewConfig.description,
+    url: customViewConfig.env.production.url,
+    permissions: getPermissions(customViewConfig) as TCustomViewPermission[],
+    locators: customViewConfig.locators,
+    type: customViewConfig.type as TCustomViewType,
+    typeSettings: customViewConfig.typeSettings as TCustomViewTypeSettings,
+  };
+}
+
+export function transformConfigurationToData(
+  configType: LoadedConfigType,
+  configuration:
+    | JSONSchemaForCustomApplicationConfigurationFiles
+    | JSONSchemaForCustomViewConfigurationFiles
+): CustomApplicationData | CustomViewData {
+  if (configType === LOADED_CONFIG_TYPES.CUSTOM_APPLICATION) {
+    return transformCustomApplicationConfigToData(
+      configuration as JSONSchemaForCustomApplicationConfigurationFiles
+    );
+  } else if (configType === LOADED_CONFIG_TYPES.CUSTOM_VIEW) {
+    return transformCustomViewConfigToData(
+      configuration as JSONSchemaForCustomViewConfigurationFiles
+    );
+  } else {
+    throw new Error(`Invalid config type: ${configType}`);
+  }
+}

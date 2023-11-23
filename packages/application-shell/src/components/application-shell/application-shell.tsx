@@ -1,4 +1,9 @@
-import { type ReactNode, type SyntheticEvent, useEffect } from 'react';
+import {
+  type ReactNode,
+  type SyntheticEvent,
+  useEffect,
+  StrictMode,
+} from 'react';
 import type { NormalizedCacheObject } from '@apollo/client';
 import { ApolloClient } from '@apollo/client';
 import type { TFlags } from '@flopflip/types';
@@ -41,8 +46,22 @@ type TApplicationShellProps = {
   onRegisterErrorListeners?: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
+  enableReactStrictMode?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
+};
+
+type TStrictModeEnablementProps = {
+  enableReactStrictMode?: boolean;
+  children?: ReactNode;
+};
+
+const StrictModeEnablement = (props: TStrictModeEnablementProps) => {
+  if (props.enableReactStrictMode) {
+    return <StrictMode>{props.children}</StrictMode>;
+  } else {
+    return <>{props.children}</>;
+  }
 };
 
 const ApplicationShell = (props: TApplicationShellProps) => {
@@ -54,7 +73,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
   }, []); // <-- run only once, when component mounts
 
   return (
-    <>
+    <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
       <GlobalStyles />
       <ApplicationShellProvider
         apolloClient={props.apolloClient}
@@ -88,7 +107,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
           return <RedirectToLogin />;
         }}
       </ApplicationShellProvider>
-    </>
+    </StrictModeEnablement>
   );
 };
 ApplicationShell.displayName = 'ApplicationShell';

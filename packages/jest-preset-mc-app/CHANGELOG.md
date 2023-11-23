@@ -1,5 +1,155 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.12.0
+
+## 22.11.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.11.0
+
+## 22.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.10.0
+
+## 22.9.1
+
+### Patch Changes
+
+- [#3262](https://github.com/commercetools/merchant-center-application-kit/pull/3262) [`d4765a2bb`](https://github.com/commercetools/merchant-center-application-kit/commit/d4765a2bb9be81220b22601178104886da86b8dc) Thanks [@abreu-ct](https://github.com/abreu-ct)! - Adds `Request` and `Response` from `node-fetch` as globals to the Jest preset.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.9.1
+
+## 22.9.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.9.0
+
+## 22.8.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.4
+
+## 22.8.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.3
+
+## 22.8.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.2
+
+## 22.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.1
+
+## 22.8.0
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3224](https://github.com/commercetools/merchant-center-application-kit/pull/3224) [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency graphql to v16.8.1 [security]
+
+- Updated dependencies [[`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.8.0
+
+## 22.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.7.1
+
+## 22.7.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.7.0
+
+## 22.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.6.0
+
+## 22.5.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.5.0
+
+## 22.4.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.4.0
+
+## 22.3.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.4
+
+## 22.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.3
+
+## 22.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.2
+
+## 22.3.1
+
+### Patch Changes
+
+- [#3112](https://github.com/commercetools/merchant-center-application-kit/pull/3112) [`9eb27a31e`](https://github.com/commercetools/merchant-center-application-kit/commit/9eb27a31e96c6648fb8f5c4127493b3098b63342) Thanks [@ahmehri](https://github.com/ahmehri)! - Adds support for `process.env.CI` being `undefined`
+
+  This fixes an issue introduced in #3086 when `process.env.CI` is evaluated to `undefined`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

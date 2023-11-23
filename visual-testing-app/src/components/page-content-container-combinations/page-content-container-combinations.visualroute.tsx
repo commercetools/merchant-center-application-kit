@@ -42,7 +42,7 @@ const TestWrapper = ({ children }: { children: ReactNode }) => {
 
 export const Component = () => (
   <Suite>
-    <ThemeProvider theme="test" />
+    <ThemeProvider />
     <NestedPages
       title="Page content container combinations"
       basePath={routePath}

@@ -7,6 +7,7 @@ type BuilOidcScopeOptions = {
   oAuthScopes?: ApplicationOidcForDevelopmentConfig['oAuthScopes'];
   additionalOAuthScopes?: ApplicationOidcForDevelopmentConfig['additionalOAuthScopes'];
   teamId?: ApplicationOidcForDevelopmentConfig['teamId'];
+  applicationId?: ApplicationOidcForDevelopmentConfig['applicationId'];
 };
 
 const buildOidcScope = (options: BuilOidcScopeOptions): string => {
@@ -44,9 +45,12 @@ const buildOidcScope = (options: BuilOidcScopeOptions): string => {
     });
   }
 
-  // Set the teamId
+  // Set the teamId and applicationId
   if (options.teamId) {
     claims.push(`${OIDC_CLAIMS.TEAM_ID}:${options.teamId}`);
+    if (options.applicationId) {
+      claims.push(`${OIDC_CLAIMS.APPLICATION_ID}:${options.applicationId}`);
+    }
   }
 
   return [

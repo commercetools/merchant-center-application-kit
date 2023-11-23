@@ -120,6 +120,7 @@ const render = ({
       environment={{
         revision: '1',
         applicationId: '__local:avengers',
+        applicationIdentifier: '__local:avengers',
         applicationName: 'my-app',
         entryPointUriPath: 'avengers',
         frontendHost: 'localhost:3001',

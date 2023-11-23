@@ -1,5 +1,75 @@
 # @commercetools-backend/loggers
 
+## 22.13.0
+
+## 22.12.0
+
+## 22.11.0
+
+## 22.10.0
+
+## 22.9.1
+
+## 22.9.0
+
+## 22.8.4
+
+## 22.8.3
+
+## 22.8.2
+
+## 22.8.1
+
+## 22.8.0
+
+### Patch Changes
+
+- [#3225](https://github.com/commercetools/merchant-center-application-kit/pull/3225) [`46464f575`](https://github.com/commercetools/merchant-center-application-kit/commit/46464f5752868108df41b5806e395e5a2aca8d70) Thanks [@emmenko](https://github.com/emmenko)! - Avoid using deprecated methods to parse client IP addresses
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 22.7.1
+
+## 22.7.0
+
+### Patch Changes
+
+- [#3179](https://github.com/commercetools/merchant-center-application-kit/pull/3179) [`f3a06a444`](https://github.com/commercetools/merchant-center-application-kit/commit/f3a06a44462768241d4df1cb44f60f294ab28699) Thanks [@emmenko](https://github.com/emmenko)! - Update Sentry dependencies, replace depreacted `@sentry/tracing` with `@sentry/browser`
+
+## 22.6.0
+
+## 22.5.0
+
+### Patch Changes
+
+- [#3135](https://github.com/commercetools/merchant-center-application-kit/pull/3135) [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@tsconfig/node16` dependency.
+
+## 22.4.0
+
+### Minor Changes
+
+- [#3141](https://github.com/commercetools/merchant-center-application-kit/pull/3141) [`e260cb6b5`](https://github.com/commercetools/merchant-center-application-kit/commit/e260cb6b5b9053f7a53c8250a72a8b546aa2e1b7) Thanks [@tdeekens](https://github.com/tdeekens)! - Add support to optionally preserve the original field when rewriting log fields with `rewriteFieldsFormatter`.
+
+  When rewriting a field you can use the `preserveFromField` option and set it to `true`. For example:
+
+  ```js
+  {
+    from: 'meta.req.statusCode',
+    to: 'meta.req.status_code',
+    preserveFromField: true,
+  }
+  ```
+
+  Would add a field `meta.req.status_code` while keeping the original `meta.req.statusCode`. This can be helpful when gracefully migrating fields.
+
+## 22.3.4
+
+## 22.3.3
+
+## 22.3.2
+
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

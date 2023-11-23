@@ -2,8 +2,8 @@ import {
   forwardRef,
   lazy,
   MouseEventHandler,
-  ReactNode,
-  SyntheticEvent,
+  type ReactNode,
+  type SyntheticEvent,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -11,7 +11,6 @@ import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import type {
   TNormalizedMenuVisibilities,
   TNormalizedPermissions,
@@ -21,8 +20,13 @@ import type {
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { ArrowRightIcon, BackIcon } from '@commercetools-uikit/icons';
+import {
+  BackIcon,
+  SidebarExpandIcon,
+  SidebarCollapseIcon,
+} from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
+import { DIMENSIONS } from '../../constants';
 import type {
   TDataFence,
   TActionRight,
@@ -39,20 +43,6 @@ type TProjectPermissions = {
   actionRights: TNormalizedActionRights | null;
   dataFences: TNormalizedDataFences | null;
 };
-
-/*
-<DataMenu data={[]}>
-  <MenuGroup>
-    <MenuItem>
-      <MenuItemLink linkTo="/foo">(icon) Products</MenuItemLink>
-      <MenuGroup>
-        <MenuItemLink linkTo="/foo/new">Add product</MenuItemLink>
-      </MenuGroup>
-    </MenuItem>
-  </MenuGroup>
-  <MenuExpander/>
-</DataMenu>
-*/
 
 const HeartIcon = lazy(() => import('./legacy-icons/heart'));
 const PaperclipIcon = lazy(() => import('./legacy-icons/paperclip'));
@@ -132,11 +122,17 @@ type MenuExpanderProps = {
   onClick: MouseEventHandler<HTMLDivElement>;
   isMenuOpen: boolean;
 };
+
+const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
+  const Icon = isMenuOpen ? SidebarCollapseIcon : SidebarExpandIcon;
+  return <Icon color="surface" size="big" />;
+};
+
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <li
       key="expander"
-      className={classnames(styles['list-item'], styles.expander, {
+      className={classnames(styles.expander, {
         [styles.hidden]: !props.isVisible,
       })}
     >
@@ -145,11 +141,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
-        {/*
-          FIXME: define hover effect.
-          https://github.com/commercetools/merchant-center-frontend/issues/2216
-        */}
-        <ArrowRightIcon color="surface" size="big" />
+        {getIcon(props)}
       </div>
     </li>
   );
@@ -161,11 +153,7 @@ const Faded = styled.div`
   top: -32px;
   height: 32px;
   width: 100%;
-  background: linear-gradient(
-    0deg,
-    ${appkitDesignTokens.backgroundColorForNavbar} 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
   z-index: 1;
 `;
 
@@ -176,8 +164,41 @@ type MenuGroupProps = {
   isExpanded?: boolean;
   hasSubmenu?: boolean;
   children?: ReactNode;
+  submenuVerticalPosition?: number;
+  isSubmenuAboveMenuItem?: boolean;
 };
-const MenuGroup = (props: MenuGroupProps) => {
+
+const getSubmenuPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  submenuVerticalPosition?: number
+) => css`
+  ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: ${submenuVerticalPosition}px
+`;
+
+const getContainerPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  isSublistActiveWhileIsMenuExpanded?: boolean,
+  isSublistActiveWhileIsMenuCollapsed?: boolean
+) => [
+  isSublistActiveWhileIsMenuCollapsed &&
+    css`
+      ${isSubmenuAboveMenuItem
+        ? 'bottom'
+        : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    isSubmenuAboveMenuItem &&
+    css`
+      bottom: 0;
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    !isSubmenuAboveMenuItem &&
+    css`
+      top: 0;
+    `,
+];
+
+const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   if (
     props.isExpanded &&
     ((props.level === 2 && !props.hasSubmenu) ||
@@ -191,6 +212,29 @@ const MenuGroup = (props: MenuGroupProps) => {
     props.level === 2 && props.isActive && !props.isExpanded;
   return (
     <ul
+      ref={ref && props.level === 2 ? ref : null}
+      css={css`
+        ${getSubmenuPositionBasedOnMenuItemPosition(
+          props.isSubmenuAboveMenuItem,
+          props.submenuVerticalPosition
+        )};
+      
+      // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
+      ${
+        props.submenuVerticalPosition === 0 &&
+        css`
+          visibility: hidden;
+        `
+      }
+
+        // additional styling of the pseudo-element enabling smooth coursor movement
+        ::before {
+          ${getContainerPositionBasedOnMenuItemPosition(
+            props.isSubmenuAboveMenuItem,
+            isSublistActiveWhileIsMenuExpanded,
+            isSublistActiveWhileIsMenuCollapsed
+          )}
+      `}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
@@ -200,17 +244,25 @@ const MenuGroup = (props: MenuGroupProps) => {
       }
       className={classnames(
         { [styles.list]: props.level === 1 },
-        { [styles.sublist]: props.level === 2 },
         {
-          [styles['sublist-no-children']]: props.level === 2 && !props.children,
+          [styles['sublist']]: props.level === 2,
         },
         {
           [styles['sublist-expanded__active']]:
             isSublistActiveWhileIsMenuExpanded,
         },
         {
+          [styles['sublist-collapsed__empty']]:
+            isSublistActiveWhileIsMenuCollapsed && !props.hasSubmenu,
+        },
+        {
           [styles['sublist-collapsed__active']]:
-            isSublistActiveWhileIsMenuCollapsed,
+            isSublistActiveWhileIsMenuCollapsed &&
+            !props.isSubmenuAboveMenuItem,
+        },
+        {
+          [styles['sublist-collapsed__active__above']]:
+            isSublistActiveWhileIsMenuCollapsed && props.isSubmenuAboveMenuItem,
         },
         {
           [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
@@ -220,7 +272,7 @@ const MenuGroup = (props: MenuGroupProps) => {
       {props.children}
     </ul>
   );
-};
+});
 MenuGroup.displayName = 'MenuGroup';
 
 type MenuItemProps = {
@@ -232,23 +284,27 @@ type MenuItemProps = {
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
   children: ReactNode;
+  identifier?: string;
 };
-const MenuItem = (props: MenuItemProps) => (
-  <li
-    role="menuitem"
-    className={classnames(styles['list-item'], {
-      [styles.item__active]: props.isActive,
-      [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
-      [styles['item_menu-collapsed']]: !props.isMenuOpen,
-      [styles['item__no-submenu']]: !props.hasSubmenu,
-    })}
-    onClick={props.onClick}
-    onMouseEnter={props.onMouseEnter}
-    onMouseLeave={props.onMouseLeave}
-  >
-    <div className={styles['item-link']}>{props.children}</div>
-  </li>
-);
+const MenuItem = (props: MenuItemProps) => {
+  return (
+    <li
+      role="menuitem"
+      className={classnames(styles['list-item'], {
+        [styles.item__active]: props.isActive,
+        [styles['item_menu__active']]: props.isMainMenuRouteActive ?? false,
+        [styles['item_menu-collapsed']]: !props.isMenuOpen,
+      })}
+      onClick={props.onClick}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+      data-menuitem={props.identifier}
+    >
+      <div className={styles['item-link']}>{props.children}</div>
+    </li>
+  );
+};
+
 MenuItem.displayName = 'MenuItem';
 
 export type MenuItemLinkProps = {
@@ -257,40 +313,67 @@ export type MenuItemLinkProps = {
   children: ReactNode;
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
+  isSubmenuLink?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
+const NavLinkWrapper = (props: MenuItemLinkProps) => {
+  if (props.isSubmenuLink) {
+    return (
+      <div className={styles['text-link-sublist-wrapper']}>
+        {props.children}
+      </div>
+    );
+  }
+  return <>{props.children}</>;
+};
+const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
+  if (props.isSubmenuLink) {
+    return (
+      <div className={styles['navlink-clickable-content']}>
+        {props.children}
+      </div>
+    );
+  }
+  return <>{props.children}</>;
+};
+
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
-      <NavLink
-        to={props.linkTo}
-        exact={props.exactMatch}
-        activeClassName={styles.highlighted}
-        className={styles['text-link']}
-        onClick={(event) => {
-          if (props.linkTo && props.useFullRedirectsForLinks) {
-            event.preventDefault();
-            redirectTo(props.linkTo);
-          } else if (props.onClick) {
-            event.persist();
-            props.onClick(event);
+      <NavLinkWrapper {...props}>
+        <NavLink
+          to={props.linkTo}
+          exact={props.exactMatch}
+          activeClassName={styles.highlighted}
+          className={
+            props.isSubmenuLink
+              ? styles['text-link-sublist']
+              : styles['text-link']
           }
-        }}
-      >
-        {props.children}
-      </NavLink>
+          onClick={(event) => {
+            if (props.linkTo && props.useFullRedirectsForLinks) {
+              event.preventDefault();
+              redirectTo(props.linkTo);
+            } else if (props.onClick) {
+              event.persist();
+              props.onClick(event);
+            }
+          }}
+        >
+          <NavLinkClickableContentWrapper {...props}>
+            {props.children}
+          </NavLinkClickableContentWrapper>
+        </NavLink>
+      </NavLinkWrapper>
     );
   }
   return <>{props.children}</>;
 };
 MenuItemLink.displayName = 'MenuItemLink';
 MenuItemLink.defaultProps = menuItemLinkDefaultProps;
-
-const MenuItemDivider = () => <div className={styles.divider} />;
-MenuItemDivider.displayName = 'MenuItemDivider';
 
 const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TNormalizedMenuVisibilities | null,
@@ -419,6 +502,37 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
 );
 NavBarLayout.displayName = 'NavBarLayout';
 
+type ItemContainerProps = {
+  labelAllLocales: TLocalizedField[];
+  defaultLabel?: string;
+  applicationLocale: string;
+  icon: string;
+  isMenuOpen?: boolean;
+};
+
+const ItemContainer = (props: ItemContainerProps) => {
+  return (
+    <div className={styles['item-icon-text']}>
+      <div className={styles['icon-container']}>
+        <div className={styles.icon}>
+          <IconSwitcher icon={props.icon} size="scale" />
+        </div>
+      </div>
+      {props.isMenuOpen ? (
+        <div className={styles.title}>
+          <MenuLabel
+            labelAllLocales={props.labelAllLocales}
+            defaultLabel={props.defaultLabel}
+            applicationLocale={props.applicationLocale}
+          />
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+ItemContainer.displayName = 'ItemContainer';
+
 export {
   RestrictedMenuItem,
   MenuItem,
@@ -426,8 +540,8 @@ export {
   IconSwitcher,
   MenuGroup,
   MenuLabel,
-  MenuItemDivider,
   MenuExpander,
   Faded,
   NavBarLayout,
+  ItemContainer,
 };

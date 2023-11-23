@@ -2,7 +2,7 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
 const name = 'AppKit Playground Application';
 
 /**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
  */
 const config = {
   name,
@@ -10,7 +10,7 @@ const config = {
   cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
   mcApiUrl: '${env:MC_API_URL}',
   oAuthScopes: {
-    view: ['view_orders', 'view_states'],
+    view: ['view_orders', 'view_states', 'view_products'],
     manage: [],
   },
   env: {
@@ -26,6 +26,7 @@ const config = {
     trackingSentry:
       'https://327619347ab84c8e9702a1dc16460198@o32365.ingest.sentry.io/1549825',
     echoServerApiUrl: '${env:ECHO_SERVER_URL}',
+    ldClientSideId: '${env:LD_CLIENT_ID_STAGING}',
   },
   headers: {
     csp: {
@@ -74,7 +75,13 @@ const config = {
       permissions: [PERMISSIONS.View],
       defaultLabel: 'Formatters',
       labelAllLocales: [],
-    }
+    },
+    {
+      uriPath: 'custom-panel',
+      permissions: [PERMISSIONS.View],
+      defaultLabel: 'Custom Panel',
+      labelAllLocales: [],
+    },
   ],
 };
 

@@ -3,12 +3,14 @@ import { CustomFormMainPage } from '@commercetools-frontend/application-componen
 import { RevertIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/custom-form-main-page';
 
 type CustomFormMainPageContainerProps = {
   customTitleRow?: ReactNode;
+  customViewLocatorCode?: string;
 };
 
 const CustomFormMainPageContainer = (
@@ -18,6 +20,7 @@ const CustomFormMainPageContainer = (
     <CustomFormMainPage
       title="Lorem Ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      customViewLocatorCode={props.customViewLocatorCode}
       formControls={
         <>
           <CustomFormMainPage.FormSecondaryButton
@@ -53,6 +56,11 @@ export const Component = () => (
     </Spec>
     <Spec label="CustomFormMainPage with customTitleRow">
       <CustomFormMainPageContainer customTitleRow={<h2>John Doe</h2>} />
+    </Spec>
+    <Spec label="CustomFormMainPage with Custom Views selector">
+      <CustomFormMainPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
     </Spec>
   </Suite>
 );

@@ -1,12 +1,18 @@
-import { entryPointUriPathToPermissionKeys } from './formatters';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
+import {
+  computeCustomViewPermissionsKeys,
+  computeCustomViewResourceAccesses,
+  entryPointUriPathToPermissionKeys,
+} from './formatters';
 
 describe.each`
-  entryPointUriPath | formattedResourceAccessKey
-  ${'avengers'}     | ${'Avengers'}
-  ${'the-avengers'} | ${'TheAvengers'}
-  ${'the_avengers'} | ${'The_Avengers'}
-  ${'avengers-01'}  | ${'Avengers/01'}
-  ${'avengers_01'}  | ${'Avengers_01'}
+  entryPointUriPath                        | formattedResourceAccessKey
+  ${'avengers'}                            | ${'Avengers'}
+  ${'the-avengers'}                        | ${'TheAvengers'}
+  ${'the_avengers'}                        | ${'The_Avengers'}
+  ${'avengers-01'}                         | ${'Avengers/01'}
+  ${'avengers_01'}                         | ${'Avengers_01'}
+  ${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH} | ${''}
 `(
   'formatting the entryPointUriPath "$entryPointUriPath" to a resource access key "$formattedResourceAccessKey"',
   ({ entryPointUriPath, formattedResourceAccessKey }) => {
@@ -22,12 +28,13 @@ describe.each`
 );
 
 describe.each`
-  entryPointUriPath | formattedResourceAccessKey | permissionGroupNames | formattedResourceAccessKeyAdditionalNames
-  ${'avengers'}     | ${'Avengers'}              | ${['books']}         | ${'AvengersBooks'}
-  ${'the-avengers'} | ${'TheAvengers'}           | ${['the-books']}     | ${'TheAvengersTheBooks'}
-  ${'the_avengers'} | ${'The_Avengers'}          | ${['the-books']}     | ${'The_AvengersTheBooks'}
-  ${'avengers-01'}  | ${'Avengers/01'}           | ${['the-movies']}    | ${'Avengers/01TheMovies'}
-  ${'avengers_01'}  | ${'Avengers_01'}           | ${['the-movies']}    | ${'Avengers_01TheMovies'}
+  entryPointUriPath                        | formattedResourceAccessKey | permissionGroupNames | formattedResourceAccessKeyAdditionalNames
+  ${'avengers'}                            | ${'Avengers'}              | ${['books']}         | ${'AvengersBooks'}
+  ${'the-avengers'}                        | ${'TheAvengers'}           | ${['the-books']}     | ${'TheAvengersTheBooks'}
+  ${'the_avengers'}                        | ${'The_Avengers'}          | ${['the-books']}     | ${'The_AvengersTheBooks'}
+  ${'avengers-01'}                         | ${'Avengers/01'}           | ${['the-movies']}    | ${'Avengers/01TheMovies'}
+  ${'avengers_01'}                         | ${'Avengers_01'}           | ${['the-movies']}    | ${'Avengers_01TheMovies'}
+  ${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH} | ${''}                      | ${['the-movies']}    | ${'TheMovies'}
 `(
   'formatting the entryPointUriPath "$entryPointUriPath" with additional permission group names "$permissionGroupNames" to a resource access key "$formattedResourceAccessKey" and "$formattedResourceAccessKeyAdditionalNames"',
   ({
@@ -37,10 +44,12 @@ describe.each`
     formattedResourceAccessKeyAdditionalNames,
   }) => {
     it(`should format correctly`, () => {
-      const [, additionalPermissionKey] =
-        formattedResourceAccessKeyAdditionalNames.split(
-          formattedResourceAccessKey
-        );
+      const [, additionalPermissionKey] = Boolean(formattedResourceAccessKey)
+        ? formattedResourceAccessKeyAdditionalNames.split(
+            formattedResourceAccessKey
+          )
+        : ['', formattedResourceAccessKeyAdditionalNames];
+
       expect(
         entryPointUriPathToPermissionKeys(
           entryPointUriPath,
@@ -69,6 +78,46 @@ describe.each`
       );
       expect(permissionKeys.View).toBe(`View${formattedResourceAccessKey}`);
       expect(permissionKeys.Manage).toBe(`Manage${formattedResourceAccessKey}`);
+    });
+  }
+);
+
+describe.each`
+  permissionGroupNames | formattedResourceAccessKeyAdditionalName
+  ${undefined}         | ${''}
+  ${['books']}         | ${'Books'}
+  ${['the-books']}     | ${'TheBooks'}
+  ${['the-movies']}    | ${'TheMovies'}
+`(
+  'computing Custom Views resource accesses',
+  ({ permissionGroupNames, formattedResourceAccessKeyAdditionalName }) => {
+    it(`should format correctly`, () => {
+      expect(computeCustomViewResourceAccesses(permissionGroupNames)).toEqual({
+        view: `view`,
+        manage: `manage`,
+        [`view${formattedResourceAccessKeyAdditionalName}`]: `view${formattedResourceAccessKeyAdditionalName}`,
+        [`manage${formattedResourceAccessKeyAdditionalName}`]: `manage${formattedResourceAccessKeyAdditionalName}`,
+      });
+    });
+  }
+);
+
+describe.each`
+  permissionGroupNames | formattedResourceAccessKeyAdditionalName
+  ${undefined}         | ${''}
+  ${['books']}         | ${'Books'}
+  ${['the-books']}     | ${'TheBooks'}
+  ${['the-movies']}    | ${'TheMovies'}
+`(
+  'computing Custom Views permissions keys',
+  ({ permissionGroupNames, formattedResourceAccessKeyAdditionalName }) => {
+    it(`should format correctly`, () => {
+      expect(computeCustomViewPermissionsKeys(permissionGroupNames)).toEqual({
+        View: `View`,
+        Manage: `Manage`,
+        [`View${formattedResourceAccessKeyAdditionalName}`]: `View${formattedResourceAccessKeyAdditionalName}`,
+        [`Manage${formattedResourceAccessKeyAdditionalName}`]: `Manage${formattedResourceAccessKeyAdditionalName}`,
+      });
     });
   }
 );

@@ -23,7 +23,7 @@ const Box = ({ size = 'm' }: { size?: 's' | 'm' | 'l' }) => {
 
 export const Component = () => (
   <Suite>
-    <ThemeProvider theme="test" />
+    <ThemeProvider />
     <NestedPages
       title="Page content container wide"
       basePath={routePath}
@@ -37,18 +37,6 @@ export const Component = () => (
             </PageContentWide>
           ),
         },
-        {
-          name: 'single column with several children',
-          path: 'single-column-with-several-children',
-          spec: (
-            <PageContentWide>
-              <Box />
-              <Box />
-              <Box />
-            </PageContentWide>
-          ),
-        },
-
         {
           name: 'two columns 1/1',
           path: 'two-columns-half',
@@ -86,6 +74,38 @@ export const Component = () => (
             <PageContentWide columns="2/1" gapSize="10">
               <Box size="l" />
               <Box size="s" />
+            </PageContentWide>
+          ),
+        },
+        {
+          name: 'single column with several children',
+          path: 'single-column-with-several-children',
+          spec: (
+            <PageContentWide>
+              <Box />
+              <Box />
+              <Box />
+            </PageContentWide>
+          ),
+        },
+        {
+          name: 'two columns with one child',
+          path: 'two-columns-with-one-child',
+          spec: (
+            <PageContentWide columns="1/1">
+              <Box />
+            </PageContentWide>
+          ),
+        },
+        {
+          name: 'two columns with several children',
+          path: 'two-column-with-several-children',
+          spec: (
+            <PageContentWide columns="2/1">
+              <Box />
+              <Box />
+              <Box />
+              <Box />
             </PageContentWide>
           ),
         },

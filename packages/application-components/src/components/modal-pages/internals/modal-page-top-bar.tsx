@@ -17,7 +17,7 @@ type TLargeIconWrapperProps = {
 };
 
 // Component to have a larger clickable surface
-const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
+export const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
   <span
     css={css`
       display: flex;
@@ -50,12 +50,17 @@ type Props = {
   color: 'surface' | 'neutral';
   currentPathLabel?: string;
   previousPathLabel: Label;
+  hidePathLabel?: boolean;
   onClose: (event: SyntheticEvent) => void;
   children?: never;
 };
-const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
+const defaultProps: Pick<
+  Props,
+  'color' | 'previousPathLabel' | 'hidePathLabel'
+> = {
   color: 'surface',
   previousPathLabel: messages.back,
+  hidePathLabel: false,
 };
 
 const ModalPageTopBar = (props: Props) => {
@@ -97,16 +102,18 @@ const ModalPageTopBar = (props: Props) => {
           }
         `}
       >
-        <FlatButton
-          tone="primary"
-          label={
-            typeof props.previousPathLabel === 'string'
-              ? props.previousPathLabel
-              : intl.formatMessage(props.previousPathLabel)
-          }
-          icon={<AngleLeftIcon size="medium" color="primary" />}
-          onClick={props.onClose}
-        />
+        {!props.hidePathLabel && (
+          <FlatButton
+            tone="primary"
+            label={
+              typeof props.previousPathLabel === 'string'
+                ? props.previousPathLabel
+                : intl.formatMessage(props.previousPathLabel)
+            }
+            icon={<AngleLeftIcon size="medium" color="primary" />}
+            onClick={props.onClose}
+          />
+        )}
         {props.currentPathLabel && (
           <>
             <Text.Detail as="span">/</Text.Detail>

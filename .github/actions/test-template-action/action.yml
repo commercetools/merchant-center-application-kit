@@ -1,0 +1,89 @@
+name: 'Test template'
+description: 'Tests MC Extension template'
+
+inputs:
+  application-type:
+    description: 'Type of the application'
+    required: true
+  template-name:
+    description: 'Name of the template to test'
+    required: true
+  e2e-tests-command:
+    description: 'Command to run the end-to-end tests'
+    required: true
+  typecheck-command:
+    description: 'Command to run the typecheck'
+    required: false
+  host-gcp-staging:
+    description: 'Host of the GCP staging environment'
+    required: true
+  playground-application-id:
+    description: 'Application ID of the Playground application'
+    required: true
+  mc-api-url:
+    description: 'Merchant Center API URL'
+    required: true
+  cypress-login-user:
+    description: 'Cypress login user'
+    required: true
+  cypress-login-password:
+    description: 'Cypress login password'
+    required: true
+  cypress-project-key:
+    description: 'Cypress project key'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Installing dependencies and building packages
+      uses: ./.github/actions/ci
+
+    - name: Testing Starter template development server
+      shell: bash
+      run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start' http-get://127.0.0.1:3001 'exit 0'
+      env:
+        HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
+        APP_ID: ${{ inputs.playground-application-id }}
+        MC_API_URL: ${{ inputs.mc-api-url }}
+        CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+
+    - name: Building Starter template
+      shell: bash
+      run: pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:build
+      env:
+        CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+
+    - name: Running static type checking
+      if: ${{ inputs.typecheck-command != '' }}
+      shell: bash
+      run: pnpm ${{ inputs.typecheck-command }}
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
+    # https://github.com/marketplace/actions/cypress-io#custom-install
+    - name: Restoring Cypress cache
+      # restore / cache the binary ourselves on Linux
+      # see https://github.com/actions/cache
+      id: cache-cypress
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Cypress
+        key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+
+    - name: Installing Cypress binary
+      shell: bash
+      run: pnpm cypress install && pnpm cypress cache list
+
+    - name: Running End-to-End tests for Starter template (template-${{ inputs.application-type }}-${{ inputs.template-name }})
+      shell: bash
+      run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'pnpm ${{ inputs.e2e-tests-command }}'
+      env:
+        NODE_ENV: test
+        CYPRESS_CI: "true"
+        CYPRESS_LOGIN_USER: ${{ inputs.cypress-login-user }}
+        CYPRESS_LOGIN_PASSWORD: ${{ inputs.cypress-login-password }}
+        CYPRESS_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+        HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
+        APP_ID: ${{ inputs.playground-application-id }}
+        MC_API_URL: ${{ inputs.mc-api-url }}
+        CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}

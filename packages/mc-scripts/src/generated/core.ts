@@ -16,17 +16,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) country code. */
   Country: any;
-  /** Represents a currency. Currencies are identified by their [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm) currency codes. */
   Currency: any;
-  /** DateTime is a scalar value that represents an ISO8601 formatted date and time. */
   DateTime: any;
-  /** DateTimeZone is a scalar value that represents a time zone. */
   DateTimeZone: any;
-  /** Locale is a scalar value represented as a string language tag. */
   Locale: any;
-  /** The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
   Long: any;
 };
 
@@ -41,43 +35,37 @@ export type TAddTeamMembership = {
   user: TReferenceInput;
 };
 
+export type TAttributeGroupLimits = {
+  __typename?: 'AttributeGroupLimits';
+  maxTotalAttributeGroups?: Maybe<Scalars['Int']>;
+};
+
+/** AWS S3 container config */
+export type TAwsContainer = {
+  __typename?: 'AwsContainer';
+  /** Public bucket url, without the project part */
+  bucketUrl: Scalars['String'];
+  /** Project part of the object path on s3 */
+  projectPrefix: Scalars['String'];
+};
+
 export enum TBusinessRole {
-  /** Business Dev, Sales & Account Management role. */
-  BusinessDevSalesAndAccountManagement = 'BusinessDevSalesAndAccountManagement',
-  /** Business Intelligence role. */
-  BusinessIntelligence = 'BusinessIntelligence',
-  /** Buying, Planning & Inventory Management role. */
-  BuyingPlanningAndInventoryManagement = 'BuyingPlanningAndInventoryManagement',
+  /** Architect role. */
+  Architect = 'Architect',
   /** Customer Service role. */
   CustomerService = 'CustomerService',
-  /** Data Quality & Content Management role. */
-  DataQualityAndContentManagement = 'DataQualityAndContentManagement',
+  /** Engineer role. */
+  Engineer = 'Engineer',
   /** Executive Management role. */
   ExecutiveManagement = 'ExecutiveManagement',
-  /** Finance & Accounting role. */
-  FinanceAndAccounting = 'FinanceAndAccounting',
-  /** Fulfillment & Operations Management role. */
-  FulfillmentAndOperationsManagement = 'FulfillmentAndOperationsManagement',
-  /** Legal & People role. */
-  LegalAndPeople = 'LegalAndPeople',
-  /** Logistics & Supply Chain role. */
-  LogisticsAndSupplyChain = 'LogisticsAndSupplyChain',
   /** Marketing role. */
   Marketing = 'Marketing',
-  /** Offline Retail Store role. */
-  OfflineRetailStore = 'OfflineRetailStore',
-  /** Operations, IT & Support Engineering role. */
-  OperationsItAndSupportEngineering = 'OperationsITAndSupportEngineering',
   /** Other role. */
   Other = 'Other',
-  /** Software Development & Solutions Architect role. */
-  SoftwareDevelopmentAndSolutionsArchitect = 'SoftwareDevelopmentAndSolutionsArchitect',
-  /** Product Management (Tech) role. */
-  TechProductManagement = 'TechProductManagement',
-  /** Project & Program Management (Tech) role. */
-  TechProjectAndProgramManagement = 'TechProjectAndProgramManagement',
-  /** UX/UI Design role. */
-  UxuiDesign = 'UXUIDesign',
+  /** ProductProjectManagerOrOwner role. */
+  ProductProjectManagerOrOwner = 'ProductProjectManagerOrOwner',
+  /** SalesAndECommerceManager role. */
+  SalesAndECommerceManager = 'SalesAndECommerceManager',
 }
 
 export type TCartClassificationType = TShippingRateInputType & {
@@ -274,6 +262,7 @@ export type TExternalOAuthInput = {
 export type TInitiator = {
   __typename?: 'Initiator';
   anonymousId?: Maybe<Scalars['String']>;
+  associateRef?: Maybe<TReference>;
   clientId?: Maybe<Scalars['String']>;
   customerRef?: Maybe<TReference>;
   externalUserId?: Maybe<Scalars['String']>;
@@ -286,6 +275,8 @@ export type TLocalizedString = {
   locale: Scalars['Locale'];
   value: Scalars['String'];
 };
+
+export type TMediaContainer = TAwsContainer | TPublicContainer;
 
 export type TMessagesConfiguration = {
   __typename?: 'MessagesConfiguration';
@@ -303,6 +294,8 @@ export type TMutation = {
   deleteMyPermission?: Maybe<TPermission>;
   deleteMyProject?: Maybe<TProject>;
   deletePermission?: Maybe<TPermission>;
+  revokeAccessTokensByGroup?: Maybe<TRevokedTokens>;
+  revokeAccessTokensByTeam?: Maybe<TRevokedTokens>;
   updateMyOrganization?: Maybe<TOrganization>;
   updateMyPermission?: Maybe<TPermission>;
   updatePermission?: Maybe<TPermission>;
@@ -342,6 +335,16 @@ export type TMutation_DeleteMyProjectArgs = {
 export type TMutation_DeletePermissionArgs = {
   id: Scalars['String'];
   version: Scalars['Long'];
+};
+
+export type TMutation_RevokeAccessTokensByGroupArgs = {
+  owner: TReferenceInput;
+  permissionGroup: Scalars['String'];
+};
+
+export type TMutation_RevokeAccessTokensByTeamArgs = {
+  owner: TReferenceInput;
+  teamId: Scalars['String'];
 };
 
 export type TMutation_UpdateMyOrganizationArgs = {
@@ -452,7 +455,7 @@ export type TProductTypeLimits = {
 export type TProject = TVersioned & {
   __typename?: 'Project';
   billingInfo?: Maybe<TProjectBillingInfo>;
-  cdnContainer?: Maybe<TPublicContainer>;
+  cdnContainer?: Maybe<TMediaContainer>;
   cdnContainerConfiguration: TCdnContainerConfiguration;
   countries: Array<Scalars['Country']>;
   createdAt: Scalars['DateTime'];
@@ -490,6 +493,7 @@ export type TProjectBillingInfo = {
 
 export type TProjectCustomLimits = {
   __typename?: 'ProjectCustomLimits';
+  attributeGroupLimits?: Maybe<TAttributeGroupLimits>;
   cartDiscounts?: Maybe<TCartDiscountLimits>;
   carts?: Maybe<TCartLimits>;
   categoryLimits?: Maybe<TCategoryLimits>;
@@ -507,6 +511,7 @@ export type TProjectCustomLimits = {
   shippingMethods?: Maybe<TShippingMethodLimit>;
   shoppingLists?: Maybe<TShoppingListLimits>;
   stores?: Maybe<TStoreLimits>;
+  subscriptions?: Maybe<TSubscriptionsLimits>;
   taxCategories?: Maybe<TTaxCategoryLimit>;
   termFacetSize?: Maybe<Scalars['Int']>;
   zones?: Maybe<TZoneLimits>;
@@ -561,6 +566,7 @@ export enum TProjectSuspensionReason {
   Payment = 'Payment',
 }
 
+/** Rackspace Cloud Files container config */
 export type TPublicContainer = {
   __typename?: 'PublicContainer';
   httpUri: Scalars['String'];
@@ -677,6 +683,13 @@ export type TRemoveTeamMembership = {
   user: TReferenceInput;
 };
 
+export type TRevokedTokens = {
+  __typename?: 'RevokedTokens';
+  owner: TReference;
+  revoked: Scalars['Long'];
+  teams: Array<Scalars['String']>;
+};
+
 export type TSearchIndexingConfigurationInput = {
   products?: InputMaybe<TSearchIndexingConfigurationValuesInput>;
 };
@@ -746,6 +759,11 @@ export type TStoreLimits = {
   maxProductDistributionChannelsPerStore?: Maybe<Scalars['Long']>;
   maxProductSelectionsPerStore?: Maybe<Scalars['Long']>;
   maxStores?: Maybe<Scalars['Long']>;
+};
+
+export type TSubscriptionsLimits = {
+  __typename?: 'SubscriptionsLimits';
+  maxSubscriptions?: Maybe<Scalars['Int']>;
 };
 
 export type TTaxCategoryLimit = {

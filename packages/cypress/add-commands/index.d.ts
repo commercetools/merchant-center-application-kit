@@ -25,5 +25,25 @@ declare namespace Cypress {
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
       options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginOptions
     ): Chainable<Subject>;
+
+    /**
+     * Triggers a `hover` (real) event on the subject.
+     *
+     * @example
+     *    cy.findByText('text_matcher').hover()
+     */
+    hover(): Chainable<Subject>;
+
+    /**
+     * Triggers a `hover` (real) event on the navigation menu item found using the given text matcher.
+     * It will make the submenu links panel to appear.
+     *
+     * @example
+     *    cy.showNavigationSubmenuItems('navigation_item_menu_text_matcher')
+     */
+    showNavigationSubmenuItems(
+      // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
+      menuItemTextMatcher: import('./dist/commercetools-frontend-cypress-add-commands.cjs').Matcher
+    ): Chainable<Subject>;
   }
 }

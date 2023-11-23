@@ -12,6 +12,7 @@ import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
+  selectProjectKeyFromUrl,
   useApplicationContext,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
@@ -24,7 +25,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS } from '../../constants';
-import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
+import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
@@ -33,7 +34,6 @@ import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
-import LoadingNavBar from '../navbar/loading-navbar';
 import ProjectContainer from '../project-container';
 import ProjectDataLocale from '../project-data-locale';
 import QuickAccess from '../quick-access';
@@ -73,8 +73,8 @@ const getHasUserBeenDeletedError = (
   );
 
 export const MainContainer = styled.main`
-  grid-column: 2;
-  grid-row: 3;
+  grid-column: 2/3;
+  grid-row: 3/4;
 
   /*
     Allow the this flex child to grow smaller than its smallest content.
@@ -213,7 +213,7 @@ export const ApplicationShellAuthenticated = (
                           height: 100vh;
                           display: grid;
                           grid-template-rows: auto ${DIMENSIONS.header} 1fr;
-                          grid-template-columns: auto 1fr;
+                          grid-template-columns: min-content 1fr;
                         `}
                       >
                         <div
@@ -278,8 +278,8 @@ export const ApplicationShellAuthenticated = (
                         </Route>
                         <header
                           css={css`
-                            grid-row: 2;
-                            grid-column: 1/3;
+                            grid-row: '2/3';
+                            grid-column: '2/3';
                           `}
                         >
                           <AppBar
@@ -290,10 +290,9 @@ export const ApplicationShellAuthenticated = (
 
                         <aside
                           css={css`
-                            position: relative;
-                            grid-row: 3;
-                            display: flex;
-                            flex-direction: column;
+                            grid-column: 1/2;
+                            grid-row: 2/4;
+                            overflow: hidden;
                           `}
                         >
                           {(() => {
@@ -311,16 +310,12 @@ export const ApplicationShellAuthenticated = (
                             return (
                               <FetchProject projectKey={projectKeyFromUrl}>
                                 {({ isLoading: isLoadingProject, project }) => {
-                                  // Render the loading navbar as long as all the data
-                                  // hasn't been loaded, or if the project does not exist.
-                                  if (
+                                  const isLoading =
                                     isLoadingUser ||
                                     isLoadingLocaleData ||
                                     isLoadingProject ||
                                     !locale ||
-                                    !project
-                                  )
-                                    return <LoadingNavBar />;
+                                    !project;
 
                                   return (
                                     <ApplicationContextProvider
@@ -336,6 +331,7 @@ export const ApplicationShellAuthenticated = (
                                         project={project}
                                         environment={applicationEnvironment}
                                         onMenuItemClick={props.onMenuItemClick}
+                                        isLoading={isLoading}
                                       />
                                     </ApplicationContextProvider>
                                   );

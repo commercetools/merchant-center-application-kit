@@ -1,5 +1,65 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.13.0
+
+### Minor Changes
+
+- [#3295](https://github.com/commercetools/merchant-center-application-kit/pull/3295) [`83eb0f4e1`](https://github.com/commercetools/merchant-center-application-kit/commit/83eb0f4e176f583fdbada2cdc9797d895ddd1408) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Enable bootstraping Custom Views without locally setting an environment variable
+
+## 22.12.0
+
+## 22.11.0
+
+## 22.10.0
+
+## 22.9.1
+
+## 22.9.0
+
+## 22.8.4
+
+## 22.8.3
+
+## 22.8.2
+
+## 22.8.1
+
+## 22.8.0
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 22.7.1
+
+## 22.7.0
+
+## 22.6.0
+
+## 22.5.0
+
+### Patch Changes
+
+- [#3135](https://github.com/commercetools/merchant-center-application-kit/pull/3135) [`6c4094e0e`](https://github.com/commercetools/merchant-center-application-kit/commit/6c4094e0e99461b860e3a2eda7b47094858ea329) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@tsconfig/node16` dependency.
+
+## 22.4.0
+
+### Minor Changes
+
+- [#3119](https://github.com/commercetools/merchant-center-application-kit/pull/3119) [`5c989899c`](https://github.com/commercetools/merchant-center-application-kit/commit/5c989899c2b80539182d74ab20374304d6709395) Thanks [@renovate](https://github.com/apps/renovate)! - Update `semver` dependency.
+
+### Patch Changes
+
+- [#3138](https://github.com/commercetools/merchant-center-application-kit/pull/3138) [`5f4c47f8f`](https://github.com/commercetools/merchant-center-application-kit/commit/5f4c47f8f98e798ed24ce33b66130a273fa2e25a) Thanks [@emmenko](https://github.com/emmenko)! - Run `npm install` command with `--legacy-peer-deps` option
+
+## 22.3.4
+
+## 22.3.3
+
+## 22.3.2
+
+## 22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

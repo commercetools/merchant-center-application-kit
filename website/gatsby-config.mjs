@@ -15,6 +15,7 @@ const config = {
     title: 'Custom Applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
+    breadcrumbs: 'Composable Commerce',
     beta: false,
     betaLink:
       'https://docs.commercetools.com/offering/api-contract#public-beta',
@@ -31,9 +32,10 @@ const config = {
         colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
         gaTrackingIds: ['G-XGR7PSLVB2', 'UA-38285631-3'],
         hubspotTrackingCode: '4784080',
-        overrideDefaultConfigurationData: ['**/top-*'],
+        overrideDefaultConfigurationData: ['**/top-*', '**/footer*'],
       },
     },
+    'gatsby-plugin-pnpm',
   ],
 };
 

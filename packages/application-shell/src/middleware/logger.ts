@@ -1,11 +1,11 @@
 import type { Middleware } from 'redux';
 
 import { createLogger } from 'redux-logger';
+import { logger } from '@commercetools-frontend/application-shell-connectors';
 import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import logger from '../utils/logger';
 
 const loggerMiddleware: Middleware = createLogger({
   logger,

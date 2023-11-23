@@ -1,5 +1,374 @@
 # playground
 
+## 22.13.0
+
+### Minor Changes
+
+- [#3294](https://github.com/commercetools/merchant-center-application-kit/pull/3294) [`db6e172ce`](https://github.com/commercetools/merchant-center-application-kit/commit/db6e172ce4d679a66fc6030e4f67c4fb5661d065) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - add new drawer component
+
+### Patch Changes
+
+- Updated dependencies [[`bbd48e591`](https://github.com/commercetools/merchant-center-application-kit/commit/bbd48e591553fdd72505342c04db6249742a4be1), [`db6e172ce`](https://github.com/commercetools/merchant-center-application-kit/commit/db6e172ce4d679a66fc6030e4f67c4fb5661d065)]:
+  - @commercetools-frontend/application-shell@22.13.0
+  - @commercetools-frontend/application-components@22.13.0
+  - @commercetools-frontend/actions-global@22.13.0
+  - @commercetools-frontend/application-shell-connectors@22.13.0
+  - @commercetools-frontend/assets@22.13.0
+  - @commercetools-frontend/browser-history@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+  - @commercetools-frontend/i18n@22.13.0
+  - @commercetools-frontend/l10n@22.13.0
+  - @commercetools-frontend/permissions@22.13.0
+  - @commercetools-frontend/sdk@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- [#3296](https://github.com/commercetools/merchant-center-application-kit/pull/3296) [`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages
+
+- [#3267](https://github.com/commercetools/merchant-center-application-kit/pull/3267) [`4bf3baf52`](https://github.com/commercetools/merchant-center-application-kit/commit/4bf3baf52e80f25b2fc02fca7fe9c07f5ff29c39) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all ui-kit packages to v16.10.0
+
+- Updated dependencies [[`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a), [`e987dbfbc`](https://github.com/commercetools/merchant-center-application-kit/commit/e987dbfbc6473b631e86f57e843e6d7267d8cd04), [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`41b15c7cb`](https://github.com/commercetools/merchant-center-application-kit/commit/41b15c7cb6773f92a83a1a16f5d8462fccd09da2), [`828189d5d`](https://github.com/commercetools/merchant-center-application-kit/commit/828189d5d2cda9e7d628d2db3c9e33cd4ae57110), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2), [`b5dde0308`](https://github.com/commercetools/merchant-center-application-kit/commit/b5dde030825750d21d80fbdbfceb995de2f07fb2)]:
+  - @commercetools-frontend/application-components@22.12.0
+  - @commercetools-frontend/application-shell@22.12.0
+  - @commercetools-frontend/application-shell-connectors@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/i18n@22.12.0
+  - @commercetools-frontend/permissions@22.12.0
+  - @commercetools-frontend/actions-global@22.12.0
+  - @commercetools-frontend/sdk@22.12.0
+  - @commercetools-frontend/l10n@22.12.0
+  - @commercetools-frontend/assets@22.12.0
+  - @commercetools-frontend/browser-history@22.12.0
+
+## 22.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`0c4936402`](https://github.com/commercetools/merchant-center-application-kit/commit/0c493640240fde1f7300070b6c19c67d5f203e8e), [`3e11bae8a`](https://github.com/commercetools/merchant-center-application-kit/commit/3e11bae8a39c3f1ea47cd2fc032a04bde5077d9d), [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016), [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016)]:
+  - @commercetools-frontend/application-components@22.11.0
+  - @commercetools-frontend/application-shell@22.11.0
+  - @commercetools-frontend/constants@22.11.0
+  - @commercetools-frontend/actions-global@22.11.0
+  - @commercetools-frontend/application-shell-connectors@22.11.0
+  - @commercetools-frontend/sdk@22.11.0
+  - @commercetools-frontend/permissions@22.11.0
+  - @commercetools-frontend/i18n@22.11.0
+  - @commercetools-frontend/l10n@22.11.0
+  - @commercetools-frontend/assets@22.11.0
+  - @commercetools-frontend/browser-history@22.11.0
+
+## 22.10.0
+
+### Patch Changes
+
+- [#3273](https://github.com/commercetools/merchant-center-application-kit/pull/3273) [`fed1fa0a7`](https://github.com/commercetools/merchant-center-application-kit/commit/fed1fa0a7bf718b12f94bc694c0ef09638c9fa4f) Thanks [@gabriele-ct](https://github.com/gabriele-ct)! - Apply megamenu redesign to custom applications and match the docs configuration
+
+- Updated dependencies [[`deed7bafc`](https://github.com/commercetools/merchant-center-application-kit/commit/deed7bafcb70b8ec2258d4c752f7e81b7eccf079), [`669a46bf7`](https://github.com/commercetools/merchant-center-application-kit/commit/669a46bf718e2d6eb50bed5813463ed8a2c8dae3), [`6bef6add7`](https://github.com/commercetools/merchant-center-application-kit/commit/6bef6add77b7567de18e447b4881caf8e7b10393), [`6398b1946`](https://github.com/commercetools/merchant-center-application-kit/commit/6398b1946f24ee89b241f3f2eb7dd6d68de6e105)]:
+  - @commercetools-frontend/application-shell@22.10.0
+  - @commercetools-frontend/application-components@22.10.0
+  - @commercetools-frontend/application-shell-connectors@22.10.0
+  - @commercetools-frontend/permissions@22.10.0
+  - @commercetools-frontend/actions-global@22.10.0
+  - @commercetools-frontend/assets@22.10.0
+  - @commercetools-frontend/browser-history@22.10.0
+  - @commercetools-frontend/constants@22.10.0
+  - @commercetools-frontend/i18n@22.10.0
+  - @commercetools-frontend/l10n@22.10.0
+  - @commercetools-frontend/sdk@22.10.0
+
+## 22.9.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.9.1
+  - @commercetools-frontend/application-components@22.9.1
+  - @commercetools-frontend/application-shell@22.9.1
+  - @commercetools-frontend/application-shell-connectors@22.9.1
+  - @commercetools-frontend/assets@22.9.1
+  - @commercetools-frontend/browser-history@22.9.1
+  - @commercetools-frontend/constants@22.9.1
+  - @commercetools-frontend/i18n@22.9.1
+  - @commercetools-frontend/l10n@22.9.1
+  - @commercetools-frontend/permissions@22.9.1
+  - @commercetools-frontend/sdk@22.9.1
+
+## 22.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`fe0b5f7f5`](https://github.com/commercetools/merchant-center-application-kit/commit/fe0b5f7f5bedaab4850d38d0c1df29650689b96e), [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1), [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1)]:
+  - @commercetools-frontend/application-components@22.9.0
+  - @commercetools-frontend/constants@22.9.0
+  - @commercetools-frontend/application-shell-connectors@22.9.0
+  - @commercetools-frontend/application-shell@22.9.0
+  - @commercetools-frontend/actions-global@22.9.0
+  - @commercetools-frontend/sdk@22.9.0
+  - @commercetools-frontend/permissions@22.9.0
+  - @commercetools-frontend/i18n@22.9.0
+  - @commercetools-frontend/l10n@22.9.0
+  - @commercetools-frontend/assets@22.9.0
+  - @commercetools-frontend/browser-history@22.9.0
+
+## 22.8.4
+
+### Patch Changes
+
+- Updated dependencies [[`a009c4281`](https://github.com/commercetools/merchant-center-application-kit/commit/a009c4281dc37df9e776ec4b1e923340fe20cd5f), [`b7414e2f7`](https://github.com/commercetools/merchant-center-application-kit/commit/b7414e2f735c1bb160ee33f22b518f55022ec0f1), [`f7c1da442`](https://github.com/commercetools/merchant-center-application-kit/commit/f7c1da4424c95d3c403fba3470455a6b09ef3cca), [`71cce1fdf`](https://github.com/commercetools/merchant-center-application-kit/commit/71cce1fdf050050cc0d92f1472a5df82b45ca5b9)]:
+  - @commercetools-frontend/application-shell@22.8.4
+  - @commercetools-frontend/actions-global@22.8.4
+  - @commercetools-frontend/application-components@22.8.4
+  - @commercetools-frontend/application-shell-connectors@22.8.4
+  - @commercetools-frontend/assets@22.8.4
+  - @commercetools-frontend/browser-history@22.8.4
+  - @commercetools-frontend/constants@22.8.4
+  - @commercetools-frontend/i18n@22.8.4
+  - @commercetools-frontend/l10n@22.8.4
+  - @commercetools-frontend/permissions@22.8.4
+  - @commercetools-frontend/sdk@22.8.4
+
+## 22.8.3
+
+### Patch Changes
+
+- Updated dependencies [[`9d8b6fc04`](https://github.com/commercetools/merchant-center-application-kit/commit/9d8b6fc04d9b6cf788cb58b7dba9faa177ddf5e3), [`689cc6e32`](https://github.com/commercetools/merchant-center-application-kit/commit/689cc6e3239e2f795c3525cd0202a639f632f416)]:
+  - @commercetools-frontend/application-shell@22.8.3
+  - @commercetools-frontend/actions-global@22.8.3
+  - @commercetools-frontend/application-components@22.8.3
+  - @commercetools-frontend/application-shell-connectors@22.8.3
+  - @commercetools-frontend/assets@22.8.3
+  - @commercetools-frontend/browser-history@22.8.3
+  - @commercetools-frontend/constants@22.8.3
+  - @commercetools-frontend/i18n@22.8.3
+  - @commercetools-frontend/l10n@22.8.3
+  - @commercetools-frontend/permissions@22.8.3
+  - @commercetools-frontend/sdk@22.8.3
+
+## 22.8.2
+
+### Patch Changes
+
+- Updated dependencies [[`b23bd6049`](https://github.com/commercetools/merchant-center-application-kit/commit/b23bd60490be8822549c418fc431825bf0058a5f), [`2f1956868`](https://github.com/commercetools/merchant-center-application-kit/commit/2f1956868b248161fcaf77c41774f494bb2f9a90), [`ef6aad473`](https://github.com/commercetools/merchant-center-application-kit/commit/ef6aad47368889fe1c69d847a16f092cf591c6d0), [`db0ae5b18`](https://github.com/commercetools/merchant-center-application-kit/commit/db0ae5b18d51fbce7f1527ff202b30832b1a05c5)]:
+  - @commercetools-frontend/application-shell@22.8.2
+  - @commercetools-frontend/actions-global@22.8.2
+  - @commercetools-frontend/application-components@22.8.2
+  - @commercetools-frontend/application-shell-connectors@22.8.2
+  - @commercetools-frontend/assets@22.8.2
+  - @commercetools-frontend/browser-history@22.8.2
+  - @commercetools-frontend/constants@22.8.2
+  - @commercetools-frontend/i18n@22.8.2
+  - @commercetools-frontend/l10n@22.8.2
+  - @commercetools-frontend/permissions@22.8.2
+  - @commercetools-frontend/sdk@22.8.2
+
+## 22.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`10ade8b9b`](https://github.com/commercetools/merchant-center-application-kit/commit/10ade8b9bab48a6d08abfd7fc31c3a3e8f48f3a4)]:
+  - @commercetools-frontend/application-shell@22.8.1
+  - @commercetools-frontend/actions-global@22.8.1
+  - @commercetools-frontend/application-components@22.8.1
+  - @commercetools-frontend/application-shell-connectors@22.8.1
+  - @commercetools-frontend/assets@22.8.1
+  - @commercetools-frontend/browser-history@22.8.1
+  - @commercetools-frontend/constants@22.8.1
+  - @commercetools-frontend/i18n@22.8.1
+  - @commercetools-frontend/l10n@22.8.1
+  - @commercetools-frontend/permissions@22.8.1
+  - @commercetools-frontend/sdk@22.8.1
+
+## 22.8.0
+
+### Minor Changes
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Add demo for rendering Custom Views
+
+### Patch Changes
+
+- [#3205](https://github.com/commercetools/merchant-center-application-kit/pull/3205) [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.3`
+
+- [#3157](https://github.com/commercetools/merchant-center-application-kit/pull/3157) [`b920f424c`](https://github.com/commercetools/merchant-center-application-kit/commit/b920f424c109a906cf8db7012fd65d4ec3a8e113) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.1.5 [security]
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3224](https://github.com/commercetools/merchant-center-application-kit/pull/3224) [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency graphql to v16.8.1 [security]
+
+- Updated dependencies [[`f30cc5ca6`](https://github.com/commercetools/merchant-center-application-kit/commit/f30cc5ca6d9f9f47836b04915ac7233ac1437976), [`d5e7303fd`](https://github.com/commercetools/merchant-center-application-kit/commit/d5e7303fd9ca450fabba47c2fdccf1a275852f00), [`cf560fbd4`](https://github.com/commercetools/merchant-center-application-kit/commit/cf560fbd47d284657e06fc27af9387b342557924), [`e0a7b5150`](https://github.com/commercetools/merchant-center-application-kit/commit/e0a7b515058a389794d5040cb4b7785708d59cbb), [`c121508f5`](https://github.com/commercetools/merchant-center-application-kit/commit/c121508f50111c4e9d28b06158ca55af52aac1e2), [`938f79391`](https://github.com/commercetools/merchant-center-application-kit/commit/938f79391746077eb7b71a64acbf1dd73b3b3d06), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f), [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db), [`bef02f8ac`](https://github.com/commercetools/merchant-center-application-kit/commit/bef02f8ac0185eb293e0d295f320f753cc0eff18), [`3be9e8719`](https://github.com/commercetools/merchant-center-application-kit/commit/3be9e8719e80f1594490c4861a65a97f5dc403ed), [`a911ae90d`](https://github.com/commercetools/merchant-center-application-kit/commit/a911ae90de00d0196390b043da51246c2198c143), [`da1236982`](https://github.com/commercetools/merchant-center-application-kit/commit/da1236982646042aa13cda3962d24481ec27e546), [`4703c830c`](https://github.com/commercetools/merchant-center-application-kit/commit/4703c830c14ce6a0520089eff040afdb1ae86516), [`3da2c956d`](https://github.com/commercetools/merchant-center-application-kit/commit/3da2c956d9feaad710d7445bf520c18b64a588b8), [`1986d18d1`](https://github.com/commercetools/merchant-center-application-kit/commit/1986d18d1b411013514df21cbb5966ffbe4b6178), [`e793cef7c`](https://github.com/commercetools/merchant-center-application-kit/commit/e793cef7cb7fa650a796c668bbfc6d0ea2ef52d6)]:
+  - @commercetools-frontend/application-shell@22.8.0
+  - @commercetools-frontend/application-components@22.8.0
+  - @commercetools-frontend/i18n@22.8.0
+  - @commercetools-frontend/l10n@22.8.0
+  - @commercetools-frontend/application-shell-connectors@22.8.0
+  - @commercetools-frontend/permissions@22.8.0
+  - @commercetools-frontend/constants@22.8.0
+  - @commercetools-frontend/sdk@22.8.0
+  - @commercetools-frontend/browser-history@22.8.0
+  - @commercetools-frontend/actions-global@22.8.0
+  - @commercetools-frontend/assets@22.8.0
+
+## 22.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`6db7d79b0`](https://github.com/commercetools/merchant-center-application-kit/commit/6db7d79b0a0d94d6bf0a600110a5c63fab459f7c), [`f5893edb6`](https://github.com/commercetools/merchant-center-application-kit/commit/f5893edb6723e274176646926ad9e748b30030ca), [`51a988f4d`](https://github.com/commercetools/merchant-center-application-kit/commit/51a988f4dfa31204799c32db070b88473e4a5ffd)]:
+  - @commercetools-frontend/application-shell@22.7.1
+  - @commercetools-frontend/actions-global@22.7.1
+  - @commercetools-frontend/application-components@22.7.1
+  - @commercetools-frontend/application-shell-connectors@22.7.1
+  - @commercetools-frontend/assets@22.7.1
+  - @commercetools-frontend/browser-history@22.7.1
+  - @commercetools-frontend/constants@22.7.1
+  - @commercetools-frontend/i18n@22.7.1
+  - @commercetools-frontend/l10n@22.7.1
+  - @commercetools-frontend/permissions@22.7.1
+  - @commercetools-frontend/sdk@22.7.1
+
+## 22.7.0
+
+### Minor Changes
+
+- [#3181](https://github.com/commercetools/merchant-center-application-kit/pull/3181) [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6) Thanks [@emmenko](https://github.com/emmenko)! - Support new application locale `pt-BR`
+
+### Patch Changes
+
+- [#3186](https://github.com/commercetools/merchant-center-application-kit/pull/3186) [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating Ui-Kit dependencies to v `16.7.0`
+
+- [#3176](https://github.com/commercetools/merchant-center-application-kit/pull/3176) [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies to version `16.6.1`
+
+- [#3181](https://github.com/commercetools/merchant-center-application-kit/pull/3181) [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies
+
+- Updated dependencies [[`a6ebc4d1b`](https://github.com/commercetools/merchant-center-application-kit/commit/a6ebc4d1ba265bf21a1ee33f0311a3eb6fca20c0), [`c3a7893c0`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a7893c07bde119a7874ac56337e3e7720b1b01), [`bf2df5683`](https://github.com/commercetools/merchant-center-application-kit/commit/bf2df568398e8b7558405df954166aefd8d1f963), [`51deaa6fc`](https://github.com/commercetools/merchant-center-application-kit/commit/51deaa6fc32b3be2439853d952ce8a5ae6db93e3), [`d36fda3d0`](https://github.com/commercetools/merchant-center-application-kit/commit/d36fda3d00534c62ac87acb3c88c36e908732ca9), [`9224192b8`](https://github.com/commercetools/merchant-center-application-kit/commit/9224192b86e3c716d4f2374e011106af35462e84), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6), [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6), [`0a100cb41`](https://github.com/commercetools/merchant-center-application-kit/commit/0a100cb415433209310afa014a3eb527b59c76ab), [`6fa0a6adc`](https://github.com/commercetools/merchant-center-application-kit/commit/6fa0a6adc8aa53b9ef5c86e8bd88909370b92c9f), [`f35a1b3ba`](https://github.com/commercetools/merchant-center-application-kit/commit/f35a1b3ba8aa5c869c2b77dd41eaeca5e975bbec), [`0865a7051`](https://github.com/commercetools/merchant-center-application-kit/commit/0865a7051fc47ad0556b472eb8b4712477323847), [`7bfc2ade4`](https://github.com/commercetools/merchant-center-application-kit/commit/7bfc2ade4d8805353f3e1196adacfe3c57d2f387)]:
+  - @commercetools-frontend/application-components@22.7.0
+  - @commercetools-frontend/application-shell@22.7.0
+  - @commercetools-frontend/i18n@22.7.0
+  - @commercetools-frontend/l10n@22.7.0
+  - @commercetools-frontend/constants@22.7.0
+  - @commercetools-frontend/actions-global@22.7.0
+  - @commercetools-frontend/application-shell-connectors@22.7.0
+  - @commercetools-frontend/sdk@22.7.0
+  - @commercetools-frontend/permissions@22.7.0
+  - @commercetools-frontend/assets@22.7.0
+  - @commercetools-frontend/browser-history@22.7.0
+
+## 22.6.0
+
+### Patch Changes
+
+- [#3159](https://github.com/commercetools/merchant-center-application-kit/pull/3159) [`ff9af8fc5`](https://github.com/commercetools/merchant-center-application-kit/commit/ff9af8fc51c2f71e4de09179811454fc3761e9e1) Thanks [@chloe0592](https://github.com/chloe0592)! - Render a slightly different root layout using a feature flag. The change is only used internally for now, as we are working on some design updates.
+
+- Updated dependencies [[`ff9af8fc5`](https://github.com/commercetools/merchant-center-application-kit/commit/ff9af8fc51c2f71e4de09179811454fc3761e9e1), [`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b)]:
+  - @commercetools-frontend/application-shell@22.6.0
+  - @commercetools-frontend/constants@22.6.0
+  - @commercetools-frontend/actions-global@22.6.0
+  - @commercetools-frontend/application-components@22.6.0
+  - @commercetools-frontend/application-shell-connectors@22.6.0
+  - @commercetools-frontend/sdk@22.6.0
+  - @commercetools-frontend/permissions@22.6.0
+  - @commercetools-frontend/i18n@22.6.0
+  - @commercetools-frontend/l10n@22.6.0
+  - @commercetools-frontend/assets@22.6.0
+
+## 22.5.0
+
+### Patch Changes
+
+- Updated dependencies [[`91c60f154`](https://github.com/commercetools/merchant-center-application-kit/commit/91c60f154cd874755512691bb7d014acf631afb4), [`a90891658`](https://github.com/commercetools/merchant-center-application-kit/commit/a90891658959affac8d15dfae446125e69d3ecd4), [`6cef91c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/6cef91c8e3e18c7ea4ab55d42a7df2dbf72f5a1e), [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9)]:
+  - @commercetools-frontend/application-shell-connectors@22.5.0
+  - @commercetools-frontend/application-shell@22.5.0
+  - @commercetools-frontend/application-components@22.5.0
+  - @commercetools-frontend/constants@22.5.0
+  - @commercetools-frontend/permissions@22.5.0
+  - @commercetools-frontend/actions-global@22.5.0
+  - @commercetools-frontend/sdk@22.5.0
+  - @commercetools-frontend/i18n@22.5.0
+  - @commercetools-frontend/l10n@22.5.0
+  - @commercetools-frontend/assets@22.5.0
+
+## 22.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`55e81421c`](https://github.com/commercetools/merchant-center-application-kit/commit/55e81421c10774f991ca70c849179d69c647b547), [`d9b3283e5`](https://github.com/commercetools/merchant-center-application-kit/commit/d9b3283e533502b93068a8033f1a77c5cf1e8b00)]:
+  - @commercetools-frontend/l10n@22.4.0
+  - @commercetools-frontend/application-shell@22.4.0
+  - @commercetools-frontend/application-components@22.4.0
+  - @commercetools-frontend/actions-global@22.4.0
+  - @commercetools-frontend/application-shell-connectors@22.4.0
+  - @commercetools-frontend/assets@22.4.0
+  - @commercetools-frontend/constants@22.4.0
+  - @commercetools-frontend/i18n@22.4.0
+  - @commercetools-frontend/permissions@22.4.0
+  - @commercetools-frontend/sdk@22.4.0
+
+## 22.3.4
+
+### Patch Changes
+
+- Updated dependencies [[`439abfe18`](https://github.com/commercetools/merchant-center-application-kit/commit/439abfe1816b87a232c0550e2bc4d91f11c58b0b)]:
+  - @commercetools-frontend/application-components@22.3.4
+  - @commercetools-frontend/application-shell@22.3.4
+  - @commercetools-frontend/actions-global@22.3.4
+  - @commercetools-frontend/application-shell-connectors@22.3.4
+  - @commercetools-frontend/assets@22.3.4
+  - @commercetools-frontend/constants@22.3.4
+  - @commercetools-frontend/i18n@22.3.4
+  - @commercetools-frontend/l10n@22.3.4
+  - @commercetools-frontend/permissions@22.3.4
+  - @commercetools-frontend/sdk@22.3.4
+
+## 22.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`f7fdabe8d`](https://github.com/commercetools/merchant-center-application-kit/commit/f7fdabe8d53bdb94da7b182c38da70b172346ef4), [`0918b4620`](https://github.com/commercetools/merchant-center-application-kit/commit/0918b46208e60b36f5ed071d65879e2902900da7)]:
+  - @commercetools-frontend/application-shell@22.3.3
+  - @commercetools-frontend/application-components@22.3.3
+  - @commercetools-frontend/actions-global@22.3.3
+  - @commercetools-frontend/application-shell-connectors@22.3.3
+  - @commercetools-frontend/assets@22.3.3
+  - @commercetools-frontend/constants@22.3.3
+  - @commercetools-frontend/i18n@22.3.3
+  - @commercetools-frontend/l10n@22.3.3
+  - @commercetools-frontend/permissions@22.3.3
+  - @commercetools-frontend/sdk@22.3.3
+
+## 22.3.2
+
+### Patch Changes
+
+- [#3121](https://github.com/commercetools/merchant-center-application-kit/pull/3121) [`14f31aae4`](https://github.com/commercetools/merchant-center-application-kit/commit/14f31aae4aa55b30c3b46ac670ef711d13461d1e) Thanks [@chloe0592](https://github.com/chloe0592)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`7d2221314`](https://github.com/commercetools/merchant-center-application-kit/commit/7d222131415179fb4cdda81d3841ee61f60b62f4), [`14f31aae4`](https://github.com/commercetools/merchant-center-application-kit/commit/14f31aae4aa55b30c3b46ac670ef711d13461d1e)]:
+  - @commercetools-frontend/application-components@22.3.2
+  - @commercetools-frontend/application-shell@22.3.2
+  - @commercetools-frontend/i18n@22.3.2
+  - @commercetools-frontend/actions-global@22.3.2
+  - @commercetools-frontend/application-shell-connectors@22.3.2
+  - @commercetools-frontend/assets@22.3.2
+  - @commercetools-frontend/constants@22.3.2
+  - @commercetools-frontend/l10n@22.3.2
+  - @commercetools-frontend/permissions@22.3.2
+  - @commercetools-frontend/sdk@22.3.2
+
+## 22.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`8e814adfb`](https://github.com/commercetools/merchant-center-application-kit/commit/8e814adfbc09daadc884dac78be4a5e5c0d5492c), [`e21250f2a`](https://github.com/commercetools/merchant-center-application-kit/commit/e21250f2ae8973a290bc12a0ddb85f077a31f11e), [`b38784748`](https://github.com/commercetools/merchant-center-application-kit/commit/b387847485f79c48a1c026a23afb45f5a77877aa), [`0c391fba4`](https://github.com/commercetools/merchant-center-application-kit/commit/0c391fba458c2cf279aa6dbe50ec31386042b6e3), [`335bca436`](https://github.com/commercetools/merchant-center-application-kit/commit/335bca436966e420610a7c9e1c1f42da263cae14)]:
+  - @commercetools-frontend/application-components@22.3.1
+  - @commercetools-frontend/application-shell@22.3.1
+  - @commercetools-frontend/assets@22.3.1
+  - @commercetools-frontend/i18n@22.3.1
+  - @commercetools-frontend/actions-global@22.3.1
+  - @commercetools-frontend/application-shell-connectors@22.3.1
+  - @commercetools-frontend/constants@22.3.1
+  - @commercetools-frontend/l10n@22.3.1
+  - @commercetools-frontend/permissions@22.3.1
+  - @commercetools-frontend/sdk@22.3.1
+
 ## 22.3.0
 
 ### Minor Changes

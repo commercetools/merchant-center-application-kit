@@ -10,6 +10,7 @@ describe.each`
   ${'tabular-modal-page-custom-title-row-default-controls'}
   ${'tabular-modal-page-hidden-controls'}
   ${'tabular-modal-page-custom-title-row-long-content'}
+  ${'tabular-modal-page-default-with-custom-views-selector'}
 `('TabularModalPage $path', ({ path }) => {
   beforeAll(async () => {
     await page.goto(`${HOST}/tabular-modal-page/${path}`);

@@ -1,6 +1,7 @@
 import { type ReactNode, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
+import { getSupportedLocales } from '@commercetools-frontend/l10n';
 
 export type TAvailableLocaleOption = {
   label: string;
@@ -15,8 +16,6 @@ type TIntlControllerProps = {
   children: (options: TIntlControllerFunctionOptions) => ReactNode;
 };
 
-const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
-
 const namifyLocale = (locale: string) => {
   switch (locale) {
     case 'en':
@@ -27,6 +26,8 @@ const namifyLocale = (locale: string) => {
       return 'Deutsch';
     case 'fr-FR':
       return 'Français';
+    case 'pt-BR':
+      return 'Português brasileiro';
     case 'zh-CN':
       return '简化字';
     default:
@@ -34,7 +35,7 @@ const namifyLocale = (locale: string) => {
   }
 };
 
-const availableLocaleOptions = availableLocales.map((locale) => ({
+const availableLocaleOptions = getSupportedLocales().map((locale) => ({
   label: namifyLocale(locale),
   value: locale,
 }));

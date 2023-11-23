@@ -1,7 +1,7 @@
 import { PERMISSIONS, entryPointUriPath } from './src/constants';
 
 /**
- * @type {import('@commercetools-frontend/application-config').ConfigOptions}
+ * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
  */
 const config = {
   name: 'Custom Application Template Starter',

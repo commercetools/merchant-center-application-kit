@@ -1,5 +1,77 @@
 # @commercetools-frontend/constants
 
+## 22.13.0
+
+## 22.12.0
+
+### Minor Changes
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+## 22.11.0
+
+### Minor Changes
+
+- [#3282](https://github.com/commercetools/merchant-center-application-kit/pull/3282) [`0375328b1`](https://github.com/commercetools/merchant-center-application-kit/commit/0375328b1c84dd6065270b5fb991db134fa53016) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Moved feature flags constants from `@commercetools-frontend/application-components` package to `@commercetools-frontend/constants` one.
+
+## 22.10.0
+
+## 22.9.1
+
+## 22.9.0
+
+### Patch Changes
+
+- [#3242](https://github.com/commercetools/merchant-center-application-kit/pull/3242) [`6023ff29e`](https://github.com/commercetools/merchant-center-application-kit/commit/6023ff29eb52ab322303065657c643100ecc4fa1) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Expose new constants `SUPPORTED_HEADERS` and `STORAGE_KEYS`
+
+## 22.8.4
+
+## 22.8.3
+
+## 22.8.2
+
+## 22.8.1
+
+## 22.8.0
+
+### Minor Changes
+
+- [#3175](https://github.com/commercetools/merchant-center-application-kit/pull/3175) [`bd9df94b5`](https://github.com/commercetools/merchant-center-application-kit/commit/bd9df94b565faf308f82bd39d6ca4ebf5892ed9f) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Support loading and parsing of new config for Custom Views
+
+### Patch Changes
+
+- [#3082](https://github.com/commercetools/merchant-center-application-kit/pull/3082) [`e29ab64b6`](https://github.com/commercetools/merchant-center-application-kit/commit/e29ab64b6032ff42bdb2254ef4e57d16291a45db) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+## 22.7.1
+
+## 22.7.0
+
+### Patch Changes
+
+- [#3181](https://github.com/commercetools/merchant-center-application-kit/pull/3181) [`69667013c`](https://github.com/commercetools/merchant-center-application-kit/commit/69667013c73636d0d0ce7ac97da3780a004ff7b6) Thanks [@emmenko](https://github.com/emmenko)! - Update UI Kit dependencies
+
+## 22.6.0
+
+### Minor Changes
+
+- [#3153](https://github.com/commercetools/merchant-center-application-kit/pull/3153) [`2fef66247`](https://github.com/commercetools/merchant-center-application-kit/commit/2fef66247ff08f225dfa03f75f3aaf640659f32b) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Include `X-Custom-View-Id` header in all requests if it is available.
+
+## 22.5.0
+
+### Minor Changes
+
+- [#3143](https://github.com/commercetools/merchant-center-application-kit/pull/3143) [`6b6f15623`](https://github.com/commercetools/merchant-center-application-kit/commit/6b6f15623f06dc7a301bbdddee2757303dd223d9) Thanks [@kark](https://github.com/kark)! - Enable reading `applicationId` value from Custom Application config and sending it as a new `application_id` claim (when `team_id` claim is also provided)
+
+## 22.4.0
+
+## 22.3.4
+
+## 22.3.3
+
+## 22.3.2
+
+## 22.3.1
+
 ## 22.3.0
 
 ## 22.2.1

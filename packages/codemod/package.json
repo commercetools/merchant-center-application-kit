@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/codemod",
-  "version": "22.3.0",
+  "version": "22.13.0",
   "description": "Codemod transformations for Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -24,8 +24,8 @@
     "build:bundles:watch": "pnpm run build -w"
   },
   "dependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.22.17",
+    "@babel/preset-env": "^7.22.15",
     "cac": "6.7.14",
     "glob": "8.1.0",
     "jscodeshift": "0.15.0",
@@ -34,10 +34,10 @@
   "devDependencies": {
     "@commercetools-frontend/application-components": "workspace:*",
     "@emotion/react": "11.11.0",
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node16": "^16.1.1",
     "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.6",
-    "rimraf": "3.0.2",
+    "rimraf": "5.0.1",
     "typescript": "5.0.4"
   },
   "engines": {

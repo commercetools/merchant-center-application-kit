@@ -13,8 +13,8 @@ const defaultOptions = {
   // Usually when bundling packages we want to keep the prop types
   // but when building the final application we can remove them.
   keepPropTypes: false,
-  // plugin-proposal-class-properties, plugin-proposal-private-methods,
-  // plugin-proposal-private-property-in-object have a loose option which
+  // NOTE: `plugin-transform-class-properties`, `plugin-transform-private-methods`,
+  // `plugin-transform-private-property-in-object` have a loose option which
   // needs to be synced. At times, for instance for better debuggability
   // the loose option can be disabled at the cost of lowered performance.
   disableLooseMode: false,
@@ -109,7 +109,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
       // export { default } from './foo'
       require('@babel/plugin-proposal-export-default-from'),
       // export * from './foo'
-      require('@babel/plugin-proposal-export-namespace-from'),
+      require('@babel/plugin-transform-export-namespace-from'),
       // Necessary to include regardless of the environment because
       // in practice some other transforms (such as object-rest-spread)
       // don't work without it: https://github.com/babel/babel/issues/7215
@@ -119,24 +119,24 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
       // See discussion in https://github.com/facebook/create-react-app/issues/4263
       // Note:
       // 'loose' mode configuration must be the same for
-      // * @babel/plugin-proposal-class-properties
-      // * @babel/plugin-proposal-private-methods
-      // * @babel/plugin-proposal-private-property-in-object
+      // * @babel/plugin-transform-class-properties
+      // * @babel/plugin-transform-private-methods
+      // * @babel/plugin-transform-private-property-in-object
       // (when they are enabled)
       [
-        require('@babel/plugin-proposal-class-properties').default,
+        require('@babel/plugin-transform-class-properties').default,
         {
           loose: !options.disableLooseMode,
         },
       ],
       [
-        require('@babel/plugin-proposal-private-methods').default,
+        require('@babel/plugin-transform-private-methods').default,
         {
           loose: !options.disableLooseMode,
         },
       ],
       [
-        require('@babel/plugin-proposal-private-property-in-object').default,
+        require('@babel/plugin-transform-private-property-in-object').default,
         {
           loose: !options.disableLooseMode,
         },
@@ -145,7 +145,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
       // extends helper. Note that this assumes `Object.assign` is available.
       // { ...todo, completed: true }
       [
-        require('@babel/plugin-proposal-object-rest-spread').default,
+        require('@babel/plugin-transform-object-rest-spread').default,
         {
           useBuiltIns: true,
         },
@@ -181,7 +181,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         },
       ],
       require('@babel/plugin-proposal-do-expressions').default,
-      require('@babel/plugin-proposal-logical-assignment-operators').default,
+      require('@babel/plugin-transform-logical-assignment-operators').default,
       // Use this plugin only with the JSX runtime `automatic`, otherwise
       // use the `@emotion/babel-preset-css-prop` preset.
       // https://emotion.sh/docs/@emotion/babel-preset-css-prop

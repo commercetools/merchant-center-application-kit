@@ -15,7 +15,7 @@ const renderPageContent = (
 ) => {
   renderComponent(
     <>
-      <ThemeProvider theme="test" />
+      <ThemeProvider />
       <PageContentWide columns={columns || '1'}>{children}</PageContentWide>
     </>
   );
@@ -41,7 +41,7 @@ describe('PageContentWide', () => {
 
       expect(useWarning).toHaveBeenCalledWith(
         false,
-        'PageContentWide: This component only renders its first children when using a single column but you provided more that one.'
+        'PageContentWide: This component only renders its first children when using a single column but you provided more than one.'
       );
     });
   });
@@ -75,6 +75,11 @@ describe('PageContentWide', () => {
       screen.getByText('1. Text content');
       screen.getByText('2. Text content');
       expect(screen.queryByText('3. Text content')).not.toBeInTheDocument();
+
+      expect(useWarning).toHaveBeenCalledWith(
+        false,
+        'PageContentWide: This component only renders its first children when using a single column but you provided more than one.'
+      );
     });
   });
 

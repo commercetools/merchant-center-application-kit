@@ -3,32 +3,41 @@
   "separateMajorMinor": true,
   "packageRules": [
     {
-      "sourceUrlPrefixes": ["https://github.com/commercetools/ui-kit"],
-      "groupName": "all ui-kit packages"
-    },
-    {
-      "sourceUrlPrefixes": [
-        "https://github.com/commercetools/commercetools-docs-kit"
-      ],
-      "groupName": "all docs-kit packages"
-    },
-    {
-      "sourceUrlPrefixes": ["https://github.com/commercetools/test-data"],
-      "groupName": "all test-data packages"
-    },
-    {
-      "sourceUrlPrefixes": ["https://github.com/tdeekens/flopflip"],
-      "groupName": "all flopflip packages"
-    },
-    {
-      "sourceUrlPrefixes": ["https://github.com/gregberge/svgr"],
-      "groupName": "all svgr packages"
-    },
-    {
       "packagePatterns": ["*"],
       "updateTypes": ["minor", "patch"],
       "groupName": "all dependencies",
       "groupSlug": "all"
+    },
+    {
+      "matchSourceUrls": ["https://github.com/commercetools/ui-kit"],
+      "groupName": "all ui-kit packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
+    },
+    {
+      "matchSourceUrls": [
+        "https://github.com/commercetools/commercetools-docs-kit"
+      ],
+      "groupName": "all docs-kit packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
+    },
+    {
+      "matchSourceUrls": ["https://github.com/commercetools/test-data"],
+      "groupName": "all test-data packages",
+      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
+    },
+    {
+      "matchSourceUrls": ["https://github.com/tdeekens/flopflip"],
+      "groupName": "all flopflip packages"
+    },
+    {
+      "matchSourceUrls": ["https://github.com/gregberge/svgr"],
+      "groupName": "all svgr packages"
+    },
+    {
+      "groupName": "all Node.js updates",
+      "matchPackageNames": ["node"],
+      "excludePackageNames": ["calico/node", "kindest/node"],
+      "matchPackagePatterns": ["/node$"]
     },
     {
       "matchPackageNames": ["postcss-custom-properties"],

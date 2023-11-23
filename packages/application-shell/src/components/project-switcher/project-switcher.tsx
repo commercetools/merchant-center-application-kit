@@ -1,7 +1,16 @@
 import { css } from '@emotion/react';
 import memoize from 'memoize-one';
 import { FormattedMessage, useIntl } from 'react-intl';
-import type { OptionProps, ValueContainerProps } from 'react-select';
+import type {
+  OptionProps,
+  ValueContainerProps,
+  MenuListProps,
+} from 'react-select';
+import { components } from 'react-select';
+import {
+  useMcQuery,
+  oidcStorage,
+} from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -9,14 +18,12 @@ import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
-import { useMcQuery } from '../../hooks/apollo-hooks';
 import type {
   TProject,
   TFetchUserProjectsQuery,
   TFetchUserProjectsQueryVariables,
 } from '../../types/generated/mc';
 import { location } from '../../utils/location';
-import * as oidcStorage from '../../utils/oidc-storage';
 import messages from './messages';
 import ProjectsQuery from './project-switcher.mc.graphql';
 
@@ -28,16 +35,10 @@ type Props = {
 type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
   label: string;
 };
-type CustomValueContainerProps = ValueContainerProps & {
-  projectCount: number;
-};
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
-export const ProjectSwitcherValueContainer = ({
-  projectCount,
-  ...restProps
-}: CustomValueContainerProps) => {
+export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
   return (
     <div
       css={css`
@@ -55,21 +56,6 @@ export const ProjectSwitcherValueContainer = ({
           {restProps.children}
         </SelectInput.ValueContainer>
       </div>
-      <span
-        css={css`
-          width: 26px;
-          height: 26px;
-          border-radius: 100%;
-          background: ${designTokens.colorNeutral};
-          color: ${designTokens.colorSurface};
-          font-size: ${designTokens.fontSize30};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-      >
-        {projectCount}
-      </span>
     </div>
   );
 };
@@ -146,6 +132,19 @@ const mapProjectsToOptions = memoize((projects) =>
   }))
 );
 
+const CustomMenuList = (props: MenuListProps) => {
+  return (
+    <div
+      css={css`
+        width: max-content;
+        max-width: ${designTokens.constraint6};
+      `}
+    >
+      <components.MenuList {...props}>{props.children}</components.MenuList>
+    </div>
+  );
+};
+
 const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const ProjectSwitcher = (props: Props) => {
@@ -163,11 +162,7 @@ const ProjectSwitcher = (props: Props) => {
   if (loading) return null;
 
   return (
-    <div
-      css={css`
-        width: ${designTokens.constraint6};
-      `}
-    >
+    <div>
       <AccessibleHidden>
         <span id={PROJECT_SWITCHER_LABEL_ID}>
           <FormattedMessage {...messages.projectsLabel} />
@@ -199,19 +194,14 @@ const ProjectSwitcher = (props: Props) => {
         }}
         components={{
           Option: ProjectSwitcherOption,
-          ValueContainer: (valueContainerProps) => (
-            <ProjectSwitcherValueContainer
-              {...valueContainerProps}
-              projectCount={
-                (data && data.user && data.user.projects.results.length) || 0
-              }
-            />
-          ),
+          ValueContainer,
+          MenuList: CustomMenuList,
         }}
         isClearable={false}
         backspaceRemovesValue={false}
         placeholder={intl.formatMessage(messages.searchPlaceholder)}
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
+        horizontalConstraint={'auto'}
       />
     </div>
   );

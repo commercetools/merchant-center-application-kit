@@ -2,7 +2,11 @@
 
 import './globals.css';
 import { type ComponentType, Suspense } from 'react';
+import { ApolloProvider } from '@apollo/client';
+import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { featureFlags } from '@commercetools-frontend/constants';
+import apolloClient from './apollo-client';
 
 type TVisualRouteSpec = {
   routePath: string;
@@ -28,30 +32,38 @@ const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
   .sort()
   .map<TVisualRouteSpec>((key) => allUniqueVisualRouteComponents[key]);
 
+const appFlags = {
+  [featureFlags.CUSTOM_VIEWS]: true,
+};
+
 const App = () => (
-  <Router>
-    <Switch>
-      <Route path="/" exact>
-        <div>
-          <h1>Visual Testing App</h1>
-          <ul>
-            {allSortedComponents.map(({ routePath }) => (
-              <li key={routePath}>
-                <a href={routePath}>{routePath}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Route>
-      {allSortedComponents.map(({ routePath, Component }) => (
-        <Route key={routePath} path={routePath}>
-          <Suspense fallback={'Loading...'}>
-            <Component />
-          </Suspense>
-        </Route>
-      ))}
-    </Switch>
-  </Router>
+  <ApolloProvider client={apolloClient}>
+    <TestProviderFlopFlip flags={appFlags}>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <div>
+              <h1>Visual Testing App</h1>
+              <ul>
+                {allSortedComponents.map(({ routePath }) => (
+                  <li key={routePath}>
+                    <a href={routePath}>{routePath}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Route>
+          {allSortedComponents.map(({ routePath, Component }) => (
+            <Route key={routePath} path={routePath}>
+              <Suspense fallback={'Loading...'}>
+                <Component />
+              </Suspense>
+            </Route>
+          ))}
+        </Switch>
+      </Router>
+    </TestProviderFlopFlip>
+  </ApolloProvider>
 );
 
 export default App;

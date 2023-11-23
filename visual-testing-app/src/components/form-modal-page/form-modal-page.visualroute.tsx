@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import TextField from '@commercetools-uikit/text-field';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { NestedPages, Suite } from '../../test-utils';
 
 export const routePath = '/form-modal-page';
@@ -81,6 +82,14 @@ export const Component = () => (
         {
           path: 'form-modal-hidden-controls',
           spec: <ModalPageWithPortalParentSelector hideControls />,
+        },
+        {
+          path: 'form-modal-custom-views-selector',
+          spec: (
+            <ModalPageWithPortalParentSelector
+              customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+            />
+          ),
         },
       ]}
     />

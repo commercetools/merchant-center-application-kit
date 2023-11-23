@@ -11,10 +11,10 @@ import type {
 import LocalHtmlWebpackPlugin from '../webpack-plugins/local-html-webpack-plugin';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
+// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForDevelopment = {
   generateIndexHtml: true,

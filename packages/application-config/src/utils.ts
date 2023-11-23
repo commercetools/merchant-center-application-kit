@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import uniq from 'lodash/uniq';
 import { CLOUD_IDENTIFIERS, MC_API_URLS } from './constants';
 

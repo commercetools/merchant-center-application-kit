@@ -5,6 +5,7 @@ import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-s
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import { designTokens as appKitDesignTokens } from '../../../theming';
+import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -66,6 +67,10 @@ type CustomFormDetailPageProps = {
    */
   previousPathLabel?: string | MessageDescriptor;
   /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
+  /**
    * Function called when back button is pressed.
    */
   onPreviousPathClick: (
@@ -85,6 +90,9 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
 
   return (
     <PageWrapper>
+      <CustomViewsSelector
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
       <DetailPageContainer>
         <PageTopBar
           color="neutral"

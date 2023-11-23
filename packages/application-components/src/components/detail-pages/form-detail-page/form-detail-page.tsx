@@ -33,6 +33,10 @@ type FormDetailPageProps = {
    */
   customTitleRow?: ReactNode;
   /**
+   * This code is used to configure which Custom Views are available for this page.
+   */
+  customViewLocatorCode?: string;
+  /**
    * Any React node displayed as the content within the page.
    */
   children: ReactNode;
@@ -99,6 +103,7 @@ const FormDetailPage = (props: FormDetailPageProps) => (
     title={props.title}
     subtitle={props.subtitle}
     customTitleRow={props.customTitleRow}
+    customViewLocatorCode={props.customViewLocatorCode}
     previousPathLabel={props.previousPathLabel}
     onPreviousPathClick={props.onPreviousPathClick}
     hideControls={props.hideControls}

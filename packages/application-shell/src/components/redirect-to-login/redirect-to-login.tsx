@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
@@ -10,7 +11,6 @@ import { OIDC_RESPONSE_TYPES } from '../../constants';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import getMcOrigin from '../../utils/get-mc-origin';
 import { buildOidcScope } from '../../utils/oidc';
-import * as oidcStorage from '../../utils/oidc-storage';
 import type { AuthorizeSessionState } from '../authenticated/types';
 import Redirector from '../redirector';
 
@@ -60,6 +60,7 @@ const RedirectToLogin = () => {
       additionalOAuthScopes:
         window.app.__DEVELOPMENT__?.oidc?.additionalOAuthScopes,
       teamId: window.app.__DEVELOPMENT__?.oidc?.teamId,
+      applicationId: window.app.__DEVELOPMENT__?.oidc?.applicationId,
     });
 
     // Store session scopes, to be able to detect if requested scopes changed

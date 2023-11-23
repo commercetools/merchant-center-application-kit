@@ -12,6 +12,7 @@ import {
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
+import { CUSTOM_VIEW_LOCATORS } from '../../constants';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/tabular-detail-page';
@@ -225,6 +226,15 @@ export const Component = () => (
         <Content />
         <Content />
         <Content />
+        <Content />
+      </TabularDetailPageContainer>
+    </Spec>
+    <Spec label="TabularDetailPage - with Custom Views selector" size="xl">
+      <TabularDetailPageContainer
+        customViewLocatorCodes={{
+          [CUSTOM_VIEW_LOCATORS.productDetails]: '/tabular-detail-page/tab-one',
+        }}
+      >
         <Content />
       </TabularDetailPageContainer>
     </Spec>
