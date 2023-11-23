@@ -74,7 +74,7 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-const isFocusOutEventCalledBySubmenu = (event: FocusEvent) =>
+const isFocusOutEventCalledBySubmenuItem = (event: FocusEvent) =>
   // a case when a submenu item loses focus
   event.type === 'focusout' &&
   // element receiving focus
@@ -214,7 +214,7 @@ const useNavbarStateManager = (props: HookProps) => {
         dispatch({ type: 'unsetActiveItemIndex' });
       } else if (event.type === 'mouseleave') {
         dispatch({ type: 'unsetActiveItemIndex' });
-      } else if (isFocusOutEventCalledBySubmenu(event as FocusEvent)) {
+      } else if (isFocusOutEventCalledBySubmenuItem(event as FocusEvent)) {
         dispatch({ type: 'unsetActiveItemIndex' });
       }
     },
@@ -229,7 +229,7 @@ const useNavbarStateManager = (props: HookProps) => {
     return () => {
       window.removeEventListener('resize', checkSize);
       window.removeEventListener('click', shouldCloseMenuFly, true);
-      window.addEventListener('focusout', shouldCloseMenuFly, true);
+      window.removeEventListener('focusout', shouldCloseMenuFly, true);
     };
   }, [checkSize, shouldCloseMenuFly]);
 
