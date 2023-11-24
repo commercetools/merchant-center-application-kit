@@ -1387,6 +1387,9 @@ importers:
       '@commercetools-frontend/sentry':
         specifier: 22.13.0
         version: link:../sentry
+      '@commercetools-uikit/accessible-button':
+        specifier: ^16.12.0
+        version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/card':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -34178,7 +34181,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
