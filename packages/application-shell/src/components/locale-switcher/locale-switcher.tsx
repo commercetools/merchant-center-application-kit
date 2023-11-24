@@ -99,6 +99,7 @@ const LocaleSwitcher = (props: Props) => {
         backspaceRemovesValue={false}
         isSearchable={false}
         horizontalConstraint={'auto'}
+        appearance="quiet"
       />
     </div>
   );
