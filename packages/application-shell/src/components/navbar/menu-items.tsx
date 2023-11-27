@@ -293,7 +293,9 @@ type MenuItemProps = {
   onMouseEnter?:
     | MouseEventHandler<HTMLElement>
     | FocusEventHandler<HTMLElement>;
-  onMouseLeave?: MouseEventHandler<HTMLElement>;
+  onMouseLeave?:
+    | MouseEventHandler<HTMLElement>
+    | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
 };
@@ -308,8 +310,9 @@ const MenuItem = (props: MenuItemProps) => {
       })}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
-      onMouseLeave={props.onMouseLeave}
+      onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
+      onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
     >
       <div className={styles['item-link']}>{props.children}</div>
@@ -380,7 +383,6 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
               : styles['text-link']
           }
           onClick={handler}
-          onFocus={handler}
         >
           <NavLinkClickableContentWrapper {...props}>
             {props.children}
