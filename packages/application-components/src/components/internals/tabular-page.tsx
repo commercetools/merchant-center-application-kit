@@ -57,4 +57,13 @@ const FormControlsContainer = styled.div`
   margin-bottom: ${uiKitDesignTokens.spacingM};
 `;
 
-export { ControlsContainter, TabularPageContainer, FormControlsContainer };
+const TabularPageCustomViewsSelectorWrapper = styled.div`
+  margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
+`;
+
+export {
+  ControlsContainter,
+  TabularPageContainer,
+  FormControlsContainer,
+  TabularPageCustomViewsSelectorWrapper,
+};

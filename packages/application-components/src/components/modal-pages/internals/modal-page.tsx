@@ -9,7 +9,6 @@ import {
 import { ClassNames, type CSSObject } from '@emotion/react';
 import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import ModalPageTopBar from './modal-page-top-bar';
 import {
   getOverlayStyles,
@@ -71,10 +70,6 @@ type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
-  /**
-   * This code is used to configure which Custom Views are available for this page.
-   */
-  customViewLocatorCode?: string;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -169,9 +164,6 @@ const ModalPage = (props: Props) => {
             },
           }}
         >
-          <CustomViewsSelector
-            customViewLocatorCode={props.customViewLocatorCode}
-          />
           {!props.hideTopBar && (
             <ModalPageTopBar
               color={props.topBarColor}

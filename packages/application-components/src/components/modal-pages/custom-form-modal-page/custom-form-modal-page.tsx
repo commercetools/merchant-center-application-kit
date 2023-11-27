@@ -62,9 +62,12 @@ const CustomFormModalPage = (props: Props) => (
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
     afterOpenStyles={props.afterOpenStyles}
-    customViewLocatorCode={props.customViewLocatorCode}
   >
-    <PageHeader title={props.title} subtitle={props.subtitle}>
+    <PageHeader
+      title={props.title}
+      subtitle={props.subtitle}
+      customViewLocatorCode={props.customViewLocatorCode}
+    >
       {!props.hideControls && props.formControls && (
         <Spacings.Inline alignItems="flex-end">
           {props.formControls}

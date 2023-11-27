@@ -34,7 +34,7 @@ const Wrapper = styled.div<TWrapperProps>`
 `;
 
 const Container = styled.div`
-  background-color: ${designTokens.colorAccent98};
+  background-color: ${designTokens.colorPurple70};
   padding: ${designTokens.spacing25} ${designTokens.spacing60};
 `;
 

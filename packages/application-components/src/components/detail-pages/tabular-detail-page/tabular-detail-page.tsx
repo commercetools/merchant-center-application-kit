@@ -17,6 +17,7 @@ import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
+  TabularPageCustomViewsSelectorWrapper,
 } from '../../internals/tabular-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -92,9 +93,6 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
 
   return (
     <PageWrapper>
-      <CustomViewsSelector
-        customViewLocatorCode={currentCustomViewLocatorCode}
-      />
       <TabularPageContainer color="neutral">
         <PageTopBar
           color="neutral"
@@ -121,6 +119,11 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
           }
         />
       </TabularPageContainer>
+      <TabularPageCustomViewsSelectorWrapper>
+        <CustomViewsSelector
+          customViewLocatorCode={currentCustomViewLocatorCode}
+        />
+      </TabularPageCustomViewsSelectorWrapper>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>
   );

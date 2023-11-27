@@ -54,14 +54,6 @@ type CustomFormMainPageProps = {
   hideDivider?: boolean;
 };
 
-const defaultProps: Pick<
-  CustomFormMainPageProps,
-  'hideControls' | 'hideDivider'
-> = {
-  hideControls: false,
-  hideDivider: false,
-};
-
 const CustomFormMainPage = (props: CustomFormMainPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
@@ -70,9 +62,6 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
 
   return (
     <PageWrapper>
-      <CustomViewsSelector
-        customViewLocatorCode={props.customViewLocatorCode}
-      />
       <MainPageContainer>
         <Spacings.Stack scale="l">
           {props.customTitleRow || (
@@ -80,6 +69,11 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
               title={props.title ?? ''}
               subtitle={props.subtitle}
               titleSize="big"
+            />
+          )}
+          {Boolean(props.customViewLocatorCode) && (
+            <CustomViewsSelector
+              customViewLocatorCode={props.customViewLocatorCode}
             />
           )}
           {!props.hideControls && props.formControls && (
@@ -93,6 +87,14 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
       <MainPageContent>{props.children}</MainPageContent>
     </PageWrapper>
   );
+};
+
+const defaultProps: Pick<
+  CustomFormMainPageProps,
+  'hideControls' | 'hideDivider'
+> = {
+  hideControls: false,
+  hideDivider: false,
 };
 
 CustomFormMainPage.displayName = 'CustomFormMainPage';
