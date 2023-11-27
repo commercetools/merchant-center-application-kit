@@ -71,11 +71,9 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
               titleSize="big"
             />
           )}
-          {Boolean(props.customViewLocatorCode) && (
-            <CustomViewsSelector
-              customViewLocatorCode={props.customViewLocatorCode}
-            />
-          )}
+          <CustomViewsSelector
+            customViewLocatorCode={props.customViewLocatorCode}
+          />
           {!props.hideControls && props.formControls && (
             <Spacings.Inline justifyContent="flex-end">
               {props.formControls}

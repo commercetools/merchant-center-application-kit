@@ -4,6 +4,7 @@ import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import Spacings from '@commercetools-uikit/spacings';
 import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
+import { designTokens as appKitDesignTokens } from '../../../theming';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
@@ -16,7 +17,6 @@ import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
-  TabularPageCustomViewsSelectorWrapper,
 } from '../../internals/tabular-page';
 import ModalPage from '../internals/modal-page';
 
@@ -108,11 +108,10 @@ const TabularModalPage = (props: Props) => {
           }
         />
       </TabularPageContainer>
-      <TabularPageCustomViewsSelectorWrapper>
-        <CustomViewsSelector
-          customViewLocatorCode={currentCustomViewLocatorCode}
-        />
-      </TabularPageCustomViewsSelectorWrapper>
+      <CustomViewsSelector
+        margin={appKitDesignTokens.marginForCustomViewsSelectorAsTabular}
+        customViewLocatorCode={currentCustomViewLocatorCode}
+      />
       <ContentWrapper>{props.children}</ContentWrapper>
     </ModalPage>
   );

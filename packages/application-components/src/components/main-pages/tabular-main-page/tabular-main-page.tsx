@@ -18,7 +18,6 @@ import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
-  TabularPageCustomViewsSelectorWrapper,
 } from '../../internals/tabular-page';
 
 type TTabularMainPageProps = {
@@ -93,11 +92,10 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
           }
         />
       </TabularPageContainer>
-      <TabularPageCustomViewsSelectorWrapper>
-        <CustomViewsSelector
-          customViewLocatorCode={currentCustomViewLocatorCode}
-        />
-      </TabularPageCustomViewsSelectorWrapper>
+      <CustomViewsSelector
+        margin={appKitDesignTokens.marginForCustomViewsSelectorAsTabular}
+        customViewLocatorCode={currentCustomViewLocatorCode}
+      />
       <ContentWrapper
         css={css`
           background-color: ${appKitDesignTokens.backgroundColorForTabularMainPageContent};

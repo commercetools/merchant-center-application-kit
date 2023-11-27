@@ -25,11 +25,10 @@ const HeaderControlsWrapper = styled.div`
   margin-top: ${uiKitDesignTokens.spacingS};
 `;
 
-const CustomViewsSelectorWrapper = styled.div<{ hasContentBelow: boolean }>`
-  margin-top: ${uiKitDesignTokens.spacing40};
-  margin-bottom: ${(props) =>
-    props.hasContentBelow ? uiKitDesignTokens.spacing40 : 0};
-`;
+const getCustomViewsSelectorMargin = (hasContentBelow: boolean) =>
+  `${uiKitDesignTokens.spacing40} 0 ${
+    hasContentBelow ? uiKitDesignTokens.spacing40 : '0'
+  } 0`;
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -109,15 +108,12 @@ const CustomFormDetailPage = (props: CustomFormDetailPageProps) => {
             titleSize="big"
           />
         )}
-        {Boolean(props.customViewLocatorCode) && (
-          <CustomViewsSelectorWrapper
-            hasContentBelow={!props.hideControls && !!props.formControls}
-          >
-            <CustomViewsSelector
-              customViewLocatorCode={props.customViewLocatorCode}
-            />
-          </CustomViewsSelectorWrapper>
-        )}
+        <CustomViewsSelector
+          margin={getCustomViewsSelectorMargin(
+            !props.hideControls && !!props.formControls
+          )}
+          customViewLocatorCode={props.customViewLocatorCode}
+        />
         {!props.hideControls && props.formControls && (
           <HeaderControlsWrapper>
             <Spacings.Inline justifyContent="flex-end">

@@ -1,6 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 import CustomViewsSelector from '../custom-views/custom-views-selector';
@@ -15,10 +14,6 @@ type Props = {
   customViewLocatorCode?: string;
   children?: ReactNode;
 };
-
-const CustomViewsSelectorWrapper = styled.div`
-  margin-top: ${uiKitDesignTokens.spacing40};
-`;
 
 const PageHeader = (props: Props) => {
   return (
@@ -48,13 +43,10 @@ const PageHeader = (props: Props) => {
         />
         {props.children}
       </div>
-      {Boolean(props.customViewLocatorCode) && (
-        <CustomViewsSelectorWrapper>
-          <CustomViewsSelector
-            customViewLocatorCode={props.customViewLocatorCode}
-          />
-        </CustomViewsSelectorWrapper>
-      )}
+      <CustomViewsSelector
+        margin={`${uiKitDesignTokens.spacing40} 0 0 0`}
+        customViewLocatorCode={props.customViewLocatorCode}
+      />
     </div>
   );
 };
