@@ -34,7 +34,7 @@ const Wrapper = styled.div<TWrapperProps>`
   height: ${(props) => (props.shouldRender ? COMPONENT_HEIGHT : '0')};
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-  margin: ${(props) => props.margin || '0'};
+  margin: ${(props) => (props.shouldRender ? props.margin : '0')};
 `;
 
 const Container = styled.div`
@@ -65,7 +65,7 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
   }
 
   return (
-    <Wrapper shouldRender={customViews.length > 0} margin={props.margin}>
+    <Wrapper shouldRender={customViews.length > 0} margin={props.margin || '0'}>
       <Container>
         <Constraints.Horizontal max="scale">
           <Spacings.Inline
