@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'production';
 /* eslint-disable no-console */
 const fs = require('node:fs');
 const os = require('node:os');
-const path = require('path');
+const path = require('node:path');
 const chalk = require('chalk');
 const cldr = require('cldr');
 const deepDiff = require('deep-diff');
