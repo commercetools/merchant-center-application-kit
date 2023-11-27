@@ -91,14 +91,6 @@ const CustomViewSelectorItem = (props: TCustomViewSelectorItemProps) => {
     >
       <Text.Detail
         tone="inherit"
-        css={css`
-          color: ${designTokens.colorPrimary};
-          ${props.selected && hoverAndSelectedStateStyles}
-
-          :hover {
-            ${hoverAndSelectedStateStyles};
-          }
-        `}
         fontWeight={props.selected ? 'bold' : 'regular'}
       >
         {props.label}
