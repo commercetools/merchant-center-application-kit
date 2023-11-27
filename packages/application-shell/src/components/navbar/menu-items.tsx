@@ -6,7 +6,6 @@ import {
   type MouseEvent,
   type ReactNode,
   type SyntheticEvent,
-  useCallback,
 } from 'react';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -356,24 +355,10 @@ const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
 
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
-  const handler = useCallback(
-    (event) => {
-      if (props.linkTo && props.useFullRedirectsForLinks) {
-        event.preventDefault();
-        redirectTo(props.linkTo);
-      } else if (props.onClick) {
-        event.persist();
-        props.onClick(event);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [props.onClick, props.linkTo, props.useFullRedirectsForLinks]
-  );
   if (props.linkTo) {
     return (
       <NavLinkWrapper {...props}>
         <NavLink
-          tabIndex={0}
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
@@ -382,7 +367,15 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
               ? styles['text-link-sublist']
               : styles['text-link']
           }
-          onClick={handler}
+          onClick={(event) => {
+            if (props.linkTo && props.useFullRedirectsForLinks) {
+              event.preventDefault();
+              redirectTo(props.linkTo);
+            } else if (props.onClick) {
+              event.persist();
+              props.onClick(event);
+            }
+          }}
         >
           <NavLinkClickableContentWrapper {...props}>
             {props.children}
