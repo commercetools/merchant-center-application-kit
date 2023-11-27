@@ -1,7 +1,8 @@
 process.env.NODE_ENV = 'production';
 
 /* eslint-disable no-console */
-const fs = require('fs');
+const fs = require('node:fs');
+const os = require('node:os');
 const path = require('path');
 const chalk = require('chalk');
 const cldr = require('cldr');
@@ -23,12 +24,17 @@ const L10N_KEYS = {
   LANGUAGE: 'language',
 };
 
-// This are excluded countries since cldr returns them in its list
+// These are excluded countries since cldr returns them in its list
 // but our API does not allow them. After some investigation with the
 // data files of the cldr library there is nothing for identifying them
 // since they are valid codes in the ISO 3166 and its following updates
 // https://www.drupal.org/project/drupal/issues/2036219
 const excludedCountries = ['QO', 'UN', 'ZZ'];
+
+// These are secondary territories that we want to include for a specific language.
+const includedSecondaryTerritories = {
+  en: ['BE'],
+};
 
 // getNorthernIrelandCountryCode returns the Northern Ireland country code (key: name) depending on the passed locale
 // "XI" is the countryCode used to identify the Northern Ireland
@@ -199,16 +205,23 @@ const extractLanguageDataForLocale = (locale) => {
             },
           });
         }
+        const allTerritories = [
+          ...(languages[language]?.territories ?? []),
+          ...(languages[language]?.secondary?.territories ?? []).filter(
+            (territory) =>
+              includedSecondaryTerritories[language]?.includes(territory)
+          ),
+        ].sort();
         return Object.assign(
           {},
           totalLanguages,
           // In case the current language has territories we need to parse
           // each one of them into its own language (e.j. es_AR)
-          languages[language].territories
+          allTerritories.length > 0
             ? Object.assign(
                 // We need to set the basic language (e.g. es)
                 { [language]: { language: languageNames[language] } },
-                languages[language].territories.reduce(
+                allTerritories.reduce(
                   (territoryLanguages, territory) =>
                     Object.assign({}, territoryLanguages, {
                       [`${language}-${territory}`]: {
@@ -500,7 +513,10 @@ const updateLocaleData = async (key) => {
         // skip
       }
       ensureDirectoryExists(targetFolder);
-      fs.writeFileSync(targetFile, JSON.stringify(newLocaleData, null, 2));
+      fs.writeFileSync(
+        targetFile,
+        JSON.stringify(newLocaleData, null, 2) + os.EOL
+      );
       return Promise.resolve({ warnings, locale });
     })
   );

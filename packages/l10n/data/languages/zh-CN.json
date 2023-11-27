@@ -322,6 +322,10 @@
     "language": "英语",
     "country": "巴巴多斯"
   },
+  "en-BE": {
+    "language": "英语",
+    "country": "比利时"
+  },
   "en-BI": {
     "language": "英语",
     "country": "布隆迪"
@@ -1088,6 +1092,9 @@
   "id-ID": {
     "language": "印度尼西亚语",
     "country": "印度尼西亚"
+  },
+  "ie": {
+    "language": "国际文字（E）"
   },
   "ig": {
     "language": "伊博语"
@@ -1882,9 +1889,6 @@
   },
   "bh": {
     "language": "博杰普尔语"
-  },
-  "ie": {
-    "language": "国际文字（E）"
   },
   "io": {
     "language": "伊多语"

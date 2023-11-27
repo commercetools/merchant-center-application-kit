@@ -2424,6 +2424,9 @@ importers:
       '@testing-library/react-hooks':
         specifier: 8.0.1
         version: 8.0.1(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+      '@types/cldr':
+        specifier: ^7.1.4
+        version: 7.1.4
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -2431,8 +2434,8 @@ importers:
         specifier: 4.1.2
         version: 4.1.2
       cldr:
-        specifier: 7.4.0
-        version: 7.4.0
+        specifier: 7.5.0
+        version: 7.5.0
       deep-diff:
         specifier: 1.0.2
         version: 1.0.2
@@ -14714,6 +14717,10 @@ packages:
       '@types/node': 18.17.14
       '@types/responselike': 1.0.0
 
+  /@types/cldr@7.1.4:
+    resolution: {integrity: sha512-p4J5+33G/iniIYGkt8ry/rCoBtJWSC2xFpW9LCygtkBNznKb870KFT/LCEU2Jd9h/6g1PteglodpWBjWdCKlpA==}
+    dev: true
+
   /@types/common-tags@1.8.2:
     resolution: {integrity: sha512-Z5UcOnlqxFm0tCCTEhkcVOfSihWOMyKypIWHtQNSYh6fMdPUIVpNdLBYutDpDXVHsMUrYzI2IczUHXIzpUovmQ==}
 
@@ -17617,8 +17624,8 @@ packages:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
-  /cldr@7.4.0:
-    resolution: {integrity: sha512-S3TdLT1FOopmu1275Zbx5AaOeJ/q/tkL1zmkmfMUioCilGhVmukz+BmEh37iYP1nau5CUhPFRnf9T0+rtx8bLQ==}
+  /cldr@7.5.0:
+    resolution: {integrity: sha512-2qy3ASYFbNToTujNnk5Y8ak++B4TH/G+S8AEOrN1xUFZhxhmqWDPUGnOFGyId61vD2Trf+yE65wVzIcdE/bpPg==}
     dependencies:
       '@xmldom/xmldom': 0.8.7
       escodegen: 2.0.0
@@ -17628,7 +17635,7 @@ packages:
       pegjs: 0.10.0
       seq: 0.3.5
       unicoderegexp: 0.4.1
-      xpath: 0.0.32
+      xpath: 0.0.33
     dev: true
 
   /clean-css@5.3.2:
@@ -34016,8 +34023,8 @@ packages:
     resolution: {integrity: sha512-QKxVRxiRACQcVuQEYFsI1hhkrMlrXHPegbbd1yn9UHOmRxY+si12nQYzri3vbzt8VdTTRviqcKxcyllFas5z2A==}
     engines: {node: '>=0.4.0'}
 
-  /xpath@0.0.32:
-    resolution: {integrity: sha512-rxMJhSIoiO8vXcWvSifKqhvV96GjiD5wYb8/QHdoRyQvraTpp4IEv944nhGausZZ3u7dhQXteZuZbaqfpB7uYw==}
+  /xpath@0.0.33:
+    resolution: {integrity: sha512-NNXnzrkDrAzalLhIUc01jO2mOzXGXh1JwPgkihcLLzw98c0WgYDmmjSh1Kl3wzaxSVWMuA+fe0WTWOBDWCBmNA==}
     engines: {node: '>=0.6.0'}
     dev: true
 
