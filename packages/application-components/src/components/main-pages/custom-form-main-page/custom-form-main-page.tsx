@@ -1,5 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
@@ -63,24 +65,37 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
   return (
     <PageWrapper>
       <MainPageContainer>
-        <Spacings.Stack scale="l">
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          <CustomViewsSelector
-            customViewLocatorCode={props.customViewLocatorCode}
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
           />
-          {!props.hideControls && props.formControls && (
+        )}
+        <CustomViewsSelector
+          margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
+          customViewLocatorCode={props.customViewLocatorCode}
+        />
+        {!props.hideControls && props.formControls && (
+          <div
+            css={css`
+              margintop: ${uiKitDesignTokens.spacing30};
+            `}
+          >
             <Spacings.Inline justifyContent="flex-end">
               {props.formControls}
             </Spacings.Inline>
-          )}
-          {!props.hideDivider && <Divider />}
-        </Spacings.Stack>
+          </div>
+        )}
+        {!props.hideDivider && (
+          <div
+            css={css`
+              margintop: ${uiKitDesignTokens.spacing30};
+            `}
+          >
+            <Divider />
+          </div>
+        )}
       </MainPageContainer>
       <MainPageContent>{props.children}</MainPageContent>
     </PageWrapper>

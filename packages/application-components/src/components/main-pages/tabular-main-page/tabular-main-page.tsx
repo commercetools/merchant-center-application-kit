@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import type { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
@@ -18,6 +19,7 @@ import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
+  CustomViewsSelectorWrapper,
 } from '../../internals/tabular-page';
 
 type TTabularMainPageProps = {
@@ -92,10 +94,12 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
           }
         />
       </TabularPageContainer>
-      <CustomViewsSelector
-        margin={appKitDesignTokens.marginForCustomViewsSelectorAsTabular}
-        customViewLocatorCode={currentCustomViewLocatorCode}
-      />
+      <CustomViewsSelectorWrapper>
+        <CustomViewsSelector
+          margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
+          customViewLocatorCode={currentCustomViewLocatorCode}
+        />
+      </CustomViewsSelectorWrapper>
       <ContentWrapper
         css={css`
           background-color: ${appKitDesignTokens.backgroundColorForTabularMainPageContent};
