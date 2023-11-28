@@ -138,7 +138,15 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
           >
             <Spacings.Inline scale="xs" alignItems="center">
               <SidebarCollapseIcon size="medium" color="neutral60" />
-              <Text.Detail tone="secondary" intlMessage={messages.title} />
+              <div
+                css={css`
+                  div {
+                    font-weight: 300;
+                  }
+                `}
+              >
+                <Text.Detail tone="secondary" intlMessage={messages.title} />
+              </div>
             </Spacings.Inline>
             {customViews.map((customView, index) => {
               const isNotLastItem = index !== customViews.length - 1;
