@@ -92,7 +92,9 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
         {!props.hideDivider && (
           <div
             css={css`
-              margin: ${headerRowMargin};
+              & > hr {
+                margin: ${headerRowMargin};
+              }
             `}
           >
             <Divider />
