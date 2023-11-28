@@ -35,9 +35,10 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "8.0.1",
+    "@types/cldr": "^7.1.4",
     "@types/jest": "^29.5.4",
     "chalk": "4.1.2",
-    "cldr": "7.4.0",
+    "cldr": "7.5.0",
     "deep-diff": "1.0.2",
     "node-fetch": "2.6.11",
     "prompts": "^2.4.2",
