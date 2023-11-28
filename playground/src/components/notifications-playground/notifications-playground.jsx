@@ -5,6 +5,7 @@ import {
   InfoModalPage,
   InfoDialog,
   useModalState,
+  Drawer,
 } from '@commercetools-frontend/application-components';
 import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
@@ -62,6 +63,8 @@ const NotificationsTriggers = () => {
 
 const NotificationsPlayground = (props) => {
   const dialogState = useModalState();
+  const dialogStateInDrawer = useModalState();
+  const drawerState = useModalState();
   const route = useRouteMatch();
   const history = useHistory();
 
@@ -78,6 +81,10 @@ const NotificationsPlayground = (props) => {
         <FlatButton
           label={`Open dialog ${props.level}`}
           onClick={dialogState.openModal}
+        />
+        <FlatButton
+          label={`Open drawer ${props.level}`}
+          onClick={drawerState.openModal}
         />
 
         <Route path={`${route.path}/${props.level}`}>
@@ -99,6 +106,25 @@ const NotificationsPlayground = (props) => {
         >
           Hello
         </InfoDialog>
+
+        <Drawer
+          isOpen={drawerState.isModalOpen}
+          title={`Drawer ${props.level}`}
+          onClose={drawerState.closeModal}
+        >
+          <p>Drawer content here</p>
+          <FlatButton
+            label={`Open dialog ${props.level}`}
+            onClick={dialogStateInDrawer.openModal}
+          />
+          <InfoDialog
+            isOpen={dialogStateInDrawer.isModalOpen}
+            title={`Dialog ${props.level}`}
+            onClose={dialogStateInDrawer.closeModal}
+          >
+            Hello
+          </InfoDialog>
+        </Drawer>
       </Spacings.Stack>
     </Spacings.Inset>
   );

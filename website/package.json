@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "22.11.0",
+  "version": "22.13.0",
   "private": true,
   "browserslist": [">0.25%", "not dead and supports es6-module"],
   "scripts": {
@@ -12,14 +12,14 @@
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "22.8.2",
-    "@commercetools-docs/ui-kit": "22.8.0",
+    "@commercetools-docs/gatsby-theme-docs": "22.8.7",
+    "@commercetools-docs/ui-kit": "22.8.4",
     "@commercetools-frontend/assets": "workspace:*",
-    "@commercetools-uikit/card": "^16.7.3",
-    "@commercetools-uikit/grid": "^16.7.3",
-    "@commercetools-uikit/icons": "^16.7.3",
-    "@commercetools-uikit/spacings-inline": "^16.7.3",
-    "@commercetools-uikit/spacings-stack": "^16.7.3",
+    "@commercetools-uikit/card": "^16.11.0",
+    "@commercetools-uikit/grid": "^16.11.0",
+    "@commercetools-uikit/icons": "^16.11.0",
+    "@commercetools-uikit/spacings-inline": "^16.11.0",
+    "@commercetools-uikit/spacings-stack": "^16.11.0",
     "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
     "@gatsbyjs/reach-router": "^2.0.1",

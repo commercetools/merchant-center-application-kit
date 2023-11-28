@@ -1,0 +1,13 @@
+mutation UpdateCustomViewFromCli(
+  $organizationId: String!
+  $data: CustomViewDraftDataInput!
+  $customViewId: String!
+) {
+  updateCustomView(
+    organizationId: $organizationId
+    data: $data
+    customViewId: $customViewId
+  ) {
+    id
+  }
+}

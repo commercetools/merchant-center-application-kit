@@ -673,6 +673,7 @@ export type TMutation = {
   activateCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   activateDashboardView?: Maybe<TDashboardView>;
   activateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
+  activateOrderDetailView?: Maybe<TOrderDetailView>;
   activateOrdersListView?: Maybe<TOrdersListView>;
   activateOrganizationExtensionOidcSsoConfig?: Maybe<TOrganizationExtension>;
   activatePimSearchListView?: Maybe<TPimSearchListView>;
@@ -690,6 +691,7 @@ export type TMutation = {
   createCustomersSearchListMyView: TCustomersSearchListMyView;
   createDashboardView: TDashboardView;
   createDiscountCodesCustomView: TDiscountsCustomView;
+  createOrderDetailView: TOrderDetailView;
   createOrdersListView: TOrdersListView;
   createPimSearchListView: TPimSearchListView;
   createProductDiscountsCustomView: TDiscountsCustomView;
@@ -702,6 +704,7 @@ export type TMutation = {
   deactivateCustomersSearchListMyView?: Maybe<TOrdersListView>;
   deactivateDashboardView?: Maybe<TDashboardView>;
   deactivateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
+  deactivateOrderDetailView?: Maybe<TOrderDetailView>;
   deactivateOrdersListView?: Maybe<TOrdersListView>;
   deactivateOrganizationExtensionOidcSsoConfig?: Maybe<TOrganizationExtension>;
   deactivatePimSearchListView?: Maybe<TPimSearchListView>;
@@ -709,6 +712,7 @@ export type TMutation = {
   deactivateProductTypeAttributesView?: Maybe<TProductTypeAttributesView>;
   deactivateProjectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   deleteAllDashboardViews: Array<TDashboardView>;
+  deleteAllOrderDetailViews: Array<TOrderDetailView>;
   deleteAllOrdersListViews: Array<TOrdersListView>;
   deleteBusinessUnitsListMyView?: Maybe<TBusinessUnitsListMyView>;
   deleteCartDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -719,6 +723,7 @@ export type TMutation = {
   deleteCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   deleteDashboardView?: Maybe<TDashboardView>;
   deleteDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
+  deleteOrderDetailView?: Maybe<TOrderDetailView>;
   deleteOrdersListView?: Maybe<TOrdersListView>;
   deletePimSearchListView?: Maybe<TPimSearchListView>;
   deleteProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -748,6 +753,7 @@ export type TMutation = {
   updateCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   updateDashboardView?: Maybe<TDashboardView>;
   updateDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
+  updateOrderDetailView?: Maybe<TOrderDetailView>;
   updateOrdersListView?: Maybe<TOrdersListView>;
   updatePimSearchListView?: Maybe<TPimSearchListView>;
   updateProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -785,6 +791,11 @@ export type TMutation_ActivateDashboardViewArgs = {
 
 
 export type TMutation_ActivateDiscountCodesCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_ActivateOrderDetailViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -884,6 +895,11 @@ export type TMutation_CreateDiscountCodesCustomViewArgs = {
 };
 
 
+export type TMutation_CreateOrderDetailViewArgs = {
+  data: TOrderDetailViewInput;
+};
+
+
 export type TMutation_CreateOrdersListViewArgs = {
   data: TOrdersListViewInput;
 };
@@ -940,6 +956,11 @@ export type TMutation_DeactivateDashboardViewArgs = {
 
 
 export type TMutation_DeactivateDiscountCodesCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_DeactivateOrderDetailViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -1018,6 +1039,11 @@ export type TMutation_DeleteDashboardViewArgs = {
 
 
 export type TMutation_DeleteDiscountCodesCustomViewArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type TMutation_DeleteOrderDetailViewArgs = {
   id: Scalars['ID'];
 };
 
@@ -1191,6 +1217,12 @@ export type TMutation_UpdateDiscountCodesCustomViewArgs = {
 };
 
 
+export type TMutation_UpdateOrderDetailViewArgs = {
+  data: TOrderDetailViewInput;
+  id: Scalars['ID'];
+};
+
+
 export type TMutation_UpdateOrdersListViewArgs = {
   data: TOrdersListViewInput;
   id: Scalars['ID'];
@@ -1342,6 +1374,27 @@ export type TOidcSsoConfigDataInput = {
   teamIdForNewUsers: Scalars['String'];
 };
 
+export type TOrderDetailView = {
+  __typename?: 'OrderDetailView';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  isActive?: Maybe<Scalars['Boolean']>;
+  nameAllLocales?: Maybe<Array<TLocalizedField>>;
+  projectKey: Scalars['String'];
+  table?: Maybe<TTable>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type TOrderDetailViewInput = {
+  nameAllLocales: Array<TLocalizedFieldCreateInput>;
+  table?: InputMaybe<TOrderDetailViewTableInput>;
+};
+
+export type TOrderDetailViewTableInput = {
+  visibleColumns: Array<Scalars['String']>;
+};
+
 export enum TOrderStatesVisibility {
   HideOrderState = 'HideOrderState',
   HidePaymentState = 'HidePaymentState',
@@ -1412,6 +1465,14 @@ export type TOrganizationExtension = {
 export type TOrganizationExtensionForCustomApplication = {
   __typename?: 'OrganizationExtensionForCustomApplication';
   application: TRestrictedCustomApplicationForOrganization;
+  id: Scalars['ID'];
+  organizationId: Scalars['String'];
+  organizationName?: Maybe<Scalars['String']>;
+};
+
+export type TOrganizationExtensionForCustomView = {
+  __typename?: 'OrganizationExtensionForCustomView';
+  customView?: Maybe<TRestrictedCustomViewForOrganization>;
   id: Scalars['ID'];
   organizationId: Scalars['String'];
   organizationName?: Maybe<Scalars['String']>;
@@ -1556,6 +1617,7 @@ export type TQuery = {
   activeCustomersSearchListMyView?: Maybe<TCustomersSearchListMyView>;
   activeDashboardView?: Maybe<TDashboardView>;
   activeDiscountCodesCustomView?: Maybe<TDiscountsCustomView>;
+  activeOrderDetailView?: Maybe<TOrderDetailView>;
   activeOrdersListView?: Maybe<TOrdersListView>;
   activePimSearchListView?: Maybe<TPimSearchListView>;
   activeProductDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -1593,10 +1655,13 @@ export type TQuery = {
   /** @deprecated Experimental feature - For internal usage only */
   globalOrganizationExtension?: Maybe<TOrganizationExtension>;
   myCustomApplications: Array<TMyCustomApplication>;
+  orderDetailView?: Maybe<TOrderDetailView>;
+  orderDetailViews: Array<Maybe<TOrderDetailView>>;
   ordersListView?: Maybe<TOrdersListView>;
   ordersListViews: Array<Maybe<TOrdersListView>>;
   organizationExtension?: Maybe<TOrganizationExtension>;
   organizationExtensionForCustomApplication?: Maybe<TOrganizationExtensionForCustomApplication>;
+  organizationExtensionForCustomView?: Maybe<TOrganizationExtensionForCustomView>;
   pimSearchListView?: Maybe<TPimSearchListView>;
   pimSearchListViews: Array<Maybe<TPimSearchListView>>;
   productDiscountsCustomView?: Maybe<TDiscountsCustomView>;
@@ -1704,6 +1769,11 @@ export type TQuery_MyCustomApplicationsArgs = {
 };
 
 
+export type TQuery_OrderDetailViewArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type TQuery_OrdersListViewArgs = {
   id: Scalars['ID'];
 };
@@ -1716,6 +1786,11 @@ export type TQuery_OrganizationExtensionArgs = {
 
 export type TQuery_OrganizationExtensionForCustomApplicationArgs = {
   entryPointUriPath: Scalars['String'];
+};
+
+
+export type TQuery_OrganizationExtensionForCustomViewArgs = {
+  customViewId: Scalars['String'];
 };
 
 
@@ -1963,7 +2038,8 @@ export type TSampleDataImportMetadata = {
 };
 
 export enum TSampleDatasets {
-  Fashion = 'FASHION'
+  Fashion = 'FASHION',
+  Goodstore = 'GOODSTORE'
 }
 
 export type TSort = {
@@ -2073,12 +2149,27 @@ export type TCreateCustomApplicationFromCliMutationVariables = Exact<{
 
 export type TCreateCustomApplicationFromCliMutation = { __typename?: 'Mutation', createCustomApplication?: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string } | null };
 
+export type TCreateCustomViewFromCliMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  data: TCustomViewDraftDataInput;
+}>;
+
+
+export type TCreateCustomViewFromCliMutation = { __typename?: 'Mutation', createCustomView?: { __typename?: 'RestrictedCustomViewForOrganization', id: string } | null };
+
 export type TFetchCustomApplicationFromCliQueryVariables = Exact<{
   entryPointUriPath: Scalars['String'];
 }>;
 
 
 export type TFetchCustomApplicationFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
+
+export type TFetchCustomViewFromCliQueryVariables = Exact<{
+  customViewId: Scalars['String'];
+}>;
+
+
+export type TFetchCustomViewFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomView?: { __typename?: 'OrganizationExtensionForCustomView', organizationId: string, customView?: { __typename?: 'RestrictedCustomViewForOrganization', id: string, defaultLabel: string, url: string, type: TCustomViewType, locators: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, typeSettings?: { __typename?: 'CustomViewTypeSettings', size?: TCustomViewSize | null } | null, permissions: Array<{ __typename?: 'CustomViewPermission', name: string, oAuthScopes: Array<string> }> } | null } | null };
 
 export type TUpdateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
@@ -2088,3 +2179,12 @@ export type TUpdateCustomApplicationFromCliMutationVariables = Exact<{
 
 
 export type TUpdateCustomApplicationFromCliMutation = { __typename?: 'Mutation', updateCustomApplication?: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string } | null };
+
+export type TUpdateCustomViewFromCliMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  data: TCustomViewDraftDataInput;
+  customViewId: Scalars['String'];
+}>;
+
+
+export type TUpdateCustomViewFromCliMutation = { __typename?: 'Mutation', updateCustomView?: { __typename?: 'RestrictedCustomViewForOrganization', id: string } | null };

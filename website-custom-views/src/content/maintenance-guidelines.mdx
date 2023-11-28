@@ -1,0 +1,112 @@
+---
+title: Maintenance guidelines
+---
+
+<Subtitle>
+
+This page describes the different aspects of the support and maintenance recommendations for consumers of the Custom Applications features.
+
+</Subtitle>
+
+# Release process
+
+Tooling and packages related to Custom Applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
+
+Releases are documented in each package's `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
+
+- [Application Kit Releases](https://github.com/commercetools/merchant-center-application-kit/releases)
+- [UI Kit Releases](https://github.com/commercetools/ui-kit/releases)
+
+All published packages to NPM are listed in the following scoped packages:
+
+- [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend)
+- [`@commercetools-uikit`](https://www.npmjs.com/org/commercetools-uikit)
+
+## Release cadence
+
+commercetools strives to improve tooling and packages around Custom Applications continuously. We do not follow a strict release cycle. Instead, we publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely released more frequently than major versions.
+
+<Info>
+
+According to Semantic Versioning, minor, and patch version releases can be safely updated and do not require any additional maintenance work.
+However, a major release indicates a breaking change (see [Breaking changes](#breaking-changes)) and might require maintenance work. Breaking changes are kept to an absolute minimum and are planned ahead of time.
+
+</Info>
+
+## Breaking changes
+
+Breaking changes are introduced whenever there is a **major** version release, for example from `v1` to `v2`.
+
+How a breaking change can impact a Custom Application:
+
+1. It affects a component or module _not used_ within the Custom Application
+2. It affects a component or module _used_ within the Custom Application
+3. It affects a component or module _directly interacting_ with some of commercetools's internal APIs
+
+<Info>
+
+A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
+
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support of a given Node.js version. However, this unlikely affects consumers of Custom Application packages.
+- React releases a new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
+
+</Info>
+
+All breaking changes are thoroughly documented in the [release notes](/releases) together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom Application's code.
+
+# Minimum required maintenance policy
+
+All native Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
+
+In regards to Custom Applications, commercetools does not expect the same amount of maintenance as it requires internally.
+However, commercetools **recommends** that Custom Applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
+Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
+
+<Info>
+
+It is important to keep the dependencies up-to-date, especially to get the latest bug fixes and security patches. See also [Automate maintenance of dependencies](#automate-maintenance-of-dependencies).
+
+</Info>
+
+## Automate maintenance of dependencies
+
+To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository, for example, [Renovate](https://www.mend.io/free-developer-tools/renovate/), or [Dependabot](https://github.com/dependabot).
+
+Those tools and services can be configured to meet everyone's needs, for example, to get updates only once a week.
+
+# Hosting
+
+Customers using Custom Applications are responsible for the maintenance of their Custom Applications. This includes hosting and deployments.
+commercetools does not take any responsibility towards incidents and service disruptions related to Custom Applications caused by their underlying infrastructure.
+
+# Issues and support requests
+
+If you encounter issues developing Custom Applications, we recommend opening a **GitHub Issue** in one of the following repositories (according to what the issue is about):
+
+- [Application Kit Issues](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose)
+- [UI Kit Issues](https://github.com/commercetools/ui-kit/issues/new/choose)
+
+If you have questions or need help with something, we recommend opening a **GitHub Discussion** in one of the following repositories (according to what the issue is about):
+
+- [Application Kit Discussions](https://github.com/commercetools/merchant-center-application-kit/discussions)
+- [UI Kit Discussions](https://github.com/commercetools/ui-kit/discussions)
+
+<Warning>
+
+Never ever include passwords, credentials, or any private information in any issue (public or private)!<br />
+Any sensitive information should be left out, as GitHub Issues are publicly visible.
+
+In case the issue must contain sensitive information, for example, the name of a customer Project, open a commercetools [support ticket](https://support.commercetools.com).
+
+</Warning>
+
+# Contributing
+
+All packages and tools provided by commercetools are open sourced and licensed under MIT.
+At commercetools we love open source and we do what we can to contribute to other open source software that we also use internally.
+As such, we are happy to receive any contributions about our own packages, that being an Issue or a Pull Request.
+
+You can read more about the contribution guidelines in the following repositories:
+
+- [Application Kit contribution guidelines](https://github.com/commercetools/merchant-center-application-kit/blob/main/CONTRIBUTING.md)
+- [UI Kit Releases contribution guidelines](https://github.com/commercetools/ui-kit/blob/main/CONTRIBUTING.md)

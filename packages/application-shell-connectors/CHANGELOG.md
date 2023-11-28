@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.0
+  - @commercetools-frontend/browser-history@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+  - @commercetools-frontend/sentry@22.13.0
+
+## 22.12.0
+
+### Minor Changes
+
+- [#3292](https://github.com/commercetools/merchant-center-application-kit/pull/3292) [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Extend the `userCustomViewContext` so it not only returns the context specific to Custom View cofiguration but also to the underlying application context (user, project, etc.).
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+### Patch Changes
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/sentry@22.12.0
+  - @commercetools-frontend/browser-history@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes

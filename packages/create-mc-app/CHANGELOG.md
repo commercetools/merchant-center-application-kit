@@ -1,5 +1,13 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.13.0
+
+### Minor Changes
+
+- [#3295](https://github.com/commercetools/merchant-center-application-kit/pull/3295) [`83eb0f4e1`](https://github.com/commercetools/merchant-center-application-kit/commit/83eb0f4e176f583fdbada2cdc9797d895ddd1408) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Enable bootstraping Custom Views without locally setting an environment variable
+
+## 22.12.0
+
 ## 22.11.0
 
 ## 22.10.0

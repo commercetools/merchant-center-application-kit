@@ -98,6 +98,7 @@ cypress/videos
 .cache
 public
 vercel-public
+vercel-public-custom-views
 
 # Parcel
 .parcel-cache
