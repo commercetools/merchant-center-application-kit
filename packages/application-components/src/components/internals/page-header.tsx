@@ -22,7 +22,7 @@ const PageHeader = (props: Props) => {
         margin: ${appKitDesignTokens.marginForModalPageHeader};
         padding: ${appKitDesignTokens.paddingForModalPageHeader};
         border-bottom: 1px solid
-          ${appKitDesignTokens.borderColorForModalPageHeaderDivider};/
+          ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
       `}
     >
       <div
