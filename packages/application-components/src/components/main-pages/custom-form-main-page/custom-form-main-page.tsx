@@ -18,6 +18,8 @@ import {
   MainPageContent,
 } from '../internals/main-page.styles';
 
+const headerRowMargin = `${uiKitDesignTokens.spacing40} 0 0 0`;
+
 type CustomFormMainPageProps = {
   /**
    * The title of the page.
@@ -73,13 +75,13 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
           />
         )}
         <CustomViewsSelector
-          margin={`${uiKitDesignTokens.spacing40} 0 0 0`}
+          margin={headerRowMargin}
           customViewLocatorCode={props.customViewLocatorCode}
         />
         {!props.hideControls && props.formControls && (
           <div
             css={css`
-              margin-top: ${uiKitDesignTokens.spacing40};
+              margin: ${headerRowMargin};
             `}
           >
             <Spacings.Inline justifyContent="flex-end">
@@ -90,7 +92,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
         {!props.hideDivider && (
           <div
             css={css`
-              margin-top: ${uiKitDesignTokens.spacing40};
+              margin: ${headerRowMargin};
             `}
           >
             <Divider />
