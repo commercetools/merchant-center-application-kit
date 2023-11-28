@@ -187,12 +187,6 @@
   border-radius: var(--border-radius-8);
 }
 
-.list-item:not(.item_menu__active):focus,
-.list-item:not(.item_menu-collapsed):focus-within {
-  outline: auto 1px Highlight;
-  outline-offset: 1px;
-}
-
 .item_menu-open {
   height: auto !important;
 }
@@ -353,11 +347,6 @@
     var(--spacing-30);
 }
 
-.sublist-item:focus-within {
-  outline: auto 1px Highlight;
-  outline-offset: 1px;
-}
-
 .navlink-clickable-content {
   height: 100%;
   width: 100%;
@@ -365,16 +354,10 @@
 
 /* Item active */
 .item__active,
-.item_menu__active {
-  background: var(--color-accent-30);
-  border-radius: var(--border-radius-8);
-}
-
+.item_menu__active,
 .item_menu__active:focus-within .list-item {
   background: var(--color-accent-30);
   border-radius: var(--border-radius-8);
-  outline: auto 1px Highlight;
-  outline-offset: 1px;
 }
 
 .list-item.item__active .item-icon-text {
@@ -547,4 +530,21 @@
 
 :global(.body__menu-open) .fixed-menu {
   width: var(--width-left-navigation-when-expanded);
+}
+
+/* Focus outline */
+/* Expanded main menu item */
+.list-item:not(.item_menu-collapsed):has(.text-link:focus),  /* An alternative to `.list-item:not(.item_menu-collapsed):focus-within`, with the added advantage that the main menu item doesn't receive focus outline when a submenu item is in focus. */ 
+/* Submenu item */
+.sublist-item:focus-within {
+  outline: auto 1px Highlight;
+  outline-offset: 1px;
+}
+/* TODO: Remove once Firefox version is adopted widely beyond v121 */
+@-moz-document url-prefix('') {
+  .list-item:not(.item_menu-collapsed):focus-within,
+  .sublist-item:focus-within {
+    outline: auto 1px Highlight;
+    outline-offset: 1px;
+  }
 }
