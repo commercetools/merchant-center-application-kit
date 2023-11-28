@@ -73,13 +73,13 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
           />
         )}
         <CustomViewsSelector
-          margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
+          margin={`${uiKitDesignTokens.spacing40} 0 0 0`}
           customViewLocatorCode={props.customViewLocatorCode}
         />
         {!props.hideControls && props.formControls && (
           <div
             css={css`
-              margintop: ${uiKitDesignTokens.spacing30};
+              margin-top: ${uiKitDesignTokens.spacing40};
             `}
           >
             <Spacings.Inline justifyContent="flex-end">
@@ -90,7 +90,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
         {!props.hideDivider && (
           <div
             css={css`
-              margintop: ${uiKitDesignTokens.spacing30};
+              margin-top: ${uiKitDesignTokens.spacing40};
             `}
           >
             <Divider />
