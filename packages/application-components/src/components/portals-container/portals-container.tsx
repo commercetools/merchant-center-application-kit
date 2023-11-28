@@ -220,7 +220,6 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                     100% -
                       (${indentationSize} * ${stackingLayer.indentationLevel})
                   );
-                  transition: ${modalWidthTransition};
                 }
               `
             ),
