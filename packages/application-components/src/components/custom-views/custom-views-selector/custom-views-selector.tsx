@@ -12,7 +12,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleButton from '@commercetools-uikit/accessible-button';
 import Constraints from '@commercetools-uikit/constraints';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { SidebarCollapseIcon } from '@commercetools-uikit/icons';
+import { WindowEyeIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import CustomViewLoader from '../custom-view-loader';
@@ -137,7 +137,7 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
             alignItems="center"
           >
             <Spacings.Inline scale="xs" alignItems="center">
-              <SidebarCollapseIcon size="medium" color="neutral60" />
+              <WindowEyeIcon size="medium" color="neutral60" />
               <div
                 css={css`
                   div {
