@@ -48,7 +48,9 @@ SingleValue.displayName = 'SingleValue';
 const PatchedValueContainer = (props: ValueContainerProps) => (
   <SelectInput.ValueContainer
     {...props}
-    innerProps={{ style: { display: 'flex' } }}
+    innerProps={{
+      style: { display: 'flex', fontWeight: designTokens.fontWeight500 },
+    }}
   />
 );
 PatchedValueContainer.displayName = 'PatchedValueContainer';
