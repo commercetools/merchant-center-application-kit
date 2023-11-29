@@ -4,6 +4,7 @@ import {
   type MouseEventHandler,
   type FocusEventHandler,
   type MouseEvent,
+  type KeyboardEvent,
   type ReactNode,
   type SyntheticEvent,
 } from 'react';
@@ -121,7 +122,9 @@ IconSwitcher.displayName = 'IconSwitcher';
 
 type MenuExpanderProps = {
   isVisible: boolean;
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: (
+    e: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+  ) => void;
   isMenuOpen: boolean;
 };
 
@@ -142,7 +145,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
         onClick={props.onClick}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            props.onClick(e as unknown as MouseEvent<HTMLDivElement>);
+            props.onClick(e);
           }
         }}
         tabIndex={0}
