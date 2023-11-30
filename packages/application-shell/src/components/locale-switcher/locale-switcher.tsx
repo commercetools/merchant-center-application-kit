@@ -48,22 +48,15 @@ SingleValue.displayName = 'SingleValue';
 const PatchedValueContainer = (props: ValueContainerProps) => (
   <SelectInput.ValueContainer
     {...props}
-    innerProps={{ style: { display: 'flex' } }}
+    innerProps={{
+      style: { display: 'flex', fontWeight: designTokens.fontWeight500 },
+    }}
   />
 );
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
 const CustomMenuList = (props: MenuListProps) => {
-  return (
-    <div
-      css={css`
-        width: max-content;
-        max-width: ${designTokens.constraint6};
-      `}
-    >
-      <components.MenuList {...props}>{props.children}</components.MenuList>
-    </div>
-  );
+  return <components.MenuList {...props}>{props.children}</components.MenuList>;
 };
 
 const LocaleSwitcher = (props: Props) => {
