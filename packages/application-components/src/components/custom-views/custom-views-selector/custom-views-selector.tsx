@@ -19,7 +19,7 @@ import CustomViewLoader from '../custom-view-loader';
 import messages from './messages';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
-const COMPONENT_HEIGHT = '50px';
+const COMPONENT_HEIGHT = '52px';
 
 type TCustomViewSelectorBaseProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
@@ -45,16 +45,7 @@ const Wrapper = styled.div<TWrapperProps>`
 `;
 
 const Container = styled.div`
-  background: linear-gradient(
-      0deg,
-      ${designTokens.colorNeutral95},
-      ${designTokens.colorNeutral95}
-    ),
-    linear-gradient(
-      0deg,
-      ${designTokens.colorNeutral98},
-      ${designTokens.colorNeutral98}
-    );
+  background-color: ${designTokens.colorNeutral98};
   padding: 10px ${designTokens.spacing30};
   border: 1px solid ${designTokens.colorNeutral95};
   border-radius: ${designTokens.borderRadius8};
