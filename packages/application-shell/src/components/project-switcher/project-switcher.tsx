@@ -45,6 +45,7 @@ export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
         display: flex;
         flex: 1;
         align-items: center;
+        font-weight: ${designTokens.fontWeight500};
       `}
     >
       <div
