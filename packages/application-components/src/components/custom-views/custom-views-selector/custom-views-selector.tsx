@@ -19,7 +19,7 @@ import CustomViewLoader from '../custom-view-loader';
 import messages from './messages';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
-const COMPONENT_HEIGHT = '44px';
+const COMPONENT_HEIGHT = '50px';
 
 type TCustomViewSelectorBaseProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
@@ -55,7 +55,7 @@ const Container = styled.div`
       ${designTokens.colorNeutral98},
       ${designTokens.colorNeutral98}
     );
-  padding: 7px ${designTokens.spacing20};
+  padding: 10px ${designTokens.spacing30};
   border: 1px solid ${designTokens.colorNeutral95};
   border-radius: ${designTokens.borderRadius8};
 `;
@@ -103,6 +103,15 @@ const CustomViewSelectorItem = (props: TCustomViewSelectorItemProps) => {
   );
 };
 
+const SelectorLabel = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  div {
+    font-weight: 300;
+  }
+`;
+
 const Separator = styled.span`
   width: 1px;
   height: 18px;
@@ -140,18 +149,10 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
             justifyContent="flex-start"
             alignItems="center"
           >
-            <Spacings.Inline scale="xs" alignItems="center">
+            <SelectorLabel>
               <WindowEyeIcon size="medium" color="neutral60" />
-              <div
-                css={css`
-                  div {
-                    font-weight: 300;
-                  }
-                `}
-              >
-                <Text.Detail tone="secondary" intlMessage={messages.title} />
-              </div>
-            </Spacings.Inline>
+              <Text.Detail tone="secondary" intlMessage={messages.title} />
+            </SelectorLabel>
             {customViews.map((customView, index) => {
               const isNotLastItem = index !== customViews.length - 1;
               return (
