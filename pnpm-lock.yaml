@@ -1387,6 +1387,9 @@ importers:
       '@commercetools-frontend/sentry':
         specifier: 22.13.0
         version: link:../sentry
+      '@commercetools-uikit/accessible-button':
+        specifier: ^16.12.0
+        version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/card':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -1792,8 +1795,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       react-select:
-        specifier: 5.7.3
-        version: 5.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+        specifier: 5.8.0
+        version: 5.8.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
       redux-logger:
         specifier: 3.0.6
         version: 3.0.6
@@ -3567,8 +3570,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4(react@17.0.2)
       react-select:
-        specifier: 5.7.3
-        version: 5.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+        specifier: 5.8.0
+        version: 5.8.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-frontend/application-config':
         specifier: workspace:*
@@ -29552,27 +29555,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-select@5.7.3(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-z8i3NCuFFWL3w27xq92rBkVI2onT0jzIIPe480HlBjXJ3b5o6Q+Clp4ydyeKrj9DZZ3lrjawwLC5NGl0FSvUDg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
-      '@floating-ui/dom': 1.2.6
-      '@types/react-transition-group': 4.4.5
-      memoize-one: 6.0.0
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
-      use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.56)(react@17.0.2)
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
-
   /react-select@5.7.3(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-z8i3NCuFFWL3w27xq92rBkVI2onT0jzIIPe480HlBjXJ3b5o6Q+Clp4ydyeKrj9DZZ3lrjawwLC5NGl0FSvUDg==}
     peerDependencies:
@@ -32257,7 +32239,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 14.18.33
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -32319,7 +32301,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 18.17.14
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -32349,7 +32331,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 18.17.14
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -34199,7 +34181,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
