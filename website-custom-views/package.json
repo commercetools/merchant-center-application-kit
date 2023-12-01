@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-views",
-  "version": "22.13.0",
+  "version": "22.13.1",
   "private": true,
   "browserslist": [">0.25%", "not dead and supports es6-module"],
   "scripts": {

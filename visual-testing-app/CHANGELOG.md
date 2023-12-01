@@ -1,5 +1,22 @@
 # @commercetools-local/visual-testing-app
 
+## 22.13.1
+
+### Patch Changes
+
+- [#3308](https://github.com/commercetools/merchant-center-application-kit/pull/3308) [`4662db514`](https://github.com/commercetools/merchant-center-application-kit/commit/4662db514b6c5e79cee906fc9bfb364398cb5e49) Thanks [@kark](https://github.com/kark)! - Add `Inter` font weight 300
+
+- [#3314](https://github.com/commercetools/merchant-center-application-kit/pull/3314) [`67bdd364d`](https://github.com/commercetools/merchant-center-application-kit/commit/67bdd364d92a30b1b6f5ec96af94b38e88d17c3d) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all ui-kit packages to v16.12.0
+
+- Updated dependencies [[`44834670b`](https://github.com/commercetools/merchant-center-application-kit/commit/44834670bd2b640644819d483bca2bc2f13677ab), [`e68b9f876`](https://github.com/commercetools/merchant-center-application-kit/commit/e68b9f8767e81e341266bfea19ec0dda452b775d), [`44834670b`](https://github.com/commercetools/merchant-center-application-kit/commit/44834670bd2b640644819d483bca2bc2f13677ab), [`4662db514`](https://github.com/commercetools/merchant-center-application-kit/commit/4662db514b6c5e79cee906fc9bfb364398cb5e49), [`a567e137c`](https://github.com/commercetools/merchant-center-application-kit/commit/a567e137c0e20ece0e3b5081ee954ccd9896d156), [`ceb1b741f`](https://github.com/commercetools/merchant-center-application-kit/commit/ceb1b741f592ce59ea917b98524b59024d969e4f), [`56e4fcedd`](https://github.com/commercetools/merchant-center-application-kit/commit/56e4fcedd444d7aceaeb38ff789b5bd0eaaaca0f)]:
+  - @commercetools-frontend/application-components@22.13.1
+  - @commercetools-frontend/react-notifications@22.13.1
+  - @commercetools-frontend/application-shell@22.13.1
+  - @commercetools-frontend/application-config@22.13.1
+  - @commercetools-frontend/application-shell-connectors@22.13.1
+  - @commercetools-frontend/assets@22.13.1
+  - @commercetools-frontend/constants@22.13.1
+
 ## 22.13.0
 
 ### Minor Changes
