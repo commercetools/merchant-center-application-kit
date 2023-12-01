@@ -1,5 +1,16 @@
 # @commercetools-frontend/l10n
 
+## 22.13.1
+
+### Patch Changes
+
+- [#3313](https://github.com/commercetools/merchant-center-application-kit/pull/3313) [`a718c4869`](https://github.com/commercetools/merchant-center-application-kit/commit/a718c4869edbf174315ab1f1f0c2029a6f4bf189) Thanks [@emmenko](https://github.com/emmenko)! - Update CLDR data, add locale `en-BE`.
+
+  Note that the locale `en-BE` can be used instead of `en-150` (English Europe), as we only support two-letter country codes (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.13.1
+
 ## 22.13.0
 
 ### Patch Changes
