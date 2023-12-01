@@ -19,39 +19,34 @@ import CustomViewLoader from '../custom-view-loader';
 import messages from './messages';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
-const COMPONENT_HEIGHT = '44px';
+const COMPONENT_HEIGHT = '52px';
 
 type TCustomViewSelectorBaseProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
 };
 type TCustomViewSelectorProps = TCustomViewSelectorBaseProps & {
   customViewLocatorCode?: string;
+  margin?: string;
 };
 type TCustomViewSelectorWithRequiredProps = TCustomViewSelectorBaseProps & {
   customViewLocatorCode: string;
+  margin?: string;
 };
 
 type TWrapperProps = {
   shouldRender: boolean;
+  margin?: string;
 };
 const Wrapper = styled.div<TWrapperProps>`
   height: ${(props) => (props.shouldRender ? COMPONENT_HEIGHT : '0')};
   overflow: hidden;
-  transition: height 0.3s ease-in-out;
+  transition: margin 0.3s ease-in-out, height 0.3s ease-in-out;
+  margin: ${(props) => (props.shouldRender ? props.margin : '0')};
 `;
 
 const Container = styled.div`
-  background: linear-gradient(
-      0deg,
-      ${designTokens.colorNeutral95},
-      ${designTokens.colorNeutral95}
-    ),
-    linear-gradient(
-      0deg,
-      ${designTokens.colorNeutral98},
-      ${designTokens.colorNeutral98}
-    );
-  padding: 7px ${designTokens.spacing20};
+  background-color: ${designTokens.colorNeutral98};
+  padding: 10px ${designTokens.spacing30};
   border: 1px solid ${designTokens.colorNeutral95};
   border-radius: ${designTokens.borderRadius8};
 `;
@@ -99,6 +94,15 @@ const CustomViewSelectorItem = (props: TCustomViewSelectorItemProps) => {
   );
 };
 
+const SelectorLabel = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  div {
+    font-weight: 300;
+  }
+`;
+
 const Separator = styled.span`
   width: 1px;
   height: 18px;
@@ -128,7 +132,7 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
   }
 
   return (
-    <Wrapper shouldRender={customViews.length > 0}>
+    <Wrapper shouldRender={customViews.length > 0} margin={props.margin || '0'}>
       <Container>
         <Constraints.Horizontal max="scale">
           <Spacings.Inline
@@ -136,18 +140,10 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
             justifyContent="flex-start"
             alignItems="center"
           >
-            <Spacings.Inline scale="xs" alignItems="center">
+            <SelectorLabel>
               <WindowEyeIcon size="medium" color="neutral60" />
-              <div
-                css={css`
-                  div {
-                    font-weight: 300;
-                  }
-                `}
-              >
-                <Text.Detail tone="secondary" intlMessage={messages.title} />
-              </div>
-            </Spacings.Inline>
+              <Text.Detail tone="secondary" intlMessage={messages.title} />
+            </SelectorLabel>
             {customViews.map((customView, index) => {
               const isNotLastItem = index !== customViews.length - 1;
               return (

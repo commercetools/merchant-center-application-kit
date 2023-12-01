@@ -68,8 +68,17 @@ export const Component = () => (
     <Spec label="FormDetailPage - With hidden controls" size="xl">
       <DetailPageContainer hideControls={true} />
     </Spec>
-    <Spec label="FormDetailPage = With Custom Views selector" size="xl">
+    <Spec label="FormDetailPage - With Custom Views selector" size="xl">
       <DetailPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
+    </Spec>
+    <Spec
+      label="FormDetailPage - With Custom Views selector and no controls"
+      size="xl"
+    >
+      <DetailPageContainer
+        hideControls
         customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
       />
     </Spec>

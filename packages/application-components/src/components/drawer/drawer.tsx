@@ -40,10 +40,6 @@ type TDrawerProps = {
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
   afterOpenStyles?: string | CSSObject;
-  /**
-   * This code is used to configure which Custom Views are available for this page.
-   */
-  customViewLocatorCode?: string;
 
   // Controls Props
   hideControls?: boolean;
@@ -91,7 +87,6 @@ function Drawer(props: TDrawerProps) {
       size={props.size}
       title={props.title}
       afterOpenStyles={props.afterOpenStyles}
-      customViewLocatorCode={props.customViewLocatorCode}
       getParentSelector={props.getParentSelector}
       shouldDelayOnClose={props.shouldDelayOnClose}
       topBarColor={props.topBarColor}
