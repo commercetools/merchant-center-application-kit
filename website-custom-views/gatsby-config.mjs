@@ -16,12 +16,18 @@ const config = {
     description: 'Develop Custom Views for the Merchant Center',
     author: 'commercetools',
     breadcrumbs: 'Composable Commerce',
-    beta: false,
+    beta: true,
     betaLink:
       'https://docs.commercetools.com/offering/api-contract#public-beta',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
     excludeFromSearchIndex: true,
+    globalNotification: {
+      active: true,
+      notificationType: 'warning',
+      content:
+        'This is the documentation preview for [Custom Views](/../custom-views), a feature that is currently in [Closed beta](/../offering/api-contract#closed-beta). This documentation might not be in sync with our [official documentation](https://docs.commercetools.com).',
+    },
   },
   plugins: [
     // Docs theme
