@@ -20,7 +20,7 @@
     "@commercetools-uikit/icons": "^16.12.0",
     "@commercetools-uikit/spacings-inline": "^16.12.0",
     "@commercetools-uikit/spacings-stack": "^16.12.0",
-    "@emotion/react": "11.11.0",
+    "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@gatsbyjs/reach-router": "^2.0.1",
     "deepmerge": "^4.3.1",
