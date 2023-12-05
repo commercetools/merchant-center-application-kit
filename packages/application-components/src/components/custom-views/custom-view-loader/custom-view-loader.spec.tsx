@@ -70,9 +70,9 @@ describe('CustomViewLoader', () => {
       { projectKey }
     );
 
-    const iFrame = screen.getAllByTitle(
+    const iFrame = screen.getByTitle(
       `Custom View: ${TEST_CUSTOM_VIEW.defaultLabel}`
-    )[1] as HTMLIFrameElement;
+    ) as HTMLIFrameElement;
     expect(iFrame.getAttribute('id')).toBe(
       `custom-view-${TEST_CUSTOM_VIEW.id}`
     );
@@ -92,7 +92,7 @@ describe('CustomViewLoader', () => {
     );
 
     fireEvent.load(
-      screen.getAllByTitle(`Custom View: ${TEST_CUSTOM_VIEW.defaultLabel}`)[1]
+      screen.getByTitle(`Custom View: ${TEST_CUSTOM_VIEW.defaultLabel}`)
     );
 
     expect(mockShowNotification).toHaveBeenCalledWith({
