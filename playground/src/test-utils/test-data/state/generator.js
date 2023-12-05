@@ -6,12 +6,12 @@ import { stateRoles, stateTypes } from './constants';
 const generator = Generator({
   name: 'State',
   fields: {
-    id: fake((f) => f.datatype.uuid()),
+    id: fake((f) => f.string.uuid()),
     key: fake((f) => f.lorem.slug(2)),
     version: sequence(),
-    createdAt: fake((f) => f.date.recent(10)),
+    createdAt: fake((f) => f.date.recent({ days: 10 })),
     createdBy: null,
-    lastModifiedAt: fake((f) => f.date.recent(2)),
+    lastModifiedAt: fake((f) => f.date.recent({ days: 2 })),
     lastModifiedBy: null,
     type: stateTypes.LineItemState,
     initial: true,

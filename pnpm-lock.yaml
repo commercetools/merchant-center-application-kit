@@ -76,8 +76,8 @@ importers:
         specifier: 17.6.3
         version: 17.6.3
       '@faker-js/faker':
-        specifier: 7.6.0
-        version: 7.6.0
+        specifier: 8.0.0
+        version: 8.0.0
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
@@ -7145,7 +7145,7 @@ packages:
       '@commercetools-test-data/core': 6.6.0
       '@commercetools-test-data/utils': 6.6.0
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -7172,7 +7172,7 @@ packages:
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -7187,7 +7187,7 @@ packages:
       '@commercetools-test-data/core': 6.6.0
       '@commercetools-test-data/utils': 6.6.0
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -7209,7 +7209,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     dev: true
@@ -7219,7 +7219,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     dev: false
@@ -7235,7 +7235,7 @@ packages:
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -7251,7 +7251,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
     dev: true
 
   /@commercetools-test-data/utils@6.6.0:
@@ -7259,7 +7259,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
     dev: false
 
   /@commercetools-uikit/accessible-button@16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2):
@@ -8296,7 +8296,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -8664,7 +8664,7 @@ packages:
       '@emotion/react': 11.11.0(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -9709,7 +9709,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -10716,9 +10716,10 @@ packages:
   /@faker-js/faker@7.6.0:
     resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
-  /@faker-js/faker@8.2.0:
-    resolution: {integrity: sha512-VacmzZqVxdWdf9y64lDOMZNDMM/FQdtM9IsaOPKOm2suYwEatb8VkdHqOzXcDnZbk7YDE2BmsJmy/2Hmkn563g==}
+  /@faker-js/faker@8.0.0:
+    resolution: {integrity: sha512-XDR8sApuf78GHx8mLXl3KL/q7eB52A963UGejVbdbj3OZtfGlNwp0J78b7apVzqRi0GF8l9g3eSkkaL2UmU9Aw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
 
   /@floating-ui/core@1.2.6:

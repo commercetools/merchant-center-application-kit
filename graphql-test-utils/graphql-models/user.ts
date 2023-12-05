@@ -1,27 +1,27 @@
-import { faker } from '@faker-js/faker';
+import { faker, en } from '@faker-js/faker';
 import { Factory } from 'rosie';
 
 const User = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'User')
-  .attr('id', () => faker.datatype.uuid())
+  .attr('id', () => faker.string.uuid())
   .attr('email', () => faker.internet.email())
   .attr('createdAt', () => faker.date.past())
-  .attr('gravatarHash', () => faker.random.alphaNumeric(16))
-  .attr('firstName', () => faker.name.firstName())
-  .attr('lastName', () => faker.name.lastName())
+  .attr('gravatarHash', () => faker.string.alphanumeric(16))
+  .attr('firstName', () => faker.person.firstName())
+  .attr('lastName', () => faker.person.lastName())
   .attr('language', 'en')
-  .attr('numberFormat', () => faker.random.locale())
+  .attr('numberFormat', () => en)
   .attr('timeZone', 'Europe/Berlin')
-  .attr('launchdarklyTrackingId', () => faker.random.alphaNumeric(16))
+  .attr('launchdarklyTrackingId', () => faker.string.alphanumeric(16))
   .attr('launchdarklyTrackingGroup', () =>
     faker.helpers.slugify(faker.company.name())
   )
   .attr('launchdarklyTrackingSubgroup', () => 'dev')
-  .attr('launchdarklyTrackingTeam', () => [faker.random.word()])
+  .attr('launchdarklyTrackingTeam', () => [faker.word.sample()])
   .attr('launchdarklyTrackingTenant', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
-  .attr('businessRole', () => faker.name.jobDescriptor())
+  .attr('businessRole', () => faker.person.jobDescriptor())
   .attr('idTokenUserInfo', () => null)
   .attr('projects', () => ({
     __typename: 'ProjectQueryResult',
