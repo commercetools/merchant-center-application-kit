@@ -9,7 +9,6 @@
   --sublist-indentation-when-expanded: 248px;
   --sublist-width: 253px;
   --left-navigation-transition: all 150ms cubic-bezier(1, 0, 0.58, 1);
-  --focus-ring-color: -webkit-focus-ring-color;
 
   /* Left navigation */
   --width-left-navigation: 80px;
