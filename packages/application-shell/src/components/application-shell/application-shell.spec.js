@@ -1311,26 +1311,31 @@ describe('navbar menu links interactions', () => {
                 applicationsMenu: {
                   __typename: 'ApplicationsMenu',
                   appBar: ApplicationAppbarMenuMock.buildList(1),
-                  navBarGroups: ApplicationNavbarMenuGroupMock.buildList(1, {
-                    items: ApplicationNavbarMenuMock.buildList(1, {
-                      labelAllLocales: [
-                        {
-                          __typename: 'LocalizedField',
-                          locale: 'en',
-                          value: 'Products',
-                        },
-                      ],
-                      submenu: ApplicationNavbarSubmenuMock.buildList(1, {
-                        labelAllLocales: [
-                          {
-                            __typename: 'LocalizedField',
-                            locale: 'en',
-                            value: 'Add product',
-                          },
-                        ],
-                      }),
-                    }),
-                  }),
+                  navBarGroups: [
+                    ApplicationNavbarMenuGroupMock.random()
+                      .key('2')
+                      .items(
+                        ApplicationNavbarMenuMock.buildList(1, {
+                          labelAllLocales: [
+                            {
+                              __typename: 'LocalizedField',
+                              locale: 'en',
+                              value: 'Products',
+                            },
+                          ],
+                          submenu: ApplicationNavbarSubmenuMock.buildList(1, {
+                            labelAllLocales: [
+                              {
+                                __typename: 'LocalizedField',
+                                locale: 'en',
+                                value: 'Add product',
+                              },
+                            ],
+                          }),
+                        })
+                      )
+                      .buildGraphql(),
+                  ],
                 },
               })
             )
