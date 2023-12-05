@@ -1,5 +1,14 @@
 # @commercetools-frontend/sdk
 
+## 22.13.2
+
+### Patch Changes
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated `@emotion/react` dependency
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.13.2
+
 ## 22.13.1
 
 ### Patch Changes
