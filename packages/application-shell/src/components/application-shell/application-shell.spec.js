@@ -234,12 +234,16 @@ afterEach(() => {
   mockServer.resetHandlers();
   window.IntersectionObserver.mockReset();
 });
-beforeAll(() =>
+beforeAll(() => {
   mockServer.listen({
     onUnhandledRequest: 'error',
-  })
-);
-afterAll(() => mockServer.close());
+  });
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
+});
+afterAll(() => {
+  mockServer.close();
+  jest.restoreAllMocks();
+});
 
 describe.each`
   renderNodeAsChildren | route
