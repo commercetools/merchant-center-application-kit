@@ -1,5 +1,27 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.13.2
+
+### Patch Changes
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated `@emotion/react` dependency
+
+- Updated dependencies [[`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923), [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923)]:
+  - @commercetools-frontend/application-shell-connectors@22.13.2
+  - @commercetools-frontend/application-components@22.13.2
+  - @commercetools-frontend/application-shell@22.13.2
+  - @commercetools-frontend/permissions@22.13.2
+  - @commercetools-frontend/i18n@22.13.2
+  - @commercetools-frontend/l10n@22.13.2
+  - @commercetools-frontend/mc-scripts@22.13.2
+  - @commercetools-frontend/actions-global@22.13.2
+  - @commercetools-frontend/application-config@22.13.2
+  - @commercetools-frontend/assets@22.13.2
+  - @commercetools-frontend/constants@22.13.2
+  - @commercetools-frontend/eslint-config-mc-app@22.13.2
+  - @commercetools-frontend/jest-preset-mc-app@22.13.2
+  - @commercetools-frontend/mc-dev-authentication@22.13.2
+
 ## 22.13.1
 
 ### Patch Changes
