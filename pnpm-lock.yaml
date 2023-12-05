@@ -409,7 +409,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/cli':
         specifier: 6.1.1
@@ -628,7 +628,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/cli':
         specifier: 6.1.1
@@ -844,7 +844,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/cli':
         specifier: 6.1.1
@@ -1063,7 +1063,7 @@ importers:
         specifier: ^5.3.1
         version: 5.14.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/cli':
         specifier: 6.1.1
@@ -1436,10 +1436,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(react@17.0.2)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
         specifier: 13.1.7
@@ -1687,10 +1687,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/combine-adapters':
         specifier: 13.1.7
@@ -1880,7 +1880,7 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@types/lodash':
         specifier: ^4.14.198
@@ -2070,7 +2070,7 @@ importers:
         specifier: workspace:*
         version: link:../application-components
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@18.2.0)
       '@tsconfig/node16':
         specifier: ^16.1.1
@@ -2253,7 +2253,7 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@formatjs/icu-messageformat-parser':
         specifier: 2.4.0
@@ -2400,7 +2400,7 @@ importers:
         specifier: 22.13.1
         version: link:../sentry
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@types/lodash':
         specifier: ^4.14.198
@@ -2777,7 +2777,7 @@ importers:
         specifier: 22.13.1
         version: link:../sentry
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@types/lodash':
         specifier: ^4.14.198
@@ -2859,10 +2859,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(react@17.0.2)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@17.0.2)
       '@types/history':
         specifier: ^4.7.11
@@ -2993,7 +2993,7 @@ importers:
         version: 9.0.0
     devDependencies:
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@testing-library/react':
         specifier: 12.1.5
@@ -3054,7 +3054,7 @@ importers:
         version: 15.8.1
     devDependencies:
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@types/jest':
         specifier: ^29.5.4
@@ -3178,7 +3178,7 @@ importers:
         specifier: 16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
         specifier: 13.1.7
@@ -3329,10 +3329,10 @@ importers:
         specifier: 16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)(typescript@5.2.2)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@17.0.2)
       '@flopflip/react-broadcast':
         specifier: 13.1.7
@@ -3416,10 +3416,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@18.2.0)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@18.2.0)
       '@gatsbyjs/reach-router':
         specifier: ^2.0.1
@@ -3540,10 +3540,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)(typescript@5.0.4)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@17.0.2)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@17.0.2)
       formik:
         specifier: 2.2.9
@@ -3622,10 +3622,10 @@ importers:
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@emotion/react':
-        specifier: 11.11.1
+        specifier: ^11.11.1
         version: 11.11.1(@types/react@17.0.56)(react@18.2.0)
       '@emotion/styled':
-        specifier: 11.11.0
+        specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@18.2.0)
       '@gatsbyjs/reach-router':
         specifier: ^2.0.1
@@ -8269,7 +8269,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -8637,7 +8637,7 @@ packages:
       '@emotion/react': 11.11.1(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -9682,7 +9682,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -10321,7 +10321,7 @@ packages:
     resolution: {integrity: sha512-5mlW1DquU5HaxjLkfkGN1GA/fvVGdyHURRiX/0FHl2cfIfRxSOfmxEH5YS43edp0OldZrZ+dkBKbngxcNCdZvA==}
     peerDependencies:
       '@types/react': '*'
-      react: 17.0.2
+      react: '>=16.8.0'
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -10341,7 +10341,7 @@ packages:
     resolution: {integrity: sha512-5mlW1DquU5HaxjLkfkGN1GA/fvVGdyHURRiX/0FHl2cfIfRxSOfmxEH5YS43edp0OldZrZ+dkBKbngxcNCdZvA==}
     peerDependencies:
       '@types/react': '*'
-      react: 17.0.2
+      react: '>=16.8.0'
     peerDependenciesMeta:
       '@types/react':
         optional: true

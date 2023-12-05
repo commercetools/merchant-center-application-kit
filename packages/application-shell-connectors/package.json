@@ -28,7 +28,7 @@
     "@commercetools-frontend/constants": "22.13.1",
     "@commercetools-frontend/sentry": "22.13.1",
     "@commercetools/http-user-agent": "3.0.0",
-    "@emotion/react": "11.11.1",
+    "@emotion/react": "^11.11.1",
     "@types/lodash": "^4.14.198",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.56",
