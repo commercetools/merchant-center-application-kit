@@ -18,11 +18,11 @@ import type {
 } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
-export type MenuKey = 'appBar' | 'navBar';
+export type MenuKey = 'appBar' | 'navBarGroups';
 export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
   ? TFetchApplicationsMenuQuery['applicationsMenu']['appBar']
-  : Key extends 'navBar'
-  ? TFetchApplicationsMenuQuery['applicationsMenu']['navBar']
+  : Key extends 'navBarGroups'
+  ? TFetchApplicationsMenuQuery['applicationsMenu']['navBarGroups']
   : never;
 export type Config = {
   environment: TApplicationContext<{}>['environment'];
@@ -79,44 +79,50 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
   return {
     applicationsMenu: {
       __typename: 'ApplicationsMenu',
-      navBar: menuLinks
+      navBarGroups: menuLinks
         ? [
             {
-              __typename: 'NavbarMenu',
-              key: entryPointUriPath,
-              uriPath: entryPointUriPath,
-              icon: menuLinks.icon,
-              labelAllLocales: mapLabelAllLocalesWithDefaults(
-                menuLinks.labelAllLocales,
-                menuLinks.defaultLabel
-              ),
-              permissions: menuLinks.permissions,
-              // @ts-ignore: not defined in schema, as it's only used internally.
-              featureToggle: menuLinks.featureToggle ?? null,
-              // @ts-ignore: not defined in schema, as it's only used internally.
-              menuVisibility: menuLinks.menuVisibility ?? null,
-              // @ts-ignore: not defined in schema, as it's only used internally.
-              actionRights: menuLinks.actionRights ?? null,
-              // @ts-ignore: not defined in schema, as it's only used internally.
-              dataFences: menuLinks.dataFences ?? null,
-              submenu: menuLinks.submenuLinks.map((submenuLink) => ({
-                __typename: 'BaseMenu',
-                key: `${entryPointUriPath}-${submenuLink.uriPath}`,
-                uriPath: submenuLink.uriPath,
-                labelAllLocales: mapLabelAllLocalesWithDefaults(
-                  submenuLink.labelAllLocales,
-                  submenuLink.defaultLabel
-                ),
-                permissions: submenuLink.permissions,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                featureToggle: submenuLink.featureToggle ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                menuVisibility: submenuLink.menuVisibility ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                actionRights: submenuLink.actionRights ?? null,
-                // @ts-ignore: not defined in schema, as it's only used internally.
-                dataFences: submenuLink.dataFences ?? null,
-              })),
+              // for development, the navBarGroup key is set to '2' since all Custom Applications belong to the second Navbar group.
+              key: '2',
+              items: [
+                {
+                  __typename: 'NavbarMenu',
+                  key: entryPointUriPath,
+                  uriPath: entryPointUriPath,
+                  icon: menuLinks.icon,
+                  labelAllLocales: mapLabelAllLocalesWithDefaults(
+                    menuLinks.labelAllLocales,
+                    menuLinks.defaultLabel
+                  ),
+                  permissions: menuLinks.permissions,
+                  // @ts-ignore: not defined in schema, as it's only used internally.
+                  featureToggle: menuLinks.featureToggle ?? null,
+                  // @ts-ignore: not defined in schema, as it's only used internally.
+                  menuVisibility: menuLinks.menuVisibility ?? null,
+                  // @ts-ignore: not defined in schema, as it's only used internally.
+                  actionRights: menuLinks.actionRights ?? null,
+                  // @ts-ignore: not defined in schema, as it's only used internally.
+                  dataFences: menuLinks.dataFences ?? null,
+                  submenu: menuLinks.submenuLinks.map((submenuLink) => ({
+                    __typename: 'BaseMenu',
+                    key: `${entryPointUriPath}-${submenuLink.uriPath}`,
+                    uriPath: submenuLink.uriPath,
+                    labelAllLocales: mapLabelAllLocalesWithDefaults(
+                      submenuLink.labelAllLocales,
+                      submenuLink.defaultLabel
+                    ),
+                    permissions: submenuLink.permissions,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    featureToggle: submenuLink.featureToggle ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    menuVisibility: submenuLink.menuVisibility ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    actionRights: submenuLink.actionRights ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    dataFences: submenuLink.dataFences ?? null,
+                  })),
+                },
+              ],
             },
           ]
         : [],

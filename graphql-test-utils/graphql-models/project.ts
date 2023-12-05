@@ -4,8 +4,8 @@ import { Factory } from 'rosie';
 const Project = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'Project')
-  .attr('key', () => faker.random.alphaNumeric(4))
-  .attr('version', () => faker.datatype.number())
+  .attr('key', () => faker.string.alphanumeric(4))
+  .attr('version', () => faker.number.int())
   .attr('name', () => faker.company.name())
   .attr('countries', ['de'])
   .attr('currencies', ['EUR', 'USD'])
@@ -32,7 +32,7 @@ const Project = new Factory()
   }))
   .attr('owner', () => ({
     __typename: 'Organization',
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     name: faker.company.name(),
   }))
   .attr('sampleDataImportDataset', 'FASHION');

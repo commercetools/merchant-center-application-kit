@@ -61,8 +61,8 @@ importers:
         specifier: workspace:*
         version: link:packages/mc-scripts
       '@commercetools-test-data/core':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-uikit/design-system':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@18.2.0)
@@ -76,8 +76,8 @@ importers:
         specifier: 17.6.3
         version: 17.6.3
       '@faker-js/faker':
-        specifier: 7.6.0
-        version: 7.6.0
+        specifier: 8.0.0
+        version: 8.0.0
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
@@ -346,14 +346,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/commons':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/core':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-uikit/constraints':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -565,14 +565,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/commons':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/core':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-uikit/constraints':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -781,14 +781,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/commons':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/core':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-uikit/constraints':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -1000,14 +1000,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/commons':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-test-data/core':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.6.0
+        version: 6.6.0
       '@commercetools-uikit/constraints':
         specifier: ^16.12.0
         version: 16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -7136,16 +7136,16 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: true
 
-  /@commercetools-test-data/channel@4.11.1:
-    resolution: {integrity: sha512-AQBjcYrkjOYegTq6aFfCX5rKHIf0gFpgUNfHYutEcpjMXPEZpnQ2vATUWe6nmYKbAuHfrplMxDA6kR+3Dflz/Q==}
+  /@commercetools-test-data/channel@6.6.0:
+    resolution: {integrity: sha512-OJuPfw6eEipK/K+NaWbj/QYPkeNbPZy0MV7lGYSTMeGz8xi48+xL1Mw9KSjbrOWwsYuXO/7I+dl2TOkEi5F2Tg==}
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/commons': 4.11.1
-      '@commercetools-test-data/core': 4.11.1
-      '@commercetools-test-data/utils': 4.11.1
-      '@commercetools/platform-sdk': 4.7.0
-      '@faker-js/faker': 7.6.0
+      '@commercetools-test-data/commons': 6.6.0
+      '@commercetools-test-data/core': 6.6.0
+      '@commercetools-test-data/utils': 6.6.0
+      '@commercetools/platform-sdk': 6.0.0
+      '@faker-js/faker': 8.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -7162,6 +7162,7 @@ packages:
       lodash: 4.17.21
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /@commercetools-test-data/commons@6.4.1:
     resolution: {integrity: sha512-77+dDMcLKOUPyrFOoM9SrpptdV6D+fiqKUT4k0gZZ5lwFlOYcvZnbu6P7p1WyT7C0JxuEdq3d5PWy5wSfgIdRg==}
@@ -7171,31 +7172,57 @@ packages:
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     transitivePeerDependencies:
       - encoding
     dev: true
 
+  /@commercetools-test-data/commons@6.6.0:
+    resolution: {integrity: sha512-MZvjlLk4SjngE+e3KPcvpNYJjqLXxxGu7D7QV3lDpp1Sweg/hBnwGX+j/rY3CgtwYDPU3D4T4LSOM2DA2oHAwA==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-test-data/core': 6.6.0
+      '@commercetools-test-data/utils': 6.6.0
+      '@commercetools/platform-sdk': 6.0.0
+      '@faker-js/faker': 8.0.0
+      '@types/lodash': 4.14.198
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@commercetools-test-data/core@4.11.1:
     resolution: {integrity: sha512-9K/sTN53T65oJ5LkuNpxZN51ZY0a9ivzLeDhPA2f/p9Iay48Sm5eVVX6t1i+kCO5LD3TN7LRQqIA1kHELmcdHA==}
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@faker-js/faker': 7.6.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
+    dev: true
 
   /@commercetools-test-data/core@6.4.1:
     resolution: {integrity: sha512-rQO3SYMOiVSzFxFQP/BZCG/d/VnnaDikCzqT3RCZJ7VSAGVykiiJgUUbVxDzdsNYWNl/RQGeSxs2MDRwPTK4kg==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     dev: true
+
+  /@commercetools-test-data/core@6.6.0:
+    resolution: {integrity: sha512-3Agl2U1FtyxV/BUtdL1ENARWsKEUK6PPgOh9Kr+wwp3dnPWk7T1p/nTzReJKPZZfG5gPYnfiRSmTBM/5CVHqYw==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 8.0.0
+      '@types/lodash': 4.14.198
+      lodash: 4.17.21
+    dev: false
 
   /@commercetools-test-data/custom-view@6.4.1:
     resolution: {integrity: sha512-x/UGusfH6L2NbhL9a7xlYtTtrysrLHniBfb1nrSyrruPVr3Cs7HCN3AECRh3dFQtOXZXtgkfQGp0/AG+o8nlpA==}
@@ -7208,7 +7235,7 @@ packages:
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
       '@commercetools/platform-sdk': 6.0.0
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -7219,21 +7246,21 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-test-data/utils@4.11.1:
-    resolution: {integrity: sha512-Y8NbbSPWht2GAcX7pQiVhjCJwn4FMZpRq6fyCq5ZjPr+gWXkfoO0f+gZncI/1asShs5fAXavyQx+bw1/2CtZng==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 7.6.0
-    dev: false
-
   /@commercetools-test-data/utils@6.4.1:
     resolution: {integrity: sha512-fkYsW3YQgA2ciqsuAObgK0yuB4H6SL5hlMqMBT6MmYpxfV+MYAaBi7JQLqXGQ/leXqd4fpAxHdZ6JRfyeolz5g==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.2.0
+      '@faker-js/faker': 8.0.0
     dev: true
+
+  /@commercetools-test-data/utils@6.6.0:
+    resolution: {integrity: sha512-pwFsGwny/7mueVRZr6lsae1h2UjHT4903U+LV/i01eOgrcCZoRTdq7Fw52ZWd/fx6UvemQ28ji/LRcRuKD2quw==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 8.0.0
+    dev: false
 
   /@commercetools-uikit/accessible-button@16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-VZELCBY9otGQcuETGZp1cnxavU7iYotLXz04S1uF54QDCEY/oHa/jpMWajZSs9/tSTlbIMzwLXDfzlni1oVR5A==}
@@ -8269,7 +8296,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -8637,7 +8664,7 @@ packages:
       '@emotion/react': 11.11.1(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -9682,7 +9709,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -9881,6 +9908,7 @@ packages:
       querystring: 0.2.1
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /@commercetools/platform-sdk@6.0.0:
     resolution: {integrity: sha512-ADpyUUiDJ6ltTc1l5H4I/Rn0MyqSAD2ZP5QHiq++SAtM2CNEjfqgePty07sUhG8IxdN145i7/XNHopMxwap8Ow==}
@@ -9892,7 +9920,6 @@ packages:
       '@commercetools/sdk-middleware-logger': 3.0.0
     transitivePeerDependencies:
       - encoding
-    dev: true
 
   /@commercetools/sdk-client-v2@2.1.5:
     resolution: {integrity: sha512-coE3c4qpG8u+QR9GmaXIIWfhQgH+n8DA3PSGUJWnDh+tDFxcjqFp1MV8RKRj/nV1/h4KkEkqWuVFzT7pBTDNdQ==}
@@ -9903,6 +9930,7 @@ packages:
       querystring: 0.2.1
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /@commercetools/sdk-client-v2@2.3.0:
     resolution: {integrity: sha512-+vS6qRoKBbkunZCpdozung+7te97nFxaidLPqOTlz/9TmJaRfMMcYC/KUZCTS8S5a/4BFfY6DYujddolaU7e6Q==}
@@ -9912,7 +9940,6 @@ packages:
       node-fetch: 2.6.11
     transitivePeerDependencies:
       - encoding
-    dev: true
 
   /@commercetools/sdk-client@3.0.0:
     resolution: {integrity: sha512-N8Eem8aHyxs3xAfscuemERbhH4po/1fMQs0SBfWgLda77qaIGyyfMqwgJNsPBweBsyt5RC9p5tpMDZ0lSPugDA==}
@@ -10710,11 +10737,11 @@ packages:
   /@faker-js/faker@7.6.0:
     resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-
-  /@faker-js/faker@8.2.0:
-    resolution: {integrity: sha512-VacmzZqVxdWdf9y64lDOMZNDMM/FQdtM9IsaOPKOm2suYwEatb8VkdHqOzXcDnZbk7YDE2BmsJmy/2Hmkn563g==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: true
+
+  /@faker-js/faker@8.0.0:
+    resolution: {integrity: sha512-XDR8sApuf78GHx8mLXl3KL/q7eB52A963UGejVbdbj3OZtfGlNwp0J78b7apVzqRi0GF8l9g3eSkkaL2UmU9Aw==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
 
   /@floating-ui/core@1.2.6:
     resolution: {integrity: sha512-EvYTiXet5XqweYGClEmpu3BoxmsQ4hkj3QaYA6qEnigCWffTP3vNRwBReTdrwDwo7OoJ3wM8Uoe9Uk4n+d4hfg==}
@@ -29085,6 +29112,7 @@ packages:
     resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+    dev: true
 
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}

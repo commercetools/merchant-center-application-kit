@@ -21,7 +21,9 @@ export type TActionRight = {
 export type TApplicationsMenu = {
   __typename?: 'ApplicationsMenu';
   appBar: Array<TBaseMenu>;
+  /** @deprecated Feature not available anymore - use 'navBarGroups' instead */
   navBar: Array<TNavbarMenu>;
+  navBarGroups: Array<TNavbarMenuGroup>;
 };
 
 export type TBaseMenu = {
@@ -59,9 +61,16 @@ export type TNavbarMenu = {
   labelAllLocales: Array<TLocalizedField>;
   menuVisibility?: Maybe<Scalars['String']>;
   permissions: Array<Scalars['String']>;
+  /** @deprecated Feature not available anymore */
   shouldRenderDivider?: Maybe<Scalars['Boolean']>;
   submenu: Array<TBaseMenu>;
   uriPath: Scalars['String'];
+};
+
+export type TNavbarMenuGroup = {
+  __typename?: 'NavbarMenuGroup';
+  items: Array<TNavbarMenu>;
+  key: Scalars['String'];
 };
 
 export type TQuery = {
@@ -78,4 +87,4 @@ export type TFetchAllMenuFeatureTogglesQuery = { __typename?: 'Query', allFeatur
 export type TFetchApplicationsMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', navBar: Array<{ __typename?: 'NavbarMenu', key: string, uriPath: string, icon: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null }> }>, appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } };
+export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }>, navBarGroups: Array<{ __typename?: 'NavbarMenuGroup', key: string, items: Array<{ __typename?: 'NavbarMenu', key: string, uriPath: string, icon: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null }> }> }> } };

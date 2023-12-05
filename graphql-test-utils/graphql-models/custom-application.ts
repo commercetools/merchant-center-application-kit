@@ -6,8 +6,8 @@ import CustomApplicationSubmenuLink from './custom-application-submenu-link';
 const CustomApplication = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'CustomApplication')
-  .attr('id', () => faker.datatype.uuid())
-  .attr('entryPointUriPath', () => faker.random.alphaNumeric(6))
+  .attr('id', () => faker.string.uuid())
+  .attr('entryPointUriPath', () => faker.string.alphanumeric(6))
   .attr('icon', () => '<svg><path fill="#000000" /></svg>')
   .attr('mainMenuLink', () => CustomApplicationMenuLink.build())
   .attr('submenuLinks', () => CustomApplicationSubmenuLink.buildList(1));

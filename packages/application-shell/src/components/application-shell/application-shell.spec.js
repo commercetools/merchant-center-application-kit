@@ -21,7 +21,6 @@ import {
   SHOW_LOADING,
   HIDE_LOADING,
   STORAGE_KEYS,
-  featureFlags,
 } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import {
@@ -29,8 +28,9 @@ import {
   ProjectMock,
   ProjectExtensionMock,
   ApplicationAppbarMenuMock,
-  LegacyApplicationNavbarMenuMock,
-  LegacyApplicationNavbarSubmenuMock,
+  ApplicationNavbarMenuMock,
+  ApplicationNavbarSubmenuMock,
+  ApplicationNavbarMenuGroupMock,
   CustomApplicationInstallationMock,
 } from '../../../../../graphql-test-utils';
 import { location } from '../../utils/location';
@@ -1227,7 +1227,6 @@ describe('navbar menu links interactions', () => {
         // eslint-disable-next-line testing-library/no-node-access
         .querySelectorAll('[aria-owns]')
     ).find((tooltip) => tooltip.innerHTML === mainMenuLabel.value);
-
     const groupId = submenuTooltip.getAttribute('aria-owns');
 
     // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
@@ -1312,24 +1311,31 @@ describe('navbar menu links interactions', () => {
                 applicationsMenu: {
                   __typename: 'ApplicationsMenu',
                   appBar: ApplicationAppbarMenuMock.buildList(1),
-                  navBar: LegacyApplicationNavbarMenuMock.buildList(1, {
-                    labelAllLocales: [
-                      {
-                        __typename: 'LocalizedField',
-                        locale: 'en',
-                        value: 'Products',
-                      },
-                    ],
-                    submenu: LegacyApplicationNavbarSubmenuMock.buildList(1, {
-                      labelAllLocales: [
-                        {
-                          __typename: 'LocalizedField',
-                          locale: 'en',
-                          value: 'Add product',
-                        },
-                      ],
-                    }),
-                  }),
+                  navBarGroups: [
+                    ApplicationNavbarMenuGroupMock.random()
+                      .key('2')
+                      .items(
+                        ApplicationNavbarMenuMock.buildList(1, {
+                          labelAllLocales: [
+                            {
+                              __typename: 'LocalizedField',
+                              locale: 'en',
+                              value: 'Products',
+                            },
+                          ],
+                          submenu: ApplicationNavbarSubmenuMock.buildList(1, {
+                            labelAllLocales: [
+                              {
+                                __typename: 'LocalizedField',
+                                locale: 'en',
+                                value: 'Add product',
+                              },
+                            ],
+                          }),
+                        })
+                      )
+                      .buildGraphql(),
+                  ],
                 },
               })
             )
@@ -1394,7 +1400,7 @@ describe('when navbar menu items are hidden', () => {
       })
     );
   });
-  it('should not render hidden menu items', async () => {
+  it('should not render hidden main menu items', async () => {
     const menuLinks = createTestNavBarMenuLinksConfig({
       menuVisibility: 'hideFoo',
       submenuLinks: [],

@@ -18,7 +18,10 @@ import {
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { WINDOW_SIZES } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
-import type { TNavbarMenu } from '../../types/generated/proxy';
+import type {
+  TNavbarMenu,
+  TNavbarMenuGroup,
+} from '../../types/generated/proxy';
 import type {
   TFetchProjectExtensionsNavbarQuery,
   TFetchProjectExtensionsNavbarQueryVariables,
@@ -73,12 +76,15 @@ const reducer = (state: State, action: Action): State => {
 
 const useNavbarStateManager = (props: HookProps) => {
   const navBarNode = useRef<HTMLElement>(null);
-  const applicationsNavBarMenu = useApplicationsMenu<'navBar'>('navBar', {
-    queryOptions: {
-      onError: reportErrorToSentry,
-    },
-    environment: props.environment,
-  });
+  const applicationsNavBarMenuGroups = useApplicationsMenu<'navBarGroups'>(
+    'navBarGroups',
+    {
+      queryOptions: {
+        onError: reportErrorToSentry,
+      },
+      environment: props.environment,
+    }
+  );
   const { data: projectExtensionsQuery } = useMcQuery<
     TFetchProjectExtensionsNavbarQuery,
     TFetchProjectExtensionsNavbarQueryVariables
@@ -249,7 +255,24 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }, [state.activeItemIndex, state.isMenuOpen]);
 
-  const allInternalApplicationsNavbarMenu = applicationsNavBarMenu || [];
+  const allApplicationsNavbarMenuGroups: TNavbarMenuGroup[] = (
+    applicationsNavBarMenuGroups || []
+  )
+    .map((navbarMenuGroup) =>
+      navbarMenuGroup.key === '2' && allCustomApplicationsNavbarMenu.length > 0
+        ? {
+            key: navbarMenuGroup.key,
+            items: [
+              ...navbarMenuGroup.items,
+              ...allCustomApplicationsNavbarMenu,
+            ],
+          }
+        : navbarMenuGroup
+    )
+    .sort(
+      (navBarMenuGroupA, navBarMenuGroupB) =>
+        Number(navBarMenuGroupA?.key) - Number(navBarMenuGroupB?.key)
+    );
 
   return {
     ...state,
@@ -257,8 +280,7 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    allInternalApplicationsNavbarMenu,
-    allCustomApplicationsNavbarMenu,
+    allApplicationsNavbarMenuGroups,
   };
 };
 
