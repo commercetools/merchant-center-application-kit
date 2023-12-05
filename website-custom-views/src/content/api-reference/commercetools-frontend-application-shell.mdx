@@ -10,36 +10,46 @@ React component that ties together all the main functionalities of the Custom Vi
 
 # Installation
 
-```bash
-yarn add @commercetools-frontend/application-shell
+Install the `@commercetools-frontend/application-shell` package
 
-# or
+<MultiCodeBlock>
 
+```npm
 npm --save install @commercetools-frontend/application-shell
 ```
 
-Additionally install the peer dependencies (if not present)
+```yarn
+yarn add @commercetools-frontend/application-shell
+```
 
-```bash
-yarn add @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
+</MultiCodeBlock>
 
-# or
+Additionally, install the peer dependencies (if not present)
 
+<MultiCodeBlock>
+
+```npm
 npm --save install @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
 ```
+
+```yarn
+yarn add @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
+```
+
+</MultiCodeBlock>
 
 # Components
 
 ## CustomViewShell
 
 This is the main component that contains all the general logic to render a Custom View.<br />
-The `CustomViewShell` component is expected to be rendered as the top-level component of your application.
+The `CustomViewShell` component must be rendered as the top-level component of your application.
 
 ### Usage
 
 We recommend to render the application content as `children` of `<CustomViewShell>`.
 
-This allows the `<CustomViewShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom View won't be able to access the Custom View route.
+This lets the `<CustomViewShell>` pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom View won't be able to access the Custom View route.
 
 Bear in mind you're not required to use routes in your Custom View. Use them only if you need to have different views.
 
