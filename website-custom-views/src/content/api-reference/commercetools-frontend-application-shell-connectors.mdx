@@ -10,37 +10,54 @@ Complementary tools for the [`@commercetools-frontend/application-shell`](/api-r
 
 # Installation
 
-```
-yarn add @commercetools-frontend/application-shell-connectors
+To install the `@commercetools-frontend/application-shell-connectors` package, run the following command:
 
-# or
-
+```console
 npm --save install @commercetools-frontend/application-shell-connectors
 ```
 
-Additionally install the peer dependencies (if not present).
+Additionally, install the peer dependencies (if not present).
 
-```
-yarn add react @apollo/client
-
-# or
-
+```console
 npm --save install react @apollo/client
 ```
 
 # Custom View context
 
-This section describes different parts of the information provided through the Custom View context and how to access them.
+The Custom View context provides you with the [Custom View properties](#custom-view-properties) that you can access using the [`useCustomViewContext`](#useCustomViewContext) hook.
+
+## useCustomViewContext
+
+A React hook that lets you to access the `CustomViewContext` and selectively pick the necessary properties.
+
+```jsx highlightLines="4-6" title="Access dataLocale from the Custom View context"
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+
+const DisplayLocale = () => {
+  const dataLocale = useCustomViewContext((context) =>
+    context.dataLocale
+  );
+  render() {
+    return (
+      <div>
+        <h1>Current data locale: {dataLocale}</h1>
+      </div>
+    );
+  }
+}
+
+export default DisplayLocale;
+```
 
 ## Custom View properties
 
-This is the list of the main properties you can access in the Custom View context.
+<ChildSectionsNav parent="custom-view-properties" />
 
 ### `environment`
 
 The information about the runtime environment such as the [Custom View ID](/api-reference/application-config#envproductioncustomviewid).
 
-```json
+```js
 {
   "environment": {
     "customViewId": "ckw3vt1hv034901uzio4bkzc3",
@@ -53,7 +70,7 @@ The information about the runtime environment such as the [Custom View ID](/api-
 
 The information about the logged in user.
 
-```json
+```js
 {
   "user": {
     "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
@@ -71,9 +88,9 @@ The information about the logged in user.
 }
 ```
 
-If the user logged into the Merchant Center using [Single Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on), we expose an additional property `idTokenUserInfo` which contains some of the user info claims (OpenID Connect) from the user's Identity Provider.
+If the user logged into the Merchant Center using [Single Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on), we expose an additional property `idTokenUserInfo` that contains some of the user info claims (OpenID Connect) from the user's Identity Provider.
 
-```json highlightedLines="14-22"
+```js highlightLines="14-22"
 {
   "user": {
     "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
@@ -100,18 +117,11 @@ If the user logged into the Merchant Center using [Single Sign-On](https://docs.
 }
 ```
 
-<Info>
-
-This feature is available from version `21.17.0` onwards.
-
-</Info>
-
-
 ### `project`
 
-The information about the currently selected project.
+The information about the currently selected Project.
 
-```json
+```js
 {
   "project": {
     "countries": ["DE", "US"],
@@ -130,7 +140,7 @@ The information about the currently selected project.
 The selected data locale that is used to render localized data in your application.
 You should include it as the selected language in components like [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
 
-```json
+```js
 {
   "dataLocale": "de"
 }
@@ -142,11 +152,11 @@ This is not the value used for the Merchant Center language, which is based on t
 
 </Info>
 
-## `customViewConfig`
+### `customViewConfig`
 
-The Custom View configuration that has been registered in the Merchant Center when the Custom View was configured in an organization.
+The Custom View configuration registered in the Merchant Center.
 
-```json
+```js
 {
   "defaultLabel": "My Custom View",
   "id": "ckw3vt1hv034901uzio4bkzc3",
@@ -168,26 +178,25 @@ The Custom View configuration that has been registered in the Merchant Center wh
 ```
 
 
-## `hostUrl`
+### `hostUrl`
 
-Since the Custom View will be rendered within a Merchant Center native application, this property will contain the current URL of the native application.
+Since the Custom Views render within a Merchant Center native application, this property will contain the current URL of the native application.
 
-This can be useful if you need to fetch data related to an entity as you would be able to get its ID from the URL.
+This can be useful if you need to fetch data related to an entity, as you can get its ID from the URL.
 
-```json
+```js
 {
   "hostUrl": "https://<merchant-center-domain>/<project-key>/orders/111111-2222-3333-444-5555555555/general"
 }
 ```
 
-
 ## Custom user properties
 
-On top of the default properties in the `context.environment` object, any property defined in the [`additionalEnv`](/api-reference/application-config#additionalenv) object will be available in the `context.environment` object as well.
+To inject properties specific to your Custom View in the context, you can add them to the [`additionalEnv`](/api-reference/application-config#additionalenv) object and they will automatically be added to the `context.environment` value.
 
-This is useful to inject values specific to your Custom View. For example:
+For example, for the following `custom-view-config` the `trackingSentry` property is added in the `context.environment`.
 
-```json title="custom-view-config.json" highlightLines="5-7"
+```js title="custom-view-config.json" highlightLines="4-6"
 {
   "name": "My Custom View",
   "cloudIdentifier": "gcp-eu",
@@ -197,9 +206,7 @@ This is useful to inject values specific to your Custom View. For example:
 }
 ```
 
-The `context.environment` object will then include the `trackingSentry` property:
-
-```json highlightLines="6"
+```js title="context.environment" highlightLines="5"
 {
   "environment": {
     "customViewId": "ckw3vt1hv034901uzio4bkzc3",
@@ -209,30 +216,6 @@ The `context.environment` object will then include the `trackingSentry` property
 }
 ```
 
-## Usage
-
-### useCustomViewContext
-
-A React hook that allows to access the `CustomViewContext` and selectively pick the necessary properties.
-
-```jsx highlightLines="4-6"
-import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
-
-const DisplayLocale = () => {
-  const dataLocale = useCustomViewContext((context) =>
-    context.dataLocale
-  );
-  render() {
-    return (
-      <div>
-        <h1>Current data locale: {dataLocale}</h1>
-      </div>
-    );
-  }
-}
-
-export default DisplayLocale;
-```
 
 # Project image settings
 
