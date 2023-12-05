@@ -140,7 +140,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       isOpen
       onClose={props.onClose}
       size={panelSize === 'small' ? 10 : 30}
-      title=""
+      title={`Custom View: ${props.customView.defaultLabel}`}
       hidePathLabel
     >
       <ContentWrapper>
