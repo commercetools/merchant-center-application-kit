@@ -1,5 +1,12 @@
 # @commercetools-website/custom-views
 
+## 22.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.14.0
+
 ## 22.13.2
 
 ### Patch Changes
