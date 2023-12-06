@@ -66,8 +66,10 @@ const defaultProps: Pick<
 };
 
 const ContentWrapper = styled.div`
-  height: 100%;
-  padding: ${designTokens.spacing50};
+  flex: 1;
+  flex-basis: 0;
+  margin: ${appKitDesignTokens.marginForPageContent};
+  overflow: auto;
 `;
 
 const HeaderWrapper = styled.div`
