@@ -31,11 +31,11 @@ module.exports = config;
 
 # Editor support
 
-To facilitate the usage of the application config, you should instruct your editor to provide hints and code completion (IntelliSense) depending on the format of the configuration file.
+To facilitate the usage of the Custom View config, you should instruct your editor to provide hints and code completion (IntelliSense) depending on the format of the configuration file.
 
 ## JSON schema support for VSCode
 
-When using JSON files, you can take advantage of the [JSON schema for the application config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
+When using JSON files, you can take advantage of the [JSON schema for the Custom View config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
 
 ```json title=".vscode/settings.json"
 "json.schemas": [
@@ -79,7 +79,7 @@ export default config;
 
 # Configuration properties
 
-To learn more about the application config properties, read the following.
+To learn more about the Custom View config properties, read the following.
 
 ## `name`
 
@@ -292,12 +292,6 @@ Using `manage_` OAuth Scopes always imply the corresponding `view_` OAuth Scope.
 </Info>
 
 ## `additionalOAuthScopes`
-
-<Info>
-
-This feature is available from version `21.21.0` onwards.
-
-</Info>
 
 The optional configuration for defining more granular [OAuth Scopes and user permissions](/concepts/oauth-scopes-and-user-permissions#permission-groups).
 
@@ -555,7 +549,7 @@ Variable placeholders are a way of injecting certain information into the "stati
 
 ## Environment variable references
 
-To make the application config more reusable across different environments, you can use references to environment variables within the application config file.
+To make the Custom View config more reusable across different environments, you can use references to environment variables within the config file.
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
@@ -626,7 +620,7 @@ The reference placeholder assumes that the Custom View has the translation files
 
 # Runtime application environment
 
-Much of the information specified in the application config is injected into the runtime environment and available via the global variable `window.app`.
+Much of the information specified in the Custom View config is injected into the runtime environment and available via the global variable `window.app`.
 
 The `environment` prop is parsed and injected into a React Context, making it available to the entire application. To access it, use the `@commercetools-frontend/application-shell-connectors` package.
 
