@@ -2578,10 +2578,10 @@ importers:
         version: 4.6.0
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.9)
+        version: 4.1.0(vite@4.4.12)
       '@vitejs/plugin-react-swc':
         specifier: 3.3.1
-        version: 3.3.1(vite@4.4.9)
+        version: 3.3.1(vite@4.4.12)
       autoprefixer:
         specifier: ^10.4.15
         version: 10.4.15(postcss@8.4.31)
@@ -2700,8 +2700,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       vite:
-        specifier: 4.4.9
-        version: 4.4.9(@types/node@18.17.14)
+        specifier: 4.4.12
+        version: 4.4.12(@types/node@18.17.14)
       webpack:
         specifier: 5.82.1
         version: 5.82.1(uglify-js@3.17.4)
@@ -3354,7 +3354,7 @@ importers:
         version: 9.0.3
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.9)
+        version: 4.1.0(vite@4.4.12)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
@@ -3386,8 +3386,8 @@ importers:
         specifier: 9.0.0
         version: 9.0.0
       vite:
-        specifier: 4.4.9
-        version: 4.4.9(@types/node@18.17.14)
+        specifier: 4.4.12
+        version: 4.4.12(@types/node@18.17.14)
 
   website:
     dependencies:
@@ -3590,10 +3590,10 @@ importers:
         version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.9)
+        version: 4.1.0(vite@4.4.12)
       vite:
-        specifier: 4.4.9
-        version: 4.4.9(@types/node@18.17.14)
+        specifier: 4.4.12
+        version: 4.4.12(@types/node@18.17.14)
 
   website-custom-views:
     dependencies:
@@ -7069,16 +7069,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.13.1:
-    resolution: {integrity: sha512-byoYrdzZOBAFWIAKVS9HQ4BCVEKGEXAOGUFLXajKeLUmDGssoYeVqWIAmstPPLtmjpx9+YmJPuAKXyNDXOmVDw==}
+  /@commercetools-frontend/application-config@22.13.2:
+    resolution: {integrity: sha512-VsFERoFRxuyVL10rDyXkWJaTMwDxGIWw8fMZet2m8xchO9U8cvfb7BWN3dgObA+hG8E04GPNKRB67BzVodD5ow==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.13.1
-      '@commercetools-frontend/constants': 22.13.1
+      '@commercetools-frontend/babel-preset-mc-app': 22.13.2
+      '@commercetools-frontend/constants': 22.13.2
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -7096,8 +7096,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.13.1:
-    resolution: {integrity: sha512-XnQPjpffcPWkI4mggZeo2c2XFBN6FsRQF7KHDf1Xi8kVaABHEAS1xAm16ewCBDN5rSUbcyTYyMu/m0TaL3GsJQ==}
+  /@commercetools-frontend/babel-preset-mc-app@22.13.2:
+    resolution: {integrity: sha512-QtbLziNshXjEAO/+otJ9gCW8Gek2LL7zmmYpb7lPs6qZ1FHByb83xcTFcZLAd2W84PNQg8c73VIz50dqPleHtw==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7129,8 +7129,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.13.1:
-    resolution: {integrity: sha512-Yeb8Hk1h6Khmqkpm/K9BQeWFl67Ipiogh1hERUeMXY/Q3qX/nSJexrIXPNVTorz18O6D/RZy6K7msYz66pciyw==}
+  /@commercetools-frontend/constants@22.13.2:
+    resolution: {integrity: sha512-am8zyHJpmS9J6ScrFnMkg4hMvTTlWuBP8E2kPikArvnHKnLG4NtPNFiUCKCMJbrI0UgPVzoyMbmnulVwPldctw==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7229,8 +7229,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.13.1
-      '@commercetools-frontend/constants': 22.13.1
+      '@commercetools-frontend/application-config': 22.13.2
+      '@commercetools-frontend/constants': 22.13.2
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -10298,7 +10298,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.23.0)
 
@@ -15728,18 +15728,18 @@ packages:
       postcss-inline-svg: 4.1.0
     dev: false
 
-  /@vitejs/plugin-react-swc@3.3.1(vite@4.4.9):
+  /@vitejs/plugin-react-swc@3.3.1(vite@4.4.12):
     resolution: {integrity: sha512-ZoYjGxMniXP7X+5ry/W1tpY7w0OeLUEsBF5RHFPmAhpgwwNWie8OF4056MRXRi9QgvYYoZPDzdOXGK3wlCoTfQ==}
     peerDependencies:
       vite: ^4
     dependencies:
       '@swc/core': 1.3.57
-      vite: 4.4.9(@types/node@18.17.14)
+      vite: 4.4.12(@types/node@18.17.14)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: false
 
-  /@vitejs/plugin-react@4.1.0(vite@4.4.9):
+  /@vitejs/plugin-react@4.1.0(vite@4.4.12):
     resolution: {integrity: sha512-rM0SqazU9iqPUraQ2JlIvReeaxOoRj6n+PzB1C0cBzIbd8qP336nC39/R9yPi3wVcah7E7j/kdU1uCUqMEU4OQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -15750,7 +15750,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.23.0)
       '@types/babel__core': 7.20.2
       react-refresh: 0.14.0
-      vite: 4.4.9(@types/node@18.17.14)
+      vite: 4.4.12(@types/node@18.17.14)
     transitivePeerDependencies:
       - supports-color
 
@@ -33438,8 +33438,8 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite@4.4.9(@types/node@18.17.14):
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+  /vite@4.4.12(@types/node@18.17.14):
+    resolution: {integrity: sha512-KtPlUbWfxzGVul8Nut8Gw2Qe8sBzWY+8QVc5SL8iRFnpnrcoCaNlzO40c1R6hPmcdTwIPEDkq0Y9+27a5tVbdQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
