@@ -10,23 +10,32 @@ React components and hooks to declaratively handle Merchant Center user permissi
 
 # Installation
 
-```
+
+<MultiCodeBlock>
+
+```yarn
 yarn add @commercetools-frontend/permissions
+```
 
-# or
-
+```npm
 npm --save install @commercetools-frontend/permissions
 ```
 
-Additionally install the peer dependencies (if not present)
+</MultiCodeBlock>
 
-```
+Additionally, install the peer dependencies (if not present)
+
+<MultiCodeBlock>
+
+```yarn
 yarn add react
+```
 
-# or
-
+```npm
 npm --save install react
 ```
+
+</MultiCodeBlock>
 
 # Hooks
 
@@ -54,7 +63,7 @@ const CreateButton = () => {
 
 ### Options
 
-* `demandedPermissions`: A list of user permissions of the Custom View that need to be evaluated against the applied user permissions.
+* `demandedPermissions`: A list of user permissions of the Custom View that need to be evaluated against the applied user permissions. To avoid defining permissions manually, use the [permissions from constants](/development/permissions#defining-constants).
 
   <Info>
 
