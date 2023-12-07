@@ -35,12 +35,6 @@ In this scenario, more than one permission group (the default one) is needed to 
 
 You can define additional permission groups with different access requirements to enable such use cases. See [additionalOAuthScopes](/api-reference/application-config#additionaloauthscopes) field in the Custom View config.
 
-<Info>
-
-This feature is available from version `21.21.0` onwards.
-
-</Info>
-
 In the following example, we're defining two additional permission groups. The group `delivery` allows users to manage incoming orders, while the group `promotion` enables users to work on discount and promotion campaigns.
 
 ```json title="custom-view-config.json" highlightLines="6-17"
