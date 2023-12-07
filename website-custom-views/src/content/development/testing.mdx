@@ -7,27 +7,27 @@ At this point the basic functionalities of your application are in place. It's t
 
 > _Write tests. Not too many. Mostly integration._
 
-When it comes to testing applications there are several approaches available. You've probably heard about the _Testing Pyramid_ to describe the different levels of testing.
+When it comes to testing applications, there are several approaches available. You've probably heard about the [Testing Pyramid](https://www.browserstack.com/guide/testing-pyramid-for-test-automation) to describe the different levels of testing.
 
 # Recommended testing strategies
 
 To test your Custom Views, we recommend using the [React Testing Library](https://github.com/testing-library/react-testing-library) for integration tests (or user flow tests).
 
-This library describes the testing problem as following:
+This library describes the testing problem as follows:
 
 > _You want to write maintainable tests for your React components. As a part of this goal, you want your tests to avoid including implementation details of your components and rather focus on making your tests give you the confidence for which they are intended. As part of this, you want your test base to be maintainable in the long run so refactors of your components (changes to implementation but not functionality) don't break your tests and slow you and your team down._
 
 This is the **recommended approach** for writing component and UI tests.
 
-To facilitate writing integration tests we additionally provide some [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) with the necessary setup to test a Custom View.
+To facilitate writing integration tests, we additionally provide some [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) with the necessary setup to test a Custom View.
 
-For End-to-End tests we recommend using [Cypress](https://www.cypress.io/). See [End-to-End](#end-to-end) for more information.
+For End-to-End tests, we recommend using [Cypress](https://www.cypress.io/). See [End-to-End](#end-to-end) for more information.
 
 # Integration tests
 
 Writing integration tests is about putting yourself in the user's perspective and deriving test scenarios that focus on user interactions and workflows.
 
-For instance, in our Channels page we can write a test to check that the page renders some data in a table and maybe paginate to page two.
+For instance, in the Channels page you can write a test to check that the page renders some data in a table and maybe paginate to page two.
 
 ## Mocking data
 
@@ -59,7 +59,7 @@ Our Channels page sends a `FetchChannels` GraphQL query, therefore we need to us
 ```js title="channels.spec.js"
 import { graphql } from 'msw';
 
-it('should render channels', async () => {
+it('should render Channels', async () => {
   mockServer.use(
     graphql.query('FetchChannels', (req, res, ctx) => {
       return res(
@@ -86,7 +86,7 @@ import { graphql } from 'msw';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import * as ChannelMock from '@commercetools-test-data/channel';
 
-it('should render channels', async () => {
+it('should render Channels', async () => {
   mockServer.use(
     graphql.query('FetchChannels', (req, res, ctx) => {
       const totalItems = 20;
@@ -137,7 +137,7 @@ const renderView = (options = {}) => {
   });
 };
 
-it('should render channels', async () => {
+it('should render Channels', async () => {
   mockServer.use(/* See mock setup */);
 
   renderView();
@@ -149,18 +149,18 @@ it('should render channels', async () => {
 With this simple test we implicitly have tested the following things:
 
 * The routes work.
-* The channels page renders.
+* The Channels page renders.
 * The data is fetched.
 * The data is displayed on the page.
 
 From here you can enhance the test to do other things, especially testing the user interactions. For example:
 
-* We can simulate that the user paginates through the table, or use search and filters.
+* You can simulate that the user paginates through the table, or use search and filters.
 
-Let's enhance our test to paginate to page two. First we need to adjust our GraphQL mock to return results based on the `offset` from the query variables. Then we need to interact with the pagination button to go to the next page.
+Let's enhance our test to paginate to page two. We need to adjust our GraphQL mock to return results based on the `offset` from the query variables to do this. Then, we need to interact with the pagination button to go to the next page.
 
 ```js title="channels.spec.js" highlightLines="1,5-7,14,30-31,34,37-38"
-it('should render channels and paginate to second page', async () => {
+it('should render Channels and paginate to second page', async () => {
   mockServer.use(
     graphql.query('FetchChannels', (req, res, ctx) => {
       // Simulate a server side pagination.
@@ -201,22 +201,22 @@ it('should render channels and paginate to second page', async () => {
 });
 ```
 
-This should give you a basic idea on how you can approach testing your Custom View.
+This should give you a basic idea of how you can approach testing your Custom View.
 
 ## Testing user permissions
 
-User permissions are bound to a Project and can vary depending on the permissions assigned to the Team where the user is a member of.
+User permissions are bound to a Project and can vary depending on the permissions assigned to the Team where the user is a member.
 
-By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) assigns the pre-defined permissions for the user to be able to view the Custom View. If you need to test with more permissions, you need to explicitly provide them in your test setup. The following field can be used to assign the different granular permission values:
+By default, the [`test-utils`](/api-reference/commercetools-frontend-application-shell#test-utils) assigns the pre-defined permissions for the user to be able to view the Custom View. If you need to test with more permissions, explicitly provide them in your test setup. The following field can be used to assign the different granular permission values:
 
-* `projectAllAppliedPermissions`: a list of applied resource permissions that the user should have for the given Project. A resource permission is an object with the following shape:
+* `projectAllAppliedPermissions`: a list of applied resource permissions the user should have for the given Project. A resource permission is an object with the following shape:
 
-  * `name`: The name of the user permissions prefixed with `can`. For example `canView`.
+  * `name`: The name of the user permissions prefixed with `can`. For example, `canView`.
   * `value`: If `true`, the resource permission is applied to the user.
 
-In our example application, we can apply this as following:
+In our example application, we can apply this as follows:
 
-```js title="channels.spec.js" highlightLines="10-17"
+```js title="channels.spec.js" highlightLines="9-14"
 import { renderCustomView } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants/application';
 import ApplicationRoutes from '../../routes';
