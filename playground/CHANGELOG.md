@@ -1,5 +1,24 @@
 # playground
 
+## 22.14.1
+
+### Patch Changes
+
+- [#3327](https://github.com/commercetools/merchant-center-application-kit/pull/3327) [`0d0b5330d`](https://github.com/commercetools/merchant-center-application-kit/commit/0d0b5330d2ebe86b5e10166d138db89735a78574) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.4.12 [security]
+
+- Updated dependencies [[`7e62ee10c`](https://github.com/commercetools/merchant-center-application-kit/commit/7e62ee10c1e3cb6f3e366e8d0685c720ff5efd03)]:
+  - @commercetools-frontend/application-components@22.14.1
+  - @commercetools-frontend/application-shell@22.14.1
+  - @commercetools-frontend/actions-global@22.14.1
+  - @commercetools-frontend/application-shell-connectors@22.14.1
+  - @commercetools-frontend/assets@22.14.1
+  - @commercetools-frontend/browser-history@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+  - @commercetools-frontend/i18n@22.14.1
+  - @commercetools-frontend/l10n@22.14.1
+  - @commercetools-frontend/permissions@22.14.1
+  - @commercetools-frontend/sdk@22.14.1
+
 ## 22.14.0
 
 ### Patch Changes

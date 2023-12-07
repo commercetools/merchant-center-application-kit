@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.14.1
+
+### Patch Changes
+
+- [#3334](https://github.com/commercetools/merchant-center-application-kit/pull/3334) [`225c110b4`](https://github.com/commercetools/merchant-center-application-kit/commit/225c110b46208519b4cd7c4bb26320ba32d8baf4) Thanks [@emmenko](https://github.com/emmenko)! - Avoid collisions of SVG IDs in webpack's SVGR loader and Vite SVGR plugin.
+
+  More information about the approach can be found [here](https://github.com/svg/svgo/issues/1746#issuecomment-1803600573).
+
+- [#3327](https://github.com/commercetools/merchant-center-application-kit/pull/3327) [`0d0b5330d`](https://github.com/commercetools/merchant-center-application-kit/commit/0d0b5330d2ebe86b5e10166d138db89735a78574) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.4.12 [security]
+
+- Updated dependencies [[`7e62ee10c`](https://github.com/commercetools/merchant-center-application-kit/commit/7e62ee10c1e3cb6f3e366e8d0685c720ff5efd03)]:
+  - @commercetools-frontend/application-components@22.14.1
+  - @commercetools-frontend/application-config@22.14.1
+  - @commercetools-frontend/assets@22.14.1
+  - @commercetools-frontend/babel-preset-mc-app@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+  - @commercetools-frontend/mc-dev-authentication@22.14.1
+  - @commercetools-frontend/mc-html-template@22.14.1
+
 ## 22.14.0
 
 ### Patch Changes
