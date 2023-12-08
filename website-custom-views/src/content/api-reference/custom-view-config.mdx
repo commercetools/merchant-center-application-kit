@@ -89,7 +89,7 @@ It will be used in the Merchant Center when a user is presented with a list of C
 
 ```json
 {
-  "name": "The Avengers app"
+  "name": "The favourite Products view"
 }
 ```
 
@@ -99,7 +99,7 @@ An optional description of the Custom View, for information purposes.
 
 ```json
 {
-  "description": "Manage your favourite Avengers"
+  "description": "Manage your favourite Products"
 }
 ```
 
@@ -430,8 +430,8 @@ If they are not configured, the `name` values will be used instead.
 ```json
 {
   "labelAllLocales": [
-    { "locale": "en", "value": "The Avengers" },
-    { "locale": "de", "value": "Die Avengers" }
+    { "locale": "en", "value": "The Products" },
+    { "locale": "de", "value": "Die Products" }
   ]
 }
 ```
@@ -600,15 +600,15 @@ This feature is available from version `20.8.0` onwards.
 
 </Info>
 
-References for Intl messages are specified with a special expansion-like syntax `${}` together with the prefix key `intl:`. For example, to load a translation message from the `en.json` file named `Menu.Avengers`, you would use `${intl:en:Menu.Avengers}`.
+References for Intl messages are specified with a special expansion-like syntax `${}` together with the prefix key `intl:`. For example, to load a translation message from the `en.json` file named `Menu.Products`, you would use `${intl:en:Menu.Products}`.
 
 This is useful when specifying [Custom View labels](#labelAllLocales).
 
 ```json
 {
   "labelAllLocales": [
-    { "locale": "en", "value": "${intl:en:Menu.Avengers}" },
-    { "locale": "de", "value": "${intl:de:Menu.Avengers}" }
+    { "locale": "en", "value": "${intl:en:Menu.Products}" },
+    { "locale": "de", "value": "${intl:de:Menu.Products}" }
   ]
 }
 ```
