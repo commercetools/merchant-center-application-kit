@@ -64,8 +64,6 @@ The default permission group is always defined, even when adding additional grou
 
 When additional groups are defined, the default group can be left empty without specifying any OAuth Scopes.
 
-But still, at least one "view-only" user permission must be enabled to access the Custom View.
-
 </Info>
 
 # User permissions
@@ -78,7 +76,7 @@ Each Custom View gets **unique** "view" and "manage" permissions.
 * When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
 * When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.
 
-<Info>
+## With additional permission groups
 
 When using additional permission groups, the permission name is derived from the group name, based on the following format: `{View,Manage}<GroupName>`
 
@@ -86,10 +84,8 @@ Here are some examples:
 
 | Permission group name | User permission |
 | --- | --- |
-| `products` | `{View,Manage}Products` |
-| `customers` | `{View,Manage}Customers` |
-
-</Info>
+| `delivery` | `{View,Manage}Delivery` |
+| `promotion` | `{View,Manage}Promotion` |
 
 Ultimately, user permissions should be applied and enforced in the actual Custom View code. For example to restrict access to certain pages, or to deactivate a button, etc.
 
