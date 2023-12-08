@@ -42,15 +42,7 @@ export const PERMISSIONS_WITH_GROUPS = resolveCustomViewResourceAccesses(
 );
 ```
 
-In this scenario, the `PERMISSIONS_WITH_GROUPS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names:
-
-* `PERMISSIONS.View`: maps to `View`.
-* `PERMISSIONS.Manage`: maps to `Manage`.
-* `PERMISSIONS.ViewDelivery`: maps to `ViewDelivery`.
-* `PERMISSIONS.ManageDelivery`: maps to `ManageDelivery`.
-* `PERMISSIONS.ViewPromotion`: maps to `ViewPromotion`.
-* `PERMISSIONS.ManagePromotion`: maps to `ManagePromotion`.
-
+In this scenario, the `PERMISSIONS_WITH_GROUPS` variable contains `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names.
 
 # Applying user permissions
 
@@ -61,7 +53,7 @@ A Custom View allows, for example, to check and evaluate if certain user permiss
 
 In case certain routes should not be accessible without proper user permissions, you can render the route conditionally based on the evaluated permission.
 
-To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
+To do so, you can use the [`useIsAuthorized`](/api-reference/commercetools-frontend-permissions#useisauthorized) as follows:
 
 ```jsx title="routes.js" highlightLines="10-12"
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
@@ -101,17 +93,17 @@ You can evaluate user permissions in your React components, for example to deact
 ```jsx
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import { PERMISSIONS } from '../constants';
+import { PERMISSIONS_WITH_GROUPS } from '../constants';
 
 const MyComponent = () => {
   const canManage = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.Manage],
+    demandedPermissions: [PERMISSIONS_WITH_GROUPS.ManagePromotion],
   });
 
   return (
     <div>
       <PrimaryButton
-        label="Create channel"
+        label="Create promotion"
         isDisabled={!canManage}
       />
     </div>
