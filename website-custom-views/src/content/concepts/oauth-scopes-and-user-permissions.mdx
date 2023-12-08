@@ -11,7 +11,7 @@ Therefore, Custom Views **must specify the list of OAuth Scopes** needed for the
 For example, if you are developing a Custom View to manage [Channels](https://docs.commercetools.com/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs.commercetools.com/api/projects/customers) information.<br />
 To fulfill these requirements, your Custom View would need the following OAuth Scopes: `view_products`, `view_customers` and `manage_products`.
 
-These [OAuth Scopes](https://docs.commercetools.com/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/application-config#oauthscopes).
+These [OAuth Scopes](https://docs.commercetools.com/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/custom-view-config#oauthscopes).
 
 ```json title="custom-view-config.json"
 {
@@ -28,12 +28,12 @@ This grouping determines the **mapping and relation between OAuth Scopes and use
 
 ## Permission groups
 
-Every Custom View has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/application-config#oauthscopes) field of the Custom View config.
+Every Custom View has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/custom-view-config#oauthscopes) field of the Custom View config.
 
 However, you might need more granular access control to fulfill specific business requirements. Suppose your Custom View manages products, discounts, and orders, and you want a group of users to only manage products and discounts while another group handles orders.<br />
 In this scenario, more than one permission group (the default one) is needed to fulfill the access requirements.
 
-You can define additional permission groups with different access requirements to enable such use cases. See [additionalOAuthScopes](/api-reference/application-config#additionaloauthscopes) field in the Custom View config.
+You can define additional permission groups with different access requirements to enable such use cases. See [additionalOAuthScopes](/api-reference/custom-view-config#additionaloauthscopes) field in the Custom View config.
 
 In the following example, we're defining two additional permission groups. The group `delivery` allows users to manage incoming orders, while the group `promotion` enables users to work on discount and promotion campaigns.
 
@@ -102,7 +102,7 @@ For more information on what to do next, we recommend the following sections:
 <Cards smallTitle clickable>
   <Card
     title="Application Config"
-    href="/api-reference/application-config"
+    href="/api-reference/custom-view-config"
   >
     Learn more about the Custom View configuration file.
   </Card>
