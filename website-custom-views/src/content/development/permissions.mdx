@@ -23,6 +23,35 @@ The `PERMISSIONS` variable contains a `View` and `Manage` properties:
 
 You can then use the `PERMISSIONS` variable to reference the permission in the application code.
 
+## With addtional permissions groups
+
+When using [additional permission groups](/concepts/oauth-scopes-and-user-permissions#permission-groups), you must also provide the unique group to the `resolveCustomViewResourceAccesses` function to generate the correct permission keys.
+
+The group names can be exported and referenced also in the Custom View config file.
+
+```js title="constants.js" highlightLines="4-5"
+import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
+
+export const groupNames = {
+  delivery: 'delivery',
+  promotion: 'promotion',
+};
+
+export const PERMISSIONS_WITH_GROUPS = resolveCustomViewResourceAccesses(
+  [groupNames.delivery, groupNames.promotion]
+);
+```
+
+In this scenario, the `PERMISSIONS_WITH_GROUPS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names:
+
+* `PERMISSIONS.View`: maps to `View`.
+* `PERMISSIONS.Manage`: maps to `Manage`.
+* `PERMISSIONS.ViewDelivery`: maps to `ViewDelivery`.
+* `PERMISSIONS.ManageDelivery`: maps to `ManageDelivery`.
+* `PERMISSIONS.ViewPromotion`: maps to `ViewPromotion`.
+* `PERMISSIONS.ManagePromotion`: maps to `ManagePromotion`.
+
+
 # Applying user permissions
 
 A Custom View allows, for example, to check and evaluate if certain user permissions are assigned or not, making it possible to determine whether to render something or not, or to turn off some UI functionalities.
