@@ -32,13 +32,8 @@ The group names can be exported and referenced also in the Custom View config fi
 ```js title="constants.js" highlightLines="9"
 import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
 
-export const groupNames = {
-  delivery: 'delivery',
-  promotion: 'promotion',
-};
-
 export const PERMISSIONS_WITH_GROUPS = resolveCustomViewResourceAccesses(
-  [groupNames.delivery, groupNames.promotion]
+  ['delivery', 'promotion']
 );
 ```
 
