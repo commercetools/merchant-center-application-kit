@@ -26,7 +26,7 @@ const config = {
       active: true,
       notificationType: 'warning',
       content:
-        'This is the documentation preview for [Custom Views](/../custom-views), a feature that is currently in [Closed beta](/../offering/api-contract#closed-beta). This documentation might not be in sync with our [official documentation](https://docs.commercetools.com).',
+        'This is the documentation preview for Custom Views, a feature that is currently in [Closed beta](/../offering/api-contract#closed-beta). This documentation might not be in sync with our [official documentation](https://docs.commercetools.com).',
     },
   },
   plugins: [
