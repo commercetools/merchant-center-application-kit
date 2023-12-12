@@ -1,8 +1,8 @@
+import crypto from 'crypto';
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
-import stringHash from 'string-hash';
 import type { XastElement, PluginInfo } from 'svgo';
 import webpack, { type Configuration } from 'webpack';
 import WebpackBar from 'webpackbar';
@@ -281,7 +281,10 @@ function createWebpackConfigForDevelopment(
                       params: {
                         delim: '',
                         prefix: (_: XastElement, info: PluginInfo) =>
-                          `svg${stringHash(info.path || '')}`,
+                          `svg${crypto
+                            .createHash('shake256', { outputLength: 6 })
+                            .update(info.path || '')
+                            .digest('hex')}`,
                       },
                     },
                   ],

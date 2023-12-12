@@ -1,9 +1,9 @@
 /**
  * COPIED FROM https://github.com/pd4d10/vite-plugin-svgr
  */
+import crypto from 'crypto';
 import fs from 'fs';
 import { createFilter } from '@rollup/pluginutils';
-import stringHash from 'string-hash';
 import type { XastElement, PluginInfo } from 'svgo';
 import { transformWithEsbuild, type Plugin } from 'vite';
 
@@ -60,7 +60,10 @@ function vitePluginSvgr(): Plugin {
                   params: {
                     delim: '',
                     prefix: (_: XastElement, info: PluginInfo) =>
-                      `svg${stringHash(info.path || '')}`,
+                      `svg${crypto
+                        .createHash('shake256', { outputLength: 6 })
+                        .update(info.path || '')
+                        .digest('hex')}`,
                   },
                 },
               ],

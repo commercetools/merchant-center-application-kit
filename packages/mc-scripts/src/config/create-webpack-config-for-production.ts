@@ -1,9 +1,9 @@
 // @ts-ignore
+import crypto from 'crypto';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
-import stringHash from 'string-hash';
 import type { XastElement, PluginInfo } from 'svgo';
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack, {
@@ -301,7 +301,10 @@ function createWebpackConfigForProduction(
                       params: {
                         delim: '',
                         prefix: (_: XastElement, info: PluginInfo) =>
-                          `svg${stringHash(info.path || '')}`,
+                          `svg${crypto
+                            .createHash('shake256', { outputLength: 6 })
+                            .update(info.path || '')
+                            .digest('hex')}`,
                       },
                     },
                   ],
