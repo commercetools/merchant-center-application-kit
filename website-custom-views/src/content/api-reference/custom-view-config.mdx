@@ -468,7 +468,7 @@ Supported values are: `SMALL`, `LARGE`.
 
 ## `locators`
 
-Since Custom Views are rendered in the context of built-in Merchant Center applications, you need to set in which specific views the Custom View should be rendered.
+Since Custom Views are rendered in the context of built-in Merchant Center applications, you need to define the specific views where the Custom View should be rendered.
 
 This configuration property is a list of identifiers of Merchant Center locations where the Custom View is allowed to be rendered.
 
@@ -549,7 +549,7 @@ Variable placeholders are a way of injecting certain information into the "stati
 
 ## Environment variable references
 
-To make the Custom View config more reusable across different environments, you can use references to environment variables within the config file.
+To make the Custom View config reusable across different environments, you can use references to environment variables within the config file.
 
 References are specified with a special expansion-like syntax `${}` together with the prefix key `env:`. For example, to load an environment variable called `APP_URL`, you would use `${env:APP_URL}`.
 
