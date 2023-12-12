@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
   usePaginationState,
@@ -28,10 +28,12 @@ const columns = [
 
 const Channels = () => {
   const intl = useIntl();
-  const user = useApplicationContext((context) => context.user);
-  const dataLocale = useApplicationContext((context) => context.dataLocale);
-  const projectLanguages = useApplicationContext(
-    (context) => context.project?.languages
+  const { user, dataLocale, projectLanguages } = useCustomViewContext(
+    (context) => ({
+      user: context.user,
+      dataLocale: context.dataLocale,
+      projectLanguages: context.project?.languages,
+    })
   );
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });

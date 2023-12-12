@@ -1,5 +1,9 @@
 import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
-import { entryPointUriPathToPermissionKeys } from './formatters';
+import {
+  computeCustomViewPermissionsKeys,
+  computeCustomViewResourceAccesses,
+  entryPointUriPathToPermissionKeys,
+} from './formatters';
 
 describe.each`
   entryPointUriPath                        | formattedResourceAccessKey
@@ -74,6 +78,46 @@ describe.each`
       );
       expect(permissionKeys.View).toBe(`View${formattedResourceAccessKey}`);
       expect(permissionKeys.Manage).toBe(`Manage${formattedResourceAccessKey}`);
+    });
+  }
+);
+
+describe.each`
+  permissionGroupNames | formattedResourceAccessKeyAdditionalName
+  ${undefined}         | ${''}
+  ${['books']}         | ${'Books'}
+  ${['the-books']}     | ${'TheBooks'}
+  ${['the-movies']}    | ${'TheMovies'}
+`(
+  'computing Custom Views resource accesses',
+  ({ permissionGroupNames, formattedResourceAccessKeyAdditionalName }) => {
+    it(`should format correctly`, () => {
+      expect(computeCustomViewResourceAccesses(permissionGroupNames)).toEqual({
+        view: `view`,
+        manage: `manage`,
+        [`view${formattedResourceAccessKeyAdditionalName}`]: `view${formattedResourceAccessKeyAdditionalName}`,
+        [`manage${formattedResourceAccessKeyAdditionalName}`]: `manage${formattedResourceAccessKeyAdditionalName}`,
+      });
+    });
+  }
+);
+
+describe.each`
+  permissionGroupNames | formattedResourceAccessKeyAdditionalName
+  ${undefined}         | ${''}
+  ${['books']}         | ${'Books'}
+  ${['the-books']}     | ${'TheBooks'}
+  ${['the-movies']}    | ${'TheMovies'}
+`(
+  'computing Custom Views permissions keys',
+  ({ permissionGroupNames, formattedResourceAccessKeyAdditionalName }) => {
+    it(`should format correctly`, () => {
+      expect(computeCustomViewPermissionsKeys(permissionGroupNames)).toEqual({
+        View: `View`,
+        Manage: `Manage`,
+        [`View${formattedResourceAccessKeyAdditionalName}`]: `View${formattedResourceAccessKeyAdditionalName}`,
+        [`Manage${formattedResourceAccessKeyAdditionalName}`]: `Manage${formattedResourceAccessKeyAdditionalName}`,
+      });
     });
   }
 );

@@ -1,5 +1,65 @@
 # @commercetools-frontend/actions-global
 
+## 22.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+  - @commercetools-frontend/notifications@22.14.1
+  - @commercetools-frontend/sentry@22.14.1
+
+## 22.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.14.0
+  - @commercetools-frontend/constants@22.14.0
+  - @commercetools-frontend/notifications@22.14.0
+  - @commercetools-frontend/sentry@22.14.0
+
+## 22.13.2
+
+### Patch Changes
+
+- Updated dependencies [[`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923)]:
+  - @commercetools-frontend/sentry@22.13.2
+  - @commercetools-frontend/browser-history@22.13.2
+  - @commercetools-frontend/constants@22.13.2
+  - @commercetools-frontend/notifications@22.13.2
+
+## 22.13.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.13.1
+  - @commercetools-frontend/constants@22.13.1
+  - @commercetools-frontend/notifications@22.13.1
+  - @commercetools-frontend/sentry@22.13.1
+
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+  - @commercetools-frontend/notifications@22.13.0
+  - @commercetools-frontend/sentry@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2)]:
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/sentry@22.12.0
+  - @commercetools-frontend/browser-history@22.12.0
+  - @commercetools-frontend/notifications@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes

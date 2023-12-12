@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "22.11.0",
+  "version": "22.14.1",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/constants": "22.11.0",
+    "@commercetools-frontend/constants": "22.14.1",
     "@commercetools/api-request-builder": "6.0.0",
     "@commercetools/http-user-agent": "3.0.0",
     "@commercetools/sdk-client": "3.0.0",
@@ -42,7 +42,7 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.11.0",
+    "@emotion/react": "^11.11.1",
     "@testing-library/react": "12.1.5",
     "@types/uuid": "^9.0.3",
     "jest-mock": "29.5.0",

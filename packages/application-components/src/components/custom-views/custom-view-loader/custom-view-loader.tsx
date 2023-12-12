@@ -11,7 +11,8 @@ import {
   CustomViewData,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import CustomPanel from '../custom-panel';
+import { designTokens } from '@commercetools-uikit/design-system';
+import ModalPage from '../../modal-pages/internals/modal-page';
 import messages from './messages';
 
 type TCustomViewIframeMessage = {
@@ -37,6 +38,11 @@ const isIframeReady = (iFrameElementRef: HTMLIFrameElement) => {
     return false;
   }
 };
+
+const ContentWrapper = styled.div`
+  height: 100%;
+  padding: ${designTokens.spacing40} 40px;
+`;
 
 const CustomPanelIframe = styled.iframe`
   height: 100%;
@@ -130,20 +136,24 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   ].join('/');
 
   return (
-    <CustomPanel
-      title={`Custom View: ${props.customView.defaultLabel}`}
+    <ModalPage
+      isOpen
       onClose={props.onClose}
-      size={panelSize}
+      size={panelSize === 'small' ? 10 : 30}
+      title={`Custom View: ${props.customView.defaultLabel}`}
+      hidePathLabel
     >
-      <CustomPanelIframe
-        id={`custom-view-${props.customView.id}`}
-        key={`custom-view-${props.customView.id}`}
-        title={`Custom View: ${props.customView.defaultLabel}`}
-        ref={iFrameElementRef}
-        src={iFrameUrl}
-        onLoad={onLoadSuccessHandler}
-      />
-    </CustomPanel>
+      <ContentWrapper>
+        <CustomPanelIframe
+          id={`custom-view-${props.customView.id}`}
+          key={`custom-view-${props.customView.id}`}
+          title={`Custom View: ${props.customView.defaultLabel}`}
+          ref={iFrameElementRef}
+          src={iFrameUrl}
+          onLoad={onLoadSuccessHandler}
+        />
+      </ContentWrapper>
+    </ModalPage>
   );
 }
 

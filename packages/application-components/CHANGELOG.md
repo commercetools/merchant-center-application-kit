@@ -1,5 +1,117 @@
 # @commercetools-frontend/application-components
 
+## 22.14.1
+
+### Patch Changes
+
+- [#3331](https://github.com/commercetools/merchant-center-application-kit/pull/3331) [`7e62ee10c`](https://github.com/commercetools/merchant-center-application-kit/commit/7e62ee10c1e3cb6f3e366e8d0685c720ff5efd03) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - allow drawer to expand height with a scrollbar
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.14.1
+  - @commercetools-frontend/application-config@22.14.1
+  - @commercetools-frontend/application-shell-connectors@22.14.1
+  - @commercetools-frontend/assets@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+  - @commercetools-frontend/i18n@22.14.1
+  - @commercetools-frontend/l10n@22.14.1
+  - @commercetools-frontend/sentry@22.14.1
+
+## 22.14.0
+
+### Patch Changes
+
+- Updated dependencies [[`66ee37b2a`](https://github.com/commercetools/merchant-center-application-kit/commit/66ee37b2ab19a832e8ff90c4adfa0f7b07fea70d), [`66ee37b2a`](https://github.com/commercetools/merchant-center-application-kit/commit/66ee37b2ab19a832e8ff90c4adfa0f7b07fea70d)]:
+  - @commercetools-frontend/application-shell-connectors@22.14.0
+  - @commercetools-frontend/actions-global@22.14.0
+  - @commercetools-frontend/application-config@22.14.0
+  - @commercetools-frontend/assets@22.14.0
+  - @commercetools-frontend/constants@22.14.0
+  - @commercetools-frontend/i18n@22.14.0
+  - @commercetools-frontend/l10n@22.14.0
+  - @commercetools-frontend/sentry@22.14.0
+
+## 22.13.2
+
+### Patch Changes
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated `@emotion/react` dependency
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix `CustomViewLoader` component UI bug (unexpected panel header).
+  Updated `@emotion/react` dependency.
+- Updated dependencies [[`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923)]:
+  - @commercetools-frontend/application-shell-connectors@22.13.2
+  - @commercetools-frontend/sentry@22.13.2
+  - @commercetools-frontend/i18n@22.13.2
+  - @commercetools-frontend/l10n@22.13.2
+  - @commercetools-frontend/actions-global@22.13.2
+  - @commercetools-frontend/application-config@22.13.2
+  - @commercetools-frontend/assets@22.13.2
+  - @commercetools-frontend/constants@22.13.2
+
+## 22.13.1
+
+### Patch Changes
+
+- [#3305](https://github.com/commercetools/merchant-center-application-kit/pull/3305) [`44834670b`](https://github.com/commercetools/merchant-center-application-kit/commit/44834670bd2b640644819d483bca2bc2f13677ab) Thanks [@chloe0592](https://github.com/chloe0592)! - Updating UI-Kit dependencies to the `16.11.0` version.
+
+- [#3315](https://github.com/commercetools/merchant-center-application-kit/pull/3315) [`e68b9f876`](https://github.com/commercetools/merchant-center-application-kit/commit/e68b9f8767e81e341266bfea19ec0dda452b775d) Thanks [@chloe0592](https://github.com/chloe0592)! - Update all ui-kit packages to v16.12.0
+
+- [#3308](https://github.com/commercetools/merchant-center-application-kit/pull/3308) [`4662db514`](https://github.com/commercetools/merchant-center-application-kit/commit/4662db514b6c5e79cee906fc9bfb364398cb5e49) Thanks [@kark](https://github.com/kark)! - `<CustomViewsSelector>` component UI refinement
+
+- [#3312](https://github.com/commercetools/merchant-center-application-kit/pull/3312) [`a567e137c`](https://github.com/commercetools/merchant-center-application-kit/commit/a567e137c0e20ece0e3b5081ee954ccd9896d156) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated the location for the `CustomViewsSelector` component in all Page Layout components.
+
+- [#3285](https://github.com/commercetools/merchant-center-application-kit/pull/3285) [`ceb1b741f`](https://github.com/commercetools/merchant-center-application-kit/commit/ceb1b741f592ce59ea917b98524b59024d969e4f) Thanks [@ddouglasz](https://github.com/ddouglasz)! - fix issue of jumpy modal animation on page resize
+
+- Updated dependencies [[`44834670b`](https://github.com/commercetools/merchant-center-application-kit/commit/44834670bd2b640644819d483bca2bc2f13677ab), [`e68b9f876`](https://github.com/commercetools/merchant-center-application-kit/commit/e68b9f8767e81e341266bfea19ec0dda452b775d), [`a718c4869`](https://github.com/commercetools/merchant-center-application-kit/commit/a718c4869edbf174315ab1f1f0c2029a6f4bf189)]:
+  - @commercetools-frontend/i18n@22.13.1
+  - @commercetools-frontend/l10n@22.13.1
+  - @commercetools-frontend/actions-global@22.13.1
+  - @commercetools-frontend/application-config@22.13.1
+  - @commercetools-frontend/application-shell-connectors@22.13.1
+  - @commercetools-frontend/assets@22.13.1
+  - @commercetools-frontend/constants@22.13.1
+  - @commercetools-frontend/sentry@22.13.1
+
+## 22.13.0
+
+### Minor Changes
+
+- [#3294](https://github.com/commercetools/merchant-center-application-kit/pull/3294) [`db6e172ce`](https://github.com/commercetools/merchant-center-application-kit/commit/db6e172ce4d679a66fc6030e4f67c4fb5661d065) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - add new drawer component
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.13.0
+  - @commercetools-frontend/application-config@22.13.0
+  - @commercetools-frontend/application-shell-connectors@22.13.0
+  - @commercetools-frontend/assets@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+  - @commercetools-frontend/i18n@22.13.0
+  - @commercetools-frontend/l10n@22.13.0
+  - @commercetools-frontend/sentry@22.13.0
+
+## 22.12.0
+
+### Minor Changes
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+### Patch Changes
+
+- [#3296](https://github.com/commercetools/merchant-center-application-kit/pull/3296) [`f49adc33b`](https://github.com/commercetools/merchant-center-application-kit/commit/f49adc33b83504f6498131ee41525287110f079a) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages
+
+- [#3288](https://github.com/commercetools/merchant-center-application-kit/pull/3288) [`41b15c7cb`](https://github.com/commercetools/merchant-center-application-kit/commit/41b15c7cb6773f92a83a1a16f5d8462fccd09da2) Thanks [@chloe0592](https://github.com/chloe0592)! - Reposition of the App bar elements
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2), [`b5dde0308`](https://github.com/commercetools/merchant-center-application-kit/commit/b5dde030825750d21d80fbdbfceb995de2f07fb2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/application-shell-connectors@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/i18n@22.12.0
+  - @commercetools-frontend/actions-global@22.12.0
+  - @commercetools-frontend/sentry@22.12.0
+  - @commercetools-frontend/l10n@22.12.0
+  - @commercetools-frontend/assets@22.12.0
+
 ## 22.11.0
 
 ### Minor Changes

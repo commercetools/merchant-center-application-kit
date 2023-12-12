@@ -1,28 +1,21 @@
 query FetchApplicationsMenu {
   applicationsMenu {
-    navBar {
+    appBar {
       key
       uriPath
-      icon
       labelAllLocales {
         locale
         value
       }
       featureToggle
-      menuVisibility
       permissions
-      dataFences {
-        group
-        name
-        type
-      }
-      actionRights {
-        group
-        name
-      }
-      submenu {
+    }
+    navBarGroups {
+      key
+      items {
         key
         uriPath
+        icon
         labelAllLocales {
           locale
           value
@@ -39,17 +32,27 @@ query FetchApplicationsMenu {
           name
           type
         }
+        submenu {
+          key
+          uriPath
+          labelAllLocales {
+            locale
+            value
+          }
+          featureToggle
+          menuVisibility
+          permissions
+          actionRights {
+            group
+            name
+          }
+          dataFences {
+            group
+            name
+            type
+          }
+        }
       }
-    }
-    appBar {
-      key
-      uriPath
-      labelAllLocales {
-        locale
-        value
-      }
-      featureToggle
-      permissions
     }
   }
 }

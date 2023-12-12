@@ -1,5 +1,53 @@
 # @commercetools-frontend/l10n
 
+## 22.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.14.1
+
+## 22.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.14.0
+
+## 22.13.2
+
+### Patch Changes
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated `@emotion/react` dependency
+
+- Updated dependencies [[`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923)]:
+  - @commercetools-frontend/sentry@22.13.2
+
+## 22.13.1
+
+### Patch Changes
+
+- [#3313](https://github.com/commercetools/merchant-center-application-kit/pull/3313) [`a718c4869`](https://github.com/commercetools/merchant-center-application-kit/commit/a718c4869edbf174315ab1f1f0c2029a6f4bf189) Thanks [@emmenko](https://github.com/emmenko)! - Update CLDR data, add locale `en-BE`.
+
+  Note that the locale `en-BE` can be used instead of `en-150` (English Europe), as we only support two-letter country codes (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.13.1
+
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes

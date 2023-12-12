@@ -38,40 +38,45 @@ const createTestEnvironment = (
 });
 
 const NavBarTest = (props: Config) => {
-  const applicationsMenu = useApplicationsMenu<'navBar'>('navBar', props);
+  const applicationsMenuGroups = useApplicationsMenu<'navBarGroups'>(
+    'navBarGroups',
+    props
+  );
   const userLocale = useApplicationContext(
     (context) => context.user?.locale ?? 'en'
   );
-  if (applicationsMenu) {
+  if (applicationsMenuGroups) {
     return (
       <>
-        {applicationsMenu.map((menu) => {
-          const localizedLabels = transformLocalizedFieldToLocalizedString(
-            menu.labelAllLocales
-          );
-          return (
-            <ul key={menu.uriPath}>
-              <li>
-                <label>{localizedLabels?.[userLocale]}</label>
-                <p>{`Path: ${menu.uriPath}`}</p>
-              </li>
-              {menu.submenu.map((submenu) => {
-                const localizedLabels =
-                  transformLocalizedFieldToLocalizedString(
-                    submenu.labelAllLocales
+        {applicationsMenuGroups.map((applicationsMenuGroup) =>
+          applicationsMenuGroup.items.map((menu) => {
+            const localizedLabels = transformLocalizedFieldToLocalizedString(
+              menu.labelAllLocales
+            );
+            return (
+              <ul key={menu.uriPath}>
+                <li>
+                  <label>{localizedLabels?.[userLocale]}</label>
+                  <p>{`Path: ${menu.uriPath}`}</p>
+                </li>
+                {menu.submenu.map((submenu) => {
+                  const localizedLabels =
+                    transformLocalizedFieldToLocalizedString(
+                      submenu.labelAllLocales
+                    );
+                  return (
+                    <ul key={submenu.uriPath}>
+                      <li>
+                        <label>{localizedLabels?.[userLocale]}</label>
+                        <p>{`Sub-path: ${submenu.uriPath}`}</p>
+                      </li>
+                    </ul>
                   );
-                return (
-                  <ul key={submenu.uriPath}>
-                    <li>
-                      <label>{localizedLabels?.[userLocale]}</label>
-                      <p>{`Sub-path: ${submenu.uriPath}`}</p>
-                    </li>
-                  </ul>
-                );
-              })}
-            </ul>
-          );
-        })}
+                })}
+              </ul>
+            );
+          })
+        )}
       </>
     );
   }
@@ -104,32 +109,39 @@ const AppBarTest = (props: Config) => {
   return <div>{'loading'}</div>;
 };
 
-const createTestNavBarLegacyMenuJsonConfig = (
+const createTestNavBarMenuGroupJsonConfig = (
   uriPath: string,
-  props: Partial<MenuLoaderResult<'navBar'>[0]> = {}
+  props: Partial<MenuLoaderResult<'navBarGroups'>[number]['items'][number]> = {}
 ) => ({
-  uriPath,
-  key: uriPath,
-  labelAllLocales: [{ locale: 'en', value: upperFirst(uriPath) }],
-  icon: 'UserFilledIcon',
-  permissions: [],
-  dataFences: [],
-  actionRights: [],
-  featureToggle: '',
-  menuVisibility: `hide${upperFirst(uriPath)}`,
-  submenu: [
+  key: '2',
+  items: [
     {
-      uriPath: `${uriPath}/new`,
-      key: `${uriPath}-new`,
-      labelAllLocales: [{ locale: 'en', value: `${upperFirst(uriPath)} new` }],
-      menuVisibility: `hide${upperFirst(uriPath)}New`,
+      uriPath,
+      key: uriPath,
+      labelAllLocales: [{ locale: 'en', value: upperFirst(uriPath) }],
+      icon: 'UserFilledIcon',
       permissions: [],
-      actionRights: [],
       dataFences: [],
+      actionRights: [],
       featureToggle: '',
+      menuVisibility: `hide${upperFirst(uriPath)}`,
+      submenu: [
+        {
+          uriPath: `${uriPath}/new`,
+          key: `${uriPath}-new`,
+          labelAllLocales: [
+            { locale: 'en', value: `${upperFirst(uriPath)} new` },
+          ],
+          menuVisibility: `hide${upperFirst(uriPath)}New`,
+          permissions: [],
+          actionRights: [],
+          dataFences: [],
+          featureToggle: '',
+        },
+      ],
+      ...props,
     },
   ],
-  ...props,
 });
 const createTestNavBarMenuLinksConfig = (
   props: Partial<ApplicationMenuLinksForDevelopmentConfig> = {}
@@ -174,7 +186,7 @@ const createGraphqlResponse = (
 ) => ({
   applicationsMenu: {
     appBar: [],
-    navBar: [createTestNavBarLegacyMenuJsonConfig('orders')],
+    navBarGroups: [createTestNavBarMenuGroupJsonConfig('orders')],
   },
   ...custom,
 });

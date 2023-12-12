@@ -11,6 +11,7 @@ export const routePath = '/custom-form-main-page';
 type CustomFormMainPageContainerProps = {
   customTitleRow?: ReactNode;
   customViewLocatorCode?: string;
+  hideControls?: boolean;
 };
 
 const CustomFormMainPageContainer = (
@@ -20,6 +21,7 @@ const CustomFormMainPageContainer = (
     <CustomFormMainPage
       title="Lorem Ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      hideControls={props.hideControls}
       customViewLocatorCode={props.customViewLocatorCode}
       formControls={
         <>
@@ -54,11 +56,20 @@ export const Component = () => (
     <Spec label="CustomFormMainPage">
       <CustomFormMainPageContainer />
     </Spec>
+    <Spec label="CustomFormMainPage with no controls">
+      <CustomFormMainPageContainer hideControls />
+    </Spec>
     <Spec label="CustomFormMainPage with customTitleRow">
       <CustomFormMainPageContainer customTitleRow={<h2>John Doe</h2>} />
     </Spec>
     <Spec label="CustomFormMainPage with Custom Views selector">
       <CustomFormMainPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
+    </Spec>
+    <Spec label="CustomFormMainPage with Custom Views selector and no controls">
+      <CustomFormMainPageContainer
+        hideControls
         customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
       />
     </Spec>

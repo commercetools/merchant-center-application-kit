@@ -4,10 +4,10 @@ import type { TProject } from './types';
 
 const generator = Generator<TProject>({
   fields: {
-    id: fake((f) => f.datatype.uuid()),
+    id: fake((f) => f.string.uuid()),
     version: sequence(),
-    createdAt: fake((f) => f.date.recent(2)),
-    lastModifiedAt: fake((f) => f.date.recent(1)),
+    createdAt: fake((f) => f.date.recent({ days: 2 })),
+    lastModifiedAt: fake((f) => f.date.recent({ days: 1 })),
     name: fake((f) => f.company.name()),
     key: '',
     countries: ['de'],

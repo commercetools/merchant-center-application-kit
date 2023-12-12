@@ -4,11 +4,11 @@ import { Factory } from 'rosie';
 const ApplicationNavbarSubmenu = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'NavbarSubmenu')
-  .attr('id', () => faker.datatype.uuid())
+  .attr('id', () => faker.string.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => `${faker.lorem.slug(1)}/${faker.lorem.slug(1)}`)
   .attr('labelAllLocales', () => [
-    { __typename: 'LocalizedField', locale: 'en', value: faker.random.word() },
+    { __typename: 'LocalizedField', locale: 'en', value: faker.word.sample() },
   ])
   .attr('defaultLabel', null)
   .attr('featureToggle', null)

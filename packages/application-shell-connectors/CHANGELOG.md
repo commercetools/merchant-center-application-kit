@@ -1,5 +1,79 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.14.1
+  - @commercetools-frontend/browser-history@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+  - @commercetools-frontend/sentry@22.14.1
+
+## 22.14.0
+
+### Minor Changes
+
+- [#3299](https://github.com/commercetools/merchant-center-application-kit/pull/3299) [`66ee37b2a`](https://github.com/commercetools/merchant-center-application-kit/commit/66ee37b2ab19a832e8ff90c4adfa0f7b07fea70d) Thanks [@kark](https://github.com/kark)! - Integrate menu groups for improved navigation in the navbar
+
+### Patch Changes
+
+- [#3299](https://github.com/commercetools/merchant-center-application-kit/pull/3299) [`66ee37b2a`](https://github.com/commercetools/merchant-center-application-kit/commit/66ee37b2ab19a832e8ff90c4adfa0f7b07fea70d) Thanks [@kark](https://github.com/kark)! - Update `@commercetools-test-data/*` packages to version 6.6.0
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.14.0
+  - @commercetools-frontend/browser-history@22.14.0
+  - @commercetools-frontend/constants@22.14.0
+  - @commercetools-frontend/sentry@22.14.0
+
+## 22.13.2
+
+### Patch Changes
+
+- [#3322](https://github.com/commercetools/merchant-center-application-kit/pull/3322) [`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Updated `@emotion/react` dependency
+
+- Updated dependencies [[`13aa6ae2f`](https://github.com/commercetools/merchant-center-application-kit/commit/13aa6ae2fc7c007d5b603d48a030597a4e323923)]:
+  - @commercetools-frontend/sentry@22.13.2
+  - @commercetools-frontend/application-config@22.13.2
+  - @commercetools-frontend/browser-history@22.13.2
+  - @commercetools-frontend/constants@22.13.2
+
+## 22.13.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.1
+  - @commercetools-frontend/browser-history@22.13.1
+  - @commercetools-frontend/constants@22.13.1
+  - @commercetools-frontend/sentry@22.13.1
+
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.0
+  - @commercetools-frontend/browser-history@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+  - @commercetools-frontend/sentry@22.13.0
+
+## 22.12.0
+
+### Minor Changes
+
+- [#3292](https://github.com/commercetools/merchant-center-application-kit/pull/3292) [`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Extend the `userCustomViewContext` so it not only returns the context specific to Custom View cofiguration but also to the underlying application context (user, project, etc.).
+
+- [#3291](https://github.com/commercetools/merchant-center-application-kit/pull/3291) [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2) Thanks [@kark](https://github.com/kark)! - Enhance the functionality of the `mc-scripts config:sync` command to support custom views.
+
+### Patch Changes
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+  - @commercetools-frontend/sentry@22.12.0
+  - @commercetools-frontend/browser-history@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes

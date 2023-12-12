@@ -1,5 +1,55 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.14.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.14.1
+  - @commercetools-frontend/constants@22.14.1
+
+## 22.14.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.14.0
+  - @commercetools-frontend/constants@22.14.0
+
+## 22.13.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.2
+  - @commercetools-frontend/constants@22.13.2
+
+## 22.13.1
+
+### Patch Changes
+
+- [#3308](https://github.com/commercetools/merchant-center-application-kit/pull/3308) [`4662db514`](https://github.com/commercetools/merchant-center-application-kit/commit/4662db514b6c5e79cee906fc9bfb364398cb5e49) Thanks [@kark](https://github.com/kark)! - Add `Inter` font weight 300
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.1
+  - @commercetools-frontend/constants@22.13.1
+
+## 22.13.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.13.0
+  - @commercetools-frontend/constants@22.13.0
+
+## 22.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`5de8c88ed`](https://github.com/commercetools/merchant-center-application-kit/commit/5de8c88ed385215a88fcf366bf013bcc725bf87a), [`d3f4c91f1`](https://github.com/commercetools/merchant-center-application-kit/commit/d3f4c91f179a0f44801370e3d807b31e352a6ca2)]:
+  - @commercetools-frontend/application-config@22.12.0
+  - @commercetools-frontend/constants@22.12.0
+
 ## 22.11.0
 
 ### Patch Changes

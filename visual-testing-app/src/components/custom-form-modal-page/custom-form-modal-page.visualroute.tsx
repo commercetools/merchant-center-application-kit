@@ -136,6 +136,19 @@ export const Component = () => (
           spec: (
             <ModalPageWithPortalParentSelector
               customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+              formControls={
+                <>
+                  <CustomFormModalPage.FormSecondaryButton
+                    onClick={() => undefined}
+                  />
+                  <CustomFormModalPage.FormPrimaryButton
+                    onClick={() => undefined}
+                  />
+                  <CustomFormModalPage.FormDeleteButton
+                    onClick={() => undefined}
+                  />
+                </>
+              }
             />
           ),
         },

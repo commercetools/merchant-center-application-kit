@@ -1,6 +1,5 @@
 export const DIMENSIONS = {
   header: '56px',
-  headerItemDivider: '24px',
   navMenu: '80px',
   navMenuExpanded: '256px',
   navMenuItemHeight: '48px',
@@ -13,6 +12,7 @@ export const WINDOW_SIZES = {
 
 export const CONTAINERS = {
   LOCALE_SWITCHER: 'locale-switcher-container',
+  LEFT_OF_PROFILE: 'left-of-profile',
 } as const;
 
 export const SUSPENSION_REASONS = {
