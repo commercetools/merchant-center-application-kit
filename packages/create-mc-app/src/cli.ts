@@ -6,7 +6,7 @@ import getLatestReleaseVersion from './get-latest-release-version';
 import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
 import * as tasks from './tasks';
-import type { TApplicationType, TCliCommandOptions } from './types';
+import type { TCliCommandOptions } from './types';
 import { getPreferredPackageManager } from './utils';
 import { throwIfNodeVersionIsNotSupported } from './validations';
 
