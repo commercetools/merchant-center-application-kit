@@ -9,7 +9,10 @@ import {
 } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { Route } from 'react-router-dom';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import {
+  PageUnauthorized,
+  PortalsContainer,
+} from '@commercetools-frontend/application-components';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
@@ -153,6 +156,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
                 projectKey={hostContext.projectKey}
                 customViewConfig={hostContext.customViewConfig}
               >
+                <PortalsContainer />
                 <Route
                   path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
                 >
