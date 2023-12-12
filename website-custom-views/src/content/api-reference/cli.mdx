@@ -76,7 +76,7 @@ By default, compiling the `index.html` is implicitly done in the `build` command
 
   ```ts
   type TransformerFunctionOptions = {
-    // The runtime environment specified within the application config.
+    // The runtime environment specified within the Custom View config.
     env: Json;
     // The compiled HTTP headers, including the Content-Security-Policy headers.
     headers: Json;
@@ -132,7 +132,7 @@ Developers can use the `config:sync` command to automatically manage the configu
 
 If a new Custom View needs to be created, an interactive prompt will ask the user to select the Organization where the Custom View should be configured to.
 
-Additionally, after creating a new Custom View using the `config:sync` command, you must add the generated [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) to the application config file, following the instructions in the terminal.
+Additionally, after creating a new Custom View using the `config:sync` command, you must add the generated [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) to the Custom View config file, following the instructions in the terminal.
 
 Note that this command requires a valid API token. You can get one by using the `mc-scripts login` command.
 
