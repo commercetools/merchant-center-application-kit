@@ -6,7 +6,7 @@ import getLatestReleaseVersion from './get-latest-release-version';
 import hintOutdatedVersion from './hint-outdated-version';
 import processOptions from './process-options';
 import * as tasks from './tasks';
-import type { TCliCommandOptions } from './types';
+import type { TApplicationType, TCliCommandOptions } from './types';
 import { getPreferredPackageManager } from './utils';
 import { throwIfNodeVersionIsNotSupported } from './validations';
 
@@ -20,6 +20,11 @@ const cli = cac('create-mc-app');
 process.on('unhandledRejection', (err) => {
   throw err;
 });
+
+const getDocsLink = (applicationType: TApplicationType) =>
+  applicationType === 'custom-view'
+    ? 'https://docs-beta-custom-views.commercetools.vercel.app/custom-views'
+    : 'https://docs.commercetools.com/custom-applications';
 
 const run = () => {
   // Default command
@@ -75,14 +80,12 @@ const run = () => {
 
       hintOutdatedVersion(pkgJson.version, releaseVersion);
 
-      console.log('');
-      console.log(
-        // TODO: Use link based on the application type
-        `Documentation available at https://docs.commercetools.com/custom-applications`
-      );
-      console.log('');
-
       const taskOptions = await processOptions(projectDirectory, options);
+      const docsLink = getDocsLink(taskOptions.applicationType);
+
+      console.log('');
+      console.log(`Documentation available at ${docsLink}`);
+      console.log('');
 
       const shouldInstallDependencies =
         !options.skipInstall ||
@@ -115,8 +118,7 @@ const run = () => {
       console.log(`$ ${packageManager} start`);
       console.log('');
       console.log(
-        // TODO: Use link based on the application type
-        `Visit https://docs.commercetools.com/custom-applications for more info about developing Custom Applications. Enjoy 🚀`
+        `Visit ${docsLink} for more info about developing Custom Applications. Enjoy 🚀`
       );
     });
 
