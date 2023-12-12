@@ -2570,6 +2570,9 @@ importers:
       '@types/prompts':
         specifier: ^2.4.4
         version: 2.4.4
+      '@types/string-hash':
+        specifier: ^1.1.3
+        version: 1.1.3
       '@types/svgo':
         specifier: ^2.6.4
         version: 2.6.4
@@ -2684,6 +2687,9 @@ importers:
       shelljs:
         specifier: 0.8.5
         version: 0.8.5
+      string-hash:
+        specifier: ^1.1.3
+        version: 1.1.3
       style-loader:
         specifier: 3.3.2
         version: 3.3.2(webpack@5.82.1)
@@ -4144,7 +4150,7 @@ packages:
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-simple-access': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/helper-validator-identifier': 7.22.15
+      '@babel/helper-validator-identifier': 7.22.20
 
   /@babel/helper-module-transforms@7.23.0(@babel/core@7.12.9):
     resolution: {integrity: sha512-WhDWw1tdrlT0gMgUJSlX0IQvoO1eN279zrAUbVB+KpV2c3Tylz8+GnKOLllCS6Z/iZQEyVYxhZVUdPTqs2YYPw==}
@@ -4267,10 +4273,6 @@ packages:
 
   /@babel/helper-string-parser@7.22.5:
     resolution: {integrity: sha512-mM4COjgZox8U+JcXQwPijIZLElkgEpO5rsERVDJTc2qfCDfERyob6k5WegS14SX18IIjv+XD+GrqNumY5JRCDw==}
-    engines: {node: '>=6.9.0'}
-
-  /@babel/helper-validator-identifier@7.22.15:
-    resolution: {integrity: sha512-4E/F9IIEi8WR94324mbDUMo074YTheJmd7eZF5vITTeYchqAi6sYXRLHUVsmkdmY4QjfKTcB2jB7dVP3NaBElQ==}
     engines: {node: '>=6.9.0'}
 
   /@babel/helper-validator-identifier@7.22.20:
@@ -7069,16 +7071,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.13.2:
-    resolution: {integrity: sha512-VsFERoFRxuyVL10rDyXkWJaTMwDxGIWw8fMZet2m8xchO9U8cvfb7BWN3dgObA+hG8E04GPNKRB67BzVodD5ow==}
+  /@commercetools-frontend/application-config@22.14.1:
+    resolution: {integrity: sha512-seHfEdoLfR0U0O8OoNtbCnqmWlMnxNyPq63ea8rwdIvhFhvUK33dJ1b6sVbIuixy3i+pYYVTZhkRii9GSo3a7w==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.13.2
-      '@commercetools-frontend/constants': 22.13.2
+      '@commercetools-frontend/babel-preset-mc-app': 22.14.1
+      '@commercetools-frontend/constants': 22.14.1
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -7096,8 +7098,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.13.2:
-    resolution: {integrity: sha512-QtbLziNshXjEAO/+otJ9gCW8Gek2LL7zmmYpb7lPs6qZ1FHByb83xcTFcZLAd2W84PNQg8c73VIz50dqPleHtw==}
+  /@commercetools-frontend/babel-preset-mc-app@22.14.1:
+    resolution: {integrity: sha512-wi8rYEU7utc+FHFQ9sEDCEfhhN89qixd74Of0oAGdIRen3vXaFcSgg1LWylhMiXehU99IB0Uz9Qfqqv2opqYDg==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7129,8 +7131,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.13.2:
-    resolution: {integrity: sha512-am8zyHJpmS9J6ScrFnMkg4hMvTTlWuBP8E2kPikArvnHKnLG4NtPNFiUCKCMJbrI0UgPVzoyMbmnulVwPldctw==}
+  /@commercetools-frontend/constants@22.14.1:
+    resolution: {integrity: sha512-dY7Wd2hP6KyJH728UWHJ6HYOrnfJzeXK/GjA8nC6q+0HjMsfPEGUobV0Tr+1lRfY2skYq3qucNyFGHsS9zRSJw==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7229,8 +7231,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.13.2
-      '@commercetools-frontend/constants': 22.13.2
+      '@commercetools-frontend/application-config': 22.14.1
+      '@commercetools-frontend/constants': 22.14.1
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -10298,7 +10300,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.23.0)
 
@@ -15290,6 +15292,10 @@ packages:
 
   /@types/stack-utils@2.0.1:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
+
+  /@types/string-hash@1.1.3:
+    resolution: {integrity: sha512-p6skq756fJWiA59g2Uss+cMl6tpoDGuCBuxG0SI1t0NwJmYOU66LAMS6QiCgu7cUh3/hYCaMl5phcCW1JP5wOA==}
+    dev: false
 
   /@types/svgo@2.6.4:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
@@ -20971,7 +20977,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       webpack: 5.82.1(uglify-js@3.17.4)
     dev: false
 
@@ -29851,7 +29857,7 @@ packages:
     resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
     engines: {node: '>= 0.10'}
     dependencies:
-      resolve: 1.22.2
+      resolve: 1.22.4
 
   /recursive-readdir@2.2.3:
     resolution: {integrity: sha512-8HrF5ZsXk5FAH9dgsx3BlUer73nIhuj+9OrQwEbLTPOBzGkL1lsFCR01am+v+0m2Cmbs1nP12hLDl5FA7EszKA==}
@@ -30360,7 +30366,7 @@ packages:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
-      is-core-module: 2.12.0
+      is-core-module: 2.13.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 

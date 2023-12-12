@@ -2,6 +2,8 @@ import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
+import stringHash from 'string-hash';
+import type { XastElement, PluginInfo } from 'svgo';
 import webpack, { type Configuration } from 'webpack';
 import WebpackBar from 'webpackbar';
 import type {
@@ -15,8 +17,6 @@ import hasJsxRuntime from './has-jsx-runtime';
 import momentLocalesToKeep from /* preval */ './moment-locales';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
-
-let svgoPrefixIdsCount = 0;
 
 const defaultToggleFlags: TWebpackConfigToggleFlagsForDevelopment = {
   generateIndexHtml: true,
@@ -253,18 +253,35 @@ function createWebpackConfigForDevelopment(
                       },
                     },
                     // Avoid collisions with ids in other SVGs,
-                    // which was causing incorrect gradient directions
-                    // https://github.com/svg/svgo/issues/1746#issuecomment-1803600573
-                    //
-                    // Previously, this was a problem where unique ids
-                    // could not be generated since svgo@3
+                    // which was causing incorrect masking, gradient directions, etc
+                    // this is an ongoing issue with both SVGR and SVGO,
+                    // https://github.com/svg/svgo/issues/913#issuecomment-369373572
+                    // see SVGR issues:
+                    // https://github.com/gregberge/svgr/issues/322
+                    // https://github.com/gregberge/svgr/issues/210
+                    // see SVGO issues:
                     // https://github.com/svg/svgo/issues/674
                     // https://github.com/svg/svgo/issues/1746
+                    //
+                    // Initially, a naive counter was implemented based on this github comment:
+                    // https://github.com/svg/svgo/issues/1746#issuecomment-1803600573
+                    // But while that implementation insured id’s that are unique,
+                    // it did not work in cases where the id is both declared and referenced in the same file,
+                    // because the refernce gets a separate unique ID (a different number from the counter).
+                    //
+                    // The current implementation is based on this github comment:
+                    // https://github.com/svg/svgo/issues/913#issuecomment-369373572
+                    // Generates a hash of the filepath of the svg file, resulting in a prefix which is:
+                    // - Short,
+                    // - With characters valid for IDs,
+                    // - The same within a file,
+                    // - And different in different files.
                     {
                       name: 'prefixIds',
                       params: {
                         delim: '',
-                        prefix: () => svgoPrefixIdsCount++,
+                        prefix: (_: XastElement, info: PluginInfo) =>
+                          `svg${stringHash(info.path || '')}`,
                       },
                     },
                   ],
