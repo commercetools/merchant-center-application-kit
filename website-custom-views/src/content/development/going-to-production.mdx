@@ -6,7 +6,7 @@ When it's time to take your Custom View to production, you need to follow certai
 
 <Info>
 
-Make sure that your [Custom View is properly configured](/api-reference/application-config).
+Make sure that your [Custom View is properly configured](/api-reference/custom-view-config).
 
 </Info>
 
@@ -28,13 +28,13 @@ By default, the `build` command compiles the `index.html`, included in the `publ
 
 # Assigning the Custom View ID
 
-Before deploying the Custom View to production, make sure to provide the [Custom View ID](/api-reference/application-config#envproductionapplicationid) that you got when you configured the Custom View in the Merchant Center.
+Before deploying the Custom View to production, make sure to provide the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) that you got when you configured the Custom View in the Merchant Center.
 
 The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
 
 # Assigning the production URL
 
-In the Custom View config make sure to provide the [production URL](/api-reference/application-config#envproductionurl) where the Custom View will be hosted.
+In the Custom View config make sure to provide the [production URL](/api-reference/custom-view-config#envproductionurl) where the Custom View will be hosted.
 
 # Deploying the production bundles
 
@@ -52,4 +52,4 @@ Most of the [Deployment Examples](/deployment-examples) explain how to do that i
 
 Depending on where you want to host your Custom View you might choose to keep the static assets (JS, CSS, etc.) in the same location as the `index.html` or to have them served by something like a CDN.
 
-If you choose to have them hosted in a separate location, you need to configure the [CDN URL](/api-reference/application-config#envproductioncdnurl) in the Custom View config.
+If you choose to have them hosted in a separate location, you need to configure the [CDN URL](/api-reference/custom-view-config#envproductioncdnurl) in the Custom View config.

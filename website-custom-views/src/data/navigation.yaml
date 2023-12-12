@@ -26,6 +26,8 @@
       path: /development/ui-components
     - title: Forms
       path: /development/forms
+    - title: Page Content Layouts
+      path: /development/page-content-layouts
     - title: Notifications
       path: /development/notifications
     - title: Testing
@@ -76,6 +78,8 @@
       path: /api-reference/commercetools-frontend-application-shell
     - title: '@/application-shell-connectors'
       path: /api-reference/commercetools-frontend-application-shell-connectors
+    - title: '@/application-components'
+      path: /api-reference/commercetools-frontend-application-components
     - title: '@/constants'
       path: /api-reference/commercetools-frontend-constants
     - title: '@/cypress'

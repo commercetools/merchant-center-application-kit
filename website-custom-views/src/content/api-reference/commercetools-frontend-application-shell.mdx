@@ -10,39 +10,52 @@ React component that ties together all the main functionalities of the Custom Vi
 
 # Installation
 
-```bash
-yarn add @commercetools-frontend/application-shell
+Install the `@commercetools-frontend/application-shell` package
 
-# or
+<MultiCodeBlock>
 
+```npm
 npm --save install @commercetools-frontend/application-shell
 ```
 
-Additionally install the peer dependencies (if not present)
+```yarn
+yarn add @commercetools-frontend/application-shell
+```
 
-```bash
-yarn add @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
+</MultiCodeBlock>
 
-# or
+Additionally, install the peer dependencies (if not present)
 
+<MultiCodeBlock>
+
+```npm
 npm --save install @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
 ```
+
+```yarn
+yarn add @apollo/client react react-dom react-intl react-redux react-router-dom redux @testing-library/react @testing-library/react-hooks
+```
+
+</MultiCodeBlock>
 
 # Components
 
 ## CustomViewShell
 
 This is the main component that contains all the general logic to render a Custom View.<br />
-The `CustomViewShell` component is expected to be rendered as the top-level component of your application.
+The `CustomViewShell` component must be rendered as the top-level component of your Custom View.
 
 ### Usage
 
-We recommend to render the application content as `children` of `<CustomViewShell>`.
+We recommend to render the Custom View content as `children` of `<CustomViewShell>`.
 
-This allows the `<CustomViewShell>` to pre-configure the application entry point routes. In addition to that, the entry point route is protected by the basic `View` permission check. This means that a user without permissions of your Custom View won't be able to access the Custom View route.
+The `<CustomViewShell>` pre-configures the Custom View entry point routes. In addition, the entry point route is protected by the basic View permission check. This means that a user without permission from your Custom View won't be able to access the Custom View route.
 
-Bear in mind you're not required to use routes in your Custom View. Use them only if you need to have different views.
+<Info>
 
+You aren't required to use routes in your Custom View. You can use them if you need to have different views. For example, a Custom View with a listing page and details page.
+
+</Info>
 
 ```jsx title="entry-point.js"
 import { CustomViewShell } from '@commercetools-frontend/application-shell';
@@ -370,13 +383,13 @@ The package provides a separate entry point with utilities for testing Custom Vi
 import { /**/ } from '@commercetools-frontend/application-shell/test-utils';
 ```
 
-Most of the utility functions related to [React Testing Library](https://github.com/testing-library/react-testing-library), as the recommended testing approach. See [Testing](/development/testing) for more information.
+Most of the utility functions are related to [React Testing Library](https://github.com/testing-library/react-testing-library), as the [recommended testing strategy](/development/testing#recommended-testing-strategies).
 
-In general the `test-utils` simulate the components-under-test as if it was rendered by the `<CustomViewShell>` and provide the necessary setup to fully test a Custom View. This includes things like Apollo, React Intl, React Router, etc.
+The `test-utils` simulate the components-under-test as if it was rendered by the `<CustomViewShell>` and provide the necessary setup to fully test a Custom View. This includes things like Apollo, React Intl, React Router, etc.
 
 ## renderCustomView
 
-A wrapper around the [`render`](https://testing-library.com/docs/react-testing-library/api/#render) method of React Testing Library. All the basic setup for testing is included here.
+A wrapper around the [`render`](https://testing-library.com/docs/react-testing-library/api/#render) method of the React Testing Library. All the basic setup for testing is included here.
 
 ### Usage
 
@@ -406,22 +419,22 @@ describe('rendering', () => {
 #### `locale`
 
 **string**\
-Determines the UI language and number format. Is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.
+Determines the UI language and number format. It is used to configure `<IntlProvider>`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the Merchant Center is currently only available in a limited set of languages.
 
 #### `projectKey`
 
 **string**\
-Allows to set the Custom View context `projectKey`. The passed key gets merged with the tests default project.
+Sets the Custom View context `projectKey`. The passed key gets merged with the tests default project.
 
 #### `projectAllAppliedPermissions`
 
 **string**\
-Allows to set the default project `allAppliedPermissions` property. The passed array will replace the default project `allAppliedPermissions`.
+Sets the default project `allAppliedPermissions` property. The passed array will replace the default project `allAppliedPermissions`.
 
 #### `customViewHostUrl`
 
 **string**\
-Defined the URL the Custom View will receive as part of the emulation of it being rendered in a Merchant Center native application.
+Defines the URL the Custom View receives as part of the emulation of it being rendered in a Merchant Center built-in application.
 
 #### `customViewConfig`
 
@@ -436,17 +449,17 @@ Pass a custom instance of Apollo client, useful when your Custom View has some c
 #### `environment`
 
 **object**\
-Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.
+Sets the `customViewContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.
 
 #### `user`
 
 **object**\
-Allows to set the `applicationContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.
+Sets the `customViewContext.user`. The passed object gets merged with the test's default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.
 
 
 ### Return values
 
-Calling `renderCustomView` returns the same [Result](https://testing-library.com/docs/react-testing-library/api#render-result) object of React Testing Library, with the addition of the following properties:
+Calling `renderCustomView` returns the [Result](https://testing-library.com/docs/react-testing-library/api#render-result) object of React Testing Library, with the addition of the following properties:
 
 <ChildSectionsNav parent="return-values" />
 
@@ -458,17 +471,17 @@ The history created by `renderApp` which is passed to the router. It can be used
 #### `user`
 
 **object**\
-The `user` object used to configure `<ApplicationContextProvider>`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).
+The `user` object used to configure `<CustomViewContextProvider>`, so the result of merging the default user with `options.user`. Note that this is not the same as `customViewContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).
 
 #### `project`
 
 **object**\
-The `project` object used to configure `<ApplicationContextProvider>`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).
+The `project` object used to configure `<CustomViewContextProvider>`, so the result of merging the default project with `options.project`. Note that this is not the same as `customViewContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).
 
 #### `environment`
 
 **object**\
-The `environment` object used to configure `<ApplicationContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`).
+The `environment` object used to configure `<CustomViewContextProvider>`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `customViewContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`).
 
 ## mapResourceAccessToAppliedPermissions
 
@@ -478,7 +491,7 @@ Helper function to map user permissions to applied resource permissions. This is
 {
   project: {
     allAppliedPermissions: mapResourceAccessToAppliedPermissions([
-      PERMISSIONS.ViewAvengers,
+      PERMISSIONS.View,
     ]),
   },
 }
@@ -492,7 +505,7 @@ Helper function to map user permissions defined as objects to a list of applied 
 {
   project: {
     allAppliedPermissions: denormalizePermissions({
-      canViewAvengers: true,
+      canView: true,
     }),
   },
 }

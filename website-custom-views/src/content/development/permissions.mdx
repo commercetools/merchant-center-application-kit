@@ -8,7 +8,7 @@ When developing a Custom View you might want to enforce these user permissions i
 
 # Defining constants
 
-The user permissions can be computed using the `resolveCustomViewResourceAccesses` function, to avoid defining them manually. We recommend to define them in a `constants.js` file.
+To avoid defining permissions manually, we recommend using the `resolveCustomViewResourceAccesses` function to define them in a `constants.js` file.
 
 ```js title="constants.js"
 import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
@@ -23,37 +23,21 @@ The `PERMISSIONS` variable contains a `View` and `Manage` properties:
 
 You can then use the `PERMISSIONS` variable to reference the permission in the application code.
 
-<Info>
-
-This feature is available from version `21.21.0` onwards.
+## Additional permissions groups
 
 When using [additional permission groups](/concepts/oauth-scopes-and-user-permissions#permission-groups), you must also provide the unique group to the `resolveCustomViewResourceAccesses` function to generate the correct permission keys.
 
 The group names can be exported and referenced also in the Custom View config file.
 
-```js title="constants.js" highlightLines="5-8, 12"
+```js title="constants.js" highlightLines="9"
 import { resolveCustomViewResourceAccesses } from '@commercetools-frontend/application-config';
 
-export const groupNames = {
-  delivery: 'delivery',
-  promotion: 'promotion',
-};
-
-export const PERMISSIONS = resolveCustomViewResourceAccesses(
+export const PERMISSIONS_WITH_GROUPS = resolveCustomViewResourceAccesses(
   ['delivery', 'promotion']
 );
 ```
 
-In this scenario, the `PERMISSIONS` variable contains a `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names:
-
-* `PERMISSIONS.View`: maps to `View`.
-* `PERMISSIONS.Manage`: maps to `Manage`.
-* `PERMISSIONS.ViewDelivery`: maps to `ViewDelivery`.
-* `PERMISSIONS.ManageDelivery`: maps to `ManageDelivery`.
-* `PERMISSIONS.ViewPromotion`: maps to `ViewPromotion`.
-* `PERMISSIONS.ManagePromotion`: maps to `ManagePromotion`.
-
-</Info>
+In this scenario, the `PERMISSIONS_WITH_GROUPS` variable contains `View`, `Manage`, `ViewDelivery`, `ManageDelivery`, `ViewPromotion` and `ManagePromotion` properties, with the values being the computed values based on the provided permission group names.
 
 # Applying user permissions
 
@@ -64,9 +48,9 @@ A Custom View allows, for example, to check and evaluate if certain user permiss
 
 In case certain routes should not be accessible without proper user permissions, you can render the route conditionally based on the evaluated permission.
 
-To do so you can use the `useIsAuthorized` React hook from the `@commercetools-frontend/permissions` package.
+To do so, you can use the [`useIsAuthorized`](/api-reference/commercetools-frontend-permissions#useisauthorized) as follows:
 
-```js title="routes.js" highlightLines="10-12"
+```jsx title="routes.js" highlightLines="10-12"
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
@@ -99,22 +83,22 @@ const CustomViewRoutes = () => {
 
 ## In components
 
-Similarly, you can also evaluate user permissions in your React components, for example to deactivate a button.
+You can evaluate user permissions in your React components, for example to deactivate a button.
 
 ```jsx
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import { PERMISSIONS } from '../constants';
+import { PERMISSIONS_WITH_GROUPS } from '../constants';
 
 const MyComponent = () => {
   const canManage = useIsAuthorized({
-    demandedPermissions: [PERMISSIONS.Manage],
+    demandedPermissions: [PERMISSIONS_WITH_GROUPS.ManagePromotion],
   });
 
   return (
     <div>
       <PrimaryButton
-        label="Create channel"
+        label="Create promotion"
         isDisabled={!canManage}
       />
     </div>

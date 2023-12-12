@@ -14,9 +14,9 @@ Before you get started, you need to have:
 
 # Configuration
 
-In your Custom View config, provide the [Custom View ID](/api-reference/application-config#envproductionapplicationid) you got when you configured the Custom View in the Merchant Center.
+In your Custom View config, provide the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) you got when you configured the Custom View in the Merchant Center.
 
-Moreover, you need to provide the [production URL](/api-reference/application-config#envproductionurl) from your Cloudflare Pages project. You can keep the standard Cloudflare Pages URL `https://<project>.pages.dev` or provide your custom domain.
+Moreover, you need to provide the [production URL](/api-reference/custom-view-config#envproductionurl) from your Cloudflare Pages project. You can keep the standard Cloudflare Pages URL `https://<project>.pages.dev` or provide your custom domain.
 
 ```json title="custom-view-config.json"
 {
@@ -31,7 +31,7 @@ Moreover, you need to provide the [production URL](/api-reference/application-co
 
 ## Using environment variables
 
-In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/application-config#using-variable-placeholders) in your Custom View config.
+In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
 ```json title="custom-view-config.json" highlightLines="4"
 {

@@ -68,7 +68,7 @@ Use the `X-Forward-To-Claims` header to make the Merchant Center API Gateway inc
 The value must be a list of the claims separated by a space.
 
 The following claims are supported:
-* **permissions**: Includes the list of applied permissions for the logged-in user. The permission values are formatted as `can<permission-name>`, for example `canViewAvengers`.
+* **permissions**: Includes the list of applied permissions for the logged-in user. The permission values are formatted as `can<permission-name>`, for example `canView`.
 
   ```
   "X-Forward-To-Claims": "permissions"
@@ -399,7 +399,7 @@ module.exports = app;
 ```
 
 We recommend configuring the external API URL using environment variables to be able to define different values for development (using a secure tunnel) and production.
-In the Custom View config you can specify the external API URL as an [`additionalEnv`](/api-reference/application-config#additionalenv) property using a [variable placeholder](/api-reference/application-config#using-variable-placeholders).
+In the Custom View config you can specify the external API URL as an [`additionalEnv`](/api-reference/custom-view-config#additionalenv) property using a [variable placeholder](/api-reference/custom-view-config#using-variable-placeholders).
 
 ```json
 {
