@@ -44,7 +44,7 @@ By default, developing a Custom View requires you to be a member of the `Adminis
 
 To enable this option, you must complete the following prerequisites in the Merchant Center (which can be done only with administrator rights):
 
-1. [Configure the Custom View in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-views#configuring-custom-views)
+1. [Configure the Custom View in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#configuring-custom-views)
 
 <Info>
 
@@ -52,12 +52,12 @@ For local development the Custom View does not have to be deployed, and `Custom 
 
 </Info>
 
-2. [Assign the Custom View ID](https://docs.commercetools.com/merchant-center/managing-custom-views#assigning-the-custom-view-id)
-3. [Install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-views#installing-a-custom-view)
-4. [Create a team](https://docs.commercetools.com/merchant-center/teams#create-a-team) (or utilize an existing one)
+2. [Assign the Custom View ID](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#assigning-the-custom-view-id)
+3. [Install the Custom View](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#installing-a-custom-view)
+4. [Create a team](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/teams#create-a-team) (or utilize an existing one)
 5. Obtain the `teamId` from the Merchant Center URL
-6. [Invite users to the team](https://docs.commercetools.com/merchant-center/teams#invite-users-to-a-team)
-7. [Assign relevant permissions to the team](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)
+6. [Invite users to the team](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/teams#invite-users-to-a-team)
+7. [Assign relevant permissions to the team](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#assigning-team-permissions)
 
 After completing these steps, you will have an `customViewId` and a `teamId`. You must provide these values for [`env.production.customViewId`](/api-reference/custom-view-config#envproductioncustomviewid) and [`env.development.teamId`](/api-reference/custom-view-config#envdevelopmentteamid), respectively, in the Custom View configuration file.
 
@@ -69,17 +69,17 @@ Custom Views have the following limitations:
 
 ## OAuth Scopes cannot be changed in the Ready state
 
-OAuth Scopes cannot be changed when a Custom View is in the **Ready** state as it can be installed and used while in this state. You can change the list of OAuth Scopes assigned to the Custom View permissions only in the **Draft** state when [configuring the Custom View in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications#configuring-custom-applications).
+OAuth Scopes cannot be changed when a Custom View is in the **Ready** state as it can be installed and used while in this state. You can change the list of OAuth Scopes assigned to the Custom View permissions only in the **Draft** state when [configuring the Custom View in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#configuring-custom-applications).
 
 To change the OAuth Scopes:
 
-1. [Move the Custom View to the **Draft** state](https://docs.commercetools.com/merchant-center/managing-custom-applications#moving-the-custom-applications-to-the-draft-state).
+1. [Move the Custom View to the **Draft** state](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#moving-the-custom-applications-to-the-draft-state).
 2. Update the list of OAuth Scopes.
 3. Change the state to **Ready**.
-4. [Install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) again.
+4. [Install the Custom View](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#installing-a-custom-application) again.
 
 <Info>
 
-When a Custom View state is changed from **Ready** to **Draft**, it is uninstalled from all Organizations and Projects. Thus, when installing the Custom View again, [Team permissions must be assigned](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-team-permissions)  again.
+When a Custom View state is changed from **Ready** to **Draft**, it is uninstalled from all Organizations and Projects. Thus, when installing the Custom View again, [Team permissions must be assigned](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views#assigning-team-permissions)  again.
 
 </Info>

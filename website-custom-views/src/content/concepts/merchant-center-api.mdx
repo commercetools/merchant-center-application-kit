@@ -14,12 +14,12 @@ Therefore, Custom Views use the Merchant Center API to make requests to the Comp
 
 # Cloud Regions
 
-Composable Commerce is available in [multiple cloud Regions](https://docs.commercetools.com/api/general-concepts#regions).
+Composable Commerce is available in [multiple cloud Regions](https://docs-beta-custom-views.commercetools.vercel.app/api/general-concepts#regions).
 These Regions are completely isolated from each other and no data is transferred between them.
 
 <Info>
 
-Composable Commerce accounts created for one Region are not valid for the other Regions. A [signup](https://docs.commercetools.com/getting-started) is required for each Region individually.
+Composable Commerce accounts created for one Region are not valid for the other Regions. A [signup](https://docs-beta-custom-views.commercetools.vercel.app/getting-started) is required for each Region individually.
 In case you need advice in which Region your Project should be located, please contact [commercetools support](https://support.commercetools.com).
 
 </Info>
@@ -95,7 +95,7 @@ The session token `mcAccessToken` is granted upon user login and is stored in a 
 The Merchant Center API provides two endpoints for authenticating a user:
 
 - `/tokens`: for normal login using `email` and `password`.
-- `/tokens/sso`: for login using an `idToken` from an SSO workflow (see [Single Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on)).
+- `/tokens/sso`: for login using an `idToken` from an SSO workflow (see [Single Sign-On](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/single-sign-on)).
 
 <Info>
 
@@ -141,11 +141,11 @@ However, there are multiple target GraphQL APIs that Custom Views can use. To in
 
 The following targets are available:
 
-* `ctp`: Proxies requests to the [Composable Commerce GraphQL API](https://docs.commercetools.com/api/graphql).
-* `change-history`: Proxies requests to the [Composable Commerce Change History API](https://docs.commercetools.com/api/history/change-history).
+* `ctp`: Proxies requests to the [Composable Commerce GraphQL API](https://docs-beta-custom-views.commercetools.vercel.app/api/graphql).
+* `change-history`: Proxies requests to the [Composable Commerce Change History API](https://docs-beta-custom-views.commercetools.vercel.app/api/history/change-history).
 * `mc`: Proxies requests to the Merchant Center GraphQL API.
 
-Normally, you would only need to use the official [Composable Commerce GraphQL API](https://docs.commercetools.com/api/graphql) as other APIs are mostly for internal usage and not documented.
+Normally, you would only need to use the official [Composable Commerce GraphQL API](https://docs-beta-custom-views.commercetools.vercel.app/api/graphql) as other APIs are mostly for internal usage and not documented.
 
 To learn more how to use the target values, check out the [Data Fetching documentation](/development/data-fetching) for developing Custom Views.
 
@@ -159,9 +159,9 @@ https://mc-api.<cloud-region>.commercetools.com/proxy/*
 
 The following proxy endpoints are available:
 
-* `/proxy/ctp/*`: Proxies requests to the [Composable Commerce HTTP API](https://docs.commercetools.com/api).
-* `/proxy/ml/*`: Proxies requests to the [Machine Learning API](https://docs.commercetools.com/api/ml).
-* `/proxy/import/*`: Proxies requests to the [Import Export API](https://docs.commercetools.com/import-export).
+* `/proxy/ctp/*`: Proxies requests to the [Composable Commerce HTTP API](https://docs-beta-custom-views.commercetools.vercel.app/api).
+* `/proxy/ml/*`: Proxies requests to the [Machine Learning API](https://docs-beta-custom-views.commercetools.vercel.app/api/ml).
+* `/proxy/import/*`: Proxies requests to the [Import Export API](https://docs-beta-custom-views.commercetools.vercel.app/import-export).
 * `/proxy/forward-to`: See [Integrate with your own API](/concepts/integrate-with-your-own-api).
 
 The way the proxy endpoints work is that they act as "prefixes" to the actual endpoint path of the targeted API. For example:
