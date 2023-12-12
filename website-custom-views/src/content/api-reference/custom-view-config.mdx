@@ -35,13 +35,13 @@ To facilitate the usage of the Custom View config, you should instruct your edit
 
 ## JSON schema support for VSCode
 
-When using JSON files, you can take advantage of the [JSON schema for the Custom View config](https://docs.commercetools.com/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
+When using JSON files, you can take advantage of the [JSON schema for the Custom View config](https://docs-beta-custom-views.commercetools.vercel.app/custom-applications/schema.json). To enable JSON schema autocompletion and validation support, add a reference to the `schema.json` URL in the VSCode settings (either user or workspace settings):
 
 ```json title=".vscode/settings.json"
 "json.schemas": [
   {
     "fileMatch": ["/custom-view-config.json"],
-    "url": "https://docs.commercetools.com/custom-view/schema.json"
+    "url": "https://docs-beta-custom-views.commercetools.vercel.app/custom-view/schema.json"
   }
 ]
 ```
@@ -176,7 +176,7 @@ For more information, see [Granular permissions for local development](/help-nee
 
 ## `env.production.customViewId`
 
-The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications) for more information.
+The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views) for more information.
 
 ```json
 {
@@ -263,7 +263,7 @@ Alternatively, if at least one additional permission group is configured in [add
 
 ## `oAuthScopes.view`
 
-A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `View` permission.
+A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `View` permission.
 
 ```json
 {
@@ -275,7 +275,7 @@ A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) 
 
 ## `oAuthScopes.manage`
 
-A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `Manage` permission.
+A list of "manage-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `Manage` permission.
 
 ```json
 {
@@ -317,7 +317,7 @@ The name value must adhere to the following restrictions:
 
 ## `additionalOAuthScopes.*.view`
 
-A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `View<GroupName>` permission.
+A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `View<GroupName>` permission.
 
 ```json
 {
@@ -338,7 +338,7 @@ A list of "view-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) 
 
 ## `additionalOAuthScopes.*.manage`
 
-A list of "manage-only" [OAuth Scopes](https://docs.commercetools.com/api/scopes) required by the Custom View and associated with the `Manage<GroupName>` permission.
+A list of "manage-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `Manage<GroupName>` permission.
 
 ```json
 {

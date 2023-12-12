@@ -8,10 +8,10 @@ Custom Views can use any of the available Composable Commerce APIs. This allows 
 
 Therefore, Custom Views **must specify the list of OAuth Scopes** needed for the data fetching requirements.
 
-For example, if you are developing a Custom View to manage [Channels](https://docs.commercetools.com/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs.commercetools.com/api/projects/customers) information.<br />
+For example, if you are developing a Custom View to manage [Channels](https://docs-beta-custom-views.commercetools.vercel.app/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs-beta-custom-views.commercetools.vercel.app/api/projects/customers) information.<br />
 To fulfill these requirements, your Custom View would need the following OAuth Scopes: `view_products`, `view_customers` and `manage_products`.
 
-These [OAuth Scopes](https://docs.commercetools.com/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/custom-view-config#oauthscopes).
+These [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/custom-view-config#oauthscopes).
 
 ```json title="custom-view-config.json"
 {
@@ -68,7 +68,7 @@ When additional groups are defined, the default group can be left empty without 
 
 # User permissions
 
-In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
+In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/user-permissions) for more information.<br />
 The same concepts apply for Custom Views as well. Once your Custom View has been installed in your Organization, you can assign user permissions for your Custom View to each specific Team.
 
 Each Custom View gets **unique** "view" and "manage" permissions.
