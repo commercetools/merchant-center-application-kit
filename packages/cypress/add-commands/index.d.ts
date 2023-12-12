@@ -45,5 +45,13 @@ declare namespace Cypress {
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
       menuItemTextMatcher: import('./dist/commercetools-frontend-cypress-add-commands.cjs').Matcher
     ): Chainable<Subject>;
+
+    /**
+     * Returns the body of the chained iframe element
+     *
+     * @example
+     *    cy.get('#iframe-id').getIframeBody()
+     */
+    getIframeBody(): Chainable<Subject>;
   }
 }

@@ -101,6 +101,10 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
   }
 }
 
+const isLocalProdMode =
+  process.env.NODE_ENV === 'production' &&
+  window.location.origin.match(/(http*):\/\/(localhost|127.0.0.1)/g);
+
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
@@ -136,7 +140,8 @@ function CustomViewShell(props: TCustomViewShellProps) {
       if (
         (event.origin === window.location.origin ||
           // event.origin is not defined in test environment
-          process.env.NODE_ENV === 'test') &&
+          process.env.NODE_ENV === 'test' ||
+          isLocalProdMode) &&
         event.data === CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP
       ) {
         iFrameCommunicationPort.current = event.ports[0];
@@ -166,14 +171,14 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
   }, []);
 
-  if (!hostContext) {
+  if (!hostContext && !isLocalProdMode) {
     return <ApplicationLoader showLogo />;
   }
 
   const hostUrl =
-    process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'development' || isLocalProdMode
       ? window.app.__DEVELOPMENT__?.customViewHostUrl!
-      : hostContext.hostUrl;
+      : hostContext!.hostUrl;
 
   return (
     <ApplicationShellProvider
@@ -182,7 +187,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
       apolloClient={props.apolloClient}
     >
       {({ isAuthenticated }) => {
-        if (isAuthenticated) {
+        if (isAuthenticated && hostContext) {
           return (
             <CustomViewContextProvider
               hostUrl={hostUrl}
@@ -232,7 +237,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
 }
 
 const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
-  if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
+  if (
+    (process.env.NODE_ENV === 'development' || isLocalProdMode) &&
+    !props.disableDevHost
+  ) {
     return (
       <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
         <Suspense fallback={<ApplicationLoader />}>
