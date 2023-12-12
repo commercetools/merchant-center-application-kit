@@ -1,0 +1,357 @@
+---
+title: "@/application-shell-connectors"
+---
+
+<Subtitle>
+
+Complementary tools for the [`@commercetools-frontend/application-shell`](/api-reference/commercetools-frontend-application-shell).
+
+</Subtitle>
+
+# Installation
+
+To install the `@commercetools-frontend/application-shell-connectors` package, run the following command:
+
+<MultiCodeBlock>
+
+```npm
+npm --save install @commercetools-frontend/application-shell-connectors
+```
+
+```yarn
+yarn add @commercetools-frontend/application-shell-connectors
+```
+
+</MultiCodeBlock>
+
+Additionally, install the peer dependencies (if not present).
+
+<MultiCodeBlock>
+
+```npm
+npm --save install react @apollo/client
+```
+
+```yarn
+yarn add react @apollo/client
+```
+
+</MultiCodeBlock>
+
+
+# Custom View context
+
+The Custom View context provides you with the [Custom View properties](#custom-view-properties) that you can access using the [`useCustomViewContext`](#useCustomViewContext) hook.
+
+## useCustomViewContext
+
+A React hook that lets you to access the `CustomViewContext` and selectively pick the necessary properties.
+
+```jsx highlightLines="4-6" title="Access dataLocale from the Custom View context"
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+
+const DisplayLocale = () => {
+  const dataLocale = useCustomViewContext((context) =>
+    context.dataLocale
+  );
+  render() {
+    return (
+      <div>
+        <h1>Current data locale: {dataLocale}</h1>
+      </div>
+    );
+  }
+}
+
+export default DisplayLocale;
+```
+
+## Custom View properties
+
+<ChildSectionsNav parent="custom-view-properties" />
+
+### `environment`
+
+The information about the runtime environment such as the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid).
+
+```js
+{
+  "environment": {
+    "customViewId": "ckw3vt1hv034901uzio4bkzc3",
+    "applicationName": "My Custom View",
+  }
+}
+```
+
+### `user`
+
+The information about the logged in user.
+
+```js
+{
+  "user": {
+    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "email": "john.doe@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessRole": "Consultant",
+    "locale": "en-GB",
+    "timeZone": "Europe/Berlin",
+    "projects": [
+      { "key": "my-project-A", "name": "My Project A" },
+      { "key": "my-project-B", "name": "My Project B" }
+    ]
+  }
+}
+```
+
+If the user logged into the Merchant Center using [Single Sign-On](https://docs.commercetools.com/merchant-center/single-sign-on), we expose an additional property `idTokenUserInfo` that contains some of the user info claims (OpenID Connect) from the user's Identity Provider.
+
+```js highlightLines="14-22"
+{
+  "user": {
+    "id": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "email": "aHR0cHM6Ly9kZXYt0udXMuYXVLzphdXRoiMDljMjYzZWQwOTg4MmU2OGU=@3241a8e3-cc17-4e7e-b6vz-1d0fdb.sso",
+    "firstName": "John",
+    "lastName": "Doe",
+    "businessRole": "Consultant",
+    "locale": "en-GB",
+    "timeZone": "Europe/Berlin",
+    "projects": [
+      { "key": "my-project-A", "name": "My Project A" },
+      { "key": "my-project-B", "name": "My Project B" }
+    ],
+    "idTokenUserInfo": {
+      "iss": "<the-issuer>",
+      "sub": "<the-subject>",
+      "aud": "<the-audience>",
+      "exp": 1665076522603,
+      "iat": 1665040077648,
+      "email": "john.doe@example.com",
+      "name": "John Doe",
+    }
+  }
+}
+```
+
+### `project`
+
+The information about the currently selected Project.
+
+```js
+{
+  "project": {
+    "countries": ["DE", "US"],
+    "currencies": ["EUR", "USD"],
+    "key": "project-a",
+    "languages": ["de-DE", "en-US"],
+    "name": "Project A",
+    "ownerId": "3mj76c04-f910-4223-84e1-f97b0fe291c2",
+    "ownerName": "My Organization"
+  }
+}
+```
+
+### `dataLocale`
+
+The selected data locale that is used to render localized data in your application.
+You should include it as the selected language in components like [LocalizedTextField](https://uikit.commercetools.com/?path=/story/components-fields--localizedtextfield).
+
+```js
+{
+  "dataLocale": "de"
+}
+```
+
+<Info>
+
+This is not the value used for the Merchant Center language, which is based on the `user.locale`.
+
+</Info>
+
+### `customViewConfig`
+
+The Custom View configuration registered in the Merchant Center.
+
+```js
+{
+  "defaultLabel": "My Custom View",
+  "id": "ckw3vt1hv034901uzio4bkzc3",
+  "labelAllLocales": [
+    { "locale": "en", "value": "My Custom View" },
+    { "locale": "es", "value": "Mi vista personalizada" },
+  ],
+  "locators": ["products.product_details.general"],
+  "permissions": [
+    { "name": "view", "oAuthScopes": ["view_products"] },
+    { "name": "manage", "oAuthScopes": ["manage_products"] },
+  ],
+  "type": "CustomPanel",
+  "typeSettings": {
+    "size": "LARGE"
+  },
+  "url": "https://my-custom-view.com"
+}
+```
+
+
+### `hostUrl`
+
+Since the Custom Views render within a Merchant Center built-in application, this property will contain the current URL of the built-in application.
+
+This can be useful if you need to fetch data related to an entity, as you can get its ID from the URL.
+
+```js
+{
+  "hostUrl": "https://<merchant-center-domain>/<project-key>/orders/111111-2222-3333-444-5555555555/general"
+}
+```
+
+## Custom user properties
+
+To inject properties specific to your Custom View in the context, you can add them to the [`additionalEnv`](/api-reference/custom-view-config#additionalenv) object and they will automatically be added to the `context.environment` value.
+
+For example, for the following `custom-view-config` the `trackingSentry` property is added in the `context.environment`.
+
+```js title="custom-view-config.json" highlightLines="4-6"
+{
+  "name": "My Custom View",
+  "cloudIdentifier": "gcp-eu",
+  "additionalEnv": {
+    "trackingSentry": "https://000@sentry.io/000",
+  }
+}
+```
+
+```js title="context.environment" highlightLines="5"
+{
+  "environment": {
+    "customViewId": "ckw3vt1hv034901uzio4bkzc3",
+    "applicationName": "My Custom View",
+    "trackingSentry": "https://000@sentry.io/000",
+  }
+}
+```
+
+
+# Project image settings
+
+Product images can be uploaded to Composable Commerce or referenced from external sources.
+
+By default, images referenced from external sources are not displayed in the Merchant Center. This avoids possible performance issues in case the size of those images is big.
+
+To display images referenced from external sources, you must define a configuration that rewrites the URL of the images to versions of the image that have a smaller size. You can configure that in the Merchant Center **Settings > Project settings > Miscellaneous**.
+
+This configuration can be fetched from your Custom View using the following components.
+
+## Usage
+
+### ProjectExtensionProviderForImageRegex
+
+This is the React context provider that loads the image regex configuration and exposes it via a React context so that children can access the configuration.
+
+<Info>
+
+This component must be defined in a parent component where children of this component need to access the configuration.
+
+</Info>
+
+#### Properties
+
+| Props                           | Type                       | Required | Values            | Default   | Description                                                              |
+| ------------------------------- | -------------------------- | :------: | ----------------- | --------- | -------------------------------------------------------------------------|
+| `children`                      | `ReactNode`                |    ✅    | -                 | -         | Components that should be rendered within the scope of this provider.    |
+| `skip`                          | `boolean`                  |    -     | -                 | false     | Disables loading images configuration.                                   |
+
+
+### useProjectExtensionImageRegex
+
+A React hook that allows accessing the project images configuration.
+
+```jsx highlightLines="4-6"
+import { useProjectExtensionImageRegex } from '@commercetools-frontend/application-shell-connectors';
+
+function MyComponent() {
+  const { isLoading, imageRegex } = useProjectExtensionImageRegex();
+
+  if (isLoading) return <LoadingSpinner />;
+
+  return (
+    <div>
+      <h1>Project images regex: {JSON.stringify(imageRegex)}</h1>
+    </div>
+  );
+}
+
+function MyCustomView() {
+  return (
+    <ProjectExtensionProviderForImageRegex>
+      <MyComponent />
+    </ProjectExtensionProviderForImageRegex>
+  );
+}
+```
+
+### GetProjectExtensionImageRegex
+
+Use this component to access the project images configuration, using a `render` prop function.
+
+```jsx
+function MyComponent() {
+  return (
+    <GetProjectExtensionImageRegex
+      render={({ isLoading, imageRegex }) => {
+        if (isLoading) return <LoadingSpinner />;
+
+        return (
+          <div>
+            <h1>Project images regex: {imageRegex}</h1>
+          </div>
+        );
+      }}
+    />
+  );
+}
+
+function MyCustomView() {
+  return (
+    <ProjectExtensionProviderForImageRegex>
+      <MyComponent />
+    </ProjectExtensionProviderForImageRegex>
+  );
+}
+```
+
+#### Properties
+
+| Props                           | Type                                                 | Required | Values            | Default   | Description                                                               |
+| ------------------------------- | ---------------------------------------------------- | :------: | ----------------- | --------- | --------------------------------------------------------------------------|
+| `render`                        | `Function`<br/>See [signature](#signature-render).   |    ✅    | -                 | -         | Function to render children component with the image regex configuration. |
+
+#### Signature `render`
+
+```ts
+(
+  render: (imageRegexContextData: TImageRegexContext) => ReactNode
+) => void
+```
+
+This is the shape of the parameter provided in the render prop:
+
+```ts
+type TImageRegexContext = {
+  isLoading: boolean;
+  imageRegex?: {
+    small?: {
+      flag: string;
+      replace: string;
+      search: string;
+    } | null;
+    thumb?: {
+      flag: string;
+      replace: string;
+      search: string;
+    } | null;
+  } | null;
+}
+```

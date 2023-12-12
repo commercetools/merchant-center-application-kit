@@ -1,0 +1,88 @@
+---
+title: Getting Started
+---
+
+Get up and running in a few steps and start developing Custom Views for the [Merchant Center](https://commercetools.com/features/business-tooling).
+
+# Prerequisites
+
+Before you start development, make sure to have the following:
+
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- [Node.js](https://nodejs.org/en/) installed (version `18.x`, recommended `>=20`). Either [`yarn`](https://yarnpkg.com/), [`pnpm`](https://pnpm.io/) or [`npm`](https://www.npmjs.com/get-npm) as a package manager.
+- Basic knowledge of [React](https://reactjs.org/) and some experience working with web applications.
+
+# Install a starter template
+
+The easiest way to get started is to use one of the [starter templates](https://github.com/commercetools/merchant-center-application-kit/tree/main/custom-views-templates). To create a new Custom View from a starter template using [`create-mc-app`](/api-reference/create-mc-app), run the following command:
+
+```console noPromptLines="2-4" title="Create new Custom View from the starter template"
+npx @commercetools-frontend/create-mc-app@latest \
+  my-new-custom-view-project \
+  --application-type custom-view \
+  --template starter
+```
+
+<Info>
+
+To start with a [TypeScript](https://www.typescriptlang.org/) project, use the `--template=starter-typescript` flag. To learn more about using TypeScript, see [Adding TypeScript](/development/adding-typescript).
+
+</Info>
+
+After the installation is complete, follow the instructions to start the development server:
+
+```console title="Run the Custom View project"
+cd my-new-custom-view-project && npm start
+```
+
+This command opens a new browser tab pointing to `http://localhost:3001`.
+
+You'll be redirected to the Merchant Center login page, where you need to enter your commercetools account credentials. After authentication you'll be redirected to the local development server and have access to the Project.
+
+Custom Views are meant to be used within Merchant Center built-in applications. Hence, the local server will first render a dummy application, allowing you to open the Custom View the same way it will do in the actual Merchant Center.
+
+The following image shows how the local development landing page looks like for the `starter` template:
+
+![Local development landing page for the starter template](/images/local-custom-view-landing-view.png)
+
+And here is an example with the Custom View opened:
+
+![Local development with the Custom View opened](/images/local-custom-view-opened.png)
+
+## Configure the Custom View
+
+One of the important parts of a Custom View is the configuration file: `custom-view-config.json`.
+We recommend making yourself familiar the [Custom View Config](/api-reference/custom-view-config).
+
+By default the `starter` template is configured to use the [HTTP APIs in the GCP-EU Region](https://docs.commercetools.com/api/general-concepts#regions). If you plan to run the Custom View in another environment, change the `cloudIdentifier` accordingly (see [list of cloud identifiers](/concepts/merchant-center-api#cloud-identifiers)).
+
+## User access for local development
+
+To start developing your Custom View locally, choose a Project belonging to an Organization in which you are a member of the `Administrators` Team.
+
+You have the option of assigning granular permissions to teams to enable local development. For more information, see [Granular permissions for local development](/help-needed#granular-permissions-for-local-development).
+
+# Related
+
+For more information on what to do next, we recommend the following sections:
+
+<Cards smallTitle clickable>
+  <Card
+    title="CLI"
+    href="/api-reference/cli"
+  >
+    Learn more about the Custom Views CLI.
+  </Card>
+  <Card
+    title="Development guidelines"
+    href="/development"
+  >
+    Learn more about how to develop, test, and build your Custom View.
+  </Card>
+  <Card
+    title="OAuth Scopes and user permissions"
+    href="/concepts/oauth-scopes-and-user-permissions"
+  >
+    Learn more about OAuth Scopes and how to apply user permissions in your Custom View.
+  </Card>
+</Cards>
