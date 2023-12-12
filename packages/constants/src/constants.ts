@@ -2,6 +2,7 @@ import type { TCustomView } from './types/generated/settings';
 
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
+export const PORTALS_CONTAINER_INDENTATION_SIZE = '48px';
 
 // Links
 export const SUPPORT_PORTAL_URL = 'https://support.commercetools.com';
