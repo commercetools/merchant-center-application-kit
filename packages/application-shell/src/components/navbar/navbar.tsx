@@ -33,6 +33,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
+import { NavigationHeader } from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -371,16 +372,14 @@ const NavBar = (props: TNavbarProps) => {
 
   return (
     <NavBarLayout ref={navBarNode}>
-      <div className={styles['navigation-header']}>
-        <div className={styles['icon-container']}>
-          <div className={styles['icon']}>
+      <NavigationHeader className="navigation-header">
+        <div className="icon-container">
+          <div className="icon">
             <img src={LogoSVG} width="100%" alt="Logo" />
           </div>
         </div>
-        {isMenuOpen ? (
-          <div className={styles['title']}>Merchant Center</div>
-        ) : null}
-      </div>
+        {isMenuOpen ? <div className="title">Merchant Center</div> : null}
+      </NavigationHeader>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
           <Spacings.Stack scale="l">

@@ -37,6 +37,7 @@ import type {
 } from '../../types/generated/proxy';
 import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
+import { LeftNavigation, LeftNavigationOpen } from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
@@ -502,16 +503,17 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       <Global
         styles={css`
           ${compiledStyles.global}
+          ${LeftNavigationOpen}
         `}
       />
-      <nav
+      <LeftNavigation
         ref={ref}
-        className={styles['left-navigation']}
+        className="left-navigation"
         data-test="left-navigation"
         data-testid="left-navigation"
       >
         {props.children}
-      </nav>
+      </LeftNavigation>
     </>
   )
 );
