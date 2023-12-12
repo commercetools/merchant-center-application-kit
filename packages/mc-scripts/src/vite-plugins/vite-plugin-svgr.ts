@@ -7,8 +7,6 @@ import stringHash from 'string-hash';
 import type { XastElement, PluginInfo } from 'svgo';
 import { transformWithEsbuild, type Plugin } from 'vite';
 
-let svgoPrefixIdsCount = 0;
-
 function vitePluginSvgr(): Plugin {
   const filter = createFilter('**/*.react.svg');
   return {

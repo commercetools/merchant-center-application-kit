@@ -23,8 +23,6 @@ import momentLocalesToKeep from /* preval */ './moment-locales';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 
-let svgoPrefixIdsCount = 0;
-
 const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
   enableExtractCss: true,
