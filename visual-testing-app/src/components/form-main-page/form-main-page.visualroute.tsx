@@ -11,6 +11,7 @@ export const routePath = '/form-main-page';
 type FormMainPageContainerProps = {
   customTitleRow?: ReactNode;
   customViewLocatorCode?: string;
+  hideControls?: boolean;
 };
 
 const FormMainPageContainer = (props: FormMainPageContainerProps) => (
@@ -24,6 +25,7 @@ const FormMainPageContainer = (props: FormMainPageContainerProps) => (
       customViewLocatorCode={props.customViewLocatorCode}
       onSecondaryButtonClick={() => {}}
       onPrimaryButtonClick={() => {}}
+      hideControls={props.hideControls}
       {...props}
     >
       <Spacings.Stack scale="l">
@@ -49,6 +51,12 @@ export const Component = () => (
     </Spec>
     <Spec label="FormMainPage with Custom Views selector">
       <FormMainPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+      />
+    </Spec>
+    <Spec label="FormMainPage with Custom Views selector and no controls">
+      <FormMainPageContainer
+        hideControls
         customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
       />
     </Spec>

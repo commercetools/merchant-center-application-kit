@@ -1,5 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
@@ -15,6 +17,8 @@ import {
   MainPageContainer,
   MainPageContent,
 } from '../internals/main-page.styles';
+
+const headerRowMargin = `${uiKitDesignTokens.spacing40} 0 0 0`;
 
 type CustomFormMainPageProps = {
   /**
@@ -54,14 +58,6 @@ type CustomFormMainPageProps = {
   hideDivider?: boolean;
 };
 
-const defaultProps: Pick<
-  CustomFormMainPageProps,
-  'hideControls' | 'hideDivider'
-> = {
-  hideControls: false,
-  hideDivider: false,
-};
-
 const CustomFormMainPage = (props: CustomFormMainPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
@@ -70,29 +66,52 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
 
   return (
     <PageWrapper>
-      <CustomViewsSelector
-        customViewLocatorCode={props.customViewLocatorCode}
-      />
       <MainPageContainer>
-        <Spacings.Stack scale="l">
-          {props.customTitleRow || (
-            <PageHeaderTitle
-              title={props.title ?? ''}
-              subtitle={props.subtitle}
-              titleSize="big"
-            />
-          )}
-          {!props.hideControls && props.formControls && (
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title ?? ''}
+            subtitle={props.subtitle}
+            titleSize="big"
+          />
+        )}
+        <CustomViewsSelector
+          margin={headerRowMargin}
+          customViewLocatorCode={props.customViewLocatorCode}
+        />
+        {!props.hideControls && props.formControls && (
+          <div
+            css={css`
+              margin: ${headerRowMargin};
+            `}
+          >
             <Spacings.Inline justifyContent="flex-end">
               {props.formControls}
             </Spacings.Inline>
-          )}
-          {!props.hideDivider && <Divider />}
-        </Spacings.Stack>
+          </div>
+        )}
+        {!props.hideDivider && (
+          <div
+            css={css`
+              & > ${Divider} {
+                margin: ${headerRowMargin};
+              }
+            `}
+          >
+            <Divider />
+          </div>
+        )}
       </MainPageContainer>
       <MainPageContent>{props.children}</MainPageContent>
     </PageWrapper>
   );
+};
+
+const defaultProps: Pick<
+  CustomFormMainPageProps,
+  'hideControls' | 'hideDivider'
+> = {
+  hideControls: false,
+  hideDivider: false,
 };
 
 CustomFormMainPage.displayName = 'CustomFormMainPage';

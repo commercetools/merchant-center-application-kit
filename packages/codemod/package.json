@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/codemod",
-  "version": "22.13.0",
+  "version": "22.14.1",
   "description": "Codemod transformations for Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/application-components": "workspace:*",
-    "@emotion/react": "11.11.0",
+    "@emotion/react": "^11.11.1",
     "@tsconfig/node16": "^16.1.1",
     "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.6",

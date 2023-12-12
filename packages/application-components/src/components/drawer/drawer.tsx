@@ -40,10 +40,6 @@ type TDrawerProps = {
   getParentSelector?: () => HTMLElement;
   shouldDelayOnClose?: boolean;
   afterOpenStyles?: string | CSSObject;
-  /**
-   * This code is used to configure which Custom Views are available for this page.
-   */
-  customViewLocatorCode?: string;
 
   // Controls Props
   hideControls?: boolean;
@@ -70,8 +66,10 @@ const defaultProps: Pick<
 };
 
 const ContentWrapper = styled.div`
-  height: 100%;
-  padding: ${designTokens.spacing50};
+  flex: 1;
+  flex-basis: 0;
+  margin: ${appKitDesignTokens.marginForPageContent};
+  overflow: auto;
 `;
 
 const HeaderWrapper = styled.div`
@@ -91,7 +89,6 @@ function Drawer(props: TDrawerProps) {
       size={props.size}
       title={props.title}
       afterOpenStyles={props.afterOpenStyles}
-      customViewLocatorCode={props.customViewLocatorCode}
       getParentSelector={props.getParentSelector}
       shouldDelayOnClose={props.shouldDelayOnClose}
       topBarColor={props.topBarColor}

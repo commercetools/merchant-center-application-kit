@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
@@ -17,6 +18,7 @@ import {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
+  CustomViewsSelectorWrapper,
 } from '../../internals/tabular-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -92,9 +94,6 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
 
   return (
     <PageWrapper>
-      <CustomViewsSelector
-        customViewLocatorCode={currentCustomViewLocatorCode}
-      />
       <TabularPageContainer color="neutral">
         <PageTopBar
           color="neutral"
@@ -121,6 +120,12 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
           }
         />
       </TabularPageContainer>
+      <CustomViewsSelectorWrapper>
+        <CustomViewsSelector
+          margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
+          customViewLocatorCode={currentCustomViewLocatorCode}
+        />
+      </CustomViewsSelectorWrapper>
       <ContentWrapper>{props.children}</ContentWrapper>
     </PageWrapper>
   );

@@ -5,6 +5,8 @@ import fs from 'fs';
 import { createFilter } from '@rollup/pluginutils';
 import { transformWithEsbuild, type Plugin } from 'vite';
 
+let svgoPrefixIdsCount = 0;
+
 function vitePluginSvgr(): Plugin {
   const filter = createFilter('**/*.react.svg');
   return {
@@ -27,6 +29,21 @@ function vitePluginSvgr(): Plugin {
                     overrides: {
                       removeViewBox: false,
                     },
+                  },
+                },
+                // Avoid collisions with ids in other SVGs,
+                // which was causing incorrect gradient directions
+                // https://github.com/svg/svgo/issues/1746#issuecomment-1803600573
+                //
+                // Previously, this was a problem where unique ids
+                // could not be generated since svgo@3
+                // https://github.com/svg/svgo/issues/674
+                // https://github.com/svg/svgo/issues/1746
+                {
+                  name: 'prefixIds',
+                  params: {
+                    delim: '',
+                    prefix: () => svgoPrefixIdsCount++ as unknown as string,
                   },
                 },
               ],

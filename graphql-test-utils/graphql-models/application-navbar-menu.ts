@@ -1,16 +1,16 @@
 import { faker } from '@faker-js/faker';
 import { Factory } from 'rosie';
-import LegacyApplicationSubmenu from './legacy-application-navbar-submenu';
+import ApplicationSubmenu from './application-navbar-submenu';
 
 const ApplicationNavbarMenu = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'NavbarMenu')
-  .attr('id', () => faker.datatype.uuid())
+  .attr('id', () => faker.string.uuid())
   .attr('key', () => faker.lorem.slug(1))
   .attr('uriPath', () => faker.lorem.slug(1))
   .attr('icon', 'UserFilledIcon')
   .attr('labelAllLocales', () => [
-    { __typename: 'LocalizedField', locale: 'en', value: faker.random.word() },
+    { __typename: 'LocalizedField', locale: 'en', value: faker.word.sample() },
   ])
   .attr('defaultLabel', null)
   .attr('featureToggle', null)
@@ -18,6 +18,6 @@ const ApplicationNavbarMenu = new Factory()
   .attr('permissions', [])
   .attr('dataFences', null)
   .attr('actionRights', null)
-  .attr('submenu', () => LegacyApplicationSubmenu.buildList(1));
+  .attr('submenu', () => ApplicationSubmenu.buildList(1));
 
 export default ApplicationNavbarMenu;

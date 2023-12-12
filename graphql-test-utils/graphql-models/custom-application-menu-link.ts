@@ -4,7 +4,7 @@ import { Factory } from 'rosie';
 const CustomApplicationMenuLink = new Factory()
   .sequence('sequenceId')
   .attr('__typename', 'CustomApplicationMenuLink')
-  .attr('id', () => faker.datatype.uuid())
+  .attr('id', () => faker.string.uuid())
   .attr('permissions', () => [])
   .attr('defaultLabel', () => 'My application')
   .attr('labelAllLocales', () => []);

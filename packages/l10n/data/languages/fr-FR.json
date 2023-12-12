@@ -322,6 +322,10 @@
     "language": "anglais",
     "country": "Barbade"
   },
+  "en-BE": {
+    "language": "anglais",
+    "country": "Belgique"
+  },
   "en-BI": {
     "language": "anglais",
     "country": "Burundi"
@@ -1088,6 +1092,9 @@
   "id-ID": {
     "language": "indonésien",
     "country": "Indonésie"
+  },
+  "ie": {
+    "language": "interlingue"
   },
   "ig": {
     "language": "igbo"
@@ -1882,9 +1889,6 @@
   },
   "bh": {
     "language": "bhodjpouri"
-  },
-  "ie": {
-    "language": "interlingue"
   },
   "io": {
     "language": "ido"

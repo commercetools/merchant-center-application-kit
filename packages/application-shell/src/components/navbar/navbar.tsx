@@ -29,6 +29,7 @@ import type {
 import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
+import Spacings from '@commercetools-uikit/spacings';
 import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
@@ -328,8 +329,7 @@ const NavBar = (props: TNavbarProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    allInternalApplicationsNavbarMenu,
-    allCustomApplicationsNavbarMenu,
+    allApplicationsNavbarMenuGroups,
   } = useNavbarStateManager({
     environment: props.environment,
   });
@@ -383,48 +383,35 @@ const NavBar = (props: TNavbarProps) => {
       </div>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
-          {allInternalApplicationsNavbarMenu.map((menu) => {
-            const menuType = 'scrollable';
-            const itemIndex = `${menuType}-${menu.key}`;
-            return (
-              <ApplicationMenu
-                key={menu.key}
-                location={location}
-                menu={menu}
-                isActive={activeItemIndex === itemIndex}
-                handleToggleItem={() => handleToggleItem(itemIndex)}
-                isMenuOpen={isMenuOpen}
-                shouldCloseMenuFly={shouldCloseMenuFly}
-                projectPermissions={projectPermissions}
-                menuVisibilities={menuVisibilities}
-                applicationLocale={applicationLocale}
-                projectKey={props.projectKey}
-                useFullRedirectsForLinks={useFullRedirectsForLinks}
-                onMenuItemClick={props.onMenuItemClick}
-              />
-            );
-          })}
-          {allCustomApplicationsNavbarMenu.map((menu) => {
-            const menuType = 'scrollable';
-            const itemIndex = `${menuType}-${menu.key}`;
-            return (
-              <ApplicationMenu
-                key={menu.key}
-                location={location}
-                menu={menu}
-                isActive={activeItemIndex === itemIndex}
-                handleToggleItem={() => handleToggleItem(itemIndex)}
-                isMenuOpen={isMenuOpen}
-                shouldCloseMenuFly={shouldCloseMenuFly}
-                projectPermissions={projectPermissions}
-                menuVisibilities={menuVisibilities}
-                applicationLocale={applicationLocale}
-                projectKey={props.projectKey}
-                useFullRedirectsForLinks={useFullRedirectsForLinks}
-                onMenuItemClick={props.onMenuItemClick}
-              />
-            );
-          })}
+          <Spacings.Stack scale="l">
+            {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
+              return (
+                <div key={navbarMenuGroup.key}>
+                  {navbarMenuGroup.items.map((menu) => {
+                    const menuType = 'scrollable';
+                    const itemIndex = `${menuType}-${menu.key}`;
+                    return (
+                      <ApplicationMenu
+                        key={menu.key}
+                        location={location}
+                        menu={menu}
+                        isActive={activeItemIndex === itemIndex}
+                        handleToggleItem={() => handleToggleItem(itemIndex)}
+                        isMenuOpen={isMenuOpen}
+                        shouldCloseMenuFly={shouldCloseMenuFly}
+                        projectPermissions={projectPermissions}
+                        menuVisibilities={menuVisibilities}
+                        applicationLocale={applicationLocale}
+                        projectKey={props.projectKey}
+                        useFullRedirectsForLinks={useFullRedirectsForLinks}
+                        onMenuItemClick={props.onMenuItemClick}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </Spacings.Stack>
         </div>
         <div className={styles['fixed-menu']}>
           <Faded />

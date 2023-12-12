@@ -126,6 +126,24 @@ export const Component = () => (
     <Spec label="CustomFormDetailPage - Custom Views selector" size="xl">
       <CustomFormDetailPageContainer
         customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+        formControls={
+          <>
+            <CustomFormDetailPage.FormSecondaryButton
+              onClick={() => undefined}
+            />
+            <CustomFormDetailPage.FormPrimaryButton onClick={() => undefined} />
+            <CustomFormDetailPage.FormDeleteButton onClick={() => undefined} />
+          </>
+        }
+      />
+    </Spec>
+    <Spec
+      label="CustomFormDetailPage - Custom Views selector with no controls"
+      size="xl"
+    >
+      <CustomFormDetailPageContainer
+        customViewLocatorCode={CUSTOM_VIEW_LOCATORS.productDetails}
+        hideControls
       />
     </Spec>
   </Suite>

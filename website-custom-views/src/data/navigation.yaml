@@ -2,4 +2,87 @@
   pages:
     - title: What is a Custom View?
       path: /what-is-a-custom-view
-# TODO
+    - title: Getting Started
+      path: /getting-started
+    - title: Maintenance guidelines
+      path: /maintenance-guidelines
+    - title: Help needed?
+      path: /help-needed
+- chapter-title: Concepts
+  pages:
+    - title: OAuth Scopes and User Permissions
+      path: /concepts/oauth-scopes-and-user-permissions
+    - title: Merchant Center API
+      path: /concepts/merchant-center-api
+    - title: Integrate with your own API
+      path: /concepts/integrate-with-your-own-api
+- chapter-title: Development
+  pages:
+    - title: Overview
+      path: /development
+    - title: Data Fetching
+      path: /development/data-fetching
+    - title: UI Components
+      path: /development/ui-components
+    - title: Forms
+      path: /development/forms
+    - title: Page Content Layouts
+      path: /development/page-content-layouts
+    - title: Notifications
+      path: /development/notifications
+    - title: Testing
+      path: /development/testing
+    - title: Translations
+      path: /development/translations
+    - title: Permissions
+      path: /development/permissions
+    - title: Adding TypeScript
+      path: /development/adding-typescript
+    - title: Going to Production
+      path: /development/going-to-production
+- chapter-title: Deployment Examples
+  pages:
+    - title: Overview
+      path: /deployment-examples
+    - title: Deploying to Vercel
+      path: /deployment-examples/vercel
+    - title: Deploying to Netlify
+      path: /deployment-examples/netlify
+    - title: Deploying to Render
+      path: /deployment-examples/render
+    - title: Deploying to AWS with S3 and CloudFront
+      path: /deployment-examples/aws-s3-cloudfront
+    - title: Deploying to Azure with Static Web Apps
+      path: /deployment-examples/azure-static-web-apps
+    - title: Deploying to Azure with Blob Storage
+      path: /deployment-examples/azure-blob-storage
+    - title: Deploying to Surge
+      path: /deployment-examples/surge
+    - title: Deploying to Cloudflare Pages
+      path: /deployment-examples/cloudflare
+    - title: Deploying to Google Cloud with Static Web Apps
+      path: /deployment-examples/google-cloud-static-web-apps
+- chapter-title: API Reference
+  pages:
+    - title: CLI
+      path: /api-reference/cli
+    - title: Custom View Config
+      path: /api-reference/custom-view-config
+    - title: Create MC App
+      path: /api-reference/create-mc-app
+    - title: Custom Webpack Config
+      path: /api-reference/custom-webpack-config
+    - title: '@/actions-global'
+      path: /api-reference/commercetools-frontend-actions-global
+    - title: '@/application-shell'
+      path: /api-reference/commercetools-frontend-application-shell
+    - title: '@/application-shell-connectors'
+      path: /api-reference/commercetools-frontend-application-shell-connectors
+    - title: '@/application-components'
+      path: /api-reference/commercetools-frontend-application-components
+    - title: '@/constants'
+      path: /api-reference/commercetools-frontend-constants
+    - title: '@/cypress'
+      path: /api-reference/commercetools-frontend-cypress
+    - title: '@/permissions'
+      path: /api-reference/commercetools-frontend-permissions

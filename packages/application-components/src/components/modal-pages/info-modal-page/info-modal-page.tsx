@@ -52,9 +52,12 @@ const InfoModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     getParentSelector={props.getParentSelector}
     afterOpenStyles={props.afterOpenStyles}
-    customViewLocatorCode={props.customViewLocatorCode}
   >
-    <PageHeader title={props.title} subtitle={props.subtitle} />
+    <PageHeader
+      title={props.title}
+      subtitle={props.subtitle}
+      customViewLocatorCode={props.customViewLocatorCode}
+    />
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>
 );

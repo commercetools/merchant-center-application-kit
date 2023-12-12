@@ -4,13 +4,13 @@ title: Maintenance guidelines
 
 <Subtitle>
 
-This page describes the different aspects of the support and maintenance recommendations for consumers of the Custom Applications features.
+This page describes the different aspects of the support and maintenance recommendations for consumers of the Custom Views features.
 
 </Subtitle>
 
 # Release process
 
-Tooling and packages related to Custom Applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
+Tooling and packages related to Custom Views are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
 
 Releases are documented in each package's `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
 
@@ -24,7 +24,7 @@ All published packages to NPM are listed in the following scoped packages:
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around Custom Applications continuously. We do not follow a strict release cycle. Instead, we publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely released more frequently than major versions.
+commercetools strives to improve tooling and packages around Custom Views continuously. We do not follow a strict release cycle. Instead, we publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely released more frequently than major versions.
 
 <Info>
 
@@ -37,29 +37,29 @@ However, a major release indicates a breaking change (see [Breaking changes](#br
 
 Breaking changes are introduced whenever there is a **major** version release, for example from `v1` to `v2`.
 
-How a breaking change can impact a Custom Application:
+How a breaking change can impact a Custom View:
 
-1. It affects a component or module _not used_ within the Custom Application
-2. It affects a component or module _used_ within the Custom Application
+1. It affects a component or module _not used_ within the Custom View
+2. It affects a component or module _used_ within the Custom View
 3. It affects a component or module _directly interacting_ with some of commercetools's internal APIs
 
 <Info>
 
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
-- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support of a given Node.js version. However, this unlikely affects consumers of Custom Application packages.
-- React releases a new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support of a given Node.js version. However, this unlikely affects consumers of Custom View packages.
+- React releases a new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Views to run to a minimal React version.
 
 </Info>
 
-All breaking changes are thoroughly documented in the [release notes](/releases) together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom Application's code.
+All breaking changes are thoroughly documented in the [release notes](/releases) together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom View's code.
 
 # Minimum required maintenance policy
 
-All native Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
+All built-in Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
 
-In regards to Custom Applications, commercetools does not expect the same amount of maintenance as it requires internally.
-However, commercetools **recommends** that Custom Applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
+In regards to Custom Views, commercetools does not expect the same amount of maintenance as it requires internally.
+However, commercetools **recommends** that Custom Views are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
 Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
 
 <Info>
@@ -76,12 +76,12 @@ Those tools and services can be configured to meet everyone's needs, for example
 
 # Hosting
 
-Customers using Custom Applications are responsible for the maintenance of their Custom Applications. This includes hosting and deployments.
-commercetools does not take any responsibility towards incidents and service disruptions related to Custom Applications caused by their underlying infrastructure.
+Customers using Custom Views are responsible for the maintenance of their Custom Views. This includes hosting and deployments.
+commercetools does not take any responsibility towards incidents and service disruptions related to Custom Views caused by their underlying infrastructure.
 
 # Issues and support requests
 
-If you encounter issues developing Custom Applications, we recommend opening a **GitHub Issue** in one of the following repositories (according to what the issue is about):
+If you encounter issues developing Custom Views, we recommend opening a **GitHub Issue** in one of the following repositories (according to what the issue is about):
 
 - [Application Kit Issues](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose)
 - [UI Kit Issues](https://github.com/commercetools/ui-kit/issues/new/choose)

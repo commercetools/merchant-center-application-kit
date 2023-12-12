@@ -1,0 +1,111 @@
+---
+title: OAuth Scopes and user permissions
+---
+
+# OAuth Scopes
+
+Custom Views can use any of the available Composable Commerce APIs. This allows you to extend the functionality and build custom features for any of the Composable Commerce APIs and the Merchant Center.
+
+Therefore, Custom Views **must specify the list of OAuth Scopes** needed for the data fetching requirements.
+
+For example, if you are developing a Custom View to manage [Channels](https://docs.commercetools.com/api/projects/channels) you would probably need the OAuth Scopes `view_products` and `manage_products`. On top of that, you might decide to also view [Customers](https://docs.commercetools.com/api/projects/customers) information.<br />
+To fulfill these requirements, your Custom View would need the following OAuth Scopes: `view_products`, `view_customers` and `manage_products`.
+
+These [OAuth Scopes](https://docs.commercetools.com/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/custom-view-config#oauthscopes).
+
+```json title="custom-view-config.json"
+{
+  "oAuthScopes": {
+    "view": ["view_products", "view_customers"],
+    "manage": ["manage_products"]
+  }
+}
+```
+
+Notice here how the OAuth Scopes are grouped by the two fields `view` and `manage`.
+
+This grouping determines the **mapping and relation between OAuth Scopes and user permissions**.
+
+## Permission groups
+
+Every Custom View has a **default permission group** with a pair of view and manage permissions. This group maps to the OAuth Scopes specified in the [oAuthScopes](/api-reference/custom-view-config#oauthscopes) field of the Custom View config.
+
+However, you might need more granular access control to fulfill specific business requirements. Suppose your Custom View manages products, discounts, and orders, and you want a group of users to only manage products and discounts while another group handles orders.<br />
+In this scenario, more than one permission group (the default one) is needed to fulfill the access requirements.
+
+You can define additional permission groups with different access requirements to enable such use cases. See [additionalOAuthScopes](/api-reference/custom-view-config#additionaloauthscopes) field in the Custom View config.
+
+In the following example, we're defining two additional permission groups. The group `delivery` allows users to manage incoming orders, while the group `promotion` enables users to work on discount and promotion campaigns.
+
+```json title="custom-view-config.json" highlightLines="6-17"
+{
+  "oAuthScopes": {
+    "view": ["view_products", "view_customers"],
+    "manage": ["manage_products"]
+  },
+  "additionalOAuthScopes": [
+    {
+      "name": "delivery",
+      "view": [],
+      "manage": ["manage_orders"]
+    },
+    {
+      "name": "promotion",
+      "view": [],
+      "manage": ["manage_orders", "manage_discount_codes"]
+    }
+  ]
+}
+```
+
+<Info>
+
+The default permission group is always defined, even when adding additional groups.
+
+When additional groups are defined, the default group can be left empty without specifying any OAuth Scopes.
+
+</Info>
+
+# User permissions
+
+In the Merchant Center, you can assign user permissions to Teams to grant or restrict access to certain parts and functionalities of the Merchant Center. See [user permissions in Merchant Center](https://docs.commercetools.com/merchant-center/user-permissions) for more information.<br />
+The same concepts apply for Custom Views as well. Once your Custom View has been installed in your Organization, you can assign user permissions for your Custom View to each specific Team.
+
+Each Custom View gets **unique** "view" and "manage" permissions.
+
+* When assigning "view"-only permission to a Team, only the `view_` OAuth Scopes are used to authorize API requests.
+* When assigning "manage" permission to a Team, both `view_` and `manage_` OAuth Scopes are used to authorize API requests.
+
+## Additional permission groups
+
+When using additional permission groups, the permission name is derived from the group name, based on the following format: `{View,Manage}<GroupName>`
+
+Here are some examples:
+
+| Permission group name | User permission |
+| --- | --- |
+| `delivery` | `{View,Manage}Delivery` |
+| `promotion` | `{View,Manage}Promotion` |
+
+Ultimately, user permissions should be applied and enforced in the actual Custom View code. For example to restrict access to certain pages, or to deactivate a button, etc.
+
+To learn more about it, head over to the [Permissions in the development section](/development/permissions).
+
+# Related
+
+For more information on what to do next, we recommend the following sections:
+
+<Cards smallTitle clickable>
+  <Card
+    title="Application Config"
+    href="/api-reference/custom-view-config"
+  >
+    Learn more about the Custom View configuration file.
+  </Card>
+  <Card
+    title="Applying user permissions"
+    href="/development/permissions"
+  >
+    Learn more about applying user permissions in the Custom View.
+  </Card>
+</Cards>

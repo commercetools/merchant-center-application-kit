@@ -45,6 +45,7 @@ export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
         display: flex;
         flex: 1;
         align-items: center;
+        font-weight: ${designTokens.fontWeight500};
       `}
     >
       <div
@@ -202,6 +203,7 @@ const ProjectSwitcher = (props: Props) => {
         placeholder={intl.formatMessage(messages.searchPlaceholder)}
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
+        appearance="quiet"
       />
     </div>
   );

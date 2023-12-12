@@ -21,6 +21,8 @@ import momentLocalesToKeep from /* preval */ './moment-locales';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 
+let svgoPrefixIdsCount = 0;
+
 const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
   enableExtractCss: true,
@@ -268,6 +270,21 @@ function createWebpackConfigForProduction(
                         overrides: {
                           removeViewBox: false,
                         },
+                      },
+                    },
+                    // Avoid collisions with ids in other SVGs,
+                    // which was causing incorrect gradient directions
+                    // https://github.com/svg/svgo/issues/1746#issuecomment-1803600573
+                    //
+                    // Previously, this was a problem where unique ids
+                    // could not be generated since svgo@3
+                    // https://github.com/svg/svgo/issues/674
+                    // https://github.com/svg/svgo/issues/1746
+                    {
+                      name: 'prefixIds',
+                      params: {
+                        delim: '',
+                        prefix: () => svgoPrefixIdsCount++,
                       },
                     },
                   ],

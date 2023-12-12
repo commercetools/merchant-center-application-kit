@@ -1,0 +1,511 @@
+---
+title: Forms
+---
+
+In previous sections, we learned how to start building the user interface with components and fetching data. One of the most common requirements when implementing a user interface is forms.
+
+To facilitate the development of forms, we provide many ready-to-use input and field components based on the [commercetools Design System](https://uikit.commercetools.com/).
+
+# Form state management
+
+Forms generally consist of a group of inputs that users interact with to trigger actions.
+In this process, all user interactions must be tracked, managed, and reflected in the UI. To achieve this, a form must maintain its own state.
+
+[Formik](https://formik.org) is used as the preferred form state management library when building user interfaces.
+
+Formik comes with several built-in features, including validation, array fields, input states, and async submission.
+
+At a bare minimum, implementing a form could look something like this:
+
+```jsx
+import { useFormik } from 'formik';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import validate from './validate';
+
+const ChannelsForm = () => {
+  const { dataLocale, languages } = useCustomViewContext((context) => ({
+    dataLocale: context.dataLocale,
+    languages: context.project.languages,
+  }));
+  const formik = useFormik({
+    // We assume that the form is empty. Therefore, we need to provide default values.
+    initialValues: {
+      // A Channel's `name`: https://docs.commercetools.com/api/projects/channels
+      name: LocalizedTextInput.createLocalizedString(languages),
+    },
+    validate,
+    onSubmit: async (formikValues) => {
+      alert(`name: ${formikValues.name}`);
+      // Do something async
+    },
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <LocalizedTextField
+        name="name"
+        title="Name"
+        isRequired
+        selectedLanguage={dataLocale}
+        value={formik.values.name}
+        errors={
+          LocalizedTextField.toFieldErrors(formik.errors).name
+        }
+        touched={formik.touched.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+
+      <PrimaryButton
+        type="submit"
+        label="Submit"
+        onClick={formik.handleSubmit}
+        isDisabled={formik.isSubmitting}
+      />
+    </form>
+  );
+}
+```
+
+# Field and input components
+
+The commercetools UI Kit library provides several UI components for working with forms. Most of the time you should use the field components as they provide all the recommended features for rendering form elements.
+
+![Form field example](/images/form-field.png 'Form field example')
+
+A field component consists of an input element wrapped with other field elements (such as label, description, error message, hint, and badge).
+
+Depending on the use case, you might want to use a date field, a text field, or a select field. In the UI Kit library, there are many components that cover different use cases. For more information about field and input components check their related packages in the [commercetools/ui-kit](https://github.com/commercetools/ui-kit) repository.
+
+<Info>
+
+All UI Kit field components have a related input component, for example `<TextField>` -> `<TextInput>`.
+
+</Info>
+
+## Accessibility support
+
+All field and input components have built-in support for accessibility features such as aria labels, keyboard navigation, focus management, and error messaging.
+
+<Info>
+
+Testing these field components with [React Testing Library](https://github.com/testing-library/react-testing-library) can be easily done using selectors such as `*ByLabelText` and `*ByRole`.
+
+</Info>
+
+# Form validation
+
+One of the important parts of forms is validation. It is important to validate constraints of forms such as required fields and to check additional semantic requirements (for example, checking that the value is a valid URL).
+
+Aside from client-side validation, forms can also perform asynchronous validation against an API to ensure data correctness before form submission.
+
+For that, Formik allows you to implement a [`validate` function](https://formik.org/docs/api/formik#validate-values-values--formikerrorsvalues--promiseany) that returns an object of errors.
+
+```ts
+type TFieldErrors = Record<string, boolean>;
+// Similar shape of `FormikErrors` but values are `TFieldErrors` objects.
+type TCustomFormErrors<Values> = {
+  [K in keyof Values]?: TFieldErrors;
+};
+
+declare const validate = (values: FormValues) => TCustomFormErrors<FormValues>;
+```
+
+Specifically, the object returned from the `validate` function should contain properties correlating to field names with their values being objects with reasons for the given error. For example:
+
+```js title="validate.js"
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+
+const validate = (values) => {
+  const errors = {};
+
+  if (LocalizedTextInput.isEmpty(values.name)) {
+    errors.name = { missing: true };
+  }
+
+  return errors;
+}
+```
+
+In this example, we are validating that the `name` field has a required value. If the value is empty (no localized values have been provided), we assign to the `errors.name` property an error object with the error key `missing` set to `true`.
+
+In the field component, you must assign the `errors` and `touched` props which make the field component render an error message, in case one was returned from the `validate` function.
+
+```js highlightLines="7-10"
+<LocalizedTextField
+  name="name"
+  title="Name"
+  isRequired
+  selectedLanguage={dataLocale}
+  value={formik.values.name}
+  errors={
+    LocalizedTextField.toFieldErrors(formik.errors).name
+  }
+  touched={formik.touched.name}
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+/>
+```
+
+<Info>
+
+Error messages are only shown when the `touched` value for the specific field is `true`. This happens whenever the user stops interacting with a field (loses focus). The point here is that as long as the user is interacting with a field for the first time there is no need to show validation.
+
+</Info>
+
+By default, field components have built-in error messages for the `missing` error key. Any other error message can be mapped and rendered using the `renderError` function.
+
+```js highlightLines="10-17"
+<LocalizedTextField
+  name="name"
+  title="Name"
+  isRequired
+  selectedLanguage={dataLocale}
+  value={formik.values.name}
+  errors={
+    LocalizedTextField.toFieldErrors(formik.errors).name
+  }
+  renderError={(errorKey) => {
+    switch (errorKey) {
+      case 'invalid':
+        return 'The value is invalid.';
+      default:
+        return null;
+    }
+  }}
+  touched={formik.touched.name}
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+/>
+```
+
+# Form data conversion
+
+Implementing forms is almost always related to managing data as a bidirectional data flow.
+
+![Form data conversion](/images/form-conversion.png)
+
+To facilitate converting data to and from a form, we recommend defining some conversion functions.
+
+* `docToFormValues`: converts data, for instance, fetched from an API, to the form-specific format.
+* `formValuesToDoc`: converts form data back to the original data format, for instance, to be used in an API.
+
+The `docToFormValues` is what you would usually use for initializing the form.
+
+```jsx highlightLines="3,8"
+import { useFormik } from 'formik';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import { docToFormValues } from './conversions';
+
+const ChannelsForm = (props) => {
+  const languages = useCustomViewContext((context) => context.project.languages);
+  const formik = useFormik({
+    initialValues: docToFormValues(props.data, languages),
+    // ...
+  });
+  // ...
+}
+```
+
+In our Channels example, it can look something like this:
+
+```js title="conversions.js"
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+
+export const docToFormValues = (doc, languages) => ({
+  name: LocalizedTextInput.createLocalizedString(languages, doc?.name),
+})
+```
+
+<Info>
+
+Most UI Kit field and input components expose some static methods to ease data conversion and validation. Make sure to check if these methods are available in either the field or the input component.
+
+For example, to validate if a text field is empty, use `TextInput.isEmpty()`.
+
+</Info>
+
+The `formValuesToDoc` on the other end is what you would usually use when submitting the form.
+
+```jsx highlightLines="2,7"
+import { useFormik } from 'formik';
+import { formValuesToDoc } from './conversions';
+
+const ChannelsForm = () => {
+  const formik = useFormik({
+    onSubmit: async (formValues) => {
+      const updateData = formValuesToDoc(formValues);
+    },
+    // ...
+  });
+  // ...
+}
+```
+
+In our Channels example, it can look something like this:
+
+```js title="conversions.js"
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
+import { transformLocalizedStringToLocalizedField } from '@commercetools-frontend/l10n';
+
+export const formValuesToDoc = (formValues) => ({
+  name: transformLocalizedStringToLocalizedField(
+    LocalizedTextInput.omitEmptyTranslations(formValues.name)
+  ),
+  // ...
+})
+```
+
+<Info>
+
+Most of the time you would have simple 1:1 mapping. However, we still recommend using these conversion functions as a best practice and to help decoupling the data transformation logic from the form component.
+
+For instance, the form might only need a couple of fields even though the data object has many more. By being explicit in the conversion, we ensure that only the necessary data is passed to the form.
+
+</Info>
+
+# Building a form page
+
+Let's apply what we just learned in our `Channels` application, as we might want to add a page to view and manage a Channel's details.
+
+Given that we might want to allow creating new channels and updating existing ones, there will be two different pages with the same form components. Therefore, we can implement the form as a component and re-use it in both the create and details pages. The only difference is that the form for the create page will be initially empty and the form for the details page will have some data.
+
+```jsx title="channels-form.js"
+import { useFormik } from 'formik';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+import TextField from '@commercetools-uikit/text-field';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
+import Spacings from '@commercetools-uikit/spacings';
+import validate from './validate';
+
+const ChannelsForm = (props) => {
+  const dataLocale = useCustomViewContext((context) => context.dataLocale);
+  const formik = useFormik({
+    // Pass initial values from the parent component.
+    initialValues: props.initialValues,
+    // Handle form submission in the parent component.
+    onSubmit: props.onSubmit
+    validate,
+    enableReinitialize: true,
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <Spacings.Stack scale="l">
+        <LocalizedTextField
+          name="name"
+          title="Name"
+          isRequired
+          selectedLanguage={dataLocale}
+          value={formik.values.name}
+          errors={
+            LocalizedTextField.toFieldErrors(formik.errors).name
+          }
+          touched={formik.touched.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <TextField
+          name="key"
+          title="Key"
+          isRequired
+          value={formik.values.key}
+          errors={
+            TextField.toFieldErrors(formik.errors).key
+          }
+          touched={formik.touched.key}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+
+        <Spacings.Inline>
+          <SecondaryButton
+            label="Cancel"
+            onClick={formik.handleReset}
+          />
+          <PrimaryButton
+            type="submit"
+            label="Submit"
+            onClick={formik.handleSubmit}
+            isDisabled={formik.isSubmitting}
+          />
+        </Spacings.Inline>
+      </Spacings.Stack>
+    </form>
+  );
+}
+```
+
+Now that we have defined our form component, we can implement the "create" and "details" pages.
+
+The "create" page does not have any initial data, so we can use our conversion function `docToFormValues()` with default values.
+
+```js title="channels-create.js"
+import { useCallback } from 'react';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsCreate = () => {
+  const languages = useCustomViewContext((context) => context.project.languages);
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await createChannel(data);
+      // If successful, show a notification and redirect
+      // to the Channels details page.
+      // If errored, show an error notification.
+    },
+    [createChannel]
+  );
+
+  return (
+    <Spacings.Stack scale="xl">
+      <Text.Headline as="h1">
+        Create a channel
+      </Text.Headline>
+      <ChannelsForm
+        initialValues={docToFormValues(null, languages)}
+        onSubmit={handleSubmit}
+      />
+    </Spacings.Stack>
+  );
+}
+```
+
+On the "details" page, we need to fetch the data first, then initialize the form with the data.
+
+```js title="channels-details.js"
+import { useCallback } from 'react';
+import { useRouteMatch } from 'react-router-dom';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import useChannelsFetcher from './use-channels-fetcher';
+import useChannelsUpdater from './use-channels-updater';
+import { docToFormValues, formValuesToDoc } from './conversions';
+import ChannelsForm from './channels-form';
+
+const ChannelsDetails = (props) => {
+  const match = useRouteMatch();
+  const languages = useCustomViewContext((context) => context.project.languages);
+  const { data: channel } = useChannelsFetcher(match.params.id)
+  const { updateChannel } = useChannelsUpdater(match.params.id)
+  const handleSubmit = useCallback(
+    async (formValues) => {
+      const data = formValuesToDoc(formValues);
+      // This would trigger the request, for example a mutation.
+      const result = await updateChannel(data);
+      // If successful, show a notification.
+      // If errored, show an error notification.
+    },
+    [updateChannel]
+  );
+
+  if (!channel) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <Spacings.Stack scale="xl">
+      <Text.Headline as="h1">
+        Manage Channel
+      </Text.Headline>
+      <ChannelsForm
+        initialValues={docToFormValues(channel, languages)}
+        onSubmit={handleSubmit}
+      />
+    </Spacings.Stack>
+  );
+}
+```
+
+## Splitting form fields
+
+Sometimes a form contains many different fields, resulting in the form component to be difficult to read.
+
+One way to improve that is to split the form component into multiple smaller components. As a rule of thumb you can create one separate component for each form field. For example a `<FormChannelNameField>`, a `<FormChannelKeyField>`, and so on.
+
+<Info>
+
+To use the `useField` hook, the form must be wrapped with the `<Formik>` component instead of using the `useFormik` hook, so that the React context is properly defined.
+
+</Info>
+
+As a result, the form component can look like this:
+
+```jsx title="channels-form.js"
+import { Formik } from 'formik';
+import Spacings from '@commercetools-uikit/spacings';
+import FormChannelNameField from './form-channel-name-field';
+import FormChannelKeyField from './form-channel-key-field';
+import validate from './validate';
+
+const ChannelsForm = (props) => {
+  return (
+    <Formik
+      // Pass initial values from the parent component.
+      initialValues={props.initialValues}
+      // Handle form submission in the parent component.
+      onSubmit={props.onSubmit}
+      validate={validate}
+      enableReinitialize={true}
+    >
+      {(formikProps) => {
+        // Only contains the form elements, no buttons.
+        const formElements = (
+          <Spacings.Stack scale="l">
+            <FormChannelNameField />
+            <FormChannelKeyField />
+          </Spacings.Stack>
+        );
+
+        return props.children({
+          formElements,
+          isDirty: formikProps.dirty,
+          isSubmitting: formikProps.isSubmitting,
+          submitForm: formikProps.handleSubmit,
+          handleCancel: formikProps.handleReset,
+        });
+      }}
+    </Formik>
+  );
+};
+```
+
+One of the advantages of splitting up the form fields is to encapsulate the logic. You might notice that we don't explicitly pass any props to these components. Instead, each component can access the form data that they need from the form context, using Formik's `useField` hook.
+
+```js title="form-channel-name.js"
+import { useField } from 'formik';
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+import LocalizedTextField from '@commercetools-uikit/localized-text-field';
+
+const FormChannelNameField = () => {
+  const dataLocale = useCustomViewContext((context) => context.dataLocale);
+  const [field, meta] = useField('name');
+
+  return (
+    <LocalizedTextField
+      title="Name"
+      isRequired
+      selectedLanguage={dataLocale}
+      {...field}
+      errors={
+        LocalizedTextField.toFieldErrors({ name: meta.error }).name
+      }
+      touched={meta.touched}
+    />
+  );
+}
+```
+
+The `field` object can be spread to the UI Kit field component (it contains the props like `name`, `onChange`, etc.) and the `meta` object contains things like `touched` and `error` values of the specific field.

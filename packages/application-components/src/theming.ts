@@ -36,6 +36,7 @@ export const themesOverrides = {
     heightForTab: '2px',
     lineHeightForNavbarLink: uiKitDesignTokens.lineHeight20,
     marginBottomForPageTopBar: uiKitDesignTokens.spacing40,
+    marginForCustomViewsSelectorAsTabular: `0 ${appKitSpacing55}`,
     marginForDialogContainerContents: `${uiKitDesignTokens.spacing30} 0 ${uiKitDesignTokens.spacing50} 0`,
     marginForModalPageHeader: `0 ${appKitSpacing55}`,
     marginForUserMenuItem: `${uiKitDesignTokens.spacing10} 0`,

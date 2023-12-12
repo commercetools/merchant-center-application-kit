@@ -322,6 +322,10 @@
     "language": "inglés",
     "country": "Barbados"
   },
+  "en-BE": {
+    "language": "inglés",
+    "country": "Bélgica"
+  },
   "en-BI": {
     "language": "inglés",
     "country": "Burundi"
@@ -1088,6 +1092,9 @@
   "id-ID": {
     "language": "indonesio",
     "country": "Indonesia"
+  },
+  "ie": {
+    "language": "interlingue"
   },
   "ig": {
     "language": "igbo"
@@ -1882,9 +1889,6 @@
   },
   "bh": {
     "language": "bhoyapurí"
-  },
-  "ie": {
-    "language": "interlingue"
   },
   "io": {
     "language": "ido"

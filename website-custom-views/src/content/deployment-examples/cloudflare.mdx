@@ -1,0 +1,99 @@
+---
+title: Deploying to Cloudflare Pages
+---
+
+This deployment example refers to [Cloudflare Pages](https://developers.cloudflare.com/pages/).
+
+# Prerequisites
+
+Before you get started, you need to have:
+
+- A [Cloudflare](https://dash.cloudflare.com) account.
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A Custom View [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+
+# Configuration
+
+In your Custom View config, provide the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) you got when you configured the Custom View in the Merchant Center.
+
+Moreover, you need to provide the [production URL](/api-reference/custom-view-config#envproductionurl) from your Cloudflare Pages project. You can keep the standard Cloudflare Pages URL `https://<project>.pages.dev` or provide your custom domain.
+
+```json title="custom-view-config.json"
+{
+  "env": {
+    "production": {
+      "customViewId": "ckvtahxl90097sys6har1e6n3",
+      "url": "https://<project>.pages.dev"
+    }
+  }
+}
+```
+
+## Using environment variables
+
+In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
+
+```json title="custom-view-config.json" highlightLines="4"
+{
+  "env": {
+    "production": {
+      "customViewId": "${env:CUSTOM_VIEW_ID}",
+      "url": "https://<project>.pages.dev"
+    }
+  }
+}
+```
+
+# Connect Cloudflare with GitHub
+
+The easiest way to deploy to Cloudflare is to use the [GitHub integration](https://developers.cloudflare.com/pages/platform/git-integration).
+
+Follow the steps in Cloudflare Pages to create and import a new Git repository.
+
+<Info>
+
+Make sure to also install the [Cloudflare Pages GitHub App](https://github.com/apps/cloudflare-pages) to grant access to your repository.
+
+</Info>
+
+## Configuring build settings
+
+In the Cloudflare Pages setup process you need to configure the following things:
+
+* Select `React (create-react-app)` as the *Framework Preset*.
+* Override the *Build command* with: `yarn build`.
+
+  <Info>
+
+  In your `package.json` make sure to have the following scripts defined:
+
+  ```json title="package.json"
+  {
+    "scripts": {
+      "build": "mc-scripts build"
+    }
+  }
+  ```
+
+  </Info>
+
+* Override the *Output directory* with: `public`.
+* If possible, select or specify the *Node.js Version*. Recommended version is `>= v18`.
+
+<Info>
+
+If your Custom View config [requires environment variables](#using-environment-variables), make sure to provide them in your **Account Home > Pages > Pages project > Settings > Environment variables**.
+
+</Info>
+
+# Test your deployment
+
+In the Merchant Center you can now [follow the steps to install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
+
+<Warning>
+
+The Custom View won't render if you try to access it directly via the deployment URL, as it needs to be served within the [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router).
+
+Therefore, Preview deployments are not really useful. If you are interested in this functionality, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Warning>

@@ -94,7 +94,7 @@ const createApolloClient = (
             appBar: {
               merge: mergeArraysObjects,
             },
-            navBar: {
+            navBarGroups: {
               merge: mergeArraysObjects,
             },
           },
