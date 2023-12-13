@@ -101,6 +101,11 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
   }
 }
 
+/* 
+  During e2e tests, the Custom View template is built in production mode but still runs on localhost.
+  Checking for local production mode is necessary for applying the development host URL, 
+  creating an environment for testing interaction with the Custom View template.
+*/
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
 
