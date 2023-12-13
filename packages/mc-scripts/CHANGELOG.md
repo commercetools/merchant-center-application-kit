@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.14.2
+
+### Patch Changes
+
+- [#3342](https://github.com/commercetools/merchant-center-application-kit/pull/3342) [`5314f169e`](https://github.com/commercetools/merchant-center-application-kit/commit/5314f169e8af0ffcc820b57b818ac5495b92c45a) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Avoid implementing 2 separate ID's for ID's that are declared and consumed in the same SVG file in webpack's SVGR loader and Vite SVGR plugin.
+
+  More information about the approach can be found [here](https://github.com/svg/svgo/issues/913#issuecomment-369373572).
+
+- Updated dependencies [[`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd), [`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd), [`e7b84b1fb`](https://github.com/commercetools/merchant-center-application-kit/commit/e7b84b1fb1eb8de233468dd045d0842d3260e438)]:
+  - @commercetools-frontend/application-components@22.14.2
+  - @commercetools-frontend/constants@22.14.2
+  - @commercetools-frontend/application-config@22.14.2
+  - @commercetools-frontend/mc-html-template@22.14.2
+  - @commercetools-frontend/mc-dev-authentication@22.14.2
+  - @commercetools-frontend/assets@22.14.2
+  - @commercetools-frontend/babel-preset-mc-app@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

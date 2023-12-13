@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.14.2
+
+### Patch Changes
+
+- [#3337](https://github.com/commercetools/merchant-center-application-kit/pull/3337) [`3d4d5028f`](https://github.com/commercetools/merchant-center-application-kit/commit/3d4d5028fa26c13d0a9f5a3d3d01128536de1f26) Thanks [@emmenko](https://github.com/emmenko)! - Fix docs link
+
 ## 22.14.1
 
 ## 22.14.0
