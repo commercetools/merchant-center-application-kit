@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-applications/merchant-center-custom-view-template-starter-typescript",
-  "version": "22.14.1",
+  "version": "22.14.2",
   "description": "A starter example in TypeScript for the bare minimum setup to develop a Merchant Center Custom View",
   "private": true,
   "scripts": {

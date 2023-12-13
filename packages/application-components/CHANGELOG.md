@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.14.2
+
+### Patch Changes
+
+- [#3336](https://github.com/commercetools/merchant-center-application-kit/pull/3336) [`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fixed Custom Views panels size behaviour in narrow viewports.
+
+- [#3343](https://github.com/commercetools/merchant-center-application-kit/pull/3343) [`e7b84b1fb`](https://github.com/commercetools/merchant-center-application-kit/commit/e7b84b1fb1eb8de233468dd045d0842d3260e438) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fixes for Custom Views related to styling issues when using Page Layout components and inner routing.
+
+- Updated dependencies [[`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd)]:
+  - @commercetools-frontend/constants@22.14.2
+  - @commercetools-frontend/actions-global@22.14.2
+  - @commercetools-frontend/application-config@22.14.2
+  - @commercetools-frontend/application-shell-connectors@22.14.2
+  - @commercetools-frontend/sentry@22.14.2
+  - @commercetools-frontend/i18n@22.14.2
+  - @commercetools-frontend/l10n@22.14.2
+  - @commercetools-frontend/assets@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

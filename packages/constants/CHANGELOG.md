@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.14.2
+
+### Patch Changes
+
+- [#3336](https://github.com/commercetools/merchant-center-application-kit/pull/3336) [`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - New shared constant about modals UI.
+
 ## 22.14.1
 
 ## 22.14.0
