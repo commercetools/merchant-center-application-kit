@@ -13,6 +13,9 @@ https://support.commercetools.com
 https://developers.cloudflare.com
 https://dash.cloudflare.com
 https://www.npmjs.com
+https://accounts.google.com
+https://www.googletagmanager.com
+https://console.cloud.google.com
 
 # Exclude links to other microsites
 
@@ -25,6 +28,6 @@ https://www.npmjs.com
 \/.+\/docs\/frontend
 \/.+\/docs\/login
 \/.+\/import-export
-\/.+\/merchant-center
+\/.+\/merchant-center\/
 \/.+\/sdk
 \/.+\/tutorials
