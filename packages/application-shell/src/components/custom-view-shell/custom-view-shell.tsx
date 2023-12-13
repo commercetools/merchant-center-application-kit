@@ -102,8 +102,7 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 }
 
 const isLocalProdMode =
-  process.env.NODE_ENV === 'production' &&
-  window.location.origin.match(/http:\/\/(localhost|127.0.0.1)/g);
+  process.env.NODE_ENV === 'production' && window.app.env === 'development';
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
