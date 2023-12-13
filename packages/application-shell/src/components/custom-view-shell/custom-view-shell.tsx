@@ -103,7 +103,7 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' &&
-  window.location.origin.match(/(http*):\/\/(localhost|127.0.0.1)/g);
+  window.location.origin.match(/http:\/\/(localhost|127.0.0.1)/g);
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
@@ -140,8 +140,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
       if (
         (event.origin === window.location.origin ||
           // event.origin is not defined in test environment
-          process.env.NODE_ENV === 'test' ||
-          isLocalProdMode) &&
+          process.env.NODE_ENV === 'test') &&
         event.data === CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP
       ) {
         iFrameCommunicationPort.current = event.ports[0];
@@ -171,14 +170,14 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
   }, []);
 
-  if (!hostContext && !isLocalProdMode) {
+  if (!hostContext) {
     return <ApplicationLoader showLogo />;
   }
 
   const hostUrl =
     process.env.NODE_ENV === 'development' || isLocalProdMode
       ? window.app.__DEVELOPMENT__?.customViewHostUrl!
-      : hostContext!.hostUrl;
+      : hostContext.hostUrl;
 
   return (
     <ApplicationShellProvider
@@ -187,7 +186,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
       apolloClient={props.apolloClient}
     >
       {({ isAuthenticated }) => {
-        if (isAuthenticated && hostContext) {
+        if (isAuthenticated) {
           return (
             <CustomViewContextProvider
               hostUrl={hostUrl}
