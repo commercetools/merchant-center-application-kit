@@ -6,6 +6,7 @@ import {
   Suspense,
   StrictMode,
   type ReactNode,
+  RefObject,
 } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { Route } from 'react-router-dom';
@@ -18,11 +19,13 @@ import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
   CustomViewData,
+  DOMAINS,
 } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import ApplicationLoader from '../application-loader/application-loader';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
@@ -63,6 +66,33 @@ type TStrictModeEnablementProps = {
   children?: ReactNode;
 };
 
+type TNotificationsContainerProps = {
+  notificationsGlobalRef: RefObject<HTMLDivElement>;
+  notificationsPageRef: RefObject<HTMLDivElement>;
+};
+function NotificationsContainer(props: TNotificationsContainerProps) {
+  return (
+    <>
+      <div
+        ref={props.notificationsGlobalRef}
+        role="region"
+        aria-live="polite"
+        style={{
+          gridRow: 1,
+          gridColumn: '1/3',
+        }}
+      >
+        <div id="above-top-navigation" />
+        <NotificationsList domain={DOMAINS.GLOBAL} />
+      </div>
+      <div ref={props.notificationsPageRef}>
+        <NotificationsList domain={DOMAINS.PAGE} />
+      </div>
+      <NotificationsList domain={DOMAINS.SIDE} />
+    </>
+  );
+}
+
 function StrictModeEnablement(props: TStrictModeEnablementProps) {
   if (props.enableReactStrictMode) {
     return <StrictMode>{props.children}</StrictMode>;
@@ -74,6 +104,15 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
+  const notificationsGlobalRef = useRef<HTMLDivElement>(null);
+  const notificationsPageRef = useRef<HTMLDivElement>(null);
+  const layoutRefs = useRef<{
+    notificationsGlobalRef: RefObject<HTMLDivElement>;
+    notificationsPageRef: RefObject<HTMLDivElement>;
+  }>({
+    notificationsGlobalRef,
+    notificationsPageRef,
+  });
 
   const hostMessageHandler = useCallback(
     (event: MessageEvent<THostEventData>) => {
@@ -156,7 +195,15 @@ function CustomViewShell(props: TCustomViewShellProps) {
                 projectKey={hostContext.projectKey}
                 customViewConfig={hostContext.customViewConfig}
               >
-                <PortalsContainer />
+                <PortalsContainer
+                  // @ts-ignore
+                  ref={layoutRefs}
+                />
+                <NotificationsContainer
+                  notificationsGlobalRef={notificationsGlobalRef}
+                  notificationsPageRef={notificationsPageRef}
+                />
+
                 <Route
                   path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
                 >
