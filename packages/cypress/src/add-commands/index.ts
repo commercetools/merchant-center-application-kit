@@ -34,7 +34,7 @@ Cypress.Commands.add(
   (
     commandOptions: Omit<
       CommandLoginOptions,
-      'entryPointUriPath' | 'initialRoute'
+      'entryPointUriPath' | 'initialRoute' | 'login'
     >
   ) => {
     Cypress.log({ name: 'loginToMerchantCenterForCustomView' });

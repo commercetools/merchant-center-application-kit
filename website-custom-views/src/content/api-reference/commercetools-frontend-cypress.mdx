@@ -73,27 +73,15 @@ import '@commercetools-frontend/cypress/add-commands';
 
 # Commands
 
-## cy.loginToMerchantCenter
+## cy.loginToMerchantCenterForCustomView
 
-This command performs the user login to the Merchant Center. It automatically detects whether the Custom View is running on localhost or production and chooses the appropriate login mechanism.<br/>
-
-- When it runs locally, the same mechanism used in the `cy.loginByOidc` is used.
-- When it runs on production, a normal login flow is used where the user enters the credentials into the login form.
+This command performs the user login to the Merchant Center, designed specifically for testing a Custom View. Testing Custom Views is expected to occur on localhost, therefore the `cy.loginByOidc` mechanism is used.<br/>
 
 ### Usage
 
 ```ts
-import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
-
 it('should render page 1', () => {
-  cy.loginToMerchantCenter({
-    entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
-    initialRoute: `/${Cypress.env('PROJECT_KEY')}/my-app/page-1`,
-  });
-})
-it('should render page 2', () => {
-  cy.loginToMerchantCenter({ entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH });
-  cy.visit(`/${Cypress.env('PROJECT_KEY')}/my-app/page-2`)
+  cy.loginToMerchantCenterForCustomView();
 })
 ```
 
@@ -102,11 +90,10 @@ it('should render page 2', () => {
 Available options are:
 
 * `entryPointUriPath` (**required**): User the constant for the entry point URI path: `CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH`.
-* `dotfiles` (optional): A list of dotenv files to load when the `custom-view-config.mjs` is loaded (in case you're using an environment placeholder). By default the following dotenv files are loaded: `.env` and `.env.local`. You can also define the values using paths relative to the application folder.
+* `dotfiles` (optional): A list of dotenv files to load when the `custom-view-config.mjs` is loaded (in case you're using an environment placeholder). By default the following dotenv files are loaded: `.env` and `.env.local`. You can also define the values using paths relative to the Custom View folder.
 * `initialRoute` (optional): The route to open after login. If not defined, make sure to call `cy.visit` yourself.
 * `projectKey` (optional): The project key to access the user session. The session token is valid for one project key at a time. Defaults to `Cypress.env('PROJECT_KEY')`.
 * `onBeforeLoad` (optional): The function to call before the page has loaded all of its resources. Use this as a chance to interact, for example, with the browser storage.
-* `login` (optional): An object with the user login credentials `email` and `password`. If not provided, the `email` defaults to `Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER')` and the `password` defaults to `Cypress.env('LOGIN_PASSWORD')`.
 * `disableCacheAcrossSpecs` (optional): Turn off caching the session across specs. This is only relevant for Cypress version >= `10.9.0`.
 
 The command also requires loading the `custom-view-config.mjs` (automatically done via the Cypress task), so it may need to load environment variables in case the Custom View config uses environment placeholders.<br/>
@@ -114,7 +101,7 @@ The `.env` and `.env.local` files are loaded by default from the Custom View fol
 
 <Info>
 
-Ensure that the following environment variables are available if the related options aren't provided explicitly:  `PROJECT_KEY`, `LOGIN_USER`, `LOGIN_PASSWORD`.
+Ensure that the `PROJECT_KEY` environment variable is available if the related `projectKey` isn't provided explicitly.
 
 </Info>
 
