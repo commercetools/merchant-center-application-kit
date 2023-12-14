@@ -27,6 +27,7 @@ import {
 } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import ApplicationLoader from '../application-loader/application-loader';
+import GlobalStyles from '../application-shell/global-styles';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -101,9 +102,9 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
   }
 }
 
-/* 
+/*
   During e2e tests, the Custom View template is built in production mode but still runs on localhost.
-  Checking for local production mode is necessary for applying the development host URL, 
+  Checking for local production mode is necessary for applying the development host URL,
   creating an environment for testing interaction with the Custom View template.
 */
 const isLocalProdMode =
@@ -184,58 +185,61 @@ function CustomViewShell(props: TCustomViewShellProps) {
       : hostContext.hostUrl;
 
   return (
-    <ApplicationShellProvider
-      environment={window.app}
-      applicationMessages={props.applicationMessages}
-      apolloClient={props.apolloClient}
-    >
-      {({ isAuthenticated }) => {
-        if (isAuthenticated) {
-          return (
-            <CustomViewContextProvider
-              hostUrl={hostUrl}
-              customViewConfig={hostContext.customViewConfig}
-            >
-              <CustomViewShellAuthenticated
-                dataLocale={hostContext.dataLocale}
-                environment={window.app}
-                messages={props.applicationMessages}
-                projectKey={hostContext.projectKey}
+    <>
+      <GlobalStyles />
+      <ApplicationShellProvider
+        environment={window.app}
+        applicationMessages={props.applicationMessages}
+        apolloClient={props.apolloClient}
+      >
+        {({ isAuthenticated }) => {
+          if (isAuthenticated) {
+            return (
+              <CustomViewContextProvider
+                hostUrl={hostUrl}
                 customViewConfig={hostContext.customViewConfig}
               >
-                <PortalsContainer
-                  // @ts-ignore
-                  ref={layoutRefs}
-                />
-                <NotificationsContainer
-                  notificationsGlobalRef={notificationsGlobalRef}
-                  notificationsPageRef={notificationsPageRef}
-                />
-
-                <Route
-                  path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
+                <CustomViewShellAuthenticated
+                  dataLocale={hostContext.dataLocale}
+                  environment={window.app}
+                  messages={props.applicationMessages}
+                  projectKey={hostContext.projectKey}
+                  customViewConfig={hostContext.customViewConfig}
                 >
-                  {props.children}
-                </Route>
-              </CustomViewShellAuthenticated>
-            </CustomViewContextProvider>
-          );
-        }
+                  <PortalsContainer
+                    // @ts-ignore
+                    ref={layoutRefs}
+                  />
+                  <NotificationsContainer
+                    notificationsGlobalRef={notificationsGlobalRef}
+                    notificationsPageRef={notificationsPageRef}
+                  />
 
-        return (
-          <AsyncLocaleData
-            locale={browserLocale}
-            applicationMessages={props.applicationMessages}
-          >
-            {({ locale, messages }) => (
-              <ConfigureIntlProvider locale={locale} messages={messages}>
-                <PageUnauthorized />
-              </ConfigureIntlProvider>
-            )}
-          </AsyncLocaleData>
-        );
-      }}
-    </ApplicationShellProvider>
+                  <Route
+                    path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
+                  >
+                    {props.children}
+                  </Route>
+                </CustomViewShellAuthenticated>
+              </CustomViewContextProvider>
+            );
+          }
+
+          return (
+            <AsyncLocaleData
+              locale={browserLocale}
+              applicationMessages={props.applicationMessages}
+            >
+              {({ locale, messages }) => (
+                <ConfigureIntlProvider locale={locale} messages={messages}>
+                  <PageUnauthorized />
+                </ConfigureIntlProvider>
+              )}
+            </AsyncLocaleData>
+          );
+        }}
+      </ApplicationShellProvider>
+    </>
   );
 }
 
