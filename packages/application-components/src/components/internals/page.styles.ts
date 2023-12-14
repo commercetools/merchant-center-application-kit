@@ -3,7 +3,7 @@ import { designTokens as appKitDesignTokens } from '../../theming';
 
 export const ContentWrapper = styled.div`
   flex: 1;
-  flex-basis: 0%;
+  flex-basis: 0;
   margin: ${appKitDesignTokens.marginForPageContent};
   overflow: auto;
 `;
