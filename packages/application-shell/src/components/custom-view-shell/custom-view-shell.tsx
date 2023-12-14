@@ -101,6 +101,14 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
   }
 }
 
+/* 
+  During e2e tests, the Custom View template is built in production mode but still runs on localhost.
+  Checking for local production mode is necessary for applying the development host URL, 
+  creating an environment for testing interaction with the Custom View template.
+*/
+const isLocalProdMode =
+  process.env.NODE_ENV === 'production' && window.app.env === 'development';
+
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
@@ -171,7 +179,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
   }
 
   const hostUrl =
-    process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'development' || isLocalProdMode
       ? window.app.__DEVELOPMENT__?.customViewHostUrl!
       : hostContext.hostUrl;
 
@@ -232,7 +240,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
 }
 
 const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
-  if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
+  if (
+    (process.env.NODE_ENV === 'development' || isLocalProdMode) &&
+    !props.disableDevHost
+  ) {
     return (
       <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
         <Suspense fallback={<ApplicationLoader />}>

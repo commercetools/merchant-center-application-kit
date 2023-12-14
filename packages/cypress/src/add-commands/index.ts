@@ -50,3 +50,16 @@ Cypress.Commands.add(
       .hover();
   }
 );
+
+// https://github.com/cypress-io/cypress/issues/136#issuecomment-342391119
+Cypress.Commands.add(
+  'getIframeBody',
+  { prevSubject: 'element' },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ($iframe: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return new Cypress.Promise((resolve: any) => {
+      resolve($iframe.contents().find('body'));
+    });
+  }
+);
