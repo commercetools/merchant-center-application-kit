@@ -41,6 +41,8 @@ import {
   LeftNavigation,
   LeftNavigationOpen,
   GetListStyles,
+  Expander,
+  ExpanderIcon,
 } from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
 
@@ -140,13 +142,13 @@ const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
 
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
-    <li
+    <Expander
       key="expander"
       className={classnames(styles.expander, {
         [styles.hidden]: !props.isVisible,
       })}
     >
-      <div
+      <ExpanderIcon
         onClick={props.onClick}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -154,12 +156,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
           }
         }}
         tabIndex={0}
-        className={styles['expand-icon']}
         data-testid="menu-expander"
       >
         {getIcon(props)}
-      </div>
-    </li>
+      </ExpanderIcon>
+    </Expander>
   );
 };
 MenuExpander.displayName = 'MenuExpander';

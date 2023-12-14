@@ -66,3 +66,47 @@ export const GetListStyles = () => [
     flex: 1 1 0;
   `,
 ];
+
+export const Expander = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    ${designTokens.colorPrimary} 0%,
+    ${designTokens.colorPrimary25} 100%
+  );
+  padding: ${designTokens.spacing30} ${designTokens.spacing25};
+
+  /* Divider */
+  ::before {
+    content: '';
+    position: absolute;
+    top: ${NAVBAR.itemHeight};
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    width: calc(100% - 2 * ${designTokens.spacing30});
+  }
+
+  :hover,
+  :focus {
+    background-color: var(--color-primary-40);
+  }
+`;
+
+export const ExpanderIcon = styled.div`
+  height: ${NAVBAR.expanderSize};
+  width: ${NAVBAR.expanderSize};
+  border-radius: ${designTokens.borderRadius4};
+  padding: ${designTokens.spacing20};
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover,
+  :focus {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+`;
