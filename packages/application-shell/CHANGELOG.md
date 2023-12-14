@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.14.3
+
+### Patch Changes
+
+- [#3347](https://github.com/commercetools/merchant-center-application-kit/pull/3347) [`96a050a18`](https://github.com/commercetools/merchant-center-application-kit/commit/96a050a18818243b38866541dd2f3498d46db447) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update Page Layout component and Custom Views styles so the former renders correctly in both Custom Applications and Custom Views.
+
+- [#3339](https://github.com/commercetools/merchant-center-application-kit/pull/3339) [`77f3de598`](https://github.com/commercetools/merchant-center-application-kit/commit/77f3de5983ba0470034c99bea2982ef94a791856) Thanks [@kark](https://github.com/kark)! - Introduce end-to-end tests to validate custom views templates
+
+- Updated dependencies [[`96a050a18`](https://github.com/commercetools/merchant-center-application-kit/commit/96a050a18818243b38866541dd2f3498d46db447)]:
+  - @commercetools-frontend/application-components@22.14.3
+  - @commercetools-frontend/actions-global@22.14.3
+  - @commercetools-frontend/application-config@22.14.3
+  - @commercetools-frontend/application-shell-connectors@22.14.3
+  - @commercetools-frontend/assets@22.14.3
+  - @commercetools-frontend/browser-history@22.14.3
+  - @commercetools-frontend/constants@22.14.3
+  - @commercetools-frontend/i18n@22.14.3
+  - @commercetools-frontend/l10n@22.14.3
+  - @commercetools-frontend/notifications@22.14.3
+  - @commercetools-frontend/permissions@22.14.3
+  - @commercetools-frontend/react-notifications@22.14.3
+  - @commercetools-frontend/sdk@22.14.3
+  - @commercetools-frontend/sentry@22.14.3
+  - @commercetools-frontend/url-utils@22.14.3
+
 ## 22.14.2
 
 ### Patch Changes
