@@ -359,17 +359,15 @@ const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
+    const linkLevel = props.isSubmenuLink ? 'text-link-sublist' : 'text-link';
     return (
       <NavLinkWrapper {...props}>
         <NavLink
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
-          className={
-            props.isSubmenuLink
-              ? styles['text-link-sublist']
-              : styles['text-link']
-          }
+          className={styles[linkLevel]}
+          data-link-level={linkLevel}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();

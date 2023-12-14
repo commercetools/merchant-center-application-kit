@@ -78,9 +78,9 @@ const isFocusOutEventCalledBySubmenuItem = (event: FocusEvent) =>
   // a case when a submenu item loses focus
   event.type === 'focusout' &&
   // element receiving focus
-  (event.relatedTarget as Element)?.matches('a[class*="__text-link__"]') &&
+  (event.relatedTarget as Element)?.matches('a[data-link-level="text-link"]') &&
   // element losing focus
-  (event.target as Element)?.matches('a[class*="__text-link-sublist__"]');
+  (event.target as Element)?.matches('a[data-link-level="text-link-sublist"]');
 
 const useNavbarStateManager = (props: HookProps) => {
   const navBarNode = useRef<HTMLElement>(null);
