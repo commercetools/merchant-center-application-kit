@@ -1,4 +1,5 @@
 import { Matcher as TMatcher } from '@testing-library/dom';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import {
   loginByForm,
   loginByOidc,
@@ -25,6 +26,26 @@ Cypress.Commands.add(
     } else {
       loginByForm(commandOptions);
     }
+  }
+);
+
+Cypress.Commands.add(
+  'loginToMerchantCenterForCustomView',
+  (
+    commandOptions: Omit<
+      CommandLoginOptions,
+      'entryPointUriPath' | 'initialRoute'
+    >
+  ) => {
+    Cypress.log({ name: 'loginToMerchantCenterForCustomView' });
+
+    const projectKey = Cypress.env('PROJECT_KEY');
+
+    loginByOidc({
+      ...commandOptions,
+      entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+      initialRoute: `/${projectKey}/${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}`,
+    });
   }
 );
 
