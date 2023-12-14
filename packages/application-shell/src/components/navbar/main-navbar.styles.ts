@@ -55,3 +55,14 @@ export const NavigationHeader = styled.div`
     animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
   }
 `;
+
+export const GetListStyles = () => [
+  css`
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 0;
+  `,
+];

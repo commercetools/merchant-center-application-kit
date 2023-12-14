@@ -37,7 +37,11 @@ import type {
 } from '../../types/generated/proxy';
 import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import { LeftNavigation, LeftNavigationOpen } from './main-navbar.styles';
+import {
+  LeftNavigation,
+  LeftNavigationOpen,
+  GetListStyles,
+} from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
 
 const styles = compiledStyles.jsonMap;
@@ -226,6 +230,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
     <ul
       ref={ref && props.level === 2 ? ref : null}
       css={css`
+        ${props.level === 1 && GetListStyles()}
         ${getSubmenuPositionBasedOnMenuItemPosition(
           props.isSubmenuAboveMenuItem,
           props.submenuVerticalPosition
@@ -255,7 +260,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuCollapsed
       }
       className={classnames(
-        { [styles.list]: props.level === 1 },
         {
           [styles['sublist']]: props.level === 2,
         },
