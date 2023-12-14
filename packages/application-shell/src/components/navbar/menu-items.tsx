@@ -41,6 +41,7 @@ import {
   LeftNavigation,
   LeftNavigationOpen,
   GetListStyles,
+  GetHiddenStyles,
   Expander,
   ExpanderIcon,
 } from './main-navbar.styles';
@@ -144,9 +145,9 @@ const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <Expander
       key="expander"
-      className={classnames(styles.expander, {
-        [styles.hidden]: !props.isVisible,
-      })}
+      css={css`
+        ${!props.isVisible && GetHiddenStyles()}
+      `}
     >
       <ExpanderIcon
         onClick={props.onClick}

@@ -56,17 +56,6 @@ export const NavigationHeader = styled.div`
   }
 `;
 
-export const GetListStyles = () => [
-  css`
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    flex: 1 1 0;
-  `,
-];
-
 export const Expander = styled.li`
   display: flex;
   align-items: center;
@@ -110,3 +99,20 @@ export const ExpanderIcon = styled.div`
     cursor: pointer;
   }
 `;
+
+export const GetListStyles = () => [
+  css`
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 0;
+  `,
+];
+
+export const GetHiddenStyles = () => [
+  css`
+    display: none;
+  `,
+];
