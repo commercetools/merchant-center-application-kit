@@ -62,9 +62,7 @@ const loadAllCustomEntityConfigs = async (
           processEnv,
           applicationPath: packageInfo.dir,
         });
-        const isCustomViewConfig = Boolean(
-          processedConfig.env.production.customViewId
-        );
+        const isCustomViewConfig = Boolean(processedConfig.customViewId);
 
         console.log(
           `Found Custom ${
@@ -77,7 +75,7 @@ const loadAllCustomEntityConfigs = async (
         };
       } catch (error) {
         // Ignore packages that do not have a valid config file, either because
-        // the package is not a Custom Application or because the config file
+        // the package is not a Custom Entity or because the config file
         // is invalid.
         if (error instanceof MissingOrInvalidConfigError) {
           return allConfigs;
@@ -127,7 +125,7 @@ const customViewConfig = async (
   }
 
   console.log(`Using Custom View config`);
-  return customApplicationConfig;
+  return customViewConfig;
 };
 
 export { customApplicationConfig, customViewConfig };

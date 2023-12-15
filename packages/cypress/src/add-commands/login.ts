@@ -1,7 +1,10 @@
 import semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
 import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
-import { ApplicationRuntimeEnvironment } from '@commercetools-frontend/constants';
+import {
+  ApplicationRuntimeEnvironment,
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+} from '@commercetools-frontend/constants';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -160,10 +163,15 @@ function loginByForm(commandOptions: CommandLoginOptions) {
   });
 }
 
+const isCustomView = (commandOptions: CommandLoginOptions) =>
+  commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
+
 function loginByOidc(commandOptions: CommandLoginOptions) {
   if (!isLocalhost()) {
     throw new Error(
-      `The "loginByOidc" command only works when testing a Custom Application running on localhost.`
+      `The "loginByOidc" command only works when testing a Custom ${
+        isCustomView(commandOptions) ? 'View' : 'Application'
+      } running on localhost.`
     );
   }
 
@@ -174,7 +182,9 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
   }
 
   cy.task(
-    'customApplicationConfig',
+    isCustomView(commandOptions)
+      ? 'customViewConfig'
+      : 'customApplicationConfig',
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
@@ -185,7 +195,9 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     // Log loaded application config for debugging purposes.
     Cypress.log({
       displayName: 'task',
-      name: 'customApplicationConfig',
+      name: isCustomView(commandOptions)
+        ? 'customViewConfig'
+        : 'customApplicationConfig',
       message: appConfig,
     });
 
