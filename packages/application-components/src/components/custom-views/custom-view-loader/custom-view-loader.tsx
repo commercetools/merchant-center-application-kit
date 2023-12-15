@@ -41,7 +41,6 @@ const isIframeReady = (iFrameElementRef: HTMLIFrameElement) => {
 
 const ContentWrapper = styled.div`
   height: 100%;
-  padding: ${designTokens.spacing40} 40px;
 `;
 
 const CustomPanelIframe = styled.iframe`
@@ -58,11 +57,18 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const showNotification = useShowNotification();
   const intl = useIntl();
 
-  const messageFromIFrameHandler = useCallback((event: MessageEvent) => {
-    if (event.data.origin === window.location.origin) {
-      console.log('message received from iframe port: ', event);
-    }
-  }, []);
+  const messageFromIFrameHandler = useCallback(
+    (event: MessageEvent) => {
+      if (event.data.origin === window.location.origin) {
+        switch (event.data.eventName) {
+          case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
+            props.onClose();
+            break;
+        }
+      }
+    },
+    [props]
+  );
 
   // onLoad handler is called from the iFrame even where the URL is not valid
   // (blocked by CORS, 404, etc.) so we need to make sure the iFrame is ready
@@ -91,8 +97,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
 
     // Send the initialization message to the iFrame
     iFrameCommunicationChannel.current.port1.postMessage({
-      source: CUSTOM_VIEWS_EVENTS_META.SOURCE,
-      destination: `${CUSTOM_VIEWS_EVENTS_META.DESTINATION_PREFIX}${props.customView.id}`,
+      source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
       eventData: {
         context: {
@@ -141,7 +147,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       onClose={props.onClose}
       size={panelSize === 'small' ? 10 : 30}
       title={`Custom View: ${props.customView.defaultLabel}`}
-      hidePathLabel
+      hideTopBar
     >
       <ContentWrapper>
         <CustomPanelIframe

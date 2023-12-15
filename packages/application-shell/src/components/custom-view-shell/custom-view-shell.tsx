@@ -8,9 +8,11 @@ import {
   type ReactNode,
   RefObject,
 } from 'react';
+import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { Route } from 'react-router-dom';
 import {
+  ModalPageTopBar,
   PageUnauthorized,
   PortalsContainer,
 } from '@commercetools-frontend/application-components';
@@ -18,6 +20,7 @@ import { CustomViewContextProvider } from '@commercetools-frontend/application-s
 import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
+  CUSTOM_VIEWS_EVENTS_META,
   CustomViewData,
   DOMAINS,
 } from '@commercetools-frontend/constants';
@@ -26,6 +29,7 @@ import {
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import { designTokens } from '@commercetools-uikit/design-system';
 import ApplicationLoader from '../application-loader/application-loader';
 import GlobalStyles from '../application-shell/global-styles';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -94,6 +98,11 @@ function NotificationsContainer(props: TNotificationsContainerProps) {
   );
 }
 
+const ContentWrapper = styled.div`
+  height: 100%;
+  padding: ${designTokens.spacing40} 40px;
+`;
+
 function StrictModeEnablement(props: TStrictModeEnablementProps) {
   if (props.enableReactStrictMode) {
     return <StrictMode>{props.children}</StrictMode>;
@@ -139,6 +148,16 @@ function CustomViewShell(props: TCustomViewShellProps) {
     },
     []
   );
+
+  const handleClose = useCallback(() => {
+    iFrameCommunicationPort.current?.postMessage({
+      origin: window.location.origin,
+      source: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${hostContext?.customViewConfig.id}`,
+      destination: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE,
+      eventData: {},
+    });
+  }, [hostContext?.customViewConfig.id]);
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
@@ -218,7 +237,8 @@ function CustomViewShell(props: TCustomViewShellProps) {
                   <Route
                     path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
                   >
-                    {props.children}
+                    <ModalPageTopBar onClose={handleClose} hidePathLabel />
+                    <ContentWrapper>{props.children}</ContentWrapper>
                   </Route>
                 </CustomViewShellAuthenticated>
               </CustomViewContextProvider>
