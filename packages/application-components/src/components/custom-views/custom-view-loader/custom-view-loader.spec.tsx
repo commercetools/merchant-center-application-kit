@@ -129,12 +129,12 @@ describe('CustomViewLoader', () => {
   it('should call onClose when the custom view is closed', async () => {
     const onCloseMock = jest.fn();
 
-    renderComponent(
+    const { baseElement } = renderComponent(
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
     );
 
-    const closeButton = screen.getByLabelText('Close Modal Page');
-    fireEvent.click(closeButton);
+    const overlay = baseElement.querySelector('[data-role="modal-overlay"]');
+    fireEvent.click(overlay!);
 
     await waitFor(() => expect(onCloseMock).toHaveBeenCalled());
   });
