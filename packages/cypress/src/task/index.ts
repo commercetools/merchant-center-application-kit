@@ -62,7 +62,7 @@ const loadAllCustomEntityConfigs = async (
           processEnv,
           applicationPath: packageInfo.dir,
         });
-        const isCustomViewConfig = Boolean(processedConfig.customViewId);
+        const isCustomViewConfig = Boolean(processedConfig.env.customViewId);
 
         console.log(
           `Found Custom ${
