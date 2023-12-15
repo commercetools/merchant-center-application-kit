@@ -11,7 +11,6 @@ import {
   CustomViewData,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { designTokens } from '@commercetools-uikit/design-system';
 import ModalPage from '../../modal-pages/internals/modal-page';
 import messages from './messages';
 
