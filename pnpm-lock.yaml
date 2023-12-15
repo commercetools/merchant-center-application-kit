@@ -3233,8 +3233,8 @@ importers:
         specifier: 22.14.3
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
-        specifier: 4.11.1
-        version: 4.11.1
+        specifier: 6.9.0
+        version: 6.9.0
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
@@ -7149,20 +7149,6 @@ packages:
       - encoding
     dev: false
 
-  /@commercetools-test-data/commons@4.11.1:
-    resolution: {integrity: sha512-H722YN8XL2CMt6vurW2JmGI6JaS4dBEealziwkaRpfNx+tpm+DXJ3FGUvrbEikzHS8Fcx+7opeaT4in4NxLB7Q==}
-    dependencies:
-      '@babel/runtime': 7.22.15
-      '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 4.11.1
-      '@commercetools/platform-sdk': 4.7.0
-      '@faker-js/faker': 7.6.0
-      '@types/lodash': 4.14.198
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - encoding
-    dev: true
-
   /@commercetools-test-data/commons@6.4.1:
     resolution: {integrity: sha512-77+dDMcLKOUPyrFOoM9SrpptdV6D+fiqKUT4k0gZZ5lwFlOYcvZnbu6P7p1WyT7C0JxuEdq3d5PWy5wSfgIdRg==}
     dependencies:
@@ -7193,14 +7179,19 @@ packages:
       - encoding
     dev: false
 
-  /@commercetools-test-data/core@4.11.1:
-    resolution: {integrity: sha512-9K/sTN53T65oJ5LkuNpxZN51ZY0a9ivzLeDhPA2f/p9Iay48Sm5eVVX6t1i+kCO5LD3TN7LRQqIA1kHELmcdHA==}
+  /@commercetools-test-data/commons@6.9.0:
+    resolution: {integrity: sha512-8RaTF0+a2GLvQUR3+5QW17wFjHTVz2eEj4bdAFlXPws7LvvG32IqXDzY/SunGWApGaXw6+izpj4hSHCZpMMyNQ==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 7.6.0
+      '@commercetools-test-data/core': 6.9.0
+      '@commercetools-test-data/utils': 6.9.0
+      '@commercetools/platform-sdk': 7.1.0
+      '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /@commercetools-test-data/core@6.4.1:
@@ -7222,6 +7213,16 @@ packages:
       '@types/lodash': 4.14.198
       lodash: 4.17.21
     dev: false
+
+  /@commercetools-test-data/core@6.9.0:
+    resolution: {integrity: sha512-zcGWb3REOvA/XvqkgdxAsSq/Js+VH1vj6FESXbamHxU9m3ihIray32YT8ZsFLrsIThWLAhUsjCvld6p0R65LIg==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 8.0.0
+      '@types/lodash': 4.14.198
+      lodash: 4.17.21
+    dev: true
 
   /@commercetools-test-data/custom-view@6.4.1:
     resolution: {integrity: sha512-x/UGusfH6L2NbhL9a7xlYtTtrysrLHniBfb1nrSyrruPVr3Cs7HCN3AECRh3dFQtOXZXtgkfQGp0/AG+o8nlpA==}
@@ -7260,6 +7261,14 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
       '@faker-js/faker': 8.0.0
     dev: false
+
+  /@commercetools-test-data/utils@6.9.0:
+    resolution: {integrity: sha512-F9Ezx69XKsa2aW4zkzruZ/yV8CimOfrdDME3cJlNQdkFpsVm5pay53pGW+Ickl/TRP+56Je/iIsg6EWJ9Xv+5Q==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 8.0.0
+    dev: true
 
   /@commercetools-uikit/accessible-button@16.12.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-VZELCBY9otGQcuETGZp1cnxavU7iYotLXz04S1uF54QDCEY/oHa/jpMWajZSs9/tSTlbIMzwLXDfzlni1oVR5A==}
@@ -9896,19 +9905,6 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@commercetools/platform-sdk@4.7.0:
-    resolution: {integrity: sha512-ILDxTtoBichbLzUvHaYetRminfZ+f3LqLwL01MW93GgDFniEerNfiYFSPIMCZuaI6Xafx6Wk2bmUchSIvoOj4g==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@commercetools/sdk-client-v2': 2.1.5
-      '@commercetools/sdk-middleware-auth': 7.0.1
-      '@commercetools/sdk-middleware-http': 7.0.2
-      '@commercetools/sdk-middleware-logger': 3.0.0
-      querystring: 0.2.1
-    transitivePeerDependencies:
-      - encoding
-    dev: true
-
   /@commercetools/platform-sdk@6.0.0:
     resolution: {integrity: sha512-ADpyUUiDJ6ltTc1l5H4I/Rn0MyqSAD2ZP5QHiq++SAtM2CNEjfqgePty07sUhG8IxdN145i7/XNHopMxwap8Ow==}
     engines: {node: '>=14'}
@@ -9920,13 +9916,14 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@commercetools/sdk-client-v2@2.1.5:
-    resolution: {integrity: sha512-coE3c4qpG8u+QR9GmaXIIWfhQgH+n8DA3PSGUJWnDh+tDFxcjqFp1MV8RKRj/nV1/h4KkEkqWuVFzT7pBTDNdQ==}
+  /@commercetools/platform-sdk@7.1.0:
+    resolution: {integrity: sha512-V0ZgxuAORWS76ocvvha+9pY9p6MOHmvxWCe+7n1JyHo5VrOIgB1mbrUNQwZOvKsr1nH9s4liAWnbAlv8jAEApg==}
     engines: {node: '>=14'}
     dependencies:
-      buffer: 6.0.3
-      node-fetch: 2.6.11
-      querystring: 0.2.1
+      '@commercetools/sdk-client-v2': 2.3.0
+      '@commercetools/sdk-middleware-auth': 7.0.1
+      '@commercetools/sdk-middleware-http': 7.0.2
+      '@commercetools/sdk-middleware-logger': 3.0.0
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -10297,7 +10294,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.23.0)
 
@@ -10732,11 +10729,6 @@ packages:
   /@eslint/js@8.40.0:
     resolution: {integrity: sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-
-  /@faker-js/faker@7.6.0:
-    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    dev: true
 
   /@faker-js/faker@8.0.0:
     resolution: {integrity: sha512-XDR8sApuf78GHx8mLXl3KL/q7eB52A963UGejVbdbj3OZtfGlNwp0J78b7apVzqRi0GF8l9g3eSkkaL2UmU9Aw==}
@@ -29106,12 +29098,6 @@ packages:
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
     dev: false
-
-  /querystring@0.2.1:
-    resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
-    engines: {node: '>=0.4.x'}
-    deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
-    dev: true
 
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
