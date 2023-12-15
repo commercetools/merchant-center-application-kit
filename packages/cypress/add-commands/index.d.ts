@@ -23,7 +23,7 @@ declare namespace Cypress {
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
       options?: Omit<
         import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginOptions,
-        'entryPointUriPath' | 'initialRoute' | 'login'
+        'entryPointUriPath' | 'initialRoute'
       >
     ): Chainable<Subject>;
     /**

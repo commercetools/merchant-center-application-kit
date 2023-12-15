@@ -94,6 +94,7 @@ Available options are:
 * `initialRoute` (optional): The route to open after login. If not defined, make sure to call `cy.visit` yourself.
 * `projectKey` (optional): The project key to access the user session. The session token is valid for one project key at a time. Defaults to `Cypress.env('PROJECT_KEY')`.
 * `onBeforeLoad` (optional): The function to call before the page has loaded all of its resources. Use this as a chance to interact, for example, with the browser storage.
+* `login` (optional): An object with the user login credentials `email` and `password`. If not provided, the `email` defaults to `Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER')` and the `password` defaults to `Cypress.env('LOGIN_PASSWORD')`.
 * `disableCacheAcrossSpecs` (optional): Turn off caching the session across specs. This is only relevant for Cypress version >= `10.9.0`.
 
 The command also requires loading the `custom-view-config.mjs` (automatically done via the Cypress task), so it may need to load environment variables in case the Custom View config uses environment placeholders.<br/>
@@ -101,7 +102,7 @@ The `.env` and `.env.local` files are loaded by default from the Custom View fol
 
 <Info>
 
-Ensure that the `PROJECT_KEY` environment variable is available if the related `projectKey` option isn't provided explicitly.
+Ensure that the following environment variables are available if the related options aren't provided explicitly: `PROJECT_KEY`, `LOGIN_USER`, `LOGIN_PASSWORD`.
 
 </Info>
 
