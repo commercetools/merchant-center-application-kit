@@ -3238,9 +3238,6 @@ importers:
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
-      '@types/dotenv-flow':
-        specifier: ^3.3.1
-        version: 3.3.1
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -3254,8 +3251,8 @@ importers:
         specifier: ^2.15.10
         version: 2.15.10
       dotenv-flow:
-        specifier: ^3.3.0
-        version: 3.3.0
+        specifier: ^4.0.0
+        version: 4.0.0
       express:
         specifier: 4.18.2
         version: 4.18.2
@@ -15578,10 +15575,6 @@ packages:
     dependencies:
       '@types/trusted-types': 2.0.3
 
-  /@types/dotenv-flow@3.3.1:
-    resolution: {integrity: sha512-z4W5zC6mx9j1OGV+cUDoyLqYkh09BCUq64+TPwnmWpqXQs39DpegWtFQBzvNDdjeXhzW9Xvuy+z1Fn2RSkfTfA==}
-    dev: true
-
   /@types/eslint-scope@3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -20047,17 +20040,16 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dotenv-flow@3.3.0:
-    resolution: {integrity: sha512-GLSvRqDZ1TGhloS6ZCZ5chdqqv/3XMqZxAnX9rliJiHn6uyJLguKeu+3M2kcagBkoVCnLWYfbR4rfFe1xSU39A==}
-    engines: {node: '>= 8.0.0'}
+  /dotenv-flow@4.0.0:
+    resolution: {integrity: sha512-AzPaV3wNy14qLbaN/S70VHxiJaz3mI/r8mm6oD+6lPmq3qJFBw2+MUBXWujUujQ5PqtRa9v/hEWBEePSWlTRGg==}
+    engines: {node: '>= 12.0.0'}
     dependencies:
-      dotenv: 8.6.0
+      dotenv: 16.0.3
     dev: true
 
   /dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: false
 
   /dotenv@7.0.0:
     resolution: {integrity: sha512-M3NhsLbV1i6HuGzBUH8vXrtxOk+tWmzWKDMbAVSUp3Zsjm7ywFeuwrUXhmhQyRK1q5B5GGy7hcXPbj3bnfZg2g==}
