@@ -92,10 +92,10 @@ const loadAllCustomEntityConfigs = async (
 const customApplicationConfig = async (
   options: CustomEntityConfigTaskOptions
 ): Promise<ApplicationRuntimeConfig['env']> => {
-  const allCustomApplicationConfigs = await loadAllCustomEntityConfigs(options);
+  const allCustomEntityConfigs = await loadAllCustomEntityConfigs(options);
 
   const customApplicationConfig =
-    allCustomApplicationConfigs[options.entryPointUriPath];
+    allCustomEntityConfigs[options.entryPointUriPath];
 
   if (!customApplicationConfig) {
     throw new Error(

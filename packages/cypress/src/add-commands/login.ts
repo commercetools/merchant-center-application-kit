@@ -2,7 +2,7 @@ import semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
 import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
 import {
-  ApplicationRuntimeEnvironment,
+  type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
@@ -181,10 +181,12 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
   }
 
+  const customEntityConfigCommand = isCustomView(commandOptions)
+    ? 'customViewConfig'
+    : 'customApplicationConfig';
+
   cy.task(
-    isCustomView(commandOptions)
-      ? 'customViewConfig'
-      : 'customApplicationConfig',
+    customEntityConfigCommand,
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
@@ -195,9 +197,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     // Log loaded application config for debugging purposes.
     Cypress.log({
       displayName: 'task',
-      name: isCustomView(commandOptions)
-        ? 'customViewConfig'
-        : 'customApplicationConfig',
+      name: customEntityConfigCommand,
       message: appConfig,
     });
 
