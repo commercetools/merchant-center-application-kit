@@ -308,7 +308,7 @@ describe('Channels', () => {
   });
   it('should render page', () => {
     cy.findByText('Open the Custom View').click();
-    cy.get('#custom-view-TODO')
+    cy.get('#custom-view-TODO') // provide the correct ID for the Custom View iframe if you specify a `customViewId` in the configuration file
       .getIframeBody()
       .within(() => {
         cy.findByText('Channels list').should('exist');
