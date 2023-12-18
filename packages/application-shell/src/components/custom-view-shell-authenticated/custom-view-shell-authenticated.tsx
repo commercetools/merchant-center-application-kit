@@ -1,12 +1,15 @@
 import { type ReactNode } from 'react';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import {
+  PageUnauthorized,
+  themesOverrides,
+} from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
   type ApplicationWindow,
   type CustomViewData,
 } from '@commercetools-frontend/constants';
-import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
@@ -79,7 +82,10 @@ function CustomViewShellAuthenticated(
                     environment={props.environment}
                   >
                     <>
-                      <ThemeProvider theme="default" />
+                      <ThemeProvider
+                        theme="default"
+                        themeOverrides={themesOverrides.default}
+                      />
 
                       <FetchProject projectKey={props.projectKey}>
                         {({ isLoading: isProjectLoading, project }) => {

@@ -1,4 +1,5 @@
 import { Matcher as TMatcher } from '@testing-library/dom';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import {
   loginByForm,
   loginByOidc,
@@ -28,6 +29,26 @@ Cypress.Commands.add(
   }
 );
 
+Cypress.Commands.add(
+  'loginToMerchantCenterForCustomView',
+  (
+    commandOptions: Omit<
+      CommandLoginOptions,
+      'entryPointUriPath' | 'initialRoute'
+    >
+  ) => {
+    Cypress.log({ name: 'loginToMerchantCenterForCustomView' });
+
+    const projectKey = Cypress.env('PROJECT_KEY');
+
+    loginByOidc({
+      ...commandOptions,
+      entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+      initialRoute: `/${projectKey}/${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}`,
+    });
+  }
+);
+
 Cypress.Commands.add('loginByOidc', (commandOptions: CommandLoginOptions) => {
   Cypress.log({ name: 'loginByOidc' });
   cy.log(
@@ -48,5 +69,18 @@ Cypress.Commands.add(
       .first()
       // Refers to the custom command "hover"
       .hover();
+  }
+);
+
+// https://github.com/cypress-io/cypress/issues/136#issuecomment-342391119
+Cypress.Commands.add(
+  'getIframeBody',
+  { prevSubject: 'element' },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ($iframe: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return new Cypress.Promise((resolve: any) => {
+      resolve($iframe.contents().find('body'));
+    });
   }
 );
