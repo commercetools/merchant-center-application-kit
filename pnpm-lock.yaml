@@ -1262,9 +1262,6 @@ importers:
       '@babel/runtime-corejs3':
         specifier: ^7.22.15
         version: 7.22.15
-      '@sentry/node':
-        specifier: 7.81.0
-        version: 7.81.0
       '@types/lodash':
         specifier: ^4.14.198
         version: 4.14.198
@@ -14576,15 +14573,6 @@ packages:
       '@sentry/utils': 7.79.0
     dev: false
 
-  /@sentry-internal/tracing@7.81.0:
-    resolution: {integrity: sha512-mc3tdOEvAE6kaCvT3BpMwCgfTT2yfXjWpC7g+3N8U/yuQEmQSCDZA/ut7EkzU0DyhG3t8HzT0c+CAG3HtilEAQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/core': 7.81.0
-      '@sentry/types': 7.81.0
-      '@sentry/utils': 7.81.0
-    dev: false
-
   /@sentry/browser@7.64.0:
     resolution: {integrity: sha512-lB2IWUkZavEDclxfLBp554dY10ZNIEvlDZUWWathW+Ws2wRb6PNLtuPUNu12R7Q7z0xpkOLrM1kRNN0OdldgKA==}
     engines: {node: '>=8'}
@@ -14623,27 +14611,6 @@ packages:
     dependencies:
       '@sentry/types': 7.79.0
       '@sentry/utils': 7.79.0
-    dev: false
-
-  /@sentry/core@7.81.0:
-    resolution: {integrity: sha512-FCAKlqo9Z6fku69bkahw1AN+eBfAgRgOL1RpBLZgyG7YBW12vtSkHb5SDvZZTkm541Fo3hhepUTLtX0qmpA4yw==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/types': 7.81.0
-      '@sentry/utils': 7.81.0
-    dev: false
-
-  /@sentry/node@7.81.0:
-    resolution: {integrity: sha512-hFfDxKGB+JhkhpZtM1ntyZDZoMlS8rMsynCSQcqJS39iYcCgdvgy9zOb34mXrX9kXOJNhWWmoloBZGA+KKFTdg==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry-internal/tracing': 7.81.0
-      '@sentry/core': 7.81.0
-      '@sentry/types': 7.81.0
-      '@sentry/utils': 7.81.0
-      https-proxy-agent: 5.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@sentry/react@7.64.0(react@17.0.2):
@@ -14689,11 +14656,6 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/types@7.81.0:
-    resolution: {integrity: sha512-rbYNYSSrrnwNndC7S+eVT84GRLEyCZNh9oXUQqzgSD6ngXCZ0xFJW6si75uv/XQBWIw4rkj9xfRcy8DU0Tj4fg==}
-    engines: {node: '>=8'}
-    dev: false
-
   /@sentry/utils@7.64.0:
     resolution: {integrity: sha512-HRlM1INzK66Gt+F4vCItiwGKAng4gqzCR4C5marsL3qv6SrKH98dQnCGYgXluSWaaa56h97FRQu7TxCk6jkSvQ==}
     engines: {node: '>=8'}
@@ -14707,13 +14669,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       '@sentry/types': 7.79.0
-    dev: false
-
-  /@sentry/utils@7.81.0:
-    resolution: {integrity: sha512-yC9IvfeVbG4dygi4b+iUUMHp9xeHJfCn6XLbqjJVfq3xjAzBGHgfrpw6fYPNyTljXKb6CTiSXSqaNaQJE4CkPA==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/types': 7.81.0
     dev: false
 
   /@sheerun/mutationobserver-shim@0.3.3:
