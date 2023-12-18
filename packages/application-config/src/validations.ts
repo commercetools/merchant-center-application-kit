@@ -1,11 +1,11 @@
 import Ajv, { ValidateFunction, type ErrorObject } from 'ajv';
-import customApplicationSchemaJson from '../custom-application.schema.json';
-import customViewSchemaJson from '../custom-view.schema.json';
 import {
   ENTRY_POINT_URI_PATH_REGEX,
-  LOADED_CONFIG_TYPES,
   PERMISSION_GROUP_NAME_REGEX,
-} from './constants';
+} from '@commercetools-frontend/constants';
+import customApplicationSchemaJson from '../custom-application.schema.json';
+import customViewSchemaJson from '../custom-view.schema.json';
+import { LOADED_CONFIG_TYPES } from './constants';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 import type { LoadedConfigType } from './types';
