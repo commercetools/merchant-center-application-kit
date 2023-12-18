@@ -3235,9 +3235,6 @@ importers:
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
-      '@types/dotenv-flow':
-        specifier: ^3.3.1
-        version: 3.3.1
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -14805,10 +14802,6 @@ packages:
     resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
     dependencies:
       '@types/trusted-types': 2.0.3
-
-  /@types/dotenv-flow@3.3.1:
-    resolution: {integrity: sha512-z4W5zC6mx9j1OGV+cUDoyLqYkh09BCUq64+TPwnmWpqXQs39DpegWtFQBzvNDdjeXhzW9Xvuy+z1Fn2RSkfTfA==}
-    dev: true
 
   /@types/eslint-scope@3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
