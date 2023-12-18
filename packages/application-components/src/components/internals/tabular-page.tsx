@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 
@@ -42,6 +43,9 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
         : appKitDesignTokens.backgroundColorForPageHeader};
       padding: ${appKitDesignTokens.paddingForTabularPageHeader};
       border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
+      body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+        padding: ${appKitDesignTokens.paddingForTabularPageHeaderInCustomView};
+      }
     `}
   >
     {props.children}
@@ -59,6 +63,9 @@ const FormControlsContainer = styled.div`
 
 const CustomViewsSelectorWrapper = styled.div`
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
+  body[data-extension-type='custom-view'] & {
+    margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabularInCustomView};
+  }
 `;
 
 export {

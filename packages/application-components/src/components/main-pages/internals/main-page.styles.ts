@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
+import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { designTokens as appKitDesignTokens } from '../../../theming';
 
 export const MainPageContainer = styled.div`
   padding: ${appKitDesignTokens.paddingForMainPageHeader};
+  body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+    padding: ${appKitDesignTokens.paddingForMainPageHeaderInCustomView};
+  }
 `;
 
 export const Divider = styled.hr`
@@ -17,4 +21,7 @@ export const MainPageContent = styled.div`
   overflow: auto;
   // NOTE: do not change to "padding" as this breaks sticky DataTable styles
   margin: ${appKitDesignTokens.marginForPageContent};
+  body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+    margin: ${appKitDesignTokens.marginForPageContentInCustomView};
+  }
 `;

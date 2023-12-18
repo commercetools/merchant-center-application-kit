@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
+import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 import CustomViewsSelector from '../custom-views/custom-views-selector';
@@ -23,6 +24,9 @@ const PageHeader = (props: Props) => {
         padding: ${appKitDesignTokens.paddingForModalPageHeader};
         border-bottom: 1px solid
           ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
+        body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+          margin: ${appKitDesignTokens.paddingForModalPageHeaderInCustomView};
+        }
       `}
     >
       <div

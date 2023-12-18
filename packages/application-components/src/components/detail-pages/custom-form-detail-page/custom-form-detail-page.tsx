@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import styled from '@emotion/styled';
+import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -19,6 +20,9 @@ const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
   padding: ${appKitDesignTokens.paddingForDetailPageHeader};
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
+  body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+    padding: ${appKitDesignTokens.paddingForDetailPageHeaderInCustokmView};
+  }
 `;
 
 const HeaderControlsWrapper = styled.div`

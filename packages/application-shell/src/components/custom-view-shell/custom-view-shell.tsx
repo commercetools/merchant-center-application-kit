@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   Suspense,
@@ -17,6 +18,7 @@ import {
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
+  CUSTOM_EXTENSION_TYPES,
   CUSTOM_VIEWS_EVENTS_NAMES,
   CustomViewData,
   DOMAINS,
@@ -139,6 +141,13 @@ function CustomViewShell(props: TCustomViewShellProps) {
     },
     []
   );
+
+  useLayoutEffect(() => {
+    document.body.setAttribute(
+      'data-extension-type',
+      CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW
+    );
+  }, []);
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {

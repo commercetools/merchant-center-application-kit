@@ -291,6 +291,11 @@ export const HTTP_SECURITY_HEADERS = {
   'Referrer-Policy': 'same-origin',
 } as const;
 
+export const CUSTOM_EXTENSION_TYPES = {
+  CUSTOM_APPLICATION: 'custom-application',
+  CUSTOM_VIEW: 'custom-view',
+};
+
 // Custom Views events (messages sent between the host application and the custom view)
 export const CUSTOM_VIEWS_EVENTS_NAMES = {
   CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
