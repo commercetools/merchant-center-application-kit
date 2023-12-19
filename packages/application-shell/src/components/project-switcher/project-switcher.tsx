@@ -5,6 +5,7 @@ import type {
   OptionProps,
   ValueContainerProps,
   MenuListProps,
+  ControlProps,
 } from 'react-select';
 import { components } from 'react-select';
 import {
@@ -146,6 +147,17 @@ const CustomMenuList = (props: MenuListProps) => {
   );
 };
 
+const Control = (props: ControlProps) => (
+  <components.Control
+    {...props}
+    css={css`
+      min-width: ${designTokens.constraint3};
+    `}
+  >
+    {props.children}
+  </components.Control>
+);
+
 const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const ProjectSwitcher = (props: Props) => {
@@ -197,6 +209,7 @@ const ProjectSwitcher = (props: Props) => {
           Option: ProjectSwitcherOption,
           ValueContainer,
           MenuList: CustomMenuList,
+          Control,
         }}
         isClearable={false}
         backspaceRemovesValue={false}
