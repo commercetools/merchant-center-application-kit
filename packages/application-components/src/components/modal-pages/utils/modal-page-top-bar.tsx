@@ -1,3 +1,8 @@
+/*
+  This file lives within the "utils" directory instead of the "internals" one because
+  it is shared not only among the components of the "modal-pages" folder, but also
+  it is exported from this package so it can be used from external code as well.
+*/
 import { cloneElement, type SyntheticEvent, type ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
