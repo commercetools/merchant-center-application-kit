@@ -74,6 +74,14 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
+const isFocusOutEventCalledBySubmenuItem = (event: FocusEvent) =>
+  // a case when a submenu item loses focus
+  event.type === 'focusout' &&
+  // element receiving focus
+  (event.relatedTarget as Element)?.matches('a[data-link-level="text-link"]') &&
+  // element losing focus
+  (event.target as Element)?.matches('a[data-link-level="text-link-sublist"]');
+
 const useNavbarStateManager = (props: HookProps) => {
   const navBarNode = useRef<HTMLElement>(null);
   const applicationsNavBarMenuGroups = useApplicationsMenu<'navBarGroups'>(
@@ -196,18 +204,19 @@ const useNavbarStateManager = (props: HookProps) => {
   );
 
   const shouldCloseMenuFly = useCallback<
-    (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
+    (e: React.MouseEvent<HTMLElement> | MouseEvent | FocusEvent) => void
   >(
     (event) => {
       if (
-        navBarNode &&
-        navBarNode.current &&
-        !navBarNode.current.contains(event.target as Node) &&
+        !navBarNode?.current?.contains(event.target as Node) &&
         !state.isMenuOpen
-      )
+      ) {
         dispatch({ type: 'unsetActiveItemIndex' });
-      else if (event.type === 'mouseleave')
+      } else if (event.type === 'mouseleave') {
         dispatch({ type: 'unsetActiveItemIndex' });
+      } else if (isFocusOutEventCalledBySubmenuItem(event as FocusEvent)) {
+        dispatch({ type: 'unsetActiveItemIndex' });
+      }
     },
     [state.isMenuOpen]
   );
@@ -215,10 +224,12 @@ const useNavbarStateManager = (props: HookProps) => {
   useEffect(() => {
     window.addEventListener('resize', checkSize);
     window.addEventListener('click', shouldCloseMenuFly, true);
+    window.addEventListener('focusout', shouldCloseMenuFly, true);
 
     return () => {
       window.removeEventListener('resize', checkSize);
       window.removeEventListener('click', shouldCloseMenuFly, true);
+      window.removeEventListener('focusout', shouldCloseMenuFly, true);
     };
   }, [checkSize, shouldCloseMenuFly]);
 
