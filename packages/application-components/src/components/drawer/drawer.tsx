@@ -15,7 +15,7 @@ import {
 import messages from '../internals/messages';
 import PageHeaderTitle from '../internals/page-header-title';
 import ModalPage from '../modal-pages/internals/modal-page';
-import { LargeIconWrapper } from '../modal-pages/internals/modal-page-top-bar';
+import { LargeIconWrapper } from '../modal-pages/utils';
 
 type MessageDescriptor = {
   id: string;

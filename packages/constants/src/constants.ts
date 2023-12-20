@@ -300,10 +300,11 @@ export const CUSTOM_EXTENSION_TYPES = {
 export const CUSTOM_VIEWS_EVENTS_NAMES = {
   CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
   CUSTOM_VIEW_INITIALIZATION: 'custom-view-initialization',
+  CUSTOM_VIEW_CLOSE: 'custom-view-close',
 };
 export const CUSTOM_VIEWS_EVENTS_META = {
-  SOURCE: 'mc-host-application',
-  DESTINATION_PREFIX: 'custom-view-',
+  HOST_APPLICATION_CODE: 'mc-host-application',
+  CUSTOM_VIEW_KEY_PREFIX: 'custom-view-',
 };
 
 // SSO

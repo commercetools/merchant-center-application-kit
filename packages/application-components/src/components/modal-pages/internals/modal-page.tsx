@@ -9,7 +9,7 @@ import {
 import { ClassNames, type CSSObject } from '@emotion/react';
 import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import ModalPageTopBar from './modal-page-top-bar';
+import { ModalPageTopBar } from '../utils';
 import {
   getOverlayStyles,
   getContainerStyles,
