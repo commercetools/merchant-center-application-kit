@@ -8,7 +8,7 @@ A Custom View configuration file defines the necessary requirements to develop a
 
 </Subtitle>
 
-The configuration of a Custom View is typically defined in a JSON file `custom-view-config.json` in the root of your project directory (next to `package.json`).
+The configuration of a Custom View is typically defined in a JSON file `custom-view-config.mjs` in the root of your project directory (next to `package.json`).
 
 # Supported file extensions
 
@@ -40,7 +40,7 @@ When using JSON files, you can take advantage of the [JSON schema for the Custom
 ```json title=".vscode/settings.json"
 "json.schemas": [
   {
-    "fileMatch": ["/custom-view-config.json"],
+    "fileMatch": ["/custom-view-config.mjs"],
     "url": "https://docs-beta-custom-views.commercetools.vercel.app/custom-view/schema.json"
   }
 ]

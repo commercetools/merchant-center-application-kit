@@ -18,7 +18,7 @@ Before you get started, you need to have:
 In your Custom View config, provide the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) you got when you configured the Custom View in the Merchant Center.
 
 
-```json title="custom-view-config.json"
+```json title="custom-view-config.mjs"
 {
   "env": {
     "production": {
@@ -33,7 +33,7 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 
 In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
-```json title="custom-view-config.json" highlightLines="4"
+```json title="custom-view-config.mjs" highlightLines="4"
 {
   "env": {
     "production": {
