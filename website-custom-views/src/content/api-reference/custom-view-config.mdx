@@ -176,9 +176,9 @@ For more information, see [Granular permissions for local development](/help-nee
 
 ## `env.development.hostUriPath`
 
-The [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) contains the [`hostUrl`](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property with the value of the built-in application's current URL. When working locally it is set to `http://localhost:3001/<projectKey>/<custom-view-host>` by default.
+The [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) contains the [`hostUrl`](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property with the value of the built-in application's current URL. When working locally it is set to `http://localhost:3001/<projectKey>/@@custom-view-host@@` by default.
 
-To test your Custom View in a specific built-in application, you can override the default behavior to provide a custom URI path by setting the `env.development.hostUriPath`.
+To simulate your Custom View as if it's rendered within a specific built-in application, you can override the default behavior to provide a custom URI path by setting the `env.development.hostUriPath`.
 
 ```json
 {
