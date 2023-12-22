@@ -6,13 +6,15 @@ title: Deploying to commercetools Connect
 
 Before you get started, you need to have:
 
-- A commercetools account and a Project.
-- A Custom Application configured in the Merchant Center.
-- Access to connect APIs can be accessed using Client credentials Authorization flow with commercetools Project
+Before you get started, you need to have:
+
+- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
+- A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
 
 # Configuration
 
-Create a connector using starter template
+## Create a connector using starter template
+
 Download custom applications template inside an application folder of connector (Note: connector can have multiple applications)
 Update custom-application-config.mjs to use environment variables that can differ for each connect deployment
 
@@ -86,7 +88,9 @@ deployAs:
 # Deployment to connect
 
 ## Create the connector
+
 Use preview or publish flow for preparing connector for deployment
+
 Create a custom application in your organization to fetch Application ID (Note- dummy http://test.com can be configured as Application URL since its not generated yet)
 Deploy connector providing all configuration values along with application id in last step
 Fetch Application Url from deployment using Deployment API . Its part deployment.applications[x].url
