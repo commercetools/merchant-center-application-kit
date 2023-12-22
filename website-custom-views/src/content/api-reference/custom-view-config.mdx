@@ -176,17 +176,15 @@ For more information, see [Granular permissions for local development](/help-nee
 
 ## `env.development.hostUriPath`
 
-The Custom View [context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) will contain the ["hostUrl"](https://docs-beta-custom-views.commercetools.vercel.app/custom-views/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property which holds the value of the host built-in application view where the user opens it.
+The [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) contains the [`hostUrl`](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property with the value of the built-in application's current URL. When working locally it is set to `http://localhost:3001/<projectKey>/<custom-view-host>` by default.
 
-When working locally, by default you will see the `hostUrl` value pointing to local enviroment: `http://localhost:3001/<projectKey>/@@custom-view-host@@`.
-
-You can override this default behaviour to set a custom URI path so you can test the Custom View in the context of a specific built-in application view.
+To test your Custom View in a specific built-in application, you can override the default behavior to provide a custom URI path by setting the `env.development.hostUriPath`.
 
 ```json
 {
   "env": {
     "development": {
-      "hostUriPath": "/my-project/products/111-2222-33333-44444"
+      "hostUriPath": "/<projectKey>/products/111-2222-33333-44444"
     }
   }
 }
