@@ -13,7 +13,7 @@ To fulfill these requirements, your Custom View would need the following OAuth S
 
 These [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) must be specified in your Custom View config, using the [`oAuthScopes` field](/api-reference/custom-view-config#oauthscopes).
 
-```json title="custom-view-config.mjs"
+```js title="custom-view-config.mjs"
 {
   "oAuthScopes": {
     "view": ["view_products", "view_customers"],
@@ -37,7 +37,7 @@ You can define additional permission groups with different access requirements t
 
 In the following example, we're defining two additional permission groups. The group `delivery` allows users to manage incoming orders, while the group `promotion` enables users to work on discount and promotion campaigns.
 
-```json title="custom-view-config.mjs" highlightLines="6-17"
+```js title="custom-view-config.mjs" highlightLines="6-17"
 {
   "oAuthScopes": {
     "view": ["view_products", "view_customers"],
