@@ -8,7 +8,7 @@ A Custom View configuration file defines the necessary requirements to develop a
 
 </Subtitle>
 
-The configuration of a Custom View is typically defined in a JSON file `custom-view-config.json` in the root of your project directory (next to `package.json`).
+The configuration of a Custom View is typically defined in a JSON file `custom-view-config.mjs` in the root of your project directory (next to `package.json`).
 
 # Supported file extensions
 
@@ -40,7 +40,7 @@ When using JSON files, you can take advantage of the [JSON schema for the Custom
 ```json title=".vscode/settings.json"
 "json.schemas": [
   {
-    "fileMatch": ["/custom-view-config.json"],
+    "fileMatch": ["/custom-view-config.mjs"],
     "url": "https://docs-beta-custom-views.commercetools.vercel.app/custom-view/schema.json"
   }
 ]
@@ -87,9 +87,10 @@ The name of the Custom View.
 
 It will be used in the Merchant Center when a user is presented with a list of Custom Views avaiable for a specific view.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "name": "The Avengers app"
+  // ...
 }
 ```
 
@@ -97,9 +98,10 @@ It will be used in the Merchant Center when a user is presented with a list of C
 
 An optional description of the Custom View, for information purposes.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "description": "Manage your favourite Avengers"
+  // ...
 }
 ```
 
@@ -116,9 +118,10 @@ Supported values are:
 * `aws-ohio`
 * `aws-cn`
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "cloudIdentifier": "gcp-eu"
+  // ...
 }
 ```
 
@@ -152,13 +155,14 @@ The `MC_APP_ENV` is useful if you want to run the production build of the Custom
 
 A `projectKey` of a commercetools Project you have access to. To be used as the default Project upon login in development.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "development": {
       "initialProjectKey": "my-project-key"
     }
   }
+  // ...
 }
 ```
 
@@ -174,17 +178,35 @@ If you need to apply more granular permissions for local development of a Custom
 
 For more information, see [Granular permissions for local development](/help-needed#granular-permissions-for-local-development).
 
+## `env.development.hostUriPath`
+
+The [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) contains the [`hostUrl`](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property with the value of the built-in application's current URL. When working locally it is set to `http://localhost:3001/<projectKey>/@@custom-view-host@@` by default.
+
+To simulate your Custom View as if it's rendered within a specific built-in application, you can override the default behavior to provide a custom URI path by setting the `env.development.hostUriPath`.
+
+```js title="custom-view-config.mjs"
+const config = {
+  "env": {
+    "development": {
+      "hostUriPath": "/<projectKey>/products/111-2222-33333-44444"
+    }
+  }
+  // ...
+}
+```
+
 ## `env.production.customViewId`
 
 The Custom View ID is provided when you add a Custom View in the Merchant Center (**Organizations > Custom Views > Configure > Add**). See [Managing Custom Views in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views) for more information.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "production": {
       "customViewId": "ckvtahxl90097sys6har1e6n3"
     }
   }
+  // ...
 }
 ```
 
@@ -198,13 +220,14 @@ As long as you are developing the Custom View locally, you can define any random
 
 The full URL value where the Custom View is hosted at. The Merchant Center serves Custom Views on its own domain, but requests are internally forwarded to this URL. See [Merchant Center Proxy Router](/concepts/merchant-center-proxy-router) for more information.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "production": {
       "url": "https://avengers.app"
     }
   }
+  // ...
 }
 ```
 
@@ -218,13 +241,14 @@ This value is also used to configure the [Content Security Policy (CSP)](https:/
 
 The full URL value where the Custom View [static assets](/development/going-to-production#about-static-assets) are hosted, for example when using an external CDN.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "production": {
       "cdnUrl": "https://cdn.avengers.app"
     }
   }
+  // ...
 }
 ```
 
@@ -240,12 +264,13 @@ An optional object that should be used to inject properties used within your Cus
 
 For example, if the Custom View should reference an external API, or have links to certain support pages:
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "additionalEnv": {
     "trackingSentry": "https://000@sentry.io/000",
     "avengersSupportUrl": "https://support.avengers.app"
   }
+  // ...
 }
 ```
 
@@ -265,11 +290,12 @@ Alternatively, if at least one additional permission group is configured in [add
 
 A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `View` permission.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "oAuthScopes": {
     "view": ["view_states"],
   }
+  // ...
 }
 ```
 
@@ -277,11 +303,12 @@ A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetool
 
 A list of "manage-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `Manage` permission.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "oAuthScopes": {
     "manage": ["manage_orders"]
   }
+  // ...
 }
 ```
 
@@ -299,13 +326,14 @@ The optional configuration for defining more granular [OAuth Scopes and user per
 
 A unique name for the additional permission group.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "additionalOAuthScopes": [
     {
       "name": "movies",
     }
   ]
+  // ...
 }
 ```
 
@@ -319,8 +347,8 @@ The name value must adhere to the following restrictions:
 
 A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `View<GroupName>` permission.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "additionalOAuthScopes": [
     {
       "name": "movies",
@@ -333,6 +361,7 @@ A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetool
       "manage": []
     }
   ]
+  // ...
 }
 ```
 
@@ -340,8 +369,8 @@ A list of "view-only" [OAuth Scopes](https://docs-beta-custom-views.commercetool
 
 A list of "manage-only" [OAuth Scopes](https://docs-beta-custom-views.commercetools.vercel.app/api/scopes) required by the Custom View and associated with the `Manage<GroupName>` permission.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "additionalOAuthScopes": [
     {
       "name": "movies",
@@ -354,6 +383,7 @@ A list of "manage-only" [OAuth Scopes](https://docs-beta-custom-views.commerceto
       "manage": ["manage_categories"]
     }
   ]
+  // ...
 }
 ```
 
@@ -372,8 +402,8 @@ An optional object to extend the default [Content Security Policy (CSP)](https:/
 - `script-src`
 - `style-src`
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "headers": {
     "csp": {
       "connect-src": ["https://api.stripe.com"],
@@ -381,6 +411,7 @@ An optional object to extend the default [Content Security Policy (CSP)](https:/
       "script-src": ["https://js.stripe.com"]
     }
   }
+  // ...
 }
 ```
 
@@ -394,8 +425,8 @@ The required [Content Security Policy (CSP)](https://developer.mozilla.org/en-US
 
 An optional object to configure the [HTTP `Permission-Policy` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy).
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "headers": {
     "permissionsPolicies": {
       "microphone": "()",
@@ -405,6 +436,7 @@ An optional object to configure the [HTTP `Permission-Policy` header](https://de
       "geolocation": "()"
     }
   }
+  // ...
 }
 ```
 
@@ -412,11 +444,12 @@ An optional object to configure the [HTTP `Permission-Policy` header](https://de
 
 An optional list to extend the [HTTP `Strict-Transport-Security` header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security).
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "headers": {
     "strictTransportSecurity": ["includeSubDomains", "preload"]
   }
+  // ...
 }
 ```
 
@@ -427,12 +460,13 @@ An optional list of localized fields `{ locale, value }` with translated labels 
 These values will be used when presenting the user with a list of available Custom Views in the Merchant Center views.
 If they are not configured, the `name` values will be used instead.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "labelAllLocales": [
     { "locale": "en", "value": "The Avengers" },
     { "locale": "de", "value": "Die Avengers" }
   ]
+  // ...
 }
 ```
 
@@ -441,9 +475,10 @@ If they are not configured, the `name` values will be used instead.
 The required type of Custom View.
 Currently we only support the `CustomPanel` value.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "type": "CustomPanel"
+  // ...
 }
 ```
 
@@ -457,12 +492,13 @@ In case the `CustomPanel` type is used, the `size` property is required. It defi
 
 Supported values are: `SMALL`, `LARGE`.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "type": "CustomPanel",
   "typeSettings": {
     "size": "SMALL"
   }
+  // ...
 }
 ```
 
@@ -472,9 +508,10 @@ Since Custom Views are rendered in the context of built-in Merchant Center appli
 
 This configuration property is a list of identifiers of Merchant Center locations where the Custom View is allowed to be rendered.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "locators": ["products.product_details.general"]
+  // ...
 }
 ```
 
@@ -555,9 +592,10 @@ References are specified with a special expansion-like syntax `${}` together wit
 
 Imagine developing a Custom View that can be used in the same Regions (Europe and North America) as the Composable Commerce APIs. We can assign the `${env:CLOUD_IDENTIFIER}` reference to the field `cloudIdentifier` and pass the actual value using environment variables.
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}"
+  // ...
 }
 ```
 
@@ -584,11 +622,12 @@ For example:
 
 You can also pass multiple references to the same value:
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "additionalEnv": {
     "authorityUrl": "https://${env:IDP_URL}/${env:IDP_ID}"
   }
+  // ...
 }
 ```
 
@@ -604,12 +643,13 @@ References for Intl messages are specified with a special expansion-like syntax 
 
 This is useful when specifying [Custom View labels](#labelAllLocales).
 
-```json
-{
+```js title="custom-view-config.mjs"
+const config = {
   "labelAllLocales": [
     { "locale": "en", "value": "${intl:en:Menu.Avengers}" },
     { "locale": "de", "value": "${intl:de:Menu.Avengers}" }
   ]
+  // ...
 }
 ```
 
