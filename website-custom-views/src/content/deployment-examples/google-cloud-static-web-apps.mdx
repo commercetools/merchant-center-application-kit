@@ -19,13 +19,14 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 
 
 ```js title="custom-view-config.mjs"
-{
+const config = {
   "env": {
     "production": {
       "customViewId": "ckvtahxl90097sys6har1e6n3",
       "url": "https://<custom_domain>"
     }
   }
+  // ...
 }
 ```
 
@@ -34,13 +35,14 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
 ```js title="custom-view-config.mjs" highlightLines="4"
-{
+const config = {
   "env": {
     "production": {
       "customViewId": "${env:CUSTOM_VIEW_ID}",
       "url": "https://<custom_domain>"
     }
   }
+  // ...
 }
 ```
 

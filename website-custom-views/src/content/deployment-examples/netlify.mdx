@@ -19,13 +19,14 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 Moreover, you need to provide the [production URL](/api-reference/custom-view-config#envproductionurl) from your Netlify site. You can keep the standard Netlify URL `https://<site>.netlify.app` or provide your custom domain.
 
 ```js title="custom-view-config.mjs"
-{
+const config = {
   "env": {
     "production": {
       "customViewId": "ckvtahxl90097sys6har1e6n3",
       "url": "https://<site>.netlify.app"
     }
   }
+  // ...
 }
 ```
 
@@ -34,13 +35,14 @@ Moreover, you need to provide the [production URL](/api-reference/custom-view-co
 In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
 ```js title="custom-view-config.mjs" highlightLines="4"
-{
+const config = {
   "env": {
     "production": {
       "customViewId": "${env:CUSTOM_VIEW_ID}",
       "url": "https://<site>.netlify.app"
     }
   }
+  // ...
 }
 ```
 
