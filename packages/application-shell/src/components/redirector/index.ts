@@ -1,1 +1,1 @@
-export { default } from './redirector';
+export { useRedirector, Redirector } from './redirector';
