@@ -107,8 +107,8 @@ The `APPLICATION_URL` environment variable is automatically provided by Connect 
     </Info>
 4. [Configure the Application ID](https://docs.commercetools.com/merchant-center/managing-custom-applications#assigning-the-application-id) in your code.
 4. [Deploy the connector](https://docs.commercetools.com/connect/getting-started#deploy-a-connector) with the correct configuration values.
-5. Get the Application URL for your deployment using the [Deployment API](https://docs.commercetools.com/connect/deployments#get-deployment) `deployment.applications["sample-custom-application"].url`.
-6. In the Merchant Center, update **Application URL** for your Custom Application.
+5. Get the deployment URL for your deployment using the [Deployment API](https://docs.commercetools.com/connect/deployments#get-deployment). You can access it from `deployment.applications["example-custom-application"].url` path from the JSON response.
+6. In the Merchant Center, update the **Application URL** for your Custom Application with the deployment URL collected in the previous step.
 
 # Test your deployment
 
