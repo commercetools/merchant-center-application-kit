@@ -58,6 +58,7 @@ const AuthCallbackErrorPage = (props: TProps) => {
                   <Spacings.Stack scale="l">
                     <Spacings.Inline justifyContent="center">
                       <img
+                        width="100%"
                         src={FailedAuthenticationSVG}
                         alt="Failed authentication"
                       />
