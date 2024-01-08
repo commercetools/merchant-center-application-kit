@@ -12,7 +12,7 @@ Before you get started, you need to have:
 # Create your application
 
 1. Install a Connect [starter template](https://docs.commercetools.com/connect/development#install-a-starter-template).
-2. Open the `mc-app` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) with the name `sample-custom-application` inside this folder.
+2. Open the `mc-app` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) inside this folder.
 3. Add your environment variables to `custom-application-config.mjs`.
 
     ```js title="custom-application-config.mjs" highlightLines="5-13"
@@ -52,11 +52,11 @@ Before you get started, you need to have:
     export default config;
     ```
 
-4. Open `connect.yaml` in the root of the Connect starter template and replace it with the following. The environment variables you included in `custom-application-config.mjs` should be defined here. Sensitive variables, such as API client information, should be defined within `securedConfiguration`.
+4. Open `connect.yaml` in the root of the Connect starter template and replace it with the following. Enter a `name` for the application, and define the environment variables you included in `custom-application-config.mjs`.
 
       ```yml
       deployAs:
-        - name: example-custom-application
+        - name: name-of-custom-application
           applicationType: mc-app
           endpoint: /
           configuration:
@@ -64,21 +64,12 @@ Before you get started, you need to have:
               - key: CTP_PROJECT_KEY
                 description: project key from the Composable Commerce Project
                 default: "your-project-key"
-              - key: CTP_REGION
-                description: region of the Composable Commerce Project
-                required: true
               - key: CUSTOM_APPLICATION_ID
                 description: the Custom Application ID
                 required: true
               - key: CLOUD_IDENTIFIER
                 description: the cloud identifier
                 default: "gcp-eu"
-            securedConfiguration:
-              - key: CTP_CLIENT_ID
-                description: client id from the Composable Commerce Project
-                required: true
-              - key: CTP_CLIENT_SECRET
-                description: client secret from the Composable Commerce Project
       ```
 
 <Info>
@@ -96,6 +87,8 @@ Your GitHub repository can be public or private. If you are using a private repo
 </Info>
 
 # Publish and deploy your application
+
+You can publish and deploy your application using either the [Connect API](#using-the-connect-api) or the [Merchant Center](#using-the-merchant-center).
 
 ## Using the Connect API
 
