@@ -1,5 +1,13 @@
 # @commercetools-frontend/constants
 
+## 22.15.0
+
+### Patch Changes
+
+- [#3352](https://github.com/commercetools/merchant-center-application-kit/pull/3352) [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Refactored Custom Views constants for better maintainability.
+
+- [#3351](https://github.com/commercetools/merchant-center-application-kit/pull/3351) [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679) Thanks [@emmenko](https://github.com/emmenko)! - Expose some regex `PROJECT_KEY_REGEX`, `ENTRY_POINT_URI_PATH_REGEX`, `PERMISSION_GROUP_NAME_REGEX`.
+
 ## 22.14.3
 
 ## 22.14.2

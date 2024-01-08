@@ -1,5 +1,14 @@
 # @commercetools-website/custom-views
 
+## 22.15.0
+
+### Patch Changes
+
+- [#3360](https://github.com/commercetools/merchant-center-application-kit/pull/3360) [`72b615e03`](https://github.com/commercetools/merchant-center-application-kit/commit/72b615e03a43b85924d097c2afec7dcf853a6cef) Thanks [@melindafekete](https://github.com/melindafekete)! - docs(ml): remove ml proxy
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes
