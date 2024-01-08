@@ -1,5 +1,29 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.15.0
+
+### Minor Changes
+
+- [#3365](https://github.com/commercetools/merchant-center-application-kit/pull/3365) [`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef) Thanks [@emmenko](https://github.com/emmenko)! - Enable React strict mode by default
+
+### Patch Changes
+
+- Updated dependencies [[`8093695a0`](https://github.com/commercetools/merchant-center-application-kit/commit/8093695a006f30598ccab0d66d052f0a32862f3b), [`71414b4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/71414b4b277c1d03bcbdc7d79483eec1d5814720), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`551e64ee5`](https://github.com/commercetools/merchant-center-application-kit/commit/551e64ee540653899095120f4436ec800dc8b19e), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/application-shell@22.15.0
+  - @commercetools-frontend/jest-preset-mc-app@22.15.0
+  - @commercetools-frontend/application-components@22.15.0
+  - @commercetools-frontend/application-shell-connectors@22.15.0
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+  - @commercetools-frontend/mc-scripts@22.15.0
+  - @commercetools-frontend/permissions@22.15.0
+  - @commercetools-frontend/actions-global@22.15.0
+  - @commercetools-frontend/mc-dev-authentication@22.15.0
+  - @commercetools-frontend/i18n@22.15.0
+  - @commercetools-frontend/l10n@22.15.0
+  - @commercetools-frontend/assets@22.15.0
+  - @commercetools-frontend/eslint-config-mc-app@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes
