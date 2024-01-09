@@ -50,6 +50,8 @@
   pages:
     - title: Overview
       path: /deployment-examples
+    - title: Deploying to commercetools Connect
+      path: /deployment-examples/commercetools-connect
     - title: Deploying to Vercel
       path: /deployment-examples/vercel
     - title: Deploying to Netlify
@@ -68,8 +70,6 @@
       path: /deployment-examples/cloudflare
     - title: Deploying to Google Cloud with Static Web Apps
       path: /deployment-examples/google-cloud-static-web-apps
-    - title: Deploying to commercetools Connect
-      path: /deployment-examples/commercetools-connect
 - chapter-title: API Reference
   pages:
     - title: CLI
