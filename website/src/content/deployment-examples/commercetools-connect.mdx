@@ -15,7 +15,7 @@ Before you get started, you need to have:
 2. Open the `mc-app` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) inside this folder.
 3. Add your environment variables to `custom-application-config.mjs`.
 
-    ```js title="custom-application-config.mjs" highlightLines="5-13"
+    ```js title="custom-application-config.mjs" highlightLines="4-13"
     const config = {
       name: 'Example Custom Application',
       entryPointUriPath,
@@ -54,7 +54,7 @@ Before you get started, you need to have:
 
 4. Open `connect.yaml` in the root of the Connect starter template and replace it with the following. Enter a `name` for the application, and define the environment variables you included in `custom-application-config.mjs`.
 
-      ```yml
+      ```yml title="connect.yaml"
       deployAs:
         - name: name-of-custom-application
           applicationType: mc-app
