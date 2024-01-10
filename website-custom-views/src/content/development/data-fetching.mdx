@@ -681,7 +681,7 @@ You can use Custom Views to display and manage any kind of data you might need. 
 In this situations, you can use the [hostUrl](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property on the [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) to get the URL of the host application where you can extract the ID of the displayed entity.
 
 Let's say your Custom View will be rendered in the order details view of the Orders application and you want to load some data related to the specific order which is being displayed in the host application.
-You can access the host application URL using the [useCustomViewContext](http://localhost:8000/api-reference/commercetools-frontend-application-shell-connectors#usecustomviewcontext) hook and extract the order ID from the URL.
+You can access the host application URL using the [useCustomViewContext](/api-reference/commercetools-frontend-application-shell-connectors#usecustomviewcontext) hook and extract the order ID from the URL.
 
 ```jsx title="my-custom-view.jsx"
 import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
