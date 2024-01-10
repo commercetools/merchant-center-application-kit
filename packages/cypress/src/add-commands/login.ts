@@ -167,10 +167,11 @@ const isCustomView = (commandOptions: CommandLoginOptions) =>
   commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
 
 function loginByOidc(commandOptions: CommandLoginOptions) {
+  const isCustomViewConfigCommand = isCustomView(commandOptions);
   if (!isLocalhost()) {
     throw new Error(
       `The "loginByOidc" command only works when testing a Custom ${
-        isCustomView(commandOptions) ? 'View' : 'Application'
+        isCustomViewConfigCommand ? 'View' : 'Application'
       } running on localhost.`
     );
   }
@@ -181,15 +182,24 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
   }
 
-  const customEntityConfigCommand = isCustomView(commandOptions)
+  const customEntityConfigCommand = isCustomViewConfigCommand
     ? 'customViewConfig'
     : 'customApplicationConfig';
+
+  if (isCustomViewConfigCommand && !Cypress.env('TEMPLATE_NAME')) {
+    throw new Error(
+      `Cypress environment variable "TEMPLATE_NAME" must be provided when testing a Custom View locally. Re-run the command with, for example, "--env TEMPLATE_NAME=starter"`
+    );
+  }
 
   cy.task(
     customEntityConfigCommand,
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
+      ...(isCustomViewConfigCommand
+        ? { templateName: Cypress.env('TEMPLATE_NAME') }
+        : {}),
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
