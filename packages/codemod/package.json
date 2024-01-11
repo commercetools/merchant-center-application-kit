@@ -28,7 +28,7 @@
     "@babel/preset-env": "^7.22.15",
     "cac": "6.7.14",
     "glob": "8.1.0",
-    "jscodeshift": "0.15.0",
+    "jscodeshift": "0.15.1",
     "prettier": "2.8.8"
   },
   "devDependencies": {
@@ -36,9 +36,9 @@
     "@emotion/react": "^11.11.1",
     "@tsconfig/node16": "^16.1.1",
     "@types/glob": "8.1.0",
-    "@types/jscodeshift": "0.11.6",
-    "rimraf": "5.0.1",
-    "typescript": "5.0.4"
+    "@types/jscodeshift": "0.11.11",
+    "rimraf": "5.0.5",
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": "16.x || >=18.0.0"

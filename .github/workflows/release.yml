@@ -55,7 +55,7 @@ jobs:
       - name: Creating release pull request or publishing release to npm registry
         id: changesets
         # uses: changesets/action@v1.3.0
-        uses: dotansimha/changesets-action@v1.5.1
+        uses: dotansimha/changesets-action@v1.5.2
         with:
           publish: pnpm changeset publish
           version: pnpm changeset:version-and-format

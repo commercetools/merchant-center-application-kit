@@ -64,19 +64,19 @@
     "@commercetools-frontend/mc-dev-authentication": "22.15.1",
     "@commercetools-frontend/mc-scripts": "22.15.1",
     "@commercetools-test-data/commons": "6.9.0",
-    "@formatjs/cli": "6.1.1",
+    "@formatjs/cli": "6.2.4",
     "@types/jest": "^29.5.4",
     "@types/node": "^16.18.48",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@vercel/node": "^2.15.10",
     "dotenv-flow": "^4.0.0",
     "express": "4.18.2",
-    "jest": "29.5.0",
+    "jest": "29.7.0",
     "msw": "0.49.3",
     "ts-node": "^10.9.1",
-    "typescript": "5.0.4"
+    "typescript": "5.3.3"
   },
-  "packageManager": "pnpm@8.5.0",
+  "packageManager": "pnpm@8.14.1",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
