@@ -5,12 +5,11 @@ title: Routing
 When building a Custom View, you might encounter a use case when you need to navigate between different areas.
 For example, you might have a list of items and you want to navigate to a detail view when the user clicks on an item.
 
-In the context of a Custom View, you need to bear in mind the navigation within it is totally decoupled from the one of the host application.
-This is because the Custom View is loaded in an [iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in order to provide a sandboxed environment for the Custom Views which improves security.
-The base URL for a Custom View looks like this: `https://<merchant-center-domain>/custom-views/<custom-view-id>/projects/<project-key>`.
+The routing within a Custom View is decoupled from the host application because the Custom View is loaded in a sandboxed [iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) to improve security.
+The base URL for a Custom View is of the following format: `https://<merchant-center-domain>/custom-views/<custom-view-id>/projects/<project-key>`.
 
-In order to implement navigation, you just need to use the `react-router-dom` library and adjust the `routes.tsx` you can find in the `src` folder of our [starter templates](https://github.com/commercetools/merchant-center-application-kit/tree/main/custom-views-templates).
-This is an example of an updated `routes.tsx` file supporting navigation:
+To implement routing, use the `react-router-dom` library and adjust the `routes.tsx` you can find in the `src` folder of the [starter templates](https://github.com/commercetools/merchant-center-application-kit/tree/main/custom-views-templates).
+The following example adds two routes: `page-A` and `page-B` to the `routes.tsx` file for navigation:
 
 ```tsx
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
@@ -36,12 +35,12 @@ const ApplicationRoutes = () => {
 };
 ```
 
-In order to navigate to a specific page, you can use the `Link` component like this:
+Use the `Link` component to navigate between pages.
 
 ```tsx
 import Link from '@commercetools-uikit/link';
 
-const WelcomePage = () => {
+const WelcomeComponent = () => {
   const match = useRouteMatch();
 
   return (
