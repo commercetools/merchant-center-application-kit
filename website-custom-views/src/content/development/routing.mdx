@@ -1,18 +1,19 @@
 ---
-title: Navigation
+title: Routing
 ---
 
 When building a Custom View, you might encounter a use case when you need to navigate between different areas.
 For example, you might have a list of items and you want to navigate to a detail view when the user clicks on an item.
 
 In the context of a Custom View, you need to bear in mind the navigation within it is totally decoupled from the one of the host application.
+This is because the Custom View is loaded in an [iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in order to provide a sandboxed environment for the Custom Views which improves security.
 The base URL for a Custom View looks like this: `https://<merchant-center-domain>/custom-views/<custom-view-id>/projects/<project-key>`.
 
 In order to implement navigation, you just need to use the `react-router-dom` library and adjust the `routes.tsx` you can find in the `src` folder of our [starter templates](https://github.com/commercetools/merchant-center-application-kit/tree/main/custom-views-templates).
 This is an example of an updated `routes.tsx` file supporting navigation:
 
 ```tsx
-import { Route, Switch, useRouteMatch } from 'react-router';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import PageAComponent from './components/page-a-view';
 import PageBComponent from './components/page-b-view';
 

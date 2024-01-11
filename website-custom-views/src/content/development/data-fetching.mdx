@@ -697,13 +697,11 @@ const MyCustomView = () => {
   const pathnameParts = url.pathname.split('/');
   const orderId = pathnameParts[3];
 
-  render() {
-    return (
-      <div>
-        <h1>Current Order ID: {orderId}</h1>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Current Order ID: {orderId}</h1>
+    </div>
+  );
 }
 
 export default MyCustomView;

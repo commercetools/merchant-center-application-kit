@@ -26,8 +26,8 @@
       path: /development/ui-components
     - title: Page Content Layouts
       path: /development/page-content-layouts
-    - title: Navigation
-      path: /development/navigation
+    - title: Routing
+      path: /development/routing
     - title: Forms
       path: /development/forms
     - title: Notifications
