@@ -186,9 +186,9 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     ? 'customViewConfig'
     : 'customApplicationConfig';
 
-  if (isCustomViewConfigCommand && !Cypress.env('TEMPLATE_NAME')) {
+  if (isCustomViewConfigCommand && !Cypress.env('PACKAGE_NAME')) {
     throw new Error(
-      `Cypress environment variable "TEMPLATE_NAME" must be provided when testing a Custom View locally. Re-run the command with, for example, "--env TEMPLATE_NAME=starter"`
+      `Cypress environment variable "PACKAGE_NAME" must be provided when testing a Custom View locally. Re-run the command with, for example, "--env PACKAGE_NAME=@commercetools-applications/merchant-center-custom-view-template-starter"`
     );
   }
 
@@ -198,7 +198,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
       ...(isCustomViewConfigCommand
-        ? { templateName: Cypress.env('TEMPLATE_NAME') }
+        ? { packageName: Cypress.env('PACKAGE_NAME') }
         : {}),
     },
     // Do not show log, as it may contain sensible information.

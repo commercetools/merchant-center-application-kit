@@ -192,6 +192,7 @@ jobs:
         with:
           application-type: custom-view
           template-name: starter
+          package-name: "@commercetools-applications/merchant-center-custom-view-template-starter"
           e2e-tests-command: test:e2e:template-custom-view-starter
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -242,6 +243,7 @@ jobs:
         with:
           application-type: custom-view
           template-name: starter-typescript
+          package-name: "@commercetools-applications/merchant-center-custom-view-template-starter-typescript"
           e2e-tests-command: test:e2e:template-custom-view-starter
           typecheck-command: typecheck:starter:custom-views
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}

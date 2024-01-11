@@ -11,7 +11,7 @@ import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/c
 type CustomEntityConfigTaskOptions = {
   entryPointUriPath: string;
   dotfiles?: string[];
-  templateName?: string;
+  packageName?: string;
 };
 type AllCustomEntityConfigs = Record<string, ApplicationRuntimeConfig['env']>;
 
@@ -72,9 +72,7 @@ const loadAllCustomEntityConfigs = async (
         );
 
         const customEntityConfigCacheKey = isCustomViewConfig
-          ? `${processedConfig.env.entryPointUriPath}-${path.basename(
-              packageInfo.dir
-            )}`
+          ? `${processedConfig.env.entryPointUriPath}-${packageInfo.packageJson.name}`
           : processedConfig.env.entryPointUriPath;
 
         return {
@@ -127,7 +125,7 @@ const customViewConfig = async (
 
   const customViewConfig =
     allCustomEntityConfigs[
-      `${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}-${options.templateName}`
+      `${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}-${options.packageName}`
     ];
 
   if (!customViewConfig) {
@@ -135,7 +133,7 @@ const customViewConfig = async (
   }
 
   console.log(
-    `Using Custom View config for the "${options.templateName}" template`
+    `Using Custom View config for the "${options.packageName}" package`
   );
   return customViewConfig;
 };
