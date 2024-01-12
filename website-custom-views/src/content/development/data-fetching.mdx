@@ -391,8 +391,6 @@ const Channels = () => {
 
 # Advanced usage
 
-<!-- ## Using fetch policy -->
-<!-- ## Customizing Apollo Cache -->
 
 ## Using Connector Hooks
 
@@ -673,3 +671,36 @@ When using the [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@co
 ```
 
 </Info>
+
+## Fetching host application view related data
+
+You can use Custom Views to display and manage any kind of data you might need. There can be use cases where the data you want to use in your Custom View is dependant on the entity the underlying host application view is displaying.
+
+In such situations, you can use the [hostUrl](/api-reference/commercetools-frontend-application-shell-connectors#hosturl) property from the [Custom View context](/api-reference/commercetools-frontend-application-shell-connectors#custom-view-context) to get the URL of the host application and extract the ID of the displayed entity.
+
+For example, if the Custom View is rendered in the Order details view of the Orders application and you want to load some data related to the specific order which is being displayed in the host application.
+You can access the host application URL using the [useCustomViewContext](/api-reference/commercetools-frontend-application-shell-connectors#usecustomviewcontext) hook and extract the order ID from the URL.
+
+```jsx title="my-custom-view.jsx"
+import { useCustomViewContext } from '@commercetools-frontend/application-shell-connectors';
+
+const MyCustomView = () => {
+  const hostUrl = useCustomViewContext((context) =>
+    context.hostUrl
+  );
+
+  // The order details view URL looks like this:
+  // https://<merchant-center-domain>/<project-key>/orders/111111-2222-3333-444-5555555555/general
+  const url = new URL(hostUrl);
+  const pathnameParts = url.pathname.split('/');
+  const orderId = pathnameParts[3]; // 111111-2222-3333-444-5555555555
+
+  return (
+    <div>
+      <h1>Current Order ID: {orderId}</h1>
+    </div>
+  );
+}
+
+export default MyCustomView;
+```
