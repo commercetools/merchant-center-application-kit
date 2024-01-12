@@ -61,6 +61,10 @@ export type CommandLoginOptions = {
    * This is only relevant for Cypress version >= `10.9.0`.
    */
   disableCacheAcrossSpecs?: boolean;
+  /**
+   * The package name as listed in the tested Custom View's package.json
+   */
+  packageName?: string;
 };
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
@@ -186,9 +190,13 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     ? 'customViewConfig'
     : 'customApplicationConfig';
 
-  if (isCustomViewConfigCommand && !Cypress.env('PACKAGE_NAME')) {
+  const packageName = commandOptions.packageName ?? Cypress.env('PACKAGE_NAME');
+
+  if (isCustomViewConfigCommand && !packageName) {
     throw new Error(
-      `Cypress environment variable "PACKAGE_NAME" must be provided when testing a Custom View locally. Re-run the command with, for example, "--env PACKAGE_NAME=@commercetools-applications/merchant-center-custom-view-template-starter"`
+      `Specify a package name for Custom View local testing:
+      - Provide it as the "loginToMerchantCenterForCustomView" command option
+      - Alternatively, use the Cypress environment variable: "--env PACKAGE_NAME=@commercetools-applications/merchant-center-custom-view-template-starter"`
     );
   }
 
@@ -197,9 +205,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
-      ...(isCustomViewConfigCommand
-        ? { packageName: Cypress.env('PACKAGE_NAME') }
-        : {}),
+      ...(isCustomViewConfigCommand ? { packageName } : {}),
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
