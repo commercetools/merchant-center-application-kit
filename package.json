@@ -116,7 +116,7 @@
     "@percy/core": "1.27.7",
     "@percy/cypress": "3.1.2",
     "@percy/puppeteer": "2.0.2",
-    "@preconstruct/cli": "2.8.2",
+    "@preconstruct/cli": "2.6.2",
     "@svgr/cli": "6.5.1",
     "@svgr/plugin-jsx": "6.5.1",
     "@svgr/plugin-svgo": "6.5.1",

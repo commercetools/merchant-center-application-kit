@@ -26,7 +26,7 @@
     "@commercetools-uikit/text-input": "^16.12.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "formik": "2.4.5",
+    "formik": "2.2.9",
     "history": "4.10.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
