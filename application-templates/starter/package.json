@@ -18,7 +18,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.8.9",
+    "@apollo/client": "3.7.14",
     "@babel/core": "^7.22.17",
     "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-frontend/actions-global": "workspace:*",
@@ -75,7 +75,7 @@
     "formik": "2.4.5",
     "graphql": "^16.8.0",
     "graphql-tag": "^2.12.6",
-    "jest": "29.7.0",
+    "jest": "29.5.0",
     "jest-runner-eslint": "2.1.2",
     "jest-watch-typeahead": "2.2.2",
     "moment": "^2.29.4",

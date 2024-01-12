@@ -45,7 +45,7 @@
     "@emotion/react": "^11.11.1",
     "@testing-library/react": "12.1.5",
     "@types/uuid": "^9.0.3",
-    "jest-mock": "29.7.0",
+    "jest-mock": "29.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "7.2.9",
