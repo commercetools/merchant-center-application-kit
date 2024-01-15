@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/extensions
 import colorPresets from '@commercetools-docs/gatsby-theme-docs/color-presets/index.mjs';
-const { isProd } = process.env;
-
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -39,10 +37,7 @@ const config = {
         auth0ClientId: 'xLk8EDUCc8PKqCbrSJCnuahvn86nEn4z',
         aiAssistantApiBaseUrl: 'https://assistant-api.commercetools.vercel.app',
         aiAssistantTopbarButton: true,
-        learnApiBaseUrl:
-          isProd === 'true'
-            ? 'https://learning-api.docs.commercetools.com'
-            : 'https://learning-api.commercetools.vercel.app',
+        learnApiBaseUrl: 'https://learning-api.docs.commercetools.com',
         selfLearningFeatures: ['complete-profile-modal'],
         hideLogin: true,
       },
