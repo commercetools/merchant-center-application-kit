@@ -62,4 +62,5 @@ export type TProjectGraphql = TBaseProject & {
     allAppliedDataFences: TAppliedStoreDataFencesGraphql;
     allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql;
   };
+  isProductionProject: boolean;
 };
