@@ -217,6 +217,7 @@ const ProjectSwitcher = (props: Props) => {
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
         appearance="quiet"
+        maxMenuHeight={360}
       />
     </div>
   );
