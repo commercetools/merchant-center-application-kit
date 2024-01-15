@@ -87,7 +87,7 @@
     "@babel/core": "^7.22.17",
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.1",
-    "@commercetools-docs/writing-style": "3.3.6",
+    "@commercetools-docs/writing-style": "3.3.8",
     "@commercetools-frontend/application-config": "workspace:*",
     "@commercetools-frontend/babel-preset-mc-app": "workspace:*",
     "@commercetools-frontend/constants": "workspace:*",
