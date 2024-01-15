@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/custom-applications",
-  "version": "22.14.3",
+  "version": "22.15.1",
   "private": true,
   "browserslist": [">0.25%", "not dead and supports es6-module"],
   "scripts": {
@@ -12,8 +12,8 @@
     "generate-icons": "svgr -d src/icons/generated -- src/icons/svg && prettier --write '**/generated/*.js'"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "22.8.7",
-    "@commercetools-docs/ui-kit": "22.8.4",
+    "@commercetools-docs/gatsby-theme-docs": "22.11.3",
+    "@commercetools-docs/ui-kit": "22.11.1",
     "@commercetools-frontend/assets": "workspace:*",
     "@commercetools-uikit/card": "^16.12.0",
     "@commercetools-uikit/grid": "^16.12.0",

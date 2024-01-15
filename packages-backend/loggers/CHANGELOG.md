@@ -1,5 +1,13 @@
 # @commercetools-backend/loggers
 
+## 22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [`1af547944`](https://github.com/commercetools/merchant-center-application-kit/commit/1af5479447ae313e34e621f7e8ce6a1c6f9c3500) Thanks [@emmenko](https://github.com/emmenko)! - Remove unused dependency
+
 ## 22.14.3
 
 ## 22.14.2

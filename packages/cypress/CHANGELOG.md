@@ -1,5 +1,25 @@
 # @commercetools-frontend/cypress
 
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.15.1
+  - @commercetools-frontend/application-shell@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3346](https://github.com/commercetools/merchant-center-application-kit/pull/3346) [`bc0ece9cb`](https://github.com/commercetools/merchant-center-application-kit/commit/bc0ece9cbbc4fd650da9de33348f2a02fa669be5) Thanks [@kark](https://github.com/kark)! - Add `loginToMerchantCenterForCustomView` Cypress command to streamline end-to-end testing of Custom Views.
+
+- Updated dependencies [[`8093695a0`](https://github.com/commercetools/merchant-center-application-kit/commit/8093695a006f30598ccab0d66d052f0a32862f3b), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`551e64ee5`](https://github.com/commercetools/merchant-center-application-kit/commit/551e64ee540653899095120f4436ec800dc8b19e), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/application-shell@22.15.0
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

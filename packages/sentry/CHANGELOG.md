@@ -1,5 +1,23 @@
 # @commercetools-frontend/sentry
 
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3362](https://github.com/commercetools/merchant-center-application-kit/pull/3362) [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Avoid displaying 'unhandled error' banner and passing error to sentry for ResizeObserver loop related errors
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/browser-history@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

@@ -1,56 +1,62 @@
-import { css } from '@emotion/react';
-import Card from '@commercetools-uikit/card';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { useEffect } from 'react';
+import { PageContentNarrow } from '@commercetools-frontend/application-components';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
+import getMcOrigin from '../../utils/get-mc-origin';
 import { location } from '../../utils/location';
+
+declare let window: ApplicationWindow;
 
 export const RedirectToProjectCreate = () => {
   const servedByProxy = useIsServedByProxy();
-  /**
-   * NOTE:
-   *   This looks a bit unusual: redirecting in render.
-   *   However, when doing it in `cDM` we loose time
-   *   we we actually do never want to render anything or
-   *   interact with anything rendered. Instead we should should
-   *   redirect away. Using a constructor would result in the same.
-   *   In turn this intends wo make explicit that we never want to
-   *   render and instead just navigate away.
-   */
-  if (servedByProxy === true) {
-    location.replace('/account/projects/new');
 
+  useEffect(() => {
+    if (servedByProxy === true) {
+      location.replace('/account/projects/new');
+      return;
+    }
+  }, [servedByProxy]);
+
+  if (servedByProxy) {
     return null;
   }
 
+  const mcUrl = getMcOrigin(window.app.mcApiUrl);
   return (
-    <div
-      css={css`
-        align-self: center;
-        margin-top: ${customProperties.spacingXl};
-        max-width: ${customProperties.constraint10};
-      `}
-    >
-      <Card type="flat" theme="dark">
-        <Spacings.Stack>
-          <Text.Headline as="h1">Please create a project!</Text.Headline>
-          <ContentNotification type="info">
-            You are running in development mode
-          </ContentNotification>
-          <Text.Body>
-            The Custom Application is not running behind the Merchant Center
-            Proxy. Therefore, you are not being redirected to the account
-            section to create a new project.
-          </Text.Body>
-          <Text.Body>
-            If you do need to create a project, we recommend to go to the
-            Merchant Center production URL and create a project there. After
-            that, you can access your new project from your local environment.
-          </Text.Body>
-        </Spacings.Stack>
-      </Card>
+    <div>
+      <Spacings.Inset scale="xl">
+        <PageContentNarrow>
+          <Spacings.Stack>
+            <Text.Headline as="h1">Please create a project!</Text.Headline>
+            <ContentNotification type="warning">
+              You are running in development mode
+            </ContentNotification>
+            <Text.Body>
+              The application is not running behind the{' '}
+              <a
+                href="https://docs.commercetools.com/custom-applications/concepts/merchant-center-proxy-router"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Merchant Center Proxy
+              </a>{' '}
+              in production and thus cannot be redirected to the account section
+              to create a new project.
+            </Text.Body>
+            <Text.Body>
+              Instead, we recommend to go to the{' '}
+              <a href={mcUrl} target="_blank" rel="noopener noreferrer">
+                Merchant Center production URL
+              </a>{' '}
+              and create a project there. After that, you can access your new
+              project from your local environment.
+            </Text.Body>
+          </Spacings.Stack>
+        </PageContentNarrow>
+      </Spacings.Inset>
     </div>
   );
 };

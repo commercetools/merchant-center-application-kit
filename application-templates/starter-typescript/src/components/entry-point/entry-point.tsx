@@ -20,7 +20,11 @@ const AsyncApplicationRoutes = lazy(
 setupGlobalErrorListener();
 
 const EntryPoint = () => (
-  <ApplicationShell environment={window.app} applicationMessages={loadMessages}>
+  <ApplicationShell
+    enableReactStrictMode
+    environment={window.app}
+    applicationMessages={loadMessages}
+  >
     <AsyncApplicationRoutes />
   </ApplicationShell>
 );

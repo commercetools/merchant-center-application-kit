@@ -213,13 +213,14 @@ To inject properties specific to your Custom View in the context, you can add th
 
 For example, for the following `custom-view-config` the `trackingSentry` property is added in the `context.environment`.
 
-```js title="custom-view-config.json" highlightLines="4-6"
-{
+```js title="custom-view-config.mjs" highlightLines="4-6"
+const config = {
   "name": "My Custom View",
   "cloudIdentifier": "gcp-eu",
   "additionalEnv": {
     "trackingSentry": "https://000@sentry.io/000",
   }
+  // ...
 }
 ```
 

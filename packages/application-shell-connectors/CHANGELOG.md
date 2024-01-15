@@ -1,5 +1,27 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.15.1
+  - @commercetools-frontend/browser-history@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+  - @commercetools-frontend/sentry@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3365](https://github.com/commercetools/merchant-center-application-kit/pull/3365) [`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef) Thanks [@emmenko](https://github.com/emmenko)! - Fix login flow for local development to safely run the side effects when using React strict mode
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+  - @commercetools-frontend/sentry@22.15.0
+  - @commercetools-frontend/browser-history@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

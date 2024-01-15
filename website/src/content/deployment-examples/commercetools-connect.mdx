@@ -1,0 +1,112 @@
+---
+title: Deploying to commercetools Connect
+---
+
+# Prerequisites
+
+Before you get started, you need to have:
+
+- A commercetools Composable Commerce Project ([get started](https://docs.commercetools.com/getting-started)).
+- A Custom Application [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+
+# Create your application
+
+1. Install a Connect [starter template](https://docs.commercetools.com/connect/development#install-a-starter-template).
+2. Open the `mc-app` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) inside this folder.
+3. Add your environment variables to `custom-application-config.mjs`.
+
+    ```js title="custom-application-config.mjs" highlightLines="4-13"
+    const config = {
+      name: 'Example Custom Application',
+      entryPointUriPath,
+      cloudIdentifier: '${env:CLOUD_IDENTIFIER}',
+      env: {
+        development: {
+          initialProjectKey: '${env:CTP_PROJECT_KEY}',
+        },
+        production: {
+          applicationId: '${env:CUSTOM_APPLICATION_ID}',
+          url: '${env:APPLICATION_URL}',
+        },
+      },
+      oAuthScopes: {
+        view: ['view_products'],
+        manage: ['manage_products'],
+      },
+      icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
+      mainMenuLink: {
+        defaultLabel: 'Template starter',
+        labelAllLocales: [],
+        permissions: [PERMISSIONS.View],
+      },
+      submenuLinks: [
+        {
+          uriPath: 'channels',
+          defaultLabel: 'Channels',
+          labelAllLocales: [],
+          permissions: [PERMISSIONS.View],
+        },
+      ],
+    };
+
+    export default config;
+    ```
+
+4. Open `connect.yaml` in the root of the Connect starter template and replace it with the following. Enter a `name` for the application, and define the environment variables you included in `custom-application-config.mjs`.
+
+      ```yml title="connect.yaml"
+      deployAs:
+        - name: name-of-custom-application
+          applicationType: mc-app
+          endpoint: /
+          configuration:
+            standardConfiguration:
+              - key: CTP_PROJECT_KEY
+                description: project key from the Composable Commerce Project
+                default: "your-project-key"
+              - key: CUSTOM_APPLICATION_ID
+                description: the Custom Application ID
+                required: true
+              - key: CLOUD_IDENTIFIER
+                description: the cloud identifier
+                default: "gcp-eu"
+      ```
+
+<Info>
+
+`APPLICATION_URL` is automatically provided by commercetools Connect and you do not need to define it in `connect.yaml`.
+
+</Info>
+
+5. Push your code to a GitHub repository and make a new release. Your release must have a Git tag.
+
+<Info>
+
+Your GitHub repository can be public or private. If you are using a private repository, you must provide access to the GitHub machine user [connect-mu](https://github.com/connect-mu).
+
+</Info>
+
+# Publish and deploy your application
+
+You can publish and deploy your application using either the [Connect API](#using-the-connect-api) or the [Merchant Center](#using-the-merchant-center).
+
+## Using the Connect API
+
+1. [Create a Connector](https://docs.commercetools.com/connect/getting-started#create-a-connector) which references the GitHub repository and release tag of your application.
+2. Publish your Connector using the [preview](https://docs.commercetools.com/connect/getting-started#request-previewable-status-for-connectorstaged) or [publish](https://docs.commercetools.com/connect/getting-started#publish-for-private-use) flow.
+3. [Deploy the Connector](https://docs.commercetools.com/connect/getting-started#deploy-a-connector) with the correct configuration values. `CUSTOM_APPLICATION_ID` should be the `applicationId` of your configured Custom Application.
+4. Once your Connector is deployed, [get the Deployment](https://docs.commercetools.com/connect/deployments#get-deployment) and copy the value of `applications[*].url`. This is the URL where your Custom Application is deployed.
+6. In the Merchant Center, update the **Application URL** of your Custom Application with the URL where your Custom Application is deployed.
+
+## Using the Merchant Center
+
+1. [Create an Organization Connector](https://docs.commercetools.com/merchant-center/connect#create-an-organization-connector) which references the GitHub repository and release tag of your application.
+2. Publish your Connector using **Request Preview** or **Publish for private use**.
+3. [Install the Organization Connector](https://docs.commercetools.com/merchant-center/connect#install-an-organization-connector) with the correct configuration values. `CUSTOM_APPLICATION_ID` should be the `applicationId` of your configured Custom Application.
+4. Open **Manage connectors** and click **Installations**. When the **Status** of the Connector is `Installed`, click the Connector and select your application from the list. Copy the value of the `URL` field. This is the URL where your Custom Application is deployed.
+6. Update the **Application URL** of your Custom Application with the URL where your Custom Application is deployed.
+
+# Test your deployment
+
+[Install the Custom Application](https://docs.commercetools.com/merchant-center/managing-custom-applications#installing-a-custom-application) in the Merchant Center and access it in your Projects.
+
