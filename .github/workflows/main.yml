@@ -192,7 +192,6 @@ jobs:
         with:
           application-type: custom-view
           template-name: starter
-          package-name: "@commercetools-applications/merchant-center-custom-view-template-starter"
           e2e-tests-command: test:e2e:template-custom-view-starter
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
           playground-application-id: ${{ secrets.APP_ID_PLAYGROUND }}
@@ -200,6 +199,7 @@ jobs:
           cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          cypress-package-name: "@commercetools-applications/merchant-center-custom-view-template-starter"
 
   test_custom_view_starter_js_template_installation:
     runs-on: ubuntu-latest
@@ -243,7 +243,6 @@ jobs:
         with:
           application-type: custom-view
           template-name: starter-typescript
-          package-name: "@commercetools-applications/merchant-center-custom-view-template-starter-typescript"
           e2e-tests-command: test:e2e:template-custom-view-starter
           typecheck-command: typecheck:starter:custom-views
           host-gcp-staging: ${{ secrets.HOST_GCP_STAGING }}
@@ -252,6 +251,7 @@ jobs:
           cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          cypress-package-name: "@commercetools-applications/merchant-center-custom-view-template-starter-typescript"
 
   test_custom_view_starter_ts_template_installation:
     runs-on: ubuntu-latest
