@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/extensions
 import colorPresets from '@commercetools-docs/gatsby-theme-docs/color-presets/index.mjs';
+const { isProd } = process.env;
+
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -33,6 +35,16 @@ const config = {
         gaTrackingIds: ['G-XGR7PSLVB2', 'UA-38285631-3'],
         hubspotTrackingCode: '4784080',
         overrideDefaultConfigurationData: ['**/top-*', '**/footer*'],
+        auth0Domain: 'auth.id.commercetools.com',
+        auth0ClientId: 'xLk8EDUCc8PKqCbrSJCnuahvn86nEn4z',
+        aiAssistantApiBaseUrl: 'https://assistant-api.commercetools.vercel.app',
+        aiAssistantTopbarButton: true,
+        learnApiBaseUrl:
+          isProd === 'true'
+            ? 'https://learning-api.docs.commercetools.com'
+            : 'https://learning-api.commercetools.vercel.app',
+        selfLearningFeatures: ['complete-profile-modal'],
+        hideLogin: true,
       },
     },
     'gatsby-plugin-pnpm',
