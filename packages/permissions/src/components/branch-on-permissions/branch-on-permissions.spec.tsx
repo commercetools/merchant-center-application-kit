@@ -58,6 +58,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
           isActive: true,
           reason: undefined,
         },
+        isProductionProject: false,
         allAppliedPermissions: [{ name: 'canViewProducts', value: true }],
         allAppliedActionRights: [
           {
