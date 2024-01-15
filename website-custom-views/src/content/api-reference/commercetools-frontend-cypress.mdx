@@ -89,7 +89,7 @@ it('should render page 1', () => {
 
 Available options are:
 
-* `packageName` (optional): The package name as listed in the tested Custom View's package.json. Alternatively, can be provided as `Cypress.env('PACKAGE_NAME')`
+* `packageName` (optional): The package name as specified in the Custom View's `package.json`. If not provided, it defaults to `Cypress.env('PACKAGE_NAME').`
 * `dotfiles` (optional): A list of dotenv files to load when the `custom-view-config.mjs` is loaded (in case you're using an environment placeholder). By default the following dotenv files are loaded: `.env` and `.env.local`. You can also define the values using paths relative to the Custom View folder.
 * `projectKey` (optional): The project key to access the user session. The session token is valid for one project key at a time. Defaults to `Cypress.env('PROJECT_KEY')`.
 * `onBeforeLoad` (optional): The function to call before the page has loaded all of its resources. Use this as a chance to interact, for example, with the browser storage.

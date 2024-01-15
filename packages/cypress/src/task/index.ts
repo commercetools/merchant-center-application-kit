@@ -132,9 +132,7 @@ const customViewConfig = async (
     throw new Error(`Could not find Custom View config`);
   }
 
-  console.log(
-    `Using Custom View config for the "${options.packageName}" package`
-  );
+  console.log(`Using Custom View config for "${options.packageName}"`);
   return customViewConfig;
 };
 

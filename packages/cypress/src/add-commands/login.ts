@@ -61,11 +61,20 @@ export type CommandLoginOptions = {
    * This is only relevant for Cypress version >= `10.9.0`.
    */
   disableCacheAcrossSpecs?: boolean;
+};
+
+export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
+  CommandLoginOptions,
+  'entryPointUriPath' | 'initialRoute'
+> & {
   /**
-   * The package name as listed in the tested Custom View's package.json
+   * The package name as specified in the `package.json` to uniquely identify the configuration.
+   * This is only required for testing Custom Views.
+   * Defaults to `Cypress.env('PACKAGE_NAME')`
    */
   packageName?: string;
 };
+
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
@@ -170,7 +179,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 const isCustomView = (commandOptions: CommandLoginOptions) =>
   commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
 
-function loginByOidc(commandOptions: CommandLoginOptions) {
+function loginByOidc(
+  commandOptions: CommandLoginOptions &
+    LoginToMerchantCenterForCustomViewCommandLoginOptions
+) {
   const isCustomViewConfigCommand = isCustomView(commandOptions);
   if (!isLocalhost()) {
     throw new Error(
@@ -194,9 +206,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
 
   if (isCustomViewConfigCommand && !packageName) {
     throw new Error(
-      `Specify a package name for Custom View local testing:
-      - Provide it as the "loginToMerchantCenterForCustomView" command option
-      - Alternatively, use the Cypress environment variable: "--env PACKAGE_NAME=@commercetools-applications/merchant-center-custom-view-template-starter"`
+      `Missing required option "packageName" when using the "loginToMerchantCenterForCustomView" command.`
     );
   }
 
