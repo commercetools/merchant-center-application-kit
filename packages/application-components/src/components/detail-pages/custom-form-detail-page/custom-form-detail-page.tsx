@@ -16,10 +16,13 @@ import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 
+// Bear in mind the paddings are dependant on the context the component
+// is rendered in. For example, when rendered in a custom view, its panel
+// already contains default paddings, so we don't need to add them here.
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
-  padding: ${appKitDesignTokens.paddingForDetailPageHeader};
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
+  padding: ${appKitDesignTokens.paddingForDetailPageHeader};
   body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
     padding: ${appKitDesignTokens.paddingForDetailPageHeaderInCustokmView};
   }

@@ -41,8 +41,11 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
       background-color: ${props.color === 'surface'
         ? uiKitDesignTokens.colorSurface
         : appKitDesignTokens.backgroundColorForPageHeader};
-      padding: ${appKitDesignTokens.paddingForTabularPageHeader};
       border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
+      // Bear in mind the paddings are dependant on the context the component
+      // is rendered in. For example, when rendered in a custom view, its panel
+      // already contains default paddings, so we don't need to add them here.
+      padding: ${appKitDesignTokens.paddingForTabularPageHeader};
       body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
         padding: ${appKitDesignTokens.paddingForTabularPageHeaderInCustomView};
       }
@@ -62,6 +65,9 @@ const FormControlsContainer = styled.div`
 `;
 
 const CustomViewsSelectorWrapper = styled.div`
+  // Bear in mind the margins are dependant on the context the component
+  // is rendered in. For example, when rendered in a custom view, its panel
+  // already contains default paddings, so we don't need to add margins here.
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
   body[data-extension-type='custom-view'] & {
     margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabularInCustomView};
