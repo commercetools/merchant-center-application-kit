@@ -1,6 +1,14 @@
 /* THIS IS A GENERATED FILE */
 /* eslint-disable import/no-duplicates */
 
+declare module '*/select-user-id.mc.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const FetchUserId: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module '*/authenticated.mc.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -37,14 +45,6 @@ declare module '*/fetch-all-features.mc.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const AllFeatures: DocumentNode;
-
-  export default defaultDocument;
-}
-
-declare module '*/select-user-id.mc.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const FetchUserId: DocumentNode;
 
   export default defaultDocument;
 }
