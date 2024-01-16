@@ -84,6 +84,16 @@ const createApolloClient = (
         // CTP types with `key` as identifier
         Project: {
           keyFields: ['key'],
+          fields: {
+            expiry: {
+              merge: (existing, incoming, { mergeObjects }) =>
+                mergeObjects(existing, incoming),
+            },
+            suspension: {
+              merge: (existing, incoming, { mergeObjects }) =>
+                mergeObjects(existing, incoming),
+            },
+          },
         },
         Store: {
           keyFields: ['key'],
