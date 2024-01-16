@@ -33,7 +33,10 @@ declare let window: ApplicationWindow;
 type Props = {
   projectKey?: string;
 };
-type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
+type OptionType = Pick<
+  TProject,
+  'key' | 'name' | 'suspension' | 'expiry' | 'isProductionProject'
+> & {
   label: string;
 };
 
@@ -131,6 +134,7 @@ const mapProjectsToOptions = memoize((projects) =>
     value: project.key,
     suspension: project.suspension,
     expiry: project.expiry,
+    isProductionProject: project.isProductionProject,
   }))
 );
 

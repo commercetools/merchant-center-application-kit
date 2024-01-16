@@ -386,7 +386,6 @@ export type TOrganization = TVersioned & {
 export type TOrganizationQueryResult = {
   __typename?: 'OrganizationQueryResult';
   count: Scalars['Int'];
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   exists: Scalars['Boolean'];
   offset: Scalars['Int'];
   results: Array<TOrganization>;
@@ -422,7 +421,6 @@ export type TPermission = TVersioned & {
 export type TPermissionQueryResult = {
   __typename?: 'PermissionQueryResult';
   count: Scalars['Int'];
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   exists: Scalars['Boolean'];
   offset: Scalars['Int'];
   results: Array<TPermission>;
@@ -544,7 +542,6 @@ export enum TProjectPlan {
 export type TProjectQueryResult = {
   __typename?: 'ProjectQueryResult';
   count: Scalars['Int'];
-  /** BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta */
   exists: Scalars['Boolean'];
   offset: Scalars['Int'];
   results: Array<TProject>;
@@ -788,6 +785,7 @@ export type TUser = TVersioned & {
   firstName: Scalars['String'];
   id: Scalars['String'];
   language: Scalars['Locale'];
+  lastLoginAt?: Maybe<Scalars['DateTime']>;
   lastModifiedAt: Scalars['DateTime'];
   lastModifiedBy?: Maybe<TInitiator>;
   lastName: Scalars['String'];

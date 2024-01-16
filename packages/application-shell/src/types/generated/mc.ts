@@ -638,6 +638,11 @@ export enum TVerificationStatus {
   Verified = 'Verified'
 }
 
+export type TFetchUserIdQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TFetchUserIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string } | null };
+
 export type TAmILoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -648,7 +653,7 @@ export type TFetchProjectQueryVariables = Exact<{
 }>;
 
 
-export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, sampleDataImportDataset?: string | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
+export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, isProductionProject: boolean, sampleDataImportDataset?: string | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -658,14 +663,9 @@ export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typenam
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
+export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
 
 export type TAllFeaturesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TAllFeaturesQuery = { __typename?: 'Query', allFeatures: Array<{ __typename?: 'Feature', name: string, value: boolean, reason?: string | null }> };
-
-export type TFetchUserIdQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TFetchUserIdQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string } | null };
