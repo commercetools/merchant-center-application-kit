@@ -64,7 +64,7 @@ const defaultProject = {
     isActive: false,
     reason: undefined,
   },
-  isProductionProject: true,
+  isProductionProject: false,
   allAppliedPermissions: [],
   allAppliedActionRights: [],
   allAppliedDataFences: [],

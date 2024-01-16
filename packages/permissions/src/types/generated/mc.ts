@@ -663,7 +663,7 @@ export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typenam
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
+export type TFetchUserProjectsQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> } } | null };
 
 export type TAllFeaturesQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -280,7 +280,6 @@ describe('mapProjectToApplicationContextProject', () => {
       ownerId: expect.any(String),
       ownerName: expect.any(String),
       sampleDataImportDataset: expect.any(String),
-      isProductionProject: expect.any(Boolean),
     });
   });
 });

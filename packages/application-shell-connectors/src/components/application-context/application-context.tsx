@@ -147,7 +147,6 @@ export const mapProjectToApplicationContextProject = (
     ownerId: project.owner.id,
     ownerName: project.owner.name,
     sampleDataImportDataset: project.sampleDataImportDataset,
-    isProductionProject: project.isProductionProject,
   };
 };
 

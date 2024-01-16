@@ -21,6 +21,7 @@ const Project = new Factory()
     isActive: false,
     reason: null,
   })
+  .attr('isProductionProject', false)
   .attr('allAppliedPermissions', [])
   .attr('allAppliedActionRights', [])
   .attr('allAppliedDataFences', [])
@@ -35,7 +36,6 @@ const Project = new Factory()
     id: faker.string.uuid(),
     name: faker.company.name(),
   }))
-  .attr('sampleDataImportDataset', 'FASHION')
-  .attr('isProductionProject', true);
+  .attr('sampleDataImportDataset', 'FASHION');
 
 export default Project;
