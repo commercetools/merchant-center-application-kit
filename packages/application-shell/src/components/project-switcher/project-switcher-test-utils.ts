@@ -41,6 +41,7 @@ export const createGraphqlResponseForProjectsQuery = ({
                 __typename: 'ProjectExpiry',
                 isActive: getIsExpired(key),
               },
+              isProductionProject: true,
             };
           }),
         },
