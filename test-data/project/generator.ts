@@ -14,6 +14,7 @@ const generator = Generator<TProject>({
     currencies: ['EUR'],
     languages: ['de'],
     initialized: fake(() => true),
+    isProductionProject: fake(() => true),
     sampleDataImportDataset: 'FASHION',
     // The following fields are built in the builder
     owner: null,
