@@ -26,6 +26,7 @@ export const createGraphqlResponseForProjectsQuery = ({
         id: 'user-id',
         projects: {
           __typename: 'ProjectQueryResult',
+          total: numberOfProjects,
           results: Array.from({ length: numberOfProjects }).map((_, index) => {
             const key = `key-${index}`;
             const name = `Name ${index}`;
