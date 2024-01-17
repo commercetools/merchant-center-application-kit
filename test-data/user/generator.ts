@@ -21,6 +21,7 @@ const generator = Generator<TUser>({
     launchdarklyTrackingSubgroup: '',
     launchdarklyTrackingTeam: '',
     launchdarklyTrackingTenant: '',
+    launchdarklyTrackingCloudEnvironment: '',
     projects: null,
     idTokenUserInfo: null,
   },
