@@ -161,13 +161,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
     });
   }, [hostContext?.customViewConfig.id]);
 
-  useLayoutEffect(() => {
-    document.body.setAttribute(
-      'data-extension-type',
-      CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW
-    );
-  }, []);
-
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
       if (
@@ -213,7 +206,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
       : hostContext.hostUrl;
 
   return (
-    <>
+    <div data-extension-type={CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}>
       <GlobalStyles />
       <ApplicationShellProvider
         environment={window.app}
@@ -268,7 +261,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
           );
         }}
       </ApplicationShellProvider>
-    </>
+    </div>
   );
 }
 
