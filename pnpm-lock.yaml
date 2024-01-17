@@ -3393,8 +3393,8 @@ importers:
   website:
     dependencies:
       '@commercetools-docs/gatsby-theme-docs':
-        specifier: 22.11.3
-        version: 22.11.3(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
+        specifier: 22.11.5
+        version: 22.11.5(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
       '@commercetools-docs/ui-kit':
         specifier: 22.11.1
         version: 22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
@@ -3599,8 +3599,8 @@ importers:
   website-custom-views:
     dependencies:
       '@commercetools-docs/gatsby-theme-docs':
-        specifier: 22.11.3
-        version: 22.11.3(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
+        specifier: 22.11.5
+        version: 22.11.5(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
       '@commercetools-docs/ui-kit':
         specifier: 22.11.1
         version: 22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
@@ -6771,8 +6771,8 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: false
 
-  /@commercetools-docs/gatsby-theme-docs@22.11.3(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1):
-    resolution: {integrity: sha512-ZnjGCvSqrRHpBASLh2G5jDWWWoWZQR5+s2y+9H/VvBZNbH3E4PA0Q+WilJxIQ26aUNf8NPTt/d1rT67moiRr3g==}
+  /@commercetools-docs/gatsby-theme-docs@22.11.5(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1):
+    resolution: {integrity: sha512-ad1idgzXGisCETGyJy+dQKUi4yfjzytnNqryOjcvilALfOe8oRKCIb0FNn1QsDJ/YZQpAfCAYoVY4pzZi/11DQ==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -8605,7 +8605,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -9080,7 +9080,7 @@ packages:
       '@emotion/react': 11.11.1(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -10351,7 +10351,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.5(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.5(react@17.0.2)(typescript@5.2.2)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -14328,11 +14328,6 @@ packages:
       - react-dom
     dev: false
 
-  /@remix-run/router@1.11.0:
-    resolution: {integrity: sha512-BHdhcWgeiudl91HvVa2wxqZjSHbheSgIiDvxrF1VjFzBzpTtuDPkOdOi3Iqvc08kXtFkLjhbS+ML9aM8mJS+wQ==}
-    engines: {node: '>=14.0.0'}
-    dev: false
-
   /@remix-run/router@1.14.0:
     resolution: {integrity: sha512-WOHih+ClN7N8oHk9N4JUiMxQJmRVaOxcg8w7F/oHUXzJt920ekASLI/7cYX8XkntDWRhLZtsk6LbGrkgOAvi5A==}
     engines: {node: '>=14.0.0'}
@@ -14349,7 +14344,7 @@ packages:
       jsesc: 3.0.2
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router-dom: 6.18.0(react-dom@17.0.2)(react@17.0.2)
+      react-router-dom: 6.21.0(react-dom@17.0.2)(react@17.0.2)
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
     dev: false
@@ -21056,7 +21051,7 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       aria-query: 5.1.3
       array-includes: 3.1.6
       array.prototype.flatmap: 1.3.1
@@ -30379,17 +30374,17 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router-dom@6.18.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-Ubrue4+Ercc/BoDkFQfc6og5zRQ4A8YxSO3Knsne+eRbZ+IepAsK249XBH/XaFuOYOYr3L3r13CXTLvYt5JDjw==}
+  /react-router-dom@6.21.0(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.11.0
+      '@remix-run/router': 1.14.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router: 6.18.0(react@17.0.2)
+      react-router: 6.21.0(react@17.0.2)
     dev: false
 
   /react-router-dom@6.21.0(react-dom@18.2.0)(react@18.2.0):
@@ -30438,13 +30433,13 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router@6.18.0(react@17.0.2):
-    resolution: {integrity: sha512-vk2y7Dsy8wI02eRRaRmOs9g2o+aE72YCx5q9VasT1N9v+lrdB79tIqrjMfByHiY5+6aYkH2rUa5X839nwWGPDg==}
+  /react-router@6.21.0(react@17.0.2):
+    resolution: {integrity: sha512-hGZ0HXbwz3zw52pLZV3j3+ec+m/PQ9cTpBvqjFQmy2XVUWGn5MD+31oXHb6dVTxYzmAeaiUBYjkoNz66n3RGCg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.11.0
+      '@remix-run/router': 1.14.0
       react: 17.0.2
     dev: false
 
