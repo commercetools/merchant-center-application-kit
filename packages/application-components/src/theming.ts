@@ -49,7 +49,7 @@ export const themesOverrides = {
     marginTopForPageSubtitle: uiKitDesignTokens.spacing20,
     marginTopForTabControls: uiKitDesignTokens.spacing40,
     paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${appKitSpacing55} ${uiKitDesignTokens.spacing40}`,
-    paddingForDetailPageHeaderInCustokmView: `0 0 ${uiKitDesignTokens.spacing40} 0`,
+    paddingForDetailPageHeaderInCustomView: `0 0 ${uiKitDesignTokens.spacing40} 0`,
     paddingForDialogContainer: `${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing30}`,
     paddingForDialogContent: `${uiKitDesignTokens.spacing40} 0 0`,
     paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${appKitSpacing55} 0`,

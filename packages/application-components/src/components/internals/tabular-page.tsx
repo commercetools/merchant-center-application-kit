@@ -35,6 +35,9 @@ type TTabularPageContainerProps = {
   color: 'surface' | 'neutral';
 };
 
+// Bear in mind the paddings are dependant on the context the component
+// is rendered in. For example, when rendered in a custom view, its panel
+// already contains default paddings, so we don't need to add them here.
 const TabularPageContainer = (props: TTabularPageContainerProps) => (
   <div
     css={css`
@@ -42,11 +45,10 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
         ? uiKitDesignTokens.colorSurface
         : appKitDesignTokens.backgroundColorForPageHeader};
       border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
-      // Bear in mind the paddings are dependant on the context the component
-      // is rendered in. For example, when rendered in a custom view, its panel
-      // already contains default paddings, so we don't need to add them here.
       padding: ${appKitDesignTokens.paddingForTabularPageHeader};
-      body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
+      *
+        :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'])
+        & {
         padding: ${appKitDesignTokens.paddingForTabularPageHeaderInCustomView};
       }
     `}

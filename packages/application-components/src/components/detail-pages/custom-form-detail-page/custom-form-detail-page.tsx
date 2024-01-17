@@ -23,8 +23,8 @@ const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
   padding: ${appKitDesignTokens.paddingForDetailPageHeader};
-  body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
-    padding: ${appKitDesignTokens.paddingForDetailPageHeaderInCustokmView};
+  * :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}']) & {
+    padding: ${appKitDesignTokens.paddingForDetailPageHeaderInCustomView};
   }
 `;
 

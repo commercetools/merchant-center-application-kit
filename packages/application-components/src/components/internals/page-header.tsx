@@ -18,18 +18,12 @@ type Props = {
 
 const PageHeader = (props: Props) => {
   return (
-    // Bear in mind the paddings are dependant on the context the component
-    // is rendered in. For example, when rendered in a custom view, its panel
-    // already contains default paddings, so we don't need to add them here.
     <div
       css={css`
         margin: ${appKitDesignTokens.marginForModalPageHeader};
         padding: ${appKitDesignTokens.paddingForModalPageHeader};
         border-bottom: 1px solid
           ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
-        body[data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'] & {
-          margin: ${appKitDesignTokens.paddingForModalPageHeaderInCustomView};
-        }
       `}
     >
       <div
