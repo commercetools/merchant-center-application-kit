@@ -71,7 +71,7 @@ const CustomViewsSelectorWrapper = styled.div`
   // is rendered in. For example, when rendered in a custom view, its panel
   // already contains default paddings, so we don't need to add margins here.
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
-  body[data-extension-type='custom-view'] & {
+  * :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}']) & {
     margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabularInCustomView};
   }
 `;
