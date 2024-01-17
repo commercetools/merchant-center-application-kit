@@ -10,6 +10,8 @@ import {
 import { realHover } from './real-hover';
 
 export type CommandLoginOptions = TCommandLoginOptions;
+export type LoginToMerchantCenterForCustomViewCommandLoginOptions =
+  TLoginToMerchantCenterForCustomViewCommandLoginOptions;
 export type Matcher = TMatcher;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
