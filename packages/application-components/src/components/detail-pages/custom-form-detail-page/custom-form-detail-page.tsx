@@ -1,6 +1,5 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import styled from '@emotion/styled';
-import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -16,16 +15,10 @@ import PageHeaderTitle from '../../internals/page-header-title';
 import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 
-// Bear in mind the paddings are dependant on the context the component
-// is rendered in. For example, when rendered in a custom view, its panel
-// already contains default paddings, so we don't need to add them here.
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
   border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
   padding: ${appKitDesignTokens.paddingForDetailPageHeader};
-  * :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}']) & {
-    padding: ${appKitDesignTokens.paddingForDetailPageHeaderInCustomView};
-  }
 `;
 
 const HeaderControlsWrapper = styled.div`
