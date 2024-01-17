@@ -66,10 +66,10 @@ const FormControlsContainer = styled.div`
   margin-bottom: ${uiKitDesignTokens.spacingM};
 `;
 
+// Bear in mind the margins are dependant on the context the component
+// is rendered in. For example, when rendered in a custom view, its panel
+// already contains default paddings, so we don't need to add margins here.
 const CustomViewsSelectorWrapper = styled.div`
-  // Bear in mind the margins are dependant on the context the component
-  // is rendered in. For example, when rendered in a custom view, its panel
-  // already contains default paddings, so we don't need to add margins here.
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
   * :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}']) & {
     margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabularInCustomView};
