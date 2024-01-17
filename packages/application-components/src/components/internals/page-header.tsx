@@ -1,6 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 import CustomViewsSelector from '../custom-views/custom-views-selector';
