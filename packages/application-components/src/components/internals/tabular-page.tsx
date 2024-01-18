@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CUSTOM_EXTENSION_TYPES } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
 
@@ -35,9 +34,6 @@ type TTabularPageContainerProps = {
   color: 'surface' | 'neutral';
 };
 
-// Bear in mind the paddings are dependant on the context the component
-// is rendered in. For example, when rendered in a custom view, its panel
-// already contains default paddings, so we don't need to add them here.
 const TabularPageContainer = (props: TTabularPageContainerProps) => (
   <div
     css={css`
@@ -46,11 +42,6 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
         : appKitDesignTokens.backgroundColorForPageHeader};
       border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
       padding: ${appKitDesignTokens.paddingForTabularPageHeader};
-      *
-        :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}'])
-        & {
-        padding: ${appKitDesignTokens.paddingForTabularPageHeaderInCustomView};
-      }
     `}
   >
     {props.children}
@@ -66,14 +57,8 @@ const FormControlsContainer = styled.div`
   margin-bottom: ${uiKitDesignTokens.spacingM};
 `;
 
-// Bear in mind the margins are dependant on the context the component
-// is rendered in. For example, when rendered in a custom view, its panel
-// already contains default paddings, so we don't need to add margins here.
 const CustomViewsSelectorWrapper = styled.div`
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
-  * :where([data-extension-type='${CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}']) & {
-    margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabularInCustomView};
-  }
 `;
 
 export {
