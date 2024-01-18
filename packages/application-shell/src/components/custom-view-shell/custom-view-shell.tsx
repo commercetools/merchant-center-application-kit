@@ -7,9 +7,7 @@ import {
   StrictMode,
   type ReactNode,
   RefObject,
-  useMemo,
 } from 'react';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { Route } from 'react-router-dom';
@@ -22,7 +20,6 @@ import {
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
-  CUSTOM_EXTENSION_TYPES,
   CUSTOM_VIEWS_EVENTS_NAMES,
   CUSTOM_VIEWS_EVENTS_META,
   CustomViewData,
@@ -127,6 +124,11 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
 
+const customViewThemeOverrides = {
+  ...themesOverrides.default,
+  ...customViewsThemesOverrides.default,
+};
+
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
@@ -139,13 +141,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
     notificationsGlobalRef,
     notificationsPageRef,
   });
-  const themeOverrides = useMemo(
-    () => ({
-      ...themesOverrides.default,
-      ...customViewsThemesOverrides.default,
-    }),
-    []
-  );
 
   const hostMessageHandler = useCallback(
     (event: MessageEvent<THostEventData>) => {
@@ -219,14 +214,12 @@ function CustomViewShell(props: TCustomViewShellProps) {
       : hostContext.hostUrl;
 
   return (
-    <div
-      css={css`
-        height: 100%;
-      `}
-      data-extension-type={CUSTOM_EXTENSION_TYPES.CUSTOM_VIEW}
-    >
+    <>
       <GlobalStyles />
-      <ThemeProvider theme="default" themeOverrides={themeOverrides} />
+      <ThemeProvider
+        theme="default"
+        themeOverrides={customViewThemeOverrides}
+      />
       <ApplicationShellProvider
         environment={window.app}
         applicationMessages={props.applicationMessages}
@@ -280,7 +273,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
           );
         }}
       </ApplicationShellProvider>
-    </div>
+    </>
   );
 }
 
