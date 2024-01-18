@@ -137,3 +137,7 @@ const customViewConfig = async (
 };
 
 export { customApplicationConfig, customViewConfig };
+
+// for backwards compatibility
+const legacyConfig = { customApplicationConfig };
+export default legacyConfig;
