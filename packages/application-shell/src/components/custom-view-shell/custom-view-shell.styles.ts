@@ -14,7 +14,6 @@ export const customViewsThemesOverrides = {
     marginForPageContent: `${uiKitDesignTokens.spacing50} 0`,
     paddingForDetailPageHeader: `0 0 ${uiKitDesignTokens.spacing40} 0`,
     paddingForMainPageHeader: '0',
-    paddingForModalPageHeader: `0 0 ${uiKitDesignTokens.spacing40} 0`,
     paddingForTabularPageHeader: '0',
   },
 };
