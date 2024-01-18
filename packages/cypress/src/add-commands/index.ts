@@ -5,10 +5,13 @@ import {
   loginByOidc,
   isLocalhost,
   type CommandLoginOptions as TCommandLoginOptions,
+  type LoginToMerchantCenterForCustomViewCommandLoginOptions as TLoginToMerchantCenterForCustomViewCommandLoginOptions,
 } from './login';
 import { realHover } from './real-hover';
 
 export type CommandLoginOptions = TCommandLoginOptions;
+export type LoginToMerchantCenterForCustomViewCommandLoginOptions =
+  TLoginToMerchantCenterForCustomViewCommandLoginOptions;
 export type Matcher = TMatcher;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,12 +34,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'loginToMerchantCenterForCustomView',
-  (
-    commandOptions: Omit<
-      CommandLoginOptions,
-      'entryPointUriPath' | 'initialRoute'
-    >
-  ) => {
+  (commandOptions: TLoginToMerchantCenterForCustomViewCommandLoginOptions) => {
     Cypress.log({ name: 'loginToMerchantCenterForCustomView' });
 
     const projectKey = Cypress.env('PROJECT_KEY');

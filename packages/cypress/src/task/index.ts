@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { getPackages } from '@manypkg/get-packages';
-import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import {
+  type ApplicationRuntimeConfig,
   processConfig,
   MissingOrInvalidConfigError,
 } from '@commercetools-frontend/application-config';
@@ -11,6 +11,7 @@ import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/c
 type CustomEntityConfigTaskOptions = {
   entryPointUriPath: string;
   dotfiles?: string[];
+  packageName?: string;
 };
 type AllCustomEntityConfigs = Record<string, ApplicationRuntimeConfig['env']>;
 
@@ -69,9 +70,14 @@ const loadAllCustomEntityConfigs = async (
             isCustomViewConfig ? 'View' : 'Application'
           } config for ${packageInfo.packageJson.name}`
         );
+
+        const customEntityConfigCacheKey = isCustomViewConfig
+          ? `${processedConfig.env.entryPointUriPath}-${packageInfo.packageJson.name}`
+          : processedConfig.env.entryPointUriPath;
+
         return {
           ...allConfigs,
-          [processedConfig.env.entryPointUriPath]: processedConfig.env,
+          [customEntityConfigCacheKey]: processedConfig.env,
         };
       } catch (error) {
         // Ignore packages that do not have a valid config file, either because
@@ -118,13 +124,15 @@ const customViewConfig = async (
   });
 
   const customViewConfig =
-    allCustomEntityConfigs[CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH];
+    allCustomEntityConfigs[
+      `${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}-${options.packageName}`
+    ];
 
   if (!customViewConfig) {
     throw new Error(`Could not find Custom View config`);
   }
 
-  console.log(`Using Custom View config`);
+  console.log(`Using Custom View config for "${options.packageName}"`);
   return customViewConfig;
 };
 

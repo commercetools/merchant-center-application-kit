@@ -62,6 +62,19 @@ export type CommandLoginOptions = {
    */
   disableCacheAcrossSpecs?: boolean;
 };
+
+export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
+  CommandLoginOptions,
+  'entryPointUriPath' | 'initialRoute'
+> & {
+  /**
+   * The package name as specified in the `package.json` to uniquely identify the configuration.
+   * This is only required for testing Custom Views.
+   * Defaults to `Cypress.env('PACKAGE_NAME')`
+   */
+  packageName?: string;
+};
+
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
@@ -166,11 +179,15 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 const isCustomView = (commandOptions: CommandLoginOptions) =>
   commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
 
-function loginByOidc(commandOptions: CommandLoginOptions) {
+function loginByOidc(
+  commandOptions: CommandLoginOptions &
+    LoginToMerchantCenterForCustomViewCommandLoginOptions
+) {
+  const isCustomViewConfigCommand = isCustomView(commandOptions);
   if (!isLocalhost()) {
     throw new Error(
       `The "loginByOidc" command only works when testing a Custom ${
-        isCustomView(commandOptions) ? 'View' : 'Application'
+        isCustomViewConfigCommand ? 'View' : 'Application'
       } running on localhost.`
     );
   }
@@ -181,15 +198,24 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
   }
 
-  const customEntityConfigCommand = isCustomView(commandOptions)
+  const customEntityConfigCommand = isCustomViewConfigCommand
     ? 'customViewConfig'
     : 'customApplicationConfig';
+
+  const packageName = commandOptions.packageName ?? Cypress.env('PACKAGE_NAME');
+
+  if (isCustomViewConfigCommand && !packageName) {
+    throw new Error(
+      `Missing required option "packageName" when using the "loginToMerchantCenterForCustomView" command.`
+    );
+  }
 
   cy.task(
     customEntityConfigCommand,
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
+      ...(isCustomViewConfigCommand ? { packageName } : {}),
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
