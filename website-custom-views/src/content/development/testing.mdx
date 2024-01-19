@@ -253,6 +253,7 @@ Define a `.env` file in the `cypress` folder, containing some of the required en
 CYPRESS_LOGIN_USER=""
 CYPRESS_LOGIN_PASSWORD=""
 CYPRESS_PROJECT_KEY=""
+CYPRESS_PACKAGE_NAME=""
 ```
 
 <Info>
@@ -285,6 +286,7 @@ module.exports = (on, cypressConfig) => {
       LOGIN_USER: process.env.CYPRESS_LOGIN_USER,
       LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
       PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
+      CYPRESS_PACKAGE_NAME: process.env.CYPRESS_PACKAGE_NAME,
     },
   };
 };
