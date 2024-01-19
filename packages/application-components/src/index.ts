@@ -48,6 +48,9 @@ export { default as Drawer } from './components/drawer';
 export { default as CustomViewLoader } from './components/custom-views/custom-view-loader';
 export { default as CustomViewsSelector } from './components/custom-views/custom-views-selector';
 
+// Stamps for the project states
+export { default as ProjectStamp } from './components/project-stamp';
+
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';
 export { default as useModalState } from './hooks/use-modal-state';

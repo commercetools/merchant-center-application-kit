@@ -51,6 +51,7 @@
     "@commercetools-uikit/secondary-button": "^16.12.0",
     "@commercetools-uikit/secondary-icon-button": "^16.12.0",
     "@commercetools-uikit/spacings": "^16.12.0",
+    "@commercetools-uikit/stamp": "^16.12.0",
     "@commercetools-uikit/text": "^16.12.0",
     "@commercetools-uikit/utils": "^16.12.0",
     "@emotion/react": "^11.11.1",
