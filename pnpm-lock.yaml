@@ -6967,16 +6967,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.17.0:
-    resolution: {integrity: sha512-S8hnkTiBgX3VUMrkCsLCBKUtWbwyyW0W+oayDFB0RJAWT41d5r/30INJiKQB0ge3yalH7zN+Zg51EUEYivwuqg==}
+  /@commercetools-frontend/application-config@22.17.1:
+    resolution: {integrity: sha512-XmXYrmRXarz6jnyrEz+12uXQtCChZtA5T8c9EiprtTjT7oXHFquZwf1y2BSz5L8mbQ8Qrc5rjoN//yQTq8sCAw==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.17.0
-      '@commercetools-frontend/constants': 22.17.0
+      '@commercetools-frontend/babel-preset-mc-app': 22.17.1
+      '@commercetools-frontend/constants': 22.17.1
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -6994,8 +6994,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.17.0:
-    resolution: {integrity: sha512-ZPQQCYtT+dNLu02Fy9IVI8+wNtZ99GHythkxWKTMsiDjuWNoPn1DTbpJGErO0j/k7aIGO240PCB9tVM+V8RjMQ==}
+  /@commercetools-frontend/babel-preset-mc-app@22.17.1:
+    resolution: {integrity: sha512-kzGDO+xbR7GuCuDlG9z5oa1jw9nBTJj57wjqSWTGDu8FxdDSBkw3RvVhVx/n4peaL9FBRl66dirEG7b3r3pE/A==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7027,8 +7027,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.17.0:
-    resolution: {integrity: sha512-xHdRz1/EayEEfvmXH1YbBPQgEadMmaVv//TCJ8YTMATtYZxQeHkvrjjvTh1T/eRq34atSFTy690nn8oUB+dAog==}
+  /@commercetools-frontend/constants@22.17.1:
+    resolution: {integrity: sha512-1ly/uW6G0dOYrSEZEdWJ9zSqiWVLhzX39JvDURGWLZ2XigH+OUlobJFexDPpkCmkimnBvLy4hVcydF5GoItsqA==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7101,8 +7101,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.17.0
-      '@commercetools-frontend/constants': 22.17.0
+      '@commercetools-frontend/application-config': 22.17.1
+      '@commercetools-frontend/constants': 22.17.1
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -20124,12 +20124,12 @@ packages:
     peerDependencies:
       react: '>=16.12.0'
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
-      tslib: 2.5.0
+      tslib: 2.6.2
     dev: false
 
   /dset@3.1.2:
@@ -35016,7 +35016,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

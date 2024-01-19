@@ -8,6 +8,7 @@ import type {
   ControlProps,
 } from 'react-select';
 import { components } from 'react-select';
+import { ProjectStamp } from '@commercetools-frontend/application-components';
 import {
   useMcQuery,
   oidcStorage,
@@ -67,6 +68,11 @@ export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
 
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
+  console.log(
+    'project.expiry && project.expiry.daysLeft}',
+    project.expiry && project.expiry.daysLeft
+  );
+
   return (
     <SelectInput.Option {...props}>
       <div
@@ -82,6 +88,13 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           `}
         >
           {project.name}
+          <ProjectStamp
+            isProductionProject={project.isProductionProject}
+            isSuspended={project.suspension && project.suspension.isActive}
+            isExpired={project.expiry && project.expiry.isActive}
+            willExpire={project.expiry && project.expiry.daysLeft}
+            daysLeft={project.expiry.daysLeft}
+          />
           {props.isDisabled && (
             <span
               css={css`

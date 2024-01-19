@@ -1,5 +1,8 @@
 import { css } from '@emotion/react';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import {
+  designTokens as appKitDesignTokens,
+  ProjectStamp,
+} from '@commercetools-frontend/application-components';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -19,6 +22,10 @@ type Props = {
 const AppBar = (props: Props) => {
   const previousProjectKey = getPreviousProjectKey(
     props.user?.defaultProjectKey ?? undefined
+  );
+
+  const selectedProject = props.user?.projects.results.find(
+    (project) => project.key === props.projectKeyFromUrl
   );
 
   return (
@@ -57,14 +64,22 @@ const AppBar = (props: Props) => {
               // user is fetched and the user has projects while the app runs in an project context.
               if (props.user.projects.total > 0 && props.projectKeyFromUrl)
                 return (
-                  <ProjectSwitcher
-                    // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of projects. In such case
-                    // the dropdown will still be rendered but no project will be selected.
-                    // This is fine becase the user has still the possibility to "switch"
-                    // to a project.
-                    projectKey={props.projectKeyFromUrl || previousProjectKey}
-                  />
+                  <>
+                    {/* remove the ! */}
+                    <ProjectStamp
+                      isProductionProject={
+                        !selectedProject?.isProductionProject
+                      }
+                    />
+                    <ProjectSwitcher
+                      // In this case it's not necessary to check if the `projectKey` param
+                      // is included in the list of projects. In such case
+                      // the dropdown will still be rendered but no project will be selected.
+                      // This is fine becase the user has still the possibility to "switch"
+                      // to a project.
+                      projectKey={props.projectKeyFromUrl || previousProjectKey}
+                    />
+                  </>
                 );
               if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
