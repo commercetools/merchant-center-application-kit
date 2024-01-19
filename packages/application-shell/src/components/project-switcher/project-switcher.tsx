@@ -68,10 +68,6 @@ export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
 
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
-  console.log(
-    'project.expiry && project.expiry.daysLeft}',
-    project.expiry && project.expiry.daysLeft
-  );
 
   return (
     <SelectInput.Option {...props}>
@@ -95,16 +91,6 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
             willExpire={project.expiry && project.expiry.daysLeft}
             daysLeft={project.expiry.daysLeft}
           />
-          {props.isDisabled && (
-            <span
-              css={css`
-                font-size: 1.5rem;
-                display: flex;
-              `}
-            >
-              <ErrorIcon size="medium" />
-            </span>
-          )}
         </div>
         <div
           css={css`
@@ -114,26 +100,6 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
         >
           {project.key}
         </div>
-        {project.suspension && project.suspension.isActive && (
-          <div
-            css={css`
-              font-size: 11px;
-              color: ${designTokens.colorError};
-            `}
-          >
-            <FormattedMessage {...messages.suspended} />
-          </div>
-        )}
-        {project.expiry && project.expiry.isActive && (
-          <div
-            css={css`
-              font-size: 11px;
-              color: ${designTokens.colorError};
-            `}
-          >
-            <FormattedMessage {...messages.expired} />
-          </div>
-        )}
       </div>
     </SelectInput.Option>
   );
@@ -153,10 +119,12 @@ const mapProjectsToOptions = memoize((projects) =>
 
 const CustomMenuList = (props: MenuListProps) => {
   return (
+    // klaudija TODO: remove fixed max width when ui kit dependency is updated
+    // width: max-content;
+    // max-width: ${designTokens.constraint6};
     <div
       css={css`
-        width: max-content;
-        max-width: ${designTokens.constraint6};
+        width: 384px;
       `}
     >
       <components.MenuList {...props}>{props.children}</components.MenuList>
