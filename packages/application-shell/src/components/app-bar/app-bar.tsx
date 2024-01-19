@@ -65,7 +65,7 @@ const AppBar = (props: Props) => {
               if (props.user.projects.total > 0 && props.projectKeyFromUrl)
                 return (
                   <>
-                    {/* remove the ! */}
+                    {/* klaudija TODO: remove the ! */}
                     <ProjectStamp
                       isProductionProject={
                         !selectedProject?.isProductionProject
