@@ -17,8 +17,8 @@ import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 
 const DetailPageContainer = styled.div`
   background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
-  border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
   padding: ${appKitDesignTokens.paddingForDetailPageHeader};
+  border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
 `;
 
 const HeaderControlsWrapper = styled.div`

@@ -40,8 +40,8 @@ const TabularPageContainer = (props: TTabularPageContainerProps) => (
       background-color: ${props.color === 'surface'
         ? uiKitDesignTokens.colorSurface
         : appKitDesignTokens.backgroundColorForPageHeader};
-      border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
       padding: ${appKitDesignTokens.paddingForTabularPageHeader};
+      border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
     `}
   >
     {props.children}
