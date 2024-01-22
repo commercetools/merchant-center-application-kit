@@ -11,6 +11,7 @@ export const Divider = styled.hr`
   border: 0;
 `;
 
+// NOTE: do not change "margin" to "padding" as this breaks sticky DataTable styles
 export const MainPageContent = styled.div`
   flex: 1;
   flex-basis: 0;
