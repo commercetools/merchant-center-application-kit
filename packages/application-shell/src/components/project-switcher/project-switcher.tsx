@@ -70,7 +70,13 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
 
   return (
-    <SelectInput.Option {...props}>
+    <SelectInput.Option
+      {...props}
+      css={css`
+        display: grid;
+        grid-template-columns: auto 1fr;
+      `}
+    >
       <div
         css={css`
           word-wrap: break-word;
@@ -84,13 +90,6 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           `}
         >
           {project.name}
-          <ProjectStamp
-            isProductionProject={project.isProductionProject}
-            isSuspended={project.suspension && project.suspension.isActive}
-            isExpired={project.expiry && project.expiry.isActive}
-            willExpire={project.expiry && project.expiry.daysLeft}
-            daysLeft={project.expiry.daysLeft}
-          />
         </div>
         <div
           css={css`
@@ -100,6 +99,19 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
         >
           {project.key}
         </div>
+      </div>
+      <div
+        css={css`
+          text-align: right;
+        `}
+      >
+        <ProjectStamp
+          isProductionProject={project.isProductionProject}
+          isSuspended={project.suspension && project.suspension.isActive}
+          isExpired={project.expiry && project.expiry.isActive}
+          willExpire={project.expiry && project.expiry.daysLeft}
+          daysLeft={project.expiry.daysLeft}
+        />
       </div>
     </SelectInput.Option>
   );
