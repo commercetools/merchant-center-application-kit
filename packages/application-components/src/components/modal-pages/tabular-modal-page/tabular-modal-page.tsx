@@ -12,7 +12,7 @@ import {
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
 import PageHeaderTitle from '../../internals/page-header-title';
-import { ContentWrapper } from '../../internals/page.styles';
+import { ModalContentWrapper } from '../../internals/page.styles';
 import {
   ControlsContainter,
   TabularPageContainer,
@@ -115,7 +115,7 @@ const TabularModalPage = (props: Props) => {
           customViewLocatorCode={currentCustomViewLocatorCode}
         />
       </CustomViewsSelectorWrapper>
-      <ContentWrapper>{props.children}</ContentWrapper>
+      <ModalContentWrapper>{props.children}</ModalContentWrapper>
     </ModalPage>
   );
 };

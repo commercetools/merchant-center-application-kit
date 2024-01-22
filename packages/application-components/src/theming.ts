@@ -44,6 +44,7 @@ export const themesOverrides = {
     marginRightForAppbar: appKitSpacing55,
     marginTopForDialogFooter: uiKitDesignTokens.spacing50,
     marginForPageContent: `${uiKitDesignTokens.spacing50} ${appKitSpacing55}`,
+    marginForModalsPageContent: `${uiKitDesignTokens.spacing50} ${appKitSpacing55}`,
     marginTopForPageSubtitle: uiKitDesignTokens.spacing20,
     marginTopForTabControls: uiKitDesignTokens.spacing40,
     paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${appKitSpacing55} ${uiKitDesignTokens.spacing40}`,
