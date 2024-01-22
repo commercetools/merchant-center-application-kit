@@ -1,5 +1,27 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.16.0
+
+### Patch Changes
+
+- [#3382](https://github.com/commercetools/merchant-center-application-kit/pull/3382) [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56) Thanks [@chloe0592](https://github.com/chloe0592)! - Update all ui-kit packages to v17.0.0
+
+- Updated dependencies [[`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7), [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7), [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56), [`d437612a8`](https://github.com/commercetools/merchant-center-application-kit/commit/d437612a894be32eaa6c124c8e0d1b126148e049), [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367)]:
+  - @commercetools-frontend/application-shell-connectors@22.16.0
+  - @commercetools-frontend/application-shell@22.16.0
+  - @commercetools-frontend/permissions@22.16.0
+  - @commercetools-frontend/application-components@22.16.0
+  - @commercetools-frontend/i18n@22.16.0
+  - @commercetools-frontend/mc-scripts@22.16.0
+  - @commercetools-frontend/actions-global@22.16.0
+  - @commercetools-frontend/application-config@22.16.0
+  - @commercetools-frontend/assets@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/eslint-config-mc-app@22.16.0
+  - @commercetools-frontend/jest-preset-mc-app@22.16.0
+  - @commercetools-frontend/l10n@22.16.0
+  - @commercetools-frontend/mc-dev-authentication@22.16.0
+
 ## 22.15.1
 
 ### Patch Changes

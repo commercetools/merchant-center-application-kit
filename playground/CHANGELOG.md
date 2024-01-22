@@ -1,5 +1,26 @@
 # playground
 
+## 22.16.0
+
+### Minor Changes
+
+- [#3371](https://github.com/commercetools/merchant-center-application-kit/pull/3371) [`cff0e8881`](https://github.com/commercetools/merchant-center-application-kit/commit/cff0e8881c51241b9f9128a94d98a0bca6947d2b) Thanks [@gabriele-ct](https://github.com/gabriele-ct)! - Upgrade docs-kit dependencies and enable AI assistant
+
+### Patch Changes
+
+- Updated dependencies [[`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7), [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7), [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56), [`d437612a8`](https://github.com/commercetools/merchant-center-application-kit/commit/d437612a894be32eaa6c124c8e0d1b126148e049), [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367)]:
+  - @commercetools-frontend/application-shell-connectors@22.16.0
+  - @commercetools-frontend/application-shell@22.16.0
+  - @commercetools-frontend/permissions@22.16.0
+  - @commercetools-frontend/application-components@22.16.0
+  - @commercetools-frontend/i18n@22.16.0
+  - @commercetools-frontend/actions-global@22.16.0
+  - @commercetools-frontend/assets@22.16.0
+  - @commercetools-frontend/browser-history@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/l10n@22.16.0
+  - @commercetools-frontend/sdk@22.16.0
+
 ## 22.15.1
 
 ### Patch Changes
