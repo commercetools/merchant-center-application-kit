@@ -97,6 +97,7 @@ const defaultUser = {
   launchdarklyTrackingId: '111',
   launchdarklyTrackingTeam: undefined,
   launchdarklyTrackingTenant: 'gcp-eu',
+  launchdarklyTrackingCloudEnvironment: 'ctp_production_gcp_europe-west1_v1',
 };
 
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {

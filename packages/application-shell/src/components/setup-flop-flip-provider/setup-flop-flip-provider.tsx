@@ -36,6 +36,7 @@ type TLaunchDarklyUserCustomFields = {
   group: string;
   subgroup: string;
   tenant: string;
+  cloudEnvironment: string;
 };
 
 type TFetchedHttpAdapterFlag = {
@@ -69,6 +70,7 @@ function getUserContextForLaunchDarklyAdapter(
     group: user?.launchdarklyTrackingGroup ?? '',
     subgroup: user?.launchdarklyTrackingSubgroup ?? '',
     tenant: user?.launchdarklyTrackingTenant ?? '',
+    cloudEnvironment: user?.launchdarklyTrackingCloudEnvironment ?? '',
   };
 }
 
