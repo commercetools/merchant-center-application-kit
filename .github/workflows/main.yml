@@ -199,6 +199,7 @@ jobs:
           cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          cypress-package-name: "@commercetools-applications/merchant-center-custom-view-template-starter"
 
   test_custom_view_starter_js_template_installation:
     runs-on: ubuntu-latest
@@ -250,6 +251,7 @@ jobs:
           cypress-login-user: ${{ secrets.CYPRESS_LOGIN_USER }}
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          cypress-package-name: "@commercetools-applications/merchant-center-custom-view-template-starter-typescript"
 
   test_custom_view_starter_ts_template_installation:
     runs-on: ubuntu-latest

@@ -1,6 +1,9 @@
 import path from 'path';
 import { defineConfig } from 'cypress';
-import { customApplicationConfig } from '@commercetools-frontend/cypress/task';
+import {
+  customViewConfig,
+  customApplicationConfig,
+} from '@commercetools-frontend/cypress/task';
 
 export default defineConfig({
   retries: 1,
@@ -20,12 +23,16 @@ export default defineConfig({
       on('task', {
         customApplicationConfig,
       });
+      on('task', {
+        customViewConfig,
+      });
 
       return Object.assign({}, cypressConfig, {
         env: Object.assign({}, cypressConfig.env, {
           LOGIN_USER: process.env.CYPRESS_LOGIN_USER,
           LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
           PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
+          PACKAGE_NAME: process.env.CYPRESS_PACKAGE_NAME,
         }),
       });
     },
