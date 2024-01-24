@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import CommercetoolsLogoSvg from '@commercetools-frontend/assets/logos/commercetools_logo_horizontal.svg';
+import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -62,7 +62,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <div>
-            <img src={CommercetoolsLogoSvg} alt="commercetools logo" />
+            <img src={CommercetoolsLogoOnWhiteSvg} alt="commercetools logo" />
           </div>
         </ContainerColumn>
         {props.welcomeMessage && (
