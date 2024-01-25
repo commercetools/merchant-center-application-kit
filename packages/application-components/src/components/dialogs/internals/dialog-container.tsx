@@ -63,15 +63,6 @@ const GridArea = styled.div<GridAreaProps>`
   grid-area: ${(props) => props.name};
 `;
 
-const sizeStyles = (props: Pick<Props, 'size'>) => {
-  if (props.size === 'scale')
-    return css`
-      height: 100%;
-    `;
-
-  return css``;
-};
-
 const DialogContainer = (props: Props) => (
   <ClassNames>
     {({ css: makeClassName }) => (
@@ -104,11 +95,9 @@ const DialogContainer = (props: Props) => (
         >
           <Card
             // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
-            // 2. For the scale size, we want the card to stretch to 100% height
-            // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
+            // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              ${sizeStyles(props)}
               padding: ${appKitDesignTokens.paddingForDialogContainer};
 
               > div {

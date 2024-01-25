@@ -1,5 +1,74 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies [[`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56), [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367)]:
+  - @commercetools-frontend/application-components@22.16.0
+  - @commercetools-frontend/application-config@22.16.0
+  - @commercetools-frontend/assets@22.16.0
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/mc-dev-authentication@22.16.0
+  - @commercetools-frontend/mc-html-template@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.15.1
+  - @commercetools-frontend/application-config@22.15.1
+  - @commercetools-frontend/assets@22.15.1
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+  - @commercetools-frontend/mc-dev-authentication@22.15.1
+  - @commercetools-frontend/mc-html-template@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/application-components@22.15.0
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+  - @commercetools-frontend/mc-html-template@22.15.0
+  - @commercetools-frontend/mc-dev-authentication@22.15.0
+  - @commercetools-frontend/assets@22.15.0
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
+## 22.14.3
+
+### Patch Changes
+
+- Updated dependencies [[`96a050a18`](https://github.com/commercetools/merchant-center-application-kit/commit/96a050a18818243b38866541dd2f3498d46db447)]:
+  - @commercetools-frontend/application-components@22.14.3
+  - @commercetools-frontend/application-config@22.14.3
+  - @commercetools-frontend/assets@22.14.3
+  - @commercetools-frontend/babel-preset-mc-app@22.14.3
+  - @commercetools-frontend/constants@22.14.3
+  - @commercetools-frontend/mc-dev-authentication@22.14.3
+  - @commercetools-frontend/mc-html-template@22.14.3
+
+## 22.14.2
+
+### Patch Changes
+
+- [#3342](https://github.com/commercetools/merchant-center-application-kit/pull/3342) [`5314f169e`](https://github.com/commercetools/merchant-center-application-kit/commit/5314f169e8af0ffcc820b57b818ac5495b92c45a) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Avoid implementing 2 separate ID's for ID's that are declared and consumed in the same SVG file in webpack's SVGR loader and Vite SVGR plugin.
+
+  More information about the approach can be found [here](https://github.com/svg/svgo/issues/913#issuecomment-369373572).
+
+- Updated dependencies [[`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd), [`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd), [`e7b84b1fb`](https://github.com/commercetools/merchant-center-application-kit/commit/e7b84b1fb1eb8de233468dd045d0842d3260e438)]:
+  - @commercetools-frontend/application-components@22.14.2
+  - @commercetools-frontend/constants@22.14.2
+  - @commercetools-frontend/application-config@22.14.2
+  - @commercetools-frontend/mc-html-template@22.14.2
+  - @commercetools-frontend/mc-dev-authentication@22.14.2
+  - @commercetools-frontend/assets@22.14.2
+  - @commercetools-frontend/babel-preset-mc-app@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

@@ -1,5 +1,47 @@
 # @commercetools-frontend/application-config
 
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3351](https://github.com/commercetools/merchant-center-application-kit/pull/3351) [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679) Thanks [@emmenko](https://github.com/emmenko)! - Re-export regex for backwards compatibility
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
+## 22.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.14.3
+  - @commercetools-frontend/constants@22.14.3
+
+## 22.14.2
+
+### Patch Changes
+
+- Updated dependencies [[`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd)]:
+  - @commercetools-frontend/constants@22.14.2
+  - @commercetools-frontend/babel-preset-mc-app@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

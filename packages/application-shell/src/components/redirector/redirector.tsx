@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { encode } from 'qss';
 import type { RouteComponentProps } from 'react-router-dom';
 import type { TEnhancedLocation } from '@commercetools-frontend/browser-history';
-
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { location } from '../../utils/location';
 
-type QueryParams = {
+type TQueryParams = {
   reason?: (typeof LOGOUT_REASONS)[keyof typeof LOGOUT_REASONS];
   redirectTo?: string;
   client_id?: string;
@@ -15,38 +14,53 @@ type QueryParams = {
   state?: string;
   nonce?: string;
 };
-type Props = {
+type TRedirectorProps = {
   to: string;
   origin?: string;
   location?: RouteComponentProps['location'];
-  queryParams?: QueryParams;
+  queryParams?: TQueryParams;
 };
 
 const redirectTo = (targetUrl: string) => {
   location.replace(targetUrl);
 };
 
-const Redirector = (props: Props) => {
-  // For now the authentication service runs on the same domain as the application,
-  // even on development (using the webpack dev server).
-  const originUrl = props.origin ?? window.location.origin;
-  const enhancedLocation = (props.location ||
-    {}) as TEnhancedLocation<QueryParams>;
-  const searchQuery = {
-    ...(props.queryParams ?? {}),
-    ...(enhancedLocation.query ?? {}),
-  };
-  const targetUrlObject = new URL(originUrl);
-  targetUrlObject.pathname = props.to || targetUrlObject.pathname;
-  targetUrlObject.search = `?${encode(searchQuery)}`;
-  const targetUrl = targetUrlObject.toString();
+const useRedirector = () => {
+  const redirector = useCallback<(options: TRedirectorProps) => void>(
+    (options) => {
+      // For now the authentication service runs on the same domain as the application,
+      // even on development (using the webpack dev server).
+      const originUrl = options.origin ?? window.location.origin;
+      const enhancedLocation = (options.location ||
+        {}) as TEnhancedLocation<TQueryParams>;
+      const searchQuery = {
+        ...(options.queryParams ?? {}),
+        ...(enhancedLocation.query ?? {}),
+      };
+      const targetUrlObject = new URL(originUrl);
+      targetUrlObject.pathname = options.to || targetUrlObject.pathname;
+      targetUrlObject.search = `?${encode(searchQuery)}`;
+      const targetUrl = targetUrlObject.toString();
+
+      redirectTo(targetUrl);
+    },
+    []
+  );
+
+  return redirector;
+};
+
+const Redirector = (props: TRedirectorProps) => {
+  const redirector = useRedirector();
 
   useEffect(() => {
-    redirectTo(targetUrl);
-  }, [targetUrl]);
+    redirector(props);
+    // Only execute once!
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null;
 };
 Redirector.displayName = 'Redirector';
 
-export default Redirector;
+export { useRedirector, Redirector };

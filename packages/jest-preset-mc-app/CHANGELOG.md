@@ -1,5 +1,42 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3367](https://github.com/commercetools/merchant-center-application-kit/pull/3367) [`71414b4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/71414b4b277c1d03bcbdc7d79483eec1d5814720) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for `@testing-library/jest-dom`
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
+## 22.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.14.3
+
+## 22.14.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

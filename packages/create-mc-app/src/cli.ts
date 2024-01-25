@@ -21,12 +21,24 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
+const messagesByApplicationType = {
+  [applicationTypes['custom-application']]: {
+    docsLink: 'https://docs.commercetools.com/custom-applications',
+    featureName: 'Custom Application',
+  },
+  [applicationTypes['custom-view']]: {
+    docsLink:
+      'https://docs-beta-custom-views.commercetools.vercel.app/custom-views',
+    featureName: 'Custom View',
+  },
+} as const;
+
 const run = () => {
   // Default command
   cli
     .command('[project-directory]')
     .usage(
-      '[project-directory]\n\n  Bootstraps a new Custom Application project using one of the predefined templates.'
+      '[project-directory]\n\n  Bootstraps a new project using one of the predefined templates.'
     )
     .option(
       '--application-type <type>',
@@ -75,14 +87,12 @@ const run = () => {
 
       hintOutdatedVersion(pkgJson.version, releaseVersion);
 
-      console.log('');
-      console.log(
-        // TODO: Use link based on the application type
-        `Documentation available at https://docs.commercetools.com/custom-applications`
-      );
-      console.log('');
-
       const taskOptions = await processOptions(projectDirectory, options);
+      const messages = messagesByApplicationType[taskOptions.applicationType];
+
+      console.log('');
+      console.log(`Documentation available at ${messages.docsLink}`);
+      console.log('');
 
       const shouldInstallDependencies =
         !options.skipInstall ||
@@ -104,7 +114,7 @@ const run = () => {
 
       console.log('');
       console.log(
-        `🎉 🎉 🎉 The application has been created in the "${taskOptions.projectDirectoryName}" folder.`
+        `🎉 🎉 🎉 The ${messages.featureName} has been created in the "${taskOptions.projectDirectoryName}" folder.`
       );
       console.log('');
       console.log(`To get started:`);
@@ -115,8 +125,7 @@ const run = () => {
       console.log(`$ ${packageManager} start`);
       console.log('');
       console.log(
-        // TODO: Use link based on the application type
-        `Visit https://docs.commercetools.com/custom-applications for more info about developing Custom Applications. Enjoy 🚀`
+        `Visit ${messages.docsLink} for more info about developing ${messages.featureName}. Enjoy 🚀`
       );
     });
 

@@ -63,6 +63,7 @@ const testRender = ({
           isActive: false,
           reason: undefined,
         },
+        isProductionProject: false,
         allAppliedPermissions,
         allAppliedActionRights,
         allAppliedDataFences,

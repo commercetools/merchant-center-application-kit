@@ -13,6 +13,17 @@ declare namespace Cypress {
       options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginOptions
     ): Chainable<Subject>;
     /**
+     * Log into the Custom View.
+     * Custom Views are assumed to be tested on localhost and `loginByOidc` mechanism is used
+     *
+     * @example
+     *    cy.loginToMerchantCenterForCustomView()
+     */
+    loginToMerchantCenterForCustomView(
+      // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
+      options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').LoginToMerchantCenterForCustomViewCommandLoginOptions
+    ): Chainable<Subject>;
+    /**
      * Log into the Custom Application using the OIDC workflow.
      * The command only works for testing an application running on localhost.
      *
@@ -45,5 +56,13 @@ declare namespace Cypress {
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
       menuItemTextMatcher: import('./dist/commercetools-frontend-cypress-add-commands.cjs').Matcher
     ): Chainable<Subject>;
+
+    /**
+     * Returns the body of the chained iframe element
+     *
+     * @example
+     *    cy.get('#iframe-id').getIframeBody()
+     */
+    getIframeBody(): Chainable<Subject>;
   }
 }

@@ -1,7 +1,27 @@
 import type { TCustomView } from './types/generated/settings';
 
+/**
+ * The entryPointUriPath may be between 2 and 36 characters and only contain alphabetic lowercase characters,
+ * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
+ */
+export const PROJECT_KEY_REGEX = /^[^-_#]([0-9a-z]|[-_](?![-_])){0,34}[^-_#]$/g;
+
+/**
+ * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
+ * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
+ */
+export const ENTRY_POINT_URI_PATH_REGEX =
+  /^[^-_#]([0-9a-z]|[-_](?![-_])){0,62}[^-_#]$/g;
+
+/**
+ * The permission group name may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed.
+ */
+export const PERMISSION_GROUP_NAME_REGEX =
+  /^[^-#]([a-z]|[-](?![-])){0,62}[^-#]$/g;
+
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
+export const PORTALS_CONTAINER_INDENTATION_SIZE = '48px';
 
 // Links
 export const SUPPORT_PORTAL_URL = 'https://support.commercetools.com';
@@ -275,10 +295,11 @@ export const HTTP_SECURITY_HEADERS = {
 export const CUSTOM_VIEWS_EVENTS_NAMES = {
   CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
   CUSTOM_VIEW_INITIALIZATION: 'custom-view-initialization',
+  CUSTOM_VIEW_CLOSE: 'custom-view-close',
 };
 export const CUSTOM_VIEWS_EVENTS_META = {
-  SOURCE: 'mc-host-application',
-  DESTINATION_PREFIX: 'custom-view-',
+  HOST_APPLICATION_CODE: 'mc-host-application',
+  CUSTOM_VIEW_KEY_PREFIX: 'custom-view-',
 };
 
 // SSO

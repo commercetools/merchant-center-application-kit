@@ -1,7 +1,10 @@
 import {
   forwardRef,
   lazy,
-  MouseEventHandler,
+  type MouseEventHandler,
+  type FocusEventHandler,
+  type MouseEvent,
+  type KeyboardEvent,
   type ReactNode,
   type SyntheticEvent,
 } from 'react';
@@ -119,7 +122,9 @@ IconSwitcher.displayName = 'IconSwitcher';
 
 type MenuExpanderProps = {
   isVisible: boolean;
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: (
+    e: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+  ) => void;
   isMenuOpen: boolean;
 };
 
@@ -138,6 +143,12 @@ const MenuExpander = (props: MenuExpanderProps) => {
     >
       <div
         onClick={props.onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            props.onClick(e);
+          }
+        }}
+        tabIndex={0}
         className={styles['expand-icon']}
         data-testid="menu-expander"
       >
@@ -281,8 +292,12 @@ type MenuItemProps = {
   isMainMenuRouteActive?: boolean;
   isMenuOpen: boolean;
   onClick: MouseEventHandler<HTMLElement>;
-  onMouseEnter?: MouseEventHandler<HTMLElement>;
-  onMouseLeave?: MouseEventHandler<HTMLElement>;
+  onMouseEnter?:
+    | MouseEventHandler<HTMLElement>
+    | FocusEventHandler<HTMLElement>;
+  onMouseLeave?:
+    | MouseEventHandler<HTMLElement>
+    | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
 };
@@ -296,8 +311,10 @@ const MenuItem = (props: MenuItemProps) => {
         [styles['item_menu-collapsed']]: !props.isMenuOpen,
       })}
       onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
+      onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
+      onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
+      onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
+      onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
     >
       <div className={styles['item-link']}>{props.children}</div>
@@ -342,17 +359,15 @@ const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
+    const linkLevel = props.isSubmenuLink ? 'text-link-sublist' : 'text-link';
     return (
       <NavLinkWrapper {...props}>
         <NavLink
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
-          className={
-            props.isSubmenuLink
-              ? styles['text-link-sublist']
-              : styles['text-link']
-          }
+          className={styles[linkLevel]}
+          data-link-level={linkLevel}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();

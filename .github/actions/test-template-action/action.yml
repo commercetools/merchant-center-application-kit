@@ -83,6 +83,7 @@ runs:
         CYPRESS_LOGIN_USER: ${{ inputs.cypress-login-user }}
         CYPRESS_LOGIN_PASSWORD: ${{ inputs.cypress-login-password }}
         CYPRESS_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+        CYPRESS_PACKAGE_NAME: ${{ inputs.cypress-package-name }}
         HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
         APP_ID: ${{ inputs.playground-application-id }}
         MC_API_URL: ${{ inputs.mc-api-url }}

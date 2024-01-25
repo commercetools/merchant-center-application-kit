@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/eslint-config-node",
-  "version": "22.14.1",
+  "version": "22.16.0",
   "description": "ESLint config for Node.js projects.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
-    "eslint": "8.40.0"
+    "eslint": "8.56.0"
   },
   "engines": {
     "node": "16.x || >=18.0.0"

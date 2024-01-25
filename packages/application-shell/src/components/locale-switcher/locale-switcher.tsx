@@ -93,6 +93,7 @@ const LocaleSwitcher = (props: Props) => {
         isSearchable={false}
         horizontalConstraint={'auto'}
         appearance="quiet"
+        maxMenuHeight={360}
       />
     </div>
   );

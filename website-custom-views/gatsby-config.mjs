@@ -26,7 +26,7 @@ const config = {
       active: true,
       notificationType: 'warning',
       content:
-        'This is the documentation preview for Custom Views, a feature that is currently in [Closed beta](/../offering/api-contract#closed-beta). This documentation might not be in sync with our [official documentation](https://docs.commercetools.com).',
+        'This is the early access documentation preview for Custom Views. This documentation might not be in sync with our [official documentation](https://docs.commercetools.com).',
     },
   },
   plugins: [
@@ -39,6 +39,13 @@ const config = {
         gaTrackingIds: ['G-XGR7PSLVB2', 'UA-38285631-3'],
         hubspotTrackingCode: '4784080',
         overrideDefaultConfigurationData: ['**/top-*', '**/footer*'],
+        auth0Domain: 'auth.id.commercetools.com',
+        auth0ClientId: 'xLk8EDUCc8PKqCbrSJCnuahvn86nEn4z',
+        aiAssistantApiBaseUrl: 'https://assistant-api.commercetools.vercel.app',
+        aiAssistantTopbarButton: true,
+        learnApiBaseUrl: 'https://learning-api.docs.commercetools.com',
+        selfLearningFeatures: ['complete-profile-modal'],
+        hideLogin: true,
       },
     },
     'gatsby-plugin-pnpm',

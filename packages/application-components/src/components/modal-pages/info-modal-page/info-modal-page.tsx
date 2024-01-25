@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import type { CSSObject } from '@emotion/react';
 import PageHeader from '../../internals/page-header';
-import { ContentWrapper } from '../../internals/page.styles';
+import { ModalContentWrapper } from '../../internals/page.styles';
 import ModalPage from '../internals/modal-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -58,7 +58,7 @@ const InfoModalPage = (props: Props) => (
       subtitle={props.subtitle}
       customViewLocatorCode={props.customViewLocatorCode}
     />
-    <ContentWrapper>{props.children}</ContentWrapper>
+    <ModalContentWrapper>{props.children}</ModalContentWrapper>
   </ModalPage>
 );
 InfoModalPage.displayName = 'InfoModalPage';

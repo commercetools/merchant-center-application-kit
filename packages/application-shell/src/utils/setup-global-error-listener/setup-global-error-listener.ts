@@ -8,7 +8,9 @@ import internalReduxStore from '../../configure-store';
 type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
 type Reportable = Error | ReportableEvent | string;
 
-const errorMessageIgnoreList = [/ResizeObserver loop limit exceeded/i];
+const errorMessageIgnoreList = [
+  /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i,
+];
 
 // Ensure to initialize Sentry as soon as possible, so that we have the chance
 // of catching possible errors.

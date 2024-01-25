@@ -1,7 +1,10 @@
 import semver from 'semver';
 import { v4 as uuidv4 } from 'uuid';
 import { buildOidcScope } from '@commercetools-frontend/application-shell/ssr';
-import { ApplicationRuntimeEnvironment } from '@commercetools-frontend/constants';
+import {
+  type ApplicationRuntimeEnvironment,
+  CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+} from '@commercetools-frontend/constants';
 import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,6 +62,19 @@ export type CommandLoginOptions = {
    */
   disableCacheAcrossSpecs?: boolean;
 };
+
+export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
+  CommandLoginOptions,
+  'entryPointUriPath' | 'initialRoute'
+> & {
+  /**
+   * The package name as specified in the `package.json` to uniquely identify the configuration.
+   * This is only required for testing Custom Views.
+   * Defaults to `Cypress.env('PACKAGE_NAME')`
+   */
+  packageName?: string;
+};
+
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
@@ -160,10 +176,19 @@ function loginByForm(commandOptions: CommandLoginOptions) {
   });
 }
 
-function loginByOidc(commandOptions: CommandLoginOptions) {
+const isCustomView = (commandOptions: CommandLoginOptions) =>
+  commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
+
+function loginByOidc(
+  commandOptions: CommandLoginOptions &
+    LoginToMerchantCenterForCustomViewCommandLoginOptions
+) {
+  const isCustomViewConfigCommand = isCustomView(commandOptions);
   if (!isLocalhost()) {
     throw new Error(
-      `The "loginByOidc" command only works when testing a Custom Application running on localhost.`
+      `The "loginByOidc" command only works when testing a Custom ${
+        isCustomViewConfigCommand ? 'View' : 'Application'
+      } running on localhost.`
     );
   }
 
@@ -173,11 +198,24 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
   }
 
+  const customEntityConfigCommand = isCustomViewConfigCommand
+    ? 'customViewConfig'
+    : 'customApplicationConfig';
+
+  const packageName = commandOptions.packageName ?? Cypress.env('PACKAGE_NAME');
+
+  if (isCustomViewConfigCommand && !packageName) {
+    throw new Error(
+      `Missing required option "packageName" when using the "loginToMerchantCenterForCustomView" command.`
+    );
+  }
+
   cy.task(
-    'customApplicationConfig',
+    customEntityConfigCommand,
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
+      ...(isCustomViewConfigCommand ? { packageName } : {}),
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
@@ -185,7 +223,7 @@ function loginByOidc(commandOptions: CommandLoginOptions) {
     // Log loaded application config for debugging purposes.
     Cypress.log({
       displayName: 'task',
-      name: 'customApplicationConfig',
+      name: customEntityConfigCommand,
       message: appConfig,
     });
 

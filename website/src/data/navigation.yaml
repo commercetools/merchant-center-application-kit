@@ -50,6 +50,8 @@
   pages:
     - title: Overview
       path: /deployment-examples
+    - title: Deploying to commercetools Connect
+      path: /deployment-examples/commercetools-connect
     - title: Deploying to Vercel
       path: /deployment-examples/vercel
     - title: Deploying to Netlify

@@ -1,5 +1,63 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.16.0
+
+### Minor Changes
+
+- [#3376](https://github.com/commercetools/merchant-center-application-kit/pull/3376) [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Add cloud environment property for launch darkly
+
+### Patch Changes
+
+- [#3372](https://github.com/commercetools/merchant-center-application-kit/pull/3372) [`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7) Thanks [@chloe0592](https://github.com/chloe0592)! - Add `isProductionProject` to project query.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.16.0
+  - @commercetools-frontend/browser-history@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/sentry@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.15.1
+  - @commercetools-frontend/browser-history@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+  - @commercetools-frontend/sentry@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3365](https://github.com/commercetools/merchant-center-application-kit/pull/3365) [`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef) Thanks [@emmenko](https://github.com/emmenko)! - Fix login flow for local development to safely run the side effects when using React strict mode
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+  - @commercetools-frontend/sentry@22.15.0
+  - @commercetools-frontend/browser-history@22.15.0
+
+## 22.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.14.3
+  - @commercetools-frontend/browser-history@22.14.3
+  - @commercetools-frontend/constants@22.14.3
+  - @commercetools-frontend/sentry@22.14.3
+
+## 22.14.2
+
+### Patch Changes
+
+- Updated dependencies [[`483fae792`](https://github.com/commercetools/merchant-center-application-kit/commit/483fae792f1e85a20ba7959fe937d4e9faa30efd)]:
+  - @commercetools-frontend/constants@22.14.2
+  - @commercetools-frontend/application-config@22.14.2
+  - @commercetools-frontend/sentry@22.14.2
+  - @commercetools-frontend/browser-history@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

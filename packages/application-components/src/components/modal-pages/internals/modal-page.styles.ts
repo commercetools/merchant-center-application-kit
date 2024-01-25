@@ -1,4 +1,5 @@
 import { css, type SerializedStyles } from '@emotion/react';
+import { PORTALS_CONTAINER_INDENTATION_SIZE } from '@commercetools-frontend/constants';
 import { customProperties } from '@commercetools-uikit/design-system';
 import type { TModalPageSize } from './modal-page';
 
@@ -32,7 +33,11 @@ export const getContainerStyles = (props: StyleProps): SerializedStyles => css`
   right: 0;
   height: 100%;
   width: ${props.size !== 'scale'
-    ? `${stylesBySize[props.size].width} !important`
+    ? // In case we're using a specific size, we want it to be used until there's no space left.
+      // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
+      `min(${
+        stylesBySize[props.size].width
+      }, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE})) !important`
     : stylesBySize.scale.width};
   display: flex;
   flex-direction: column;

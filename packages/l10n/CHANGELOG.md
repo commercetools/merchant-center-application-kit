@@ -1,5 +1,40 @@
 # @commercetools-frontend/l10n
 
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e)]:
+  - @commercetools-frontend/sentry@22.15.0
+
+## 22.14.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.14.3
+
+## 22.14.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.14.2
+
 ## 22.14.1
 
 ### Patch Changes

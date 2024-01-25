@@ -13,6 +13,7 @@ export { default as InfoModalPage } from './components/modal-pages/info-modal-pa
 export { default as FormModalPage } from './components/modal-pages/form-modal-page';
 export { default as TabularModalPage } from './components/modal-pages/tabular-modal-page';
 export { default as CustomFormModalPage } from './components/modal-pages/custom-form-modal-page';
+export { ModalPageTopBar } from './components/modal-pages/utils';
 
 // Detail Pages
 export { default as CustomFormDetailPage } from './components/detail-pages/custom-form-detail-page';

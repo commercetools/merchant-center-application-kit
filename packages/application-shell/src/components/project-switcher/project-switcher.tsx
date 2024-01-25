@@ -5,6 +5,7 @@ import type {
   OptionProps,
   ValueContainerProps,
   MenuListProps,
+  ControlProps,
 } from 'react-select';
 import { components } from 'react-select';
 import {
@@ -32,7 +33,10 @@ declare let window: ApplicationWindow;
 type Props = {
   projectKey?: string;
 };
-type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
+type OptionType = Pick<
+  TProject,
+  'key' | 'name' | 'suspension' | 'expiry' | 'isProductionProject'
+> & {
   label: string;
 };
 
@@ -130,6 +134,7 @@ const mapProjectsToOptions = memoize((projects) =>
     value: project.key,
     suspension: project.suspension,
     expiry: project.expiry,
+    isProductionProject: project.isProductionProject,
   }))
 );
 
@@ -145,6 +150,17 @@ const CustomMenuList = (props: MenuListProps) => {
     </div>
   );
 };
+
+const Control = (props: ControlProps) => (
+  <components.Control
+    {...props}
+    css={css`
+      min-width: ${designTokens.constraint3};
+    `}
+  >
+    {props.children}
+  </components.Control>
+);
 
 const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
@@ -197,6 +213,7 @@ const ProjectSwitcher = (props: Props) => {
           Option: ProjectSwitcherOption,
           ValueContainer,
           MenuList: CustomMenuList,
+          Control,
         }}
         isClearable={false}
         backspaceRemovesValue={false}
@@ -204,6 +221,7 @@ const ProjectSwitcher = (props: Props) => {
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
         appearance="quiet"
+        maxMenuHeight={360}
       />
     </div>
   );

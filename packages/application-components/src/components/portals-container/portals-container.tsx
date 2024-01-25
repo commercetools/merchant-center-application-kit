@@ -7,7 +7,10 @@ import {
 } from 'react';
 import { css, Global } from '@emotion/react';
 import useResizeObserver from '@react-hook/resize-observer';
-import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
+import {
+  PORTALS_CONTAINER_ID,
+  PORTALS_CONTAINER_INDENTATION_SIZE,
+} from '@commercetools-frontend/constants';
 import { useMutationObserver } from '@commercetools-uikit/hooks';
 
 type TLayoutRefs = {
@@ -78,9 +81,6 @@ type TPortalsContainerProps = {
    */
   baseModalZIndex?: number;
 };
-
-// The width of each indentation level.
-const indentationSize = '48px';
 
 const useObserverElementDimensions = (
   element: RefObject<HTMLDivElement> | null
@@ -218,7 +218,10 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                   [role='dialog'] {
                   width: calc(
                     100% -
-                      (${indentationSize} * ${stackingLayer.indentationLevel})
+                      (
+                        ${PORTALS_CONTAINER_INDENTATION_SIZE} *
+                          ${stackingLayer.indentationLevel}
+                      )
                   );
                 }
               `

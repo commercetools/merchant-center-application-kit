@@ -9,8 +9,8 @@ This deployment example refers to [Render](https://render.com/).
 Before you get started, you need to have:
 
 - A [Render](https://dashboard.render.com/) account.
-- A [commercetools](https://docs.commercetools.com/getting-started) account and a Project.
-- A Custom View [configured in the Merchant Center](https://docs.commercetools.com/merchant-center/managing-custom-applications).
+- A [commercetools](https://docs-beta-custom-views.commercetools.vercel.app/getting-started) account and a Project.
+- A Custom View [configured in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views).
 
 # Configuration
 
@@ -18,14 +18,15 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 
 Moreover, you need to provide the [production URL](/api-reference/custom-view-config#envproductionurl) from your Render site. You can keep the standard Render URL `https://<site>.onrender.com` or provide your custom domain.
 
-```json title="custom-view-config.json"
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "production": {
       "customViewId": "ckvtahxl90097sys6har1e6n3",
       "url": "https://<site>.onrender.com"
     }
   }
+  // ...
 }
 ```
 
@@ -33,14 +34,15 @@ Moreover, you need to provide the [production URL](/api-reference/custom-view-co
 
 In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
-```json title="custom-view-config.json" highlightLines="4"
-{
+```js title="custom-view-config.mjs" highlightLines="4"
+const config = {
   "env": {
     "production": {
       "customViewId": "${env:CUSTOM_VIEW_ID}",
       "url": "https://<site>.onrender.com"
     }
   }
+  // ...
 }
 ```
 
@@ -95,7 +97,7 @@ A Custom View is a Single-Page Application that uses client-side routing. Theref
 
 # Test your deployment
 
-In the Merchant Center you can now [follow the steps to install the Custom View](https://docs.commercetools.com/merchant-center/managing-custom-applications) and access it in your Projects.
+In the Merchant Center you can now [follow the steps to install the Custom View](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views) and access it in your Projects.
 
 <Warning>
 

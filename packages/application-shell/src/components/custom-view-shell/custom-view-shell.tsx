@@ -6,25 +6,42 @@ import {
   Suspense,
   StrictMode,
   type ReactNode,
+  RefObject,
 } from 'react';
+import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { Route } from 'react-router-dom';
+import {
+  ModalPageTopBar,
+  PageUnauthorized,
+  PortalsContainer,
+  themesOverrides,
+} from '@commercetools-frontend/application-components';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
+  CUSTOM_VIEWS_EVENTS_META,
   CustomViewData,
+  DOMAINS,
 } from '@commercetools-frontend/constants';
 import {
   AsyncLocaleData,
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import {
+  ThemeProvider,
+  designTokens,
+} from '@commercetools-uikit/design-system';
 import ApplicationLoader from '../application-loader/application-loader';
+import GlobalStyles from '../application-shell/global-styles';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewDevHost from '../custom-view-dev-host';
 import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
+import { customViewsThemesOverrides } from './custom-view-shell.styles';
 
 declare let window: ApplicationWindow;
 
@@ -59,6 +76,38 @@ type TStrictModeEnablementProps = {
   children?: ReactNode;
 };
 
+type TNotificationsContainerProps = {
+  notificationsGlobalRef: RefObject<HTMLDivElement>;
+  notificationsPageRef: RefObject<HTMLDivElement>;
+};
+function NotificationsContainer(props: TNotificationsContainerProps) {
+  return (
+    <>
+      <div
+        ref={props.notificationsGlobalRef}
+        role="region"
+        aria-live="polite"
+        style={{
+          gridRow: 1,
+          gridColumn: '1/3',
+        }}
+      >
+        <div id="above-top-navigation" />
+        <NotificationsList domain={DOMAINS.GLOBAL} />
+      </div>
+      <div ref={props.notificationsPageRef}>
+        <NotificationsList domain={DOMAINS.PAGE} />
+      </div>
+      <NotificationsList domain={DOMAINS.SIDE} />
+    </>
+  );
+}
+
+const ContentWrapper = styled.div`
+  height: 100%;
+  padding: ${designTokens.spacing40} 40px;
+`;
+
 function StrictModeEnablement(props: TStrictModeEnablementProps) {
   if (props.enableReactStrictMode) {
     return <StrictMode>{props.children}</StrictMode>;
@@ -67,9 +116,31 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
   }
 }
 
+/*
+  During e2e tests, the Custom View template is built in production mode but still runs on localhost.
+  Checking for local production mode is necessary for applying the development host URL,
+  creating an environment for testing interaction with the Custom View template.
+*/
+const isLocalProdMode =
+  process.env.NODE_ENV === 'production' && window.app.env === 'development';
+
+const customViewThemeOverrides = {
+  ...themesOverrides.default,
+  ...customViewsThemesOverrides.default,
+};
+
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort>();
+  const notificationsGlobalRef = useRef<HTMLDivElement>(null);
+  const notificationsPageRef = useRef<HTMLDivElement>(null);
+  const layoutRefs = useRef<{
+    notificationsGlobalRef: RefObject<HTMLDivElement>;
+    notificationsPageRef: RefObject<HTMLDivElement>;
+  }>({
+    notificationsGlobalRef,
+    notificationsPageRef,
+  });
 
   const hostMessageHandler = useCallback(
     (event: MessageEvent<THostEventData>) => {
@@ -87,6 +158,16 @@ function CustomViewShell(props: TCustomViewShellProps) {
     },
     []
   );
+
+  const handleClose = useCallback(() => {
+    iFrameCommunicationPort.current?.postMessage({
+      origin: window.location.origin,
+      source: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${hostContext?.customViewConfig.id}`,
+      destination: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE,
+      eventData: {},
+    });
+  }, [hostContext?.customViewConfig.id]);
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
@@ -128,55 +209,79 @@ function CustomViewShell(props: TCustomViewShellProps) {
   }
 
   const hostUrl =
-    process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'development' || isLocalProdMode
       ? window.app.__DEVELOPMENT__?.customViewHostUrl!
       : hostContext.hostUrl;
 
   return (
-    <ApplicationShellProvider
-      environment={window.app}
-      applicationMessages={props.applicationMessages}
-      apolloClient={props.apolloClient}
-    >
-      {({ isAuthenticated }) => {
-        if (isAuthenticated) {
-          return (
-            <CustomViewContextProvider
-              hostUrl={hostUrl}
-              customViewConfig={hostContext.customViewConfig}
-            >
-              <CustomViewShellAuthenticated
-                dataLocale={hostContext.dataLocale}
-                environment={window.app}
-                messages={props.applicationMessages}
-                projectKey={hostContext.projectKey}
+    <>
+      <GlobalStyles />
+      <ThemeProvider
+        theme="default"
+        themeOverrides={customViewThemeOverrides}
+      />
+      <ApplicationShellProvider
+        environment={window.app}
+        applicationMessages={props.applicationMessages}
+        apolloClient={props.apolloClient}
+      >
+        {({ isAuthenticated }) => {
+          if (isAuthenticated) {
+            return (
+              <CustomViewContextProvider
+                hostUrl={hostUrl}
                 customViewConfig={hostContext.customViewConfig}
               >
-                {props.children}
-              </CustomViewShellAuthenticated>
-            </CustomViewContextProvider>
-          );
-        }
+                <CustomViewShellAuthenticated
+                  dataLocale={hostContext.dataLocale}
+                  environment={window.app}
+                  messages={props.applicationMessages}
+                  projectKey={hostContext.projectKey}
+                  customViewConfig={hostContext.customViewConfig}
+                >
+                  <PortalsContainer
+                    // @ts-ignore
+                    ref={layoutRefs}
+                  />
+                  <NotificationsContainer
+                    notificationsGlobalRef={notificationsGlobalRef}
+                    notificationsPageRef={notificationsPageRef}
+                  />
 
-        return (
-          <AsyncLocaleData
-            locale={browserLocale}
-            applicationMessages={props.applicationMessages}
-          >
-            {({ locale, messages }) => (
-              <ConfigureIntlProvider locale={locale} messages={messages}>
-                <PageUnauthorized />
-              </ConfigureIntlProvider>
-            )}
-          </AsyncLocaleData>
-        );
-      }}
-    </ApplicationShellProvider>
+                  <Route
+                    path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
+                  >
+                    <ModalPageTopBar onClose={handleClose} hidePathLabel />
+                    <ContentWrapper>{props.children}</ContentWrapper>
+                  </Route>
+                </CustomViewShellAuthenticated>
+              </CustomViewContextProvider>
+            );
+          }
+
+          return (
+            <AsyncLocaleData
+              locale={browserLocale}
+              applicationMessages={props.applicationMessages}
+            >
+              {({ locale, messages }) => (
+                <ConfigureIntlProvider locale={locale} messages={messages}>
+                  <PageUnauthorized />
+                </ConfigureIntlProvider>
+              )}
+            </AsyncLocaleData>
+          );
+        }}
+      </ApplicationShellProvider>
+    </>
   );
 }
 
 const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
-  if (process.env.NODE_ENV === 'development' && !props.disableDevHost) {
+  if (
+    (process.env.NODE_ENV === 'development' || isLocalProdMode) &&
+    !props.disableDevHost
+  ) {
     return (
       <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
         <Suspense fallback={<ApplicationLoader />}>
