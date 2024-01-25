@@ -12,7 +12,7 @@ Before you get started, you need to have:
 # Create your application
 
 1. Install a Connect [starter template](https://docs.commercetools.com/connect/development#install-a-starter-template).
-2. Open the `mc-app` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) inside this folder.
+2. Open the `merchant-center-custom-application` folder in the Connect starter template and [install the Custom Applications starter template](/getting-started#installing-a-starter-template) inside this folder.
 3. Add your environment variables to `custom-application-config.mjs`.
 
     ```js title="custom-application-config.mjs" highlightLines="4-13"
@@ -57,7 +57,7 @@ Before you get started, you need to have:
       ```yml title="connect.yaml"
       deployAs:
         - name: name-of-custom-application
-          applicationType: mc-app
+          applicationType: merchant-center-custom-application
           endpoint: /
           configuration:
             standardConfiguration:
