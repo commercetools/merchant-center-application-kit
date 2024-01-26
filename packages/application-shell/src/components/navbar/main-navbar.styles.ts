@@ -12,7 +12,7 @@ export const LeftNavigation = styled.nav`
   transition: ${NAVBAR.leftNavigationTransition};
 `;
 
-export const LeftNavigationOpen = css`
+export const leftNavigationOpenStyles = css`
   .body__menu-open .left-navigation {
     transition: ${NAVBAR.leftNavigationTransition};
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
@@ -100,19 +100,11 @@ export const ExpanderIcon = styled.div`
   }
 `;
 
-export const GetListStyles = () => [
-  css`
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    flex: 1 1 0;
-  `,
-];
-
-export const GetHiddenStyles = () => [
-  css`
-    display: none;
-  `,
-];
+export const listStyles = css`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 0;
+`;

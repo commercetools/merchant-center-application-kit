@@ -39,9 +39,8 @@ import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import {
   LeftNavigation,
-  LeftNavigationOpen,
-  GetListStyles,
-  GetHiddenStyles,
+  leftNavigationOpenStyles,
+  listStyles,
   Expander,
   ExpanderIcon,
 } from './main-navbar.styles';
@@ -145,9 +144,12 @@ const MenuExpander = (props: MenuExpanderProps) => {
   return (
     <Expander
       key="expander"
-      css={css`
-        ${!props.isVisible && GetHiddenStyles()}
-      `}
+      css={
+        !props.isVisible &&
+        css`
+          display: none;
+        `
+      }
     >
       <ExpanderIcon
         onClick={props.onClick}
@@ -232,7 +234,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
     <ul
       ref={ref && props.level === 2 ? ref : null}
       css={css`
-        ${props.level === 1 && GetListStyles()}
+        ${props.level === 1 && listStyles}
         ${getSubmenuPositionBasedOnMenuItemPosition(
           props.isSubmenuAboveMenuItem,
           props.submenuVerticalPosition
@@ -509,13 +511,12 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       <Global
         styles={css`
           ${compiledStyles.global}
-          ${LeftNavigationOpen}
+          ${leftNavigationOpenStyles}
         `}
       />
       <LeftNavigation
         ref={ref}
         className="left-navigation"
-        data-test="left-navigation"
         data-testid="left-navigation"
       >
         {props.children}
