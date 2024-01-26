@@ -37,27 +37,10 @@
   width: 100%;
 }
 
-.list-item .item-icon-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.list-item .icon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  transition: var(--left-navigation-transition);
-}
-
-.list-item:hover .icon,
-.list-item:focus-within .icon {
+.list-item:hover [data-nav-migration='icon'],
+.list-item:focus-within [data-nav-migration='icon'] {
   /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
   transform: scale(1.2);
-}
-
-.list-item .icon > svg *:not([fill='none']) {
-  fill: var(--color-surface);
 }
 
 .list-item .title {
@@ -252,18 +235,11 @@
   border-radius: var(--border-radius-8);
 }
 
-.list-item.item__active .item-icon-text {
+.list-item.item__active [data-nav-migration='item-icon-text'] {
   justify-content: flex-start;
 }
 
-.list-item .icon-container {
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-self: flex-start;
-}
-
-.fixed-menu .list-item .item-icon-text {
+.fixed-menu .list-item [data-nav-migration='item-icon-text'] {
   justify-content: center;
   display: flex;
   width: 100%;
@@ -275,12 +251,16 @@
   height: calc(var(--item-size) + var(--spacing-20));
 }
 
-:global(.body__menu-open) .list-item.item__active .item-icon-text {
+:global(.body__menu-open)
+  .list-item.item__active
+  [data-nav-migration='item-icon-text'] {
   position: relative;
   width: auto;
 }
 
-:global(.body__menu-open) .list-item.item__active .item-icon-text {
+:global(.body__menu-open)
+  .list-item.item__active
+  [data-nav-migration='item-icon-text'] {
   margin-left: 0;
 }
 

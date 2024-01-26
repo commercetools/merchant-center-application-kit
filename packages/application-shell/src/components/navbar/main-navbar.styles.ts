@@ -28,6 +28,29 @@ const visible = keyframes`
   }
 `;
 
+export const iconContainerStyles = css`
+  width: auto;
+  display: flex;
+  justify-content: center;
+`;
+
+export const iconStyles = css`
+  width: ${NAVBAR.iconSize};
+  height: ${NAVBAR.iconSize};
+  transition: ${NAVBAR.leftNavigationTransition};
+
+  > svg *:not([fill='none']) {
+    fill: var(--color-surface);
+  }
+`;
+
+export const itemIconTextStyles = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const NavigationHeader = styled.div`
   background-color: ${designTokens.colorAccent10};
   color: ${designTokens.colorSurface};
@@ -36,17 +59,6 @@ export const NavigationHeader = styled.div`
   flex-direction: row;
   align-items: center;
   padding: ${designTokens.spacing30};
-
-  .icon-container {
-    width: auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .icon {
-    width: ${NAVBAR.iconSize};
-    height: ${NAVBAR.iconSize};
-  }
 
   .title {
     font-weight: 600;

@@ -33,7 +33,12 @@ import Spacings from '@commercetools-uikit/spacings';
 import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
-import { NavigationHeader } from './main-navbar.styles';
+import {
+  NavigationHeader,
+  iconContainerStyles,
+  iconStyles,
+  itemIconTextStyles,
+} from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -372,9 +377,9 @@ const NavBar = (props: TNavbarProps) => {
 
   return (
     <NavBarLayout ref={navBarNode}>
-      <NavigationHeader className="navigation-header">
-        <div className="icon-container">
-          <div className="icon">
+      <NavigationHeader>
+        <div css={iconContainerStyles}>
+          <div css={iconStyles}>
             <img src={LogoSVG} width="100%" alt="Logo" />
           </div>
         </div>
@@ -433,9 +438,12 @@ const NavBar = (props: TNavbarProps) => {
                 target="_blank"
                 className={styles['text-link']}
               >
-                <div className={styles['item-icon-text']}>
-                  <div className={styles['icon-container']}>
-                    <div className={styles['icon']}>
+                <div
+                  data-nav-migration="item-icon-text"
+                  css={itemIconTextStyles}
+                >
+                  <div css={iconContainerStyles}>
+                    <div data-nav-migration="icon" css={iconStyles}>
                       <SupportIcon size="scale" />
                     </div>
                   </div>

@@ -43,6 +43,9 @@ import {
   listStyles,
   Expander,
   ExpanderIcon,
+  iconContainerStyles,
+  iconStyles,
+  itemIconTextStyles,
 } from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
 
@@ -536,9 +539,9 @@ type ItemContainerProps = {
 
 const ItemContainer = (props: ItemContainerProps) => {
   return (
-    <div className={styles['item-icon-text']}>
-      <div className={styles['icon-container']}>
-        <div className={styles.icon}>
+    <div data-nav-migration="item-icon-text" css={itemIconTextStyles}>
+      <div css={iconContainerStyles}>
+        <div data-nav-migration="icon" css={iconStyles}>
           <IconSwitcher icon={props.icon} size="scale" />
         </div>
       </div>
