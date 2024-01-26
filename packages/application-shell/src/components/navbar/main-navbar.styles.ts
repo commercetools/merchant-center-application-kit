@@ -1,6 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
+import { DIMENSIONS } from '../../constants';
 import { NAVBAR } from './constants';
 
 export const LeftNavigation = styled.nav`
@@ -119,4 +120,41 @@ export const listStyles = css`
   flex-direction: column;
   min-height: 0;
   flex: 1 1 0;
+`;
+
+export const TooltipContainer = styled.div<{
+  alignsAgainstBottom: boolean;
+}>`
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: ${NAVBAR.itemSize};
+  visibility: visible;
+
+  ${(props) =>
+    props.alignsAgainstBottom
+      ? 'bottom'
+      : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+`;
+
+export const Tooltip = styled.div`
+  padding: var(--spacing-10) calc(var(--spacing-20) + var(--spacing-10));
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  border-radius: var(--border-radius-4);
+  background: var(--color-accent-10);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-size: var(--font-size-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  line-height: var(--line-height-for-navbar-link);
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-weight: var(--font-weight-for-navbar-link);
+  color: var(--color-surface);
+  max-height: ${NAVBAR.itemSize};
+  visibility: inherit;
 `;

@@ -30,7 +30,6 @@ import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-lo
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
-import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
 import {
@@ -38,6 +37,8 @@ import {
   iconContainerStyles,
   iconStyles,
   itemIconTextStyles,
+  TooltipContainer,
+  Tooltip,
 } from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
@@ -241,25 +242,15 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           ref={submenuRef}
         >
           {!props.isMenuOpen && (
-            <div
-              className={styles['tooltip-container']}
-              css={css`
-                ${isSubmenuAboveMenuItem
-                  ? 'bottom'
-                  : 'top'}: -${DIMENSIONS.navMenuItemHeight};
-              `}
-            >
-              <div
-                className={styles['tooltip']}
-                aria-owns={`group-${props.menu.key}`}
-              >
+            <TooltipContainer alignsAgainstBottom={isSubmenuAboveMenuItem}>
+              <Tooltip aria-owns={`group-${props.menu.key}`}>
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}
                   defaultLabel={props.menu.defaultLabel}
                   applicationLocale={props.applicationLocale}
                 />
-              </div>
-            </div>
+              </Tooltip>
+            </TooltipContainer>
           )}
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
