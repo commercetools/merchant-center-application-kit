@@ -37,6 +37,7 @@ import {
   iconContainerStyles,
   iconStyles,
   itemIconTextStyles,
+  SublistItem,
   TooltipContainer,
   Tooltip,
 } from './main-navbar.styles';
@@ -269,13 +270,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                       : undefined
                   }
                 >
-                  <li
-                    className={classnames(styles['sublist-item'], {
-                      [styles['sublist-item__active']]: getIsSubmenuRouteActive(
-                        submenu.uriPath,
-                        props
-                      ),
-                    })}
+                  <SublistItem
+                    isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
                   >
                     <div className={styles.text}>
                       <MenuItemLink
@@ -296,7 +292,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                         />
                       </MenuItemLink>
                     </div>
-                  </li>
+                  </SublistItem>
                 </RestrictedMenuItem>
               ))
             : null}

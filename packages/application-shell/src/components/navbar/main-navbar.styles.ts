@@ -141,20 +141,59 @@ export const TooltipContainer = styled.div<{
 
 export const Tooltip = styled.div`
   padding: var(--spacing-10) calc(var(--spacing-20) + var(--spacing-10));
-  /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   border-radius: var(--border-radius-4);
   background: var(--color-accent-10);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   line-height: var(--line-height-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link);
   color: var(--color-surface);
   max-height: ${NAVBAR.itemSize};
   visibility: inherit;
+`;
+
+export const SublistItem = styled.li<{ isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  ${(props) => [
+    props.isActive &&
+      css`
+        border-radius: var(--border-radius-4);
+        background: var(--color-accent-30);
+      `,
+    !props.isActive &&
+      css`
+        :hover,
+        :focus-within {
+          color: var(--color-for-navbar-link-when-hovered);
+          font-weight: var(--font-weight-for-navbar-link-when-hovered);
+          border-radius: var(--border-radius-4);
+          background: var(--color-primary-95);
+        }
+
+        :hover [data-link-level='text-link-sublist'],
+        :focus-within [data-link-level='text-link-sublist'] {
+          /* additional left padding on hover and focus */
+          padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+            calc(var(--spacing-30) + var(--spacing-20));
+        }
+      `,
+  ]}
+`;
+
+export const TextLinkSublistWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+`;
+
+export const NavlinkClickableContent = styled.div`
+  height: 100%;
+  width: 100%;
 `;

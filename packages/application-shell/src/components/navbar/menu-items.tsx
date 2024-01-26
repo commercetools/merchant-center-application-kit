@@ -1,6 +1,7 @@
 import {
   forwardRef,
   lazy,
+  Fragment,
   type MouseEventHandler,
   type FocusEventHandler,
   type MouseEvent,
@@ -46,6 +47,8 @@ import {
   iconContainerStyles,
   iconStyles,
   itemIconTextStyles,
+  TextLinkSublistWrapper,
+  NavlinkClickableContent,
 } from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
 
@@ -348,24 +351,12 @@ const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
 };
 const NavLinkWrapper = (props: MenuItemLinkProps) => {
-  if (props.isSubmenuLink) {
-    return (
-      <div className={styles['text-link-sublist-wrapper']}>
-        {props.children}
-      </div>
-    );
-  }
-  return <>{props.children}</>;
+  const Wrapper = props.isSubmenuLink ? TextLinkSublistWrapper : Fragment;
+  return <Wrapper>{props.children}</Wrapper>;
 };
 const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
-  if (props.isSubmenuLink) {
-    return (
-      <div className={styles['navlink-clickable-content']}>
-        {props.children}
-      </div>
-    );
-  }
-  return <>{props.children}</>;
+  const Wrapper = props.isSubmenuLink ? NavlinkClickableContent : Fragment;
+  return <Wrapper>{props.children}</Wrapper>;
 };
 
 const MenuItemLink = (props: MenuItemLinkProps) => {
@@ -378,7 +369,18 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
-          className={styles[linkLevel]}
+          css={css`
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: var(--color-solid);
+            font-weight: var(--font-weight-for-navbar-link-when-hovered);
+            text-decoration: none;
+            flex: 1;
+            padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+              var(--spacing-30);
+            transition: padding 150ms ease-out;
+          `}
           data-link-level={linkLevel}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
