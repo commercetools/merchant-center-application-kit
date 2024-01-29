@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
-import { designTokens as appKitDesignTokens } from '../../../theming';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -98,7 +98,8 @@ const DialogContainer = (props: Props) => (
             // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              padding: ${appKitDesignTokens.paddingForDialogContainer};
+              padding: ${uiKitDesignTokens.spacing20}
+                ${uiKitDesignTokens.spacing30};
 
               > div {
                 display: flex;

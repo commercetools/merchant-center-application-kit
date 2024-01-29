@@ -1,6 +1,5 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import { designTokens as appKitDesignTokens } from '../../../theming';
 
 type StyleProps = {
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
@@ -9,13 +8,12 @@ type StyleProps = {
 
 const getConstraintForGridStyle = (size: StyleProps['size']) => {
   switch (size) {
-    case 'm':
-      return appKitDesignTokens.widthForDialogAsMedium;
     case 7:
       return uiKitDesignTokens.constraint7;
     case 8:
       return uiKitDesignTokens.constraint8;
     case 9:
+    case 'm':
       return uiKitDesignTokens.constraint9;
     case 10:
       return uiKitDesignTokens.constraint10;
@@ -24,11 +22,10 @@ const getConstraintForGridStyle = (size: StyleProps['size']) => {
     case 12:
       return uiKitDesignTokens.constraint12;
     case 13:
+    case 'l':
       return uiKitDesignTokens.constraint13;
     case 16:
       return uiKitDesignTokens.constraint16;
-    case 'l':
-      return appKitDesignTokens.widthForDialogAsLarge;
     case 'scale':
       return uiKitDesignTokens.constraintScale;
     default:

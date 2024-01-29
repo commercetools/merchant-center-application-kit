@@ -20,7 +20,7 @@ const ControlsContainter = (props: TControlsContainterProps) => (
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-top: ${appKitDesignTokens.marginTopForTabControls};
+      margin-top: ${uiKitDesignTokens.spacing40};
     `}
   >
     <TabControls role="tablist">{props.tabControls}</TabControls>
@@ -37,11 +37,9 @@ type TTabularPageContainerProps = {
 const TabularPageContainer = (props: TTabularPageContainerProps) => (
   <div
     css={css`
-      background-color: ${props.color === 'surface'
-        ? uiKitDesignTokens.colorSurface
-        : appKitDesignTokens.backgroundColorForPageHeader};
+      background-color: ${uiKitDesignTokens.colorSurface};
       padding: ${appKitDesignTokens.paddingForTabularPageHeader};
-      border-bottom: ${appKitDesignTokens.borderBottomForTabularPageHeader};
+      border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
     `}
   >
     {props.children}

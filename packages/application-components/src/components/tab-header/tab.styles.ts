@@ -5,7 +5,6 @@ import {
   type Theme,
 } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import { designTokens as appKitDesignTokens } from '../../theming';
 
 const getBottomBorderStyles = (background: string): SerializedStyles => css`
   :after {
@@ -14,7 +13,7 @@ const getBottomBorderStyles = (background: string): SerializedStyles => css`
     bottom: 0;
     left: 0;
     right: 0;
-    height: ${appKitDesignTokens.heightForTab};
+    height: 2px;
     border-radius: ${uiKitDesignTokens.borderRadius2};
     background-color: ${background};
     transition: background-color ${uiKitDesignTokens.transitionEaseinout150Ms};
@@ -35,7 +34,7 @@ export const getLinkStyles = (
     text-decoration: inherit;
 
     &:first-of-type {
-      padding-left: ${appKitDesignTokens.paddingLeftForTabAsFirst};
+      padding-left: ${uiKitDesignTokens.spacing30};
     }
 
     ${getBottomBorderStyles('transparent')}
