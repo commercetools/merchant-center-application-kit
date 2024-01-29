@@ -37,26 +37,27 @@
   width: 100%;
 }
 
+.list-item [data-nav-migration='item-icon-text'] {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-item [data-nav-migration='icon'] {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  transition: var(--left-navigation-transition);
+}
+
 .list-item:hover [data-nav-migration='icon'],
 .list-item:focus-within [data-nav-migration='icon'] {
   /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
   transform: scale(1.2);
 }
 
-.list-item .title {
-  flex: 1;
-  font-weight: 600;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  line-height: var(--line-height-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
-  opacity: 0;
-  transition: var(--left-navigation-transition);
-  text-align: left;
-  text-decoration: none;
-  z-index: 1;
+.list-item [data-nav-migration='icon'] > svg *:not([fill='none']) {
+  fill: var(--color-surface);
 }
 
 .item--bottom {
@@ -84,7 +85,7 @@
   width: 100%;
 }
 
-:global(.body__menu-open) .list-item .title {
+:global(.body__menu-open) .list-item [data-nav-migration='title'] {
   opacity: 1;
   margin-left: var(--spacing-25);
   color: var(--color-surface);
@@ -92,8 +93,8 @@
   animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
 }
 
-.list-item:hover .title,
-.list-item:focus-within .title {
+.list-item:hover [data-nav-migration='title'],
+.list-item:focus-within [data-nav-migration='title'] {
   margin-left: calc(var(--spacing-25) + 2px);
 }
 
@@ -103,8 +104,8 @@
   fill: var(--color-for-navbar-icon-when-active);
 }
 
-.list-item:not(.item__active):hover .title,
-.list-item:not(.item__active):focus-within .title {
+.list-item:not(.item__active):hover [data-nav-migration='title'],
+.list-item:not(.item__active):focus-within [data-nav-migration='title'] {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-hovered);
 }
@@ -115,21 +116,6 @@
 }
 
 /*  Second level menu */
-
-.sublist {
-  padding: var(--spacing-30);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  background-color: var(--background-color-for-navbar);
-  left: var(--sublist-indentation-when-collapsed);
-  z-index: -1;
-  list-style: none;
-  position: fixed;
-  display: none;
-}
 
 /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
 .sublist-expanded__active::before,
@@ -147,31 +133,6 @@
   /* empty block */
 }
 
-.text {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-weight: var(--font-weight-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-size: var(--font-size-for-navbar-link);
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  line-height: var(--line-height-for-navbar-link);
-  width: 100%;
-  height: 100%;
-}
-
-.text-link {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  color: var(--color-for-navbar-link);
-  text-decoration: none;
-  display: flex;
-  padding: var(--spacing-25);
-  align-items: center;
-  justify-content: center;
-}
-
-:global(.body__menu-open) .text-link {
-  justify-content: start;
-}
-
 /* Item active */
 .item__active,
 .item_menu__active,
@@ -184,16 +145,19 @@
   justify-content: flex-start;
 }
 
-.fixed-menu .list-item [data-nav-migration='item-icon-text'] {
+.list-item [data-nav-migration='icon-container'] {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+[data-nav-migration='fixed-menu']
+  .list-item
+  [data-nav-migration='item-icon-text'] {
   justify-content: center;
   display: flex;
   width: 100%;
-}
-
-.support-menu {
-  padding: var(--spacing-10) var(--spacing-30) var(--spacing-20)
-    var(--spacing-30);
-  height: calc(var(--item-size) + var(--spacing-20));
 }
 
 :global(.body__menu-open)
@@ -253,68 +217,13 @@
 }
 
 .highlighted,
-.highlighted .title {
+.highlighted [data-nav-migration='title'] {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   color: var(--color-for-navbar-link-when-active) !important;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   font-weight: var(--font-weight-for-navbar-link-when-active);
 }
 
-.hidden {
-  display: none;
-}
-
-.divider {
-  border-top: 1px solid var(--color-neutral-40);
-}
-
-.loading-dot-container {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.scrollable-menu {
-  flex: 1 1 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  padding: var(--spacing-30) var(--spacing-30) var(--item-size);
-  width: var(--width-left-navigation);
-  box-sizing: border-box;
-  /* For Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary-40) transparent;
-}
-
-:global(.body__menu-open) .scrollable-menu {
-  width: var(--width-left-navigation-when-expanded);
-}
-
-.scrollable-menu:hover {
-  overflow-y: scroll;
-  padding-right: 8px;
-}
-
-.scrollable-menu::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollable-menu::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollable-menu::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary-40);
-  border-radius: var(--border-radius-8);
-}
-
-.fixed-menu {
-  position: relative;
-  width: var(--width-left-navigation);
-}
-
-:global(.body__menu-open) .fixed-menu {
-  width: var(--width-left-navigation-when-expanded);
+:global(.body__menu-open) [data-link-level='text-link'] {
+  justify-content: start;
 }

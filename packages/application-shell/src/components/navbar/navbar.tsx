@@ -7,8 +7,6 @@ import {
   useState,
   useRef,
 } from 'react';
-import { css } from '@emotion/react';
-import classnames from 'classnames';
 import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
@@ -33,11 +31,18 @@ import Spacings from '@commercetools-uikit/spacings';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
 import {
-  NavigationHeader,
+  FixedMenu,
+  HeaderTitle,
   iconContainerStyles,
   iconStyles,
   itemIconTextStyles,
+  NavigationHeader,
+  ScrollableMenu,
   SublistItem,
+  SupportMenu,
+  textLinkStyles,
+  Text,
+  Title,
   TooltipContainer,
   Tooltip,
 } from './main-navbar.styles';
@@ -273,7 +278,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   <SublistItem
                     isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
                   >
-                    <div className={styles.text}>
+                    <Text>
                       <MenuItemLink
                         linkTo={`/${props.projectKey}/${submenu.uriPath}`}
                         // We want to use an exact matching strategy to avoid multiple
@@ -291,7 +296,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                           applicationLocale={props.applicationLocale}
                         />
                       </MenuItemLink>
-                    </div>
+                    </Text>
                   </SublistItem>
                 </RestrictedMenuItem>
               ))
@@ -370,10 +375,10 @@ const NavBar = (props: TNavbarProps) => {
             <img src={LogoSVG} width="100%" alt="Logo" />
           </div>
         </div>
-        {isMenuOpen ? <div className="title">Merchant Center</div> : null}
+        {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu']}>
+        <ScrollableMenu data-nav-migration="scrollable-menu">
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
@@ -403,10 +408,10 @@ const NavBar = (props: TNavbarProps) => {
               );
             })}
           </Spacings.Stack>
-        </div>
-        <div className={styles['fixed-menu']}>
+        </ScrollableMenu>
+        <FixedMenu data-nav-migration="fixed-menu">
           <Faded />
-          <div className={styles['support-menu']}>
+          <SupportMenu>
             <MenuItem
               hasSubmenu={false}
               isActive={false}
@@ -423,7 +428,8 @@ const NavBar = (props: TNavbarProps) => {
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
-                className={styles['text-link']}
+                css={textLinkStyles}
+                data-nav-migration="text-link"
               >
                 <div
                   data-nav-migration="item-icon-text"
@@ -435,22 +441,22 @@ const NavBar = (props: TNavbarProps) => {
                     </div>
                   </div>
                   {isMenuOpen ? (
-                    <div className={styles.title}>
+                    <Title data-nav-migration="title">
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />
-                    </div>
+                    </Title>
                   ) : null}
                 </div>
               </a>
             </MenuItem>
-          </div>
+          </SupportMenu>
           <MenuExpander
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}
             isMenuOpen={isMenuOpen}
           />
-        </div>
+        </FixedMenu>
       </MenuGroup>
     </NavBarLayout>
   );

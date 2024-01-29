@@ -39,15 +39,18 @@ import type {
 import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import {
+  getMenuItemLinkStyles,
   LeftNavigation,
   leftNavigationOpenStyles,
   listStyles,
+  sublistStyles,
   Expander,
   ExpanderIcon,
   iconContainerStyles,
   iconStyles,
   itemIconTextStyles,
   TextLinkSublistWrapper,
+  Title,
   NavlinkClickableContent,
 } from './main-navbar.styles';
 import compiledStyles from /* preval */ './navbar.styles';
@@ -245,6 +248,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
           props.isSubmenuAboveMenuItem,
           props.submenuVerticalPosition
         )};
+        ${props.level === 2 && sublistStyles}
       
       // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
       ${
@@ -270,9 +274,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuCollapsed
       }
       className={classnames(
-        {
-          [styles['sublist']]: props.level === 2,
-        },
         {
           [styles['sublist-expanded__active']]:
             isSublistActiveWhileIsMenuExpanded,
@@ -369,19 +370,8 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
           to={props.linkTo}
           exact={props.exactMatch}
           activeClassName={styles.highlighted}
-          css={css`
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            color: var(--color-solid);
-            font-weight: var(--font-weight-for-navbar-link-when-hovered);
-            text-decoration: none;
-            flex: 1;
-            padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
-              var(--spacing-30);
-            transition: padding 150ms ease-out;
-          `}
           data-link-level={linkLevel}
+          css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();
@@ -521,7 +511,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       />
       <LeftNavigation
         ref={ref}
-        className="left-navigation"
+        data-nav-migration="left-navigation"
         data-testid="left-navigation"
       >
         {props.children}
@@ -542,19 +532,19 @@ type ItemContainerProps = {
 const ItemContainer = (props: ItemContainerProps) => {
   return (
     <div data-nav-migration="item-icon-text" css={itemIconTextStyles}>
-      <div css={iconContainerStyles}>
+      <div data-nav-migration="icon-container" css={iconContainerStyles}>
         <div data-nav-migration="icon" css={iconStyles}>
           <IconSwitcher icon={props.icon} size="scale" />
         </div>
       </div>
       {props.isMenuOpen ? (
-        <div className={styles.title}>
+        <Title data-nav-migration="title">
           <MenuLabel
             labelAllLocales={props.labelAllLocales}
             defaultLabel={props.defaultLabel}
             applicationLocale={props.applicationLocale}
           />
-        </div>
+        </Title>
       ) : null}
     </div>
   );
