@@ -1,4 +1,4 @@
-name: Documentation for Custom Applications
+name: Components playground for Custom Applications
 
 # The event triggers are configured as following:
 # - on branch main, trigger the workflow on every push
@@ -45,9 +45,9 @@ jobs:
           path: |
             .cache
             public
-          key: ${{ runner.os }}-gatsby-docs-custom-applications-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-components-playground-custom-applications-v1-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-gatsby-docs-custom-applications-v1-
+            ${{ runner.os }}-components-playground-custom-applications-v1-
 
       - name: Install dependencies
         run: pnpm install
@@ -59,11 +59,8 @@ jobs:
       - name: Building packages
         run: pnpm build
 
-      - name: Building docs website
-        run: pnpm build:website:custom-applications
-        env:
-          NODE_OPTIONS: '--max-old-space-size=6144'
-          GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY: 32
+      - name: Building Custom Applications components playground
+        run: pnpm build:website:custom-applications-components-playground
 
       - name: Detect if is a production deployment (documentation)
         if: github.event_name == 'push' && github.ref_name == 'main'
@@ -77,7 +74,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
-          vercel-args: '--prod --local-config website/vercel.json'
+          vercel-args: '--prod --local-config website-components-playground/vercel.json'
           vercel-project-name: merchant-center-application-kit
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
@@ -100,7 +97,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           scope: commercetools
-          vercel-args: '--local-config website/vercel.json'
+          vercel-args: '--local-config website-components-playground/vercel.json'
           vercel-project-name: merchant-center-application-kit
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_DOCS }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID_DOCS }}
@@ -124,27 +121,3 @@ jobs:
           env: ${{ steps.start-deployment.outputs.env }}
           env_url: ${{ steps.deploy-docs-to-vercel-preview.outputs.preview-url }}
           deployment_id: ${{ steps.start-deployment.outputs.deployment_id }}
-
-  link-check:
-    name: 'Check links'
-
-    needs: build_and_deploy_docs
-
-    if: github.event_name != 'push' && github.ref_name != 'main'
-
-    runs-on: ubuntu-latest
-
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Check links
-        uses: JustinBeckwith/linkinator-action@v1.10.4
-        with:
-          paths: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app/custom-applications
-          config: website/linkinator.config.json
-          markdown: false
-          urlRewriteReplace: https://appkit-sha-${{ github.sha }}.commercetools.vercel.app
-          urlRewriteSearch: https://docs.commercetools.com
