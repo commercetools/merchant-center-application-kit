@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { DIMENSIONS } from '../../constants';
 import { NAVBAR } from './constants';
+import type { MenuItemProps } from './menu-items';
 
 export const LeftNavigation = styled.nav`
   display: grid;
@@ -26,6 +27,44 @@ export const leftNavigationOpenStyles = css`
   .body__menu-open [data-nav-migration='fixed-menu'] {
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
+
+  .body__menu-open [data-link-level='text-link'] {
+    justify-content: start;
+  }
+
+  .body__menu-open [data-nav-migration='list-item'] {
+    height: auto !important;
+    min-height: ${NAVBAR.itemSize} !important;
+    width: 100% !important;
+  }
+
+  .body__menu-open
+    [data-nav-migration='list-item']
+    [data-nav-migration='title'] {
+    opacity: 1 !important;
+    margin-left: var(--spacing-25) !important;
+    color: var(--color-surface) !important;
+    transition: ${NAVBAR.leftNavigationTransition} !important;
+    animation: visible 150ms cubic-bezier(1, 0, 0.58, 1) !important;
+  }
+
+  .body__menu-open [data-nav-migration-1='item__active'] {
+    max-height: 500px !important;
+    transition: max-height 0.25s ease-in !important;
+  }
+
+  .body__menu-open
+    [data-nav-migration-1='item__active']
+    [data-nav-migration='item-icon-text'] {
+    position: relative !important;
+    width: auto !important;
+  }
+
+  .body__menu-open
+    [data-nav-migration-1='item__active']
+    [data-nav-migration='item-icon-text'] {
+    margin-left: 0 !important;
+  }
 `;
 
 const visible = keyframes`
@@ -46,6 +85,11 @@ export const iconContainerStyles = css`
 export const iconStyles = css`
   width: ${NAVBAR.iconSize};
   height: ${NAVBAR.iconSize};
+  transition: ${NAVBAR.leftNavigationTransition};
+
+  > svg *:not([fill='none']) {
+    fill: var(--color-surface);
+  }
 `;
 
 export const itemIconTextStyles = css`
@@ -309,3 +353,5 @@ export const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       justify-content: center;
     `,
 ];
+
+export const getListItemStyles = (props: MenuItemProps) => [css``];
