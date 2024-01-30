@@ -17,7 +17,7 @@ const withoutProjectKeyClaim = (scope: string) =>
 const hasCachedAuthenticationState = (): boolean => {
   if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
     try {
-      const activeProjectKey = oidcStorage.getActiveProjectKey();
+      let activeProjectKey = oidcStorage.getActiveProjectKey();
       if (activeProjectKey) {
         // GIVEN The application is not requesting a project key,
         // THEN we assume that the application does not need a project context.
@@ -26,6 +26,19 @@ const hasCachedAuthenticationState = (): boolean => {
         // This is the case of an application like `account`.
         if (!window.app.__DEVELOPMENT__?.oidc?.initialProjectKey) {
           oidcStorage.removeActiveProjectKey();
+        }
+
+        // If the prohect key we had in the storage does not match the one
+        // we have in the development config, then we need to discard it and
+        // use the one from the development config.
+        if (
+          window.app.__DEVELOPMENT__?.oidc?.initialProjectKey &&
+          window.app.__DEVELOPMENT__?.oidc?.initialProjectKey !==
+            activeProjectKey
+        ) {
+          activeProjectKey =
+            window.app.__DEVELOPMENT__?.oidc?.initialProjectKey;
+          oidcStorage.setActiveProjectKey(activeProjectKey);
         }
       } else {
         if (window.app.__DEVELOPMENT__?.oidc?.initialProjectKey) {
