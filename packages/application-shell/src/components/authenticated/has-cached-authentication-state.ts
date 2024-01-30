@@ -28,7 +28,7 @@ const hasCachedAuthenticationState = (): boolean => {
           oidcStorage.removeActiveProjectKey();
         }
 
-        // If the prohect key we had in the storage does not match the one
+        // If the project key we had in the storage does not match the one
         // we have in the development config, then we need to discard it and
         // use the one from the development config.
         if (
