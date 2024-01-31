@@ -10,7 +10,6 @@
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
     "extract-intl": "formatjs extract --format=./packages/i18n/transifex-transformer.js --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "pnpm --filter @commercetools-frontend/i18n run compile-data",
-    "compile-css-modules": "pnpm --filter @commercetools-frontend/application-shell run compile-css-modules --no-private",
     "l10n:build": "pnpm --filter @commercetools-frontend/l10n run generate-data",
     "lint": "jest --projects jest.{eslint,stylelint,text}.config.js",
     "lint:js": "jest --config jest.eslint.config.js",

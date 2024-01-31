@@ -27,9 +27,6 @@
     "LICENSE",
     "README.md"
   ],
-  "scripts": {
-    "compile-css-modules": "./scripts/compile-styles.js"
-  },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",

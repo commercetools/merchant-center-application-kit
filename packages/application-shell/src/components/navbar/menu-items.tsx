@@ -53,9 +53,6 @@ import {
   Title,
   NavlinkClickableContent,
 } from './main-navbar.styles';
-import compiledStyles from /* preval */ './navbar.styles';
-
-const styles = compiledStyles.jsonMap;
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;

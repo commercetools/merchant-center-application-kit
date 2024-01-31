@@ -60,13 +60,10 @@ import {
 } from './menu-items';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
-import compiledStyles from /* preval */ './navbar.styles';
 
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from './non-nullable';
 import useNavbarStateManager from './use-navbar-state-manager';
-
-const styles = compiledStyles.jsonMap;
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
