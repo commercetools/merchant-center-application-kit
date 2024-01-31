@@ -298,7 +298,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
 });
 MenuGroup.displayName = 'MenuGroup';
 
-export type MenuItemProps = {
+type MenuItemProps = {
   hasSubmenu: boolean;
   isActive: boolean;
   isMainMenuRouteActive?: boolean;
