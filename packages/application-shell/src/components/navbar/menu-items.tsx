@@ -43,7 +43,6 @@ import {
   LeftNavigation,
   leftNavigationOpenStyles,
   listStyles,
-  getListItemStyles,
   sublistStyles,
   Expander,
   ExpanderIcon,
@@ -276,24 +275,23 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
       }
       className={classnames(
         {
-          [styles['sublist-expanded__active']]:
-            isSublistActiveWhileIsMenuExpanded,
+          'sublist-expanded__active': isSublistActiveWhileIsMenuExpanded,
         },
         {
-          [styles['sublist-collapsed__empty']]:
+          'sublist-collapsed__empty':
             isSublistActiveWhileIsMenuCollapsed && !props.hasSubmenu,
         },
         {
-          [styles['sublist-collapsed__active']]:
+          'sublist-collapsed__active':
             isSublistActiveWhileIsMenuCollapsed &&
             !props.isSubmenuAboveMenuItem,
         },
         {
-          [styles['sublist-collapsed__active__above']]:
+          'sublist-collapsed__active__above':
             isSublistActiveWhileIsMenuCollapsed && props.isSubmenuAboveMenuItem,
         },
         {
-          [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
+          sublist__inactive: !isSublistActiveWhileIsMenuCollapsed,
         }
       )}
     >
@@ -322,23 +320,19 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <li
       role="menuitem"
-      css={getListItemStyles(props)}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
-      data-nav-migration="list-item"
-      {...(props.isActive ? { 'data-nav-migration-1': 'item__active' } : {})}
-      {...(props.isMainMenuRouteActive
-        ? { 'data-nav-migration-2': 'item_menu__active' }
-        : {})}
-      {...(!props.isMenuOpen
-        ? { 'data-nav-migration-3': 'item_menu-collapsed' }
-        : {})}
+      className={classnames('list-item', {
+        item__active: props.isActive,
+        item_menu__active: props.isMainMenuRouteActive ?? false,
+        'item_menu-collapsed': !props.isMenuOpen,
+      })}
     >
-      <div data-nav-migration="item-link">{props.children}</div>
+      <div className="item-link">{props.children}</div>
     </li>
   );
 };
@@ -374,7 +368,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
         <NavLink
           to={props.linkTo}
           exact={props.exactMatch}
-          activeClassName={styles.highlighted}
+          activeClassName="highlighted"
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           onClick={(event) => {
@@ -516,7 +510,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
       />
       <LeftNavigation
         ref={ref}
-        data-nav-migration="left-navigation"
+        className="left-navigation"
         data-testid="left-navigation"
       >
         {props.children}
@@ -536,14 +530,14 @@ type ItemContainerProps = {
 
 const ItemContainer = (props: ItemContainerProps) => {
   return (
-    <div data-nav-migration="item-icon-text" css={itemIconTextStyles}>
-      <div data-nav-migration="icon-container" css={iconContainerStyles}>
-        <div data-nav-migration="icon" css={iconStyles}>
+    <div className="item-icon-text" css={itemIconTextStyles}>
+      <div className="icon-container" css={iconContainerStyles}>
+        <div className="icon" css={iconStyles}>
           <IconSwitcher icon={props.icon} size="scale" />
         </div>
       </div>
       {props.isMenuOpen ? (
-        <Title data-nav-migration="title">
+        <Title className="title">
           <MenuLabel
             labelAllLocales={props.labelAllLocales}
             defaultLabel={props.defaultLabel}

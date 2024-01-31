@@ -378,7 +378,7 @@ const NavBar = (props: TNavbarProps) => {
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
-        <ScrollableMenu data-nav-migration="scrollable-menu">
+        <ScrollableMenu className="scrollable-menu">
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
@@ -409,7 +409,7 @@ const NavBar = (props: TNavbarProps) => {
             })}
           </Spacings.Stack>
         </ScrollableMenu>
-        <FixedMenu data-nav-migration="fixed-menu">
+        <FixedMenu className="fixed-menu">
           <Faded />
           <SupportMenu>
             <MenuItem
@@ -429,19 +429,16 @@ const NavBar = (props: TNavbarProps) => {
                 rel="noopener noreferrer"
                 target="_blank"
                 css={textLinkStyles}
-                data-nav-migration="text-link"
+                className="text-link"
               >
-                <div
-                  data-nav-migration="item-icon-text"
-                  css={itemIconTextStyles}
-                >
+                <div className="item-icon-text" css={itemIconTextStyles}>
                   <div css={iconContainerStyles}>
-                    <div data-nav-migration="icon" css={iconStyles}>
+                    <div className="icon" css={iconStyles}>
                       <SupportIcon size="scale" />
                     </div>
                   </div>
                   {isMenuOpen ? (
-                    <Title data-nav-migration="title">
+                    <Title className="title">
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { DIMENSIONS } from '../../constants';
 import { NAVBAR } from './constants';
-import type { MenuItemProps } from './menu-items';
 
 export const LeftNavigation = styled.nav`
   display: grid;
@@ -15,16 +14,16 @@ export const LeftNavigation = styled.nav`
 `;
 
 export const leftNavigationOpenStyles = css`
-  .body__menu-open [data-nav-migration='left-navigation'] {
+  .body__menu-open .left-navigation {
     transition: ${NAVBAR.leftNavigationTransition};
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
 
-  .body__menu-open [data-nav-migration='scrollable-menu'] {
+  .body__menu-open .scrollable-menu {
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
 
-  .body__menu-open [data-nav-migration='fixed-menu'] {
+  .body__menu-open .fixed-menu {
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
 
@@ -32,38 +31,174 @@ export const leftNavigationOpenStyles = css`
     justify-content: start;
   }
 
-  .body__menu-open [data-nav-migration='list-item'] {
-    height: auto !important;
-    min-height: ${NAVBAR.itemSize} !important;
-    width: 100% !important;
+  .body__menu-open .list-item {
+    height: auto;
+    min-height: ${NAVBAR.itemSize};
+    width: 100%;
   }
 
-  .body__menu-open
-    [data-nav-migration='list-item']
-    [data-nav-migration='title'] {
-    opacity: 1 !important;
-    margin-left: var(--spacing-25) !important;
-    color: var(--color-surface) !important;
-    transition: ${NAVBAR.leftNavigationTransition} !important;
-    animation: visible 150ms cubic-bezier(1, 0, 0.58, 1) !important;
+  .body__menu-open .list-item .title {
+    opacity: 1;
+    margin-left: var(--spacing-25);
+    color: var(--color-surface);
+    transition: ${NAVBAR.leftNavigationTransition};
+    animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
   }
 
-  .body__menu-open [data-nav-migration-1='item__active'] {
-    max-height: 500px !important;
-    transition: max-height 0.25s ease-in !important;
+  .body__menu-open .item__active {
+    max-height: 500px;
+    transition: max-height 0.25s ease-in;
   }
 
-  .body__menu-open
-    [data-nav-migration-1='item__active']
-    [data-nav-migration='item-icon-text'] {
-    position: relative !important;
-    width: auto !important;
+  .body__menu-open .item__active .item-icon-text {
+    position: relative;
+    width: auto;
   }
 
-  .body__menu-open
-    [data-nav-migration-1='item__active']
-    [data-nav-migration='item-icon-text'] {
-    margin-left: 0 !important;
+  .body__menu-open .item__active .item-icon-text {
+    margin-left: 0;
+  }
+
+  .body__menu-open .item-link {
+    width: 100%;
+  }
+
+  // List item
+  .fixed-menu .list-item .item-icon-text {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+
+  .list-item {
+    min-height: ${NAVBAR.itemSize};
+    background: var(--color-primary);
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .list-item .icon-container {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+  }
+
+  .item_menu-collapsed {
+    text-align: center;
+  }
+
+  .item__active,
+  .item_menu__active,
+  .item_menu__active:focus-within {
+    background: var(--color-accent-30);
+    border-radius: var(--border-radius-8);
+  }
+
+  .item__active .item-icon-text {
+    justify-content: flex-start;
+  }
+
+  .list-item:hover .title,
+  .list-item:focus-within .title {
+    margin-left: calc(var(--spacing-25) + 2px);
+  }
+
+  .list-item:hover .icon,
+  .list-item:focus-within .icon {
+    /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+    transform: scale(1.2);
+  }
+
+  .list-item:not(.item_menu__active):hover,
+  .list-item:not(.item_menu__active):focus-within {
+    background-color: var(--color-primary-40);
+    border-radius: var(--border-radius-8);
+  }
+
+  .list-item:not(.item__active):hover .icon > svg *:not([fill='none']),
+  .list-item:not(.item__active):focus-within .icon > svg *:not([fill='none']) {
+    fill: var(--color-for-navbar-icon-when-active);
+  }
+
+  .list-item:not(.item__active):hover .title,
+  .list-item:not(.item__active):focus-within .title {
+    color: var(--color-for-navbar-link-when-hovered);
+  }
+
+  .list-item:hover .sublist-collapsed__active,
+  .list-item:hover .sublist-collapsed__active__above,
+  .list-item:hover .sublist-expanded__active,
+  .list-item:focus-within .sublist-collapsed__active,
+  .list-item:focus-within .sublist-collapsed__active__above,
+  .list-item:focus-within .sublist-expanded__active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--color-surface);
+    /* TODO: add design tokens instead hard-coded values */
+    min-height: 50px;
+    width: ${NAVBAR.sublistWidth};
+    border-radius: var(--border-radius-8);
+    /* z-index value must be higher than AppBar's z-index */
+    z-index: 20001;
+    box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
+  }
+
+  .list-item:hover .sublist-collapsed__active.sublist-collapsed__empty,
+  .list-item:hover .sublist-collapsed__active__above.sublist-collapsed__empty,
+  .list-item:focus-within .sublist-collapsed__active.sublist-collapsed__empty,
+  .list-item:focus-within
+    .sublist-collapsed__active__above.sublist-collapsed__empty {
+    visibility: hidden;
+  }
+
+  .list-item:hover .sublist-expanded__active,
+  .list-item:focus-within .sublist-expanded__active {
+    left: ${NAVBAR.sublistIndentationWhenExpanded};
+  }
+
+  // Sublist item
+
+  .item-link {
+    color: var(--color-for-navbar-link);
+    width: ${NAVBAR.itemSize};
+    position: relative;
+    display: block;
+  }
+
+  /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+  .sublist-expanded__active::before,
+  .sublist-collapsed__active::before,
+  .sublist-collapsed__active__above::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: calc(${NAVBAR.sublistWidth} + var(--spacing-20));
+    height: ${NAVBAR.itemSize};
+    left: calc(-1 * var(--spacing-20));
+  }
+
+  .sublist__inactive {
+    /* empty block */
+  }
+
+  /* Item active */
+
+  .sublist-expanded__active,
+  .sublist-collapsed__active,
+  .sublist-collapsed__active__above {
+    opacity: 1;
+    display: none;
+    text-align: left;
+    background-color: var(--background-color-for-navbar-when-active);
+  }
+
+  .highlighted,
+  .highlighted .title {
+    color: var(--color-for-navbar-link-when-active) !important;
+    font-weight: var(--font-weight-for-navbar-link-when-active);
   }
 `;
 
@@ -353,5 +488,3 @@ export const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       justify-content: center;
     `,
 ];
-
-export const getListItemStyles = (props: MenuItemProps) => [css``];
