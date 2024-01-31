@@ -501,7 +501,6 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
     <>
       <Global
         styles={css`
-          ${compiledStyles.global}
           ${leftNavigationOpenStyles}
         `}
       />

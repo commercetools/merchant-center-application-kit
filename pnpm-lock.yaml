@@ -234,15 +234,6 @@ importers:
       lint-staged:
         specifier: 11.2.6
         version: 11.2.6
-      postcss:
-        specifier: 8.4.31
-        version: 8.4.31
-      postcss-load-config:
-        specifier: 3.1.4
-        version: 3.1.4(postcss@8.4.31)(ts-node@10.9.1)
-      postcss-modules:
-        specifier: 4.3.1
-        version: 4.3.1(postcss@8.4.31)
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -7070,16 +7061,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.15.1:
-    resolution: {integrity: sha512-Ubvzcg17lf13mCIaYdBWqf+I/FuDsP9bEwInAzq4d94h9HkvroCQrF0PxzHp+TjjithFckhB0yZCle+fomTPvA==}
+  /@commercetools-frontend/application-config@22.16.0:
+    resolution: {integrity: sha512-vV5DUpbFap1C9QMm7i15zCv/thSVlX/powZzZO6rJf2blhvbp9fM5qycmyecRFHWnnIAUYe+QPqM3XS7ORNkeQ==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.15.1
-      '@commercetools-frontend/constants': 22.15.1
+      '@commercetools-frontend/babel-preset-mc-app': 22.16.0
+      '@commercetools-frontend/constants': 22.16.0
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -7097,8 +7088,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.15.1:
-    resolution: {integrity: sha512-fLJ7KxSHjCXbxbqYUGTZ3vBqFzdmZAQaBtFHNvTgWB/VxeZQ5YEOQxu5b+5tzFbXj+5rF2Tzd7J5fyVP/gPSGA==}
+  /@commercetools-frontend/babel-preset-mc-app@22.16.0:
+    resolution: {integrity: sha512-F8R5x01FdbEiBadnmBdAABwBwkkY0oW4j9nGn7AU4DGehQNNDQVmn6eBH0k8AVRJJHAQ0pXFDdni+sENFGOChw==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7130,8 +7121,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.15.1:
-    resolution: {integrity: sha512-C4F85/a1GIec2FdPz1I9tOThpyD8n0y2gD5u0TnwO4Zg3l6fqFferXJREuvUpjIXRwFU/P5Np6cn6cVq9zOSRA==}
+  /@commercetools-frontend/constants@22.16.0:
+    resolution: {integrity: sha512-eRWTPieK1trrNYzjIsWIzRkI3n+ZUtVnPS+7fuqwnbFuIJOf9REdPzSmjU8neqnYQuCKqwMAPonHcve58DweiQ==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7204,8 +7195,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.15.1
-      '@commercetools-frontend/constants': 22.15.1
+      '@commercetools-frontend/application-config': 22.16.0
+      '@commercetools-frontend/constants': 22.16.0
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -22899,12 +22890,6 @@ packages:
       - supports-color
     dev: true
 
-  /generic-names@4.0.0:
-    resolution: {integrity: sha512-ySFolZQfw9FoDb3ed9d80Cm9f0+r7qj+HJkWjeD9RBfpxEVTlVhol+gvaQB/78WbwYfbnNh8nWHHBSlg072y6A==}
-    dependencies:
-      loader-utils: 3.2.1
-    dev: false
-
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -24040,10 +24025,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
-
-  /icss-replace-symbols@1.1.0:
-    resolution: {integrity: sha512-chIaY3Vh2mh2Q3RGXttaDIzeiPvaVXJ+C4DAh/w3c37SKZ/U6PGMmuicR2EQQp9bKG8zLMCl7I+PtIoOOPp8Gg==}
-    dev: false
 
   /icss-utils@5.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
@@ -29036,22 +29017,6 @@ packages:
       icss-utils: 5.1.0(postcss@8.4.31)
       postcss: 8.4.31
 
-  /postcss-modules@4.3.1(postcss@8.4.31):
-    resolution: {integrity: sha512-ItUhSUxBBdNamkT3KzIZwYNNRFKmkJrofvC2nWab3CPKhYBQ1f27XXh1PAPE27Psx58jeelPsxWB/+og+KEH0Q==}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      generic-names: 4.0.0
-      icss-replace-symbols: 1.1.0
-      lodash.camelcase: 4.3.0
-      postcss: 8.4.31
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.31)
-      postcss-modules-local-by-default: 4.0.0(postcss@8.4.31)
-      postcss-modules-scope: 3.0.0(postcss@8.4.31)
-      postcss-modules-values: 4.0.0(postcss@8.4.31)
-      string-hash: 1.1.3
-    dev: false
-
   /postcss-normalize-charset@5.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-mSgUJ+pd/ldRGVx26p2wz9dNZ7ji6Pn8VWBajMXFf8jk7vUoSrZ2lt/wZR7DtlZYKesmZI680qjr2CeFF2fbUg==}
     engines: {node: ^10 || ^12 || >=14.0}
@@ -31813,10 +31778,6 @@ packages:
 
   /string-env-interpolation@1.0.1:
     resolution: {integrity: sha512-78lwMoCcn0nNu8LszbP1UA7g55OeE4v7rCeWnM5B453rnNr4aq+5it3FEYtZrSEiMvHZOZ9Jlqb0OD0M2VInqg==}
-    dev: false
-
-  /string-hash@1.1.3:
-    resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
     dev: false
 
   /string-length@4.0.2:
