@@ -40,18 +40,18 @@ import { location } from '../../utils/location';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import {
   getMenuItemLinkStyles,
-  LeftNavigation,
   leftNavigationOpenStyles,
   listStyles,
   sublistStyles,
   Expander,
   ExpanderIcon,
-  iconContainerStyles,
-  iconStyles,
-  itemIconTextStyles,
+  IconContainer,
+  Icon,
+  ItemIconText,
+  LeftNavigation,
+  NavlinkClickableContent,
   TextLinkSublistWrapper,
   Title,
-  NavlinkClickableContent,
 } from './main-navbar.styles';
 
 type TProjectPermissions = {
@@ -524,12 +524,12 @@ type ItemContainerProps = {
 
 const ItemContainer = (props: ItemContainerProps) => {
   return (
-    <div className="item-icon-text" css={itemIconTextStyles}>
-      <div className="icon-container" css={iconContainerStyles}>
-        <div className="icon" css={iconStyles}>
+    <ItemIconText className="item-icon-text">
+      <IconContainer className="icon-container">
+        <Icon className="icon">
           <IconSwitcher icon={props.icon} size="scale" />
-        </div>
-      </div>
+        </Icon>
+      </IconContainer>
       {props.isMenuOpen ? (
         <Title className="title">
           <MenuLabel
@@ -539,7 +539,7 @@ const ItemContainer = (props: ItemContainerProps) => {
           />
         </Title>
       ) : null}
-    </div>
+    </ItemIconText>
   );
 };
 

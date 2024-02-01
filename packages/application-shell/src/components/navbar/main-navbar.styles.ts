@@ -3,7 +3,16 @@ import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 
-export const LeftNavigation = styled.nav`
+const visible = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const LeftNavigation = styled.nav`
   display: grid;
   width: ${NAVBAR.widthLeftNavigation};
   background: ${designTokens.colorPrimary};
@@ -12,7 +21,7 @@ export const LeftNavigation = styled.nav`
   transition: ${NAVBAR.leftNavigationTransition};
 `;
 
-export const leftNavigationOpenStyles = css`
+const leftNavigationOpenStyles = css`
   .body__menu-open .left-navigation {
     transition: ${NAVBAR.leftNavigationTransition};
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
@@ -41,7 +50,7 @@ export const leftNavigationOpenStyles = css`
     margin-left: var(--spacing-25);
     color: var(--color-surface);
     transition: ${NAVBAR.leftNavigationTransition};
-    animation: visible 150ms cubic-bezier(1, 0, 0.58, 1);
+    animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
   }
 
   .body__menu-open .item__active {
@@ -106,7 +115,7 @@ export const leftNavigationOpenStyles = css`
 
   .list-item:hover .icon,
   .list-item:focus-within .icon {
-    /* 1.16 is roughly the ratio of icon-size-hover to --icon-size */
+    /* 1.16 is roughly the ratio of NAVBAR.iconSizeHover to NAVBAR.iconSize */
     transform: scale(1.2);
   }
 
@@ -201,22 +210,13 @@ export const leftNavigationOpenStyles = css`
   }
 `;
 
-const visible = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-export const iconContainerStyles = css`
+const IconContainer = styled.div`
   width: auto;
   display: flex;
   justify-content: center;
 `;
 
-export const iconStyles = css`
+const Icon = styled.div`
   width: ${NAVBAR.iconSize};
   height: ${NAVBAR.iconSize};
   transition: ${NAVBAR.leftNavigationTransition};
@@ -226,14 +226,14 @@ export const iconStyles = css`
   }
 `;
 
-export const itemIconTextStyles = css`
+const ItemIconText = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
 
-export const NavigationHeader = styled.div`
+const NavigationHeader = styled.div`
   background-color: ${designTokens.colorAccent10};
   color: ${designTokens.colorSurface};
   display: flex;
@@ -243,14 +243,14 @@ export const NavigationHeader = styled.div`
   padding: ${designTokens.spacing30};
 `;
 
-export const HeaderTitle = styled.div`
+const HeaderTitle = styled.div`
   font-weight: 600;
   margin-left: ${designTokens.spacing20};
   transition: ${NAVBAR.leftNavigationTransition};
   animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
 `;
 
-export const Expander = styled.li`
+const Expander = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,7 +277,7 @@ export const Expander = styled.li`
   }
 `;
 
-export const ExpanderIcon = styled.div`
+const ExpanderIcon = styled.div`
   height: ${NAVBAR.expanderSize};
   width: ${NAVBAR.expanderSize};
   border-radius: ${designTokens.borderRadius4};
@@ -294,7 +294,7 @@ export const ExpanderIcon = styled.div`
   }
 `;
 
-export const listStyles = css`
+const listStyles = css`
   margin: 0;
   padding: 0;
   display: flex;
@@ -303,7 +303,7 @@ export const listStyles = css`
   flex: 1 1 0;
 `;
 
-export const TooltipContainer = styled.div<{
+const TooltipContainer = styled.div<{
   alignsAgainstBottom: boolean;
 }>`
   position: absolute;
@@ -318,7 +318,7 @@ export const TooltipContainer = styled.div<{
     props.alignsAgainstBottom ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
 `;
 
-export const Tooltip = styled.div`
+const Tooltip = styled.div`
   padding: var(--spacing-10) calc(var(--spacing-20) + var(--spacing-10));
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -334,7 +334,7 @@ export const Tooltip = styled.div`
   visibility: inherit;
 `;
 
-export const SublistItem = styled.li<{ isActive: boolean }>`
+const SublistItem = styled.li<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   align-self: stretch;
@@ -366,19 +366,19 @@ export const SublistItem = styled.li<{ isActive: boolean }>`
   ]}
 `;
 
-export const TextLinkSublistWrapper = styled.div`
+const TextLinkSublistWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
   min-height: 0;
 `;
 
-export const NavlinkClickableContent = styled.div`
+const NavlinkClickableContent = styled.div`
   height: 100%;
   width: 100%;
 `;
 
-export const sublistStyles = css`
+const sublistStyles = css`
   padding: var(--spacing-30);
   font-weight: var(--font-weight-for-navbar-link);
   font-size: var(--font-size-for-navbar-link);
@@ -390,7 +390,7 @@ export const sublistStyles = css`
   display: none;
 `;
 
-export const ScrollableMenu = styled.div`
+const ScrollableMenu = styled.div`
   flex: 1 1 0;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -420,12 +420,12 @@ export const ScrollableMenu = styled.div`
   }
 `;
 
-export const FixedMenu = styled.div`
+const FixedMenu = styled.div`
   position: relative;
   width: ${NAVBAR.widthLeftNavigation};
 `;
 
-export const textLinkStyles = css`
+const TextLink = styled.a`
   color: var(--color-for-navbar-link);
   text-decoration: none;
   display: flex;
@@ -434,13 +434,13 @@ export const textLinkStyles = css`
   justify-content: center;
 `;
 
-export const SupportMenu = styled.div`
+const SupportMenu = styled.div`
   padding: var(--spacing-10) var(--spacing-30) var(--spacing-20)
     var(--spacing-30);
   height: calc(var(--item-size) + var(--spacing-20));
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   flex: 1;
   font-weight: 600;
   font-size: var(--font-size-for-navbar-link);
@@ -453,7 +453,7 @@ export const Title = styled.div`
   z-index: 1;
 `;
 
-export const Text = styled.div`
+const Text = styled.div`
   font-weight: var(--font-weight-for-navbar-link);
   font-size: var(--font-size-for-navbar-link);
   line-height: var(--line-height-for-navbar-link);
@@ -461,7 +461,7 @@ export const Text = styled.div`
   height: 100%;
 `;
 
-export const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
+const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
   isSubmenuLink &&
     css`
       display: -webkit-box;
@@ -485,3 +485,30 @@ export const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       justify-content: center;
     `,
 ];
+
+export {
+  getMenuItemLinkStyles,
+  leftNavigationOpenStyles,
+  listStyles,
+  sublistStyles,
+  // styled components
+  Expander,
+  ExpanderIcon,
+  FixedMenu,
+  HeaderTitle,
+  Icon,
+  IconContainer,
+  ItemIconText,
+  LeftNavigation,
+  NavigationHeader,
+  NavlinkClickableContent,
+  ScrollableMenu,
+  SublistItem,
+  SupportMenu,
+  Text,
+  TextLink,
+  TextLinkSublistWrapper,
+  Title,
+  Tooltip,
+  TooltipContainer,
+};

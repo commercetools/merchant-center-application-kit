@@ -33,18 +33,18 @@ import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
 import {
   FixedMenu,
   HeaderTitle,
-  iconContainerStyles,
-  iconStyles,
-  itemIconTextStyles,
+  Icon,
+  IconContainer,
+  ItemIconText,
   NavigationHeader,
   ScrollableMenu,
   SublistItem,
   SupportMenu,
-  textLinkStyles,
+  TextLink,
   Text,
   Title,
-  TooltipContainer,
   Tooltip,
+  TooltipContainer,
 } from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
@@ -367,11 +367,11 @@ const NavBar = (props: TNavbarProps) => {
   return (
     <NavBarLayout ref={navBarNode}>
       <NavigationHeader>
-        <div css={iconContainerStyles}>
-          <div css={iconStyles}>
+        <IconContainer>
+          <Icon>
             <img src={LogoSVG} width="100%" alt="Logo" />
-          </div>
-        </div>
+          </Icon>
+        </IconContainer>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
@@ -421,19 +421,18 @@ const NavBar = (props: TNavbarProps) => {
               }
               onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
             >
-              <a
+              <TextLink
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
-                css={textLinkStyles}
                 className="text-link"
               >
-                <div className="item-icon-text" css={itemIconTextStyles}>
-                  <div css={iconContainerStyles}>
-                    <div className="icon" css={iconStyles}>
+                <ItemIconText className="item-icon-text">
+                  <IconContainer>
+                    <Icon className="icon">
                       <SupportIcon size="scale" />
-                    </div>
-                  </div>
+                    </Icon>
+                  </IconContainer>
                   {isMenuOpen ? (
                     <Title className="title">
                       <FormattedMessage
@@ -441,8 +440,8 @@ const NavBar = (props: TNavbarProps) => {
                       />
                     </Title>
                   ) : null}
-                </div>
-              </a>
+                </ItemIconText>
+              </TextLink>
             </MenuItem>
           </SupportMenu>
           <MenuExpander
