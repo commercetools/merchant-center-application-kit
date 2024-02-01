@@ -12,15 +12,6 @@ const visible = keyframes`
   }
 `;
 
-const LeftNavigation = styled.nav`
-  display: grid;
-  width: ${NAVBAR.widthLeftNavigation};
-  background: ${designTokens.colorPrimary};
-  height: 100%;
-  grid-template-rows: 56px 1fr;
-  transition: ${NAVBAR.leftNavigationTransition};
-`;
-
 const leftNavigationOpenStyles = css`
   .body__menu-open .left-navigation {
     transition: ${NAVBAR.leftNavigationTransition};
@@ -86,7 +77,7 @@ const leftNavigationOpenStyles = css`
     cursor: pointer;
   }
 
-  .list-item .icon-container {
+  .list-item .icon-wrapper {
     width: auto;
     display: flex;
     justify-content: center;
@@ -210,7 +201,7 @@ const leftNavigationOpenStyles = css`
   }
 `;
 
-const IconContainer = styled.div`
+const IconWrapper = styled.div`
   width: auto;
   display: flex;
   justify-content: center;
@@ -248,50 +239,6 @@ const HeaderTitle = styled.div`
   margin-left: ${designTokens.spacing20};
   transition: ${NAVBAR.leftNavigationTransition};
   animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
-`;
-
-const Expander = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    180deg,
-    ${designTokens.colorPrimary} 0%,
-    ${designTokens.colorPrimary25} 100%
-  );
-  padding: ${designTokens.spacing30} ${designTokens.spacing25};
-
-  /* Divider */
-  ::before {
-    content: '';
-    position: absolute;
-    top: ${NAVBAR.itemHeight};
-    height: 1px;
-    background: rgba(255, 255, 255, 0.5);
-    width: calc(100% - 2 * ${designTokens.spacing30});
-  }
-
-  :hover,
-  :focus {
-    background-color: var(--color-primary-40);
-  }
-`;
-
-const ExpanderIcon = styled.div`
-  height: ${NAVBAR.expanderSize};
-  width: ${NAVBAR.expanderSize};
-  border-radius: ${designTokens.borderRadius4};
-  padding: ${designTokens.spacing20};
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  :hover,
-  :focus {
-    background: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-  }
 `;
 
 const listStyles = css`
@@ -364,18 +311,6 @@ const SublistItem = styled.li<{ isActive: boolean }>`
         }
       `,
   ]}
-`;
-
-const TextLinkSublistWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 0;
-`;
-
-const NavlinkClickableContent = styled.div`
-  height: 100%;
-  width: 100%;
 `;
 
 const sublistStyles = css`
@@ -492,23 +427,19 @@ export {
   listStyles,
   sublistStyles,
   // styled components
-  Expander,
-  ExpanderIcon,
   FixedMenu,
   HeaderTitle,
-  Icon,
-  IconContainer,
-  ItemIconText,
-  LeftNavigation,
   NavigationHeader,
-  NavlinkClickableContent,
   ScrollableMenu,
   SublistItem,
   SupportMenu,
   Text,
   TextLink,
-  TextLinkSublistWrapper,
   Title,
   Tooltip,
   TooltipContainer,
+  // common
+  Icon,
+  IconWrapper,
+  ItemIconText,
 };

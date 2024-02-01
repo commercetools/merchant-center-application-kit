@@ -34,7 +34,7 @@ import {
   FixedMenu,
   HeaderTitle,
   Icon,
-  IconContainer,
+  IconWrapper,
   ItemIconText,
   NavigationHeader,
   ScrollableMenu,
@@ -60,8 +60,6 @@ import {
 } from './menu-items';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
-
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from './non-nullable';
 import useNavbarStateManager from './use-navbar-state-manager';
 
@@ -367,11 +365,11 @@ const NavBar = (props: TNavbarProps) => {
   return (
     <NavBarLayout ref={navBarNode}>
       <NavigationHeader>
-        <IconContainer>
+        <IconWrapper>
           <Icon>
             <img src={LogoSVG} width="100%" alt="Logo" />
           </Icon>
-        </IconContainer>
+        </IconWrapper>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
@@ -428,11 +426,11 @@ const NavBar = (props: TNavbarProps) => {
                 className="text-link"
               >
                 <ItemIconText className="item-icon-text">
-                  <IconContainer>
+                  <IconWrapper>
                     <Icon className="icon">
                       <SupportIcon size="scale" />
                     </Icon>
-                  </IconContainer>
+                  </IconWrapper>
                   {isMenuOpen ? (
                     <Title className="title">
                       <FormattedMessage

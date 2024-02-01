@@ -10,7 +10,6 @@ import {
   type SyntheticEvent,
 } from 'react';
 import { Global, css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
@@ -30,29 +29,32 @@ import {
   SidebarCollapseIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import { NAVBAR } from '../../constants';
 import type {
   TDataFence,
   TActionRight,
   TLocalizedField,
 } from '../../types/generated/proxy';
 import { location } from '../../utils/location';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import {
   getMenuItemLinkStyles,
   leftNavigationOpenStyles,
   listStyles,
   sublistStyles,
-  Expander,
-  ExpanderIcon,
-  IconContainer,
+  IconWrapper,
   Icon,
   ItemIconText,
-  LeftNavigation,
-  NavlinkClickableContent,
-  TextLinkSublistWrapper,
   Title,
 } from './main-navbar.styles';
+import {
+  getSubmenuPositionBasedOnMenuItemPosition,
+  getContainerPositionBasedOnMenuItemPosition,
+  Expander,
+  ExpanderIcon,
+  Faded,
+  LeftNavigation,
+  TextLinkSublistWrapper,
+  NavlinkClickableContent,
+} from './menu-items.styles';
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -148,15 +150,7 @@ const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
 
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
-    <Expander
-      key="expander"
-      css={
-        !props.isVisible &&
-        css`
-          display: none;
-        `
-      }
-    >
+    <Expander key="expander" isVisible={props.isVisible}>
       <ExpanderIcon
         onClick={props.onClick}
         onKeyDown={(e) => {
@@ -174,15 +168,6 @@ const MenuExpander = (props: MenuExpanderProps) => {
 };
 MenuExpander.displayName = 'MenuExpander';
 
-const Faded = styled.div`
-  position: absolute;
-  top: -32px;
-  height: 32px;
-  width: 100%;
-  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
-  z-index: 1;
-`;
-
 type MenuGroupProps = {
   id: string;
   level: 1 | 2;
@@ -193,34 +178,6 @@ type MenuGroupProps = {
   submenuVerticalPosition?: number;
   isSubmenuAboveMenuItem?: boolean;
 };
-
-const getSubmenuPositionBasedOnMenuItemPosition = (
-  isSubmenuAboveMenuItem?: boolean,
-  submenuVerticalPosition?: number
-) => css`
-  ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: ${submenuVerticalPosition}px
-`;
-
-const getContainerPositionBasedOnMenuItemPosition = (
-  isSubmenuAboveMenuItem?: boolean,
-  isSublistActiveWhileIsMenuExpanded?: boolean,
-  isSublistActiveWhileIsMenuCollapsed?: boolean
-) => [
-  isSublistActiveWhileIsMenuCollapsed &&
-    css`
-      ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
-    `,
-  isSublistActiveWhileIsMenuExpanded &&
-    isSubmenuAboveMenuItem &&
-    css`
-      bottom: 0;
-    `,
-  isSublistActiveWhileIsMenuExpanded &&
-    !isSubmenuAboveMenuItem &&
-    css`
-      top: 0;
-    `,
-];
 
 const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   if (
@@ -525,11 +482,11 @@ type ItemContainerProps = {
 const ItemContainer = (props: ItemContainerProps) => {
   return (
     <ItemIconText className="item-icon-text">
-      <IconContainer className="icon-container">
+      <IconWrapper className="icon-wrapper">
         <Icon className="icon">
           <IconSwitcher icon={props.icon} size="scale" />
         </Icon>
-      </IconContainer>
+      </IconWrapper>
       {props.isMenuOpen ? (
         <Title className="title">
           <MenuLabel
