@@ -1,8 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { DIMENSIONS } from '../../constants';
-import { NAVBAR } from './constants';
+import { NAVBAR } from '../../constants';
 
 export const LeftNavigation = styled.nav`
   display: grid;
@@ -316,9 +315,7 @@ export const TooltipContainer = styled.div<{
   visibility: visible;
 
   ${(props) =>
-    props.alignsAgainstBottom
-      ? 'bottom'
-      : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+    props.alignsAgainstBottom ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
 `;
 
 export const Tooltip = styled.div`

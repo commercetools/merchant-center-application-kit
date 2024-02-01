@@ -30,7 +30,7 @@ import {
   SidebarCollapseIcon,
 } from '@commercetools-uikit/icons';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
-import { DIMENSIONS } from '../../constants';
+import { NAVBAR } from '../../constants';
 import type {
   TDataFence,
   TActionRight,
@@ -208,9 +208,7 @@ const getContainerPositionBasedOnMenuItemPosition = (
 ) => [
   isSublistActiveWhileIsMenuCollapsed &&
     css`
-      ${isSubmenuAboveMenuItem
-        ? 'bottom'
-        : 'top'}: -${DIMENSIONS.navMenuItemHeight};
+      ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
     `,
   isSublistActiveWhileIsMenuExpanded &&
     isSubmenuAboveMenuItem &&
