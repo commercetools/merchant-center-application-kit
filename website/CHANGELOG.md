@@ -1,5 +1,18 @@
 # @commercetools-website/custom-applications
 
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- [#3381](https://github.com/commercetools/merchant-center-application-kit/pull/3381) [`628b81086`](https://github.com/commercetools/merchant-center-application-kit/commit/628b810867520022c719abb0133953d4a24c1fc3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.5.2 [security]
+
+- Updated dependencies [[`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/assets@22.17.0
+
 ## 22.16.0
 
 ### Minor Changes
