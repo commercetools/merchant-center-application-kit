@@ -454,11 +454,7 @@ type TNavBarLayoutProps = {
 const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
     <>
-      <Global
-        styles={css`
-          ${leftNavigationOpenStyles}
-        `}
-      />
+      <Global styles={leftNavigationOpenStyles} />
       <LeftNavigation
         ref={ref}
         className="left-navigation"

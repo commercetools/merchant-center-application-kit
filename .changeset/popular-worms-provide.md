@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Eliminate CSS modules styles from Navbar styling
+Simplify navbar styles implementation
