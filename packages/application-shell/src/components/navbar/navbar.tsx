@@ -7,8 +7,6 @@ import {
   useState,
   useRef,
 } from 'react';
-import { css } from '@emotion/react';
-import classnames from 'classnames';
 import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
 import { matchPath, useLocation } from 'react-router-dom';
@@ -30,9 +28,24 @@ import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-lo
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
-import { DIMENSIONS } from '../../constants';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
+import {
+  FixedMenu,
+  HeaderTitle,
+  Icon,
+  IconWrapper,
+  ItemIconText,
+  NavigationHeader,
+  ScrollableMenu,
+  SublistItem,
+  SupportMenu,
+  TextLink,
+  Text,
+  Title,
+  Tooltip,
+  TooltipContainer,
+} from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
   RestrictedMenuItem,
@@ -47,13 +60,8 @@ import {
 } from './menu-items';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
-import compiledStyles from /* preval */ './navbar.styles';
-
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import nonNullable from './non-nullable';
 import useNavbarStateManager from './use-navbar-state-manager';
-
-const styles = compiledStyles.jsonMap;
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -235,25 +243,15 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           ref={submenuRef}
         >
           {!props.isMenuOpen && (
-            <div
-              className={styles['tooltip-container']}
-              css={css`
-                ${isSubmenuAboveMenuItem
-                  ? 'bottom'
-                  : 'top'}: -${DIMENSIONS.navMenuItemHeight};
-              `}
-            >
-              <div
-                className={styles['tooltip']}
-                aria-owns={`group-${props.menu.key}`}
-              >
+            <TooltipContainer alignsAgainstBottom={isSubmenuAboveMenuItem}>
+              <Tooltip aria-owns={`group-${props.menu.key}`}>
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}
                   defaultLabel={props.menu.defaultLabel}
                   applicationLocale={props.applicationLocale}
                 />
-              </div>
-            </div>
+              </Tooltip>
+            </TooltipContainer>
           )}
           {hasSubmenu
             ? props.menu.submenu.map((submenu: TSubmenuWithDefaultLabel) => (
@@ -272,15 +270,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                       : undefined
                   }
                 >
-                  <li
-                    className={classnames(styles['sublist-item'], {
-                      [styles['sublist-item__active']]: getIsSubmenuRouteActive(
-                        submenu.uriPath,
-                        props
-                      ),
-                    })}
+                  <SublistItem
+                    isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
                   >
-                    <div className={styles.text}>
+                    <Text>
                       <MenuItemLink
                         linkTo={`/${props.projectKey}/${submenu.uriPath}`}
                         // We want to use an exact matching strategy to avoid multiple
@@ -298,8 +291,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                           applicationLocale={props.applicationLocale}
                         />
                       </MenuItemLink>
-                    </div>
-                  </li>
+                    </Text>
+                  </SublistItem>
                 </RestrictedMenuItem>
               ))
             : null}
@@ -371,18 +364,16 @@ const NavBar = (props: TNavbarProps) => {
 
   return (
     <NavBarLayout ref={navBarNode}>
-      <div className={styles['navigation-header']}>
-        <div className={styles['icon-container']}>
-          <div className={styles['icon']}>
+      <NavigationHeader>
+        <IconWrapper>
+          <Icon>
             <img src={LogoSVG} width="100%" alt="Logo" />
-          </div>
-        </div>
-        {isMenuOpen ? (
-          <div className={styles['title']}>Merchant Center</div>
-        ) : null}
-      </div>
+          </Icon>
+        </IconWrapper>
+        {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
+      </NavigationHeader>
       <MenuGroup id="main" level={1}>
-        <div className={styles['scrollable-menu']}>
+        <ScrollableMenu className="scrollable-menu">
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
@@ -412,10 +403,10 @@ const NavBar = (props: TNavbarProps) => {
               );
             })}
           </Spacings.Stack>
-        </div>
-        <div className={styles['fixed-menu']}>
+        </ScrollableMenu>
+        <FixedMenu className="fixed-menu">
           <Faded />
-          <div className={styles['support-menu']}>
+          <SupportMenu>
             <MenuItem
               hasSubmenu={false}
               isActive={false}
@@ -428,35 +419,35 @@ const NavBar = (props: TNavbarProps) => {
               }
               onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
             >
-              <a
+              <TextLink
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
-                className={styles['text-link']}
+                className="text-link"
               >
-                <div className={styles['item-icon-text']}>
-                  <div className={styles['icon-container']}>
-                    <div className={styles['icon']}>
+                <ItemIconText className="item-icon-text">
+                  <IconWrapper>
+                    <Icon className="icon">
                       <SupportIcon size="scale" />
-                    </div>
-                  </div>
+                    </Icon>
+                  </IconWrapper>
                   {isMenuOpen ? (
-                    <div className={styles.title}>
+                    <Title className="title">
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />
-                    </div>
+                    </Title>
                   ) : null}
-                </div>
-              </a>
+                </ItemIconText>
+              </TextLink>
             </MenuItem>
-          </div>
+          </SupportMenu>
           <MenuExpander
             isVisible={isExpanderVisible}
             onClick={handleToggleMenu}
             isMenuOpen={isMenuOpen}
           />
-        </div>
+        </FixedMenu>
       </MenuGroup>
     </NavBarLayout>
   );
