@@ -9,7 +9,7 @@ import {
   type ReactNode,
   type SyntheticEvent,
 } from 'react';
-import { Global, css } from '@emotion/react';
+import { Global } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
@@ -38,23 +38,20 @@ import { location } from '../../utils/location';
 import {
   getMenuItemLinkStyles,
   leftNavigationOpenStyles,
-  listStyles,
-  sublistStyles,
-  IconWrapper,
-  Icon,
-  ItemIconText,
+  ItemContent,
+  MenuList,
   Title,
 } from './main-navbar.styles';
 import {
-  getSubmenuPositionBasedOnMenuItemPosition,
-  getContainerPositionBasedOnMenuItemPosition,
   Expander,
   ExpanderIcon,
   Faded,
   LeftNavigation,
+  MenuListItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
 } from './menu-items.styles';
+import { Icon, IconWrapper, ItemIconText } from './shared.styles';
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -168,7 +165,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
 };
 MenuExpander.displayName = 'MenuExpander';
 
-type MenuGroupProps = {
+export type MenuGroupProps = {
   id: string;
   level: 1 | 2;
   isActive?: boolean;
@@ -187,37 +184,16 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   ) {
     return null;
   }
-  const isSublistActiveWhileIsMenuExpanded =
-    props.level === 2 && props.isActive && props.isExpanded;
-  const isSublistActiveWhileIsMenuCollapsed =
-    props.level === 2 && props.isActive && !props.isExpanded;
+  const isSublistActiveWhileIsMenuExpanded = Boolean(
+    props.level === 2 && props.isActive && props.isExpanded
+  );
+  const isSublistActiveWhileIsMenuCollapsed = Boolean(
+    props.level === 2 && props.isActive && !props.isExpanded
+  );
   return (
-    <ul
+    <MenuList
       ref={ref && props.level === 2 ? ref : null}
-      css={css`
-        ${props.level === 1 && listStyles}
-        ${getSubmenuPositionBasedOnMenuItemPosition(
-          props.isSubmenuAboveMenuItem,
-          props.submenuVerticalPosition
-        )};
-        ${props.level === 2 && sublistStyles}
-      
-      // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
-      ${
-        props.submenuVerticalPosition === 0 &&
-        css`
-          visibility: hidden;
-        `
-      }
-
-        // additional styling of the pseudo-element enabling smooth coursor movement
-        ::before {
-          ${getContainerPositionBasedOnMenuItemPosition(
-            props.isSubmenuAboveMenuItem,
-            isSublistActiveWhileIsMenuExpanded,
-            isSublistActiveWhileIsMenuCollapsed
-          )}
-      `}
+      level={props.level}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
@@ -246,9 +222,19 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
           sublist__inactive: !isSublistActiveWhileIsMenuCollapsed,
         }
       )}
+      isSublistActiveWhileIsMenuExpanded={isSublistActiveWhileIsMenuExpanded}
+      isSublistActiveWhileIsMenuCollapsed={isSublistActiveWhileIsMenuCollapsed}
+      isSublistCollapsedAndActive={
+        isSublistActiveWhileIsMenuCollapsed && !props.isSubmenuAboveMenuItem
+      }
+      isSublistCollapsedAndActiveAndAbove={Boolean(
+        isSublistActiveWhileIsMenuCollapsed && props.isSubmenuAboveMenuItem
+      )}
+      isSubmenuAboveMenuItem={props.isSubmenuAboveMenuItem}
+      submenuVerticalPosition={props.submenuVerticalPosition}
     >
       {props.children}
-    </ul>
+    </MenuList>
   );
 });
 MenuGroup.displayName = 'MenuGroup';
@@ -270,7 +256,7 @@ type MenuItemProps = {
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
-    <li
+    <MenuListItem
       role="menuitem"
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
@@ -278,14 +264,15 @@ const MenuItem = (props: MenuItemProps) => {
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
-      className={classnames('list-item', {
+      className={classnames({
         item__active: props.isActive,
-        item_menu__active: props.isMainMenuRouteActive ?? false,
-        'item_menu-collapsed': !props.isMenuOpen,
       })}
+      isActive={props.isActive}
+      isRouteActive={Boolean(props.isMainMenuRouteActive)}
+      isCollapsed={!props.isMenuOpen}
     >
-      <div className="item-link">{props.children}</div>
-    </li>
+      <ItemContent>{props.children}</ItemContent>
+    </MenuListItem>
   );
 };
 
@@ -478,7 +465,7 @@ type ItemContainerProps = {
 const ItemContainer = (props: ItemContainerProps) => {
   return (
     <ItemIconText className="item-icon-text">
-      <IconWrapper className="icon-wrapper">
+      <IconWrapper>
         <Icon className="icon">
           <IconSwitcher icon={props.icon} size="scale" />
         </Icon>

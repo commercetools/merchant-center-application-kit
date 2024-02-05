@@ -2,6 +2,8 @@ import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
+import type { MenuGroupProps } from './menu-items';
+import { MenuListItem } from './menu-items.styles';
 
 const visible = keyframes`
   from {
@@ -10,6 +12,24 @@ const visible = keyframes`
   to {
     opacity: 1;
   }
+`;
+
+const FixedMenu = styled.div`
+  position: relative;
+  width: ${NAVBAR.widthLeftNavigation};
+
+  ${MenuListItem} .item-icon-text {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+`;
+
+const ItemContent = styled.div`
+  color: var(--color-for-navbar-link);
+  width: ${NAVBAR.itemSize};
+  position: relative;
+  display: block;
 `;
 
 const leftNavigationOpenStyles = css`
@@ -22,7 +42,7 @@ const leftNavigationOpenStyles = css`
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
 
-  .body__menu-open .fixed-menu {
+  .body__menu-open ${FixedMenu} {
     width: ${NAVBAR.widthLeftNavigationWhenExpanded};
   }
 
@@ -30,13 +50,13 @@ const leftNavigationOpenStyles = css`
     justify-content: start;
   }
 
-  .body__menu-open .list-item {
+  .body__menu-open ${MenuListItem} {
     height: auto;
     min-height: ${NAVBAR.itemSize};
     width: 100%;
   }
 
-  .body__menu-open .list-item .title {
+  .body__menu-open ${MenuListItem} .title {
     opacity: 1;
     margin-left: var(--spacing-25);
     color: var(--color-surface);
@@ -58,170 +78,9 @@ const leftNavigationOpenStyles = css`
     margin-left: 0;
   }
 
-  .body__menu-open .item-link {
+  .body__menu-open ${ItemContent} {
     width: 100%;
   }
-
-  // List item
-  .fixed-menu .list-item .item-icon-text {
-    justify-content: center;
-    display: flex;
-    width: 100%;
-  }
-
-  .list-item {
-    min-height: ${NAVBAR.itemSize};
-    background: var(--color-primary);
-    margin: 0;
-    list-style: none;
-    cursor: pointer;
-  }
-
-  .list-item .icon-wrapper {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-self: flex-start;
-  }
-
-  .item_menu-collapsed {
-    text-align: center;
-  }
-
-  .item__active,
-  .item_menu__active,
-  .item_menu__active:focus-within {
-    background: var(--color-accent-30);
-    border-radius: var(--border-radius-8);
-  }
-
-  .item__active .item-icon-text {
-    justify-content: flex-start;
-  }
-
-  .list-item:hover .title,
-  .list-item:focus-within .title {
-    margin-left: calc(var(--spacing-25) + 2px);
-  }
-
-  .list-item:hover .icon,
-  .list-item:focus-within .icon {
-    /* 1.16 is roughly the ratio of NAVBAR.iconSizeHover to NAVBAR.iconSize */
-    transform: scale(1.2);
-  }
-
-  .list-item:not(.item_menu__active):hover,
-  .list-item:not(.item_menu__active):focus-within {
-    background-color: var(--color-primary-40);
-    border-radius: var(--border-radius-8);
-  }
-
-  .list-item:not(.item__active):hover .icon > svg *:not([fill='none']),
-  .list-item:not(.item__active):focus-within .icon > svg *:not([fill='none']) {
-    fill: var(--color-for-navbar-icon-when-active);
-  }
-
-  .list-item:not(.item__active):hover .title,
-  .list-item:not(.item__active):focus-within .title {
-    color: var(--color-for-navbar-link-when-hovered);
-  }
-
-  .list-item:hover .sublist-collapsed__active,
-  .list-item:hover .sublist-collapsed__active__above,
-  .list-item:hover .sublist-expanded__active,
-  .list-item:focus-within .sublist-collapsed__active,
-  .list-item:focus-within .sublist-collapsed__active__above,
-  .list-item:focus-within .sublist-expanded__active {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: var(--color-surface);
-    /* TODO: add design tokens instead hard-coded values */
-    min-height: 50px;
-    width: ${NAVBAR.sublistWidth};
-    border-radius: var(--border-radius-8);
-    /* z-index value must be higher than AppBar's z-index */
-    z-index: 20001;
-    box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
-  }
-
-  .list-item:hover .sublist-collapsed__active.sublist-collapsed__empty,
-  .list-item:hover .sublist-collapsed__active__above.sublist-collapsed__empty,
-  .list-item:focus-within .sublist-collapsed__active.sublist-collapsed__empty,
-  .list-item:focus-within
-    .sublist-collapsed__active__above.sublist-collapsed__empty {
-    visibility: hidden;
-  }
-
-  .list-item:hover .sublist-expanded__active,
-  .list-item:focus-within .sublist-expanded__active {
-    left: ${NAVBAR.sublistIndentationWhenExpanded};
-  }
-
-  // Sublist item
-
-  .item-link {
-    color: var(--color-for-navbar-link);
-    width: ${NAVBAR.itemSize};
-    position: relative;
-    display: block;
-  }
-
-  /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
-  .sublist-expanded__active::before,
-  .sublist-collapsed__active::before,
-  .sublist-collapsed__active__above::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: calc(${NAVBAR.sublistWidth} + var(--spacing-20));
-    height: ${NAVBAR.itemSize};
-    left: calc(-1 * var(--spacing-20));
-  }
-
-  .sublist__inactive {
-    /* empty block */
-  }
-
-  /* Item active */
-
-  .sublist-expanded__active,
-  .sublist-collapsed__active,
-  .sublist-collapsed__active__above {
-    opacity: 1;
-    display: none;
-    text-align: left;
-    background-color: var(--background-color-for-navbar-when-active);
-  }
-
-  .highlighted,
-  .highlighted .title {
-    color: var(--color-for-navbar-link-when-active) !important;
-    font-weight: var(--font-weight-for-navbar-link-when-active);
-  }
-`;
-
-const IconWrapper = styled.div`
-  width: auto;
-  display: flex;
-  justify-content: center;
-`;
-
-const Icon = styled.div`
-  width: ${NAVBAR.iconSize};
-  height: ${NAVBAR.iconSize};
-  transition: ${NAVBAR.leftNavigationTransition};
-
-  > svg *:not([fill='none']) {
-    fill: var(--color-surface);
-  }
-`;
-
-const ItemIconText = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 `;
 
 const NavigationHeader = styled.div`
@@ -355,11 +214,6 @@ const ScrollableMenu = styled.div`
   }
 `;
 
-const FixedMenu = styled.div`
-  position: relative;
-  width: ${NAVBAR.widthLeftNavigation};
-`;
-
 const TextLink = styled.a`
   color: var(--color-for-navbar-link);
   text-decoration: none;
@@ -421,6 +275,88 @@ const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
     `,
 ];
 
+const getSubmenuPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  submenuVerticalPosition?: number
+) => css`
+  ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: ${submenuVerticalPosition}px
+`;
+
+const getContainerPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  isSublistActiveWhileIsMenuExpanded?: boolean,
+  isSublistActiveWhileIsMenuCollapsed?: boolean
+) => [
+  isSublistActiveWhileIsMenuCollapsed &&
+    css`
+      ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    isSubmenuAboveMenuItem &&
+    css`
+      bottom: 0;
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    !isSubmenuAboveMenuItem &&
+    css`
+      top: 0;
+    `,
+];
+
+const MenuList = styled.ul<
+  MenuGroupProps & {
+    isSublistActiveWhileIsMenuExpanded: boolean;
+    isSublistActiveWhileIsMenuCollapsed: boolean;
+    isSublistCollapsedAndActive: boolean;
+    isSublistCollapsedAndActiveAndAbove: boolean;
+  }
+>`
+  ${(props) => [
+    props.level === 1 && listStyles,
+    getSubmenuPositionBasedOnMenuItemPosition(
+      props.isSubmenuAboveMenuItem,
+      props.submenuVerticalPosition
+    ),
+    props.level === 2 && sublistStyles,
+    // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
+    props.submenuVerticalPosition === 0 &&
+      css`
+        visibility: hidden;
+      `,
+    (props.isSublistActiveWhileIsMenuExpanded ||
+      props.isSublistCollapsedAndActive ||
+      props.isSublistCollapsedAndActiveAndAbove) &&
+      css`
+        opacity: 1;
+        display: none;
+        text-align: left;
+        background-color: var(--background-color-for-navbar-when-active);
+
+        /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+        ::before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: calc(${NAVBAR.sublistWidth} + var(--spacing-20));
+          height: ${NAVBAR.itemSize};
+          left: calc(-1 * var(--spacing-20));
+
+          ${getContainerPositionBasedOnMenuItemPosition(
+            props.isSubmenuAboveMenuItem,
+            props.isSublistActiveWhileIsMenuExpanded,
+            props.isSublistActiveWhileIsMenuCollapsed
+          )}
+        }
+      `,
+  ]}
+
+  .highlighted,
+  .highlighted .title {
+    color: var(--color-for-navbar-link-when-active) !important;
+    font-weight: var(--font-weight-for-navbar-link-when-active);
+  }
+`;
+
 export {
   getMenuItemLinkStyles,
   leftNavigationOpenStyles,
@@ -429,6 +365,8 @@ export {
   // styled components
   FixedMenu,
   HeaderTitle,
+  ItemContent,
+  MenuList,
   NavigationHeader,
   ScrollableMenu,
   SublistItem,
@@ -438,8 +376,4 @@ export {
   Title,
   Tooltip,
   TooltipContainer,
-  // common
-  Icon,
-  IconWrapper,
-  ItemIconText,
 };

@@ -33,9 +33,6 @@ import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
 import {
   FixedMenu,
   HeaderTitle,
-  Icon,
-  IconWrapper,
-  ItemIconText,
   NavigationHeader,
   ScrollableMenu,
   SublistItem,
@@ -61,6 +58,7 @@ import {
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
+import { Icon, IconWrapper, ItemIconText } from './shared.styles';
 import useNavbarStateManager from './use-navbar-state-manager';
 
 type TProjectPermissions = {
@@ -404,7 +402,7 @@ const NavBar = (props: TNavbarProps) => {
             })}
           </Spacings.Stack>
         </ScrollableMenu>
-        <FixedMenu className="fixed-menu">
+        <FixedMenu>
           <Faded />
           <SupportMenu>
             <MenuItem
