@@ -2,7 +2,36 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
-import { IconWrapper } from './shared.styles';
+import type { MenuGroupProps } from './menu-items';
+import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
+
+const getSubmenuPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  submenuVerticalPosition?: number
+) => css`
+  ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: ${submenuVerticalPosition}px
+`;
+
+const getContainerPositionBasedOnMenuItemPosition = (
+  isSubmenuAboveMenuItem?: boolean,
+  isSublistActiveWhileIsMenuExpanded?: boolean,
+  isSublistActiveWhileIsMenuCollapsed?: boolean
+) => [
+  isSublistActiveWhileIsMenuCollapsed &&
+    css`
+      ${isSubmenuAboveMenuItem ? 'bottom' : 'top'}: -${NAVBAR.itemSize};
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    isSubmenuAboveMenuItem &&
+    css`
+      bottom: 0;
+    `,
+  isSublistActiveWhileIsMenuExpanded &&
+    !isSubmenuAboveMenuItem &&
+    css`
+      top: 0;
+    `,
+];
 
 const Faded = styled.div`
   position: absolute;
@@ -83,6 +112,111 @@ const NavlinkClickableContent = styled.div`
   width: 100%;
 `;
 
+const listStyles = css`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 0;
+`;
+
+const sublistStyles = css`
+  padding: var(--spacing-30);
+  font-weight: var(--font-weight-for-navbar-link);
+  font-size: var(--font-size-for-navbar-link);
+  background-color: var(--background-color-for-navbar);
+  left: ${NAVBAR.sublistIndentationWhenCollapsed};
+  z-index: -1;
+  list-style: none;
+  position: fixed;
+  display: none;
+`;
+
+const MenuList = styled.ul<
+  MenuGroupProps & {
+    isSublistActiveWhileIsMenuExpanded: boolean;
+    isSublistActiveWhileIsMenuCollapsed: boolean;
+    isSublistCollapsedAndActive: boolean;
+    isSublistCollapsedAndActiveAndAbove: boolean;
+  }
+>`
+  ${(props) => [
+    props.level === 1 && listStyles,
+    getSubmenuPositionBasedOnMenuItemPosition(
+      props.isSubmenuAboveMenuItem,
+      props.submenuVerticalPosition
+    ),
+    props.level === 2 && sublistStyles,
+    // prevent glitchy behavior during the initial render when the submenu's vertical position is evaluated as 0
+    props.submenuVerticalPosition === 0 &&
+      css`
+        visibility: hidden;
+      `,
+    (props.isSublistActiveWhileIsMenuExpanded ||
+      props.isSublistCollapsedAndActive ||
+      props.isSublistCollapsedAndActiveAndAbove) &&
+      css`
+        opacity: 1;
+        display: none;
+        text-align: left;
+        background-color: var(--background-color-for-navbar-when-active);
+
+        /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
+        ::before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: calc(${NAVBAR.sublistWidth} + var(--spacing-20));
+          height: ${NAVBAR.itemSize};
+          left: calc(-1 * var(--spacing-20));
+
+          ${getContainerPositionBasedOnMenuItemPosition(
+            props.isSubmenuAboveMenuItem,
+            props.isSublistActiveWhileIsMenuExpanded,
+            props.isSublistActiveWhileIsMenuCollapsed
+          )}
+        }
+      `,
+  ]}
+
+  .highlighted,
+  .highlighted ${Title} {
+    color: var(--color-for-navbar-link-when-active) !important;
+    font-weight: var(--font-weight-for-navbar-link-when-active);
+  }
+`;
+
+const SublistItem = styled.li<{ isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  ${(props) => [
+    props.isActive &&
+      css`
+        border-radius: var(--border-radius-4);
+        background: var(--color-accent-30);
+      `,
+    !props.isActive &&
+      css`
+        :hover,
+        :focus-within {
+          color: var(--color-for-navbar-link-when-hovered);
+          font-weight: var(--font-weight-for-navbar-link-when-hovered);
+          border-radius: var(--border-radius-4);
+          background: var(--color-primary-95);
+
+          [data-link-level='text-link-sublist'] {
+            /* additional left padding on hover and focus */
+            padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
+              calc(var(--spacing-30) + var(--spacing-20));
+          }
+        }
+      `,
+  ]}
+`;
+
 const MenuListItem = styled.li<{
   isActive: boolean;
   isRouteActive: boolean;
@@ -126,19 +260,18 @@ const MenuListItem = styled.li<{
       `,
     props.isActive &&
       css`
-        .item-icon-text {
+        ${ItemIconText} {
           justify-content: flex-start;
         }
       `,
     !props.isActive &&
       css`
-        :hover .icon > svg *:not([fill='none']),
-        :focus-within .icon > svg *:not([fill='none']) {
+        :hover ${Icon} > svg *:not([fill='none']),
+        :focus-within ${Icon} > svg *:not([fill='none']) {
           fill: var(--color-for-navbar-icon-when-active);
         }
 
-        :hover .title,
-        :focus-within .title {
+        :hover .${Title}, :focus-within ${Title} {
           color: var(--color-for-navbar-link-when-hovered);
         }
       `,
@@ -148,23 +281,28 @@ const MenuListItem = styled.li<{
       `,
   ]}
 
-  :hover .title,
-  :focus-within .title {
+  :hover ${Title},
+  :focus-within ${Title} {
     margin-left: calc(var(--spacing-25) + 2px);
   }
 
-  :hover .icon,
-  :focus-within .icon {
+  :hover ${Icon}, :focus-within ${Icon} {
     /* 1.16 is roughly the ratio of NAVBAR.iconSizeHover to NAVBAR.iconSize */
     transform: scale(1.2);
   }
 
-  :hover .sublist-collapsed__active,
-  :hover .sublist-collapsed__active__above,
-  :hover .sublist-expanded__active,
-  :focus-within .sublist-collapsed__active,
-  :focus-within .sublist-collapsed__active__above,
-  :focus-within .sublist-expanded__active {
+  :hover
+    ${MenuList}.sublist-collapsed__active,
+    :hover
+    ${MenuList}.sublist-collapsed__active__above,
+    :hover
+    ${MenuList}.sublist-expanded__active,
+    :focus-within
+    ${MenuList}.sublist-collapsed__active,
+    :focus-within
+    ${MenuList}.sublist-collapsed__active__above,
+    :focus-within
+    ${MenuList}.sublist-expanded__active {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -178,15 +316,21 @@ const MenuListItem = styled.li<{
     box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
   }
 
-  :hover .sublist-collapsed__active.sublist-collapsed__empty,
-  :hover .sublist-collapsed__active__above.sublist-collapsed__empty,
-  :focus-within .sublist-collapsed__active.sublist-collapsed__empty,
-  :focus-within .sublist-collapsed__active__above.sublist-collapsed__empty {
+  :hover
+    ${MenuList}.sublist-collapsed__active.sublist-collapsed__empty,
+    :hover
+    ${MenuList}.sublist-collapsed__active__above.sublist-collapsed__empty,
+    :focus-within
+    ${MenuList}.sublist-collapsed__active.sublist-collapsed__empty,
+    :focus-within
+    ${MenuList}.sublist-collapsed__active__above.sublist-collapsed__empty {
     visibility: hidden;
   }
 
-  :hover .sublist-expanded__active,
-  :focus-within .sublist-expanded__active {
+  :hover
+    ${MenuList}.sublist-expanded__active,
+    :focus-within
+    ${MenuList}.sublist-expanded__active {
     left: ${NAVBAR.sublistIndentationWhenExpanded};
   }
 `;
@@ -196,7 +340,9 @@ export {
   ExpanderIcon,
   Faded,
   LeftNavigation,
+  MenuList,
   MenuListItem,
+  SublistItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
 };

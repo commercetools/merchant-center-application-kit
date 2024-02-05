@@ -23,4 +23,17 @@ const ItemIconText = styled.div`
   align-items: center;
 `;
 
-export { Icon, IconWrapper, ItemIconText };
+const Title = styled.div`
+  flex: 1;
+  font-weight: 600;
+  font-size: var(--font-size-for-navbar-link);
+  line-height: var(--line-height-for-navbar-link);
+  color: var(--color-for-navbar-link);
+  opacity: 0;
+  transition: ${NAVBAR.leftNavigationTransition};
+  text-align: left;
+  text-decoration: none;
+  z-index: 1;
+`;
+
+export { Icon, IconWrapper, ItemIconText, Title };

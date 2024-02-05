@@ -35,11 +35,9 @@ import {
   HeaderTitle,
   NavigationHeader,
   ScrollableMenu,
-  SublistItem,
   SupportMenu,
   TextLink,
   Text,
-  Title,
   Tooltip,
   TooltipContainer,
 } from './main-navbar.styles';
@@ -55,10 +53,11 @@ import {
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
+import { SublistItem } from './menu-items.styles';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
-import { Icon, IconWrapper, ItemIconText } from './shared.styles';
+import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 import useNavbarStateManager from './use-navbar-state-manager';
 
 type TProjectPermissions = {
@@ -371,7 +370,7 @@ const NavBar = (props: TNavbarProps) => {
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
-        <ScrollableMenu className="scrollable-menu">
+        <ScrollableMenu>
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
@@ -421,16 +420,15 @@ const NavBar = (props: TNavbarProps) => {
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
-                className="text-link"
               >
-                <ItemIconText className="item-icon-text">
+                <ItemIconText>
                   <IconWrapper>
                     <Icon className="icon">
                       <SupportIcon size="scale" />
                     </Icon>
                   </IconWrapper>
                   {isMenuOpen ? (
-                    <Title className="title">
+                    <Title>
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />

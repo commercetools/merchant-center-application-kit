@@ -39,19 +39,18 @@ import {
   getMenuItemLinkStyles,
   leftNavigationOpenStyles,
   ItemContent,
-  MenuList,
-  Title,
 } from './main-navbar.styles';
 import {
   Expander,
   ExpanderIcon,
   Faded,
   LeftNavigation,
+  MenuList,
   MenuListItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
 } from './menu-items.styles';
-import { Icon, IconWrapper, ItemIconText } from './shared.styles';
+import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -217,9 +216,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         {
           'sublist-collapsed__active__above':
             isSublistActiveWhileIsMenuCollapsed && props.isSubmenuAboveMenuItem,
-        },
-        {
-          sublist__inactive: !isSublistActiveWhileIsMenuCollapsed,
         }
       )}
       isSublistActiveWhileIsMenuExpanded={isSublistActiveWhileIsMenuExpanded}
@@ -265,7 +261,7 @@ const MenuItem = (props: MenuItemProps) => {
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
       data-menuitem={props.identifier}
       className={classnames({
-        item__active: props.isActive,
+        active: props.isActive,
       })}
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
@@ -442,11 +438,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
     <>
       <Global styles={leftNavigationOpenStyles} />
-      <LeftNavigation
-        ref={ref}
-        className="left-navigation"
-        data-testid="left-navigation"
-      >
+      <LeftNavigation ref={ref} data-testid="left-navigation">
         {props.children}
       </LeftNavigation>
     </>
@@ -464,14 +456,14 @@ type ItemContainerProps = {
 
 const ItemContainer = (props: ItemContainerProps) => {
   return (
-    <ItemIconText className="item-icon-text">
+    <ItemIconText>
       <IconWrapper>
         <Icon className="icon">
           <IconSwitcher icon={props.icon} size="scale" />
         </Icon>
       </IconWrapper>
       {props.isMenuOpen ? (
-        <Title className="title">
+        <Title>
           <MenuLabel
             labelAllLocales={props.labelAllLocales}
             defaultLabel={props.defaultLabel}
