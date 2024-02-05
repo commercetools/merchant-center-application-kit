@@ -1,5 +1,65 @@
 # @commercetools-frontend/application-shell
 
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- [#3390](https://github.com/commercetools/merchant-center-application-kit/pull/3390) [`bf1a7a002`](https://github.com/commercetools/merchant-center-application-kit/commit/bf1a7a002264689305a9023eb86fae3ac7630b12) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We've fixed a bug with the login flow when working on a Custom Application locally when a user updated the [initialProjectKey](https://docs.commercetools.com/custom-applications/api-reference/application-config#envdevelopmentinitialprojectkey) configuration value but the application was still using the old.
+
+- Updated dependencies [[`047e44e01`](https://github.com/commercetools/merchant-center-application-kit/commit/047e44e0119032707f6a1feac8846f58d4d44f28), [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab), [`fe6314779`](https://github.com/commercetools/merchant-center-application-kit/commit/fe63147792caaea41be1c96ce17dbee57cd7209e)]:
+  - @commercetools-frontend/application-config@22.17.0
+  - @commercetools-frontend/application-shell-connectors@22.17.0
+  - @commercetools-frontend/application-components@22.17.0
+  - @commercetools-frontend/react-notifications@22.17.0
+  - @commercetools-frontend/browser-history@22.17.0
+  - @commercetools-frontend/actions-global@22.17.0
+  - @commercetools-frontend/notifications@22.17.0
+  - @commercetools-frontend/permissions@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+  - @commercetools-frontend/url-utils@22.17.0
+  - @commercetools-frontend/assets@22.17.0
+  - @commercetools-frontend/sentry@22.17.0
+  - @commercetools-frontend/i18n@22.17.0
+  - @commercetools-frontend/l10n@22.17.0
+  - @commercetools-frontend/sdk@22.17.0
+
+## 22.16.0
+
+### Minor Changes
+
+- [#3376](https://github.com/commercetools/merchant-center-application-kit/pull/3376) [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Add cloud environment property for launch darkly
+
+### Patch Changes
+
+- [#3372](https://github.com/commercetools/merchant-center-application-kit/pull/3372) [`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7) Thanks [@chloe0592](https://github.com/chloe0592)! - Add `isProductionProject` to project query.
+
+- [#3382](https://github.com/commercetools/merchant-center-application-kit/pull/3382) [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56) Thanks [@chloe0592](https://github.com/chloe0592)! - Update all ui-kit packages to v17.0.0
+
+- [#3373](https://github.com/commercetools/merchant-center-application-kit/pull/3373) [`d437612a8`](https://github.com/commercetools/merchant-center-application-kit/commit/d437612a894be32eaa6c124c8e0d1b126148e049) Thanks [@chloe0592](https://github.com/chloe0592)! - Setting the `maxMenuHeight` for locale and project switchers.
+
+- [#3353](https://github.com/commercetools/merchant-center-application-kit/pull/3353) [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fixes some styling issues when using Page Layout components in Custom Views.
+
+- Updated dependencies [[`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7), [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7), [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56), [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367)]:
+  - @commercetools-frontend/application-shell-connectors@22.16.0
+  - @commercetools-frontend/permissions@22.16.0
+  - @commercetools-frontend/application-components@22.16.0
+  - @commercetools-frontend/react-notifications@22.16.0
+  - @commercetools-frontend/i18n@22.16.0
+  - @commercetools-frontend/actions-global@22.16.0
+  - @commercetools-frontend/application-config@22.16.0
+  - @commercetools-frontend/assets@22.16.0
+  - @commercetools-frontend/browser-history@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/l10n@22.16.0
+  - @commercetools-frontend/notifications@22.16.0
+  - @commercetools-frontend/sdk@22.16.0
+  - @commercetools-frontend/sentry@22.16.0
+  - @commercetools-frontend/url-utils@22.16.0
+
 ## 22.15.1
 
 ### Patch Changes

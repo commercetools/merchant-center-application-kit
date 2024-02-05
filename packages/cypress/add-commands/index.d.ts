@@ -21,10 +21,7 @@ declare namespace Cypress {
      */
     loginToMerchantCenterForCustomView(
       // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types
-      options?: Omit<
-        import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginOptions,
-        'entryPointUriPath' | 'initialRoute'
-      >
+      options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').LoginToMerchantCenterForCustomViewCommandLoginOptions
     ): Chainable<Subject>;
     /**
      * Log into the Custom Application using the OIDC workflow.

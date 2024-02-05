@@ -15,6 +15,7 @@ import {
   ModalPageTopBar,
   PageUnauthorized,
   PortalsContainer,
+  themesOverrides,
 } from '@commercetools-frontend/application-components';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -29,7 +30,10 @@ import {
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import { designTokens } from '@commercetools-uikit/design-system';
+import {
+  ThemeProvider,
+  designTokens,
+} from '@commercetools-uikit/design-system';
 import ApplicationLoader from '../application-loader/application-loader';
 import GlobalStyles from '../application-shell/global-styles';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -37,6 +41,7 @@ import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewDevHost from '../custom-view-dev-host';
 import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
+import { customViewsThemesOverrides } from './custom-view-shell.styles';
 
 declare let window: ApplicationWindow;
 
@@ -118,6 +123,11 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 */
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
+
+const customViewThemeOverrides = {
+  ...themesOverrides.default,
+  ...customViewsThemesOverrides.default,
+};
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
@@ -206,6 +216,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
   return (
     <>
       <GlobalStyles />
+      <ThemeProvider
+        theme="default"
+        themeOverrides={customViewThemeOverrides}
+      />
       <ApplicationShellProvider
         environment={window.app}
         applicationMessages={props.applicationMessages}

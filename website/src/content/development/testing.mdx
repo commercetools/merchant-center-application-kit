@@ -298,7 +298,7 @@ The `.env` file should be git ignored. On CI, you can define environment variabl
 In the `cypress/plugins/index.js` file, you need to configure the `task` for Custom Applications and to load the environment variables:
 
 ```js title="cypress/plugins/index.js"
-const customApplications = require('@commercetools-frontend/cypress/task');
+const { customApplicationConfig } = require('@commercetools-frontend/cypress/task');
 
 module.exports = (on, cypressConfig) => {
   // Load the config
@@ -309,7 +309,7 @@ module.exports = (on, cypressConfig) => {
   }
 
   on('task', {
-    ...customApplications,
+    customApplicationConfig,
   });
 
   return {

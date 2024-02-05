@@ -61,8 +61,8 @@ importers:
         specifier: workspace:*
         version: link:packages/mc-scripts
       '@commercetools-test-data/core':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-uikit/design-system':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@18.2.0)
@@ -240,9 +240,6 @@ importers:
       postcss-load-config:
         specifier: 3.1.4
         version: 3.1.4(postcss@8.4.31)(ts-node@10.9.1)
-      postcss-modules:
-        specifier: 4.3.1
-        version: 4.3.1(postcss@8.4.31)
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -346,14 +343,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/commons':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/core':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-uikit/constraints':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -565,14 +562,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/commons':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/core':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-uikit/constraints':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -781,14 +778,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/commons':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/core':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-uikit/constraints':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -1000,14 +997,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/commons':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-test-data/core':
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@commercetools-uikit/constraints':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -1306,16 +1303,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1361,28 +1358,28 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^17.0.0
@@ -1542,10 +1539,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@types/dompurify':
         specifier: ^2.4.0
@@ -1600,49 +1597,49 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^17.0.0
@@ -1865,16 +1862,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2143,13 +2140,13 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2180,7 +2177,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)(eslint@8.56.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^22.15.1
+        specifier: ^22.17.0
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.3.3
@@ -2250,7 +2247,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^17.0.0
@@ -2296,7 +2293,7 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2400,7 +2397,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.1
@@ -2489,10 +2486,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.1
@@ -2529,25 +2526,25 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-components':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2581,10 +2578,10 @@ importers:
         version: 4.6.0
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.12)
+        version: 4.1.0(vite@4.5.2)
       '@vitejs/plugin-react-swc':
         specifier: 3.3.1
-        version: 3.3.1(vite@4.4.12)
+        version: 3.3.1(vite@4.5.2)
       autoprefixer:
         specifier: ^10.4.15
         version: 10.4.15(postcss@8.4.31)
@@ -2703,8 +2700,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       vite:
-        specifier: 4.4.12
-        version: 4.4.12(@types/node@18.17.14)
+        specifier: 4.5.2
+        version: 4.5.2(@types/node@18.17.14)
       webpack:
         specifier: 5.82.1
         version: 5.82.1(uglify-js@3.17.4)
@@ -2774,10 +2771,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.1
@@ -2829,16 +2826,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../actions-global
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^17.0.0
@@ -2944,7 +2941,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3032,10 +3029,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../constants
       '@sentry/browser':
         specifier: 7.64.0
@@ -3094,37 +3091,37 @@ importers:
         specifier: 22.11.1
         version: 22.11.1(@types/react@17.0.56)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 16.12.1
@@ -3224,17 +3221,17 @@ importers:
         version: 24.2.5(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 22.15.1
+        specifier: 22.17.0
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
-        specifier: 6.9.0
-        version: 6.9.0
+        specifier: 6.11.0
+        version: 6.11.0
       '@formatjs/cli':
         specifier: 6.1.1
         version: 6.1.1
@@ -3354,7 +3351,7 @@ importers:
         version: 9.0.3
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.12)
+        version: 4.1.0(vite@4.5.2)
       formik:
         specifier: 2.2.9
         version: 2.2.9(react@17.0.2)
@@ -3386,8 +3383,8 @@ importers:
         specifier: 9.0.0
         version: 9.0.0
       vite:
-        specifier: 4.4.12
-        version: 4.4.12(@types/node@18.17.14)
+        specifier: 4.5.2
+        version: 4.5.2(@types/node@18.17.14)
 
   website:
     dependencies:
@@ -3590,10 +3587,10 @@ importers:
         version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 4.1.0
-        version: 4.1.0(vite@4.4.12)
+        version: 4.1.0(vite@4.5.2)
       vite:
-        specifier: 4.4.12
-        version: 4.4.12(@types/node@18.17.14)
+        specifier: 4.5.2
+        version: 4.5.2(@types/node@18.17.14)
 
   website-custom-views:
     dependencies:
@@ -7073,16 +7070,16 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@commercetools-frontend/application-config@22.15.1:
-    resolution: {integrity: sha512-Ubvzcg17lf13mCIaYdBWqf+I/FuDsP9bEwInAzq4d94h9HkvroCQrF0PxzHp+TjjithFckhB0yZCle+fomTPvA==}
+  /@commercetools-frontend/application-config@22.17.0:
+    resolution: {integrity: sha512-S8hnkTiBgX3VUMrkCsLCBKUtWbwyyW0W+oayDFB0RJAWT41d5r/30INJiKQB0ge3yalH7zN+Zg51EUEYivwuqg==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
       '@babel/register': 7.22.15(@babel/core@7.23.0)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.15.1
-      '@commercetools-frontend/constants': 22.15.1
+      '@commercetools-frontend/babel-preset-mc-app': 22.17.0
+      '@commercetools-frontend/constants': 22.17.0
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.14.198
       '@types/react': 17.0.56
@@ -7100,8 +7097,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.15.1:
-    resolution: {integrity: sha512-fLJ7KxSHjCXbxbqYUGTZ3vBqFzdmZAQaBtFHNvTgWB/VxeZQ5YEOQxu5b+5tzFbXj+5rF2Tzd7J5fyVP/gPSGA==}
+  /@commercetools-frontend/babel-preset-mc-app@22.17.0:
+    resolution: {integrity: sha512-ZPQQCYtT+dNLu02Fy9IVI8+wNtZ99GHythkxWKTMsiDjuWNoPn1DTbpJGErO0j/k7aIGO240PCB9tVM+V8RjMQ==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.23.0
@@ -7133,26 +7130,40 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.15.1:
-    resolution: {integrity: sha512-C4F85/a1GIec2FdPz1I9tOThpyD8n0y2gD5u0TnwO4Zg3l6fqFferXJREuvUpjIXRwFU/P5Np6cn6cVq9zOSRA==}
+  /@commercetools-frontend/constants@22.17.0:
+    resolution: {integrity: sha512-xHdRz1/EayEEfvmXH1YbBPQgEadMmaVv//TCJ8YTMATtYZxQeHkvrjjvTh1T/eRq34atSFTy690nn8oUB+dAog==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
     dev: true
 
-  /@commercetools-test-data/channel@6.6.0:
-    resolution: {integrity: sha512-OJuPfw6eEipK/K+NaWbj/QYPkeNbPZy0MV7lGYSTMeGz8xi48+xL1Mw9KSjbrOWwsYuXO/7I+dl2TOkEi5F2Tg==}
+  /@commercetools-test-data/channel@6.11.0:
+    resolution: {integrity: sha512-16G0wr1X+zmXcaDM55Xpce81EmWdYwRWey6Xx7zfTMEg3dgehtxvfrmk7bxMG4cUxrm/CmCZeaS2PofqorKYiw==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/commons': 6.6.0
-      '@commercetools-test-data/core': 6.6.0
-      '@commercetools-test-data/utils': 6.6.0
-      '@commercetools/platform-sdk': 6.0.0
+      '@commercetools-test-data/commons': 6.11.0
+      '@commercetools-test-data/core': 6.11.0
+      '@commercetools-test-data/utils': 6.11.0
+      '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
+
+  /@commercetools-test-data/commons@6.11.0:
+    resolution: {integrity: sha512-Eq+vmkyKJ0IoNjedA73FyDbRp27orRI2e9I5R15Mu36Qa/s4zPawztwwbm4oCLdu2vLAQYsx9aH+ekZWzBjUkA==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-test-data/core': 6.11.0
+      '@commercetools-test-data/utils': 6.11.0
+      '@commercetools/platform-sdk': 7.1.0
+      '@faker-js/faker': 8.0.0
+      '@types/lodash': 4.14.198
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - encoding
 
   /@commercetools-test-data/commons@6.4.1:
     resolution: {integrity: sha512-77+dDMcLKOUPyrFOoM9SrpptdV6D+fiqKUT4k0gZZ5lwFlOYcvZnbu6P7p1WyT7C0JxuEdq3d5PWy5wSfgIdRg==}
@@ -7169,58 +7180,17 @@ packages:
       - encoding
     dev: true
 
-  /@commercetools-test-data/commons@6.6.0:
-    resolution: {integrity: sha512-MZvjlLk4SjngE+e3KPcvpNYJjqLXxxGu7D7QV3lDpp1Sweg/hBnwGX+j/rY3CgtwYDPU3D4T4LSOM2DA2oHAwA==}
+  /@commercetools-test-data/core@6.11.0:
+    resolution: {integrity: sha512-zEnJ8kIjCW6mgzL3pPm56Shrus3dS/lkK6Pjsy3cjgC0HiKC8euuf7DUBR8gM5ZqqgUsYwOcHvArFnqbDZ7Kig==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 6.6.0
-      '@commercetools-test-data/utils': 6.6.0
-      '@commercetools/platform-sdk': 6.0.0
       '@faker-js/faker': 8.0.0
       '@types/lodash': 4.14.198
       lodash: 4.17.21
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /@commercetools-test-data/commons@6.9.0:
-    resolution: {integrity: sha512-8RaTF0+a2GLvQUR3+5QW17wFjHTVz2eEj4bdAFlXPws7LvvG32IqXDzY/SunGWApGaXw6+izpj4hSHCZpMMyNQ==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 6.9.0
-      '@commercetools-test-data/utils': 6.9.0
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.0.0
-      '@types/lodash': 4.14.198
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - encoding
-    dev: true
 
   /@commercetools-test-data/core@6.4.1:
     resolution: {integrity: sha512-rQO3SYMOiVSzFxFQP/BZCG/d/VnnaDikCzqT3RCZJ7VSAGVykiiJgUUbVxDzdsNYWNl/RQGeSxs2MDRwPTK4kg==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.0.0
-      '@types/lodash': 4.14.198
-      lodash: 4.17.21
-    dev: true
-
-  /@commercetools-test-data/core@6.6.0:
-    resolution: {integrity: sha512-3Agl2U1FtyxV/BUtdL1ENARWsKEUK6PPgOh9Kr+wwp3dnPWk7T1p/nTzReJKPZZfG5gPYnfiRSmTBM/5CVHqYw==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.0.0
-      '@types/lodash': 4.14.198
-      lodash: 4.17.21
-    dev: false
-
-  /@commercetools-test-data/core@6.9.0:
-    resolution: {integrity: sha512-zcGWb3REOvA/XvqkgdxAsSq/Js+VH1vj6FESXbamHxU9m3ihIray32YT8ZsFLrsIThWLAhUsjCvld6p0R65LIg==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -7234,8 +7204,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.15.1
-      '@commercetools-frontend/constants': 22.15.1
+      '@commercetools-frontend/application-config': 22.17.0
+      '@commercetools-frontend/constants': 22.17.0
       '@commercetools-test-data/commons': 6.4.1
       '@commercetools-test-data/core': 6.4.1
       '@commercetools-test-data/utils': 6.4.1
@@ -7251,24 +7221,15 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@commercetools-test-data/utils@6.11.0:
+    resolution: {integrity: sha512-AeyKbGpScByAvwr7EymIl5GPp8h62DQs6JUhnTF/oatxlK7Fzf2JWY/ypgVKEx23CxQ7IDAwT5KH/pJIbiyOJA==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 8.0.0
+
   /@commercetools-test-data/utils@6.4.1:
     resolution: {integrity: sha512-fkYsW3YQgA2ciqsuAObgK0yuB4H6SL5hlMqMBT6MmYpxfV+MYAaBi7JQLqXGQ/leXqd4fpAxHdZ6JRfyeolz5g==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.0.0
-    dev: true
-
-  /@commercetools-test-data/utils@6.6.0:
-    resolution: {integrity: sha512-pwFsGwny/7mueVRZr6lsae1h2UjHT4903U+LV/i01eOgrcCZoRTdq7Fw52ZWd/fx6UvemQ28ji/LRcRuKD2quw==}
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.0.0
-    dev: false
-
-  /@commercetools-test-data/utils@6.9.0:
-    resolution: {integrity: sha512-F9Ezx69XKsa2aW4zkzruZ/yV8CimOfrdDME3cJlNQdkFpsVm5pay53pGW+Ickl/TRP+56Je/iIsg6EWJ9Xv+5Q==}
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
@@ -10572,6 +10533,7 @@ packages:
       '@commercetools/sdk-middleware-logger': 3.0.0
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /@commercetools/platform-sdk@7.1.0:
     resolution: {integrity: sha512-V0ZgxuAORWS76ocvvha+9pY9p6MOHmvxWCe+7n1JyHo5VrOIgB1mbrUNQwZOvKsr1nH9s4liAWnbAlv8jAEApg==}
@@ -10583,7 +10545,6 @@ packages:
       '@commercetools/sdk-middleware-logger': 3.0.0
     transitivePeerDependencies:
       - encoding
-    dev: true
 
   /@commercetools/sdk-client-v2@2.3.0:
     resolution: {integrity: sha512-+vS6qRoKBbkunZCpdozung+7te97nFxaidLPqOTlz/9TmJaRfMMcYC/KUZCTS8S5a/4BFfY6DYujddolaU7e6Q==}
@@ -16305,18 +16266,18 @@ packages:
       postcss-inline-svg: 4.1.0
     dev: false
 
-  /@vitejs/plugin-react-swc@3.3.1(vite@4.4.12):
+  /@vitejs/plugin-react-swc@3.3.1(vite@4.5.2):
     resolution: {integrity: sha512-ZoYjGxMniXP7X+5ry/W1tpY7w0OeLUEsBF5RHFPmAhpgwwNWie8OF4056MRXRi9QgvYYoZPDzdOXGK3wlCoTfQ==}
     peerDependencies:
       vite: ^4
     dependencies:
       '@swc/core': 1.3.57
-      vite: 4.4.12(@types/node@18.17.14)
+      vite: 4.5.2(@types/node@18.17.14)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: false
 
-  /@vitejs/plugin-react@4.1.0(vite@4.4.12):
+  /@vitejs/plugin-react@4.1.0(vite@4.5.2):
     resolution: {integrity: sha512-rM0SqazU9iqPUraQ2JlIvReeaxOoRj6n+PzB1C0cBzIbd8qP336nC39/R9yPi3wVcah7E7j/kdU1uCUqMEU4OQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -16327,7 +16288,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.23.0)
       '@types/babel__core': 7.20.2
       react-refresh: 0.14.0
-      vite: 4.4.12(@types/node@18.17.14)
+      vite: 4.5.2(@types/node@18.17.14)
     transitivePeerDependencies:
       - supports-color
 
@@ -19893,7 +19854,7 @@ packages:
     peerDependencies:
       react: '>=16.12.0'
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.22.15
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.2.0
@@ -22958,12 +22919,6 @@ packages:
       - supports-color
     dev: true
 
-  /generic-names@4.0.0:
-    resolution: {integrity: sha512-ySFolZQfw9FoDb3ed9d80Cm9f0+r7qj+HJkWjeD9RBfpxEVTlVhol+gvaQB/78WbwYfbnNh8nWHHBSlg072y6A==}
-    dependencies:
-      loader-utils: 3.2.1
-    dev: false
-
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -24099,10 +24054,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
-
-  /icss-replace-symbols@1.1.0:
-    resolution: {integrity: sha512-chIaY3Vh2mh2Q3RGXttaDIzeiPvaVXJ+C4DAh/w3c37SKZ/U6PGMmuicR2EQQp9bKG8zLMCl7I+PtIoOOPp8Gg==}
-    dev: false
 
   /icss-utils@5.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
@@ -29095,22 +29046,6 @@ packages:
       icss-utils: 5.1.0(postcss@8.4.31)
       postcss: 8.4.31
 
-  /postcss-modules@4.3.1(postcss@8.4.31):
-    resolution: {integrity: sha512-ItUhSUxBBdNamkT3KzIZwYNNRFKmkJrofvC2nWab3CPKhYBQ1f27XXh1PAPE27Psx58jeelPsxWB/+og+KEH0Q==}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      generic-names: 4.0.0
-      icss-replace-symbols: 1.1.0
-      lodash.camelcase: 4.3.0
-      postcss: 8.4.31
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.31)
-      postcss-modules-local-by-default: 4.0.0(postcss@8.4.31)
-      postcss-modules-scope: 3.0.0(postcss@8.4.31)
-      postcss-modules-values: 4.0.0(postcss@8.4.31)
-      string-hash: 1.1.3
-    dev: false
-
   /postcss-normalize-charset@5.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-mSgUJ+pd/ldRGVx26p2wz9dNZ7ji6Pn8VWBajMXFf8jk7vUoSrZ2lt/wZR7DtlZYKesmZI680qjr2CeFF2fbUg==}
     engines: {node: ^10 || ^12 || >=14.0}
@@ -31874,10 +31809,6 @@ packages:
     resolution: {integrity: sha512-78lwMoCcn0nNu8LszbP1UA7g55OeE4v7rCeWnM5B453rnNr4aq+5it3FEYtZrSEiMvHZOZ9Jlqb0OD0M2VInqg==}
     dev: false
 
-  /string-hash@1.1.3:
-    resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
-    dev: false
-
   /string-length@4.0.2:
     resolution: {integrity: sha512-+l6rNN5fYHNhZZy41RXsYptCjA2Igmq4EG7kZAYFQI1E1VTXarr6ZPXBg6eq7Y6eK4FEhY6AJlyuFIb/v/S0VQ==}
     engines: {node: '>=10'}
@@ -34000,8 +33931,8 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite@4.4.12(@types/node@18.17.14):
-    resolution: {integrity: sha512-KtPlUbWfxzGVul8Nut8Gw2Qe8sBzWY+8QVc5SL8iRFnpnrcoCaNlzO40c1R6hPmcdTwIPEDkq0Y9+27a5tVbdQ==}
+  /vite@4.5.2(@types/node@18.17.14):
+    resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -34815,7 +34746,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
