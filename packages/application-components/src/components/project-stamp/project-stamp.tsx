@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
 import { DotIcon } from '@commercetools-uikit/icons';
 import Stamp, { TTone } from '@commercetools-uikit/stamp';
@@ -24,7 +25,17 @@ function ProjectStamp(props: TProjectStampProps) {
         renderStamp(
           'positive',
           intl.formatMessage(messages.ProjectProduction),
-          <DotIcon />
+          <div
+            css={css`
+              height: 18px;
+              svg {
+                height: 19px;
+                width: 12px;
+              }
+            `}
+          >
+            <DotIcon color="primary" />
+          </div>
         )}
       {props.isSuspended &&
         renderStamp('critical', intl.formatMessage(messages.ProjectSuspended))}
