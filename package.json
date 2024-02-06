@@ -57,7 +57,7 @@
     "template-custom-view-starter-typescript:start:prod:local": "pnpm --filter @commercetools-applications/merchant-center-custom-view-template-starter-typescript run start:prod:local",
     "build": "./scripts/build_packages.sh",
     "build:watch": "pnpm build --watch",
-    "build:website:custom-applications": "./scripts/build_website_custom_applications.sh",
+    "build:website:custom-applications-components-playground": "./scripts/build_website_custom_applications_components_playground.sh",
     "build:website:custom-views": "./scripts/build_website_custom_views.sh",
     "vercel-build": "echo \"Nothing to do, the build and deployment is managed in GH actions.\"",
     "labels:sync": "github-labels sync",

@@ -63,8 +63,6 @@ $ pnpm playground:start
 
 Please look at the single packages in [`packages` folder](./packages) for documentation specific of each package.
 
-_Documentation website coming soon_
-
 ## Contributing
 
 Contributions are welcomed. Please have a read at our [contribution guidelines](CONTRIBUTING.md).
