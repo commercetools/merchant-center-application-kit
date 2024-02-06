@@ -249,15 +249,6 @@ const MenuListItem = styled.li<{
           border-radius: var(--border-radius-8);
         }
       `,
-    !props.isRouteActive &&
-      !props.isActive &&
-      css`
-        :hover,
-        :focus-within {
-          background-color: var(--color-primary-40);
-          border-radius: var(--border-radius-8);
-        }
-      `,
     props.isActive &&
       css`
         ${ItemIconText} {
@@ -307,8 +298,7 @@ const MenuListItem = styled.li<{
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--color-surface);
-    /* TODO: add design tokens instead hard-coded values */
-    min-height: 50px;
+    min-height: ${NAVBAR.sublistItemMinHeight};
     width: ${NAVBAR.sublistWidth};
     border-radius: var(--border-radius-8);
     /* z-index value must be higher than AppBar's z-index */
