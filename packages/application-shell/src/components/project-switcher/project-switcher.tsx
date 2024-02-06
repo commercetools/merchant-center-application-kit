@@ -19,6 +19,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import SelectInput from '@commercetools-uikit/select-input';
+import Text from '@commercetools-uikit/text';
 import type {
   TProject,
   TFetchUserProjectsQuery,
@@ -81,23 +82,15 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           word-wrap: break-word;
         `}
       >
-        <div
-          css={css`
-            color: ${props.isDisabled
-              ? designTokens.colorNeutral
-              : designTokens.colorAccent};
-          `}
+        <Text.Body
+          fontWeight="medium"
+          tone={props.isDisabled ? 'tertiary' : 'inherit'}
         >
           {project.name}
-        </div>
-        <div
-          css={css`
-            font-size: 11px;
-            color: ${props.isDisabled ? designTokens.colorNeutral : 'inherit'};
-          `}
-        >
+        </Text.Body>
+        <Text.Caption tone={props.isDisabled ? 'tertiary' : 'secondary'}>
           {project.key}
-        </div>
+        </Text.Caption>
       </div>
       <div
         css={css`
