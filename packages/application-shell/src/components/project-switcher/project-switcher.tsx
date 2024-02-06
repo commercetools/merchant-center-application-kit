@@ -18,7 +18,6 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import type {
   TProject,
@@ -131,14 +130,7 @@ const mapProjectsToOptions = memoize((projects) =>
 
 const CustomMenuList = (props: MenuListProps) => {
   return (
-    // klaudija TODO: remove fixed max width when ui kit dependency is updated
-    // width: max-content;
-    // max-width: ${designTokens.constraint6};
-    <div
-      css={css`
-        width: 384px;
-      `}
-    >
+    <div>
       <components.MenuList {...props}>{props.children}</components.MenuList>
     </div>
   );
@@ -214,7 +206,9 @@ const ProjectSwitcher = (props: Props) => {
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
         appearance="quiet"
-        maxMenuHeight={360}
+        maxMenuHeight={380}
+        maxMenuWidth={8}
+        minMenuWidth={8}
       />
     </div>
   );

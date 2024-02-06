@@ -94,6 +94,7 @@ const LocaleSwitcher = (props: Props) => {
         horizontalConstraint={'auto'}
         appearance="quiet"
         maxMenuHeight={360}
+        minMenuWidth={3}
       />
     </div>
   );
