@@ -73,7 +73,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       {...props}
       css={css`
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 240px 1fr;
       `}
     >
       <div
@@ -101,7 +101,11 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       </div>
       <div
         css={css`
-          text-align: right;
+          > div {
+            display: grid;
+            justify-items: end;
+            grid-gap: 4px;
+          }
         `}
       >
         <ProjectStamp
