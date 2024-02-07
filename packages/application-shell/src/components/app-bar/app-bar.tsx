@@ -58,7 +58,7 @@ const AppBar = (props: Props) => {
           <div
             css={css`
               display: flex;
-              gap: ${uikitDesignTokens.spacingM};
+              gap: ${uikitDesignTokens.spacing30};
               align-items: center;
             `}
           >
@@ -73,7 +73,7 @@ const AppBar = (props: Props) => {
                   <div
                     css={css`
                       display: flex;
-                      gap: ${uikitDesignTokens.spacingS};
+                      gap: ${uikitDesignTokens.spacing20};
                       align-items: center;
                     `}
                   >
