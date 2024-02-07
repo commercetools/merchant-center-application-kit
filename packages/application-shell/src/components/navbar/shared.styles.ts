@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 
 const IconWrapper = styled.div`
@@ -12,7 +14,7 @@ const Icon = styled.div`
   transition: ${NAVBAR.leftNavigationTransition};
 
   > svg *:not([fill='none']) {
-    fill: var(--color-surface);
+    fill: ${uiKitDesignTokens.colorSurface};
   }
 `;
 
@@ -26,9 +28,9 @@ const ItemIconText = styled.div`
 const Title = styled.div`
   flex: 1;
   font-weight: 600;
-  font-size: var(--font-size-for-navbar-link);
-  line-height: var(--line-height-for-navbar-link);
-  color: var(--color-for-navbar-link);
+  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
+  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
+  color: ${appKitDesignTokens.colorForNavbarLink};
   opacity: 0;
   transition: ${NAVBAR.leftNavigationTransition};
   text-align: left;

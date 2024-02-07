@@ -1,6 +1,7 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import { MenuListItem, LeftNavigation } from './menu-items.styles';
 import { ItemIconText, Title } from './shared.styles';
@@ -26,7 +27,7 @@ const FixedMenu = styled.div`
 `;
 
 const ItemContent = styled.div`
-  color: var(--color-for-navbar-link);
+  color: ${appKitDesignTokens.colorForNavbarLink};
   width: ${NAVBAR.itemSize};
   position: relative;
   display: block;
@@ -36,12 +37,13 @@ const ScrollableMenu = styled.div`
   flex: 1 1 0;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding: var(--spacing-30) var(--spacing-30) ${NAVBAR.itemSize};
+  padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing30}
+    ${NAVBAR.itemSize};
   width: ${NAVBAR.widthLeftNavigation};
   box-sizing: border-box;
   /* For Firefox */
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary-40) transparent;
+  scrollbar-color: ${uiKitDesignTokens.colorPrimary40} transparent;
 
   :hover {
     overflow-y: scroll;
@@ -57,8 +59,8 @@ const ScrollableMenu = styled.div`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-primary-40);
-    border-radius: var(--border-radius-8);
+    background-color: ${uiKitDesignTokens.colorPrimary40};
+    border-radius: ${uiKitDesignTokens.borderRadius8};
   }
 `;
 
@@ -98,8 +100,8 @@ const leftNavigationOpenStyles = css`
 
     ${Title} {
       opacity: 1;
-      margin-left: var(--spacing-25);
-      color: var(--color-surface);
+      margin-left: ${uiKitDesignTokens.spacing25};
+      color: ${uiKitDesignTokens.colorSurface};
       transition: ${NAVBAR.leftNavigationTransition};
       animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
     }
@@ -111,18 +113,18 @@ const leftNavigationOpenStyles = css`
 `;
 
 const NavigationHeader = styled.div`
-  background-color: ${designTokens.colorAccent10};
-  color: ${designTokens.colorSurface};
+  background-color: ${uiKitDesignTokens.colorAccent10};
+  color: ${uiKitDesignTokens.colorSurface};
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  padding: ${designTokens.spacing30};
+  padding: ${uiKitDesignTokens.spacing30};
 `;
 
 const HeaderTitle = styled.div`
   font-weight: 600;
-  margin-left: ${designTokens.spacing20};
+  margin-left: ${uiKitDesignTokens.spacing20};
   transition: ${NAVBAR.leftNavigationTransition};
   animation: ${visible} 150ms cubic-bezier(1, 0, 0.58, 1);
 `;
@@ -143,40 +145,41 @@ const TooltipContainer = styled.div<{
 `;
 
 const Tooltip = styled.div`
-  padding: var(--spacing-10) calc(var(--spacing-20) + var(--spacing-10));
+  padding: ${uiKitDesignTokens.spacing10}
+    calc(${uiKitDesignTokens.spacing20} + ${uiKitDesignTokens.spacing10});
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  border-radius: var(--border-radius-4);
-  background: var(--color-accent-10);
+  border-radius: ${uiKitDesignTokens.borderRadius4};
+  background: ${uiKitDesignTokens.colorAccent10};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  font-size: var(--font-size-for-navbar-link);
-  line-height: var(--line-height-for-navbar-link);
-  font-weight: var(--font-weight-for-navbar-link);
-  color: var(--color-surface);
+  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
+  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
+  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
+  color: ${uiKitDesignTokens.colorSurface};
   max-height: ${NAVBAR.itemSize};
   visibility: inherit;
 `;
 
 const TextLink = styled.a`
-  color: var(--color-for-navbar-link);
+  color: ${appKitDesignTokens.colorForNavbarLink};
   text-decoration: none;
   display: flex;
-  padding: var(--spacing-25);
+  padding: ${uiKitDesignTokens.spacing25};
   align-items: center;
   justify-content: center;
 `;
 
 const SupportMenu = styled.div`
-  padding: var(--spacing-10) var(--spacing-30) var(--spacing-20)
-    var(--spacing-30);
-  height: calc(var(--item-size) + var(--spacing-20));
+  padding: ${uiKitDesignTokens.spacing10} ${uiKitDesignTokens.spacing30}
+    ${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing30};
+  height: calc(${NAVBAR.itemSize} + ${uiKitDesignTokens.spacing20});
 `;
 
 const Text = styled.div`
-  font-weight: var(--font-weight-for-navbar-link);
-  font-size: var(--font-size-for-navbar-link);
-  line-height: var(--line-height-for-navbar-link);
+  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
+  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
+  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
   width: 100%;
   height: 100%;
 `;
@@ -187,20 +190,20 @@ const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      color: var(--color-solid);
-      font-weight: var(--font-weight-for-navbar-link-when-hovered);
+      color: ${uiKitDesignTokens.colorSolid};
+      font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenHovered};
       text-decoration: none;
       flex: 1;
-      padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
-        var(--spacing-30);
+      padding: ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing25}
+        ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing30};
       transition: padding 150ms ease-out;
     `,
   !isSubmenuLink &&
     css`
-      color: var(--color-for-navbar-link);
+      color: ${appKitDesignTokens.colorForNavbarLink};
       text-decoration: none;
       display: flex;
-      padding: var(--spacing-25);
+      padding: ${uiKitDesignTokens.spacing25};
       align-items: center;
       justify-content: center;
     `,

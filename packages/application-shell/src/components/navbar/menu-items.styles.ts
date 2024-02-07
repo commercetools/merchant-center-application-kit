@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import type { MenuGroupProps } from './menu-items';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
@@ -48,10 +49,10 @@ const Expander = styled.li<{ isVisible: boolean }>`
   justify-content: center;
   background: linear-gradient(
     180deg,
-    ${designTokens.colorPrimary} 0%,
-    ${designTokens.colorPrimary25} 100%
+    ${uiKitDesignTokens.colorPrimary} 0%,
+    ${uiKitDesignTokens.colorPrimary25} 100%
   );
-  padding: ${designTokens.spacing30} ${designTokens.spacing25};
+  padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing25};
   ${(props) =>
     !props.isVisible &&
     css`
@@ -65,20 +66,20 @@ const Expander = styled.li<{ isVisible: boolean }>`
     top: ${NAVBAR.itemHeight};
     height: 1px;
     background: rgba(255, 255, 255, 0.5);
-    width: calc(100% - 2 * ${designTokens.spacing30});
+    width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
   }
 
   :hover,
   :focus {
-    background-color: var(--color-primary-40);
+    background-color: ${uiKitDesignTokens.colorPrimary40};
   }
 `;
 
 const ExpanderIcon = styled.div`
   height: ${NAVBAR.expanderSize};
   width: ${NAVBAR.expanderSize};
-  border-radius: ${designTokens.borderRadius4};
-  padding: ${designTokens.spacing20};
+  border-radius: ${uiKitDesignTokens.borderRadius4};
+  padding: ${uiKitDesignTokens.spacing20};
   background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
@@ -94,7 +95,7 @@ const ExpanderIcon = styled.div`
 const LeftNavigation = styled.nav`
   display: grid;
   width: ${NAVBAR.widthLeftNavigation};
-  background: ${designTokens.colorPrimary};
+  background: ${uiKitDesignTokens.colorPrimary};
   height: 100%;
   grid-template-rows: 56px 1fr;
   transition: ${NAVBAR.leftNavigationTransition};
@@ -122,10 +123,10 @@ const listStyles = css`
 `;
 
 const sublistStyles = css`
-  padding: var(--spacing-30);
-  font-weight: var(--font-weight-for-navbar-link);
-  font-size: var(--font-size-for-navbar-link);
-  background-color: var(--background-color-for-navbar);
+  padding: ${uiKitDesignTokens.spacing30};
+  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
+  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
+  background-color: ${appKitDesignTokens.backgroundColorForNavbar};
   left: ${NAVBAR.sublistIndentationWhenCollapsed};
   z-index: -1;
   list-style: none;
@@ -160,16 +161,16 @@ const MenuList = styled.ul<
         opacity: 1;
         display: none;
         text-align: left;
-        background-color: var(--background-color-for-navbar-when-active);
+        background-color: ${appKitDesignTokens.backgroundColorForNavbarWhenActive};
 
         /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
         ::before {
           content: '';
           position: absolute;
           display: block;
-          width: calc(${NAVBAR.sublistWidth} + var(--spacing-20));
+          width: calc(${NAVBAR.sublistWidth} + ${uiKitDesignTokens.spacing20});
           height: ${NAVBAR.itemSize};
-          left: calc(-1 * var(--spacing-20));
+          left: calc(-1 * ${uiKitDesignTokens.spacing20});
 
           ${getContainerPositionBasedOnMenuItemPosition(
             props.isSubmenuAboveMenuItem,
@@ -180,10 +181,10 @@ const MenuList = styled.ul<
       `,
   ]}
 
-  .highlighted,
-  .highlighted ${Title} {
-    color: var(--color-for-navbar-link-when-active) !important;
-    font-weight: var(--font-weight-for-navbar-link-when-active);
+  & .highlighted,
+  & .highlighted ${Title} {
+    color: ${appKitDesignTokens.colorForNavbarLinkWhenActive} !important;
+    font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenActive};
   }
 `;
 
@@ -195,22 +196,25 @@ const SublistItem = styled.li<{ isActive: boolean }>`
   ${(props) => [
     props.isActive &&
       css`
-        border-radius: var(--border-radius-4);
-        background: var(--color-accent-30);
+        border-radius: ${uiKitDesignTokens.borderRadius4};
+        background: ${uiKitDesignTokens.colorAccent30};
       `,
     !props.isActive &&
       css`
         :hover,
         :focus-within {
-          color: var(--color-for-navbar-link-when-hovered);
-          font-weight: var(--font-weight-for-navbar-link-when-hovered);
-          border-radius: var(--border-radius-4);
-          background: var(--color-primary-95);
+          color: ${appKitDesignTokens.colorForNavbarLinkWhenHovered};
+          font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenHovered};
+          border-radius: ${uiKitDesignTokens.borderRadius4};
+          background: ${uiKitDesignTokens.colorPrimary95};
 
           [data-link-level='text-link-sublist'] {
             /* additional left padding on hover and focus */
-            padding: var(--spacing-25) var(--spacing-25) var(--spacing-25)
-              calc(var(--spacing-30) + var(--spacing-20));
+            padding: ${uiKitDesignTokens.spacing25}
+              ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing25}
+              calc(
+                ${uiKitDesignTokens.spacing30} + ${uiKitDesignTokens.spacing20}
+              );
           }
         }
       `,
@@ -224,7 +228,7 @@ const MenuListItem = styled.li<{
 }>`
   min-height: ${NAVBAR.itemSize};
   margin: 0;
-  background: var(--color-primary);
+  background: ${uiKitDesignTokens.colorPrimary};
   list-style: none;
   cursor: pointer;
 
@@ -238,15 +242,15 @@ const MenuListItem = styled.li<{
   ${(props) => [
     props.isRouteActive &&
       css`
-        background: var(--color-accent-30);
-        border-radius: var(--border-radius-8);
+        background: ${uiKitDesignTokens.colorAccent30};
+        border-radius: ${uiKitDesignTokens.borderRadius8};
       `,
     !props.isRouteActive &&
       css`
         :hover,
         :focus-within {
-          background-color: var(--color-primary-40);
-          border-radius: var(--border-radius-8);
+          background-color: ${uiKitDesignTokens.colorPrimary40};
+          border-radius: ${uiKitDesignTokens.borderRadius8};
         }
       `,
     props.isActive &&
@@ -259,11 +263,11 @@ const MenuListItem = styled.li<{
       css`
         :hover ${Icon} > svg *:not([fill='none']),
         :focus-within ${Icon} > svg *:not([fill='none']) {
-          fill: var(--color-for-navbar-icon-when-active);
+          fill: ${appKitDesignTokens.colorForNavbarIconWhenActive};
         }
 
         :hover .${Title}, :focus-within ${Title} {
-          color: var(--color-for-navbar-link-when-hovered);
+          color: ${appKitDesignTokens.colorForNavbarLinkWhenHovered};
         }
       `,
     props.isCollapsed &&
@@ -274,7 +278,7 @@ const MenuListItem = styled.li<{
 
   :hover ${Title},
   :focus-within ${Title} {
-    margin-left: calc(var(--spacing-25) + 2px);
+    margin-left: calc(${uiKitDesignTokens.spacing25} + 2px);
   }
 
   :hover ${Icon}, :focus-within ${Icon} {
@@ -297,10 +301,10 @@ const MenuListItem = styled.li<{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--color-surface);
+    background-color: ${uiKitDesignTokens.colorSurface};
     min-height: ${NAVBAR.sublistItemMinHeight};
     width: ${NAVBAR.sublistWidth};
-    border-radius: var(--border-radius-8);
+    border-radius: ${uiKitDesignTokens.borderRadius8};
     /* z-index value must be higher than AppBar's z-index */
     z-index: 20001;
     box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
