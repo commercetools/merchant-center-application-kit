@@ -66,11 +66,17 @@ const AppBar = (props: Props) => {
                 return (
                   <>
                     {/* klaudija TODO: remove the ! */}
-                    <ProjectStamp
-                      isProductionProject={
-                        !selectedProject?.isProductionProject
-                      }
-                    />
+                    <div
+                      css={css`
+                        height: 22px;
+                      `}
+                    >
+                      <ProjectStamp
+                        isProductionProject={
+                          !selectedProject?.isProductionProject
+                        }
+                      />
+                    </div>
                     <ProjectSwitcher
                       // In this case it's not necessary to check if the `projectKey` param
                       // is included in the list of projects. In such case
