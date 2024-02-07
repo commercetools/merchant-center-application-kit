@@ -113,17 +113,22 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
   );
 };
 
-const mapProjectsToOptions = memoize((projects) =>
-  projects.map((project: TProject) => ({
-    key: project.key,
-    name: project.name,
-    label: project.name,
-    value: project.key,
-    suspension: project.suspension,
-    expiry: project.expiry,
-    isProductionProject: project.isProductionProject,
-  }))
-);
+const mapProjectsToOptions = memoize((projects) => {
+  return [
+    {
+      label: 'Projects',
+      options: projects.map((project: TProject) => ({
+        key: project.key,
+        name: project.name,
+        label: project.name,
+        value: project.key,
+        suspension: project.suspension,
+        expiry: project.expiry,
+        isProductionProject: project.isProductionProject,
+      })),
+    },
+  ];
+});
 
 const CustomMenuList = (props: MenuListProps) => {
   return (
