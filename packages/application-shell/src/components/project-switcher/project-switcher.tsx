@@ -74,7 +74,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       {...props}
       css={css`
         display: grid;
-        grid-template-columns: 240px 1fr;
+        grid-template-columns: auto 1fr;
       `}
     >
       <div

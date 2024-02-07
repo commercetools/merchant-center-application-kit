@@ -20,7 +20,13 @@ function ProjectStamp(props: TProjectStampProps) {
   );
 
   return (
-    <div>
+    <div
+      css={css`
+        > * {
+          width: max-content;
+        }
+      `}
+    >
       {props.isProductionProject &&
         renderStamp(
           'positive',
