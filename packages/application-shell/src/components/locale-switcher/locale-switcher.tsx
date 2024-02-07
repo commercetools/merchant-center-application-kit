@@ -61,12 +61,24 @@ const CustomMenuList = (props: MenuListProps) => {
 
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
+
   const handleSelection = useCallback(
     (event) => {
       setProjectDataLocale(event.target.value);
     },
     [setProjectDataLocale]
   );
+
+  const localeOptions = [
+    {
+      label: 'Data Locales',
+      options: props.availableLocales.map((locale) => ({
+        label: locale,
+        value: locale,
+      })),
+    },
+  ];
+
   return (
     <div>
       <AccessibleHidden>
@@ -79,10 +91,7 @@ const LocaleSwitcher = (props: Props) => {
         name="locale-switcher"
         aria-labelledby={LOCALE_SWITCHER_LABEL_ID}
         onChange={handleSelection}
-        options={props.availableLocales.map((locale) => ({
-          label: locale,
-          value: locale,
-        }))}
+        options={localeOptions}
         components={{
           SingleValue,
           ValueContainer: PatchedValueContainer,
