@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 22.17.1
+
+### Patch Changes
+
+- [#3396](https://github.com/commercetools/merchant-center-application-kit/pull/3396) [`8ad52e2c9`](https://github.com/commercetools/merchant-center-application-kit/commit/8ad52e2c9460744d3f49af929db47562830c9639) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Updates the favicons to use the new branding.
+
 ## 22.17.0
 
 ### Minor Changes
