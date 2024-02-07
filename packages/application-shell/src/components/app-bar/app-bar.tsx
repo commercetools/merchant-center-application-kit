@@ -55,7 +55,13 @@ const AppBar = (props: Props) => {
         `}
       >
         <Spacings.Inline scale="m" alignItems="center">
-          <Spacings.Inline scale="m" alignItems="center">
+          <div
+            css={css`
+              display: flex;
+              gap: ${uikitDesignTokens.spacingM};
+              align-items: center;
+            `}
+          >
             {(() => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
@@ -64,19 +70,26 @@ const AppBar = (props: Props) => {
               // user is fetched and the user has projects while the app runs in an project context.
               if (props.user.projects.total > 0 && props.projectKeyFromUrl)
                 return (
-                  <>
-                    {/* klaudija TODO: remove the ! */}
-                    <div
-                      css={css`
-                        height: 22px;
-                      `}
-                    >
-                      <ProjectStamp
-                        isProductionProject={
-                          !selectedProject?.isProductionProject
-                        }
-                      />
-                    </div>
+                  <div
+                    css={css`
+                      display: flex;
+                      gap: ${uikitDesignTokens.spacingS};
+                      align-items: center;
+                    `}
+                  >
+                    {selectedProject?.isProductionProject && (
+                      <div
+                        css={css`
+                          height: 22px;
+                        `}
+                      >
+                        <ProjectStamp
+                          isProductionProject={
+                            selectedProject?.isProductionProject
+                          }
+                        />
+                      </div>
+                    )}
                     <ProjectSwitcher
                       // In this case it's not necessary to check if the `projectKey` param
                       // is included in the list of projects. In such case
@@ -85,14 +98,14 @@ const AppBar = (props: Props) => {
                       // to a project.
                       projectKey={props.projectKeyFromUrl || previousProjectKey}
                     />
-                  </>
+                  </div>
                 );
               if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
             {/* This node is used by a react portal */}
             <div id={CONTAINERS.LOCALE_SWITCHER} />
-          </Spacings.Inline>
+          </div>
           <Spacings.Inline>
             <div
               id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
