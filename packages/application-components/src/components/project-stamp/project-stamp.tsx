@@ -35,7 +35,7 @@ function ProjectStamp(props: TProjectStampProps) {
             css={css`
               height: 18px;
               svg {
-                height: 19px;
+                height: 18px;
                 width: 12px;
               }
             `}

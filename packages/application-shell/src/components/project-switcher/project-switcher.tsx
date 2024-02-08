@@ -75,6 +75,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       css={css`
         display: grid;
         grid-template-columns: auto 1fr;
+        grid-gap: ${designTokens.spacing10};
       `}
     >
       <div
@@ -97,7 +98,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
           > div {
             display: grid;
             justify-items: end;
-            grid-gap: 4px;
+            grid-gap: ${designTokens.spacing10};
           }
         `}
       >
