@@ -11,6 +11,7 @@ export const NAVBAR = {
   itemHeight: '56px',
   sublistIndentationWhenCollapsed: '72px',
   sublistIndentationWhenExpanded: '248px',
+  sublistItemMinHeight: '50px',
   sublistWidth: '253px',
   leftNavigationTransition: 'all 150ms cubic-bezier(1, 0, 0.58, 1)',
   widthLeftNavigation: '80px',
