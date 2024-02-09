@@ -59,6 +59,7 @@
     "@commercetools-uikit/select-input": "^17.0.0",
     "@commercetools-uikit/spacings": "^17.0.0",
     "@commercetools-uikit/text": "^17.0.0",
+    "@commercetools-uikit/icon-button": "^17.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@flopflip/combine-adapters": "13.1.7",

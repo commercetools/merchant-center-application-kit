@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
 import type {
@@ -8,9 +8,11 @@ import type {
   GroupHeadingPropsDefinedProps,
 } from 'react-select';
 import { components } from 'react-select';
+import { InfoDialog } from '@commercetools-frontend/application-components';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { WorldIcon } from '@commercetools-uikit/icons';
+import IconButton from '@commercetools-uikit/icon-button';
+import { WorldIcon, InformationIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
 import messages from './messages';
 
@@ -87,6 +89,7 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSelection = useCallback(
     (event) => {
@@ -97,7 +100,7 @@ const LocaleSwitcher = (props: Props) => {
 
   const localeOptions = [
     {
-      label: 'Data Locales',
+      label: 'Locales',
       options: props.availableLocales.map((locale) => ({
         label: locale,
         value: locale,
@@ -122,6 +125,9 @@ const LocaleSwitcher = (props: Props) => {
           SingleValue,
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
+          GroupHeading: (groupProps) => (
+            <CustomGroupHeading {...groupProps} setIsOpen={setIsOpen} />
+          ),
         }}
         isClearable={false}
         backspaceRemovesValue={false}
@@ -131,6 +137,17 @@ const LocaleSwitcher = (props: Props) => {
         maxMenuHeight={360}
         minMenuWidth={3}
       />
+      {/* Dialog that explains the locales */}
+      <InfoDialog
+        isOpen={isOpen}
+        title="Lorem ipsum"
+        onClose={() => setIsOpen(false)}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis vero
+        quas soluta nesciunt, incidunt repellat cumque autem id exercitationem
+        amet. Illum quaerat labore accusantium perferendis ab laboriosam. Saepe,
+        repudiandae adipisci.
+      </InfoDialog>
     </div>
   );
 };
