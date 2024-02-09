@@ -5,7 +5,7 @@ import type {
   SingleValueProps,
   ValueContainerProps,
   MenuListProps,
-  GroupHeadingProps,
+  GroupHeadingPropsDefinedProps,
 } from 'react-select';
 import { components } from 'react-select';
 import { InfoDialog } from '@commercetools-frontend/application-components';
@@ -63,7 +63,7 @@ const CustomMenuList = (props: MenuListProps) => {
 };
 
 export const CustomGroupHeading = (
-  props: GroupHeadingProps & { setIsOpen: (value: boolean) => void }
+  props: GroupHeadingPropsDefinedProps & { setIsOpen: (value: boolean) => void }
 ) => {
   return (
     <>
