@@ -122,6 +122,45 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
                     dataFences: submenuLink.dataFences ?? null,
                   })),
                 },
+                ...[...Array(15).keys()].map((index) => {
+                  return {
+                    __typename: 'NavbarMenu',
+                    key: `dupa-${index}`,
+                    uriPath: 'dupa',
+                    icon: menuLinks.icon,
+                    labelAllLocales: mapLabelAllLocalesWithDefaults(
+                      menuLinks.labelAllLocales,
+                      menuLinks.defaultLabel
+                    ),
+                    permissions: menuLinks.permissions,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    featureToggle: menuLinks.featureToggle ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    menuVisibility: menuLinks.menuVisibility ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    actionRights: menuLinks.actionRights ?? null,
+                    // @ts-ignore: not defined in schema, as it's only used internally.
+                    dataFences: menuLinks.dataFences ?? null,
+                    submenu: menuLinks.submenuLinks.map((submenuLink) => ({
+                      __typename: 'BaseMenu',
+                      key: `dupa-${index}-dupa` + index,
+                      uriPath: 'dupa' + index,
+                      labelAllLocales: mapLabelAllLocalesWithDefaults(
+                        submenuLink.labelAllLocales,
+                        submenuLink.defaultLabel
+                      ),
+                      permissions: submenuLink.permissions,
+                      // @ts-ignore: not defined in schema, as it's only used internally.
+                      featureToggle: submenuLink.featureToggle ?? null,
+                      // @ts-ignore: not defined in schema, as it's only used internally.
+                      menuVisibility: submenuLink.menuVisibility ?? null,
+                      // @ts-ignore: not defined in schema, as it's only used internally.
+                      actionRights: submenuLink.actionRights ?? null,
+                      // @ts-ignore: not defined in schema, as it's only used internally.
+                      dataFences: submenuLink.dataFences ?? null,
+                    })),
+                  };
+                }),
               ],
             },
           ]
@@ -195,6 +234,7 @@ function useApplicationsMenu<Key extends MenuKey>(
       const applicationMenu = mapApplicationMenuConfigToGraqhQLQueryResult(
         config.environment
       );
+      console.log(applicationMenu);
       apolloClient.writeQuery({
         query: FetchApplicationsMenu,
         data: applicationMenu,

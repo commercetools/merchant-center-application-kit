@@ -41,24 +41,26 @@ const ScrollableMenu = styled.div`
     ${NAVBAR.itemSize};
   width: ${NAVBAR.widthLeftNavigation};
   box-sizing: border-box;
+
+  :hover {
+    overflow-y: scroll;
+    padding-right: 4px;
+  }
+
   /* For Firefox */
   scrollbar-width: thin;
   scrollbar-color: ${uiKitDesignTokens.colorPrimary40} transparent;
 
-  :hover {
-    overflow-y: scroll;
-    padding-right: 8px;
-  }
-
-  ::-webkit-scrollbar {
+  /* For WebKit-based browsers e.g. Chrome, Safari */
+  &::-webkit-scrollbar {
     width: 8px;
   }
 
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background-color: ${uiKitDesignTokens.colorPrimary40};
     border-radius: ${uiKitDesignTokens.borderRadius8};
   }
