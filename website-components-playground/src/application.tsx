@@ -29,9 +29,7 @@ const TabularDetailPage = lazy(() => import('./pages/tabular-detail-page'));
 const TabularMainPage = lazy(() => import('./pages/tabular-main-page'));
 const TabularModalPage = lazy(() => import('./pages/tabular-modal-page'));
 
-const history = createEnhancedHistory(
-  createBrowserHistory({ basename: '/custom-applications/playground' })
-);
+const history = createEnhancedHistory(createBrowserHistory());
 
 const Application = () => (
   <Router history={history}>
