@@ -1659,6 +1659,9 @@ importers:
       '@commercetools-uikit/flat-button':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+      '@commercetools-uikit/icon-button':
+        specifier: ^17.0.0
+        version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/icons':
         specifier: ^17.0.0
         version: 17.0.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
@@ -3385,106 +3388,6 @@ importers:
       vite:
         specifier: 4.5.2
         version: 4.5.2(@types/node@18.17.14)
-
-  website:
-    dependencies:
-      '@commercetools-docs/gatsby-theme-docs':
-        specifier: 22.11.3
-        version: 22.11.3(@babel/core@7.23.0)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.82.1)
-      '@commercetools-docs/ui-kit':
-        specifier: 22.11.1
-        version: 22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.2.2)
-      '@commercetools-frontend/assets':
-        specifier: workspace:*
-        version: link:../packages/assets
-      '@commercetools-uikit/card':
-        specifier: ^17.0.0
-        version: 17.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-uikit/grid':
-        specifier: ^17.0.0
-        version: 17.0.0(@types/react@17.0.56)(react@18.2.0)
-      '@commercetools-uikit/icons':
-        specifier: ^17.0.0
-        version: 17.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-uikit/spacings-inline':
-        specifier: ^17.0.0
-        version: 17.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-uikit/spacings-stack':
-        specifier: ^17.0.0
-        version: 17.0.0(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
-      '@emotion/react':
-        specifier: ^11.11.1
-        version: 11.11.1(@types/react@17.0.56)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.1)(@types/react@17.0.56)(react@18.2.0)
-      '@gatsbyjs/reach-router':
-        specifier: ^2.0.1
-        version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
-      deepmerge:
-        specifier: ^4.3.1
-        version: 4.3.1
-      gatsby:
-        specifier: ^5.12.4
-        version: 5.12.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
-      gatsby-cli:
-        specifier: ^5.12.1
-        version: 5.12.1
-      gatsby-core-utils:
-        specifier: ^4.12.0
-        version: 4.12.0
-      gatsby-link:
-        specifier: 5.9.0
-        version: 5.9.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-plugin-mdx:
-        specifier: 3.20.0
-        version: 3.20.0(patch_hash=gnfct6xrlmmxne5piiaxu4y5fq)(@mdx-js/mdx@1.6.22)(@mdx-js/react@1.6.22)(gatsby@5.12.4)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-react-router-scroll:
-        specifier: ^6.12.0
-        version: 6.12.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-script:
-        specifier: ^2.12.0
-        version: 2.12.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      mitt:
-        specifier: ^1.2.0
-        version: 1.2.0
-      node-html-parser:
-        specifier: ^5.4.2
-        version: 5.4.2
-      prop-types:
-        specifier: 15.8.1
-        version: 15.8.1
-      raw-loader:
-        specifier: 4.0.2
-        version: 4.0.2(webpack@5.82.1)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-intl:
-        specifier: ^6.4.5
-        version: 6.4.5(react@18.2.0)(typescript@5.2.2)
-      shallow-compare:
-        specifier: ^1.2.2
-        version: 1.2.2
-    devDependencies:
-      '@svgr/cli':
-        specifier: 6.5.1
-        version: 6.5.1
-      gatsby-plugin-pnpm:
-        specifier: 1.2.10
-        version: 1.2.10(gatsby@5.12.4)
-      linkinator:
-        specifier: 5.0.1
-        version: 5.0.1
-      prettier:
-        specifier: 2.8.8
-        version: 2.8.8
-      start-server-and-test:
-        specifier: 2.0.0
-        version: 2.0.0
 
   website-components-playground:
     dependencies:
@@ -19854,7 +19757,7 @@ packages:
     peerDependencies:
       react: '>=16.12.0'
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.23.2
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.2.0
