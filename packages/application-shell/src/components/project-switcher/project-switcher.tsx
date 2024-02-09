@@ -184,7 +184,10 @@ const ProjectSwitcher = (props: Props) => {
           }
         }}
         options={
-          data && data.user && mapProjectsToOptions(data.user.projects.results)
+          (data &&
+            data.user &&
+            mapProjectsToOptions(data.user.projects.results)) ||
+          []
         }
         isOptionDisabled={(option) => {
           const project = option as OptionType;

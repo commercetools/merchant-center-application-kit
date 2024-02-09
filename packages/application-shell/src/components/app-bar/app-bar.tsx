@@ -83,11 +83,7 @@ const AppBar = (props: Props) => {
                           height: 22px;
                         `}
                       >
-                        <ProjectStamp
-                          isProductionProject={
-                            selectedProject?.isProductionProject
-                          }
-                        />
+                        <ProjectStamp.IsProduction />
                       </div>
                     )}
                     <ProjectSwitcher
