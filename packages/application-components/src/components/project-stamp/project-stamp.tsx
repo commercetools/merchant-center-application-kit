@@ -1,63 +1,71 @@
+import { ReactElement } from 'react';
 import { css } from '@emotion/react';
-import { useIntl } from 'react-intl';
+import { MessageDescriptor, useIntl } from 'react-intl';
 import { DotIcon } from '@commercetools-uikit/icons';
 import Stamp, { TTone } from '@commercetools-uikit/stamp';
 import messages from './messages';
 
-type TProjectStampProps = {
-  isProductionProject?: boolean | undefined;
-  isSuspended?: boolean | undefined;
-  isExpired?: boolean | undefined;
-  willExpire?: boolean | undefined;
-  daysLeft?: number | undefined;
+type TCustomStampProps = {
+  tone: TTone;
+  label: MessageDescriptor & { values?: Record<string, string | number> };
+  icon?: ReactElement;
 };
-
-function ProjectStamp(props: TProjectStampProps) {
+function CustomStamp(props: TCustomStampProps) {
   const intl = useIntl();
-
-  const renderStamp = (tone: TTone, label: string, icon?: JSX.Element) => (
-    <Stamp tone={tone} isCondensed={true} label={label} icon={icon} />
-  );
-
+  const { values, ...message } = props.label;
   return (
-    <div
-      css={css`
-        > * {
-          width: max-content;
-        }
-      `}
-    >
-      {props.isProductionProject &&
-        renderStamp(
-          'positive',
-          intl.formatMessage(messages.ProjectProduction),
-          <div
-            css={css`
-              height: 18px;
-              svg {
-                height: 18px;
-                width: 12px;
-              }
-            `}
-          >
-            <DotIcon color="primary" />
-          </div>
-        )}
-      {props.isSuspended &&
-        renderStamp('critical', intl.formatMessage(messages.ProjectSuspended))}
-      {props.isExpired &&
-        renderStamp('critical', intl.formatMessage(messages.ProjectExpired))}
-      {props.willExpire &&
-        renderStamp(
-          'information',
-          intl.formatMessage(messages.ProjectSuspended, {
-            daysLeft: props.daysLeft || 0,
-          })
-        )}
-    </div>
+    <Stamp
+      tone={props.tone}
+      isCondensed={true}
+      label={intl.formatMessage(message, values || {})}
+      icon={props.icon}
+    />
   );
 }
 
-ProjectStamp.displayName = 'ProjectStamp';
+const IsProduction = () => (
+  <CustomStamp
+    tone="positive"
+    label={messages.ProjectProduction}
+    icon={
+      <div
+        css={css`
+          height: 18px;
+          svg {
+            height: 18px;
+            width: 12px;
+          }
+        `}
+      >
+        <DotIcon color="primary" />
+      </div>
+    }
+  />
+);
+
+const IsSuspended = () => (
+  <CustomStamp tone="critical" label={messages.ProjectSuspended} />
+);
+
+const IsExpired = () => (
+  <CustomStamp tone="critical" label={messages.ProjectExpired} />
+);
+
+const WillExpire = (props: { daysLeft: number }) => (
+  <CustomStamp
+    tone="critical"
+    label={{
+      ...messages.ProjectExpired,
+      values: { daysLeft: props.daysLeft },
+    }}
+  />
+);
+
+const ProjectStamp = {
+  IsProduction,
+  IsSuspended,
+  IsExpired,
+  WillExpire,
+};
 
 export default ProjectStamp;

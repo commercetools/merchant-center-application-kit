@@ -19,6 +19,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import SelectInput from '@commercetools-uikit/select-input';
+import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import type {
   TProject,
@@ -43,73 +44,65 @@ type OptionType = Pick<
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
-export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
+export const ValueContainer = ({
+  children,
+  ...restProps
+}: ValueContainerProps) => {
   return (
-    <div
-      css={css`
-        display: flex;
-        flex: 1;
-        align-items: center;
-        font-weight: ${designTokens.fontWeight500};
-      `}
-    >
-      <div
-        css={css`
-          flex: 1;
-        `}
-      >
-        <SelectInput.ValueContainer {...restProps}>
-          {restProps.children}
-        </SelectInput.ValueContainer>
-      </div>
-    </div>
+    <Text.Body fontWeight="medium" as="span">
+      <SelectInput.ValueContainer {...restProps}>
+        {children}
+      </SelectInput.ValueContainer>
+    </Text.Body>
   );
 };
+
+type TProjectStampsListProps = Pick<
+  TProject,
+  'isProductionProject' | 'suspension' | 'expiry'
+>;
+const ProjectStampsList = (props: TProjectStampsListProps) => (
+  <Spacings.Stack scale="xs" alignItems="flex-end">
+    {props.isProductionProject && <ProjectStamp.IsProduction />}
+    {props.suspension && props.suspension.isActive && (
+      <ProjectStamp.IsSuspended />
+    )}
+    {props.expiry && props.expiry.isActive && <ProjectStamp.IsExpired />}
+    {props.expiry && Boolean(props.expiry.daysLeft) && (
+      <ProjectStamp.WillExpire daysLeft={props.expiry.daysLeft!} />
+    )}
+  </Spacings.Stack>
+);
 
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
 
   return (
-    <SelectInput.Option
-      {...props}
-      css={css`
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: ${designTokens.spacing10};
-      `}
-    >
-      <div
-        css={css`
-          word-wrap: break-word;
-        `}
-      >
-        <Text.Body
-          fontWeight="medium"
-          tone={props.isDisabled ? 'tertiary' : 'inherit'}
+    <SelectInput.Option {...props}>
+      <Spacings.Inline scale="xs" justifyContent="space-between">
+        <div
+          css={css`
+            flex: 1;
+            word-wrap: break-word;
+          `}
         >
-          {project.name}
-        </Text.Body>
-        <Text.Caption tone={props.isDisabled ? 'tertiary' : 'secondary'}>
-          {project.key}
-        </Text.Caption>
-      </div>
-      <div
-        css={css`
-          > div {
-            display: grid;
-            justify-items: end;
-            grid-gap: ${designTokens.spacing10};
-          }
-        `}
-      >
-        <ProjectStamp
+          <Text.Body
+            fontWeight="medium"
+            tone={props.isDisabled ? 'tertiary' : 'inherit'}
+          >
+            {project.name}
+          </Text.Body>
+          <Text.Caption tone={props.isDisabled ? 'tertiary' : 'secondary'}>
+            {project.key}
+          </Text.Caption>
+        </div>
+
+        <ProjectStampsList
           isProductionProject={project.isProductionProject}
-          isSuspended={project.suspension && project.suspension.isActive}
-          isExpired={project.expiry && project.expiry.isActive}
-          willExpire={project.expiry && project.expiry.daysLeft}
-          daysLeft={project.expiry.daysLeft}
+          suspension={project.suspension}
+          expiry={project.expiry}
         />
-      </div>
+      </Spacings.Inline>
     </SelectInput.Option>
   );
 };
