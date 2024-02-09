@@ -4,5 +4,11 @@
     "enabled": true
   },
   "buildCommand": "pnpm run -w build && pnpm build",
-  "framework": "vite"
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
