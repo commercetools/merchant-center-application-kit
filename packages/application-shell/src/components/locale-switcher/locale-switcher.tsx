@@ -5,6 +5,7 @@ import type {
   SingleValueProps,
   ValueContainerProps,
   MenuListProps,
+  GroupHeadingPropsDefinedProps,
 } from 'react-select';
 import { components } from 'react-select';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
@@ -58,6 +59,31 @@ PatchedValueContainer.displayName = 'PatchedValueContainer';
 const CustomMenuList = (props: MenuListProps) => {
   return <components.MenuList {...props}>{props.children}</components.MenuList>;
 };
+
+export const CustomGroupHeading = (
+  props: GroupHeadingPropsDefinedProps & { setIsOpen: (value: boolean) => void }
+) => {
+  return (
+    <>
+      <components.GroupHeading
+        {...props}
+        css={css`
+          display: flex;
+          gap: ${designTokens.spacing10};
+        `}
+      >
+        {props.children}
+        <IconButton
+          icon={<InformationIcon />}
+          label="Locales info"
+          size="small"
+          onClick={() => props.setIsOpen(true)}
+        />
+      </components.GroupHeading>
+    </>
+  );
+};
+CustomGroupHeading.displayName = 'CustomGroupHeading';
 
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
