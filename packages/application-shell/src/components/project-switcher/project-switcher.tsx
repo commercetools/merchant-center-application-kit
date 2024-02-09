@@ -8,7 +8,12 @@ import type {
   ControlProps,
 } from 'react-select';
 import { components } from 'react-select';
-import { ProjectStamp } from '@commercetools-frontend/application-components';
+import {
+  ProjectProductionStamp,
+  ProjectSuspendedStamp,
+  ProjectExpiredStamp,
+  ProjectWillExpireStamp,
+} from '@commercetools-frontend/application-components';
 import {
   useMcQuery,
   oidcStorage,
@@ -74,7 +79,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       {...props}
       css={css`
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 1fr max-content;
         grid-gap: ${designTokens.spacing10};
       `}
     >
@@ -95,20 +100,22 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       </div>
       <div
         css={css`
-          > div {
-            display: grid;
-            justify-items: end;
-            grid-gap: ${designTokens.spacing10};
+          display: grid;
+          justify-items: end;
+          grid-gap: ${designTokens.spacing10};
+          > * {
+            height: 22px;
           }
         `}
       >
-        <ProjectStamp
-          isProductionProject={project.isProductionProject}
-          isSuspended={project.suspension && project.suspension.isActive}
-          isExpired={project.expiry && project.expiry.isActive}
-          willExpire={project.expiry && project.expiry.daysLeft}
-          daysLeft={project.expiry.daysLeft}
-        />
+        {project.isProductionProject && <ProjectProductionStamp />}
+        {project.suspension && project.suspension.isActive && (
+          <ProjectSuspendedStamp />
+        )}
+        {project.expiry && project.expiry.isActive && <ProjectExpiredStamp />}
+        {project.expiry && project.expiry.daysLeft && (
+          <ProjectWillExpireStamp daysLeft={project.expiry.daysLeft} />
+        )}
       </div>
     </SelectInput.Option>
   );

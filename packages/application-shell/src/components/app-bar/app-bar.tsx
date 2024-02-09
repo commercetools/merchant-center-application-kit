@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import {
   designTokens as appKitDesignTokens,
-  ProjectStamp,
+  ProjectProductionStamp,
 } from '@commercetools-frontend/application-components';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -83,11 +83,7 @@ const AppBar = (props: Props) => {
                           height: 22px;
                         `}
                       >
-                        <ProjectStamp
-                          isProductionProject={
-                            selectedProject?.isProductionProject
-                          }
-                        />
+                        <ProjectProductionStamp />
                       </div>
                     )}
                     <ProjectSwitcher
