@@ -65,21 +65,22 @@ const CustomMenuList = (props: MenuListProps) => {
 export const CustomGroupHeading = (
   props: GroupHeadingPropsDefinedProps & { setIsOpen: (value: boolean) => void }
 ) => {
+  const { setIsOpen, ...groupProps } = props;
   return (
     <>
       <components.GroupHeading
-        {...props}
+        {...groupProps}
         css={css`
           display: flex;
           gap: ${designTokens.spacing10};
         `}
       >
-        {props.children}
+        {groupProps.children}
         <IconButton
           icon={<InformationIcon />}
           label="Locales info"
           size="small"
-          onClick={() => props.setIsOpen(true)}
+          onClick={() => setIsOpen(true)}
         />
       </components.GroupHeading>
     </>
