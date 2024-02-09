@@ -5,8 +5,8 @@ import type {
   SingleValueProps,
   ValueContainerProps,
   MenuListProps,
-  GroupHeadingPropsDefinedProps,
 } from 'react-select';
+import GroupHeadingPropsDefinedProps from 'react-select';
 import { components } from 'react-select';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
