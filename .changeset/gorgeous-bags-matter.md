@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': patch
 ---
 
-Fix Navbar hover padding consistency across different browsers
+Enhance consistency of navbar hover styles across different browsers
