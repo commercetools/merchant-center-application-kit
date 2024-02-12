@@ -109,10 +109,10 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
       >
         {project.isProductionProject && <ProjectProductionStamp />}
         {project.suspension?.isActive && <ProjectSuspendedStamp />}
-        {project.expiry &&
-          (project.expiry.isActive || project.expiry.daysLeft) && (
-            <ProjectExpiredStamp daysLeft={project.expiry.daysLeft} />
-          )}
+        {project.expiry?.isActive && <ProjectExpiredStamp />}
+        {project.expiry?.daysLeft && (
+          <ProjectExpiredStamp daysLeft={project.expiry.daysLeft} />
+        )}
       </div>
     </SelectInput.Option>
   );
@@ -195,7 +195,10 @@ const ProjectSwitcher = (props: Props) => {
           }
         }}
         options={
-          data && data.user && mapProjectsToOptions(data.user.projects.results)
+          (data &&
+            data.user &&
+            mapProjectsToOptions(data.user.projects.results)) ||
+          []
         }
         isOptionDisabled={(option) => {
           const project = option as OptionType;
