@@ -12,7 +12,6 @@ import {
   ProjectProductionStamp,
   ProjectSuspendedStamp,
   ProjectExpiredStamp,
-  ProjectWillExpireStamp,
 } from '@commercetools-frontend/application-components';
 import {
   useMcQuery,
@@ -109,13 +108,11 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
         `}
       >
         {project.isProductionProject && <ProjectProductionStamp />}
-        {project.suspension && project.suspension.isActive && (
-          <ProjectSuspendedStamp />
-        )}
-        {project.expiry && project.expiry.isActive && <ProjectExpiredStamp />}
-        {project.expiry && project.expiry.daysLeft && (
-          <ProjectWillExpireStamp daysLeft={project.expiry.daysLeft} />
-        )}
+        {project.suspension?.isActive && <ProjectSuspendedStamp />}
+        {project.expiry &&
+          (project.expiry.isActive || project.expiry.daysLeft) && (
+            <ProjectExpiredStamp daysLeft={project.expiry.daysLeft} />
+          )}
       </div>
     </SelectInput.Option>
   );

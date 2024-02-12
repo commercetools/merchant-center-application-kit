@@ -52,7 +52,6 @@ export { default as CustomViewsSelector } from './components/custom-views/custom
 export { default as ProjectProductionStamp } from './components/project-stamp/project-production-stamp';
 export { default as ProjectSuspendedStamp } from './components/project-stamp/project-suspended-stamp';
 export { default as ProjectExpiredStamp } from './components/project-stamp/project-expired-stamp';
-export { default as ProjectWillExpireStamp } from './components/project-stamp/project-will-expire-stamp';
 
 // Utilities
 export { default as PortalsContainer } from './components/portals-container';

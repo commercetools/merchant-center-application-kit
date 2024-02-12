@@ -2,14 +2,24 @@ import { useIntl } from 'react-intl';
 import Stamp from '@commercetools-uikit/stamp';
 import messages from '../messages';
 
-const ProjectExpiredStamp = () => {
+interface ProjectWillExpireStampProps {
+  daysLeft?: number;
+}
+
+const ProjectExpiredStamp = ({ daysLeft }: ProjectWillExpireStampProps) => {
   const intl = useIntl();
 
   return (
     <Stamp
-      tone="critical"
+      tone={daysLeft ? 'information' : 'critical'}
       isCondensed={true}
-      label={intl.formatMessage(messages.ProjectExpired)}
+      label={
+        daysLeft
+          ? intl.formatMessage(messages.ProjectWillExpire, {
+              daysLeft: daysLeft || 0,
+            })
+          : intl.formatMessage(messages.ProjectExpired)
+      }
     />
   );
 };
