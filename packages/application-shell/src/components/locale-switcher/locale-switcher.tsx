@@ -73,7 +73,8 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDescriptionDialogOpened, setIsDescriptionDialogOpened] =
+    useState(false);
 
   const handleSelection = useCallback(
     (event) => {
@@ -110,7 +111,10 @@ const LocaleSwitcher = (props: Props) => {
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
           GroupHeading: (groupProps) => (
-            <CustomGroupHeading {...groupProps} setIsOpen={setIsOpen} />
+            <CustomGroupHeading
+              {...groupProps}
+              setIsOpen={setIsDescriptionDialogOpened}
+            />
           ),
         }}
         isClearable={false}
@@ -123,9 +127,9 @@ const LocaleSwitcher = (props: Props) => {
       />
       {/* Dialog that explains the locales */}
       <InfoDialog
-        isOpen={isOpen}
+        isOpen={isDescriptionDialogOpened}
         title="Lorem ipsum"
-        onClose={() => setIsOpen(false)}
+        onClose={() => setIsDescriptionDialogOpened(false)}
       >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis vero
         quas soluta nesciunt, incidunt repellat cumque autem id exercitationem
