@@ -226,7 +226,8 @@ const MenuListItem = styled.li<{
   isRouteActive: boolean;
   isCollapsed: boolean;
 }>`
-  min-height: ${NAVBAR.itemSize};
+  height: ${NAVBAR.itemSize};
+  width: ${NAVBAR.itemSize};
   margin: 0;
   background: ${uiKitDesignTokens.colorPrimary};
   list-style: none;

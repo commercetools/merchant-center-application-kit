@@ -44,7 +44,6 @@ const ScrollableMenu = styled.div`
 
   :hover {
     overflow-y: scroll;
-    padding-right: 4px;
   }
 
   /* For Firefox */
@@ -87,7 +86,10 @@ const leftNavigationOpenStyles = css`
   .body__menu-open ${MenuListItem} {
     height: auto;
     min-height: ${NAVBAR.itemSize};
-    width: 100%;
+    width: calc(
+      ${NAVBAR.sublistIndentationWhenExpanded} - 2 *
+        ${uiKitDesignTokens.spacing30}
+    );
 
     &.active {
       max-height: 500px;
