@@ -87,7 +87,8 @@ const leftNavigationOpenStyles = css`
     height: auto;
     min-height: ${NAVBAR.itemSize};
     width: calc(
-      ${NAVBAR.sublistIndentationWhenExpanded} - ${uiKitDesignTokens.spacing30}
+      ${NAVBAR.sublistIndentationWhenExpanded} - 2 *
+        ${uiKitDesignTokens.spacing25}
     );
 
     &.active {
