@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import { css } from '@emotion/react';
 import { FormattedMessage } from 'react-intl';
 import type {
   SingleValueProps,
@@ -14,6 +13,8 @@ import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { WorldIcon, InformationIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import messages from './messages';
 
 type Props = {
@@ -26,24 +27,10 @@ const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
 export const SingleValue = (props: SingleValueProps) => {
   return (
-    <div
-      css={css`
-        flex: 1;
-        align-items: center;
-        display: flex;
-      `}
-    >
+    <Spacings.Inline scale="xs" alignItems="center">
       <WorldIcon size="big" />
-      <span
-        css={css`
-          margin-left: 2px;
-          flex: 1;
-          color: ${designTokens.colorAccent};
-        `}
-      >
-        {props.children}
-      </span>
-    </div>
+      <Text.Body fontWeight="medium">{props.children}</Text.Body>
+    </Spacings.Inline>
   );
 };
 SingleValue.displayName = 'SingleValue';
@@ -68,20 +55,16 @@ const CustomGroupHeading = (
   const { setIsOpen, ...groupProps } = props;
   return (
     <>
-      <components.GroupHeading
-        {...groupProps}
-        css={css`
-          display: flex;
-          gap: ${designTokens.spacing10};
-        `}
-      >
-        {groupProps.children}
-        <IconButton
-          icon={<InformationIcon />}
-          label="Locales info"
-          size="small"
-          onClick={() => setIsOpen(true)}
-        />
+      <components.GroupHeading {...groupProps}>
+        <Spacings.Inline scale="xs" alignItems="center">
+          <span>{groupProps.children}</span>
+          <IconButton
+            icon={<InformationIcon />}
+            label="Locales info"
+            size="small"
+            onClick={() => setIsOpen(true)}
+          />
+        </Spacings.Inline>
       </components.GroupHeading>
     </>
   );
