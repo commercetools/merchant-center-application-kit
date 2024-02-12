@@ -62,7 +62,7 @@ const CustomMenuList = (props: MenuListProps) => {
   return <components.MenuList {...props}>{props.children}</components.MenuList>;
 };
 
-export const CustomGroupHeading = (
+const CustomGroupHeading = (
   props: GroupHeadingProps & { setIsOpen: (value: boolean) => void }
 ) => {
   const { setIsOpen, ...groupProps } = props;
