@@ -2,7 +2,7 @@
   "Menu.StateMachines": "State Machines",
   "Menu.EchoServer": "Echo Server",
   "LocaleSwitcher.localesLabel": "Locales",
-  "ProjectSwitcher.projectsLabel": "Projects menu",
+  "ProjectSwitcher.projectsLabel": "Projects",
   "UserSettingsMenu.menuLabel": "User settings menu",
   "StateMachines.EchoServer.description": "This page demonstrates how to connect a Custom Application to an external API, using the <linkDocs>\"/proxy/forward-to\" endpoint</linkDocs>. For demo purposes, the external API used by this page is a simple echo server, which just returns some information about the request sent.",
   "StateMachines.EchoServer.labelIncludeForwardHeaderInRequest": "Inlude Forward Header in request",

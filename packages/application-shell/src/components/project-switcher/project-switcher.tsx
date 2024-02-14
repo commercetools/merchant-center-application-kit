@@ -110,7 +110,7 @@ export const ProjectSwitcherOption = (props: OptionProps) => {
 const mapProjectsToOptions = memoize((projects) => {
   return [
     {
-      label: 'Projects',
+      label: <FormattedMessage {...messages.projectsLabel} />,
       options: projects.map((project: TProject) => ({
         key: project.key,
         name: project.name,

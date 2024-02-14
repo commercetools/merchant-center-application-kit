@@ -74,7 +74,7 @@
   "ProjectSuspended.temporaryMaintenanceSuspensionMessage": "Your Project is temporarily suspended due to maintenance.",
   "ProjectSwitcher.expired": "Expired",
   "ProjectSwitcher.noResults": "Sorry, but there are no projects that match your search.",
-  "ProjectSwitcher.projectsLabel": "Projects menu",
+  "ProjectSwitcher.projectsLabel": "Projects",
   "ProjectSwitcher.searchPlaceholder": "Search for a project",
   "ProjectSwitcher.suspended": "Suspended",
   "QuickAccess.inputPlaceholder": "Go to...",
