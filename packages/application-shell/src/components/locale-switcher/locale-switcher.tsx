@@ -85,7 +85,7 @@ const LocaleSwitcher = (props: Props) => {
 
   const localeOptions = [
     {
-      label: 'Locales',
+      label: <FormattedMessage {...messages.localesLabel} />,
       options: props.availableLocales.map((locale) => ({
         label: locale,
         value: locale,

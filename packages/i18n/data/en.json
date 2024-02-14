@@ -53,7 +53,7 @@
   "ErrorApologizer.title": "Sorry! An unexpected error occured.",
   "FailedAuthentication.paragraph1": "Please try again or contact your system administrator if you have any further questions.",
   "FailedAuthentication.title": "We are unable to authorize you to use the Merchant Center.",
-  "LocaleSwitcher.localesLabel": "Locales menu",
+  "LocaleSwitcher.localesLabel": "Locales",
   "NavBar.MCSupport.title": "Support",
   "Notification.hideNotification": "Hide notification",
   "PageNotFound.paragraph1": "The item you are looking for may have been deleted, does not exist, or the URL was entered incorrectly. Check the URL and try again. Please contact your system administrator or the commercetools <a>Help Desk</a> if you have any further questions.",

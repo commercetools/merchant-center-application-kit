@@ -4,6 +4,6 @@ export default defineMessages({
   localesLabel: {
     id: 'LocaleSwitcher.localesLabel',
     description: 'The label for project dropdown switcher',
-    defaultMessage: 'Locales menu',
+    defaultMessage: 'Locales',
   },
 });
