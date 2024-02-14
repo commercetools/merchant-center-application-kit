@@ -55,7 +55,7 @@ const WillExpire = (props: { daysLeft: number }) => (
   <CustomStamp
     tone="critical"
     label={{
-      ...messages.ProjectExpired,
+      ...messages.ProjectWillExpire,
       values: { daysLeft: props.daysLeft },
     }}
   />
