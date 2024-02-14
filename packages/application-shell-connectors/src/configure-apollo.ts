@@ -23,18 +23,18 @@ type TApolloClientOptions = {
   restLink?: ApolloLink;
 };
 
-const httpLink = createHttpLink({
-  uri: `${getMcApiUrl()}/graphql`,
-  fetch,
-});
+const createApolloLink = (options: TApolloClientOptions = {}) => {
+  const httpLink = createHttpLink({
+    uri: `${getMcApiUrl()}/graphql`,
+    fetch,
+  });
 
-const createApolloLink = (options: TApolloClientOptions = {}) =>
   // The order of links is IMPORTANT!
   // In the request-phase they are executed top to bottom.
   // In the response/phase they are executed bottom to top.
   // The `httpLink` is terminating so it must be last, while `tokenRetryLink` and `errorLink`
   // wrap the links the their right.
-  from([
+  return from([
     headerLink,
     // See https://www.apollographql.com/docs/react/api/link/apollo-link-rest/#link-order
     // State & context links should happen before (to the left of) `restLink`.
@@ -48,6 +48,7 @@ const createApolloLink = (options: TApolloClientOptions = {}) =>
     // Must be last.
     httpLink,
   ]);
+};
 
 // This custom merge function allows to merge two arrays of objects.
 // The incoming list is what we need to update to, but we still need

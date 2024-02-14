@@ -1,5 +1,29 @@
 # @commercetools-frontend/cypress
 
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies [[`973be93ea`](https://github.com/commercetools/merchant-center-application-kit/commit/973be93ea1b733a2ff7d69f239e6c1ca76d6072c)]:
+  - @commercetools-frontend/application-shell@22.17.1
+  - @commercetools-frontend/application-config@22.17.1
+  - @commercetools-frontend/constants@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- [#3350](https://github.com/commercetools/merchant-center-application-kit/pull/3350) [`914bc9897`](https://github.com/commercetools/merchant-center-application-kit/commit/914bc9897130308c4a1797ea31258d23fe2b6bb9) Thanks [@kark](https://github.com/kark)! - Enhance Cypress configuration to enable reading Custom View configurations, facilitating end-to-end testing for Custom Views
+
+- Updated dependencies [[`bf1a7a002`](https://github.com/commercetools/merchant-center-application-kit/commit/bf1a7a002264689305a9023eb86fae3ac7630b12), [`047e44e01`](https://github.com/commercetools/merchant-center-application-kit/commit/047e44e0119032707f6a1feac8846f58d4d44f28), [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/application-shell@22.17.0
+  - @commercetools-frontend/application-config@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+
 ## 22.16.0
 
 ### Patch Changes

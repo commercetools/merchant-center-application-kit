@@ -18,7 +18,6 @@
     "/.+/api/",
     "/.+/checkout",
     "/.+/connect",
-    "/.+/custom-applications/playground",
     "/.+/docs/composable-commerce",
     "/.+/docs/frontend",
     "/.+/docs/login",
