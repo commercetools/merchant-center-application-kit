@@ -1,6 +1,5 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import { MenuListItem, LeftNavigation } from './menu-items.styles';
@@ -27,7 +26,7 @@ const FixedMenu = styled.div`
 `;
 
 const ItemContent = styled.div`
-  color: ${appKitDesignTokens.colorForNavbarLink};
+  color: ${uiKitDesignTokens.colorNeutral};
   width: ${NAVBAR.itemSize};
   position: relative;
   display: block;
@@ -153,16 +152,16 @@ const Tooltip = styled.div`
   border-radius: ${uiKitDesignTokens.borderRadius4};
   background: ${uiKitDesignTokens.colorAccent10};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
-  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
-  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
+  font-size: ${uiKitDesignTokens.fontSize20};
+  line-height: ${uiKitDesignTokens.lineHeight20};
+  font-weight: ${uiKitDesignTokens.fontWeight400};
   color: ${uiKitDesignTokens.colorSurface};
   max-height: ${NAVBAR.itemSize};
   visibility: inherit;
 `;
 
 const TextLink = styled.a`
-  color: ${appKitDesignTokens.colorForNavbarLink};
+  color: ${uiKitDesignTokens.colorNeutral};
   text-decoration: none;
   display: flex;
   padding: ${uiKitDesignTokens.spacing25};
@@ -177,9 +176,9 @@ const SupportMenu = styled.div`
 `;
 
 const Text = styled.div`
-  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
-  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
-  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
+  font-weight: ${uiKitDesignTokens.fontWeight400};
+  font-size: ${uiKitDesignTokens.fontSize20};
+  line-height: ${uiKitDesignTokens.lineHeight20};
   width: 100%;
   height: 100%;
 `;
@@ -191,7 +190,7 @@ const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       color: ${uiKitDesignTokens.colorSolid};
-      font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenHovered};
+      font-weight: ${uiKitDesignTokens.fontWeight600};
       text-decoration: none;
       flex: 1;
       padding: ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing25}
@@ -200,7 +199,7 @@ const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
     `,
   !isSubmenuLink &&
     css`
-      color: ${appKitDesignTokens.colorForNavbarLink};
+      color: ${uiKitDesignTokens.colorNeutral};
       text-decoration: none;
       display: flex;
       padding: ${uiKitDesignTokens.spacing25};

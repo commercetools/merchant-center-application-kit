@@ -8,7 +8,6 @@ import Downshift, {
 } from 'downshift';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LOGOUT_REASONS,
@@ -123,14 +122,14 @@ const MenuItem = styled.div<MenuItemProps>`
   color: ${uikitDesignTokens.colorSolid};
 
   :hover {
-    background-color: ${appkitDesignTokens.backgroundColorForUserMenuItemWhenHovered};
+    background-color: ${uikitDesignTokens.colorNeutral95};
   }
 
   ${(props) =>
     props.hasDivider === true
       ? css`
           border-bottom: 1px solid ${uikitDesignTokens.colorNeutral};
-          margin: ${appkitDesignTokens.marginForUserMenuItem};
+          margin: ${uikitDesignTokens.spacing10} 0;
         `
       : ''};
 `;

@@ -25,7 +25,7 @@ export const getLinkStyles = (
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
-    font-size: ${uiKitDesignTokens.fontSizeDefault};
+    font-size: ${uiKitDesignTokens.fontSize30};
     padding: ${uiKitDesignTokens.spacingS} ${uiKitDesignTokens.spacingM};
     position: relative;
     text-align: center;

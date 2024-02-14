@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import type { MenuGroupProps } from './menu-items';
@@ -124,9 +123,9 @@ const listStyles = css`
 
 const sublistStyles = css`
   padding: ${uiKitDesignTokens.spacing30};
-  font-weight: ${appKitDesignTokens.fontWeightForNavbarLink};
-  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
-  background-color: ${appKitDesignTokens.backgroundColorForNavbar};
+  font-weight: ${uiKitDesignTokens.fontWeight400};
+  font-size: ${uiKitDesignTokens.fontSize20};
+  background-color: ${uiKitDesignTokens.colorAccent10};
   left: ${NAVBAR.sublistIndentationWhenCollapsed};
   z-index: -1;
   list-style: none;
@@ -161,7 +160,7 @@ const MenuList = styled.ul<
         opacity: 1;
         display: none;
         text-align: left;
-        background-color: ${appKitDesignTokens.backgroundColorForNavbarWhenActive};
+        background-color: ${uiKitDesignTokens.colorAccent20};
 
         /* This pseudo-element is required to enable smooth coursor movement from the main menu item to submenu items with the gap in between */
         ::before {
@@ -183,8 +182,8 @@ const MenuList = styled.ul<
 
   & .highlighted,
   & .highlighted ${Title} {
-    color: ${appKitDesignTokens.colorForNavbarLinkWhenActive} !important;
-    font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenActive};
+    color: ${uiKitDesignTokens.colorSurface} !important;
+    font-weight: ${uiKitDesignTokens.fontWeight600};
   }
 `;
 
@@ -203,8 +202,8 @@ const SublistItem = styled.li<{ isActive: boolean }>`
       css`
         :hover,
         :focus-within {
-          color: ${appKitDesignTokens.colorForNavbarLinkWhenHovered};
-          font-weight: ${appKitDesignTokens.fontWeightForNavbarLinkWhenHovered};
+          color: ${uiKitDesignTokens.colorSurface};
+          font-weight: ${uiKitDesignTokens.fontWeight600};
           border-radius: ${uiKitDesignTokens.borderRadius4};
           background: ${uiKitDesignTokens.colorPrimary95};
 
@@ -263,11 +262,11 @@ const MenuListItem = styled.li<{
       css`
         :hover ${Icon} > svg *:not([fill='none']),
         :focus-within ${Icon} > svg *:not([fill='none']) {
-          fill: ${appKitDesignTokens.colorForNavbarIconWhenActive};
+          fill: ${uiKitDesignTokens.colorSurface};
         }
 
         :hover .${Title}, :focus-within ${Title} {
-          color: ${appKitDesignTokens.colorForNavbarLinkWhenHovered};
+          color: ${uiKitDesignTokens.colorSurface};
         }
       `,
     props.isCollapsed &&

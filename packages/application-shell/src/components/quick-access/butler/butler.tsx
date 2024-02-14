@@ -12,7 +12,7 @@ import { css, keyframes, ClassNames } from '@emotion/react';
 import Fuse from 'fuse.js';
 import last from 'lodash/last';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import { SearchIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import ButlerCommand from '../butler-command';
@@ -596,9 +596,9 @@ const Butler = (props: Props) => {
       <div
         ref={searchContainerRef}
         css={css`
-          background-color: ${customProperties.colorSurface};
+          background-color: ${designTokens.colorSurface};
           border: 0;
-          border-radius: ${customProperties.borderRadius4};
+          border-radius: ${designTokens.borderRadius4};
           min-height: 40px;
 
           /* one more than app-bar (20000) and one more than the overlay (20001) */
@@ -611,7 +611,7 @@ const Butler = (props: Props) => {
           box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
           padding-bottom: ${state.hasNetworkError
             ? '0'
-            : customProperties.spacingS};
+            : designTokens.spacingS};
         `}
         onClick={(event) => {
           // Avoid closing when the searchContainer itself is clicked
@@ -630,8 +630,8 @@ const Butler = (props: Props) => {
             htmlFor="quick-access-search-input"
             css={css`
               align-self: center;
-              padding-left: ${customProperties.spacingM};
-              margin-top: ${customProperties.spacingS};
+              padding-left: ${designTokens.spacingM};
+              margin-top: ${designTokens.spacingS};
             `}
           >
             <SearchIcon color="neutral60" />
@@ -647,10 +647,10 @@ const Butler = (props: Props) => {
               outline: 0;
               font-size: 22px;
               font-weight: 300;
-              padding: ${customProperties.spacingM} ${customProperties.spacingM}
-                ${customProperties.spacingS} ${customProperties.spacingS};
+              padding: ${designTokens.spacingM} ${designTokens.spacingM}
+                ${designTokens.spacingS} ${designTokens.spacingS};
               &::placeholder {
-                color: ${customProperties.colorNeutral60};
+                color: ${designTokens.colorNeutral60};
               }
             `}
             value={state.searchText}
@@ -665,8 +665,8 @@ const Butler = (props: Props) => {
             <div
               css={css`
                 align-self: center;
-                margin-top: ${customProperties.spacingS};
-                margin-right: ${customProperties.spacingS};
+                margin-top: ${designTokens.spacingS};
+                margin-right: ${designTokens.spacingS};
               `}
             >
               <LoadingSpinner />
@@ -681,12 +681,12 @@ const Butler = (props: Props) => {
                   overflow: hidden;
                   white-space: nowrap;
                   cursor: default;
-                  background: ${customProperties.colorError};
+                  background: ${designTokens.colorError};
                   text-align: center;
                   text-transform: uppercase;
-                  color: ${customProperties.colorSurface};
-                  font-size: ${customProperties.fontSizeSmall};
-                  padding: ${customProperties.spacingXs};
+                  color: ${designTokens.colorSurface};
+                  font-size: ${designTokens.fontSize20};
+                  padding: ${designTokens.spacingXs};
                 `}
               >
                 <FormattedMessage {...messages.offline} />
@@ -700,12 +700,12 @@ const Butler = (props: Props) => {
                   overflow: hidden;
                   white-space: nowrap;
                   cursor: default;
-                  background: ${customProperties.colorNeutral};
-                  color: ${customProperties.colorSolid};
+                  background: ${designTokens.colorNeutral};
+                  color: ${designTokens.colorSolid};
                   text-align: center;
                   text-transform: uppercase;
-                  font-size: ${customProperties.fontSizeSmall};
-                  padding: ${customProperties.spacingXs};
+                  font-size: ${designTokens.fontSize20};
+                  padding: ${designTokens.spacingXs};
                 `}
               >
                 <FormattedMessage {...messages.noResults} />
