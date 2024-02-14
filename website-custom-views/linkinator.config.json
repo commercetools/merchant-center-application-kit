@@ -14,6 +14,7 @@
     "https://accounts.google.com",
     "https://www.googletagmanager.com",
     "https://console.cloud.google.com",
+    "https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs",
     "/.+/api$",
     "/.+/api/",
     "/.+/checkout",
