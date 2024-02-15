@@ -1,5 +1,14 @@
 # @commercetools-frontend/sdk
 
+## 22.17.2
+
+### Patch Changes
+
+- [#3404](https://github.com/commercetools/merchant-center-application-kit/pull/3404) [`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404) Thanks [@emmenko](https://github.com/emmenko)! - Compatibility with SSR when evaluating `window`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.17.2
+
 ## 22.17.1
 
 ### Patch Changes

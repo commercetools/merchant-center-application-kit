@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.17.2
+
+### Patch Changes
+
+- [#3399](https://github.com/commercetools/merchant-center-application-kit/pull/3399) [`7eb6f3ad1`](https://github.com/commercetools/merchant-center-application-kit/commit/7eb6f3ad1c337ec676fa5665f3a863d1953a202f) Thanks [@kark](https://github.com/kark)! - Enhance consistency of navbar hover styles across different browsers
+
+- [#3395](https://github.com/commercetools/merchant-center-application-kit/pull/3395) [`a487b0114`](https://github.com/commercetools/merchant-center-application-kit/commit/a487b011438d180227d99774257b10dd8aa7198f) Thanks [@kark](https://github.com/kark)! - Refactored Navbar CSS-in-JS styles by transitioning from global styles based on classnames to encapsulated component styles
+
+- Updated dependencies [[`17c246a84`](https://github.com/commercetools/merchant-center-application-kit/commit/17c246a84e51516ecf8d157ac9b6b9235a57a5e3), [`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404)]:
+  - @commercetools-frontend/application-components@22.17.2
+  - @commercetools-frontend/application-shell-connectors@22.17.2
+  - @commercetools-frontend/sdk@22.17.2
+  - @commercetools-frontend/permissions@22.17.2
+  - @commercetools-frontend/actions-global@22.17.2
+  - @commercetools-frontend/application-config@22.17.2
+  - @commercetools-frontend/assets@22.17.2
+  - @commercetools-frontend/browser-history@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/i18n@22.17.2
+  - @commercetools-frontend/l10n@22.17.2
+  - @commercetools-frontend/notifications@22.17.2
+  - @commercetools-frontend/react-notifications@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+  - @commercetools-frontend/url-utils@22.17.2
+
 ## 22.17.1
 
 ### Patch Changes

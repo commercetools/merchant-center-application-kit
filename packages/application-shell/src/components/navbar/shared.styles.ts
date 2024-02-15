@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 
@@ -28,9 +27,9 @@ const ItemIconText = styled.div`
 const Title = styled.div`
   flex: 1;
   font-weight: 600;
-  font-size: ${appKitDesignTokens.fontSizeForNavbarLink};
-  line-height: ${appKitDesignTokens.lineHeightForNavbarLink};
-  color: ${appKitDesignTokens.colorForNavbarLink};
+  font-size: ${uiKitDesignTokens.fontSize20};
+  line-height: ${uiKitDesignTokens.lineHeight20};
+  color: ${uiKitDesignTokens.colorNeutral};
   opacity: 0;
   transition: ${NAVBAR.leftNavigationTransition};
   text-align: left;

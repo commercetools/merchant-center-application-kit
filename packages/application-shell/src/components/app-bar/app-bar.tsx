@@ -1,8 +1,5 @@
 import { css } from '@emotion/react';
-import {
-  designTokens as appKitDesignTokens,
-  ProjectStamp,
-} from '@commercetools-frontend/application-components';
+import { ProjectStamp } from '@commercetools-frontend/application-components';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -32,7 +29,7 @@ const AppBar = (props: Props) => {
     <div
       css={css`
         background-color: ${uikitDesignTokens.colorSurface};
-        box-shadow: ${appKitDesignTokens.shadowForAppbar};
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
         padding: 0 40px;
         min-height: ${DIMENSIONS.header};
         position: relative;
@@ -49,7 +46,7 @@ const AppBar = (props: Props) => {
           float: right;
           font-weight: normal;
           font-size: 1rem;
-          margin-right: ${appKitDesignTokens.marginRightForAppbar};
+          margin-right: ${uikitDesignTokens.spacing55};
           display: flex;
           align-items: center;
         `}
