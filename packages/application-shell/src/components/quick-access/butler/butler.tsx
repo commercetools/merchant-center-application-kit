@@ -12,7 +12,7 @@ import { css, keyframes, ClassNames } from '@emotion/react';
 import Fuse from 'fuse.js';
 import last from 'lodash/last';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { SearchIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import ButlerCommand from '../butler-command';
@@ -596,9 +596,9 @@ const Butler = (props: Props) => {
       <div
         ref={searchContainerRef}
         css={css`
-          background-color: ${designTokens.colorSurface};
+          background-color: ${uiKitDesignTokens.colorSurface};
           border: 0;
-          border-radius: ${designTokens.borderRadius4};
+          border-radius: ${uiKitDesignTokens.borderRadius4};
           min-height: 40px;
 
           /* one more than app-bar (20000) and one more than the overlay (20001) */
@@ -611,7 +611,7 @@ const Butler = (props: Props) => {
           box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
           padding-bottom: ${state.hasNetworkError
             ? '0'
-            : designTokens.spacingS};
+            : uiKitDesignTokens.spacingS};
         `}
         onClick={(event) => {
           // Avoid closing when the searchContainer itself is clicked
@@ -630,8 +630,8 @@ const Butler = (props: Props) => {
             htmlFor="quick-access-search-input"
             css={css`
               align-self: center;
-              padding-left: ${designTokens.spacingM};
-              margin-top: ${designTokens.spacingS};
+              padding-left: ${uiKitDesignTokens.spacingM};
+              margin-top: ${uiKitDesignTokens.spacingS};
             `}
           >
             <SearchIcon color="neutral60" />
@@ -647,10 +647,11 @@ const Butler = (props: Props) => {
               outline: 0;
               font-size: 22px;
               font-weight: 300;
-              padding: ${designTokens.spacingM} ${designTokens.spacingM}
-                ${designTokens.spacingS} ${designTokens.spacingS};
+              padding: ${uiKitDesignTokens.spacingM}
+                ${uiKitDesignTokens.spacingM} ${uiKitDesignTokens.spacingS}
+                ${uiKitDesignTokens.spacingS};
               &::placeholder {
-                color: ${designTokens.colorNeutral60};
+                color: ${uiKitDesignTokens.colorNeutral60};
               }
             `}
             value={state.searchText}
@@ -665,8 +666,8 @@ const Butler = (props: Props) => {
             <div
               css={css`
                 align-self: center;
-                margin-top: ${designTokens.spacingS};
-                margin-right: ${designTokens.spacingS};
+                margin-top: ${uiKitDesignTokens.spacingS};
+                margin-right: ${uiKitDesignTokens.spacingS};
               `}
             >
               <LoadingSpinner />
@@ -681,12 +682,12 @@ const Butler = (props: Props) => {
                   overflow: hidden;
                   white-space: nowrap;
                   cursor: default;
-                  background: ${designTokens.colorError};
+                  background: ${uiKitDesignTokens.colorError};
                   text-align: center;
                   text-transform: uppercase;
-                  color: ${designTokens.colorSurface};
-                  font-size: ${designTokens.fontSize20};
-                  padding: ${designTokens.spacingXs};
+                  color: ${uiKitDesignTokens.colorSurface};
+                  font-size: ${uiKitDesignTokens.fontSize20};
+                  padding: ${uiKitDesignTokens.spacingXs};
                 `}
               >
                 <FormattedMessage {...messages.offline} />
@@ -700,12 +701,12 @@ const Butler = (props: Props) => {
                   overflow: hidden;
                   white-space: nowrap;
                   cursor: default;
-                  background: ${designTokens.colorNeutral};
-                  color: ${designTokens.colorSolid};
+                  background: ${uiKitDesignTokens.colorNeutral};
+                  color: ${uiKitDesignTokens.colorSolid};
                   text-align: center;
                   text-transform: uppercase;
-                  font-size: ${designTokens.fontSize20};
-                  padding: ${designTokens.spacingXs};
+                  font-size: ${uiKitDesignTokens.fontSize20};
+                  padding: ${uiKitDesignTokens.spacingXs};
                 `}
               >
                 <FormattedMessage {...messages.noResults} />

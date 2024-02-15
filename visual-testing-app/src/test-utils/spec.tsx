@@ -1,6 +1,6 @@
 import { Children, isValidElement, ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 
 const getContainerHeight = (size: SpecProps['size']) => {
   switch (size) {
@@ -26,13 +26,13 @@ const SpecContainer = styled.div<Pick<SpecProps, 'size'>>`
 `;
 
 const Label = styled.div`
-  font-family: ${designTokens.fontFamily};
+  font-family: ${uiKitDesignTokens.fontFamily};
   font-weight: bold;
   box-sizing: border-box;
   background-color: #774caf;
   padding: 5px;
-  color: ${designTokens.colorSurface};
-  font-size: ${designTokens.fontSize30};
+  color: ${uiKitDesignTokens.colorSurface};
+  font-size: ${uiKitDesignTokens.fontSize30};
 `;
 
 const PropList = styled.div`
@@ -41,19 +41,19 @@ const PropList = styled.div`
   box-sizing: border-box;
   font-size: 8pt;
   font-family: monospace;
-  color: ${designTokens.colorSurface};
+  color: ${uiKitDesignTokens.colorSurface};
 `;
 
 const PropLabel = styled.span`
   font-weight: bold;
-  padding: 0 ${designTokens.spacingXs};
+  padding: 0 ${uiKitDesignTokens.spacingXs};
   min-width: 140px;
   display: inline-block;
   box-sizing: border-box;
 `;
 
 const PropValue = styled.span`
-  padding: 0 ${designTokens.spacingXs};
+  padding: 0 ${uiKitDesignTokens.spacingXs};
   box-sizing: border-box;
 `;
 
