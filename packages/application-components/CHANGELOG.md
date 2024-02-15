@@ -1,5 +1,21 @@
 # @commercetools-frontend/application-components
 
+## 22.17.2
+
+### Patch Changes
+
+- [#3389](https://github.com/commercetools/merchant-center-application-kit/pull/3389) [`17c246a84`](https://github.com/commercetools/merchant-center-application-kit/commit/17c246a84e51516ecf8d157ac9b6b9235a57a5e3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Removed all unnecessary design tokens introduced because of last year's look and feel migration.
+
+- Updated dependencies [[`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404)]:
+  - @commercetools-frontend/application-shell-connectors@22.17.2
+  - @commercetools-frontend/actions-global@22.17.2
+  - @commercetools-frontend/application-config@22.17.2
+  - @commercetools-frontend/assets@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/i18n@22.17.2
+  - @commercetools-frontend/l10n@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+
 ## 22.17.1
 
 ### Patch Changes
