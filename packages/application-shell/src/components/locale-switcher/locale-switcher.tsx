@@ -140,7 +140,7 @@ const LocaleSwitcher = (props: Props) => {
           <div>
             Note that this does not affect the interface language of the
             Merchant Center and the data formatting options. To change this, go
-            to user profile
+            to user profile.
           </div>
         </Spacings.Stack>
       </InfoDialog>
