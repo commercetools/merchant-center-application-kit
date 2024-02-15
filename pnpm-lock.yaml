@@ -1423,6 +1423,9 @@ importers:
       '@commercetools-uikit/spacings':
         specifier: ^18.1.0
         version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/stamp':
+        specifier: ^18.1.0
+        version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
       '@commercetools-uikit/text':
         specifier: ^18.1.0
         version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
@@ -1654,6 +1657,9 @@ importers:
         specifier: ^18.1.0
         version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)
       '@commercetools-uikit/flat-button':
+        specifier: ^18.1.0
+        version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+      '@commercetools-uikit/icon-button':
         specifier: ^18.1.0
         version: 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
       '@commercetools-uikit/icons':
@@ -9698,6 +9704,26 @@ packages:
       '@emotion/react': 11.11.1(@types/react@17.0.56)(react@18.2.0)
       prop-types: 15.8.1
       react: 18.2.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - react-intl
+    dev: false
+
+  /@commercetools-uikit/stamp@18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2):
+    resolution: {integrity: sha512-MPLVL+asW5pKogH8gr/4PofcahxrjzfjCEdmt6wVLyFbunoe+XK9EqqiEEFtlO19hcHS63OcOsr3XJmB//MZ6Q==}
+    peerDependencies:
+      react: 17.x
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/design-system': 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.1.0(@types/react@17.0.56)(react-dom@17.0.2)(react-intl@6.4.5)(react@17.0.2)
+      '@commercetools-uikit/utils': 18.1.0(react@17.0.2)
+      '@emotion/react': 11.11.1(@types/react@17.0.56)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -19389,7 +19415,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
-      tslib: 2.6.2
+      tslib: 2.5.0
     dev: false
 
   /dset@3.1.2:

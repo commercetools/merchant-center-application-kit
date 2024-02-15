@@ -39,6 +39,7 @@
     "@commercetools-frontend/sentry": "22.17.2",
     "@commercetools-uikit/accessible-button": "^18.1.0",
     "@commercetools-uikit/card": "^18.1.0",
+    "@commercetools-uikit/stamp": "^18.1.0",
     "@commercetools-uikit/constraints": "^18.1.0",
     "@commercetools-uikit/design-system": "^18.1.0",
     "@commercetools-uikit/flat-button": "^18.1.0",
