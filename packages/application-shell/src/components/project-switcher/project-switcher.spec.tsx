@@ -1,5 +1,11 @@
 import { mocked } from 'jest-mock';
-import { screen, renderApp, fireEvent, waitFor } from '../../test-utils';
+import {
+  screen,
+  renderApp,
+  fireEvent,
+  waitFor,
+  within,
+} from '../../test-utils';
 import { location } from '../../utils/location';
 import ProjectSwitcher from './project-switcher';
 import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
@@ -9,6 +15,7 @@ jest.mock('../../utils/location');
 const render = () => {
   const mockedRequest = [
     createGraphqlResponseForProjectsQuery({
+      getIsProduction: (key) => key === 'key-1',
       getIsSuspended: (key) => key === 'key-2',
       getIsExpired: (key) => key === 'key-3',
     }),
@@ -66,5 +73,35 @@ describe('rendering', () => {
     await waitFor(() =>
       expect(mocked(location.replace)).not.toHaveBeenCalled()
     );
+  });
+  it('should render the expected stamps for each project', async () => {
+    render();
+    const input = await screen.findByLabelText('Projects');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    const options = await screen.findAllByRole('option');
+
+    // Define the expected text for each index
+    const expectedTexts = [null, 'Production', 'Suspended', 'Trial expired'];
+
+    function verifyStamp(option, expectedText) {
+      const stamp = within(option).queryByText(
+        /Production|Suspended|Trial expired/i
+      );
+
+      // Check if the stamp exists
+      const stampExists = stamp !== null;
+
+      // First option should not have a stamp
+      expect(stampExists).toBe(expectedText !== null);
+
+      // Check that the stamp's text content matches the expected text
+      expect(stamp && stamp.textContent).toEqual(expectedText);
+    }
+
+    options.forEach((option, index) => {
+      verifyStamp(option, expectedTexts[index]);
+    });
   });
 });
