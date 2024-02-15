@@ -85,7 +85,7 @@ describe('rendering', () => {
     // Define the expected text for each index
     const expectedTexts = [null, 'Production', 'Suspended', 'Trial expired'];
 
-    function verifyStamp(option, expectedText) {
+    function verifyStamp(option: HTMLElement, expectedText: string | null) {
       const stamp = within(option).queryByText(
         /Production|Suspended|Trial expired/i
       );
