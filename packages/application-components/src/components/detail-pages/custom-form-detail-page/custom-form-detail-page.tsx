@@ -16,9 +16,9 @@ import PageTopBar from '../../internals/page-top-bar';
 import { ContentWrapper, PageWrapper } from '../../internals/page.styles';
 
 const DetailPageContainer = styled.div`
-  background-color: ${appKitDesignTokens.backgroundColorForPageHeader};
+  background-color: ${uiKitDesignTokens.colorSurface};
   padding: ${appKitDesignTokens.paddingForDetailPageHeader};
-  border-bottom: 1px ${appKitDesignTokens.colorForPageHeaderBottomBorder} solid;
+  border-bottom: 1px ${uiKitDesignTokens.colorNeutral90} solid;
 `;
 
 const HeaderControlsWrapper = styled.div`

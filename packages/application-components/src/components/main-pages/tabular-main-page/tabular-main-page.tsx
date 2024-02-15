@@ -6,7 +6,6 @@ import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-s
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
 import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
-import { designTokens as appKitDesignTokens } from '../../../theming';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
 import {
   FormPrimaryButton,
@@ -102,7 +101,7 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
       </CustomViewsSelectorWrapper>
       <ContentWrapper
         css={css`
-          background-color: ${appKitDesignTokens.backgroundColorForTabularMainPageContent};
+          background-color: ${uiKitDesignTokens.colorSurface};
         `}
       >
         {props.children}

@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import styled, { type CSSObject } from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Spacings from '@commercetools-uikit/spacings';
@@ -73,9 +73,8 @@ const ContentWrapper = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  padding: ${designTokens.spacing40} 40px;
-  border-bottom: 1px solid
-    ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
+  padding: ${uiKitDesignTokens.spacing40} 40px;
+  border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
 `;
 
 function Drawer(props: TDrawerProps) {
