@@ -48,7 +48,7 @@
   "Components.ModalPage.TopBar.Back": "Voltar",
   "Components.ModalPage.TopBar.Close": "Fechar Página modal",
   "CustomViewLoader.error.load": "Não foi possível carregar a Visualização personalizada. Entre em contato com seu administrador para verificar a configuração.",
-  "CustomViewsSelector.title": "Custom Views:",
+  "CustomViewsSelector.title": "Visualizações personalizadas:",
   "ErrorApologizer.notifiedTeam": "Nossa equipe foi notificada sobre esse problema.",
   "ErrorApologizer.title": "Desculpe! Ocorreu um erro inesperado.",
   "FailedAuthentication.paragraph1": "Tente novamente e entre em contato com o administrador do sistema se tiver mais dúvidas.",
