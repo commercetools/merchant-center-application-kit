@@ -77,6 +77,7 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 const LocaleSwitcher = (props: Props) => {
   const { isModalOpen, openModal, closeModal } = useModalState();
   const { setProjectDataLocale } = props;
+  const getNewLine = () => <br />;
   const intl = useIntl();
 
   const handleSelection = useCallback(
@@ -131,9 +132,14 @@ const LocaleSwitcher = (props: Props) => {
         title={intl.formatMessage(messages.dialogLocaleTitle)}
         onClose={closeModal}
       >
-        <Text.Body>
-          <FormattedMessage {...messages.dialogLocaleDescription} />
-        </Text.Body>
+        <Text.Body
+          intlMessage={{
+            ...messages.dialogLocaleDescription,
+            values: {
+              newline: getNewLine,
+            },
+          }}
+        />
       </InfoDialog>
     </div>
   );
