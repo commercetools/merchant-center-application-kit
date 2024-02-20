@@ -72,7 +72,7 @@
   "ProjectStamp.expired": "Trial expired",
   "ProjectStamp.production": "Production",
   "ProjectStamp.suspended": "Suspended",
-  "ProjectStamp.willExpire": "Trial ends in {daysLeft} {daysLeft, plural, one {day} other {days}}",
+  "ProjectStamp.willExpire": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}",
   "ProjectSuspended.defaultSuspensionMessage": "Your Project has been suspended",
   "ProjectSuspended.paragraph1": "Please contact your system administrator if you have any further questions or select another Project to view.",
   "ProjectSuspended.temporaryMaintenanceSuspensionMessage": "Your Project is temporarily suspended due to maintenance.",
