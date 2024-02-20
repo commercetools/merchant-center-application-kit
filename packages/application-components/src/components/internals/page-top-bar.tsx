@@ -1,10 +1,9 @@
 import type { MouseEvent, KeyboardEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useIntl } from 'react-intl';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { ListIcon } from '@commercetools-uikit/icons';
-import { designTokens as appKitDesignTokens } from '../../theming';
 import messages from './messages';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -41,10 +40,8 @@ const PageTopBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: ${appKitDesignTokens.marginBottomForPageTopBar};
-        background-color: ${props.color === 'neutral'
-          ? appKitDesignTokens.backgroundColorForPageHeader
-          : customProperties.colorSurface};
+        margin-bottom: ${uiKitDesignTokens.spacing40};
+        background-color: ${uiKitDesignTokens.colorSurface};
       `}
     >
       <FlatButton

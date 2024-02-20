@@ -1,5 +1,41 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.17.2
+
+### Patch Changes
+
+- [#3404](https://github.com/commercetools/merchant-center-application-kit/pull/3404) [`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404) Thanks [@emmenko](https://github.com/emmenko)! - Compatibility with SSR when evaluating `window`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.17.2
+  - @commercetools-frontend/browser-history@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.17.1
+  - @commercetools-frontend/browser-history@22.17.1
+  - @commercetools-frontend/constants@22.17.1
+  - @commercetools-frontend/sentry@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- Updated dependencies [[`047e44e01`](https://github.com/commercetools/merchant-center-application-kit/commit/047e44e0119032707f6a1feac8846f58d4d44f28), [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/application-config@22.17.0
+  - @commercetools-frontend/browser-history@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+  - @commercetools-frontend/sentry@22.17.0
+
 ## 22.16.0
 
 ### Minor Changes

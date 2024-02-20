@@ -1,5 +1,55 @@
 # @commercetools-frontend/application-components
 
+## 22.17.2
+
+### Patch Changes
+
+- [#3389](https://github.com/commercetools/merchant-center-application-kit/pull/3389) [`17c246a84`](https://github.com/commercetools/merchant-center-application-kit/commit/17c246a84e51516ecf8d157ac9b6b9235a57a5e3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Removed all unnecessary design tokens introduced because of last year's look and feel migration.
+
+- Updated dependencies [[`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404)]:
+  - @commercetools-frontend/application-shell-connectors@22.17.2
+  - @commercetools-frontend/actions-global@22.17.2
+  - @commercetools-frontend/application-config@22.17.2
+  - @commercetools-frontend/assets@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/i18n@22.17.2
+  - @commercetools-frontend/l10n@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies [[`8ad52e2c9`](https://github.com/commercetools/merchant-center-application-kit/commit/8ad52e2c9460744d3f49af929db47562830c9639)]:
+  - @commercetools-frontend/assets@22.17.1
+  - @commercetools-frontend/application-config@22.17.1
+  - @commercetools-frontend/actions-global@22.17.1
+  - @commercetools-frontend/application-shell-connectors@22.17.1
+  - @commercetools-frontend/constants@22.17.1
+  - @commercetools-frontend/i18n@22.17.1
+  - @commercetools-frontend/l10n@22.17.1
+  - @commercetools-frontend/sentry@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- [#3383](https://github.com/commercetools/merchant-center-application-kit/pull/3383) [`fe6314779`](https://github.com/commercetools/merchant-center-application-kit/commit/fe63147792caaea41be1c96ce17dbee57cd7209e) Thanks [@kark](https://github.com/kark)! - Resolve an issue in `<InfoDialog>`, `<ConfirmationDialog>`, and `<FormDialog>` where applying the `scale` size prop now correctly enforces only horizontal constraints, preventing them from occupying the entire vertical space.
+
+- Updated dependencies [[`047e44e01`](https://github.com/commercetools/merchant-center-application-kit/commit/047e44e0119032707f6a1feac8846f58d4d44f28), [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/application-config@22.17.0
+  - @commercetools-frontend/application-shell-connectors@22.17.0
+  - @commercetools-frontend/actions-global@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+  - @commercetools-frontend/assets@22.17.0
+  - @commercetools-frontend/sentry@22.17.0
+  - @commercetools-frontend/i18n@22.17.0
+  - @commercetools-frontend/l10n@22.17.0
+
 ## 22.16.0
 
 ### Patch Changes

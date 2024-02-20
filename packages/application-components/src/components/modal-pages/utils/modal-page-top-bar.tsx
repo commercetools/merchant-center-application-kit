@@ -13,7 +13,6 @@ import SecondaryIconButton, {
   type TSecondaryButtonIconProps,
 } from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
-import { designTokens as appKitDesignTokens } from '../../../theming';
 import messages from '../../internals/messages';
 
 type TLargeIconWrapperProps = {
@@ -77,14 +76,9 @@ const ModalPageTopBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: ${appKitDesignTokens.paddingForModalTopBar};
-        background-color: ${props.color === 'neutral'
-          ? appKitDesignTokens.backgroundColorForPageHeader
-          : uiKitDesignTokens.colorSurface};
-        border-bottom: 1px solid
-          ${props.color === 'neutral'
-            ? uiKitDesignTokens.colorSurface
-            : appKitDesignTokens.borderColorForModalTopBarWhenSurface};
+        padding: ${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0;
+        background-color: ${uiKitDesignTokens.colorSurface};
+        border-bottom: 1px solid ${uiKitDesignTokens.colorSurface};
         & * + * {
           margin-left: ${uiKitDesignTokens.spacingS};
         }

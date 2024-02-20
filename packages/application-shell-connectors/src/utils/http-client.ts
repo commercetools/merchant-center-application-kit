@@ -135,7 +135,10 @@ export type TFetcher<Data> = (
 
 const defaultUserAgent = createHttpUserAgent({
   name: 'unknown-http-client',
-  libraryName: window.app.applicationName,
+  libraryName:
+    typeof window !== 'undefined'
+      ? window.app.applicationName
+      : 'unknown-application-name',
 });
 
 const defaultForwardToVersion: TForwardToConfigVersion = 'v2';
