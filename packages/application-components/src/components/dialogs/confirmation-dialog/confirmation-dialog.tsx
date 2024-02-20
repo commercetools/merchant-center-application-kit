@@ -3,7 +3,7 @@ import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import DialogHeader from '../internals/dialog-header';
+import DialogHeader, { TextTitle } from '../internals/dialog-header';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -17,7 +17,8 @@ type Label = string | MessageDescriptor;
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  title: string;
+  title: ReactNode;
+  ariaTitle?: string;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
@@ -42,6 +43,7 @@ const ConfirmationDialog = (props: Props) => (
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
+    ariaTitle={props.ariaTitle}
     getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
@@ -62,5 +64,8 @@ ConfirmationDialog.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 ConfirmationDialog.Intl = sharedMessages;
+// Allow consumers who want to use a custom title to reuse the same title styles
+// as the default dialog title.
+ConfirmationDialog.TextTitle = TextTitle;
 
 export default ConfirmationDialog;
