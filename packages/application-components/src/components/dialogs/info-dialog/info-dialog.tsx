@@ -8,7 +8,7 @@ type Props = {
   onClose?: (event: SyntheticEvent) => void;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
-  title?: string | ReactNode;
+  title: string;
   children: ReactNode;
   getParentSelector?: () => HTMLElement;
 };
