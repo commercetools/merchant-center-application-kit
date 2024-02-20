@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import type {
   SingleValueProps,
@@ -7,7 +7,10 @@ import type {
   GroupHeadingProps,
 } from 'react-select';
 import { components } from 'react-select';
-import { InfoDialog } from '@commercetools-frontend/application-components';
+import {
+  InfoDialog,
+  useModalState,
+} from '@commercetools-frontend/application-components';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
@@ -72,9 +75,8 @@ const CustomGroupHeading = (
 CustomGroupHeading.displayName = 'CustomGroupHeading';
 
 const LocaleSwitcher = (props: Props) => {
+  const { isModalOpen, openModal, closeModal } = useModalState();
   const { setProjectDataLocale } = props;
-  const [isDescriptionDialogOpened, setIsDescriptionDialogOpened] =
-    useState(false);
 
   const handleSelection = useCallback(
     (event) => {
@@ -111,10 +113,7 @@ const LocaleSwitcher = (props: Props) => {
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
           GroupHeading: (groupProps) => (
-            <CustomGroupHeading
-              {...groupProps}
-              setIsOpen={setIsDescriptionDialogOpened}
-            />
+            <CustomGroupHeading {...groupProps} setIsOpen={openModal} />
           ),
         }}
         isClearable={false}
@@ -127,9 +126,9 @@ const LocaleSwitcher = (props: Props) => {
       />
       {/* Dialog that explains the locales */}
       <InfoDialog
-        isOpen={isDescriptionDialogOpened}
+        isOpen={isModalOpen}
         title="Selecting a data locale"
-        onClose={() => setIsDescriptionDialogOpened(false)}
+        onClose={closeModal}
       >
         <Spacings.Stack scale="xl">
           <div>
