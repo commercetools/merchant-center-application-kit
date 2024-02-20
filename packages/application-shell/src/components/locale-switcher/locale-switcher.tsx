@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import type {
   SingleValueProps,
   ValueContainerProps,
@@ -77,6 +77,7 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 const LocaleSwitcher = (props: Props) => {
   const { isModalOpen, openModal, closeModal } = useModalState();
   const { setProjectDataLocale } = props;
+  const intl = useIntl();
 
   const handleSelection = useCallback(
     (event) => {
@@ -127,7 +128,7 @@ const LocaleSwitcher = (props: Props) => {
       {/* Dialog that explains the locales */}
       <InfoDialog
         isOpen={isModalOpen}
-        title={<FormattedMessage {...messages.dialogLocaleTitle} />}
+        title={intl.formatMessage(messages.dialogLocaleTitle)}
         onClose={closeModal}
       >
         <Text.Body>
