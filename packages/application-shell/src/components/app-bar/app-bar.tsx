@@ -21,10 +21,6 @@ const AppBar = (props: Props) => {
     props.user?.defaultProjectKey ?? undefined
   );
 
-  const selectedProject = props.user?.projects.results.find(
-    (project) => project.key === props.projectKeyFromUrl
-  );
-
   return (
     <div
       css={css`
@@ -65,7 +61,10 @@ const AppBar = (props: Props) => {
               }
               // The `<ProjectSwitcher>` should be rendered only if the
               // user is fetched and the user has projects while the app runs in an project context.
-              if (props.user.projects.total > 0 && props.projectKeyFromUrl)
+              if (props.user.projects.total > 0 && props.projectKeyFromUrl) {
+                const selectedProject = props.user.projects.results.find(
+                  (project) => project.key === props.projectKeyFromUrl
+                );
                 return (
                   <div
                     css={css`
@@ -93,6 +92,7 @@ const AppBar = (props: Props) => {
                     />
                   </div>
                 );
+              }
               if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
