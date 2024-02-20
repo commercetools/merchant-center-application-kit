@@ -15,8 +15,8 @@ jest.mock('../../utils/location');
 const render = () => {
   const mockedRequest = [
     createGraphqlResponseForProjectsQuery({
-      getIsProduction: (key) => key === 'key-1',
-      getIsSuspended: (key) => key === 'key-2',
+      getIsProduction: (key) => key === 'key-1' || key === 'key-3',
+      getIsSuspended: (key) => key === 'key-2' || key === 'key-3',
       getIsExpired: (key) => key === 'key-3',
     }),
   ];
@@ -57,7 +57,7 @@ describe('rendering', () => {
     const input = await screen.findByLabelText('Projects');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    fireEvent.click(screen.getByText(/Suspended/i));
+    fireEvent.click((await screen.findAllByText(/Suspended/i))[0]);
 
     await waitFor(() =>
       expect(mocked(location.replace)).not.toHaveBeenCalled()
@@ -83,21 +83,21 @@ describe('rendering', () => {
     const options = await screen.findAllByRole('option');
 
     // Define the expected text for each index
-    const expectedTexts = [null, 'Production', 'Suspended', 'Trial expired'];
+    const expectedTexts = [
+      [null], // First option has no stamps
+      ['Production'], // Second option has only one "Production" stamp
+      ['Suspended'], // Third option has only one "Suspended" stamp
+      ['Production', 'Suspended', 'Trial expired'], // Fourth option has all three stamps
+    ];
 
-    function verifyStamp(option: HTMLElement, expectedText: string | null) {
-      const stamp = within(option).queryByText(
+    function verifyStamp(option: HTMLElement, expectedText: string[] | null[]) {
+      const stamps = within(option).queryAllByText(
         /Production|Suspended|Trial expired/i
       );
 
-      // Check if the stamp exists
-      const stampExists = stamp !== null;
-
-      // First option should not have a stamp
-      expect(stampExists).toBe(expectedText !== null);
-
-      // Check that the stamp's text content matches the expected text
-      expect(stamp && stamp.textContent).toEqual(expectedText);
+      stamps.forEach((stamp, index) => {
+        expect(stamp.textContent).toEqual(expectedText[index]);
+      });
     }
 
     options.forEach((option, index) => {
