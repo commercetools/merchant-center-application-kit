@@ -48,7 +48,7 @@ const config = {
 
 # Set up Google Cloud
 
-To host the production bundles of your Custom View you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google Cloud and [configure](https://cloud.google.com/storage/docs/hosting-static-website-http#sharing) the bucket.
+To host the production bundles of your Custom View you need to create a [Cloud Storage bucket](https://cloud.google.com/storage/docs/hosting-static-website-http#create-bucket) in Google Cloud and [configure](https://cloud.google.com/storage/docs/hosting-static-website-http#sharing) the bucket.
 
 ## Configuring the bucket
 
@@ -66,7 +66,7 @@ Google does not provide a domain by default when using Google Cloud Storage. If 
 
 We recommend following the instructions for [Domain-named bucket verification](https://cloud.google.com/storage/docs/domain-name-verification) to configure things properly.
 
-Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using Google Domain Name Service, in your domain [configuration](https://cloud.google.com/storage/docs/hosting-static-website#connect-domain), add a new record that points your domain to the IP address of the load balancer you created.
+Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using Google Domain Name Service, in your domain [configuration](https://cloud.google.com/storage/docs/hosting-static-website-http#cname), add a new record that points your domain to the IP address of the load balancer you created.
 
 # Connect Google Cloud with GitHub Actions
 
