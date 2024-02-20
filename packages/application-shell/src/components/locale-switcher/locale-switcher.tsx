@@ -127,21 +127,12 @@ const LocaleSwitcher = (props: Props) => {
       {/* Dialog that explains the locales */}
       <InfoDialog
         isOpen={isModalOpen}
-        title="Selecting a data locale"
+        title={<FormattedMessage {...messages.dialogLocaleTitle} />}
         onClose={closeModal}
       >
-        <Spacings.Stack scale="xl">
-          <div>
-            The selected data locale will be shown as default in all localized
-            fields in the Merchant Center, like names, descriptions, or
-            localized attributes.
-          </div>
-          <div>
-            Note that this does not affect the interface language of the
-            Merchant Center and the data formatting options. To change this, go
-            to user profile.
-          </div>
-        </Spacings.Stack>
+        <Text.Body>
+          <FormattedMessage {...messages.dialogLocaleDescription} />
+        </Text.Body>
       </InfoDialog>
     </div>
   );
