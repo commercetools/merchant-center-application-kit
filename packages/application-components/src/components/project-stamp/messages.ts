@@ -16,6 +16,6 @@ export default defineMessages({
   ProjectWillExpire: {
     id: 'ProjectStamp.willExpire',
     defaultMessage:
-      'Trial ends in {daysLeft} {daysLeft, plural, one {day} other {days}}',
+      '{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}',
   },
 });
