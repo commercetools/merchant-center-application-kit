@@ -52,7 +52,7 @@ export type TCreateDialogValidatorParams = {
 export type TDialogValidatorParams = {
   title: ReactNode;
   expectedTitle?: string;
-  ariaTitle?: string;
+  'aria-label'?: string;
   onClose?: (setter: Dispatch<boolean>) => void;
   extraProps?: Record<string, unknown>;
   extraChecks?: () => void;
@@ -68,7 +68,7 @@ export const createDialogValidator =
         {({ isOpen, setIsOpen }) => (
           <creatorParams.component
             title={validatorParams.title}
-            ariaTitle={validatorParams.ariaTitle}
+            aria-label={validatorParams['aria-label']}
             isOpen={isOpen}
             onClose={() => {
               creatorParams.onClose?.(setIsOpen);
@@ -88,7 +88,7 @@ export const createDialogValidator =
         ? validatorParams.title
         : validatorParams.expectedTitle!;
     const expectedAriaTitle =
-      validatorParams.ariaTitle ||
+      validatorParams['aria-label'] ||
       (typeof validatorParams.title === 'string' ? expectedTitle : null);
 
     expect(screen.queryByText(expectedTitle)).not.toBeInTheDocument();

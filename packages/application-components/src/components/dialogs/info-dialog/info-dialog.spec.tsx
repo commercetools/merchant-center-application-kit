@@ -35,7 +35,7 @@ describe('with custom title', () => {
     validateComponent({
       title: <DialogCustomTitle title="Custom Title" />,
       expectedTitle: 'Custom Title',
-      ariaTitle: 'Custom aria title',
+      'aria-label': 'Custom aria title',
       extraChecks: () => {
         expect(
           screen.getByRole('button', { name: /Click me/ })
@@ -43,7 +43,7 @@ describe('with custom title', () => {
       },
     }));
 
-  it('should render with a warning if no "ariaLabel" is provided', async () =>
+  it('should render with a warning if no "aria-label" is provided', async () =>
     validateComponent({
       title: <DialogCustomTitle title="Custom Title" />,
       expectedTitle: 'Custom Title',
@@ -53,7 +53,7 @@ describe('with custom title', () => {
         ).toBeInTheDocument();
         expect(console.warn).toHaveBeenCalledWith(
           expect.stringContaining(
-            `app-kit/DialogHeader: "ariaTitle" prop is required`
+            `app-kit/DialogHeader: "aria-label" prop is required`
           )
         );
       },

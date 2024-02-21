@@ -45,7 +45,7 @@ type Props = {
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   title: ReactNode;
-  ariaTitle?: string;
+  'aria-label'?: string;
   children: ReactNode;
   getParentSelector: typeof getDefaultParentSelector;
 };
@@ -68,8 +68,8 @@ const GridArea = styled.div<GridAreaProps>`
 const DialogContainer = (props: Props) => {
   useWarning(
     typeof props.title === 'string' ||
-      (typeof props.title !== 'string' && Boolean(props.ariaTitle)),
-    'app-kit/DialogHeader: "ariaTitle" prop is required when you provide a custom "title" element.'
+      (typeof props.title !== 'string' && Boolean(props['aria-label'])),
+    'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
   );
 
   return (
@@ -84,7 +84,7 @@ const DialogContainer = (props: Props) => {
           overlayClassName={makeClassName(getOverlayStyles(props))}
           className={makeClassName(getModalContentStyles(props))}
           contentLabel={
-            typeof props.title === 'string' ? props.title : props.ariaTitle
+            typeof props.title === 'string' ? props.title : props['aria-label']
           }
           parentSelector={props.getParentSelector}
           ariaHideApp={false}

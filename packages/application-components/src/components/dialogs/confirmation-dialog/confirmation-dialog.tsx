@@ -18,7 +18,7 @@ export type TConfirmationDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   title: ReactNode;
-  ariaTitle?: string;
+  'aria-label'?: string;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
@@ -46,7 +46,7 @@ const ConfirmationDialog = (props: TConfirmationDialogProps) => (
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
-    ariaTitle={props.ariaTitle}
+    aria-label={props['aria-label']}
     getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
