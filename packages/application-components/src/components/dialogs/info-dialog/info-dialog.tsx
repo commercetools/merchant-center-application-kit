@@ -3,7 +3,7 @@ import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogHeader, { TextTitle } from '../internals/dialog-header';
 
-type Props = {
+export type TInfoDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
@@ -14,7 +14,7 @@ type Props = {
   getParentSelector?: () => HTMLElement;
 };
 
-const InfoDialog = (props: Props) => (
+const InfoDialog = (props: TInfoDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}

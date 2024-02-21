@@ -14,7 +14,7 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
-type Props = {
+export type TFormDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   title: ReactNode;
@@ -32,12 +32,13 @@ type Props = {
   getParentSelector?: () => HTMLElement;
   iconLeftSecondaryButton?: ReactElement;
 };
-const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
-  labelSecondary: sharedMessages.cancel,
-  labelPrimary: sharedMessages.save,
-};
+const defaultProps: Pick<TFormDialogProps, 'labelSecondary' | 'labelPrimary'> =
+  {
+    labelSecondary: sharedMessages.cancel,
+    labelPrimary: sharedMessages.save,
+  };
 
-const FormDialog = (props: Props) => (
+const FormDialog = (props: TFormDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}

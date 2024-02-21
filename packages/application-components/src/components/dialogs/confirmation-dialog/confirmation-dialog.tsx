@@ -14,7 +14,7 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
-type Props = {
+export type TConfirmationDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   title: ReactNode;
@@ -31,12 +31,15 @@ type Props = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
 };
-const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
+const defaultProps: Pick<
+  TConfirmationDialogProps,
+  'labelSecondary' | 'labelPrimary'
+> = {
   labelSecondary: sharedMessages.cancel,
   labelPrimary: sharedMessages.confirm,
 };
 
-const ConfirmationDialog = (props: Props) => (
+const ConfirmationDialog = (props: TConfirmationDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
