@@ -5,8 +5,8 @@
 We've updated the `title` property type of dialog components (`InfoDialog`, `FormDialog` and `ConfirmationDialog`) to be a `ReactNode` instead of `string` values.
 This change is intended to enable consumers to define the title of the dialogs as a React component, thus allowing to support more use cases.
 
-Since the `title` property was also used as the accessible title of the dialogs and we can't extract the value from a `ReactNode` title, we're introducing a new `aria-label` property to these components.
-Consumers using a non-string value for the `title` property should also provide a string value for the `aria-label` property, which will be used as the accessible title of the dialog.
+Furthermore, given that the `title` property was also used as the accessible title of the dialogs (`aria-label`) and a `ReactNode` cannot be used for that, we're introducing a new `aria-label` property to address the accessibility requirement.
+The `aria-label` property is therefore required when the `title` property is not of type `string`.
 
 Example:
 
