@@ -15,6 +15,6 @@ export default defineMessages({
     id: 'LocaleSwitcher.dialogLocaleDescription',
     description: 'The description for the data locale dialog',
     defaultMessage:
-      'The selected data locale will be shown as default in all localized fields in the Merchant Center, like names, descriptions, or localized attributes. <newline></newline><newline></newline> Note that this does not affect the interface language of the Merchant Center and the data formatting options. To change this, go to user profile.',
+      "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile.",
   },
 });
