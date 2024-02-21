@@ -236,7 +236,6 @@ const MenuListItem = styled.li<{
     width: auto;
     display: flex;
     justify-content: center;
-    align-self: flex-start;
   }
 
   ${(props) => [
