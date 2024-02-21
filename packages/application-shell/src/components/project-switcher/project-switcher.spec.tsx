@@ -26,6 +26,19 @@ const render = () => {
   });
 };
 
+function verifyProjectOptionStamps(
+  projectOption: HTMLElement,
+  expectedText: string[] | null[]
+) {
+  const stamps = within(projectOption).queryAllByText(
+    /Production|Suspended|Trial expired/i
+  );
+
+  stamps.forEach((stamp, index) => {
+    expect(stamp.textContent).toEqual(expectedText[index]);
+  });
+}
+
 describe('rendering', () => {
   beforeEach(() => {
     mocked(location.replace).mockClear();
@@ -80,28 +93,19 @@ describe('rendering', () => {
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
 
-    const options = await screen.findAllByRole('option');
+    const swticherProjectsOptions = await screen.findAllByRole('option');
 
-    // Define the expected text for each index
-    const expectedTexts = [
+    // We define which stamps are expected for each switcher option
+    // The stamps are ordered so we can also verified they're rendered in the correct order
+    const expectedOrderedStamps = [
       [null], // First option has no stamps
       ['Production'], // Second option has only one "Production" stamp
       ['Suspended'], // Third option has only one "Suspended" stamp
       ['Production', 'Suspended', 'Trial expired'], // Fourth option has all three stamps
     ];
 
-    function verifyStamp(option: HTMLElement, expectedText: string[] | null[]) {
-      const stamps = within(option).queryAllByText(
-        /Production|Suspended|Trial expired/i
-      );
-
-      stamps.forEach((stamp, index) => {
-        expect(stamp.textContent).toEqual(expectedText[index]);
-      });
-    }
-
-    options.forEach((option, index) => {
-      verifyStamp(option, expectedTexts[index]);
+    swticherProjectsOptions.forEach((projectOption, index) => {
+      verifyProjectOptionStamps(projectOption, expectedOrderedStamps[index]);
     });
   });
 });
