@@ -1,11 +1,8 @@
-import { ComponentType, Dispatch, ReactNode, useState } from 'react';
+import { Dispatch, ElementType, ReactNode, useState } from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { screen, renderComponent, fireEvent } from '../../../test-utils';
-import { TConfirmationDialogProps } from '../confirmation-dialog';
-import { TFormDialogProps } from '../form-dialog';
-import { TInfoDialogProps } from '../info-dialog';
 
 type DialogControllerProps = {
   children: (renderProps: {
@@ -42,9 +39,7 @@ export const DialogCustomTitle = (props: TDialogCustomTitleProps) => {
 };
 
 export type TCreateDialogValidatorParams = {
-  component: ComponentType<
-    TConfirmationDialogProps | TFormDialogProps | TInfoDialogProps
-  >;
+  component: ElementType;
   onClose?: (setter: Dispatch<boolean>) => void;
   extraProps?: Record<string, unknown>;
   extraChecks?: () => void;
