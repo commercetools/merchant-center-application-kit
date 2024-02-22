@@ -1,6 +1,8 @@
 import { useIntl, FormattedMessage } from 'react-intl';
+import FailedAuthorizationSVGRebranding from '@commercetools-frontend/assets/images/doors-closed-rebranding.svg';
 import FailedAuthorizationSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
+import { useTheme } from '@commercetools-uikit/design-system';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
@@ -13,10 +15,14 @@ const getSupportUrlLink = (msg: string) => (
 
 export const PageUnauthorized = () => {
   const intl = useIntl();
+  const { themedValue } = useTheme();
 
   return (
     <MaintenancePageLayout
-      imageSrc={FailedAuthorizationSVG}
+      imageSrc={themedValue(
+        FailedAuthorizationSVG,
+        FailedAuthorizationSVGRebranding
+      )}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={<FormattedMessage {...messages.paragraph1} />}
