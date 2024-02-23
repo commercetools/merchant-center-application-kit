@@ -31,6 +31,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
               name: 'P1 ',
               expiry: { isActive: false },
               suspension: { isActive: false },
+              isProductionProject: false,
             },
           ],
         },

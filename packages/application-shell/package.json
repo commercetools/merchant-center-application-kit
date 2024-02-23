@@ -52,6 +52,7 @@
     "@commercetools-uikit/design-system": "^18.1.0",
     "@commercetools-uikit/flat-button": "^18.1.0",
     "@commercetools-uikit/icons": "^18.1.0",
+    "@commercetools-uikit/icon-button": "^18.1.0",
     "@commercetools-uikit/loading-spinner": "^18.1.0",
     "@commercetools-uikit/notifications": "^18.1.0",
     "@commercetools-uikit/primary-button": "^18.1.0",

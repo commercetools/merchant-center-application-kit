@@ -425,6 +425,7 @@ export type TQuery = {
   release?: Maybe<Scalars['String']>;
   releases?: Maybe<TReleaseHistory>;
   storeOAuthScopes: Array<Scalars['String']>;
+  systemStatus: TSystemStatus;
 };
 
 
@@ -591,6 +592,17 @@ export type TSupportedStoreScope = {
   name: Scalars['String'];
 };
 
+export enum TSystemOperabilityStatus {
+  Degraded = 'DEGRADED',
+  Operational = 'OPERATIONAL',
+  Outage = 'OUTAGE'
+}
+
+export type TSystemStatus = {
+  __typename?: 'SystemStatus';
+  status: TSystemOperabilityStatus;
+};
+
 export type TUser = TMetaData & {
   __typename?: 'User';
   businessRole?: Maybe<Scalars['String']>;
@@ -659,7 +671,7 @@ export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, createdAt: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, launchdarklyTrackingCloudEnvironment: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat?: number | null, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, createdAt: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingTenant: string, launchdarklyTrackingCloudEnvironment: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat?: number | null, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
