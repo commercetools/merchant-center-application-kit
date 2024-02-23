@@ -31,3 +31,6 @@ const CustomTitle = (
   <p>Content</p>
 </InfoDialog>;
 ```
+
+There might be situations where you want to have a custom title but use the same styles the default title text has.
+For this scenario, the dialog components now export a new property called `TextTitle` which is a React component you can use to wrap your custom title text in order to apply the default title styles.
