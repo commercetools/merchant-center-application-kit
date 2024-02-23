@@ -5,6 +5,7 @@ import Modal, { type Props as ModalProps } from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import { useWarning } from '@commercetools-uikit/utils';
 import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -43,7 +44,8 @@ type Props = {
   onClose?: (event: SyntheticEvent) => void;
   size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
-  title: string;
+  title: ReactNode;
+  'aria-label'?: string;
   children: ReactNode;
   getParentSelector: typeof getDefaultParentSelector;
 };
@@ -63,70 +65,80 @@ const GridArea = styled.div<GridAreaProps>`
   grid-area: ${(props) => props.name};
 `;
 
-const DialogContainer = (props: Props) => (
-  <ClassNames>
-    {({ css: makeClassName }) => (
-      <Modal
-        isOpen={props.isOpen}
-        onRequestClose={props.onClose}
-        shouldCloseOnOverlayClick={Boolean(props.onClose)}
-        shouldCloseOnEsc={Boolean(props.onClose)}
-        overlayElement={getOverlayElement}
-        overlayClassName={makeClassName(getOverlayStyles(props))}
-        className={makeClassName(getModalContentStyles(props))}
-        contentLabel={props.title}
-        parentSelector={props.getParentSelector}
-        ariaHideApp={false}
-      >
-        <GridArea name="top" />
-        <GridArea name="left" />
-        <GridArea name="right" />
-        <GridArea name="bottom" />
-        <GridArea
-          name="main"
-          css={css`
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            overflow: hidden;
-          `}
-        >
-          <Card
-            // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
-            // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
-            css={css`
-              min-height: 0;
-              padding: ${uiKitDesignTokens.spacing20}
-                ${uiKitDesignTokens.spacing30};
+const DialogContainer = (props: Props) => {
+  useWarning(
+    typeof props.title === 'string' ||
+      (typeof props.title !== 'string' && Boolean(props['aria-label'])),
+    'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
+  );
 
-              > div {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                pointer-events: auto;
-                min-height: 0;
-              }
+  return (
+    <ClassNames>
+      {({ css: makeClassName }) => (
+        <Modal
+          isOpen={props.isOpen}
+          onRequestClose={props.onClose}
+          shouldCloseOnOverlayClick={Boolean(props.onClose)}
+          shouldCloseOnEsc={Boolean(props.onClose)}
+          overlayElement={getOverlayElement}
+          overlayClassName={makeClassName(getOverlayStyles(props))}
+          className={makeClassName(getModalContentStyles(props))}
+          contentLabel={
+            typeof props.title === 'string' ? props.title : props['aria-label']
+          }
+          parentSelector={props.getParentSelector}
+          ariaHideApp={false}
+        >
+          <GridArea name="top" />
+          <GridArea name="left" />
+          <GridArea name="right" />
+          <GridArea name="bottom" />
+          <GridArea
+            name="main"
+            css={css`
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              overflow: hidden;
             `}
           >
-            <div
+            <Card
+              // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
+              // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
               css={css`
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                height: 100%;
                 min-height: 0;
+                padding: ${uiKitDesignTokens.spacing20}
+                  ${uiKitDesignTokens.spacing30};
+
+                > div {
+                  display: flex;
+                  flex-direction: column;
+                  height: 100%;
+                  pointer-events: auto;
+                  min-height: 0;
+                }
               `}
             >
-              {props.children}
-            </div>
-          </Card>
-        </GridArea>
-      </Modal>
-    )}
-  </ClassNames>
-);
+              <div
+                css={css`
+                  display: flex;
+                  flex-direction: column;
+                  align-items: stretch;
+                  height: 100%;
+                  min-height: 0;
+                `}
+              >
+                {props.children}
+              </div>
+            </Card>
+          </GridArea>
+        </Modal>
+      )}
+    </ClassNames>
+  );
+};
 DialogContainer.displayName = 'DialogContainer';
 DialogContainer.defaultProps = defaultProps;
 
