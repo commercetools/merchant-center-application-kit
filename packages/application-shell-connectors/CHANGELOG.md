@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.18.0
+
+### Patch Changes
+
+- [#3403](https://github.com/commercetools/merchant-center-application-kit/pull/3403) [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2) Thanks [@chloe0592](https://github.com/chloe0592)! - New UI of the App Bar selectors.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.18.0
+  - @commercetools-frontend/browser-history@22.18.0
+  - @commercetools-frontend/constants@22.18.0
+  - @commercetools-frontend/sentry@22.18.0
+
 ## 22.17.2
 
 ### Patch Changes
