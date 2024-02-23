@@ -8,6 +8,7 @@ import type {
   ControlProps,
 } from 'react-select';
 import { components } from 'react-select';
+import { ProjectStamp } from '@commercetools-frontend/application-components';
 import {
   useMcQuery,
   oidcStorage,
@@ -17,8 +18,9 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { ErrorIcon } from '@commercetools-uikit/icons';
 import SelectInput from '@commercetools-uikit/select-input';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import type {
   TProject,
   TFetchUserProjectsQuery,
@@ -42,110 +44,89 @@ type OptionType = Pick<
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
-export const ValueContainer = ({ ...restProps }: ValueContainerProps) => {
+export const ValueContainer = ({
+  children,
+  ...restProps
+}: ValueContainerProps) => {
   return (
-    <div
-      css={css`
-        display: flex;
-        flex: 1;
-        align-items: center;
-        font-weight: ${designTokens.fontWeight500};
-      `}
-    >
-      <div
-        css={css`
-          flex: 1;
-        `}
-      >
-        <SelectInput.ValueContainer {...restProps}>
-          {restProps.children}
-        </SelectInput.ValueContainer>
-      </div>
-    </div>
+    <Text.Body fontWeight="medium" as="span">
+      <SelectInput.ValueContainer {...restProps}>
+        {children}
+      </SelectInput.ValueContainer>
+    </Text.Body>
   );
 };
 
+type TProjectStampsListProps = Pick<
+  TProject,
+  'isProductionProject' | 'suspension' | 'expiry'
+>;
+const ProjectStampsList = (props: TProjectStampsListProps) => (
+  <Spacings.Stack scale="xs" alignItems="flex-end">
+    {props.isProductionProject && <ProjectStamp.IsProduction />}
+    {props.suspension && props.suspension.isActive && (
+      <ProjectStamp.IsSuspended />
+    )}
+    {props.expiry && props.expiry.isActive && <ProjectStamp.IsExpired />}
+    {props.expiry && Boolean(props.expiry.daysLeft) && (
+      <ProjectStamp.WillExpire daysLeft={props.expiry.daysLeft!} />
+    )}
+  </Spacings.Stack>
+);
+
 export const ProjectSwitcherOption = (props: OptionProps) => {
   const project = props.data as OptionType;
+
   return (
     <SelectInput.Option {...props}>
-      <div
-        css={css`
-          word-wrap: break-word;
-        `}
-      >
+      <Spacings.Inline scale="xs" justifyContent="space-between">
         <div
           css={css`
-            color: ${props.isDisabled
-              ? designTokens.colorNeutral
-              : designTokens.colorAccent};
+            flex: 1;
+            word-wrap: break-word;
           `}
         >
-          {project.name}
-          {props.isDisabled && (
-            <span
-              css={css`
-                font-size: 1.5rem;
-                display: flex;
-              `}
-            >
-              <ErrorIcon size="medium" />
-            </span>
-          )}
-        </div>
-        <div
-          css={css`
-            font-size: 11px;
-            color: ${props.isDisabled ? designTokens.colorNeutral : 'inherit'};
-          `}
-        >
-          {project.key}
-        </div>
-        {project.suspension && project.suspension.isActive && (
-          <div
-            css={css`
-              font-size: 11px;
-              color: ${designTokens.colorError};
-            `}
+          <Text.Body
+            fontWeight="medium"
+            tone={props.isDisabled ? 'tertiary' : 'inherit'}
           >
-            <FormattedMessage {...messages.suspended} />
-          </div>
-        )}
-        {project.expiry && project.expiry.isActive && (
-          <div
-            css={css`
-              font-size: 11px;
-              color: ${designTokens.colorError};
-            `}
-          >
-            <FormattedMessage {...messages.expired} />
-          </div>
-        )}
-      </div>
+            {project.name}
+          </Text.Body>
+          <Text.Caption tone={props.isDisabled ? 'tertiary' : 'secondary'}>
+            {project.key}
+          </Text.Caption>
+        </div>
+
+        <ProjectStampsList
+          isProductionProject={project.isProductionProject}
+          suspension={project.suspension}
+          expiry={project.expiry}
+        />
+      </Spacings.Inline>
     </SelectInput.Option>
   );
 };
 
-const mapProjectsToOptions = memoize((projects) =>
-  projects.map((project: TProject) => ({
-    key: project.key,
-    name: project.name,
-    label: project.name,
-    value: project.key,
-    suspension: project.suspension,
-    expiry: project.expiry,
-    isProductionProject: project.isProductionProject,
-  }))
-);
+const mapProjectsToOptions = memoize((projects) => {
+  return [
+    {
+      label: <FormattedMessage {...messages.projectsLabel} />,
+      options: projects.map((project: TProject) => ({
+        key: project.key,
+        name: project.name,
+        label: project.name,
+        value: project.key,
+        suspension: project.suspension,
+        expiry: project.expiry,
+        isProductionProject: project.isProductionProject,
+      })),
+    },
+  ];
+});
 
 const CustomMenuList = (props: MenuListProps) => {
   return (
-    <div
-      css={css`
-        width: max-content;
-        max-width: ${designTokens.constraint6};
-      `}
-    >
+    <div>
       <components.MenuList {...props}>{props.children}</components.MenuList>
     </div>
   );
@@ -203,7 +184,10 @@ const ProjectSwitcher = (props: Props) => {
           }
         }}
         options={
-          data && data.user && mapProjectsToOptions(data.user.projects.results)
+          (data &&
+            data.user &&
+            mapProjectsToOptions(data.user.projects.results)) ||
+          []
         }
         isOptionDisabled={(option) => {
           const project = option as OptionType;
@@ -221,7 +205,9 @@ const ProjectSwitcher = (props: Props) => {
         noOptionsMessage={() => intl.formatMessage(messages.noResults)}
         horizontalConstraint={'auto'}
         appearance="quiet"
-        maxMenuHeight={360}
+        maxMenuHeight={380}
+        maxMenuWidth={8}
+        minMenuWidth={8}
       />
     </div>
   );
