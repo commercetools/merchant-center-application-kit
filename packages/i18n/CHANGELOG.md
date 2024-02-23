@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 22.18.0
+
+### Patch Changes
+
+- [#3408](https://github.com/commercetools/merchant-center-application-kit/pull/3408) [`9f4eb875d`](https://github.com/commercetools/merchant-center-application-kit/commit/9f4eb875d16db0bd6f9a7ef65e79d7bdb18336ff) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Update translations
+
+- [#3403](https://github.com/commercetools/merchant-center-application-kit/pull/3403) [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2) Thanks [@chloe0592](https://github.com/chloe0592)! - New UI of the App Bar selectors.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.18.0
+
 ## 22.17.2
 
 ### Patch Changes
