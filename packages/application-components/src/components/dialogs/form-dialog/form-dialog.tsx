@@ -3,7 +3,7 @@ import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import DialogHeader from '../internals/dialog-header';
+import DialogHeader, { TextTitle } from '../internals/dialog-header';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -14,10 +14,11 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
-type Props = {
+export type TFormDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  title: string;
+  title: ReactNode;
+  'aria-label'?: string;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
@@ -31,18 +32,20 @@ type Props = {
   getParentSelector?: () => HTMLElement;
   iconLeftSecondaryButton?: ReactElement;
 };
-const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
-  labelSecondary: sharedMessages.cancel,
-  labelPrimary: sharedMessages.save,
-};
+const defaultProps: Pick<TFormDialogProps, 'labelSecondary' | 'labelPrimary'> =
+  {
+    labelSecondary: sharedMessages.cancel,
+    labelPrimary: sharedMessages.save,
+  };
 
-const FormDialog = (props: Props) => (
+const FormDialog = (props: TFormDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
+    aria-label={props['aria-label']}
     getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
@@ -64,5 +67,8 @@ FormDialog.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 FormDialog.Intl = sharedMessages;
+// Allow consumers who want to use a custom title to reuse the same title styles
+// as the default dialog title.
+FormDialog.TextTitle = TextTitle;
 
 export default FormDialog;

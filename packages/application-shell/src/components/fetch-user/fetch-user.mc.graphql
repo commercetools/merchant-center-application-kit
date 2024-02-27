@@ -28,6 +28,7 @@ query FetchLoggedInUser {
         expiry {
           isActive
         }
+        isProductionProject
       }
     }
     idTokenUserInfo {

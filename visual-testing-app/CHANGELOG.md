@@ -1,5 +1,20 @@
 # @commercetools-local/visual-testing-app
 
+## 22.18.0
+
+### Patch Changes
+
+- [#3403](https://github.com/commercetools/merchant-center-application-kit/pull/3403) [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2) Thanks [@chloe0592](https://github.com/chloe0592)! - New UI of the App Bar selectors.
+
+- Updated dependencies [[`16de26adb`](https://github.com/commercetools/merchant-center-application-kit/commit/16de26adb0c77e580e5bf64de2ff0ad805672d7c), [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2), [`0763c6566`](https://github.com/commercetools/merchant-center-application-kit/commit/0763c6566ba6f6f363ed44d2667b5bd8e158d73d)]:
+  - @commercetools-frontend/application-components@22.18.0
+  - @commercetools-frontend/application-shell-connectors@22.18.0
+  - @commercetools-frontend/application-shell@22.18.0
+  - @commercetools-frontend/application-config@22.18.0
+  - @commercetools-frontend/assets@22.18.0
+  - @commercetools-frontend/constants@22.18.0
+  - @commercetools-frontend/react-notifications@22.18.0
+
 ## 22.17.2
 
 ### Patch Changes

@@ -1,1 +1,1 @@
-export { default } from './form-dialog';
+export { default, type TFormDialogProps } from './form-dialog';

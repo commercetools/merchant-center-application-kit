@@ -1,1 +1,1 @@
-export { default } from './confirmation-dialog';
+export { default, type TConfirmationDialogProps } from './confirmation-dialog';
