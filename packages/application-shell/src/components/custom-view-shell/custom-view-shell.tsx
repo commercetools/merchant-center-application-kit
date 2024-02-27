@@ -122,8 +122,8 @@ function CustomViewThemeProvider() {
   const theme = useFeatureToggle('mcRecolouring') ? 'recolouring' : 'default';
 
   const customViewThemeOverrides = {
-    ...themesOverrides[theme],
     // @ts-ignore
+    ...themesOverrides[theme],
     ...customViewsThemesOverrides[theme],
   };
 
@@ -139,11 +139,6 @@ function CustomViewThemeProvider() {
 */
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
-
-const customViewThemeOverrides = {
-  ...themesOverrides.default,
-  ...customViewsThemesOverrides.default,
-};
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
