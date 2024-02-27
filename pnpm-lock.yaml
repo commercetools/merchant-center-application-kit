@@ -3501,11 +3501,11 @@ importers:
   website-custom-views:
     dependencies:
       '@commercetools-docs/gatsby-theme-docs':
-        specifier: 22.11.3
-        version: 22.11.3(@babel/core@7.23.9)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.82.1)
+        specifier: 22.11.7
+        version: 22.11.7(@babel/core@7.23.9)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.82.1)
       '@commercetools-docs/ui-kit':
-        specifier: 22.11.1
-        version: 22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.3.3)
+        specifier: 22.11.7
+        version: 22.11.7(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.3.3)
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../packages/assets
@@ -4170,19 +4170,6 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.20
 
-  /@babel/helper-module-transforms@7.23.0(@babel/core@7.23.9):
-    resolution: {integrity: sha512-WhDWw1tdrlT0gMgUJSlX0IQvoO1eN279zrAUbVB+KpV2c3Tylz8+GnKOLllCS6Z/iZQEyVYxhZVUdPTqs2YYPw==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/core': 7.23.9
-      '@babel/helper-environment-visitor': 7.22.20
-      '@babel/helper-module-imports': 7.22.15
-      '@babel/helper-simple-access': 7.22.5
-      '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/helper-validator-identifier': 7.22.20
-
   /@babel/helper-module-transforms@7.23.3(@babel/core@7.12.9):
     resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
     engines: {node: '>=6.9.0'}
@@ -4196,6 +4183,19 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.20
     dev: false
+
+  /@babel/helper-module-transforms@7.23.3(@babel/core@7.23.0):
+    resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-module-imports': 7.22.15
+      '@babel/helper-simple-access': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      '@babel/helper-validator-identifier': 7.22.20
 
   /@babel/helper-module-transforms@7.23.3(@babel/core@7.23.9):
     resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
@@ -4568,7 +4568,6 @@ packages:
 
   /@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9):
     resolution: {integrity: sha512-s6SowJIjzlhx8o7lsFx5zmY4At6CTtDvgNQDdPzkBQucle58A6b/TTeEBYtyDgmcXjUTM+vE8YOGHZzzbc/ioA==}
-    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -5989,7 +5988,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-modules-amd@7.22.5(@babel/core@7.23.9):
@@ -5999,7 +5998,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.9
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.9)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.9)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-modules-commonjs@7.22.15(@babel/core@7.22.17):
@@ -6021,7 +6020,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-simple-access': 7.22.5
 
@@ -6032,7 +6031,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.9
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.9)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.9)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-simple-access': 7.22.5
 
@@ -6057,7 +6056,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-hoist-variables': 7.22.5
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
 
@@ -6069,7 +6068,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.9
       '@babel/helper-hoist-variables': 7.22.5
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.9)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.9)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
 
@@ -6091,7 +6090,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.0)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.0)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-modules-umd@7.22.5(@babel/core@7.23.9):
@@ -6101,7 +6100,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.9
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.9)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.9)
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-named-capturing-groups-regex@7.22.5(@babel/core@7.22.17):
@@ -6614,7 +6613,7 @@ packages:
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.0)
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.9
 
   /@babel/plugin-transform-react-jsx@7.22.15(@babel/core@7.23.9):
     resolution: {integrity: sha512-oKckg2eZFa8771O/5vi7XeTvmM6+O9cxZu+kanTU7tD4sin5nO/G8jGJhq8Hvt2Z0kUoEDRayuZLaUlYl8QuGA==}
@@ -6627,7 +6626,7 @@ packages:
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.9)
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.9
 
   /@babel/plugin-transform-react-pure-annotations@7.22.5(@babel/core@7.22.17):
     resolution: {integrity: sha512-gP4k85wx09q+brArVinTXhWiyzLl9UpmGva0+mWyKxk6JZequ05x3eUcIUE+FyttPKJFRRVtAvQaJ6YF9h1ZpA==}
@@ -7407,7 +7406,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-transform-react-display-name': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
       '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.23.0)
@@ -7421,7 +7420,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.9
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-transform-react-display-name': 7.22.5(@babel/core@7.23.9)
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.9)
       '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.23.9)
@@ -7449,7 +7448,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-modules-commonjs': 7.22.15(@babel/core@7.23.0)
       '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.23.0)
@@ -7462,7 +7461,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.9
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.9)
       '@babel/plugin-transform-modules-commonjs': 7.22.15(@babel/core@7.23.9)
       '@babel/plugin-transform-typescript': 7.22.15(@babel/core@7.23.9)
@@ -7493,6 +7492,21 @@ packages:
       make-dir: 2.1.0
       pirates: 4.0.5
       source-map-support: 0.5.21
+    dev: false
+
+  /@babel/register@7.22.15(@babel/core@7.23.9):
+    resolution: {integrity: sha512-V3Q3EqoQdn65RCgTLwauZaTfd1ShhwPmbBv+1dkZV/HpCGMKVyn6oFcRlI7RaKqiDQjX2Qd3AuoEguBgdjIKlg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.23.9
+      clone-deep: 4.0.1
+      find-cache-dir: 2.1.0
+      make-dir: 2.1.0
+      pirates: 4.0.5
+      source-map-support: 0.5.21
+    dev: true
 
   /@babel/regjsgen@0.8.0:
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
@@ -7839,8 +7853,8 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: false
 
-  /@commercetools-docs/gatsby-theme-docs@22.11.3(@babel/core@7.23.9)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.82.1):
-    resolution: {integrity: sha512-ZnjGCvSqrRHpBASLh2G5jDWWWoWZQR5+s2y+9H/VvBZNbH3E4PA0Q+WilJxIQ26aUNf8NPTt/d1rT67moiRr3g==}
+  /@commercetools-docs/gatsby-theme-docs@22.11.7(@babel/core@7.23.9)(@types/react@17.0.56)(gatsby-cli@5.12.1)(gatsby@5.12.4)(graphql@16.8.1)(moment@2.30.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.82.1):
+    resolution: {integrity: sha512-+F2+oBGrDCDUqIW7Gxi8W6E4vv9ABMBSooN4IAtXLHnVYW9aiGRr/mfFlMYw2bQgfBXlZh+1gqlFMaViLYwmmw==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -7850,7 +7864,7 @@ packages:
       react-dom: 18.x
     dependencies:
       '@auth0/auth0-react': 2.2.4(react-dom@18.2.0)(react@18.2.0)
-      '@commercetools-docs/ui-kit': 22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.21.0)(react@18.2.0)(typescript@5.3.3)
+      '@commercetools-docs/ui-kit': 22.11.7(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.21.0)(react@18.2.0)(typescript@5.3.3)
       '@commercetools-uikit/avatar': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/card': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/checkbox-input': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -8016,14 +8030,15 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/ui-kit@22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-bcCufZEfFkwsq0lqRmuSUaF9b88+asANbFAUFkwoewjQ4beKd5Hrf/FnQPJeXL05UrfMtF3XPYKc0UshDCDJyQ==}
+  /@commercetools-docs/ui-kit@22.11.7(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@5.3.4)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-wWPzLuPauZRTt23MRDBb6rpybz0mrQYLaaK2EouZnJ2D/YKNlysC/5N+1M1RSdgODZJtI3Z7TX1O5hNevYAYDg==}
     peerDependencies:
       react: 18.x
       react-dom: 18.x
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/accessible-button': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/card': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/design-system': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)
       '@commercetools-uikit/flat-button': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -8074,14 +8089,15 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/ui-kit@22.11.1(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.21.0)(react@18.2.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-bcCufZEfFkwsq0lqRmuSUaF9b88+asANbFAUFkwoewjQ4beKd5Hrf/FnQPJeXL05UrfMtF3XPYKc0UshDCDJyQ==}
+  /@commercetools-docs/ui-kit@22.11.7(@types/react@17.0.56)(react-dom@18.2.0)(react-router-dom@6.21.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-wWPzLuPauZRTt23MRDBb6rpybz0mrQYLaaK2EouZnJ2D/YKNlysC/5N+1M1RSdgODZJtI3Z7TX1O5hNevYAYDg==}
     peerDependencies:
       react: 18.x
       react-dom: 18.x
     dependencies:
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/accessible-button': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/card': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)
       '@commercetools-uikit/design-system': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)
       '@commercetools-uikit/flat-button': 16.12.1(@types/react@17.0.56)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -8146,8 +8162,8 @@ packages:
     resolution: {integrity: sha512-foVODNp4wZ5VgZHrIpYOHmIih7pwORfYbSuZZXq+tMDl56WByYF4nnRFyxScAvAhxW7JjMyTVUq6jm6NW0HWsw==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
-      '@babel/core': 7.23.0
-      '@babel/register': 7.22.15(@babel/core@7.23.0)
+      '@babel/core': 7.23.9
+      '@babel/register': 7.22.15(@babel/core@7.23.9)
       '@babel/runtime': 7.23.2
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-frontend/babel-preset-mc-app': 22.18.0
@@ -14973,11 +14989,6 @@ packages:
       - react-dom
     dev: false
 
-  /@remix-run/router@1.11.0:
-    resolution: {integrity: sha512-BHdhcWgeiudl91HvVa2wxqZjSHbheSgIiDvxrF1VjFzBzpTtuDPkOdOi3Iqvc08kXtFkLjhbS+ML9aM8mJS+wQ==}
-    engines: {node: '>=14.0.0'}
-    dev: false
-
   /@remix-run/router@1.14.0:
     resolution: {integrity: sha512-WOHih+ClN7N8oHk9N4JUiMxQJmRVaOxcg8w7F/oHUXzJt920ekASLI/7cYX8XkntDWRhLZtsk6LbGrkgOAvi5A==}
     engines: {node: '>=14.0.0'}
@@ -14994,7 +15005,7 @@ packages:
       jsesc: 3.0.2
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router-dom: 6.18.0(react-dom@17.0.2)(react@17.0.2)
+      react-router-dom: 6.21.0(react-dom@17.0.2)(react@17.0.2)
       set-cookie-parser: 2.6.0
       source-map: 0.7.4
     dev: false
@@ -16005,7 +16016,7 @@ packages:
   /@types/babel__core@7.20.2:
     resolution: {integrity: sha512-pNpr1T1xLUc2l3xJKuPtsEky3ybxN3m4fJkknfIpTCTfIZCDW57oAg+EfCgIIp2rvCe0Wn++/FfodDS4YXxBwA==}
     dependencies:
-      '@babel/parser': 7.23.0
+      '@babel/parser': 7.23.9
       '@babel/types': 7.23.0
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
@@ -18170,7 +18181,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.23.0
       '@babel/helper-define-polyfill-provider': 0.4.2(@babel/core@7.23.0)
       semver: 6.3.1
@@ -18182,7 +18193,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.23.9
       '@babel/helper-define-polyfill-provider': 0.4.2(@babel/core@7.23.9)
       semver: 6.3.1
@@ -20816,7 +20827,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
-      tslib: 2.5.0
+      tslib: 2.6.2
     dev: false
 
   /dset@3.1.2:
@@ -22764,7 +22775,7 @@ packages:
       vue-template-compiler:
         optional: true
     dependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.23.5
       '@types/json-schema': 7.0.12
       chalk: 4.1.2
       chokidar: 3.6.0
@@ -22795,7 +22806,7 @@ packages:
       vue-template-compiler:
         optional: true
     dependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.23.5
       '@types/json-schema': 7.0.12
       chalk: 4.1.2
       chokidar: 3.6.0
@@ -23171,7 +23182,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       bluebird: 3.7.2
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       fs-exists-cached: 1.0.0
       gatsby-core-utils: 4.12.1
       glob: 7.2.3
@@ -23186,7 +23197,7 @@ packages:
       bluebird: 3.7.2
       chokidar: 3.6.0
       fs-exists-cached: 1.0.0
-      gatsby-core-utils: 4.12.0
+      gatsby-core-utils: 4.12.1
       glob: 7.2.3
       lodash: 4.17.21
       micromatch: 4.0.5
@@ -23292,11 +23303,11 @@ packages:
       gatsby-source-filesystem:
         optional: true
     dependencies:
-      '@babel/code-frame': 7.22.13
+      '@babel/code-frame': 7.23.5
       '@babel/core': 7.23.9
-      '@babel/parser': 7.23.0
+      '@babel/parser': 7.23.9
       '@babel/runtime': 7.23.2
-      '@babel/traverse': 7.23.0
+      '@babel/traverse': 7.23.9
       babel-jsx-utils: 1.1.0
       babel-plugin-remove-graphql-queries: 5.12.1(@babel/core@7.23.9)(gatsby@5.12.4)
       camelcase: 6.3.0
@@ -23399,7 +23410,7 @@ packages:
       '@babel/runtime': 7.23.2
       '@babel/traverse': 7.23.9
       '@sindresorhus/slugify': 1.1.2
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       fs-exists-cached: 1.0.0
       fs-extra: 11.1.1
       gatsby: 5.12.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -23496,7 +23507,7 @@ packages:
       fs-extra: 11.1.1
       gatsby: 5.12.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       gatsby-core-utils: 4.12.1
-      gatsby-sharp: 1.12.1
+      gatsby-sharp: 1.13.0
       graphql: 16.8.1
       graphql-compose: 9.0.10(graphql@16.8.1)
       import-from: 4.0.0
@@ -23595,13 +23606,6 @@ packages:
       '@gatsbyjs/reach-router': 2.0.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  /gatsby-sharp@1.12.1:
-    resolution: {integrity: sha512-e7lqA74UZau7MOktc9V+sNh86a8oNZPFIsY5Atk+C0sGlzHx0IcivsJjwLHJ6OF11SIC38a9z2wE8Nl6YiG/Ig==}
-    engines: {node: '>=18.0.0'}
-    requiresBuild: true
-    dependencies:
-      sharp: 0.32.6
 
   /gatsby-sharp@1.13.0:
     resolution: {integrity: sha512-DviUtgm7tatSd1Hm54o/orHimOcyXBO9OJkSfzEchPFClvOza+2Qe/lqZShio0gFDxmG0Jgn0XCLzG7uH5VyJQ==}
@@ -28662,7 +28666,7 @@ packages:
   /moment-timezone@0.5.43:
     resolution: {integrity: sha512-72j3aNyuIsDxdF1i7CEgV2FfxM1r6aaqJyLB2vwb33mXYyoyLly+F1zbWqhA3/bVIoJ4szlUoMbUnVdid32NUQ==}
     dependencies:
-      moment: 2.29.4
+      moment: 2.30.1
     dev: false
 
   /moment@2.29.4:
@@ -31146,17 +31150,17 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router-dom@6.18.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-Ubrue4+Ercc/BoDkFQfc6og5zRQ4A8YxSO3Knsne+eRbZ+IepAsK249XBH/XaFuOYOYr3L3r13CXTLvYt5JDjw==}
+  /react-router-dom@6.21.0(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.11.0
+      '@remix-run/router': 1.14.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-router: 6.18.0(react@17.0.2)
+      react-router: 6.21.0(react@17.0.2)
     dev: false
 
   /react-router-dom@6.21.0(react-dom@18.2.0)(react@18.2.0):
@@ -31205,13 +31209,13 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router@6.18.0(react@17.0.2):
-    resolution: {integrity: sha512-vk2y7Dsy8wI02eRRaRmOs9g2o+aE72YCx5q9VasT1N9v+lrdB79tIqrjMfByHiY5+6aYkH2rUa5X839nwWGPDg==}
+  /react-router@6.21.0(react@17.0.2):
+    resolution: {integrity: sha512-hGZ0HXbwz3zw52pLZV3j3+ec+m/PQ9cTpBvqjFQmy2XVUWGn5MD+31oXHb6dVTxYzmAeaiUBYjkoNz66n3RGCg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.11.0
+      '@remix-run/router': 1.14.0
       react: 17.0.2
     dev: false
 
@@ -33929,7 +33933,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 14.18.33
-      acorn: 8.10.0
+      acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -33991,7 +33995,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 18.17.14
-      acorn: 8.10.0
+      acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -34021,7 +34025,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 18.17.14
-      acorn: 8.10.0
+      acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1

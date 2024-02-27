@@ -16,6 +16,8 @@ const config = {
     description: 'Develop Custom Views for the Merchant Center',
     author: 'commercetools',
     breadcrumbs: 'Composable Commerce',
+    products: ['Composable Commerce'],
+    contentType: 'referenceDocs',
     beta: false,
     betaLink:
       'https://docs.commercetools.com/offering/api-contract#public-beta',
