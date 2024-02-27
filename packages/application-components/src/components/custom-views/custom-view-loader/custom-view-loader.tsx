@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
+import { useAllFeatureToggles } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -52,6 +53,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
+  const featureFlags = useAllFeatureToggles();
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
@@ -103,6 +105,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         context: {
           dataLocale,
           projectKey,
+          featureFlags,
           customViewConfig: props.customView,
           hostUrl: props.hostUrl || window.location.href,
         },
