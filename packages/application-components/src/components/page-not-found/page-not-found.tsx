@@ -1,6 +1,8 @@
 import { useIntl, FormattedMessage } from 'react-intl';
+import PageNotFoundSVGRebranding from '@commercetools-frontend/assets/images/page-not-found-rebranding.svg';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
+import { useTheme } from '@commercetools-uikit/design-system';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
@@ -12,10 +14,11 @@ const getLink = (msg: string) => (
 );
 const PageNotFound = () => {
   const intl = useIntl();
+  const { themedValue } = useTheme();
 
   return (
     <MaintenancePageLayout
-      imageSrc={PageNotFoundSVG}
+      imageSrc={themedValue(PageNotFoundSVG, PageNotFoundSVGRebranding)}
       title={<FormattedMessage {...messages.title} />}
       label={intl.formatMessage(messages.title)}
       paragraph1={
