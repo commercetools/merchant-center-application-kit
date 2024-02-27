@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import type { MenuGroupProps } from './menu-items';
@@ -40,17 +41,14 @@ const Faded = styled.div`
   width: 100%;
   background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
   z-index: 1;
+  visibility: ${appKitDesignTokens.visibilityForNavbarFaded};
 `;
 
 const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    180deg,
-    ${uiKitDesignTokens.colorPrimary} 0%,
-    ${uiKitDesignTokens.colorPrimary25} 100%
-  );
+  background: ${appKitDesignTokens.backgroundColorForNavbarExpander};
   padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing25};
   ${(props) =>
     !props.isVisible &&
@@ -68,9 +66,10 @@ const Expander = styled.li<{ isVisible: boolean }>`
     width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
   }
 
+  // TODO: remove completely as part of the recolouring rollout cleanup process
   :hover,
   :focus {
-    background-color: ${uiKitDesignTokens.colorPrimary40};
+    background-color: ${appKitDesignTokens.backgroundColorForNavbarExpanderWhenHovered};
   }
 `;
 
@@ -94,7 +93,7 @@ const ExpanderIcon = styled.div`
 const LeftNavigation = styled.nav`
   display: grid;
   width: ${NAVBAR.widthLeftNavigation};
-  background: ${uiKitDesignTokens.colorPrimary};
+  background: ${appKitDesignTokens.backgroundColorForNavbar};
   height: 100%;
   grid-template-rows: 56px 1fr;
   transition: ${NAVBAR.leftNavigationTransition};
@@ -196,7 +195,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
     props.isActive &&
       css`
         border-radius: ${uiKitDesignTokens.borderRadius4};
-        background: ${uiKitDesignTokens.colorAccent30};
+        background: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenActive};
       `,
     !props.isActive &&
       css`
@@ -228,7 +227,7 @@ const MenuListItem = styled.li<{
   height: ${NAVBAR.itemSize};
   width: ${NAVBAR.itemSize};
   margin: 0;
-  background: ${uiKitDesignTokens.colorPrimary};
+  background: ${appKitDesignTokens.backgroundColorForNavbar};
   list-style: none;
   cursor: pointer;
 
@@ -241,14 +240,14 @@ const MenuListItem = styled.li<{
   ${(props) => [
     props.isRouteActive &&
       css`
-        background: ${uiKitDesignTokens.colorAccent30};
+        background: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenActive};
         border-radius: ${uiKitDesignTokens.borderRadius8};
       `,
     !props.isRouteActive &&
       css`
         :hover,
         :focus-within {
-          background-color: ${uiKitDesignTokens.colorPrimary40};
+          background-color: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenHovered};
           border-radius: ${uiKitDesignTokens.borderRadius8};
         }
       `,

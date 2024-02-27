@@ -1,4 +1,5 @@
 import { css, keyframes, type SerializedStyles } from '@emotion/react';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import type {
   TAppNotificationKind,
   TAppNotificationDomain,
@@ -19,7 +20,7 @@ type StyleProps = {
 const getColorByType = (value: TAppNotificationKind) => {
   switch (value) {
     case NOTIFICATION_KINDS_SIDE.success:
-      return designTokens.colorPrimary;
+      return appKitDesignTokens.fontColorForNotificationWhenSuccess;
     case NOTIFICATION_KINDS_SIDE.info:
       return designTokens.colorInfo;
     case NOTIFICATION_KINDS_SIDE.error:
@@ -34,7 +35,7 @@ const getColorByType = (value: TAppNotificationKind) => {
 const getBorderColor = (notificationKind: TAppNotificationKind) => {
   switch (notificationKind) {
     case NOTIFICATION_KINDS_SIDE.success:
-      return designTokens.colorPrimary85;
+      return appKitDesignTokens.borderColorForNotificationWhenSuccess;
     case NOTIFICATION_KINDS_SIDE.info:
       return designTokens.colorInfo85;
     case NOTIFICATION_KINDS_SIDE.error:

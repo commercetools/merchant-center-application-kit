@@ -5,6 +5,7 @@ import {
   type Theme,
 } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '../../theming';
 
 const getBottomBorderStyles = (background: string): SerializedStyles => css`
   :after {
@@ -42,8 +43,8 @@ export const getLinkStyles = (
   isActive &&
     css`
       ${getBottomBorderStyles(uiKitDesignTokens.colorPrimary)}
-      & h4 {
-        color: ${uiKitDesignTokens.colorPrimary} !important;
+      & h3 {
+        color: ${appKitDesignTokens.fontColorForTabLabelWhenActive} !important;
       }
     `,
   isDisabled &&
@@ -63,8 +64,8 @@ export const getLinkStyles = (
       :hover,
       :focus,
       :active {
-        & h4 {
-          color: ${uiKitDesignTokens.colorPrimary} !important;
+        & h3 {
+          color: ${appKitDesignTokens.fontColorForTabLabelWhenActive} !important;
         }
       }
     `,
