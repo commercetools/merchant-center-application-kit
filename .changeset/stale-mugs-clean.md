@@ -14,4 +14,4 @@
 '@commercetools-local/playground': minor
 ---
 
-Implement updated color scheme across all App-kit components
+Update all App-kit components to support the upcoming new colour scheme
