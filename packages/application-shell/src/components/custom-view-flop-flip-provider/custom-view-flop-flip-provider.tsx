@@ -5,7 +5,6 @@ import { TFlags } from '@flopflip/types';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 
 type TCustomViewFlopFlipProviderProps = {
-  projectKey?: string;
   user?: TFetchLoggedInUserQuery['user'];
   flags?: TFlags;
   children: ReactNode;
@@ -15,12 +14,10 @@ function CustomViewFlopFlipProvider(props: TCustomViewFlopFlipProviderProps) {
   const adapterArgs = useMemo(
     () => ({
       user: {
-        kind: 'user',
         key: props.user?.id,
-        project: props.projectKey ?? '',
       },
     }),
-    [props.user?.id, props.projectKey]
+    [props.user?.id]
   );
 
   return (

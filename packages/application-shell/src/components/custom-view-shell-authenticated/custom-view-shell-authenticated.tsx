@@ -101,7 +101,6 @@ function CustomViewShellAuthenticated(
                               <CustomViewFlopFlipProvider
                                 flags={props.flags}
                                 user={user}
-                                projectKey={project?.key}
                               >
                                 <CustomViewWithPermissionCheck>
                                   {props.children}
