@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { TFlags } from '@flopflip/types';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -15,6 +16,7 @@ import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
+import CustomViewFlopFlipProvider from '../custom-view-flop-flip-provider';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 
@@ -45,6 +47,7 @@ type TCustomViewShellAuthenticatedProps = {
   environment: ApplicationWindow['app'];
   messages: TAsyncLocaleDataProps['applicationMessages'];
   projectKey?: string;
+  flags?: TFlags;
   customViewConfig: CustomViewData;
   children: ReactNode;
 };
@@ -95,9 +98,14 @@ function CustomViewShellAuthenticated(
                               projectDataLocale={props.dataLocale}
                               environment={props.environment}
                             >
-                              <CustomViewWithPermissionCheck>
-                                {props.children}
-                              </CustomViewWithPermissionCheck>
+                              <CustomViewFlopFlipProvider
+                                flags={props.flags}
+                                user={user}
+                              >
+                                <CustomViewWithPermissionCheck>
+                                  {props.children}
+                                </CustomViewWithPermissionCheck>
+                              </CustomViewFlopFlipProvider>
                             </ApplicationContextProvider>
                           );
                         }}

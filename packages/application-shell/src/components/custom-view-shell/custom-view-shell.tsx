@@ -10,6 +10,8 @@ import {
 } from 'react';
 import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
+import { useFeatureToggle } from '@flopflip/react-broadcast';
+import { TFlags } from '@flopflip/types';
 import { Route } from 'react-router-dom';
 import {
   ModalPageTopBar,
@@ -48,6 +50,7 @@ declare let window: ApplicationWindow;
 type THostContext = {
   hostUrl: string;
   dataLocale: string;
+  featureFlags?: TFlags;
   customViewConfig: CustomViewData;
   projectKey?: string;
 };
@@ -70,11 +73,6 @@ type TCustomViewShellProps = {
 };
 
 const browserLocale = getBrowserLocale(window);
-
-type TStrictModeEnablementProps = {
-  enableReactStrictMode?: boolean;
-  children?: ReactNode;
-};
 
 type TNotificationsContainerProps = {
   notificationsGlobalRef: RefObject<HTMLDivElement>;
@@ -108,12 +106,30 @@ const ContentWrapper = styled.div`
   padding: ${designTokens.spacing40} 40px;
 `;
 
+type TStrictModeEnablementProps = {
+  enableReactStrictMode?: boolean;
+  children?: ReactNode;
+};
 function StrictModeEnablement(props: TStrictModeEnablementProps) {
   if (props.enableReactStrictMode) {
     return <StrictMode>{props.children}</StrictMode>;
   } else {
     return <>{props.children}</>;
   }
+}
+
+function CustomViewThemeProvider() {
+  const theme = useFeatureToggle('mcRecolouring') ? 'recolouring' : 'default';
+
+  const customViewThemeOverrides = {
+    // @ts-ignore
+    ...themesOverrides[theme],
+    ...customViewsThemesOverrides[theme],
+  };
+
+  return (
+    <ThemeProvider theme={theme} themeOverrides={customViewThemeOverrides} />
+  );
 }
 
 /*
@@ -123,11 +139,6 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 */
 const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
-
-const customViewThemeOverrides = {
-  ...themesOverrides.default,
-  ...customViewsThemesOverrides.default,
-};
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
@@ -216,10 +227,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
   return (
     <>
       <GlobalStyles />
-      <ThemeProvider
-        theme="default"
-        themeOverrides={customViewThemeOverrides}
-      />
       <ApplicationShellProvider
         environment={window.app}
         applicationMessages={props.applicationMessages}
@@ -237,8 +244,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
                   environment={window.app}
                   messages={props.applicationMessages}
                   projectKey={hostContext.projectKey}
+                  flags={hostContext.featureFlags}
                   customViewConfig={hostContext.customViewConfig}
                 >
+                  <CustomViewThemeProvider />
                   <PortalsContainer
                     // @ts-ignore
                     ref={layoutRefs}
