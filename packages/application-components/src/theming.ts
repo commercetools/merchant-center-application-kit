@@ -20,6 +20,8 @@ export const themesOverrides = {
       uiKitDesignTokens.colorPrimary40,
     backgroundColorForNavbarHeader: uiKitDesignTokens.colorAccent10,
     backgroundColorForNavbarMenuItemWhenActive: uiKitDesignTokens.colorAccent30,
+    backgroundColorForNavbarSubmenuItemWhenActive:
+      uiKitDesignTokens.colorAccent30,
     backgroundColorForNavbarMenuItemWhenHovered:
       uiKitDesignTokens.colorPrimary40,
     backgroundColorForNavbarSkeleton: '#009987',
@@ -44,6 +46,8 @@ export const themesOverrides = {
     backgroundColorForNavbarHeader: uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarMenuItemWhenActive:
       uiKitDesignTokens.colorPrimary25,
+    backgroundColorForNavbarSubmenuItemWhenActive:
+      uiKitDesignTokens.colorPrimary40,
     backgroundColorForNavbarMenuItemWhenHovered:
       uiKitDesignTokens.colorPrimary20,
     backgroundColorForNavbarSkeleton: uiKitDesignTokens.colorPrimary10,

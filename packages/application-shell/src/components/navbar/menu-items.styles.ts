@@ -195,7 +195,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
     props.isActive &&
       css`
         border-radius: ${uiKitDesignTokens.borderRadius4};
-        background: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenActive};
+        background: ${appKitDesignTokens.backgroundColorForNavbarSubmenuItemWhenActive};
       `,
     !props.isActive &&
       css`
