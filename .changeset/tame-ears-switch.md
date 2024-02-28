@@ -4,4 +4,4 @@
 '@commercetools-frontend/constants': minor
 ---
 
-We're including support for feature flags in Custom Views.
+Custom Views can consume feature flags (internal usage only).
