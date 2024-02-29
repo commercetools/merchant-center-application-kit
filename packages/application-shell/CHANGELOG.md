@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-shell
 
+## 22.19.0
+
+### Minor Changes
+
+- [#3414](https://github.com/commercetools/merchant-center-application-kit/pull/3414) [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f) Thanks [@kark](https://github.com/kark)! - Update all App-kit components to support the upcoming new colour scheme
+
+- [#3421](https://github.com/commercetools/merchant-center-application-kit/pull/3421) [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Custom Views can consume feature flags (internal usage only).
+
+### Patch Changes
+
+- [#3415](https://github.com/commercetools/merchant-center-application-kit/pull/3415) [`e076438da`](https://github.com/commercetools/merchant-center-application-kit/commit/e076438da68e8931b4d221ab9b5bde6fb0cdf565) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Include new illustrations with the upcoming colour schema changes
+
+- Updated dependencies [[`e076438da`](https://github.com/commercetools/merchant-center-application-kit/commit/e076438da68e8931b4d221ab9b5bde6fb0cdf565), [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f), [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51)]:
+  - @commercetools-frontend/application-components@22.19.0
+  - @commercetools-frontend/assets@22.19.0
+  - @commercetools-frontend/react-notifications@22.19.0
+  - @commercetools-frontend/constants@22.19.0
+  - @commercetools-frontend/i18n@22.19.0
+  - @commercetools-frontend/application-config@22.19.0
+  - @commercetools-frontend/actions-global@22.19.0
+  - @commercetools-frontend/application-shell-connectors@22.19.0
+  - @commercetools-frontend/sdk@22.19.0
+  - @commercetools-frontend/sentry@22.19.0
+  - @commercetools-frontend/permissions@22.19.0
+  - @commercetools-frontend/l10n@22.19.0
+  - @commercetools-frontend/browser-history@22.19.0
+  - @commercetools-frontend/notifications@22.19.0
+  - @commercetools-frontend/url-utils@22.19.0
+
 ## 22.18.0
 
 ### Patch Changes
