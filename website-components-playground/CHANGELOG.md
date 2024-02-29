@@ -1,5 +1,20 @@
 # @commercetools-website/components-playground
 
+## 22.19.0
+
+### Minor Changes
+
+- [#3414](https://github.com/commercetools/merchant-center-application-kit/pull/3414) [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f) Thanks [@kark](https://github.com/kark)! - Update all App-kit components to support the upcoming new colour scheme
+
+### Patch Changes
+
+- Updated dependencies [[`e076438da`](https://github.com/commercetools/merchant-center-application-kit/commit/e076438da68e8931b4d221ab9b5bde6fb0cdf565), [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f), [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51)]:
+  - @commercetools-frontend/application-components@22.19.0
+  - @commercetools-frontend/constants@22.19.0
+  - @commercetools-frontend/i18n@22.19.0
+  - @commercetools-frontend/l10n@22.19.0
+  - @commercetools-frontend/browser-history@22.19.0
+
 ## 22.18.0
 
 ### Patch Changes

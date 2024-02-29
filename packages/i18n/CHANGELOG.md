@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 22.19.0
+
+### Minor Changes
+
+- [#3414](https://github.com/commercetools/merchant-center-application-kit/pull/3414) [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f) Thanks [@kark](https://github.com/kark)! - Update all App-kit components to support the upcoming new colour scheme
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.19.0
+
 ## 22.18.0
 
 ### Patch Changes

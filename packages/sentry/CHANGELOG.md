@@ -1,5 +1,13 @@
 # @commercetools-frontend/sentry
 
+## 22.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f), [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51)]:
+  - @commercetools-frontend/constants@22.19.0
+  - @commercetools-frontend/browser-history@22.19.0
+
 ## 22.18.0
 
 ### Patch Changes
