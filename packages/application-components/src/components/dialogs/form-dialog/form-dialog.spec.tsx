@@ -1,104 +1,95 @@
-import { Dispatch, useState } from 'react';
-import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { screen, renderComponent, fireEvent } from '../../../test-utils';
+import { screen, fireEvent } from '../../../test-utils';
+import {
+  DialogCustomTitle,
+  TDialogComponentValidator,
+  createDialogValidator,
+} from '../internals/dialog-test-utils';
 import FormDialog from './form-dialog';
 
-type DialogControllerProps = {
-  children: (renderProps: {
-    isOpen: boolean;
-    setIsOpen: Dispatch<boolean>;
-  }) => JSX.Element;
+const createFormDialogValidator = () => {
+  const onCancel = jest.fn();
+  const onConfirm = jest.fn();
+
+  return createDialogValidator({
+    component: FormDialog,
+    extraProps: {
+      onSecondaryButtonClick: onCancel,
+      onPrimaryButtonClick: onConfirm,
+    },
+    extraChecks: () => {
+      fireEvent.click(screen.getByLabelText('Cancel'));
+      expect(onCancel).toHaveBeenCalled();
+      fireEvent.click(screen.getByLabelText('Save'));
+      expect(onConfirm).toHaveBeenCalled();
+    },
+  });
 };
-const DialogController = (props: DialogControllerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div>
-      <SecondaryButton
-        label="Open Form Dialog"
-        onClick={() => setIsOpen(true)}
-      />
-      {props.children({ isOpen, setIsOpen })}
-    </div>
-  );
-};
-DialogController.displayName = 'DialogController';
 
 describe('rendering', () => {
-  it('should open the modal and close it by clicking on the close button', async () => {
-    const onCancel = jest.fn();
-    const onConfirm = jest.fn();
-    renderComponent(
-      <DialogController>
-        {({ isOpen, setIsOpen }) => (
-          <FormDialog
-            title="Lorem ipsus"
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            onSecondaryButtonClick={onCancel}
-            onPrimaryButtonClick={onConfirm}
-          >
-            {'Hello'}
-          </FormDialog>
-        )}
-      </DialogController>
-    );
-    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+  let validateComponent: TDialogComponentValidator;
 
-    fireEvent.click(screen.getByLabelText(/Open Form Dialog/i));
-    await screen.findByText(/Lorem ipsus/i);
-    expect(screen.getByText(/Hello/i)).toBeInTheDocument();
-
-    fireEvent.click(screen.getByLabelText('Cancel'));
-    expect(onCancel).toHaveBeenCalled();
-    fireEvent.click(screen.getByLabelText('Save'));
-    expect(onConfirm).toHaveBeenCalled();
-
-    fireEvent.click(screen.getByLabelText(/Close dialog/i));
-    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
-  });
-  it('should not be able to close the modal when onClose is not provided', async () => {
-    const onCancel = jest.fn();
-    const onConfirm = jest.fn();
-    renderComponent(
-      <DialogController>
-        {({ isOpen }) => (
-          <FormDialog
-            title="Lorem ipsus"
-            isOpen={isOpen}
-            onSecondaryButtonClick={onCancel}
-            onPrimaryButtonClick={onConfirm}
-          >
-            {'Hello'}
-          </FormDialog>
-        )}
-      </DialogController>
-    );
-    expect(screen.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
-
-    fireEvent.click(screen.getByLabelText(/Open Form Dialog/i));
-    await screen.findByText(/Lorem ipsus/i);
-    expect(screen.getByText(/Hello/i)).toBeInTheDocument();
-
-    expect(screen.queryByText(/Close dialog/i)).not.toBeInTheDocument();
+  beforeEach(() => {
+    validateComponent = createFormDialogValidator();
   });
 
-  it('should show secondaryButton Icon', () => {
-    renderComponent(
-      <DialogController>
-        {() => (
-          <FormDialog
-            title="Lorem ipsus"
-            isOpen={true}
-            onSecondaryButtonClick={() => {}}
-            onPrimaryButtonClick={() => {}}
-            iconLeftSecondaryButton={<div>button icon</div>}
-          >
-            {'Hello'}
-          </FormDialog>
-        )}
-      </DialogController>
-    );
+  it('should open the modal and close it by clicking on the close button', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+      onClose: (setIsOpen) => setIsOpen(false),
+    }));
 
-    screen.getByText('button icon');
+  it('should not be able to close the modal when onClose is not provided', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+    }));
+
+  it('should show secondaryButton Icon', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+      extraProps: {
+        iconLeftSecondaryButton: <div>button icon</div>,
+      },
+      extraChecks: () => {
+        screen.getByText('button icon');
+      },
+    }));
+});
+
+describe('with custom title', () => {
+  let validateComponent: TDialogComponentValidator;
+
+  beforeEach(() => {
+    console.warn = jest.fn();
+    validateComponent = createFormDialogValidator();
   });
+
+  it('should render', () =>
+    validateComponent({
+      title: <DialogCustomTitle title="Custom Title" />,
+      onClose: (setIsOpen) => setIsOpen(false),
+      expectedTitle: 'Custom Title',
+      'aria-label': 'Custom aria title',
+      extraChecks: () => {
+        expect(
+          screen.getByRole('button', { name: /Click me/ })
+        ).toBeInTheDocument();
+      },
+    }));
+
+  it('should render with a warning if no "aria-label" is provided', () =>
+    validateComponent({
+      title: <DialogCustomTitle title="Custom Title" />,
+      expectedTitle: 'Custom Title',
+      onClose: (setIsOpen) => setIsOpen(false),
+      extraChecks: () => {
+        expect(
+          screen.getByRole('button', { name: /Click me/ })
+        ).toBeInTheDocument();
+        expect(console.warn).toHaveBeenCalledWith(
+          expect.stringContaining(
+            `app-kit/DialogHeader: "aria-label" prop is required`
+          )
+        );
+      },
+    }));
 });

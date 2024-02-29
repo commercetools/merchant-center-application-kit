@@ -1,7 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import { designTokens as appKitDesignTokens } from '../../theming';
 import CustomViewsSelector from '../custom-views/custom-views-selector';
 import PageHeaderTitle from './page-header-title';
 
@@ -19,10 +18,9 @@ const PageHeader = (props: Props) => {
   return (
     <div
       css={css`
-        margin: ${appKitDesignTokens.marginForModalPageHeader};
-        padding: ${appKitDesignTokens.paddingForModalPageHeader};
-        border-bottom: 1px solid
-          ${appKitDesignTokens.borderColorForModalPageHeaderDivider};
+        margin: 0 ${uiKitDesignTokens.spacing55};
+        padding: ${uiKitDesignTokens.spacing40} 0 ${uiKitDesignTokens.spacing40};
+        border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
       `}
     >
       <div
@@ -31,7 +29,7 @@ const PageHeader = (props: Props) => {
           align-items: flex-end;
           justify-content: space-between;
           & > * + * {
-            margin-left: ${appKitDesignTokens.marginLeftForModalPageHeaderControls};
+            margin-left: ${uiKitDesignTokens.spacing50};
           }
         `}
       >

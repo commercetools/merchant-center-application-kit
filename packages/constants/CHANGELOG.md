@@ -1,5 +1,37 @@
 # @commercetools-frontend/constants
 
+## 22.19.0
+
+### Minor Changes
+
+- [#3414](https://github.com/commercetools/merchant-center-application-kit/pull/3414) [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f) Thanks [@kark](https://github.com/kark)! - Update all App-kit components to support the upcoming new colour scheme
+
+- [#3421](https://github.com/commercetools/merchant-center-application-kit/pull/3421) [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Custom Views can consume feature flags (internal usage only).
+
+## 22.18.0
+
+## 22.17.2
+
+## 22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+## 22.16.0
+
+## 22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3352](https://github.com/commercetools/merchant-center-application-kit/pull/3352) [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Refactored Custom Views constants for better maintainability.
+
+- [#3351](https://github.com/commercetools/merchant-center-application-kit/pull/3351) [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679) Thanks [@emmenko](https://github.com/emmenko)! - Expose some regex `PROJECT_KEY_REGEX`, `ENTRY_POINT_URI_PATH_REGEX`, `PERMISSION_GROUP_NAME_REGEX`.
+
 ## 22.14.3
 
 ## 22.14.2

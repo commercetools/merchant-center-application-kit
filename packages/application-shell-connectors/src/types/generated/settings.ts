@@ -94,6 +94,7 @@ export type TBusinessUnitsListMyViewTableInput = {
 
 export enum TCategoryRecommendationSearchProperty {
   Attribute = 'Attribute',
+  /** @deprecated The machine learning APIs are not available anymore. */
   MachineLearning = 'MachineLearning',
   ProductType = 'ProductType'
 }
@@ -376,6 +377,21 @@ export type TCustomViewPermissionDataInput = {
   oAuthScopes: Array<Scalars['String']>;
 };
 
+export type TCustomViewQueryInput = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['String']>;
+  where?: InputMaybe<TCustomViewQueryWhereInput>;
+};
+
+export type TCustomViewQueryWhereInput = {
+  defaultLabel?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  locators?: InputMaybe<Array<Scalars['String']>>;
+  organizationId?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TCustomViewType>;
+};
+
 export enum TCustomViewSize {
   Large = 'LARGE',
   Small = 'SMALL'
@@ -397,6 +413,15 @@ export type TCustomViewTypeSettings = {
 
 export type TCustomViewTypeSettingsInput = {
   size?: InputMaybe<TCustomViewSize>;
+};
+
+export type TCustomViewsPagedQueryResult = {
+  __typename?: 'CustomViewsPagedQueryResult';
+  count: Scalars['Int'];
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+  results: Array<TCustomView>;
+  total: Scalars['Int'];
 };
 
 export type TCustomersListView = {
@@ -1295,6 +1320,32 @@ export type TMyCustomApplicationQueryWhereInput = {
   status?: InputMaybe<TCustomApplicationStatus>;
 };
 
+export type TMyCustomView = {
+  __typename?: 'MyCustomView';
+  createdAt: Scalars['DateTime'];
+  defaultLabel: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  labelAllLocales: Array<TLocalizedField>;
+  locators: Array<Scalars['String']>;
+  organizationId: Scalars['String'];
+  organizationName: Scalars['String'];
+  permissions: Array<TCustomViewPermission>;
+  status: TCustomViewStatus;
+  type: TCustomViewType;
+  typeSettings?: Maybe<TCustomViewTypeSettings>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+};
+
+export type TMyCustomViewsQueryInput = {
+  where?: InputMaybe<TMyCustomViewsQueryWhereInput>;
+};
+
+export type TMyCustomViewsQueryWhereInput = {
+  status?: InputMaybe<TCustomViewStatus>;
+};
+
 export type TNavbarMenu = {
   __typename?: 'NavbarMenu';
   createdAt: Scalars['DateTime'];
@@ -1481,6 +1532,7 @@ export type TOrganizationExtensionForCustomView = {
 export type TPimSearchListView = {
   __typename?: 'PimSearchListView';
   createdAt: Scalars['DateTime'];
+  expandedRows: Array<Scalars['String']>;
   filters?: Maybe<Array<TFilterValues>>;
   id: Scalars['ID'];
   isActive?: Maybe<Scalars['Boolean']>;
@@ -1494,6 +1546,7 @@ export type TPimSearchListView = {
 };
 
 export type TPimSearchListViewInput = {
+  expandedRows?: InputMaybe<Array<Scalars['String']>>;
   filters: Array<TFilterValuesCreateInput>;
   nameAllLocales: Array<TLocalizedFieldCreateInput>;
   search?: InputMaybe<Scalars['String']>;
@@ -1629,6 +1682,8 @@ export type TQuery = {
   allAppliedCustomViewPermissions: Array<TCustomViewInstallationPermission>;
   /** @deprecated Experimental feature - For internal usage only */
   allCustomApplications: TCustomApplicationsPagedQueryResult;
+  /** @deprecated Experimental feature - For internal usage only */
+  allCustomViews: TCustomViewsPagedQueryResult;
   allCustomViewsInstallationsByLocator: Array<TRestrictedCustomViewInstallationForProject>;
   allCustomViewsLocatorGroups: Array<TCustomViewLocatorGroup>;
   allFeatures: Array<TFeature>;
@@ -1655,6 +1710,7 @@ export type TQuery = {
   /** @deprecated Experimental feature - For internal usage only */
   globalOrganizationExtension?: Maybe<TOrganizationExtension>;
   myCustomApplications: Array<TMyCustomApplication>;
+  myCustomViews: Array<TMyCustomView>;
   orderDetailView?: Maybe<TOrderDetailView>;
   orderDetailViews: Array<Maybe<TOrderDetailView>>;
   ordersListView?: Maybe<TOrdersListView>;
@@ -1696,6 +1752,11 @@ export type TQuery_AllAppliedCustomViewPermissionsArgs = {
 
 export type TQuery_AllCustomApplicationsArgs = {
   params?: InputMaybe<TCustomApplicationQueryInput>;
+};
+
+
+export type TQuery_AllCustomViewsArgs = {
+  params?: InputMaybe<TCustomViewQueryInput>;
 };
 
 
@@ -1766,6 +1827,11 @@ export type TQuery_GlobalOrganizationExtensionArgs = {
 
 export type TQuery_MyCustomApplicationsArgs = {
   params?: InputMaybe<TMyCustomApplicationQueryInput>;
+};
+
+
+export type TQuery_MyCustomViewsArgs = {
+  params?: InputMaybe<TMyCustomViewsQueryInput>;
 };
 
 

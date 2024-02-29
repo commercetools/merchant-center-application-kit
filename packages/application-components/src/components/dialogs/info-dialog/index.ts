@@ -1,1 +1,1 @@
-export { default } from './info-dialog';
+export { default, type TInfoDialogProps } from './info-dialog';

@@ -45,13 +45,8 @@ const getSessionState = <State extends {}>(stateId?: string): State | null => {
   if (unparsedSessionState) {
     try {
       const parsedSessionState = JSON.parse(unparsedSessionState) as State;
-
-      window.sessionStorage.removeItem(sessionStateKey);
-
       return parsedSessionState;
     } catch (error) {
-      window.sessionStorage.removeItem(sessionStateKey);
-
       if (process.env.NODE_ENV !== 'production') {
         // eslint-disable-next-line no-console
         console.warn(
@@ -71,12 +66,18 @@ const setSessionState = <State extends {}>(
   window.sessionStorage.setItem(sessionStateKey, JSON.stringify(state));
 };
 
+const removeSessionState = (stateId?: string): void => {
+  const sessionStateKey = `${STORAGE_KEYS.NONCE}_${stateId}`;
+  window.sessionStorage.removeItem(sessionStateKey);
+};
+
 export {
   getSessionToken,
   setActiveSession,
   clearSession,
   getSessionState,
   setSessionState,
+  removeSessionState,
   getActiveProjectKey,
   setActiveProjectKey,
   removeActiveProjectKey,

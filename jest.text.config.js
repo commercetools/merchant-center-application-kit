@@ -7,8 +7,6 @@ module.exports = {
   moduleFileExtensions: ['md', 'mdx'],
   modulePathIgnorePatterns: ['build', 'dist', 'public/', 'CHANGELOG.md'],
   testMatch: [
-    '<rootDir>/website/**/*.md',
-    '<rootDir>/website/**/*.mdx',
     '<rootDir>/website-custom-views/**/*.md',
     '<rootDir>/website-custom-views/**/*.mdx',
   ],

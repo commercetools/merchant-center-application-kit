@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import { ProjectStamp } from '@commercetools-frontend/application-components';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -25,7 +25,7 @@ const AppBar = (props: Props) => {
     <div
       css={css`
         background-color: ${uikitDesignTokens.colorSurface};
-        box-shadow: ${appKitDesignTokens.shadowForAppbar};
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
         padding: 0 40px;
         min-height: ${DIMENSIONS.header};
         position: relative;
@@ -42,36 +42,63 @@ const AppBar = (props: Props) => {
           float: right;
           font-weight: normal;
           font-size: 1rem;
-          margin-right: ${appKitDesignTokens.marginRightForAppbar};
+          margin-right: ${uikitDesignTokens.spacing55};
           display: flex;
           align-items: center;
         `}
       >
         <Spacings.Inline scale="m" alignItems="center">
-          <Spacings.Inline scale="m" alignItems="center">
+          <div
+            css={css`
+              display: flex;
+              gap: ${uikitDesignTokens.spacing30};
+              align-items: center;
+            `}
+          >
             {(() => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
               }
               // The `<ProjectSwitcher>` should be rendered only if the
               // user is fetched and the user has projects while the app runs in an project context.
-              if (props.user.projects.total > 0 && props.projectKeyFromUrl)
-                return (
-                  <ProjectSwitcher
-                    // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of projects. In such case
-                    // the dropdown will still be rendered but no project will be selected.
-                    // This is fine becase the user has still the possibility to "switch"
-                    // to a project.
-                    projectKey={props.projectKeyFromUrl || previousProjectKey}
-                  />
+              if (props.user.projects.total > 0 && props.projectKeyFromUrl) {
+                const selectedProject = props.user.projects.results.find(
+                  (project) => project.key === props.projectKeyFromUrl
                 );
+                return (
+                  <div
+                    css={css`
+                      display: flex;
+                      gap: ${uikitDesignTokens.spacing20};
+                      align-items: center;
+                    `}
+                  >
+                    {selectedProject?.isProductionProject && (
+                      <div
+                        css={css`
+                          height: 22px;
+                        `}
+                      >
+                        <ProjectStamp.IsProduction />
+                      </div>
+                    )}
+                    <ProjectSwitcher
+                      // In this case it's not necessary to check if the `projectKey` param
+                      // is included in the list of projects. In such case
+                      // the dropdown will still be rendered but no project will be selected.
+                      // This is fine becase the user has still the possibility to "switch"
+                      // to a project.
+                      projectKey={props.projectKeyFromUrl || previousProjectKey}
+                    />
+                  </div>
+                );
+              }
               if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
             {/* This node is used by a react portal */}
             <div id={CONTAINERS.LOCALE_SWITCHER} />
-          </Spacings.Inline>
+          </div>
           <Spacings.Inline>
             <div
               id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}

@@ -21,6 +21,7 @@ const Project = new Factory()
     isActive: false,
     reason: null,
   })
+  .attr('isProductionProject', false)
   .attr('allAppliedPermissions', [])
   .attr('allAppliedActionRights', [])
   .attr('allAppliedDataFences', [])

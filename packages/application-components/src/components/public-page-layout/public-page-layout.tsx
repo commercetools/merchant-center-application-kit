@@ -2,10 +2,9 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { designTokens as appKitDesingTokens } from '../../theming';
 
 const year = new Date().getUTCFullYear();
 
@@ -37,16 +36,16 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  padding: ${customProperties.spacingXl} 0;
+  padding: ${uiKitDesignTokens.spacingXl} 0;
   justify-content: center;
   background-size: cover;
   background-position: center;
 `;
 const ContainerColumn = styled.div`
-  width: ${appKitDesingTokens.widthForPageLayoutContentColumn};
+  width: calc(${uiKitDesignTokens.constraint16} / 2);
 `;
 const ContainerColumnWide = styled.div`
-  width: ${customProperties.constraint15};
+  width: ${uiKitDesignTokens.constraint15};
 `;
 
 const PublicPageLayoutContent: FC<TProps> = (props) => {
@@ -70,7 +69,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
             <Text.Headline as="h2">
               <div
                 css={css`
-                  color: ${customProperties.colorSolid};
+                  color: ${uiKitDesignTokens.colorSolid};
                   text-align: center;
                 `}
               >

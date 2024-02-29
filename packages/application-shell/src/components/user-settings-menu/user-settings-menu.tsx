@@ -8,7 +8,6 @@ import Downshift, {
 } from 'downshift';
 import { useIntl, FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { designTokens as appkitDesignTokens } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LOGOUT_REASONS,
@@ -18,7 +17,10 @@ import {
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import Avatar from '@commercetools-uikit/avatar';
-import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
+import {
+  designTokens as uikitDesignTokens,
+  useTheme,
+} from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { DIMENSIONS } from '../../constants';
@@ -54,6 +56,7 @@ const MENU_LABEL_ID = 'user-menu-setting-menu-label';
 const UserAvatar = (
   props: Pick<Props, 'firstName' | 'lastName' | 'gravatarHash'>
 ) => {
+  const { themedValue } = useTheme();
   const [isMouseOver, setIsMouseOver] = useState(false);
   const handleMouseOver = useCallback(() => {
     setIsMouseOver(true);
@@ -70,6 +73,7 @@ const UserAvatar = (
           firstName={props.firstName}
           lastName={props.lastName}
           isHighlighted={isMouseOver}
+          color={themedValue('accent', 'purple')}
         />
       </Spacings.Inline>
     </div>
@@ -123,14 +127,14 @@ const MenuItem = styled.div<MenuItemProps>`
   color: ${uikitDesignTokens.colorSolid};
 
   :hover {
-    background-color: ${appkitDesignTokens.backgroundColorForUserMenuItemWhenHovered};
+    background-color: ${uikitDesignTokens.colorNeutral95};
   }
 
   ${(props) =>
     props.hasDivider === true
       ? css`
           border-bottom: 1px solid ${uikitDesignTokens.colorNeutral};
-          margin: ${appkitDesignTokens.marginForUserMenuItem};
+          margin: ${uikitDesignTokens.spacing10} 0;
         `
       : ''};
 `;

@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
 import {
   LOGOUT_REASONS,
   type ApplicationWindow,
@@ -7,7 +6,7 @@ import {
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
 import getMcOrigin from '../../utils/get-mc-origin';
 import RedirectToLogin from '../redirect-to-login';
-import Redirector from '../redirector';
+import { Redirector } from '../redirector';
 
 declare let window: ApplicationWindow;
 
@@ -22,10 +21,6 @@ const RedirectToLogout = (props: Props) => {
   const servedByProxy = useIsServedByProxy();
 
   if (window.app.__DEVELOPMENT__?.oidc?.authorizeUrl) {
-    // Remove the `sessionToken` from storage, so that the AppShell can initiate
-    // a new authorization flow.
-    oidcStorage.clearSession();
-
     return <RedirectToLogin />;
   }
 

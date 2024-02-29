@@ -2,14 +2,14 @@
 title: Deploying to Google Cloud with Static Web Apps
 ---
 
-This deployment example refers to [Google Cloud Static Web Apps](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#0)
+This deployment example refers to [Google Cloud Static Web Apps](https://cloud.google.com/storage/docs/hosting-static-website-http).
 
 # Prerequisites
 
 Before you get started, you need to have:
 
 - A [Google account](https://accounts.google.com/SignUp).
-- A [valid domain](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#1) that you own or manage.
+- A [valid domain](https://cloud.google.com/storage/docs/hosting-static-website-http#before-you-begin) that you own or manage.
 - A [commercetools](https://docs-beta-custom-views.commercetools.vercel.app/getting-started) account and a Project.
 - A Custom View [configured in the Merchant Center](https://docs-beta-custom-views.commercetools.vercel.app/merchant-center/managing-custom-views).
 
@@ -18,14 +18,15 @@ Before you get started, you need to have:
 In your Custom View config, provide the [Custom View ID](/api-reference/custom-view-config#envproductioncustomviewid) you got when you configured the Custom View in the Merchant Center.
 
 
-```json title="custom-view-config.json"
-{
+```js title="custom-view-config.mjs"
+const config = {
   "env": {
     "production": {
       "customViewId": "ckvtahxl90097sys6har1e6n3",
       "url": "https://<custom_domain>"
     }
   }
+  // ...
 }
 ```
 
@@ -33,20 +34,21 @@ In your Custom View config, provide the [Custom View ID](/api-reference/custom-v
 
 In case you want to avoid hardcoding certain values, for example the Custom View ID, or the Project key, you can [use variable placeholders](/api-reference/custom-view-config#using-variable-placeholders) in your Custom View config.
 
-```json title="custom-view-config.json" highlightLines="4"
-{
+```js title="custom-view-config.mjs" highlightLines="4"
+const config = {
   "env": {
     "production": {
       "customViewId": "${env:CUSTOM_VIEW_ID}",
       "url": "https://<custom_domain>"
     }
   }
+  // ...
 }
 ```
 
 # Set up Google Cloud
 
-To host the production bundles of your Custom View you need to create a [Cloud Storage bucket](https://console.cloud.google.com/storage) in Google Cloud and [configure](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#3) the bucket.
+To host the production bundles of your Custom View you need to create a [Cloud Storage bucket](https://cloud.google.com/storage/docs/hosting-static-website-http#create-bucket) in Google Cloud and [configure](https://cloud.google.com/storage/docs/hosting-static-website-http#sharing) the bucket.
 
 ## Configuring the bucket
 
@@ -64,7 +66,7 @@ Google does not provide a domain by default when using Google Cloud Storage. If 
 
 We recommend following the instructions for [Domain-named bucket verification](https://cloud.google.com/storage/docs/domain-name-verification) to configure things properly.
 
-Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using Google Domain Name Service, in your domain [configuration](https://codelabs.developers.google.com/codelabs/cloud-webapp-hosting-gcs#2), add a new record that points your domain to the IP address of the load balancer you created.
+Another way to verify your domain is by using a [load balancer](https://cloud.google.com/storage/docs/hosting-static-website#lb-ssl). You have the chance to upload an SSL certificate to your load balancer. If you are using Google Domain Name Service, in your domain [configuration](https://cloud.google.com/storage/docs/hosting-static-website-http#cname), add a new record that points your domain to the IP address of the load balancer you created.
 
 # Connect Google Cloud with GitHub Actions
 

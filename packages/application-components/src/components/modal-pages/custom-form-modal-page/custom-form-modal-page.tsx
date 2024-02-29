@@ -8,7 +8,7 @@ import {
   FormDeleteButton,
 } from '../../internals/default-form-buttons';
 import PageHeader from '../../internals/page-header';
-import { ContentWrapper } from '../../internals/page.styles';
+import { ModalContentWrapper } from '../../internals/page.styles';
 import ModalPage from '../internals/modal-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -74,7 +74,7 @@ const CustomFormModalPage = (props: Props) => (
         </Spacings.Inline>
       )}
     </PageHeader>
-    <ContentWrapper>{props.children}</ContentWrapper>
+    <ModalContentWrapper>{props.children}</ModalContentWrapper>
   </ModalPage>
 );
 CustomFormModalPage.displayName = 'CustomFormModalPage';

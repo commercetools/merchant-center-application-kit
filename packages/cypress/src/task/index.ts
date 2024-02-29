@@ -1,28 +1,27 @@
 import fs from 'fs';
 import path from 'path';
 import { getPackages } from '@manypkg/get-packages';
-import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import {
+  type ApplicationRuntimeConfig,
   processConfig,
   MissingOrInvalidConfigError,
 } from '@commercetools-frontend/application-config';
+import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 
-type CustomApplicationConfigTaskOptions = {
+type CustomEntityConfigTaskOptions = {
   entryPointUriPath: string;
   dotfiles?: string[];
+  packageName?: string;
 };
-type AllCustomApplicationConfigs = Record<
-  string,
-  ApplicationRuntimeConfig['env']
->;
+type AllCustomEntityConfigs = Record<string, ApplicationRuntimeConfig['env']>;
 
-let cachedAllCustomApplicationConfigs: AllCustomApplicationConfigs;
+let cachedAllCustomEntityConfigs: AllCustomEntityConfigs;
 
 const defaultDotfiles = ['.env', '.env.local'];
 
 const loadEnvironmentVariables = (
   packageDirPath: string,
-  options: CustomApplicationConfigTaskOptions
+  options: CustomEntityConfigTaskOptions
 ) => {
   const dotfiles = options.dotfiles ?? defaultDotfiles;
   return dotfiles.reduce((mergedEnvs, dotfile) => {
@@ -47,16 +46,16 @@ const loadEnvironmentVariables = (
   }, process.env);
 };
 
-const loadAllCustomApplicationConfigs = async (
-  options: CustomApplicationConfigTaskOptions
+const loadAllCustomEntityConfigs = async (
+  options: CustomEntityConfigTaskOptions
 ) => {
-  if (cachedAllCustomApplicationConfigs) {
-    return cachedAllCustomApplicationConfigs;
+  if (cachedAllCustomEntityConfigs) {
+    return cachedAllCustomEntityConfigs;
   }
 
   const { packages } = await getPackages(process.cwd());
-  cachedAllCustomApplicationConfigs =
-    packages.reduce<AllCustomApplicationConfigs>((allConfigs, packageInfo) => {
+  cachedAllCustomEntityConfigs = packages.reduce<AllCustomEntityConfigs>(
+    (allConfigs, packageInfo) => {
       const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
       try {
         const processedConfig = processConfig({
@@ -64,36 +63,45 @@ const loadAllCustomApplicationConfigs = async (
           processEnv,
           applicationPath: packageInfo.dir,
         });
+        const isCustomViewConfig = Boolean(processedConfig.env.customViewId);
+
         console.log(
-          `Found Custom Application config for ${packageInfo.packageJson.name}`
+          `Found Custom ${
+            isCustomViewConfig ? 'View' : 'Application'
+          } config for ${packageInfo.packageJson.name}`
         );
+
+        const customEntityConfigCacheKey = isCustomViewConfig
+          ? `${processedConfig.env.entryPointUriPath}-${packageInfo.packageJson.name}`
+          : processedConfig.env.entryPointUriPath;
+
         return {
           ...allConfigs,
-          [processedConfig.env.entryPointUriPath]: processedConfig.env,
+          [customEntityConfigCacheKey]: processedConfig.env,
         };
       } catch (error) {
         // Ignore packages that do not have a valid config file, either because
-        // the package is not a Custom Application or because the config file
+        // the package is not a Custom Entity or because the config file
         // is invalid.
         if (error instanceof MissingOrInvalidConfigError) {
           return allConfigs;
         }
         throw error;
       }
-    }, {});
+    },
+    {}
+  );
 
-  return cachedAllCustomApplicationConfigs;
+  return cachedAllCustomEntityConfigs;
 };
 
 const customApplicationConfig = async (
-  options: CustomApplicationConfigTaskOptions
+  options: CustomEntityConfigTaskOptions
 ): Promise<ApplicationRuntimeConfig['env']> => {
-  const allCustomApplicationConfigs = await loadAllCustomApplicationConfigs(
-    options
-  );
+  const allCustomEntityConfigs = await loadAllCustomEntityConfigs(options);
 
   const customApplicationConfig =
-    allCustomApplicationConfigs[options.entryPointUriPath];
+    allCustomEntityConfigs[options.entryPointUriPath];
 
   if (!customApplicationConfig) {
     throw new Error(
@@ -107,4 +115,29 @@ const customApplicationConfig = async (
   return customApplicationConfig;
 };
 
-export { customApplicationConfig };
+const customViewConfig = async (
+  options: Omit<CustomEntityConfigTaskOptions, 'entryPointUriPath'>
+): Promise<ApplicationRuntimeConfig['env']> => {
+  const allCustomEntityConfigs = await loadAllCustomEntityConfigs({
+    ...options,
+    entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  });
+
+  const customViewConfig =
+    allCustomEntityConfigs[
+      `${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}-${options.packageName}`
+    ];
+
+  if (!customViewConfig) {
+    throw new Error(`Could not find Custom View config`);
+  }
+
+  console.log(`Using Custom View config for "${options.packageName}"`);
+  return customViewConfig;
+};
+
+export { customApplicationConfig, customViewConfig };
+
+// for backwards compatibility
+const legacyConfig = { customApplicationConfig };
+export default legacyConfig;

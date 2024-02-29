@@ -1,5 +1,81 @@
 # @commercetools-frontend/permissions
 
+## 22.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.19.0
+  - @commercetools-frontend/sentry@22.19.0
+
+## 22.18.0
+
+### Patch Changes
+
+- [#3403](https://github.com/commercetools/merchant-center-application-kit/pull/3403) [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2) Thanks [@chloe0592](https://github.com/chloe0592)! - New UI of the App Bar selectors.
+
+- Updated dependencies [[`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2)]:
+  - @commercetools-frontend/application-shell-connectors@22.18.0
+  - @commercetools-frontend/sentry@22.18.0
+
+## 22.17.2
+
+### Patch Changes
+
+- Updated dependencies [[`f69913f8b`](https://github.com/commercetools/merchant-center-application-kit/commit/f69913f8ba98e5c0e09bd5cf06e3afb788752404)]:
+  - @commercetools-frontend/application-shell-connectors@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.17.1
+  - @commercetools-frontend/sentry@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- Updated dependencies [[`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/application-shell-connectors@22.17.0
+  - @commercetools-frontend/sentry@22.17.0
+
+## 22.16.0
+
+### Minor Changes
+
+- [#3376](https://github.com/commercetools/merchant-center-application-kit/pull/3376) [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Add cloud environment property for launch darkly
+
+### Patch Changes
+
+- [#3372](https://github.com/commercetools/merchant-center-application-kit/pull/3372) [`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7) Thanks [@chloe0592](https://github.com/chloe0592)! - Add `isProductionProject` to project query.
+
+- Updated dependencies [[`d7bff45b9`](https://github.com/commercetools/merchant-center-application-kit/commit/d7bff45b9ba10530139eb4ea52a7dbb8dddc86e7), [`4e6a89b40`](https://github.com/commercetools/merchant-center-application-kit/commit/4e6a89b40e697562abb1e15e904d400fc84930c7)]:
+  - @commercetools-frontend/application-shell-connectors@22.16.0
+  - @commercetools-frontend/sentry@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.15.1
+  - @commercetools-frontend/sentry@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`996be773d`](https://github.com/commercetools/merchant-center-application-kit/commit/996be773de148122402f8b1ced36ec8ab10025ef), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e)]:
+  - @commercetools-frontend/application-shell-connectors@22.15.0
+  - @commercetools-frontend/sentry@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

@@ -1,5 +1,115 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.19.0
+
+### Patch Changes
+
+- Updated dependencies [[`e076438da`](https://github.com/commercetools/merchant-center-application-kit/commit/e076438da68e8931b4d221ab9b5bde6fb0cdf565), [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f), [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51)]:
+  - @commercetools-frontend/application-components@22.19.0
+  - @commercetools-frontend/assets@22.19.0
+  - @commercetools-frontend/constants@22.19.0
+  - @commercetools-frontend/application-config@22.19.0
+  - @commercetools-frontend/mc-html-template@22.19.0
+  - @commercetools-frontend/mc-dev-authentication@22.19.0
+  - @commercetools-frontend/babel-preset-mc-app@22.19.0
+
+## 22.18.0
+
+### Patch Changes
+
+- Updated dependencies [[`16de26adb`](https://github.com/commercetools/merchant-center-application-kit/commit/16de26adb0c77e580e5bf64de2ff0ad805672d7c), [`d575e8402`](https://github.com/commercetools/merchant-center-application-kit/commit/d575e8402d480b6efa513db4cb856aee9e0a1fa2)]:
+  - @commercetools-frontend/application-components@22.18.0
+  - @commercetools-frontend/application-config@22.18.0
+  - @commercetools-frontend/assets@22.18.0
+  - @commercetools-frontend/babel-preset-mc-app@22.18.0
+  - @commercetools-frontend/constants@22.18.0
+  - @commercetools-frontend/mc-dev-authentication@22.18.0
+  - @commercetools-frontend/mc-html-template@22.18.0
+
+## 22.17.2
+
+### Patch Changes
+
+- Updated dependencies [[`17c246a84`](https://github.com/commercetools/merchant-center-application-kit/commit/17c246a84e51516ecf8d157ac9b6b9235a57a5e3)]:
+  - @commercetools-frontend/application-components@22.17.2
+  - @commercetools-frontend/application-config@22.17.2
+  - @commercetools-frontend/assets@22.17.2
+  - @commercetools-frontend/babel-preset-mc-app@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/mc-dev-authentication@22.17.2
+  - @commercetools-frontend/mc-html-template@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies [[`8ad52e2c9`](https://github.com/commercetools/merchant-center-application-kit/commit/8ad52e2c9460744d3f49af929db47562830c9639)]:
+  - @commercetools-frontend/assets@22.17.1
+  - @commercetools-frontend/application-components@22.17.1
+  - @commercetools-frontend/application-config@22.17.1
+  - @commercetools-frontend/babel-preset-mc-app@22.17.1
+  - @commercetools-frontend/constants@22.17.1
+  - @commercetools-frontend/mc-dev-authentication@22.17.1
+  - @commercetools-frontend/mc-html-template@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- [#3381](https://github.com/commercetools/merchant-center-application-kit/pull/3381) [`628b81086`](https://github.com/commercetools/merchant-center-application-kit/commit/628b810867520022c719abb0133953d4a24c1fc3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency vite to v4.5.2 [security]
+
+- Updated dependencies [[`047e44e01`](https://github.com/commercetools/merchant-center-application-kit/commit/047e44e0119032707f6a1feac8846f58d4d44f28), [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab), [`fe6314779`](https://github.com/commercetools/merchant-center-application-kit/commit/fe63147792caaea41be1c96ce17dbee57cd7209e)]:
+  - @commercetools-frontend/application-config@22.17.0
+  - @commercetools-frontend/application-components@22.17.0
+  - @commercetools-frontend/mc-dev-authentication@22.17.0
+  - @commercetools-frontend/babel-preset-mc-app@22.17.0
+  - @commercetools-frontend/mc-html-template@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+  - @commercetools-frontend/assets@22.17.0
+
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies [[`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56), [`05dfdefd5`](https://github.com/commercetools/merchant-center-application-kit/commit/05dfdefd5a4827621e8aa583484af43f57c8d367)]:
+  - @commercetools-frontend/application-components@22.16.0
+  - @commercetools-frontend/application-config@22.16.0
+  - @commercetools-frontend/assets@22.16.0
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/mc-dev-authentication@22.16.0
+  - @commercetools-frontend/mc-html-template@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.15.1
+  - @commercetools-frontend/application-config@22.15.1
+  - @commercetools-frontend/assets@22.15.1
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+  - @commercetools-frontend/mc-dev-authentication@22.15.1
+  - @commercetools-frontend/mc-html-template@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/application-components@22.15.0
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/application-config@22.15.0
+  - @commercetools-frontend/mc-html-template@22.15.0
+  - @commercetools-frontend/mc-dev-authentication@22.15.0
+  - @commercetools-frontend/assets@22.15.0
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

@@ -107,6 +107,7 @@ const render = ({
           isActive: true,
           reason: undefined,
         },
+        isProductionProject: false,
         allAppliedPermissions,
         allAppliedActionRights,
         allAppliedDataFences,

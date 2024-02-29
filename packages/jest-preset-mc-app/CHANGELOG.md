@@ -1,5 +1,67 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.19.0
+
+## 22.18.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.18.0
+
+## 22.17.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- Updated dependencies [[`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.0
+
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- [#3367](https://github.com/commercetools/merchant-center-application-kit/pull/3367) [`71414b4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/71414b4b277c1d03bcbdc7d79483eec1d5814720) Thanks [@emmenko](https://github.com/emmenko)! - Use version range for `@testing-library/jest-dom`
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

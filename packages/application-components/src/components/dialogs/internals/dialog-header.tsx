@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from 'react';
+import type { ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
@@ -7,18 +7,27 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 
 type Props = {
-  title: string;
+  title: ReactNode;
   onClose?: (event: SyntheticEvent) => void;
   children?: never;
 };
 
+type TTextTitleProps = {
+  title: string;
+};
+export const TextTitle = (props: TTextTitleProps) => (
+  <Text.Headline as="h3" title={props.title} truncate>
+    {props.title}
+  </Text.Headline>
+);
+
 type TitleProps = Pick<Props, 'title'>;
 const Title = (props: TitleProps) => {
-  return (
-    <Text.Headline as="h3" title={props.title} truncate>
-      {props.title}
-    </Text.Headline>
-  );
+  if (typeof props.title === 'string') {
+    return <TextTitle title={props.title} />;
+  } else {
+    return <>{props.title}</>;
+  }
 };
 
 const DialogHeader = (props: Props) => (

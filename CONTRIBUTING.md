@@ -128,6 +128,37 @@ To develop locally, you can use the `playground` application to test the changes
 
 You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to rebundle and rebuild the application on each change.
 
+### Test Debugging
+
+Tests written with `react-testing-library` can give great confidence when refactoring. However, they can be painfully hard to debug when failing. This is mainly rooted in not having good visibility into what is being rendered and part of the DOM when testing at a specific moment in time.
+
+This is where [jest-preview](https://www.jest-preview.com) can help. You can see your test output directly in the browser as you would normally see the app you are working on. Write test and watch rendered output changes accordingly.
+
+To use `jest-preview` you need two terminal processes running. One for a `jest-preview` server and the other for your test.
+
+1. Run `pnpm test:jest-preview` to start the server and open `http://localhost:3336`
+2. Run the test your intend to debug ideally in watch mode using `pnpm test:watch test-suite-file.spec.js`
+3. Add `jest-preview` to the test you intend to debug by importing the library and debugging with `jest-preview` where you intend to see the HTML rendered
+
+In a nutshell your test could look like this:
+
+```js
+import { debug } from 'jest-preview';
+import { screen } from '@commercetools-frontend/application-shell/test-utils';
+
+it('should render a button', () => {
+  render();
+
+  debug();
+
+  expect(screen.getByRole('button', { name: /save/i })).toBeInTheDocument();
+});
+```
+
+When running the above test, open your browser in [http://localhost:3336](http://localhost:3336) and it should update and show the HTML of what has been rendered at the time of calling `debug`.
+
+Bear in mind we're using we are using [Automatic Mode](https://www.jest-preview.com/docs/getting-started/installation#6-optional--recommended-opt-in-to-automatic-mode), so if you're running the server, any failing test will update the browser view automatically.
+
 ## Adding changesets
 
 commercetools application-kit uses [changesets](https://github.com/atlassian/changesets) to do versioning and creating changelogs.

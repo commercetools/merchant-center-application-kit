@@ -1,5 +1,67 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 22.19.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.19.0
+
+## 22.18.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.18.0
+
+## 22.17.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- Updated dependencies [[`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.17.0
+
+## 22.16.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- [#3369](https://github.com/commercetools/merchant-center-application-kit/pull/3369) [`a4f1d8814`](https://github.com/commercetools/merchant-center-application-kit/commit/a4f1d88146a82173afeb34bda5f7c5936b63c872) Thanks [@tdeekens](https://github.com/tdeekens)! - Update eslint to 8.56.0.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

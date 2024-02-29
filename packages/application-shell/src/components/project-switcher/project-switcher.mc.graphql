@@ -2,6 +2,7 @@ query FetchUserProjects {
   user: me {
     id
     projects {
+      total
       results {
         name
         key
@@ -11,6 +12,7 @@ query FetchUserProjects {
         expiry {
           isActive
         }
+        isProductionProject
       }
     }
   }

@@ -4,7 +4,7 @@ export default defineMessages({
   projectsLabel: {
     id: 'ProjectSwitcher.projectsLabel',
     description: 'The label for project dropdown switcher',
-    defaultMessage: 'Projects menu',
+    defaultMessage: 'Projects',
   },
   searchPlaceholder: {
     id: 'ProjectSwitcher.searchPlaceholder',

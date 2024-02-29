@@ -5,6 +5,7 @@ type CreateGraphqlResponseForProjectsQueryOptions = {
   numberOfProjects?: number;
   getIsSuspended?: (key: string) => boolean;
   getIsExpired?: (key: string) => boolean;
+  getIsProduction?: (key: string) => boolean;
 };
 
 const falsy = () => false;
@@ -13,6 +14,7 @@ export const createGraphqlResponseForProjectsQuery = ({
   numberOfProjects = 4,
   getIsSuspended = falsy,
   getIsExpired = falsy,
+  getIsProduction = falsy,
 }: CreateGraphqlResponseForProjectsQueryOptions = {}) => ({
   request: {
     query: ProjectsQuery,
@@ -26,6 +28,7 @@ export const createGraphqlResponseForProjectsQuery = ({
         id: 'user-id',
         projects: {
           __typename: 'ProjectQueryResult',
+          total: numberOfProjects,
           results: Array.from({ length: numberOfProjects }).map((_, index) => {
             const key = `key-${index}`;
             const name = `Name ${index}`;
@@ -41,6 +44,7 @@ export const createGraphqlResponseForProjectsQuery = ({
                 __typename: 'ProjectExpiry',
                 isActive: getIsExpired(key),
               },
+              isProductionProject: getIsProduction(key),
             };
           }),
         },

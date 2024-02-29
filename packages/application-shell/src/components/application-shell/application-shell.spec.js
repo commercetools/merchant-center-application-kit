@@ -686,7 +686,7 @@ describe('when user does not have permissions to access the project', () => {
 describe('when switching project', () => {
   it('should render app for new project', async () => {
     renderApp();
-    const input = await screen.findByLabelText('Projects menu');
+    const input = await screen.findByLabelText('Projects');
 
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });

@@ -35,6 +35,7 @@ type TBaseProject = {
   currencies: string[];
   languages: string[];
   initialized: boolean;
+  isProductionProject: boolean;
   sampleDataImportDataset?: string;
 };
 
@@ -62,4 +63,5 @@ export type TProjectGraphql = TBaseProject & {
     allAppliedDataFences: TAppliedStoreDataFencesGraphql;
     allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql;
   };
+  isProductionProject: boolean;
 };

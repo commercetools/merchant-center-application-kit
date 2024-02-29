@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { designTokens } from '@commercetools-uikit/design-system';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { DIMENSIONS } from '../../constants';
 
 type TNavBarSkeletonProps = {
@@ -34,30 +35,32 @@ const NavBarHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: ${designTokens.spacing30};
+  padding: ${uiKitDesignTokens.spacing30};
   height: ${DIMENSIONS.header};
-  background: ${designTokens.colorAccent10};
+  background: ${appKitDesignTokens.backgroundColorForNavbarHeader};
 `;
 
 const NavBarBody = styled.div`
   display: flex;
   flex: 1;
-  padding: ${designTokens.spacing30};
+  padding: ${uiKitDesignTokens.spacing30};
   flex-direction: column;
   align-items: flex-start;
-  gap: ${designTokens.spacing40};
+  gap: ${uiKitDesignTokens.spacing40};
   flex-shrink: 0;
-  background: #009987; // TODO: use new design token color-primary-30
+  background: ${appKitDesignTokens.backgroundColorForNavbarSkeleton};
   position: relative;
 
+  // TODO: remove completely as part of the recolouring rollout cleanup process
   // bottom gradient
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     height: 36px;
-    width: calc(100% - 2 * ${designTokens.spacing30});
+    width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
     background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #009987 100%);
+    visibility: ${appKitDesignTokens.visibilityForNavbarFaded};
   }
 `;
 
@@ -66,8 +69,8 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   display: flex;
   width: 100%;
   flex-direction: column;
-  background: linear-gradient(180deg, #009987 0%, #004d44 100%);
-  padding: ${designTokens.spacing30}
+  background: ${appKitDesignTokens.backgroundColorForNavbarSkeletonFooter};
+  padding: ${uiKitDesignTokens.spacing30}
     ${(props) => (props.isExpanded ? '58px' : '0px')};
   justify-content: center;
   align-items: center;
@@ -78,7 +81,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
     position: absolute;
     top: 0;
     height: 1px;
-    width: calc(100% - 2 * ${designTokens.spacing30});
+    width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
     background: rgba(255, 255, 255, 0.5);
   }
 `;
@@ -86,7 +89,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
 const ExpandIcon = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: ${designTokens.borderRadius4};
+  border-radius: ${uiKitDesignTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
 `;
 
@@ -103,12 +106,12 @@ const MenuItemContainer = styled.div<TMenuItemProps & TNavBarSkeletonProps>`
 const MenuItemIcon = styled.div`
   width: 24px;
   height: 24px;
-  border-radius: ${designTokens.borderRadius4};
+  border-radius: ${uiKitDesignTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
 `;
 
 const MenuItemTitle = styled.div`
-  border-radius: ${designTokens.borderRadius4};
+  border-radius: ${uiKitDesignTokens.borderRadius4};
   background: rgba(255, 255, 255, 0.2);
   flex: 1;
   height: 18px;

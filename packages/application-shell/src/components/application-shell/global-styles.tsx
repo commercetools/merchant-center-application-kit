@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react';
 const styles = css`
   html,
   body {
-    font-size: var(--font-size-for-body);
+    font-size: var(--font-size-30);
     height: 100vh;
   }
 

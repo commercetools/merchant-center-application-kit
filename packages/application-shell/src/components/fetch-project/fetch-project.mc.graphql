@@ -15,6 +15,7 @@ query FetchProject($projectKey: String) {
       isActive
       reason
     }
+    isProductionProject
     allAppliedPermissions {
       name
       value

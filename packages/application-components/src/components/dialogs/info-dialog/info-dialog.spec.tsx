@@ -1,50 +1,61 @@
-import { Dispatch, useState } from 'react';
-import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { screen, renderComponent, fireEvent } from '../../../test-utils';
+import { screen } from '../../../test-utils';
+import {
+  DialogCustomTitle,
+  TDialogComponentValidator,
+  createDialogValidator,
+} from '../internals/dialog-test-utils';
 import InfoDialog from './info-dialog';
 
-type DialogControllerProps = {
-  children: (renderProps: {
-    isOpen: boolean;
-    setIsOpen: Dispatch<boolean>;
-  }) => JSX.Element;
-};
-const DialogController = (props: DialogControllerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div>
-      <SecondaryButton
-        label="Open Info Dialog"
-        onClick={() => setIsOpen(true)}
-      />
-      {props.children({ isOpen, setIsOpen })}
-    </div>
-  );
-};
-DialogController.displayName = 'DialogController';
-
 describe('rendering', () => {
-  it('should open the modal and close it by clicking on the close button', async () => {
-    renderComponent(
-      <DialogController>
-        {({ isOpen, setIsOpen }) => (
-          <InfoDialog
-            title="Lorem ipsus"
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-          >
-            {'Hello'}
-          </InfoDialog>
-        )}
-      </DialogController>
-    );
-    expect(screen.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
+  let validateComponent: TDialogComponentValidator;
 
-    fireEvent.click(screen.getByLabelText(/Open Info Dialog/));
-    await screen.findByText(/Lorem ipsus/);
-    expect(screen.getByText(/Hello/)).toBeInTheDocument();
-
-    fireEvent.click(screen.getByLabelText(/Close dialog/));
-    expect(screen.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();
+  beforeEach(() => {
+    validateComponent = createDialogValidator({
+      component: InfoDialog,
+    });
   });
+
+  it('should open the modal and close it by clicking on the close button', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+    }));
+});
+
+describe('with custom title', () => {
+  let validateComponent: TDialogComponentValidator;
+
+  beforeEach(() => {
+    console.warn = jest.fn();
+    validateComponent = createDialogValidator({
+      component: InfoDialog,
+    });
+  });
+
+  it('should render', () =>
+    validateComponent({
+      title: <DialogCustomTitle title="Custom Title" />,
+      expectedTitle: 'Custom Title',
+      'aria-label': 'Custom aria title',
+      extraChecks: () => {
+        expect(
+          screen.getByRole('button', { name: /Click me/ })
+        ).toBeInTheDocument();
+      },
+    }));
+
+  it('should render with a warning if no "aria-label" is provided', async () =>
+    validateComponent({
+      title: <DialogCustomTitle title="Custom Title" />,
+      expectedTitle: 'Custom Title',
+      extraChecks: () => {
+        expect(
+          screen.getByRole('button', { name: /Click me/ })
+        ).toBeInTheDocument();
+        expect(console.warn).toHaveBeenCalledWith(
+          expect.stringContaining(
+            `app-kit/DialogHeader: "aria-label" prop is required`
+          )
+        );
+      },
+    }));
 });

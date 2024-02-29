@@ -31,7 +31,8 @@ const IconsGrid = (props: {
     | 'primary'
     | 'primary40'
     | 'warning'
-    | 'error';
+    | 'error'
+    | 'success';
 }) => (
   <Grid
     gridGap={customProperties.spacingS}
@@ -69,6 +70,9 @@ export const Component = () => (
     </Spec>
     <Spec label="Application icons (warning)">
       <IconsGrid color="warning" />
+    </Spec>
+    <Spec label="Application icons (success)">
+      <IconsGrid color="success" />
     </Spec>
   </Suite>
 );

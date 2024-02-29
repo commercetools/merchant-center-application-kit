@@ -1,5 +1,96 @@
 # @commercetools-frontend/react-notifications
 
+## 22.19.0
+
+### Minor Changes
+
+- [#3414](https://github.com/commercetools/merchant-center-application-kit/pull/3414) [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f) Thanks [@kark](https://github.com/kark)! - Update all App-kit components to support the upcoming new colour scheme
+
+### Patch Changes
+
+- Updated dependencies [[`e076438da`](https://github.com/commercetools/merchant-center-application-kit/commit/e076438da68e8931b4d221ab9b5bde6fb0cdf565), [`dc2b492db`](https://github.com/commercetools/merchant-center-application-kit/commit/dc2b492db5e727d263017679a6fb4c5c61c1c01f), [`325224ea5`](https://github.com/commercetools/merchant-center-application-kit/commit/325224ea5de9517065cf1c6f70cfef8e28b6eb51)]:
+  - @commercetools-frontend/application-components@22.19.0
+  - @commercetools-frontend/constants@22.19.0
+  - @commercetools-frontend/actions-global@22.19.0
+  - @commercetools-frontend/sentry@22.19.0
+  - @commercetools-frontend/notifications@22.19.0
+
+## 22.18.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.18.0
+  - @commercetools-frontend/constants@22.18.0
+  - @commercetools-frontend/notifications@22.18.0
+  - @commercetools-frontend/sentry@22.18.0
+
+## 22.17.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.17.2
+  - @commercetools-frontend/constants@22.17.2
+  - @commercetools-frontend/notifications@22.17.2
+  - @commercetools-frontend/sentry@22.17.2
+
+## 22.17.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.17.1
+  - @commercetools-frontend/constants@22.17.1
+  - @commercetools-frontend/notifications@22.17.1
+  - @commercetools-frontend/sentry@22.17.1
+
+## 22.17.0
+
+### Minor Changes
+
+- [#3379](https://github.com/commercetools/merchant-center-application-kit/pull/3379) [`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Update all logos in `assets/logos/`, all logos in `assets/images/` and embedded logo in `application.html`.
+
+### Patch Changes
+
+- Updated dependencies [[`d2e3a2236`](https://github.com/commercetools/merchant-center-application-kit/commit/d2e3a22361140ee77b4aa7f624d7b2b71de35bab)]:
+  - @commercetools-frontend/actions-global@22.17.0
+  - @commercetools-frontend/notifications@22.17.0
+  - @commercetools-frontend/constants@22.17.0
+  - @commercetools-frontend/sentry@22.17.0
+
+## 22.16.0
+
+### Patch Changes
+
+- [#3382](https://github.com/commercetools/merchant-center-application-kit/pull/3382) [`97d102879`](https://github.com/commercetools/merchant-center-application-kit/commit/97d10287980b95342f2bc06d6e172ac11097cb56) Thanks [@chloe0592](https://github.com/chloe0592)! - Update all ui-kit packages to v17.0.0
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.16.0
+  - @commercetools-frontend/constants@22.16.0
+  - @commercetools-frontend/notifications@22.16.0
+  - @commercetools-frontend/sentry@22.16.0
+
+## 22.15.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.15.1
+  - @commercetools-frontend/constants@22.15.1
+  - @commercetools-frontend/notifications@22.15.1
+  - @commercetools-frontend/sentry@22.15.1
+
+## 22.15.0
+
+### Patch Changes
+
+- Updated dependencies [[`48f11f9dd`](https://github.com/commercetools/merchant-center-application-kit/commit/48f11f9dd17e977c628206506d2f6af0cee1c269), [`30ecac441`](https://github.com/commercetools/merchant-center-application-kit/commit/30ecac4410a8ed2ba5393fa57054653111284e4e), [`72ae1d305`](https://github.com/commercetools/merchant-center-application-kit/commit/72ae1d305ca209d23552d0062f96324e19e40679)]:
+  - @commercetools-frontend/constants@22.15.0
+  - @commercetools-frontend/sentry@22.15.0
+  - @commercetools-frontend/actions-global@22.15.0
+  - @commercetools-frontend/notifications@22.15.0
+
 ## 22.14.3
 
 ### Patch Changes

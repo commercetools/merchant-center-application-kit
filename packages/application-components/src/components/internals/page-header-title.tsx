@@ -1,8 +1,8 @@
 import { isValidElement, type ReactElement } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Text from '@commercetools-uikit/text';
-import { designTokens as appKitDesignTokens } from '../../theming';
 
 type TTitleSize = 'big' | 'medium' | 'small';
 
@@ -19,7 +19,7 @@ const defaultProps: Pick<Props, 'titleSize' | 'truncate'> = {
 };
 
 const SubtitleWrapper = styled.div`
-  margin-top: ${appKitDesignTokens.marginTopForPageSubtitle};
+  margin-top: ${uiKitDesignTokens.spacing20};
 `;
 
 type TitleProps = Pick<Props, 'titleSize' | 'title' | 'truncate'>;

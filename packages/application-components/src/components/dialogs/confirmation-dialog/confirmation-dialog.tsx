@@ -3,7 +3,7 @@ import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import DialogHeader from '../internals/dialog-header';
+import DialogHeader, { TextTitle } from '../internals/dialog-header';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -14,10 +14,11 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
-type Props = {
+export type TConfirmationDialogProps = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  title: string;
+  title: ReactNode;
+  'aria-label'?: string;
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
@@ -30,18 +31,22 @@ type Props = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
 };
-const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
+const defaultProps: Pick<
+  TConfirmationDialogProps,
+  'labelSecondary' | 'labelPrimary'
+> = {
   labelSecondary: sharedMessages.cancel,
   labelPrimary: sharedMessages.confirm,
 };
 
-const ConfirmationDialog = (props: Props) => (
+const ConfirmationDialog = (props: TConfirmationDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
+    aria-label={props['aria-label']}
     getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
@@ -62,5 +67,8 @@ ConfirmationDialog.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 ConfirmationDialog.Intl = sharedMessages;
+// Allow consumers who want to use a custom title to reuse the same title styles
+// as the default dialog title.
+ConfirmationDialog.TextTitle = TextTitle;
 
 export default ConfirmationDialog;

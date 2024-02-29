@@ -24,7 +24,7 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import { DIMENSIONS } from '../../constants';
+import { DIMENSIONS, NAVBAR } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
@@ -378,11 +378,13 @@ export const ApplicationShellAuthenticated = (
                                 ref={layoutRefs}
                                 offsetTop={DIMENSIONS.header}
                                 offsetLeft={
-                                  projectKeyFromUrl ? DIMENSIONS.navMenu : '0px'
+                                  projectKeyFromUrl
+                                    ? NAVBAR.widthLeftNavigation
+                                    : '0px'
                                 }
                                 offsetLeftOnExpandedMenu={
                                   projectKeyFromUrl
-                                    ? DIMENSIONS.navMenuExpanded
+                                    ? NAVBAR.widthLeftNavigationWhenExpanded
                                     : '0px'
                                 }
                               />

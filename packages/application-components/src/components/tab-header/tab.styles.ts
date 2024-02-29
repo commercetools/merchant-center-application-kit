@@ -14,7 +14,7 @@ const getBottomBorderStyles = (background: string): SerializedStyles => css`
     bottom: 0;
     left: 0;
     right: 0;
-    height: ${appKitDesignTokens.heightForTab};
+    height: 2px;
     border-radius: ${uiKitDesignTokens.borderRadius2};
     background-color: ${background};
     transition: background-color ${uiKitDesignTokens.transitionEaseinout150Ms};
@@ -26,7 +26,7 @@ export const getLinkStyles = (
   isDisabled: boolean
 ): Interpolation<Theme> => [
   css`
-    font-size: ${uiKitDesignTokens.fontSizeDefault};
+    font-size: ${uiKitDesignTokens.fontSize30};
     padding: ${uiKitDesignTokens.spacingS} ${uiKitDesignTokens.spacingM};
     position: relative;
     text-align: center;
@@ -35,7 +35,7 @@ export const getLinkStyles = (
     text-decoration: inherit;
 
     &:first-of-type {
-      padding-left: ${appKitDesignTokens.paddingLeftForTabAsFirst};
+      padding-left: ${uiKitDesignTokens.spacing30};
     }
 
     ${getBottomBorderStyles('transparent')}
@@ -43,8 +43,8 @@ export const getLinkStyles = (
   isActive &&
     css`
       ${getBottomBorderStyles(uiKitDesignTokens.colorPrimary)}
-      & h4 {
-        color: ${uiKitDesignTokens.colorPrimary} !important;
+      & h3 {
+        color: ${appKitDesignTokens.fontColorForTabLabelWhenActive} !important;
       }
     `,
   isDisabled &&
@@ -64,8 +64,8 @@ export const getLinkStyles = (
       :hover,
       :focus,
       :active {
-        & h4 {
-          color: ${uiKitDesignTokens.colorPrimary} !important;
+        & h3 {
+          color: ${appKitDesignTokens.fontColorForTabLabelWhenActive} !important;
         }
       }
     `,

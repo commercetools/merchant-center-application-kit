@@ -5,9 +5,6 @@ set -e
 echo "Compiling i18n data."
 pnpm compile-intl
 
-echo "Compiling CSS modules."
-pnpm compile-css-modules
-
 if [ "$1" = "--watch" ]; then
 
   echo "Building packages in watch mode."

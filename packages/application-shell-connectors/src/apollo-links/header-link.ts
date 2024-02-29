@@ -41,7 +41,12 @@ type QueryVariables = {
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
   // version: apolloVersion,
-  libraryName: [window.app.applicationName, 'application-shell'].join('/'),
+  libraryName: [
+    typeof window !== 'undefined'
+      ? window.app.applicationName
+      : 'unknown-application-name',
+    'application-shell',
+  ].join('/'),
   libraryVersion: version,
   contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'support@commercetools.com',

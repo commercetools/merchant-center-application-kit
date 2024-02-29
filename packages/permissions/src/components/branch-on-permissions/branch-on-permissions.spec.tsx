@@ -31,6 +31,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
               name: 'P1 ',
               expiry: { isActive: false },
               suspension: { isActive: false },
+              isProductionProject: false,
             },
           ],
         },
@@ -40,6 +41,8 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         launchdarklyTrackingId: '111',
         launchdarklyTrackingTeam: undefined,
         launchdarklyTrackingTenant: 'gcp-eu',
+        launchdarklyTrackingCloudEnvironment:
+          'ctp_production_gcp_europe-west1_v1',
       }}
       project={{
         key: 'foo-1',
@@ -58,6 +61,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
           isActive: true,
           reason: undefined,
         },
+        isProductionProject: false,
         allAppliedPermissions: [{ name: 'canViewProducts', value: true }],
         allAppliedActionRights: [
           {

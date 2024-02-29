@@ -65,7 +65,7 @@ runs:
       # restore / cache the binary ourselves on Linux
       # see https://github.com/actions/cache
       id: cache-cypress
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/Cypress
         key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
@@ -83,6 +83,7 @@ runs:
         CYPRESS_LOGIN_USER: ${{ inputs.cypress-login-user }}
         CYPRESS_LOGIN_PASSWORD: ${{ inputs.cypress-login-password }}
         CYPRESS_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+        CYPRESS_PACKAGE_NAME: ${{ inputs.cypress-package-name }}
         HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
         APP_ID: ${{ inputs.playground-application-id }}
         MC_API_URL: ${{ inputs.mc-api-url }}

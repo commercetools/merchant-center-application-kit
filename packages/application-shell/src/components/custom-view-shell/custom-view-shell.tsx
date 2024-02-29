@@ -8,16 +8,22 @@ import {
   type ReactNode,
   RefObject,
 } from 'react';
+import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
+import { useFeatureToggle } from '@flopflip/react-broadcast';
+import { TFlags } from '@flopflip/types';
 import { Route } from 'react-router-dom';
 import {
+  ModalPageTopBar,
   PageUnauthorized,
   PortalsContainer,
+  themesOverrides,
 } from '@commercetools-frontend/application-components';
 import { CustomViewContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   type ApplicationWindow,
   CUSTOM_VIEWS_EVENTS_NAMES,
+  CUSTOM_VIEWS_EVENTS_META,
   CustomViewData,
   DOMAINS,
 } from '@commercetools-frontend/constants';
@@ -26,6 +32,10 @@ import {
   type TAsyncLocaleDataProps,
 } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import {
+  ThemeProvider,
+  designTokens,
+} from '@commercetools-uikit/design-system';
 import ApplicationLoader from '../application-loader/application-loader';
 import GlobalStyles from '../application-shell/global-styles';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -33,12 +43,14 @@ import { getBrowserLocale } from '../application-shell-provider/utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import CustomViewDevHost from '../custom-view-dev-host';
 import CustomViewShellAuthenticated from '../custom-view-shell-authenticated';
+import { customViewsThemesOverrides } from './custom-view-shell.styles';
 
 declare let window: ApplicationWindow;
 
 type THostContext = {
   hostUrl: string;
   dataLocale: string;
+  featureFlags?: TFlags;
   customViewConfig: CustomViewData;
   projectKey?: string;
 };
@@ -61,11 +73,6 @@ type TCustomViewShellProps = {
 };
 
 const browserLocale = getBrowserLocale(window);
-
-type TStrictModeEnablementProps = {
-  enableReactStrictMode?: boolean;
-  children?: ReactNode;
-};
 
 type TNotificationsContainerProps = {
   notificationsGlobalRef: RefObject<HTMLDivElement>;
@@ -94,12 +101,35 @@ function NotificationsContainer(props: TNotificationsContainerProps) {
   );
 }
 
+const ContentWrapper = styled.div`
+  height: 100%;
+  padding: ${designTokens.spacing40} 40px;
+`;
+
+type TStrictModeEnablementProps = {
+  enableReactStrictMode?: boolean;
+  children?: ReactNode;
+};
 function StrictModeEnablement(props: TStrictModeEnablementProps) {
   if (props.enableReactStrictMode) {
     return <StrictMode>{props.children}</StrictMode>;
   } else {
     return <>{props.children}</>;
   }
+}
+
+function CustomViewThemeProvider() {
+  const theme = useFeatureToggle('mcRecolouring') ? 'recolouring' : 'default';
+
+  const customViewThemeOverrides = {
+    // @ts-ignore
+    ...themesOverrides[theme],
+    ...customViewsThemesOverrides[theme],
+  };
+
+  return (
+    <ThemeProvider theme={theme} themeOverrides={customViewThemeOverrides} />
+  );
 }
 
 /*
@@ -139,6 +169,16 @@ function CustomViewShell(props: TCustomViewShellProps) {
     },
     []
   );
+
+  const handleClose = useCallback(() => {
+    iFrameCommunicationPort.current?.postMessage({
+      origin: window.location.origin,
+      source: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${hostContext?.customViewConfig.id}`,
+      destination: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE,
+      eventData: {},
+    });
+  }, [hostContext?.customViewConfig.id]);
 
   useEffect(() => {
     const bootstrapMessageHandler = (event: MessageEvent) => {
@@ -204,8 +244,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
                   environment={window.app}
                   messages={props.applicationMessages}
                   projectKey={hostContext.projectKey}
+                  flags={hostContext.featureFlags}
                   customViewConfig={hostContext.customViewConfig}
                 >
+                  <CustomViewThemeProvider />
                   <PortalsContainer
                     // @ts-ignore
                     ref={layoutRefs}
@@ -218,7 +260,8 @@ function CustomViewShell(props: TCustomViewShellProps) {
                   <Route
                     path={`/custom-views/${hostContext.customViewConfig.id}/projects/${hostContext.projectKey}`}
                   >
-                    {props.children}
+                    <ModalPageTopBar onClose={handleClose} hidePathLabel />
+                    <ContentWrapper>{props.children}</ContentWrapper>
                   </Route>
                 </CustomViewShellAuthenticated>
               </CustomViewContextProvider>

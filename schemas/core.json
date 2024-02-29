@@ -2781,7 +2781,7 @@
           },
           {
             "name": "exists",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -3212,7 +3212,7 @@
           },
           {
             "name": "exists",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4504,7 +4504,7 @@
           },
           {
             "name": "exists",
-            "description": "BETA: This feature can be subject to change and should be used carefully in production. https://docs.commercetools.com/api/contract#public-beta",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6368,6 +6368,18 @@
                 "name": "Locale",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "lastLoginAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

@@ -146,7 +146,7 @@ const Application = (props) => {
 
 After you have defined the `intl` messages in your React components, you should extract those messages into the source file `core.json`. This file contains a key-value map of the message `id` and the message value.
 
-To extract the messages simply run `mc-scripts extract-intl [options]`.
+To extract the messages simply run `pnpm extract-intl`.
 
 ## Syncing translations with Transifex
 

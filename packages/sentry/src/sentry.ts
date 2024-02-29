@@ -83,6 +83,11 @@ export const boot = () => {
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       allowUrls: [window.app.cdnUrl, window.app.frontendHost],
+      // suppress any resize observer errors, see
+      // https://github.com/vercel/next.js/discussions/51551
+      ignoreErrors: [
+        /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i,
+      ],
       integrations: [
         new Sentry.Integrations.GlobalHandlers({
           onunhandledrejection: false,

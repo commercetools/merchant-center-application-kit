@@ -1,10 +1,10 @@
 import type { ReactElement, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { useIntl, type IntlShape } from 'react-intl';
+import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
-import { designTokens as appKitDesignTokens } from '../../../theming';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -46,7 +46,7 @@ const DialogFooter = (props: Props) => {
   return (
     <div
       css={css`
-        margin-top: ${appKitDesignTokens.marginTopForDialogFooter};
+        margin-top: ${uiKitDesignTokens.spacing50};
       `}
     >
       <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
