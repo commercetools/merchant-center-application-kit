@@ -1,5 +1,6 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
 import { MenuListItem, LeftNavigation } from './menu-items.styles';
@@ -116,7 +117,7 @@ const leftNavigationOpenStyles = css`
 `;
 
 const NavigationHeader = styled.div`
-  background-color: ${uiKitDesignTokens.colorAccent10};
+  background-color: ${appKitDesignTokens.backgroundColorForNavbarHeader};
   color: ${uiKitDesignTokens.colorSurface};
   display: flex;
   justify-content: center;
