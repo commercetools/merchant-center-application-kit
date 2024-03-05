@@ -8,7 +8,7 @@
     "postinstall": "./scripts/postinstall.sh",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "clean": "manypkg exec rm -rf build dist test-utils/dist experimental/dist task/dist add-commands/dist",
-    "extract-intl": "formatjs extract --format=./packages/i18n/transifex-transformer.js --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
+    "extract-intl": "formatjs extract --format=transifex --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "pnpm --filter @commercetools-frontend/i18n run compile-data",
     "l10n:build": "pnpm --filter @commercetools-frontend/l10n run generate-data",
     "lint": "jest --projects jest.{eslint,stylelint,text}.config.js",
