@@ -183,7 +183,7 @@ const SupportMenuTooltipContainer = styled.div`
   height: ${NAVBAR.itemSize};
   transition: ${NAVBAR.leftNavigationTransition};
   visibility: hidden;
-  z-index: 1;
+  z-index: 20001;
 `;
 
 const SupportMenu = styled.div`

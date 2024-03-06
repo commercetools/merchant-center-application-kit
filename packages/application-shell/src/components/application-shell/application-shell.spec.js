@@ -846,7 +846,9 @@ describe('when clicking on navbar menu toggle', () => {
     });
 
     // Check that the "Support" link is rendered when the menu is expanded
-    expect(navbarRendered.getByText('Support')).toBeInTheDocument();
+    expect(navbarRendered.queryByTestId('support-label').textContent).toBe(
+      'Support'
+    );
 
     // Collapse the menu and verify local storage changes
     fireEvent.click(button);
@@ -866,7 +868,7 @@ describe('when clicking on navbar menu toggle', () => {
     });
 
     // Verify that the "Support" link is not rendered when the menu is collapsed
-    expect(navbarRendered.queryByText('Support')).toBeNull();
+    expect(navbarRendered.queryByTestId('support-label')).toBeNull();
   });
 });
 

@@ -437,7 +437,7 @@ const NavBar = (props: TNavbarProps) => {
                     </Icon>
                   </IconWrapper>
                   {isMenuOpen ? (
-                    <Title>
+                    <Title data-testid="support-label">
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />
