@@ -1,148 +1,481 @@
 {
-  "ApiError.ConcurrentModification": "Nous n'avons pas pu enregistrer vos changements, car quelqu'un d'autre a modifié cette source pendant que vous travailliez dessus. Actualisez la page et saisissez vos changements à nouveau.",
-  "ApiError.ConcurrentModificationBulkEdit": "Nous n'avons pas pu enregistrer vos changements, car quelqu'un d'autre a modifié cette source pendant que vous travailliez dessus. ",
-  "ApiError.DuplicateAttributeValue": "Cette valeur a déjà été utilisée pour une autre variante. La valeur \\\"{name}\\\" doit être unique pour toutes les variantes de ce produit. Saisissez une valeur différente.",
-  "ApiError.DuplicateAttributeValues": "Cette combinaison a déjà été utilisée pour une autre variante. La combinaison de ces attributs doit être unique pour toutes les variantes. Saisissez une version différente.",
-  "ApiError.DuplicateField": "La valeur pour le champ \\\"{field}\\\" a déjà été utilisée. Utilisez une autre valeur pour ce champ.",
-  "ApiError.DuplicatePriceScope": "Un prix avec la même portée existe déjà pour cette variante de produit. Vérifiez que la combinaison de la devise, du pays, du groupe de clients, des canaux et des dates valides est unique pour chaque prix.",
-  "ApiError.DuplicateSlug": "La valeur \\\"{slugValue}\\\" est déjà utilisée. Sasisissez une nouvelle valeur de slug pour ce produit.",
-  "ApiError.DuplicateVariantValues": "Cette variante existe déjà pour ce produit. Saisissez des valeurs différentes pour les champs.",
-  "ApiError.ExtensionBadResponse": "Malheureusement, nous n'avons pas pu effectuer l'action demandée en raison de l'échec du traitement d'une réponse d'extension d'API.",
-  "ApiError.ExtensionNoResponse": "Malheureusement, nous n'avons pas pu effectuer l'action demandée car une extension d'API ne répond pas.",
-  "ApiError.ExtensionUpdateActionsFailed": "Nous n'avons pas pu effectuer l'action demandée. Il n'est pas possible d'effectuer les actions de mise à jour, conformément à l'extension d'API.",
-  "ApiError.Forbidden": "Vous n'êtes pas autorisé à accéder à cette fonctionnalité. Contactez votre administrateur système pour obtenir des renseignements supplémentaires.",
-  "ApiError.General": "Une erreur s'est produite. Veuillez réessayer. Si c'est la deuxième fois que vous voyez ce message, contactez notre équipe de support.",
-  "ApiError.InvalidDateRange": "La valeur saisie pour le champ {field} n'est pas valide. La date de début doit être antérieure à la date de fin.",
-  "ApiError.InvalidField": "La valeur saisie n'est pas valide pour le champ \"{field}\".",
-  "ApiError.InvalidSlug": "Les slugs doivent uniquement contenir des caractères alphanumériques (0-9A-Z), des caractères de soulignement et des traits d'union, et leur longueur doit être comprise entre 2 et 256 caractères.",
-  "ApiError.MaxResourceLimitExceeded": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support.",
-  "ApiError.OverlappingPrices": "Un prix avec ces détails existe déjà. Modifiez les détails du prix pour éviter le chevauchement avec un autre prix avant d'enregistrer.",
-  "ApiError.PendingOperation": "Nous sommes toujours en train de traiter la requête précédente. Réessayez une fois que celle-ci sera terminée.",
-  "ApiError.ReferenceExists": "Impossible de supprimer la source tant qu'elle est référencée par au moins une mention \\\"{referencedBy}\\\".",
-  "ApiError.RequiredField": "Le champ \\\"{field}\\\" est obligatoire. Saisissez une valeur.",
-  "ApiError.RequiredFields": "Veuillez saisir des valeurs pour les champs obligatoires suivants : {fields}",
-  "ApiError.ResourceNotFound": "Malheureusement, nous ne trouvons pas ce que vous cherchez.",
-  "ApiError.SemanticError": "Erreur sémantique : le prédicat donné n'est pas valide. Veuillez vous reporter à la documentation pour définir un prédicat correct.",
-  "ApiError.SyntaxError": "Erreur syntaxique : le prédicat donné n'est pas valide. Veuillez vous reporter à la documentation pour définir un prédicat correct.",
-  "ApiError.TaxCategoryDuplicateCountry": "Votre soumission comportait des taux de taxe en doublon. Veuillez supprimer les doublons.",
-  "ApiError.Unauthorized": "Vous n'êtes pas autorisé à accéder à cette fonctionnalité.",
-  "AppBar.backToProjectLink": "Revenir au projet",
-  "AppKit.Shared.activate": "Activate",
-  "AppKit.Shared.active": "Active",
-  "AppKit.Shared.add": "Add",
-  "AppKit.Shared.cancel": "Annuler",
-  "AppKit.Shared.close": "Close",
-  "AppKit.Shared.confirm": "Confirmer",
-  "AppKit.Shared.create": "Créer",
-  "AppKit.Shared.deactivate": "Deactivate",
-  "AppKit.Shared.delete": "Supprimer",
-  "AppKit.Shared.disable": "Disable",
-  "AppKit.Shared.edit": "Edit",
-  "AppKit.Shared.enable": "Enable",
-  "AppKit.Shared.inactive": "Inactive",
-  "AppKit.Shared.open": "Open",
-  "AppKit.Shared.remove": "Remove",
-  "AppKit.Shared.revert": "Rétablir les modifications",
-  "AppKit.Shared.save": "Enregistrer",
-  "AppKit.Shared.update": "Mettre à jour",
-  "Components.ModalPage.TopBar.Back": "Précédent",
-  "Components.ModalPage.TopBar.Close": "Fermer la fenêtre modale",
-  "CustomViewLoader.error.load": "We could not load the Custom View. Please contact your administrator to check its configuration.",
-  "CustomViewsSelector.title": "Custom Views:",
-  "ErrorApologizer.notifiedTeam": "Notre équipe est au courant de ce problème.",
-  "ErrorApologizer.title": "Malheureusement, une erreur inattendue s'est produite.",
-  "FailedAuthentication.paragraph1": "Veuillez réessayer ou contacter votre administrateur système si vous avez d'autres questions.",
-  "FailedAuthentication.title": "Nous ne pouvons pas vous autoriser à utiliser le Merchant Center.",
-  "LocaleSwitcher.localesLabel": "Menu Paramètres régionaux",
-  "NavBar.MCSupport.title": "Support",
-  "Notification.hideNotification": "Masquer les notifications",
-  "PageNotFound.paragraph1": "The item you are looking for may have been deleted, does not exist, or the URL was entered incorrectly. Check the URL and try again. Please contact your system administrator or the commercetools <a>Help Desk</a> if you have any further questions.",
-  "PageNotFound.title": "Impossible de trouver ce que vous cherchez",
-  "PageUnauthorized.paragraph1": "Le module que vous recherchez n'existe pas pour ce projet, ou alors vous n'êtes pas autorisé à l'afficher.",
-  "PageUnauthorized.paragraph2": "Contactez votre administrateur système ou commercetools <a>Assistance</a> pour en savoir plus.",
-  "PageUnauthorized.title": "Impossible de trouver ce que vous cherchez",
-  "Project.trialDaysLeft": "La période d'essai de votre projet prendra fin dans {daysLeft} {daysLeft, plural, one {jour} other {jours}}. Pour en savoir plus, contactez sales@commercetools.com.",
-  "ProjectExpired.paragraph1": "Pour en savoir plus sur le Merchant Center de commercetools, contactez-nous à l'adresse {mailto}.",
-  "ProjectExpired.title": "Votre période d'essai a pris fin.",
-  "ProjectNotFound.paragraph1": "Le projet que vous recherchez n'existe pas, ou vous n'êtes pas autorisé à le consulter. Sélectionnez un autre projet à consulter.",
-  "ProjectNotFound.paragraph2": "Veuillez contacter votre administrateur système si vous avez d'autres questions.",
-  "ProjectNotFound.title": "Projet introuvable",
-  "ProjectNotInitialized.paragraph1": "L'initialisation ne devrait pas prendre plus de quelques minutes. Contactez-nous à l'adresse {mailto} si le projet ne s'initialise pas.",
-  "ProjectNotInitialized.title": "Votre projet n'est pas encore initialisé",
-  "ProjectSuspended.defaultSuspensionMessage": "Votre projet est suspendu",
-  "ProjectSuspended.paragraph1": "Contactez votre administrateur système pour obtenir plus de renseignements, ou sélectionnez un autre projet à consulter.",
-  "ProjectSuspended.temporaryMaintenanceSuspensionMessage": "Votre projet est temporairement suspendu pour cause de maintenance.",
-  "ProjectSwitcher.expired": "Expiré",
-  "ProjectSwitcher.noResults": "Aucun projet ne correspond à votre recherche.",
-  "ProjectSwitcher.projectsLabel": "Menu Projets",
-  "ProjectSwitcher.searchPlaceholder": "Rechercher un projet",
-  "ProjectSwitcher.suspended": "Suspendu",
-  "QuickAccess.inputPlaceholder": "Aller à...",
-  "QuickAccess.logout": "Se déconnecter",
-  "QuickAccess.noResults": "Aucun résultat n'a été trouvé",
-  "QuickAccess.offline": "Hors ligne",
-  "QuickAccess.openAddApiClient": "Ouvrir Ajouter client API",
-  "QuickAccess.openAddCartDiscount": "Ouvrir Ajouter une remise sur panier",
-  "QuickAccess.openAddCategory": "Ouvrir Ajouter une catégorie",
-  "QuickAccess.openAddCustomer": "Ouvrir Ajouter un client",
-  "QuickAccess.openAddCustomerGroup": "Ouvrir Ajouter un groupe de client",
-  "QuickAccess.openAddDiscount": "Ouvrir Ajouter une remise",
-  "QuickAccess.openAddDiscountCode": "Ouvrir Ajouter un code de remise",
-  "QuickAccess.openAddOrder": "Ouvrir Ajouter une commande",
-  "QuickAccess.openAddProductDiscount": "Ouvrir Ajouter une remise sur produit",
-  "QuickAccess.openAddProducts": "Ouvrir Ajouter des produits",
-  "QuickAccess.openApiClientsList": "Ouvrir Clients API",
-  "QuickAccess.openCartDiscountsList": "Ouvrir Liste des remises sur le panier",
-  "QuickAccess.openCategories": "Ouvrir Catégories",
-  "QuickAccess.openCategoriesList": "Ouvrir Liste des catégories",
-  "QuickAccess.openCategoriesSearch": "Ouvrir Rechercher des catégories",
-  "QuickAccess.openCustomApplicationsSettings": "Ouvrir Paramètres d'applications personnalisées",
-  "QuickAccess.openCustomerGroupsList": "Ouvrir Liste de groupes de clients",
-  "QuickAccess.openCustomers": "Ouvrir Clients",
-  "QuickAccess.openCustomersList": "Ouvrir Liste de clients",
-  "QuickAccess.openDashboard": "Ouvrir Tableau de bord",
-  "QuickAccess.openDeveloperSettings": "Ouvrir Paramètres développeurs",
-  "QuickAccess.openDiscountCodesList": "Ouvrir Liste des codes de remise",
-  "QuickAccess.openDiscounts": "Ouvrir Remises",
-  "QuickAccess.openManageOrganizations": "Ouvrir Gérer les organisations",
-  "QuickAccess.openManageProject": "Ouvrir Gérer les projets",
-  "QuickAccess.openModifiedProducts": "Ouvrir Vérifier les produits modifiés",
-  "QuickAccess.openMyProfile": "Ouvrir Mon profil",
-  "QuickAccess.openOrders": "Ouvrir Commandes",
-  "QuickAccess.openOrdersList": "Ouvrir Liste des commandes",
-  "QuickAccess.openPimSearch": "Ouvrir Recherche PIM",
-  "QuickAccess.openProductDiscountsList": "Ouvrir Liste des remises sur produit",
-  "QuickAccess.openProductList": "Ouvrir Liste des produits",
-  "QuickAccess.openProductTypesSettings": "Ouvrir Paramètres des types de produits",
-  "QuickAccess.openProductVariantGeneral": "Général",
-  "QuickAccess.openProductVariantList": "Variantes",
-  "QuickAccess.openProductVariantSearch": "Recherche int./ext.",
-  "QuickAccess.openProducts": "Ouvrir Produits",
-  "QuickAccess.openProjectSettings": "Ouvrir Paramètres du projet",
-  "QuickAccess.openProjectSettingsChannelsTab": "Ouvrir Paramètres du projet • Canaux",
-  "QuickAccess.openProjectSettingsInternationalTab": "Ouvrir Paramètres du projet • International",
-  "QuickAccess.openProjectSettingsShippingMethodsTab": "Ouvrir Paramètres du projet • Modes d'expédition",
-  "QuickAccess.openProjectSettingsStoresTab": "Ouvrir Paramètres du projet • Boutiques",
-  "QuickAccess.openProjectSettingsTaxesTab": "Ouvrir Paramètres du projet • Taxes",
-  "QuickAccess.openSettings": "Ouvrir Paramètres",
-  "QuickAccess.openSupport": "Ouvrir Support",
-  "QuickAccess.openVariantById": "Ouvrir Variante \\\"{id}\\\" (id)",
-  "QuickAccess.openVariantByKey": "Ouvrir Variante \\\"{key}\\\" (key)",
-  "QuickAccess.openVariantBySku": "Ouvrir Variante \\\"{sku}\\\" (sku)",
-  "QuickAccess.setResourceLanguage": "Définir une langue pour la ressource",
-  "QuickAccess.showPrivacyPolicy": "Afficher Politique de confidentialité",
-  "QuickAccess.showProduct": "Afficher Produit \\\"{productName}\\\"",
-  "QuickAccess.showProductVariant": "Afficher Variante du produit \\\"{variantName}\\\"",
-  "QuickAccess.showProductVariantAttributes": "Afficher Attributs",
-  "QuickAccess.showProductVariantImages": "Afficher Images",
-  "QuickAccess.showProductVariantInventory": "Afficher Inventaire",
-  "QuickAccess.showProductVariantPrices": "Afficher Prix",
-  "QuickAccess.useProject": "Passer au projet \\\"{projectName}\\\"",
-  "TopNavigation.labelLoading": "Traitement...",
-  "UserSettingsMenu.closeMenuLabel": "Close user settings menu",
-  "UserSettingsMenu.logout": "Déconnexion",
-  "UserSettingsMenu.menuLabel": "Menu Paramètres utilisateur",
-  "UserSettingsMenu.openMenuLabel": "Open user settings menu",
-  "UserSettingsMenu.privacyPolicy": "Politique de confidentialité",
-  "UserSettingsMenu.support": "Support"
+  "ApiError.ConcurrentModification": {
+    "developer_comment": "User edits form and clicks Save but someone else has saved changes for this element while they were editing",
+    "string": "Nous n'avons pas pu enregistrer vos changements, car quelqu'un d'autre a modifié cette source pendant que vous travailliez dessus. Actualisez la page et saisissez vos changements à nouveau."
+  },
+  "ApiError.ConcurrentModificationBulkEdit": {
+    "developer_comment": "User does a bulk update but someone else has saved changes for that element",
+    "string": "Nous n'avons pas pu enregistrer vos changements, car quelqu'un d'autre a modifié cette source pendant que vous travailliez dessus. "
+  },
+  "ApiError.DuplicateAttributeValue": {
+    "developer_comment": "User tries to enter the same attribute value for an attribute with the Unique constraint",
+    "string": "Cette valeur a déjà été utilisée pour une autre variante. La valeur \\\"{name}\\\" doit être unique pour toutes les variantes de ce produit. Saisissez une valeur différente."
+  },
+  "ApiError.DuplicateAttributeValues": {
+    "developer_comment": "User tries to enter existing attribute values for a combination of attributes with the CombinationUnique constraint",
+    "string": "Cette combinaison a déjà été utilisée pour une autre variante. La combinaison de ces attributs doit être unique pour toutes les variantes. Saisissez une version différente."
+  },
+  "ApiError.DuplicateField": {
+    "developer_comment": "The given field must be unique across the project",
+    "string": "La valeur pour le champ \\\"{field}\\\" a déjà été utilisée. Utilisez une autre valeur pour ce champ."
+  },
+  "ApiError.DuplicatePriceScope": {
+    "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
+    "string": "Un prix avec la même portée existe déjà pour cette variante de produit. Vérifiez que la combinaison de la devise, du pays, du groupe de clients, des canaux et des dates valides est unique pour chaque prix."
+  },
+  "ApiError.DuplicateSlug": {
+    "developer_comment": "User tries to create a resource with an already existing slug",
+    "string": "La valeur \\\"{slugValue}\\\" est déjà utilisée. Sasisissez une nouvelle valeur de slug pour ce produit."
+  },
+  "ApiError.DuplicateVariantValues": {
+    "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
+    "string": "Cette variante existe déjà pour ce produit. Saisissez des valeurs différentes pour les champs."
+  },
+  "ApiError.ExtensionBadResponse": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "Malheureusement, nous n'avons pas pu effectuer l'action demandée en raison de l'échec du traitement d'une réponse d'extension d'API."
+  },
+  "ApiError.ExtensionNoResponse": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "Malheureusement, nous n'avons pas pu effectuer l'action demandée car une extension d'API ne répond pas."
+  },
+  "ApiError.ExtensionUpdateActionsFailed": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "Nous n'avons pas pu effectuer l'action demandée. Il n'est pas possible d'effectuer les actions de mise à jour, conformément à l'extension d'API."
+  },
+  "ApiError.Forbidden": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "Vous n'êtes pas autorisé à accéder à cette fonctionnalité. Contactez votre administrateur système pour obtenir des renseignements supplémentaires."
+  },
+  "ApiError.General": {
+    "developer_comment": "A general error message, usually because of internal application problems. The user should not know the details of the error.",
+    "string": "Une erreur s'est produite. Veuillez réessayer. Si c'est la deuxième fois que vous voyez ce message, contactez notre équipe de support."
+  },
+  "ApiError.InvalidDateRange": {
+    "developer_comment": "User tries to input an invalid date range",
+    "string": "La valeur saisie pour le champ {field} n'est pas valide. La date de début doit être antérieure à la date de fin."
+  },
+  "ApiError.InvalidField": {
+    "developer_comment": "User enters an invalid value for a field.",
+    "string": "La valeur saisie n'est pas valide pour le champ \"{field}\"."
+  },
+  "ApiError.InvalidSlug": {
+    "developer_comment": "User enters an invalid value for the product slug",
+    "string": "Les slugs doivent uniquement contenir des caractères alphanumériques (0-9A-Z), des caractères de soulignement et des traits d'union, et leur longueur doit être comprise entre 2 et 256 caractères."
+  },
+  "ApiError.MaxResourceLimitExceeded": {
+    "developer_comment": "User attempts to create a resource while having already reached the limit",
+    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+  },
+  "ApiError.OverlappingPrices": {
+    "developer_comment": "",
+    "string": "Un prix avec ces détails existe déjà. Modifiez les détails du prix pour éviter le chevauchement avec un autre prix avant d'enregistrer."
+  },
+  "ApiError.PendingOperation": {
+    "developer_comment": "User tries to start a new process when one is already underway",
+    "string": "Nous sommes toujours en train de traiter la requête précédente. Réessayez une fois que celle-ci sera terminée."
+  },
+  "ApiError.ReferenceExists": {
+    "developer_comment": "User tries to delete an element that has an existing reference to it from another element",
+    "string": "Impossible de supprimer la source tant qu'elle est référencée par au moins une mention \\\"{referencedBy}\\\"."
+  },
+  "ApiError.RequiredField": {
+    "developer_comment": "User does not enter a required field",
+    "string": "Le champ \\\"{field}\\\" est obligatoire. Saisissez une valeur."
+  },
+  "ApiError.RequiredFields": {
+    "developer_comment": "User submits a form without having completed all mandatory fields",
+    "string": "Veuillez saisir des valeurs pour les champs obligatoires suivants : {fields}"
+  },
+  "ApiError.ResourceNotFound": {
+    "developer_comment": "System cannot find the functionality or screen that the user is trying to access.",
+    "string": "Malheureusement, nous ne trouvons pas ce que vous cherchez."
+  },
+  "ApiError.SemanticError": {
+    "developer_comment": "User enters a predicate query that throws a system semantic error",
+    "string": "Erreur sémantique : le prédicat donné n'est pas valide. Veuillez vous reporter à la documentation pour définir un prédicat correct."
+  },
+  "ApiError.SyntaxError": {
+    "developer_comment": "User enters a predicate query that throws a system syntax error",
+    "string": "Erreur syntaxique : le prédicat donné n'est pas valide. Veuillez vous reporter à la documentation pour définir un prédicat correct."
+  },
+  "ApiError.TaxCategoryDuplicateCountry": {
+    "developer_comment": "User inputs duplicate country and/or state into tax category form",
+    "string": "Votre soumission comportait des taux de taxe en doublon. Veuillez supprimer les doublons."
+  },
+  "ApiError.Unauthorized": {
+    "developer_comment": "The access token is not valid anymore, or the user does not have a valid one",
+    "string": "Vous n'êtes pas autorisé à accéder à cette fonctionnalité."
+  },
+  "AppBar.backToProjectLink": {
+    "string": "Revenir au projet"
+  },
+  "AppKit.Shared.activate": {
+    "string": "Activate"
+  },
+  "AppKit.Shared.active": {
+    "string": "Active"
+  },
+  "AppKit.Shared.add": {
+    "string": "Add"
+  },
+  "AppKit.Shared.cancel": {
+    "string": "Annuler"
+  },
+  "AppKit.Shared.close": {
+    "string": "Close"
+  },
+  "AppKit.Shared.confirm": {
+    "string": "Confirmer"
+  },
+  "AppKit.Shared.create": {
+    "string": "Créer"
+  },
+  "AppKit.Shared.deactivate": {
+    "string": "Deactivate"
+  },
+  "AppKit.Shared.delete": {
+    "string": "Supprimer"
+  },
+  "AppKit.Shared.disable": {
+    "string": "Disable"
+  },
+  "AppKit.Shared.edit": {
+    "string": "Edit"
+  },
+  "AppKit.Shared.enable": {
+    "string": "Enable"
+  },
+  "AppKit.Shared.inactive": {
+    "string": "Inactive"
+  },
+  "AppKit.Shared.open": {
+    "string": "Open"
+  },
+  "AppKit.Shared.remove": {
+    "string": "Remove"
+  },
+  "AppKit.Shared.revert": {
+    "string": "Rétablir les modifications"
+  },
+  "AppKit.Shared.save": {
+    "string": "Enregistrer"
+  },
+  "AppKit.Shared.update": {
+    "string": "Mettre à jour"
+  },
+  "Components.ModalPage.TopBar.Back": {
+    "string": "Précédent"
+  },
+  "Components.ModalPage.TopBar.Close": {
+    "string": "Fermer la fenêtre modale"
+  },
+  "CustomViewLoader.error.load": {
+    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+  },
+  "CustomViewsSelector.title": {
+    "string": "Custom Views:"
+  },
+  "ErrorApologizer.notifiedTeam": {
+    "string": "Notre équipe est au courant de ce problème."
+  },
+  "ErrorApologizer.title": {
+    "string": "Malheureusement, une erreur inattendue s'est produite."
+  },
+  "FailedAuthentication.paragraph1": {
+    "string": "Veuillez réessayer ou contacter votre administrateur système si vous avez d'autres questions."
+  },
+  "FailedAuthentication.title": {
+    "string": "Nous ne pouvons pas vous autoriser à utiliser le Merchant Center."
+  },
+  "LocaleSwitcher.localesLabel": {
+    "developer_comment": "The label for project dropdown switcher",
+    "string": "Menu Paramètres régionaux"
+  },
+  "NavBar.MCSupport.title": {
+    "string": "Support"
+  },
+  "Notification.hideNotification": {
+    "developer_comment": "Label for button to hide notification",
+    "string": "Masquer les notifications"
+  },
+  "PageNotFound.paragraph1": {
+    "string": "The item you are looking for may have been deleted, does not exist, or the URL was entered incorrectly. Check the URL and try again. Please contact your system administrator or the commercetools <a>Help Desk</a> if you have any further questions."
+  },
+  "PageNotFound.title": {
+    "string": "Impossible de trouver ce que vous cherchez"
+  },
+  "PageUnauthorized.paragraph1": {
+    "string": "Le module que vous recherchez n'existe pas pour ce projet, ou alors vous n'êtes pas autorisé à l'afficher."
+  },
+  "PageUnauthorized.paragraph2": {
+    "string": "Contactez votre administrateur système ou commercetools <a>Assistance</a> pour en savoir plus."
+  },
+  "PageUnauthorized.title": {
+    "string": "Impossible de trouver ce que vous cherchez"
+  },
+  "Project.trialDaysLeft": {
+    "string": "La période d'essai de votre projet prendra fin dans {daysLeft} {daysLeft, plural, one {jour} other {jours}}. Pour en savoir plus, contactez sales@commercetools.com."
+  },
+  "ProjectExpired.paragraph1": {
+    "string": "Pour en savoir plus sur le Merchant Center de commercetools, contactez-nous à l'adresse {mailto}."
+  },
+  "ProjectExpired.title": {
+    "string": "Votre période d'essai a pris fin."
+  },
+  "ProjectNotFound.paragraph1": {
+    "string": "Le projet que vous recherchez n'existe pas, ou vous n'êtes pas autorisé à le consulter. Sélectionnez un autre projet à consulter."
+  },
+  "ProjectNotFound.paragraph2": {
+    "string": "Veuillez contacter votre administrateur système si vous avez d'autres questions."
+  },
+  "ProjectNotFound.title": {
+    "string": "Projet introuvable"
+  },
+  "ProjectNotInitialized.paragraph1": {
+    "string": "L'initialisation ne devrait pas prendre plus de quelques minutes. Contactez-nous à l'adresse {mailto} si le projet ne s'initialise pas."
+  },
+  "ProjectNotInitialized.title": {
+    "string": "Votre projet n'est pas encore initialisé"
+  },
+  "ProjectSuspended.defaultSuspensionMessage": {
+    "string": "Votre projet est suspendu"
+  },
+  "ProjectSuspended.paragraph1": {
+    "string": "Contactez votre administrateur système pour obtenir plus de renseignements, ou sélectionnez un autre projet à consulter."
+  },
+  "ProjectSuspended.temporaryMaintenanceSuspensionMessage": {
+    "string": "Votre projet est temporairement suspendu pour cause de maintenance."
+  },
+  "ProjectSwitcher.expired": {
+    "developer_comment": "Label for a suspended project",
+    "string": "Expiré"
+  },
+  "ProjectSwitcher.noResults": {
+    "developer_comment": "Projects filter no results text",
+    "string": "Aucun projet ne correspond à votre recherche."
+  },
+  "ProjectSwitcher.projectsLabel": {
+    "developer_comment": "The label for project dropdown switcher",
+    "string": "Menu Projets"
+  },
+  "ProjectSwitcher.searchPlaceholder": {
+    "developer_comment": "Projects filter search input placeholder",
+    "string": "Rechercher un projet"
+  },
+  "ProjectSwitcher.suspended": {
+    "developer_comment": "Label for a suspended project",
+    "string": "Suspendu"
+  },
+  "QuickAccess.inputPlaceholder": {
+    "string": "Aller à..."
+  },
+  "QuickAccess.logout": {
+    "string": "Se déconnecter"
+  },
+  "QuickAccess.noResults": {
+    "string": "Aucun résultat n'a été trouvé"
+  },
+  "QuickAccess.offline": {
+    "string": "Hors ligne"
+  },
+  "QuickAccess.openAddApiClient": {
+    "string": "Ouvrir Ajouter client API"
+  },
+  "QuickAccess.openAddCartDiscount": {
+    "string": "Ouvrir Ajouter une remise sur panier"
+  },
+  "QuickAccess.openAddCategory": {
+    "string": "Ouvrir Ajouter une catégorie"
+  },
+  "QuickAccess.openAddCustomer": {
+    "string": "Ouvrir Ajouter un client"
+  },
+  "QuickAccess.openAddCustomerGroup": {
+    "string": "Ouvrir Ajouter un groupe de client"
+  },
+  "QuickAccess.openAddDiscount": {
+    "string": "Ouvrir Ajouter une remise"
+  },
+  "QuickAccess.openAddDiscountCode": {
+    "string": "Ouvrir Ajouter un code de remise"
+  },
+  "QuickAccess.openAddOrder": {
+    "string": "Ouvrir Ajouter une commande"
+  },
+  "QuickAccess.openAddProductDiscount": {
+    "string": "Ouvrir Ajouter une remise sur produit"
+  },
+  "QuickAccess.openAddProducts": {
+    "string": "Ouvrir Ajouter des produits"
+  },
+  "QuickAccess.openApiClientsList": {
+    "string": "Ouvrir Clients API"
+  },
+  "QuickAccess.openCartDiscountsList": {
+    "string": "Ouvrir Liste des remises sur le panier"
+  },
+  "QuickAccess.openCategories": {
+    "string": "Ouvrir Catégories"
+  },
+  "QuickAccess.openCategoriesList": {
+    "string": "Ouvrir Liste des catégories"
+  },
+  "QuickAccess.openCategoriesSearch": {
+    "string": "Ouvrir Rechercher des catégories"
+  },
+  "QuickAccess.openCustomApplicationsSettings": {
+    "string": "Ouvrir Paramètres d'applications personnalisées"
+  },
+  "QuickAccess.openCustomerGroupsList": {
+    "string": "Ouvrir Liste de groupes de clients"
+  },
+  "QuickAccess.openCustomers": {
+    "string": "Ouvrir Clients"
+  },
+  "QuickAccess.openCustomersList": {
+    "string": "Ouvrir Liste de clients"
+  },
+  "QuickAccess.openDashboard": {
+    "string": "Ouvrir Tableau de bord"
+  },
+  "QuickAccess.openDeveloperSettings": {
+    "string": "Ouvrir Paramètres développeurs"
+  },
+  "QuickAccess.openDiscountCodesList": {
+    "string": "Ouvrir Liste des codes de remise"
+  },
+  "QuickAccess.openDiscounts": {
+    "string": "Ouvrir Remises"
+  },
+  "QuickAccess.openManageOrganizations": {
+    "string": "Ouvrir Gérer les organisations"
+  },
+  "QuickAccess.openManageProject": {
+    "string": "Ouvrir Gérer les projets"
+  },
+  "QuickAccess.openModifiedProducts": {
+    "string": "Ouvrir Vérifier les produits modifiés"
+  },
+  "QuickAccess.openMyProfile": {
+    "string": "Ouvrir Mon profil"
+  },
+  "QuickAccess.openOrders": {
+    "string": "Ouvrir Commandes"
+  },
+  "QuickAccess.openOrdersList": {
+    "string": "Ouvrir Liste des commandes"
+  },
+  "QuickAccess.openPimSearch": {
+    "string": "Ouvrir Recherche PIM"
+  },
+  "QuickAccess.openProductDiscountsList": {
+    "string": "Ouvrir Liste des remises sur produit"
+  },
+  "QuickAccess.openProductList": {
+    "string": "Ouvrir Liste des produits"
+  },
+  "QuickAccess.openProductTypesSettings": {
+    "string": "Ouvrir Paramètres des types de produits"
+  },
+  "QuickAccess.openProductVariantGeneral": {
+    "string": "Général"
+  },
+  "QuickAccess.openProductVariantList": {
+    "string": "Variantes"
+  },
+  "QuickAccess.openProductVariantSearch": {
+    "string": "Recherche int./ext."
+  },
+  "QuickAccess.openProducts": {
+    "string": "Ouvrir Produits"
+  },
+  "QuickAccess.openProjectSettings": {
+    "string": "Ouvrir Paramètres du projet"
+  },
+  "QuickAccess.openProjectSettingsChannelsTab": {
+    "string": "Ouvrir Paramètres du projet • Canaux"
+  },
+  "QuickAccess.openProjectSettingsInternationalTab": {
+    "string": "Ouvrir Paramètres du projet • International"
+  },
+  "QuickAccess.openProjectSettingsShippingMethodsTab": {
+    "string": "Ouvrir Paramètres du projet • Modes d'expédition"
+  },
+  "QuickAccess.openProjectSettingsStoresTab": {
+    "string": "Ouvrir Paramètres du projet • Boutiques"
+  },
+  "QuickAccess.openProjectSettingsTaxesTab": {
+    "string": "Ouvrir Paramètres du projet • Taxes"
+  },
+  "QuickAccess.openSettings": {
+    "string": "Ouvrir Paramètres"
+  },
+  "QuickAccess.openSupport": {
+    "string": "Ouvrir Support"
+  },
+  "QuickAccess.openVariantById": {
+    "string": "Ouvrir Variante \\\"{id}\\\" (id)"
+  },
+  "QuickAccess.openVariantByKey": {
+    "string": "Ouvrir Variante \\\"{key}\\\" (key)"
+  },
+  "QuickAccess.openVariantBySku": {
+    "string": "Ouvrir Variante \\\"{sku}\\\" (sku)"
+  },
+  "QuickAccess.setResourceLanguage": {
+    "string": "Définir une langue pour la ressource"
+  },
+  "QuickAccess.showPrivacyPolicy": {
+    "string": "Afficher Politique de confidentialité"
+  },
+  "QuickAccess.showProduct": {
+    "string": "Afficher Produit \\\"{productName}\\\""
+  },
+  "QuickAccess.showProductVariant": {
+    "string": "Afficher Variante du produit \\\"{variantName}\\\""
+  },
+  "QuickAccess.showProductVariantAttributes": {
+    "string": "Afficher Attributs"
+  },
+  "QuickAccess.showProductVariantImages": {
+    "string": "Afficher Images"
+  },
+  "QuickAccess.showProductVariantInventory": {
+    "string": "Afficher Inventaire"
+  },
+  "QuickAccess.showProductVariantPrices": {
+    "string": "Afficher Prix"
+  },
+  "QuickAccess.useProject": {
+    "string": "Passer au projet \\\"{projectName}\\\""
+  },
+  "TopNavigation.labelLoading": {
+    "developer_comment": "The text to show next to the loading icon",
+    "string": "Traitement..."
+  },
+  "UserSettingsMenu.closeMenuLabel": {
+    "developer_comment": "The label when menu is open and would be closed by a click",
+    "string": "Close user settings menu"
+  },
+  "UserSettingsMenu.logout": {
+    "developer_comment": "The label for logout option",
+    "string": "Déconnexion"
+  },
+  "UserSettingsMenu.menuLabel": {
+    "developer_comment": "The label describing the menu",
+    "string": "Menu Paramètres utilisateur"
+  },
+  "UserSettingsMenu.openMenuLabel": {
+    "developer_comment": "The label when menu is closed and would be opened by a click",
+    "string": "Open user settings menu"
+  },
+  "UserSettingsMenu.privacyPolicy": {
+    "developer_comment": "The label for privacy policy option",
+    "string": "Politique de confidentialité"
+  },
+  "UserSettingsMenu.support": {
+    "developer_comment": "The label for Support",
+    "string": "Support"
+  }
 }
