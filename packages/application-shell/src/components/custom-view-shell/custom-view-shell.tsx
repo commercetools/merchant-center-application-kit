@@ -295,7 +295,10 @@ const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
       <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
         <Suspense fallback={<ApplicationLoader />}>
           <CustomViewDevHost applicationMessages={props.applicationMessages}>
-            <CustomViewShell applicationMessages={props.applicationMessages}>
+            <CustomViewShell
+              apolloClient={props.apolloClient}
+              applicationMessages={props.applicationMessages}
+            >
               {props.children}
             </CustomViewShell>
           </CustomViewDevHost>
@@ -305,7 +308,10 @@ const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
   }
   return (
     <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
-      <CustomViewShell applicationMessages={props.applicationMessages}>
+      <CustomViewShell
+        apolloClient={props.apolloClient}
+        applicationMessages={props.applicationMessages}
+      >
         {props.children}
       </CustomViewShell>
     </StrictModeEnablement>
