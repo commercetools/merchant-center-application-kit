@@ -1,148 +1,481 @@
 {
-  "ApiError.ConcurrentModification": "很抱歉，由于在您编辑此源时其他人也在更改该源，我们无法保存您的更改。请刷新该页面，重新输入您的更改。",
-  "ApiError.ConcurrentModificationBulkEdit": "很抱歉，由于在您编辑此源时其他人也在更改该源，我们无法保存您的更改。",
-  "ApiError.DuplicateAttributeValue": "该值已供另一变量使用。“{name}”值对此产品的所有变量必须唯一。请输入其他值。",
-  "ApiError.DuplicateAttributeValues": "该组合已供另一变量使用。这些属性组合对所有变量必须唯一。请输入其他版本。",
-  "ApiError.DuplicateField": "字段“{field}”的值已被使用。请为此字段选择其他值。",
-  "ApiError.DuplicatePriceScope": "此产品变量已存在具有相同范围的价格。确保货币、国家/地区、客户组、渠道和有效日期的组合对应各个价格均是唯一的。",
-  "ApiError.DuplicateSlug": "“{slugValue}”已被使用。请为此产品输入新的 slug 值。",
-  "ApiError.DuplicateVariantValues": "此产品已具有相同的变体。请为这些字段输入其他值。",
-  "ApiError.ExtensionBadResponse": "抱歉，由于 API 扩展响应处理失败，我们无法处理请求的操作。",
-  "ApiError.ExtensionNoResponse": "抱歉，由于 API 扩展未响应，我们无法处理请求的操作。",
-  "ApiError.ExtensionUpdateActionsFailed": "抱歉，我们无法执行请求的操作。无法按照 API 扩展的指示执行更新操作。",
-  "ApiError.Forbidden": "您未被授权访问此功能。如有更多问题，请联系系统管理员。",
-  "ApiError.General": "抱歉，出错了。请重试。如果您是第二次看到该消息，请联系我们的支持团队。",
-  "ApiError.InvalidDateRange": "为字段 {field} 输入的值无效。开始日期必须早于结束日期",
-  "ApiError.InvalidField": "输入的值对字段“{field}”无效。",
-  "ApiError.InvalidSlug": "Slug 仅可包含字母数字 (0-9 A-Z) 字符、下划线和连字符，并且其长度必须为 2 到 256 个字符。",
-  "ApiError.MaxResourceLimitExceeded": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support.",
-  "ApiError.OverlappingPrices": "抱歉，已存在具有这些详情的价格。请修改价格详情，确保其未为其他价格重合，然后保存。",
-  "ApiError.PendingOperation": "抱歉，我们仍在处理先前的请求。请在该请求完成后重试。",
-  "ApiError.ReferenceExists": "如果源是从至少一个“{referencedBy}”引用的，则无法将其删除。",
-  "ApiError.RequiredField": "“{field}”是必填字段。请输入一个值。",
-  "ApiError.RequiredFields": "请为以下必填字段输入值：{fields}",
-  "ApiError.ResourceNotFound": "抱歉，找不到您需要的内容。",
-  "ApiError.SemanticError": "语义错误：指定的谓语无效。请阅读该文档，定义正确的谓语。",
-  "ApiError.SyntaxError": "语法错误：指定的谓语无效。请阅读该文档，定义正确的谓语。",
-  "ApiError.TaxCategoryDuplicateCountry": "提交的税率存在重复。请移除重复项。",
-  "ApiError.Unauthorized": "抱歉，您未被授权访问此功能。",
-  "AppBar.backToProjectLink": "返回项目",
-  "AppKit.Shared.activate": "启用",
-  "AppKit.Shared.active": "激活",
-  "AppKit.Shared.add": "添加",
-  "AppKit.Shared.cancel": "取消",
-  "AppKit.Shared.close": "关闭",
-  "AppKit.Shared.confirm": "确认",
-  "AppKit.Shared.create": "创建",
-  "AppKit.Shared.deactivate": "停用",
-  "AppKit.Shared.delete": "删除",
-  "AppKit.Shared.disable": "禁用",
-  "AppKit.Shared.edit": "编辑",
-  "AppKit.Shared.enable": "启用",
-  "AppKit.Shared.inactive": "未激活",
-  "AppKit.Shared.open": "打开",
-  "AppKit.Shared.remove": "移除",
-  "AppKit.Shared.revert": "还原更改",
-  "AppKit.Shared.save": "保存",
-  "AppKit.Shared.update": "更新",
-  "Components.ModalPage.TopBar.Back": "返回",
-  "Components.ModalPage.TopBar.Close": "关闭模态页面",
-  "CustomViewLoader.error.load": "We could not load the Custom View. Please contact your administrator to check its configuration.",
-  "CustomViewsSelector.title": "Custom Views:",
-  "ErrorApologizer.notifiedTeam": "我们团队已收到此事务通知。",
-  "ErrorApologizer.title": "抱歉！出现异常错误。",
-  "FailedAuthentication.paragraph1": "如果您有任何其他问题，请重试或联系系统管理员。",
-  "FailedAuthentication.title": "我们无法授权您使用 Merchant Center。",
-  "LocaleSwitcher.localesLabel": "区域菜单",
-  "NavBar.MCSupport.title": "支持",
-  "Notification.hideNotification": "隐藏通知",
-  "PageNotFound.paragraph1": "您所寻找的项目可能已删除、不存在或是其网址输入不正确。请检查网址并重试。如有更多问题，请联系您的系统管理员或 Commercetools <a>帮助中心</a> 。 ",
-  "PageNotFound.title": "我们找不到您要找的东西",
-  "PageUnauthorized.paragraph1": "此项目中不存在您正在寻找的模块，或者您无权查看该模块。",
-  "PageUnauthorized.paragraph2": "如果您有任何其他问题，请联系系统管理员或 commercetools<a>帮助台</a>。",
-  "PageUnauthorized.title": "我们找不到您要找的东西",
-  "Project.trialDaysLeft": "您的项目试用期将于 {daysLeft} {daysLeft, plural, one {天} other {天}} 后过期。如需询价，请联系 sales@commercetools.com",
-  "ProjectExpired.paragraph1": "如果您希望详细了解 commercetools Merchant Center，请通过 {mailto} 联系我们。",
-  "ProjectExpired.title": "您的试用已过期",
-  "ProjectNotFound.paragraph1": "您查找的项目不存在或者您未被授予查看权限。请选择其他项目进行查看。",
-  "ProjectNotFound.paragraph2": "如果您有任何其他问题，请联系您的系统管理员。",
-  "ProjectNotFound.title": "找不到此项目",
-  "ProjectNotInitialized.paragraph1": "初始化应该在几分钟内完成。如果项目未初始化，请通过 {mailto} 联系我们。",
-  "ProjectNotInitialized.title": "您的项目尚未初始化",
-  "ProjectSuspended.defaultSuspensionMessage": "您的项目已被暂停",
-  "ProjectSuspended.paragraph1": "如果您有任何其他问题，请联系系统管理员或选择其他项目进行查看。",
-  "ProjectSuspended.temporaryMaintenanceSuspensionMessage": "由于系统维护，您的项目已被临时暂停。",
-  "ProjectSwitcher.expired": "已过期",
-  "ProjectSwitcher.noResults": "抱歉，没有与搜索内容匹配的项目。",
-  "ProjectSwitcher.projectsLabel": "项目菜单",
-  "ProjectSwitcher.searchPlaceholder": "搜索项目",
-  "ProjectSwitcher.suspended": "已暂停",
-  "QuickAccess.inputPlaceholder": "转至...",
-  "QuickAccess.logout": "注销",
-  "QuickAccess.noResults": "找不到结果",
-  "QuickAccess.offline": "离线",
-  "QuickAccess.openAddApiClient": "打开“添加 API 客户机”",
-  "QuickAccess.openAddCartDiscount": "打开“添加购物车折扣”",
-  "QuickAccess.openAddCategory": "打开“添加类别”",
-  "QuickAccess.openAddCustomer": "打开“添加客户”",
-  "QuickAccess.openAddCustomerGroup": "打开“添加客户组”",
-  "QuickAccess.openAddDiscount": "打开“添加折扣”",
-  "QuickAccess.openAddDiscountCode": "打开“添加折扣码”",
-  "QuickAccess.openAddOrder": "打开“添加订单”",
-  "QuickAccess.openAddProductDiscount": "打开“添加产品折扣”",
-  "QuickAccess.openAddProducts": "打开“添加产品”",
-  "QuickAccess.openApiClientsList": "打开 API 客户机",
-  "QuickAccess.openCartDiscountsList": "打开“购物车折扣列表”",
-  "QuickAccess.openCategories": "打开“类别”",
-  "QuickAccess.openCategoriesList": "打开“类别列表”",
-  "QuickAccess.openCategoriesSearch": "打开“类别搜索”",
-  "QuickAccess.openCustomApplicationsSettings": "打开“自定义应用程序设置”",
-  "QuickAccess.openCustomerGroupsList": "打开“客户组列表”",
-  "QuickAccess.openCustomers": "打开“客户”",
-  "QuickAccess.openCustomersList": "打开“客户列表”",
-  "QuickAccess.openDashboard": "打开“仪表板”",
-  "QuickAccess.openDeveloperSettings": "打开“开发人员设置”",
-  "QuickAccess.openDiscountCodesList": "打开“折扣码列表”",
-  "QuickAccess.openDiscounts": "打开“折扣”",
-  "QuickAccess.openManageOrganizations": "打开“管理组织”",
-  "QuickAccess.openManageProject": "打开“管理项目”",
-  "QuickAccess.openModifiedProducts": "打开“查看已修改的产品”",
-  "QuickAccess.openMyProfile": "打开“我的个人资料”",
-  "QuickAccess.openOrders": "打开“订单”",
-  "QuickAccess.openOrdersList": "打开“订单列表”",
-  "QuickAccess.openPimSearch": "打开“PIM 搜索”",
-  "QuickAccess.openProductDiscountsList": "打开“产品折扣列表”",
-  "QuickAccess.openProductList": "打开“产品列表”",
-  "QuickAccess.openProductTypesSettings": "打开“产品类型设置”",
-  "QuickAccess.openProductVariantGeneral": "常规",
-  "QuickAccess.openProductVariantList": "变体",
-  "QuickAccess.openProductVariantSearch": "内部 / 外部搜索",
-  "QuickAccess.openProducts": "打开“产品”",
-  "QuickAccess.openProjectSettings": "打开“项目设置”",
-  "QuickAccess.openProjectSettingsChannelsTab": "打开“项目设置 • 渠道”",
-  "QuickAccess.openProjectSettingsInternationalTab": "打开“项目设置 • 国际化”",
-  "QuickAccess.openProjectSettingsShippingMethodsTab": "打开“项目设置 • 发货方法”",
-  "QuickAccess.openProjectSettingsStoresTab": "打开“项目设置 • 商店",
-  "QuickAccess.openProjectSettingsTaxesTab": "打开“项目设置 • 税额”",
-  "QuickAccess.openSettings": "打开“设置”",
-  "QuickAccess.openSupport": "打开“支持”",
-  "QuickAccess.openVariantById": "打开“变体 \"{id}\" (id)”",
-  "QuickAccess.openVariantByKey": "打开“变体 \"{key}\"（密钥）”",
-  "QuickAccess.openVariantBySku": "打开“变体 \"{key}\" (sku)”",
-  "QuickAccess.setResourceLanguage": "设置资源语言",
-  "QuickAccess.showPrivacyPolicy": "显示隐私政策",
-  "QuickAccess.showProduct": "显示产品“{productName}”",
-  "QuickAccess.showProductVariant": "显示产品变体“{variantName}”",
-  "QuickAccess.showProductVariantAttributes": "显示属性",
-  "QuickAccess.showProductVariantImages": "显示图像",
-  "QuickAccess.showProductVariantInventory": "显示库存",
-  "QuickAccess.showProductVariantPrices": "显示价格",
-  "QuickAccess.useProject": "切换至项目“{projectName}”",
-  "TopNavigation.labelLoading": "正在处理...",
-  "UserSettingsMenu.closeMenuLabel": "关闭用户设置菜单",
-  "UserSettingsMenu.logout": "注销",
-  "UserSettingsMenu.menuLabel": "用户设置菜单",
-  "UserSettingsMenu.openMenuLabel": "打开用户设置菜单",
-  "UserSettingsMenu.privacyPolicy": "隐私政策",
-  "UserSettingsMenu.support": "支持"
+  "ApiError.ConcurrentModification": {
+    "developer_comment": "User edits form and clicks Save but someone else has saved changes for this element while they were editing",
+    "string": "很抱歉，由于在您编辑此源时其他人也在更改该源，我们无法保存您的更改。请刷新该页面，重新输入您的更改。"
+  },
+  "ApiError.ConcurrentModificationBulkEdit": {
+    "developer_comment": "User does a bulk update but someone else has saved changes for that element",
+    "string": "很抱歉，由于在您编辑此源时其他人也在更改该源，我们无法保存您的更改。"
+  },
+  "ApiError.DuplicateAttributeValue": {
+    "developer_comment": "User tries to enter the same attribute value for an attribute with the Unique constraint",
+    "string": "该值已供另一变量使用。“{name}”值对此产品的所有变量必须唯一。请输入其他值。"
+  },
+  "ApiError.DuplicateAttributeValues": {
+    "developer_comment": "User tries to enter existing attribute values for a combination of attributes with the CombinationUnique constraint",
+    "string": "该组合已供另一变量使用。这些属性组合对所有变量必须唯一。请输入其他版本。"
+  },
+  "ApiError.DuplicateField": {
+    "developer_comment": "The given field must be unique across the project",
+    "string": "字段“{field}”的值已被使用。请为此字段选择其他值。"
+  },
+  "ApiError.DuplicatePriceScope": {
+    "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
+    "string": "此产品变量已存在具有相同范围的价格。确保货币、国家/地区、客户组、渠道和有效日期的组合对应各个价格均是唯一的。"
+  },
+  "ApiError.DuplicateSlug": {
+    "developer_comment": "User tries to create a resource with an already existing slug",
+    "string": "“{slugValue}”已被使用。请为此产品输入新的 slug 值。"
+  },
+  "ApiError.DuplicateVariantValues": {
+    "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
+    "string": "此产品已具有相同的变体。请为这些字段输入其他值。"
+  },
+  "ApiError.ExtensionBadResponse": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "抱歉，由于 API 扩展响应处理失败，我们无法处理请求的操作。"
+  },
+  "ApiError.ExtensionNoResponse": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "抱歉，由于 API 扩展未响应，我们无法处理请求的操作。"
+  },
+  "ApiError.ExtensionUpdateActionsFailed": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "抱歉，我们无法执行请求的操作。无法按照 API 扩展的指示执行更新操作。"
+  },
+  "ApiError.Forbidden": {
+    "developer_comment": "User tries to access a view that they do not have permission for",
+    "string": "您未被授权访问此功能。如有更多问题，请联系系统管理员。"
+  },
+  "ApiError.General": {
+    "developer_comment": "A general error message, usually because of internal application problems. The user should not know the details of the error.",
+    "string": "抱歉，出错了。请重试。如果您是第二次看到该消息，请联系我们的支持团队。"
+  },
+  "ApiError.InvalidDateRange": {
+    "developer_comment": "User tries to input an invalid date range",
+    "string": "为字段 {field} 输入的值无效。开始日期必须早于结束日期"
+  },
+  "ApiError.InvalidField": {
+    "developer_comment": "User enters an invalid value for a field.",
+    "string": "输入的值对字段“{field}”无效。"
+  },
+  "ApiError.InvalidSlug": {
+    "developer_comment": "User enters an invalid value for the product slug",
+    "string": "Slug 仅可包含字母数字 (0-9 A-Z) 字符、下划线和连字符，并且其长度必须为 2 到 256 个字符。"
+  },
+  "ApiError.MaxResourceLimitExceeded": {
+    "developer_comment": "User attempts to create a resource while having already reached the limit",
+    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+  },
+  "ApiError.OverlappingPrices": {
+    "developer_comment": "",
+    "string": "抱歉，已存在具有这些详情的价格。请修改价格详情，确保其未为其他价格重合，然后保存。"
+  },
+  "ApiError.PendingOperation": {
+    "developer_comment": "User tries to start a new process when one is already underway",
+    "string": "抱歉，我们仍在处理先前的请求。请在该请求完成后重试。"
+  },
+  "ApiError.ReferenceExists": {
+    "developer_comment": "User tries to delete an element that has an existing reference to it from another element",
+    "string": "如果源是从至少一个“{referencedBy}”引用的，则无法将其删除。"
+  },
+  "ApiError.RequiredField": {
+    "developer_comment": "User does not enter a required field",
+    "string": "“{field}”是必填字段。请输入一个值。"
+  },
+  "ApiError.RequiredFields": {
+    "developer_comment": "User submits a form without having completed all mandatory fields",
+    "string": "请为以下必填字段输入值：{fields}"
+  },
+  "ApiError.ResourceNotFound": {
+    "developer_comment": "System cannot find the functionality or screen that the user is trying to access.",
+    "string": "抱歉，找不到您需要的内容。"
+  },
+  "ApiError.SemanticError": {
+    "developer_comment": "User enters a predicate query that throws a system semantic error",
+    "string": "语义错误：指定的谓语无效。请阅读该文档，定义正确的谓语。"
+  },
+  "ApiError.SyntaxError": {
+    "developer_comment": "User enters a predicate query that throws a system syntax error",
+    "string": "语法错误：指定的谓语无效。请阅读该文档，定义正确的谓语。"
+  },
+  "ApiError.TaxCategoryDuplicateCountry": {
+    "developer_comment": "User inputs duplicate country and/or state into tax category form",
+    "string": "提交的税率存在重复。请移除重复项。"
+  },
+  "ApiError.Unauthorized": {
+    "developer_comment": "The access token is not valid anymore, or the user does not have a valid one",
+    "string": "抱歉，您未被授权访问此功能。"
+  },
+  "AppBar.backToProjectLink": {
+    "string": "返回项目"
+  },
+  "AppKit.Shared.activate": {
+    "string": "启用"
+  },
+  "AppKit.Shared.active": {
+    "string": "激活"
+  },
+  "AppKit.Shared.add": {
+    "string": "添加"
+  },
+  "AppKit.Shared.cancel": {
+    "string": "取消"
+  },
+  "AppKit.Shared.close": {
+    "string": "关闭"
+  },
+  "AppKit.Shared.confirm": {
+    "string": "确认"
+  },
+  "AppKit.Shared.create": {
+    "string": "创建"
+  },
+  "AppKit.Shared.deactivate": {
+    "string": "停用"
+  },
+  "AppKit.Shared.delete": {
+    "string": "删除"
+  },
+  "AppKit.Shared.disable": {
+    "string": "禁用"
+  },
+  "AppKit.Shared.edit": {
+    "string": "编辑"
+  },
+  "AppKit.Shared.enable": {
+    "string": "启用"
+  },
+  "AppKit.Shared.inactive": {
+    "string": "未激活"
+  },
+  "AppKit.Shared.open": {
+    "string": "打开"
+  },
+  "AppKit.Shared.remove": {
+    "string": "移除"
+  },
+  "AppKit.Shared.revert": {
+    "string": "还原更改"
+  },
+  "AppKit.Shared.save": {
+    "string": "保存"
+  },
+  "AppKit.Shared.update": {
+    "string": "更新"
+  },
+  "Components.ModalPage.TopBar.Back": {
+    "string": "返回"
+  },
+  "Components.ModalPage.TopBar.Close": {
+    "string": "关闭模态页面"
+  },
+  "CustomViewLoader.error.load": {
+    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+  },
+  "CustomViewsSelector.title": {
+    "string": "Custom Views:"
+  },
+  "ErrorApologizer.notifiedTeam": {
+    "string": "我们团队已收到此事务通知。"
+  },
+  "ErrorApologizer.title": {
+    "string": "抱歉！出现异常错误。"
+  },
+  "FailedAuthentication.paragraph1": {
+    "string": "如果您有任何其他问题，请重试或联系系统管理员。"
+  },
+  "FailedAuthentication.title": {
+    "string": "我们无法授权您使用 Merchant Center。"
+  },
+  "LocaleSwitcher.localesLabel": {
+    "developer_comment": "The label for project dropdown switcher",
+    "string": "区域菜单"
+  },
+  "NavBar.MCSupport.title": {
+    "string": "支持"
+  },
+  "Notification.hideNotification": {
+    "developer_comment": "Label for button to hide notification",
+    "string": "隐藏通知"
+  },
+  "PageNotFound.paragraph1": {
+    "string": "您所寻找的项目可能已删除、不存在或是其网址输入不正确。请检查网址并重试。如有更多问题，请联系您的系统管理员或 Commercetools <a>帮助中心</a> 。 "
+  },
+  "PageNotFound.title": {
+    "string": "我们找不到您要找的东西"
+  },
+  "PageUnauthorized.paragraph1": {
+    "string": "此项目中不存在您正在寻找的模块，或者您无权查看该模块。"
+  },
+  "PageUnauthorized.paragraph2": {
+    "string": "如果您有任何其他问题，请联系系统管理员或 commercetools<a>帮助台</a>。"
+  },
+  "PageUnauthorized.title": {
+    "string": "我们找不到您要找的东西"
+  },
+  "Project.trialDaysLeft": {
+    "string": "您的项目试用期将于 {daysLeft} {daysLeft, plural, one {天} other {天}} 后过期。如需询价，请联系 sales@commercetools.com"
+  },
+  "ProjectExpired.paragraph1": {
+    "string": "如果您希望详细了解 commercetools Merchant Center，请通过 {mailto} 联系我们。"
+  },
+  "ProjectExpired.title": {
+    "string": "您的试用已过期"
+  },
+  "ProjectNotFound.paragraph1": {
+    "string": "您查找的项目不存在或者您未被授予查看权限。请选择其他项目进行查看。"
+  },
+  "ProjectNotFound.paragraph2": {
+    "string": "如果您有任何其他问题，请联系您的系统管理员。"
+  },
+  "ProjectNotFound.title": {
+    "string": "找不到此项目"
+  },
+  "ProjectNotInitialized.paragraph1": {
+    "string": "初始化应该在几分钟内完成。如果项目未初始化，请通过 {mailto} 联系我们。"
+  },
+  "ProjectNotInitialized.title": {
+    "string": "您的项目尚未初始化"
+  },
+  "ProjectSuspended.defaultSuspensionMessage": {
+    "string": "您的项目已被暂停"
+  },
+  "ProjectSuspended.paragraph1": {
+    "string": "如果您有任何其他问题，请联系系统管理员或选择其他项目进行查看。"
+  },
+  "ProjectSuspended.temporaryMaintenanceSuspensionMessage": {
+    "string": "由于系统维护，您的项目已被临时暂停。"
+  },
+  "ProjectSwitcher.expired": {
+    "developer_comment": "Label for a suspended project",
+    "string": "已过期"
+  },
+  "ProjectSwitcher.noResults": {
+    "developer_comment": "Projects filter no results text",
+    "string": "抱歉，没有与搜索内容匹配的项目。"
+  },
+  "ProjectSwitcher.projectsLabel": {
+    "developer_comment": "The label for project dropdown switcher",
+    "string": "项目菜单"
+  },
+  "ProjectSwitcher.searchPlaceholder": {
+    "developer_comment": "Projects filter search input placeholder",
+    "string": "搜索项目"
+  },
+  "ProjectSwitcher.suspended": {
+    "developer_comment": "Label for a suspended project",
+    "string": "已暂停"
+  },
+  "QuickAccess.inputPlaceholder": {
+    "string": "转至..."
+  },
+  "QuickAccess.logout": {
+    "string": "注销"
+  },
+  "QuickAccess.noResults": {
+    "string": "找不到结果"
+  },
+  "QuickAccess.offline": {
+    "string": "离线"
+  },
+  "QuickAccess.openAddApiClient": {
+    "string": "打开“添加 API 客户机”"
+  },
+  "QuickAccess.openAddCartDiscount": {
+    "string": "打开“添加购物车折扣”"
+  },
+  "QuickAccess.openAddCategory": {
+    "string": "打开“添加类别”"
+  },
+  "QuickAccess.openAddCustomer": {
+    "string": "打开“添加客户”"
+  },
+  "QuickAccess.openAddCustomerGroup": {
+    "string": "打开“添加客户组”"
+  },
+  "QuickAccess.openAddDiscount": {
+    "string": "打开“添加折扣”"
+  },
+  "QuickAccess.openAddDiscountCode": {
+    "string": "打开“添加折扣码”"
+  },
+  "QuickAccess.openAddOrder": {
+    "string": "打开“添加订单”"
+  },
+  "QuickAccess.openAddProductDiscount": {
+    "string": "打开“添加产品折扣”"
+  },
+  "QuickAccess.openAddProducts": {
+    "string": "打开“添加产品”"
+  },
+  "QuickAccess.openApiClientsList": {
+    "string": "打开 API 客户机"
+  },
+  "QuickAccess.openCartDiscountsList": {
+    "string": "打开“购物车折扣列表”"
+  },
+  "QuickAccess.openCategories": {
+    "string": "打开“类别”"
+  },
+  "QuickAccess.openCategoriesList": {
+    "string": "打开“类别列表”"
+  },
+  "QuickAccess.openCategoriesSearch": {
+    "string": "打开“类别搜索”"
+  },
+  "QuickAccess.openCustomApplicationsSettings": {
+    "string": "打开“自定义应用程序设置”"
+  },
+  "QuickAccess.openCustomerGroupsList": {
+    "string": "打开“客户组列表”"
+  },
+  "QuickAccess.openCustomers": {
+    "string": "打开“客户”"
+  },
+  "QuickAccess.openCustomersList": {
+    "string": "打开“客户列表”"
+  },
+  "QuickAccess.openDashboard": {
+    "string": "打开“仪表板”"
+  },
+  "QuickAccess.openDeveloperSettings": {
+    "string": "打开“开发人员设置”"
+  },
+  "QuickAccess.openDiscountCodesList": {
+    "string": "打开“折扣码列表”"
+  },
+  "QuickAccess.openDiscounts": {
+    "string": "打开“折扣”"
+  },
+  "QuickAccess.openManageOrganizations": {
+    "string": "打开“管理组织”"
+  },
+  "QuickAccess.openManageProject": {
+    "string": "打开“管理项目”"
+  },
+  "QuickAccess.openModifiedProducts": {
+    "string": "打开“查看已修改的产品”"
+  },
+  "QuickAccess.openMyProfile": {
+    "string": "打开“我的个人资料”"
+  },
+  "QuickAccess.openOrders": {
+    "string": "打开“订单”"
+  },
+  "QuickAccess.openOrdersList": {
+    "string": "打开“订单列表”"
+  },
+  "QuickAccess.openPimSearch": {
+    "string": "打开“PIM 搜索”"
+  },
+  "QuickAccess.openProductDiscountsList": {
+    "string": "打开“产品折扣列表”"
+  },
+  "QuickAccess.openProductList": {
+    "string": "打开“产品列表”"
+  },
+  "QuickAccess.openProductTypesSettings": {
+    "string": "打开“产品类型设置”"
+  },
+  "QuickAccess.openProductVariantGeneral": {
+    "string": "常规"
+  },
+  "QuickAccess.openProductVariantList": {
+    "string": "变体"
+  },
+  "QuickAccess.openProductVariantSearch": {
+    "string": "内部 / 外部搜索"
+  },
+  "QuickAccess.openProducts": {
+    "string": "打开“产品”"
+  },
+  "QuickAccess.openProjectSettings": {
+    "string": "打开“项目设置”"
+  },
+  "QuickAccess.openProjectSettingsChannelsTab": {
+    "string": "打开“项目设置 • 渠道”"
+  },
+  "QuickAccess.openProjectSettingsInternationalTab": {
+    "string": "打开“项目设置 • 国际化”"
+  },
+  "QuickAccess.openProjectSettingsShippingMethodsTab": {
+    "string": "打开“项目设置 • 发货方法”"
+  },
+  "QuickAccess.openProjectSettingsStoresTab": {
+    "string": "打开“项目设置 • 商店"
+  },
+  "QuickAccess.openProjectSettingsTaxesTab": {
+    "string": "打开“项目设置 • 税额”"
+  },
+  "QuickAccess.openSettings": {
+    "string": "打开“设置”"
+  },
+  "QuickAccess.openSupport": {
+    "string": "打开“支持”"
+  },
+  "QuickAccess.openVariantById": {
+    "string": "打开“变体 \"{id}\" (id)”"
+  },
+  "QuickAccess.openVariantByKey": {
+    "string": "打开“变体 \"{key}\"（密钥）”"
+  },
+  "QuickAccess.openVariantBySku": {
+    "string": "打开“变体 \"{key}\" (sku)”"
+  },
+  "QuickAccess.setResourceLanguage": {
+    "string": "设置资源语言"
+  },
+  "QuickAccess.showPrivacyPolicy": {
+    "string": "显示隐私政策"
+  },
+  "QuickAccess.showProduct": {
+    "string": "显示产品“{productName}”"
+  },
+  "QuickAccess.showProductVariant": {
+    "string": "显示产品变体“{variantName}”"
+  },
+  "QuickAccess.showProductVariantAttributes": {
+    "string": "显示属性"
+  },
+  "QuickAccess.showProductVariantImages": {
+    "string": "显示图像"
+  },
+  "QuickAccess.showProductVariantInventory": {
+    "string": "显示库存"
+  },
+  "QuickAccess.showProductVariantPrices": {
+    "string": "显示价格"
+  },
+  "QuickAccess.useProject": {
+    "string": "切换至项目“{projectName}”"
+  },
+  "TopNavigation.labelLoading": {
+    "developer_comment": "The text to show next to the loading icon",
+    "string": "正在处理..."
+  },
+  "UserSettingsMenu.closeMenuLabel": {
+    "developer_comment": "The label when menu is open and would be closed by a click",
+    "string": "关闭用户设置菜单"
+  },
+  "UserSettingsMenu.logout": {
+    "developer_comment": "The label for logout option",
+    "string": "注销"
+  },
+  "UserSettingsMenu.menuLabel": {
+    "developer_comment": "The label describing the menu",
+    "string": "用户设置菜单"
+  },
+  "UserSettingsMenu.openMenuLabel": {
+    "developer_comment": "The label when menu is closed and would be opened by a click",
+    "string": "打开用户设置菜单"
+  },
+  "UserSettingsMenu.privacyPolicy": {
+    "developer_comment": "The label for privacy policy option",
+    "string": "隐私政策"
+  },
+  "UserSettingsMenu.support": {
+    "developer_comment": "The label for Support",
+    "string": "支持"
+  }
 }
