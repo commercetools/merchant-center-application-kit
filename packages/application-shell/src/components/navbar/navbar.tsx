@@ -40,6 +40,7 @@ import {
   Text,
   Tooltip,
   TooltipContainer,
+  SupportMenuTooltipContainer,
 } from './main-navbar.styles';
 import {
   type MenuItemLinkProps,
@@ -405,6 +406,13 @@ const NavBar = (props: TNavbarProps) => {
           {/* TODO: remove <Faded /> completely as part of the recolouring rollout cleanup process */}
           <Faded />
           <SupportMenu>
+            {!isMenuOpen && (
+              <SupportMenuTooltipContainer className="support">
+                <Tooltip>
+                  <FormattedMessage {...messages['NavBar.MCSupport.title']} />
+                </Tooltip>
+              </SupportMenuTooltipContainer>
+            )}
             <MenuItem
               hasSubmenu={false}
               isActive={false}

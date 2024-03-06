@@ -174,10 +174,25 @@ const TextLink = styled.a`
   justify-content: center;
 `;
 
+const SupportMenuTooltipContainer = styled.div`
+  position: fixed;
+  left: ${NAVBAR.sublistIndentationWhenCollapsed};
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: ${NAVBAR.itemSize};
+  transition: ${NAVBAR.leftNavigationTransition};
+  visibility: hidden;
+  z-index: 1;
+`;
+
 const SupportMenu = styled.div`
   padding: ${uiKitDesignTokens.spacing10} ${uiKitDesignTokens.spacing30}
     ${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing30};
   height: calc(${NAVBAR.itemSize} + ${uiKitDesignTokens.spacing20});
+  :hover .support {
+    visibility: visible;
+  }
 `;
 
 const Text = styled.div`
@@ -228,4 +243,5 @@ export {
   Title,
   Tooltip,
   TooltipContainer,
+  SupportMenuTooltipContainer,
 };
