@@ -188,6 +188,14 @@
   "FailedAuthentication.title": {
     "string": "我们无法授权您使用 Merchant Center。"
   },
+  "LocaleSwitcher.dialogLocaleDescription": {
+    "developer_comment": "The description for the data locale dialog",
+    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+  },
+  "LocaleSwitcher.dialogLocaleTitle": {
+    "developer_comment": "The title for the data locale dialog",
+    "string": "Selecting a data locale"
+  },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
     "string": "区域菜单"
@@ -237,6 +245,18 @@
   },
   "ProjectNotInitialized.title": {
     "string": "您的项目尚未初始化"
+  },
+  "ProjectStamp.expired": {
+    "string": "Trial expired"
+  },
+  "ProjectStamp.production": {
+    "string": "Production"
+  },
+  "ProjectStamp.suspended": {
+    "string": "Suspended"
+  },
+  "ProjectStamp.willExpire": {
+    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "您的项目已被暂停"
