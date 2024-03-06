@@ -79,7 +79,7 @@ runs:
       run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'pnpm ${{ inputs.e2e-tests-command }}'
       env:
         NODE_ENV: test
-        CYPRESS_CI: "true"
+        CYPRESS_CI: 'true'
         CYPRESS_LOGIN_USER: ${{ inputs.cypress-login-user }}
         CYPRESS_LOGIN_PASSWORD: ${{ inputs.cypress-login-password }}
         CYPRESS_PROJECT_KEY: ${{ inputs.cypress-project-key }}

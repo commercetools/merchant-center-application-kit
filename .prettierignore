@@ -11,5 +11,6 @@ schemas/
 .percy.yml
 .cache
 .yarn
+.vercel
 pnpm-lock.yaml
 pnpm-workspace.yaml

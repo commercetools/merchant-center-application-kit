@@ -20,8 +20,8 @@
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/application-components": "22.19.0",
     "@commercetools-frontend/actions-global": "22.19.0",
+    "@commercetools-frontend/application-components": "22.19.0",
     "@commercetools-frontend/constants": "22.19.0",
     "@commercetools-frontend/notifications": "22.19.0",
     "@commercetools-frontend/sentry": "22.19.0",
@@ -32,7 +32,7 @@
     "@commercetools-uikit/secondary-icon-button": "^18.2.0",
     "@commercetools-uikit/spacings": "^18.2.0",
     "@commercetools-uikit/utils": "^18.2.0",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@types/history": "^4.7.11",
     "@types/lodash": "^4.14.198",
