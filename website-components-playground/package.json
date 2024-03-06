@@ -24,7 +24,7 @@
     "@commercetools-uikit/text": "^18.2.0",
     "@commercetools-uikit/text-field": "^18.2.0",
     "@commercetools-uikit/text-input": "^18.2.0",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "formik": "2.2.9",
     "history": "4.10.1",
