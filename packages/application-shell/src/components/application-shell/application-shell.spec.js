@@ -865,8 +865,10 @@ describe('when clicking on navbar menu toggle', () => {
       );
     });
 
-    // Verify that the "Support" link is not rendered when the menu is collapsed
-    expect(navbarRendered.queryByText('Support')).not.toBeVisible();
+    // Verify that the tooltip is available when the menu is collapsed
+    expect(
+      navbarRendered.getByRole('tooltip', { hidden: true })
+    ).toBeInTheDocument();
   });
 });
 

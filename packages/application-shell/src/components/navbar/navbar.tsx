@@ -242,7 +242,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         >
           {!props.isMenuOpen && (
             <TooltipContainer alignsAgainstBottom={isSubmenuAboveMenuItem}>
-              <Tooltip aria-owns={`group-${props.menu.key}`}>
+              <Tooltip aria-owns={`group-${props.menu.key}`} role="tooltip">
                 <MenuLabel
                   labelAllLocales={props.menu.labelAllLocales}
                   defaultLabel={props.menu.defaultLabel}
@@ -408,7 +408,7 @@ const NavBar = (props: TNavbarProps) => {
           <SupportMenu>
             {!isMenuOpen && (
               <SupportMenuTooltipContainer>
-                <Tooltip>
+                <Tooltip role="tooltip">
                   <FormattedMessage {...messages['NavBar.MCSupport.title']} />
                 </Tooltip>
               </SupportMenuTooltipContainer>
