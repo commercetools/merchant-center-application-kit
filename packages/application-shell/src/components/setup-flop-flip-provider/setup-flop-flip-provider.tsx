@@ -135,6 +135,9 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           // of the application config.
           // This is mostly useful for internal usage on our staging environments.
           clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
+          clientOptions: {
+            sendEventsOnlyForVariation: true,
+          },
         },
         flags,
         context: getUserContextForLaunchDarklyAdapter(
