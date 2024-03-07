@@ -407,7 +407,7 @@ const NavBar = (props: TNavbarProps) => {
           <Faded />
           <SupportMenu>
             {!isMenuOpen && (
-              <SupportMenuTooltipContainer className="support">
+              <SupportMenuTooltipContainer>
                 <Tooltip>
                   <FormattedMessage {...messages['NavBar.MCSupport.title']} />
                 </Tooltip>
@@ -437,7 +437,7 @@ const NavBar = (props: TNavbarProps) => {
                     </Icon>
                   </IconWrapper>
                   {isMenuOpen ? (
-                    <Title data-testid="support-label">
+                    <Title>
                       <FormattedMessage
                         {...messages['NavBar.MCSupport.title']}
                       />
