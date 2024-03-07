@@ -869,6 +869,8 @@ describe('when clicking on navbar menu toggle', () => {
     expect(
       navbarRendered.getByRole('tooltip', { hidden: true })
     ).toBeInTheDocument();
+    // Verify that only "SUpport" text from tooltip is available when the menu is collapsed
+    expect(navbarRendered.getAllByText('Support')).toHaveLength(1);
   });
 });
 
