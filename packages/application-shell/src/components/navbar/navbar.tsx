@@ -406,13 +406,6 @@ const NavBar = (props: TNavbarProps) => {
           {/* TODO: remove <Faded /> completely as part of the recolouring rollout cleanup process */}
           <Faded />
           <SupportMenu>
-            {!isMenuOpen && (
-              <SupportMenuTooltipContainer>
-                <Tooltip role="tooltip">
-                  <FormattedMessage {...messages['NavBar.MCSupport.title']} />
-                </Tooltip>
-              </SupportMenuTooltipContainer>
-            )}
             <MenuItem
               hasSubmenu={false}
               isActive={false}
@@ -425,6 +418,13 @@ const NavBar = (props: TNavbarProps) => {
               }
               onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
             >
+              {!isMenuOpen && (
+                <SupportMenuTooltipContainer>
+                  <Tooltip role="tooltip">
+                    <FormattedMessage {...messages['NavBar.MCSupport.title']} />
+                  </Tooltip>
+                </SupportMenuTooltipContainer>
+              )}
               <TextLink
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"

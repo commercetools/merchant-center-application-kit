@@ -26,11 +26,29 @@ const FixedMenu = styled.div`
   }
 `;
 
+const SupportMenuTooltipContainer = styled.div`
+  position: fixed;
+  left: ${NAVBAR.sublistIndentationWhenCollapsed};
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  height: ${NAVBAR.itemSize};
+  z-index: 20001;
+
+  ${MenuListItem} ${ItemIconText}
+`;
+
 const ItemContent = styled.div`
   color: ${uiKitDesignTokens.colorNeutral};
   width: ${NAVBAR.itemSize};
   position: relative;
   display: block;
+  :hover
+    ${SupportMenuTooltipContainer},
+    :focus-within
+    ${SupportMenuTooltipContainer} {
+    display: flex;
+  }
 `;
 
 const ScrollableMenu = styled.div`
@@ -174,26 +192,10 @@ const TextLink = styled.a`
   justify-content: center;
 `;
 
-const SupportMenuTooltipContainer = styled.div`
-  position: fixed;
-  left: ${NAVBAR.sublistIndentationWhenCollapsed};
-  display: none;
-  align-items: center;
-  justify-content: flex-start;
-  height: ${NAVBAR.itemSize};
-  z-index: 20001;
-`;
-
 const SupportMenu = styled.div`
   padding: ${uiKitDesignTokens.spacing10} ${uiKitDesignTokens.spacing30}
     ${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing30};
   height: calc(${NAVBAR.itemSize} + ${uiKitDesignTokens.spacing20});
-  :hover
-    ${SupportMenuTooltipContainer},
-    :focus-within
-    ${SupportMenuTooltipContainer} {
-    display: flex;
-  }
 `;
 
 const Text = styled.div`
