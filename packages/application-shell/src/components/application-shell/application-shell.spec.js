@@ -866,7 +866,7 @@ describe('when clicking on navbar menu toggle', () => {
     });
 
     // Verify that the "Support" link is not rendered when the menu is collapsed
-    expect(navbarRendered.getAllByText('Support')).toHaveLength(1);
+    expect(navbarRendered.queryByText('Support')).not.toBeVisible();
   });
 });
 
