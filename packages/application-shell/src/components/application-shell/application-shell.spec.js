@@ -846,7 +846,9 @@ describe('when clicking on navbar menu toggle', () => {
     });
 
     // Check that the "Support" link is rendered when the menu is expanded
-    expect(navbarRendered.getByText('Support')).toBeInTheDocument();
+    // Make sure the element we find is not the tooltip rendered when the menu is collapsed
+    const supportMenuItemLabel = navbarRendered.getByText('Support');
+    expect(supportMenuItemLabel.getAttribute('role')).not.toEqual('tooltip');
 
     // Collapse the menu and verify local storage changes
     fireEvent.click(button);
@@ -865,8 +867,10 @@ describe('when clicking on navbar menu toggle', () => {
       );
     });
 
-    // Verify that the "Support" link is not rendered when the menu is collapsed
-    expect(navbarRendered.queryByText('Support')).toBeNull();
+    // Verify that the tooltip is available when the menu is collapsed
+    const supportMenuItemTooltip = navbarRendered.getByText('Support');
+    expect(supportMenuItemTooltip.getAttribute('role')).toEqual('tooltip');
+    expect(supportMenuItemTooltip).not.toBeVisible();
   });
 });
 

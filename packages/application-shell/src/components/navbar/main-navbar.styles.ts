@@ -26,11 +26,27 @@ const FixedMenu = styled.div`
   }
 `;
 
+const SupportMenuTooltipContainer = styled.div`
+  position: fixed;
+  left: ${NAVBAR.sublistIndentationWhenCollapsed};
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  height: ${NAVBAR.itemSize};
+  z-index: 20001;
+`;
+
 const ItemContent = styled.div`
   color: ${uiKitDesignTokens.colorNeutral};
   width: ${NAVBAR.itemSize};
   position: relative;
   display: block;
+  :hover
+    ${SupportMenuTooltipContainer},
+    :focus-within
+    ${SupportMenuTooltipContainer} {
+    display: flex;
+  }
 `;
 
 const ScrollableMenu = styled.div`
@@ -228,4 +244,5 @@ export {
   Title,
   Tooltip,
   TooltipContainer,
+  SupportMenuTooltipContainer,
 };
