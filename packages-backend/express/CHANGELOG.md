@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 22.20.0
+
 ## 22.19.0
 
 ## 22.18.0
