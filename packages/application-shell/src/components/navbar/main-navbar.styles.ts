@@ -34,8 +34,6 @@ const SupportMenuTooltipContainer = styled.div`
   justify-content: flex-start;
   height: ${NAVBAR.itemSize};
   z-index: 20001;
-
-  ${MenuListItem} ${ItemIconText}
 `;
 
 const ItemContent = styled.div`
