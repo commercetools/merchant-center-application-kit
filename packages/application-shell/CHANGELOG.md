@@ -1,5 +1,34 @@
 # @commercetools-frontend/application-shell
 
+## 22.20.0
+
+### Minor Changes
+
+- [#3432](https://github.com/commercetools/merchant-center-application-kit/pull/3432) [`fc216dc41`](https://github.com/commercetools/merchant-center-application-kit/commit/fc216dc4139e6ab736f13ea48e85adea07024c27) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Updated the "Support" navigation menu item so it also has a tooltip when the menu is collapsed (same as the rest of the menu root items).
+
+### Patch Changes
+
+- [#3427](https://github.com/commercetools/merchant-center-application-kit/pull/3427) [`02cd76b66`](https://github.com/commercetools/merchant-center-application-kit/commit/02cd76b66ded47cd899b3eeee8cee27bd4d6a353) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - The `apolloClient` property in the `CustomViewShell` component was not being used internally, making it impossible for consumers to user a custom Apollo client.
+
+- [#3426](https://github.com/commercetools/merchant-center-application-kit/pull/3426) [`6f0e6f6e1`](https://github.com/commercetools/merchant-center-application-kit/commit/6f0e6f6e1c39e66f18b6cef5038fef303e9d3024) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix to only send LaunchDarkly events only for variations.
+
+- Updated dependencies [[`113d92c93`](https://github.com/commercetools/merchant-center-application-kit/commit/113d92c93ab574a34129d4b193da963bb90a16f6)]:
+  - @commercetools-frontend/i18n@22.20.0
+  - @commercetools-frontend/application-components@22.20.0
+  - @commercetools-frontend/react-notifications@22.20.0
+  - @commercetools-frontend/actions-global@22.20.0
+  - @commercetools-frontend/application-config@22.20.0
+  - @commercetools-frontend/application-shell-connectors@22.20.0
+  - @commercetools-frontend/assets@22.20.0
+  - @commercetools-frontend/browser-history@22.20.0
+  - @commercetools-frontend/constants@22.20.0
+  - @commercetools-frontend/l10n@22.20.0
+  - @commercetools-frontend/notifications@22.20.0
+  - @commercetools-frontend/permissions@22.20.0
+  - @commercetools-frontend/sdk@22.20.0
+  - @commercetools-frontend/sentry@22.20.0
+  - @commercetools-frontend/url-utils@22.20.0
+
 ## 22.19.0
 
 ### Minor Changes
