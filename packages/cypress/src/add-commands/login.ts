@@ -42,7 +42,7 @@ export type CommandLoginOptions = {
    * Called before your page has loaded all of its resources.
    * Use this as a chance to interact for example with the browser storage.
    */
-  onBeforeLoad?: (win: any) => void;
+  onBeforeLoad?: (win: Window) => void;
   /**
    * If defined, visit this route after login.
    */
