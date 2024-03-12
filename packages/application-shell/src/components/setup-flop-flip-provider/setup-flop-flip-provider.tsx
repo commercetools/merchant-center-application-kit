@@ -2,7 +2,7 @@ import { ReactNode, useMemo } from 'react';
 import { useApolloClient } from '@apollo/client/react';
 import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
-import ldAdapter from '@flopflip/launchdarkly-adapter';
+import ldAdapter, { getCachedFlags } from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -56,6 +56,7 @@ type TParsedHttpAdapterFlags = Record<
 // app uses our account of LD. The value is meant to be public, so there
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
+const ldCacheIdentifier = 'local';
 
 function getUserContextForLaunchDarklyAdapter(
   user?: TSetupFlopFlipProviderProps['user'],
@@ -92,6 +93,8 @@ type TAdditionalEnvironmentProperties = {
   enableLongLivedFeatureFlags?: boolean;
 };
 
+const cachedFlags = getCachedFlags(ldCacheIdentifier);
+
 export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
   const apolloClient = useApolloClient();
   const enableLongLivedFeatureFlags = useApplicationContext<
@@ -120,6 +123,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       ...featureFlags.FLAGS,
       ...allMenuFeatureToggles.allFeatureToggles,
       ...props.defaultFlags,
+      ...cachedFlags,
     }),
     [allMenuFeatureToggles.allFeatureToggles, props.defaultFlags]
   );
@@ -144,6 +148,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           props.user,
           props.projectKey
         ),
+        cacheIdentifier: ldCacheIdentifier,
       },
       http: {
         user: {
