@@ -54,7 +54,7 @@ import {
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
-import { SublistItem } from './menu-items.styles';
+import { SublistItem, SafeAreaElement } from './menu-items.styles';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
@@ -111,7 +111,53 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const [percentageX, setPercentageX] = useState(0);
+  const [percentageY, setPercentageY] = useState(0);
+
   const submenuRef = useRef<HTMLUListElement>(null);
+  const submenuSafeAreaRef = useRef<HTMLElement>(null);
+
+  /* Getting the width and height of the menu*/
+  const hasSubRefBoundingClientRect =
+    submenuRef.current?.getBoundingClientRect();
+
+  const { width: menuItemWidth, height: menuItemHeight } =
+    hasSubRefBoundingClientRect! ?? {};
+
+  // /* We want to track the left, top, width, and height of the safe area */
+  const submenuSafeAreaRefBoundingClientRect =
+    submenuSafeAreaRef.current?.getBoundingClientRect();
+  const {
+    left: safeAreaLeftPos,
+    top: safeAreaTopPos,
+    width: safeAreaWidth,
+    height: safeAreaHeight,
+  } = submenuSafeAreaRefBoundingClientRect! ?? {};
+
+  onmousemove = (e) => {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+
+    const localX = mouseX - safeAreaLeftPos;
+    const localY = mouseY - safeAreaTopPos;
+
+    if (
+      localX > 0 &&
+      localX < menuItemWidth &&
+      localY > 0 &&
+      localY < menuItemHeight
+    ) {
+      setPercentageX((localX / safeAreaWidth) * 100);
+      setPercentageY((localY / safeAreaHeight) * 100);
+    }
+  };
+
+  useLayoutEffect(() => {
+    submenuRef.current?.style.setProperty(
+      '--safe-start',
+      `${percentageX}% ${percentageY}%`
+    );
+  }, [percentageX, percentageY]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -216,6 +262,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
+        positionX={percentageX}
+        positionY={percentageY}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
@@ -294,6 +342,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                 </RestrictedMenuItem>
               ))
             : null}
+          <SafeAreaElement ref={submenuSafeAreaRef} />
         </MenuGroup>
       </MenuItem>
     </RestrictedMenuItem>

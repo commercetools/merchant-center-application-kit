@@ -223,6 +223,8 @@ const MenuListItem = styled.li<{
   isActive: boolean;
   isRouteActive: boolean;
   isCollapsed: boolean;
+  positionX: number;
+  positionY: number;
 }>`
   height: ${NAVBAR.itemSize};
   width: ${NAVBAR.itemSize};
@@ -306,6 +308,7 @@ const MenuListItem = styled.li<{
     /* z-index value must be higher than AppBar's z-index */
     z-index: 20001;
     box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
+    --safe-start: ${(props) => props.positionX}% ${(props) => props.positionY}%;
   }
 
   :hover
@@ -327,6 +330,15 @@ const MenuListItem = styled.li<{
   }
 `;
 
+const SafeAreaElement = styled.span`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: calc(100% - 16px);
+  clip-path: polygon(var(--safe-start), 100% 100%, 100% 0);
+`;
+
 export {
   Expander,
   ExpanderIcon,
@@ -337,4 +349,5 @@ export {
   SublistItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
+  SafeAreaElement,
 };
