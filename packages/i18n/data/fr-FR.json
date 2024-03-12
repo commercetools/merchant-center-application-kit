@@ -153,7 +153,7 @@
     "string": "Ouvrir"
   },
   "AppKit.Shared.remove": {
-    "string": "Remove"
+    "string": "Supprimer"
   },
   "AppKit.Shared.revert": {
     "string": "Rétablir les modifications"
