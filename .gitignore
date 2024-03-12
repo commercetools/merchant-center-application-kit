@@ -105,3 +105,6 @@ vercel-public-custom-views
 
 # Metals
 .metals
+
+# mise (mise-en-place)
+.mise.toml
