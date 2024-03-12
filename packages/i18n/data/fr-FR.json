@@ -488,7 +488,7 @@
   },
   "UserSettingsMenu.openMenuLabel": {
     "developer_comment": "The label when menu is closed and would be opened by a click",
-    "string": "Open user settings menu"
+    "string": "Ouvrir le menu paramètres utilisateur"
   },
   "UserSettingsMenu.privacyPolicy": {
     "developer_comment": "The label for privacy policy option",
