@@ -26,7 +26,7 @@ const getColorByType = (value: TAppNotificationKind) => {
     case NOTIFICATION_KINDS_SIDE.error:
       return designTokens.colorError;
     case NOTIFICATION_KINDS_SIDE.warning:
-      return designTokens.colorWarning;
+      return appKitDesignTokens.fontColorForNotificationWhenWarning;
     default:
       return 'transparent';
   }
