@@ -253,6 +253,8 @@ type MenuItemProps = {
   identifier?: string;
   onMouseMove?: MouseEventHandler<HTMLLIElement>;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
+  positionX: number;
+  positionY: number;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
@@ -272,6 +274,8 @@ const MenuItem = (props: MenuItemProps) => {
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
       onMouseMove={props.onMouseMove as MouseEventHandler<HTMLLIElement>}
+      positionX={props.positionX}
+      positionY={props.positionY}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>
