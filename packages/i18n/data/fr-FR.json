@@ -476,7 +476,7 @@
   },
   "UserSettingsMenu.closeMenuLabel": {
     "developer_comment": "The label when menu is open and would be closed by a click",
-    "string": "Fermer le menu paramètres utilisateur"
+    "string": "Fermer le menu des paramètres d'utilisateur"
   },
   "UserSettingsMenu.logout": {
     "developer_comment": "The label for logout option",
