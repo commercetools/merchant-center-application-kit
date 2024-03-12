@@ -48,6 +48,7 @@ import VersionTracker from '../version-tracker';
 type TApplicationShellAuthenticationProps = {
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
+  shouldWaitForRemoteFlags?: boolean;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
