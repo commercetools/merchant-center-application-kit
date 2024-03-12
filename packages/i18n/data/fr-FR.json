@@ -132,7 +132,7 @@
     "string": "Créer"
   },
   "AppKit.Shared.deactivate": {
-    "string": "Deactivate"
+    "string": "Désactiver"
   },
   "AppKit.Shared.delete": {
     "string": "Supprimer"
