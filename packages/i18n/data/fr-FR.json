@@ -484,7 +484,7 @@
   },
   "UserSettingsMenu.menuLabel": {
     "developer_comment": "The label describing the menu",
-    "string": "Menu Paramètres utilisateur"
+    "string": "Menu paramètres utilisateur"
   },
   "UserSettingsMenu.openMenuLabel": {
     "developer_comment": "The label when menu is closed and would be opened by a click",
