@@ -4,7 +4,7 @@ import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
 import ldAdapter, { getCachedFlags } from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import type { TFlags } from '@flopflip/types';
+import type { TFlags, TCacheIdentifiers } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
@@ -56,7 +56,7 @@ type TParsedHttpAdapterFlags = Record<
 // app uses our account of LD. The value is meant to be public, so there
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
-const ldCacheIdentifier = 'local';
+const ldCacheIdentifier: TCacheIdentifiers = 'local';
 
 function getUserContextForLaunchDarklyAdapter(
   user?: TSetupFlopFlipProviderProps['user'],
