@@ -138,7 +138,7 @@
     "string": "Supprimer"
   },
   "AppKit.Shared.disable": {
-    "string": "Disable"
+    "string": "Désactiver"
   },
   "AppKit.Shared.edit": {
     "string": "Modifier"
