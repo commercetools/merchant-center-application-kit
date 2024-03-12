@@ -208,7 +208,7 @@
     "string": "Masquer les notifications"
   },
   "PageNotFound.paragraph1": {
-    "string": "The item you are looking for may have been deleted, does not exist, or the URL was entered incorrectly. Check the URL and try again. Please contact your system administrator or the commercetools <a>Help Desk</a> if you have any further questions."
+    "string": "L'élément que vous cherchez n'existe pas, a été supprimé, ou son URL n'a pas été saisie correctement. Vérifiez l'URL et réessayez.\n\nContactez votre administrateur système ou commercetools <a>Assistance</a> pour en savoir plus."
   },
   "PageNotFound.title": {
     "string": "Impossible de trouver ce que vous cherchez"
