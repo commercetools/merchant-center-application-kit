@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { MessageDescriptor, useIntl } from 'react-intl';
+import { useTheme } from '@commercetools-uikit/design-system';
 import { DotIcon } from '@commercetools-uikit/icons';
 import Stamp, { TTone } from '@commercetools-uikit/stamp';
 import messages from './messages';
@@ -12,6 +13,7 @@ type TCustomStampProps = {
 };
 function CustomStamp(props: TCustomStampProps) {
   const intl = useIntl();
+
   const { values, ...message } = props.label;
   return (
     <Stamp
@@ -23,25 +25,29 @@ function CustomStamp(props: TCustomStampProps) {
   );
 }
 
-const IsProduction = () => (
-  <CustomStamp
-    tone="positive"
-    label={messages.ProjectProduction}
-    icon={
-      <div
-        css={css`
-          height: 18px;
-          svg {
+const IsProduction = () => {
+  const { themedValue } = useTheme();
+
+  return (
+    <CustomStamp
+      tone="positive"
+      label={messages.ProjectProduction}
+      icon={
+        <div
+          css={css`
             height: 18px;
-            width: 12px;
-          }
-        `}
-      >
-        <DotIcon color="primary" />
-      </div>
-    }
-  />
-);
+            svg {
+              height: 18px;
+              width: 12px;
+            }
+          `}
+        >
+          <DotIcon color={themedValue('primary', 'success')} />
+        </div>
+      }
+    />
+  );
+};
 
 const IsSuspended = () => (
   <CustomStamp tone="critical" label={messages.ProjectSuspended} />
