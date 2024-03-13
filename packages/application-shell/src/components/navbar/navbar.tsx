@@ -262,8 +262,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
-        positionX={percentageX}
-        positionY={percentageY}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}

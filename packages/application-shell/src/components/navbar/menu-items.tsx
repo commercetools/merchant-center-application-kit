@@ -249,8 +249,6 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
-  positionX: number;
-  positionY: number;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
@@ -268,8 +266,6 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
-      positionX={props.positionX}
-      positionY={props.positionY}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>
