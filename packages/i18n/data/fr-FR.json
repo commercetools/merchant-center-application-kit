@@ -111,19 +111,19 @@
     "string": "Revenir au projet"
   },
   "AppKit.Shared.activate": {
-    "string": "Activate"
+    "string": "Activer"
   },
   "AppKit.Shared.active": {
-    "string": "Active"
+    "string": "Actif"
   },
   "AppKit.Shared.add": {
-    "string": "Add"
+    "string": "Ajouter"
   },
   "AppKit.Shared.cancel": {
     "string": "Annuler"
   },
   "AppKit.Shared.close": {
-    "string": "Close"
+    "string": "Fermer"
   },
   "AppKit.Shared.confirm": {
     "string": "Confirmer"
@@ -132,28 +132,28 @@
     "string": "Créer"
   },
   "AppKit.Shared.deactivate": {
-    "string": "Deactivate"
+    "string": "Désactiver"
   },
   "AppKit.Shared.delete": {
     "string": "Supprimer"
   },
   "AppKit.Shared.disable": {
-    "string": "Disable"
+    "string": "Désactiver"
   },
   "AppKit.Shared.edit": {
-    "string": "Edit"
+    "string": "Modifier"
   },
   "AppKit.Shared.enable": {
-    "string": "Enable"
+    "string": "Activer"
   },
   "AppKit.Shared.inactive": {
-    "string": "Inactive"
+    "string": "Inactif"
   },
   "AppKit.Shared.open": {
-    "string": "Open"
+    "string": "Ouvrir"
   },
   "AppKit.Shared.remove": {
-    "string": "Remove"
+    "string": "Supprimer"
   },
   "AppKit.Shared.revert": {
     "string": "Rétablir les modifications"
@@ -201,14 +201,14 @@
     "string": "Menu Paramètres régionaux"
   },
   "NavBar.MCSupport.title": {
-    "string": "Support"
+    "string": "Assistance"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
     "string": "Masquer les notifications"
   },
   "PageNotFound.paragraph1": {
-    "string": "The item you are looking for may have been deleted, does not exist, or the URL was entered incorrectly. Check the URL and try again. Please contact your system administrator or the commercetools <a>Help Desk</a> if you have any further questions."
+    "string": "L'élément que vous cherchez n'existe pas, a été supprimé, ou son URL n'a pas été saisie correctement. Vérifiez l'URL et réessayez. Contactez votre administrateur système ou commercetools <a>Assistance</a> pour en savoir plus."
   },
   "PageNotFound.title": {
     "string": "Impossible de trouver ce que vous cherchez"
@@ -476,7 +476,7 @@
   },
   "UserSettingsMenu.closeMenuLabel": {
     "developer_comment": "The label when menu is open and would be closed by a click",
-    "string": "Close user settings menu"
+    "string": "Fermer le menu des paramètres d'utilisateur"
   },
   "UserSettingsMenu.logout": {
     "developer_comment": "The label for logout option",
@@ -484,11 +484,11 @@
   },
   "UserSettingsMenu.menuLabel": {
     "developer_comment": "The label describing the menu",
-    "string": "Menu Paramètres utilisateur"
+    "string": "Menu paramètres utilisateur"
   },
   "UserSettingsMenu.openMenuLabel": {
     "developer_comment": "The label when menu is closed and would be opened by a click",
-    "string": "Open user settings menu"
+    "string": "Ouvrir le menu des paramètres d'utilisateur"
   },
   "UserSettingsMenu.privacyPolicy": {
     "developer_comment": "The label for privacy policy option",
@@ -496,6 +496,6 @@
   },
   "UserSettingsMenu.support": {
     "developer_comment": "The label for Support",
-    "string": "Support"
+    "string": "Assistance"
   }
 }
