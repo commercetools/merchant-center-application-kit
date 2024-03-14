@@ -47,7 +47,8 @@ const ThemeSwitcher = () => {
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
       {!isRedesignAnnouncementDisabled &&
-      !hasUserSeenNewDesignReleaseNotificationModal ? (
+      !hasUserSeenNewDesignReleaseNotificationModal &&
+      isRecolouringThemeEnabled ? (
         <NewColoursSchemaAnnouncementModal onClose={handleCloseModal} />
       ) : null}
     </>
