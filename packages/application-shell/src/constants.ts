@@ -2,6 +2,10 @@ export const DIMENSIONS = {
   header: '56px',
 } as const;
 
+export const STORAGE_KEYS = {
+  IS_NEW_DESIGN_NOTIFICATION_CLOSED: 'isNewDesignNotificationClosed',
+} as const;
+
 export const NAVBAR = {
   expanderHeight: '50px',
   expanderSize: '40px',
