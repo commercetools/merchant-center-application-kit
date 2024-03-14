@@ -1,9 +1,9 @@
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useApolloClient } from '@apollo/client/react';
 import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
-import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { ConfigureFlopFlip, useAdapterStatus } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -17,6 +17,40 @@ import type {
 } from '../../types/generated/mc';
 import AllFeaturesQuery from './fetch-all-features.mc.graphql';
 
+const WAIT_FOR_REMOTE_FLAGS_TIMEOUT = 500; // milliseconds
+
+type TStatusAwareRendererProps = {
+  shouldWaitForRemoteFlags?: boolean;
+  children: ReactNode;
+};
+const StatusAwareRenderer = (props: TStatusAwareRendererProps) => {
+  const [shouldRender, setShouldRender] = useState(
+    !props.shouldWaitForRemoteFlags
+  );
+  const { isReady } = useAdapterStatus();
+  const displayTimeout = useRef<NodeJS.Timeout>();
+
+  if (isReady && !shouldRender) {
+    setShouldRender(true);
+    clearTimeout(displayTimeout.current);
+  }
+
+  useEffect(() => {
+    displayTimeout.current = setTimeout(() => {
+      setShouldRender(true);
+    }, WAIT_FOR_REMOTE_FLAGS_TIMEOUT);
+
+    return () => {
+      clearTimeout(displayTimeout.current);
+    };
+  }, []);
+
+  return shouldRender ? <>{props.children}</> : null;
+};
+StatusAwareRenderer.defaultProps = {
+  shouldWaitForRemoteFlags: process.env.NODE_ENV === 'test' ? false : true,
+};
+
 type TSetupFlopFlipProviderProps = {
   projectKey?: string;
   user?: TFetchLoggedInUserQuery['user'];
@@ -25,6 +59,7 @@ type TSetupFlopFlipProviderProps = {
   ldClientSideId?: string;
   children: ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
+  shouldWaitForRemoteFlags?: boolean;
 };
 
 type TLaunchDarklyUserCustomFields = {
@@ -194,7 +229,11 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           : !props.user || allMenuFeatureToggles.isLoading
       }
     >
-      {props.children}
+      <StatusAwareRenderer
+        shouldWaitForRemoteFlags={props.shouldWaitForRemoteFlags}
+      >
+        {props.children}
+      </StatusAwareRenderer>
     </ConfigureFlopFlip>
   );
 };
