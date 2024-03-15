@@ -8,7 +8,7 @@ import Text from '@commercetools-uikit/text';
 import { STORAGE_KEYS } from '../../constants';
 import messages from './messages';
 
-type TAdditionalEnvironmentValues = { disableRedesignAnnouncement: boolean };
+type TAdditionalEnvironmentValues = { disableRebrandingAnnouncement: boolean };
 type TSelectedEnvironmentValues = boolean | undefined;
 
 function useDisableRebrandingAnnouncement() {
