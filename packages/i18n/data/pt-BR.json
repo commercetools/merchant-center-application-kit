@@ -190,7 +190,7 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "O local dos dados selecionado servirá como configuração padrão no Merchant Center para todos os campos localizados, incluindo nomes, descrições e outros atributos localizados. <newline></newline><newline></newline>É importante observar que esta seleção não afeta o idioma da interface do Merchant Center, nem as opções de formatação de dados. Para modificar essas configurações, acesse seu perfil de usuário."
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
