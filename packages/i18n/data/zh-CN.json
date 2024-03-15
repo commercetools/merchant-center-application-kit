@@ -65,7 +65,7 @@
   },
   "ApiError.MaxResourceLimitExceeded": {
     "developer_comment": "User attempts to create a resource while having already reached the limit",
-    "string": "项目受到资源限制。要添加更多资源，请删除现有资源，联系管理员或联系客户支持。"
+    "string": "项目受到资源限制。要添加更多资源，请删除现有资源，联系管理员或联系客户支持部门。"
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
