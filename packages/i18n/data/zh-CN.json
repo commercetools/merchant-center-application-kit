@@ -190,7 +190,7 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "所选的数据区域设置将作为 Merchant Center 内所有本地化字段的默认设置，包括名称、说明和其他本地化属性。<newline></newline><newline></newline>需要注意的是，此选择不会影响 Merchant Center 的界面语言或任何数据格式化选项。若要修改这些设置，请导航到您的用户配置文件。 "
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
