@@ -194,7 +194,7 @@
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
-    "string": "Selecting a data locale"
+    "string": "选择数据区域设置"
   },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
