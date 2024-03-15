@@ -253,7 +253,7 @@
     "string": "生产"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "已暂停"
   },
   "ProjectStamp.willExpire": {
     "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
