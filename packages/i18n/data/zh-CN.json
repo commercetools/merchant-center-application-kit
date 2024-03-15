@@ -174,7 +174,7 @@
     "string": "无法加载自定义视图。请与管理员联系以检查其配置。"
   },
   "CustomViewsSelector.title": {
-    "string": "Custom Views:"
+    "string": "自定义视图："
   },
   "ErrorApologizer.notifiedTeam": {
     "string": "我们团队已收到此事务通知。"
