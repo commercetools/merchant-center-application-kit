@@ -12,12 +12,12 @@ type TAdditionalEnvironmentValues = { disableRedesignAnnouncement: boolean };
 type TSelectedEnvironmentValues = boolean | undefined;
 
 function useDisableRebrandingAnnouncement() {
-  const disableRedesignAnnouncement = useApplicationContext<
+  const disableRebrandingAnnouncement = useApplicationContext<
     TSelectedEnvironmentValues,
     TAdditionalEnvironmentValues
-  >((context) => context.environment.disableRedesignAnnouncement);
+  >((context) => context.environment.disableRebrandingAnnouncement);
 
-  return Boolean(disableRedesignAnnouncement);
+  return Boolean(disableRebrandingAnnouncement);
 }
 
 const NewColoursSchemaAnnouncementDialog = () => {

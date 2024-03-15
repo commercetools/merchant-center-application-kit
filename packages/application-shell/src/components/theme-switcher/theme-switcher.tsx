@@ -15,9 +15,7 @@ const ThemeSwitcher = () => {
   return (
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />
-      {isRecolouringThemeEnabled ? (
-        <NewColoursSchemaAnnouncementDialog />
-      ) : null}
+      <NewColoursSchemaAnnouncementDialog />
     </>
   );
 };
