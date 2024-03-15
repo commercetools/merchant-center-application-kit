@@ -65,7 +65,7 @@
   },
   "ApiError.MaxResourceLimitExceeded": {
     "developer_comment": "User attempts to create a resource while having already reached the limit",
-    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+    "string": "项目受到资源限制。要添加更多资源，请删除现有资源，联系管理员或联系客户支持部门。"
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
@@ -171,10 +171,10 @@
     "string": "关闭模态页面"
   },
   "CustomViewLoader.error.load": {
-    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+    "string": "无法加载自定义视图。请与管理员联系以检查其配置。"
   },
   "CustomViewsSelector.title": {
-    "string": "Custom Views:"
+    "string": "自定义视图："
   },
   "ErrorApologizer.notifiedTeam": {
     "string": "我们团队已收到此事务通知。"
@@ -190,11 +190,11 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "所选的数据区域设置将作为 Merchant Center 内所有本地化字段的默认设置，包括名称、说明和其他本地化属性。<newline></newline><newline></newline>需要注意的是，此选择不会影响 Merchant Center 的界面语言或任何数据格式化选项。若要修改这些设置，请导航到您的用户配置文件。 "
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
-    "string": "Selecting a data locale"
+    "string": "选择数据区域设置"
   },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
@@ -247,16 +247,16 @@
     "string": "您的项目尚未初始化"
   },
   "ProjectStamp.expired": {
-    "string": "Trial expired"
+    "string": "试用期已过"
   },
   "ProjectStamp.production": {
-    "string": "Production"
+    "string": "生产"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "已暂停"
   },
   "ProjectStamp.willExpire": {
-    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
+    "string": "{daysLeft, select, 0 {试用今天结束} 1 {试用在 1 天后结束} other {试用在 {daysLeft} 天后结束}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "您的项目已被暂停"
