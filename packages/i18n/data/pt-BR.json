@@ -253,7 +253,7 @@
     "string": "Produção"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "Suspenso"
   },
   "ProjectStamp.willExpire": {
     "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
