@@ -247,10 +247,10 @@
     "string": "您的项目尚未初始化"
   },
   "ProjectStamp.expired": {
-    "string": "Trial expired"
+    "string": "试用期已过"
   },
   "ProjectStamp.production": {
-    "string": "Production"
+    "string": "生产"
   },
   "ProjectStamp.suspended": {
     "string": "Suspended"
