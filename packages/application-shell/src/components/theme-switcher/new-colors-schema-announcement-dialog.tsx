@@ -8,21 +8,21 @@ import Text from '@commercetools-uikit/text';
 import { STORAGE_KEYS } from '../../constants';
 import messages from './messages';
 
-type TAdditionalEnvironmentValues = { disableRebrandingAnnouncement: boolean };
+type TAdditionalEnvironmentValues = { enableRebrandingAnnouncement: boolean };
 type TSelectedEnvironmentValues = boolean | undefined;
 
-function useDisableRebrandingAnnouncement() {
-  const disableRebrandingAnnouncement = useApplicationContext<
+function useEnablebrandingAnnouncement() {
+  const enableRebrandingAnnouncement = useApplicationContext<
     TSelectedEnvironmentValues,
     TAdditionalEnvironmentValues
-  >((context) => context.environment.disableRebrandingAnnouncement);
+  >((context) => context.environment.enableRebrandingAnnouncement);
 
-  return Boolean(disableRebrandingAnnouncement);
+  return Boolean(enableRebrandingAnnouncement);
 }
 
 const NewColoursSchemaAnnouncementDialog = () => {
   const intl = useIntl();
-  const isRebrandingAnnouncementDisabled = useDisableRebrandingAnnouncement();
+  const isRebrandingAnnouncementEnabled = useEnablebrandingAnnouncement();
 
   const [
     hasUserSeenNewDesignNotificationDialog,
@@ -42,7 +42,7 @@ const NewColoursSchemaAnnouncementDialog = () => {
   };
 
   return !hasUserSeenNewDesignNotificationDialog &&
-    !isRebrandingAnnouncementDisabled ? (
+    isRebrandingAnnouncementEnabled ? (
     <InfoDialog
       title={intl.formatMessage(messages.title)}
       isOpen={true}
