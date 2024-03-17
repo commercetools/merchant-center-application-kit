@@ -190,7 +190,7 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "El idioma de los datos seleccionados servirá como configuración predeterminada para todos los campos localizados de Merchant Center, incluidos los idiomas, descripciones y otros atributos. <newline></newline><newline></newline> Es importante destacar que esta selección no afecta a la lengua de la interfaz de Merchant Center o de otras opciones de formato de datos. Para cambiar estas configuraciones, navega por tu perfil de usuario."
+    "string": "El idioma de los datos seleccionados servirá como configuración predeterminada para todos los campos localizados de Merchant Center, incluidos los idiomas, descripciones y otros atributos. <newline></newline><newline></newline> Es importante destacar que esta selección no afecta a la lengua de la interfaz de Merchant Center u otras opciones de formato de datos. Para cambiar estas configuraciones, navega a tu perfil de usuario."
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
@@ -256,7 +256,7 @@
     "string": "Interrumpida"
   },
   "ProjectStamp.willExpire": {
-    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
+    "string": "{daysLeft, select, 0 {La prueba acaba hoy} 1 {La prueba acaba en 1 día} other {La prueba acaba en {daysLeft} días}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "Su proyecto ha sido interrumpido."
