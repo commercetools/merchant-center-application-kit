@@ -65,7 +65,7 @@
   },
   "ApiError.MaxResourceLimitExceeded": {
     "developer_comment": "User attempts to create a resource while having already reached the limit",
-    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+    "string": "El proyecto alcanzó el límite del recurso. Para agregar más, elimina los existentes, comunícate con el administrador o servicio de atención al cliente."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
@@ -171,10 +171,10 @@
     "string": "Cerrar Página modal"
   },
   "CustomViewLoader.error.load": {
-    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+    "string": "No hemos podido cargar la vista personalizada. Comunícate con el administrador para comprobar su configuración."
   },
   "CustomViewsSelector.title": {
-    "string": "Custom Views:"
+    "string": "Vistas personalizadas:"
   },
   "ErrorApologizer.notifiedTeam": {
     "string": "Nuestro equipo ha sido informado de este problema."
@@ -190,11 +190,11 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "El idioma de los datos seleccionados servirá como configuración predeterminada para todos los campos localizados de Merchant Center, incluidos los idiomas, descripciones y otros atributos. <newline></newline><newline></newline> Es importante destacar que esta selección no afecta a la lengua de la interfaz de Merchant Center o de otras opciones de formato de datos. Para cambiar estas configuraciones, navega por tu perfil de usuario."
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
-    "string": "Selecting a data locale"
+    "string": "Seleccionando un idioma para datos"
   },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
@@ -247,13 +247,13 @@
     "string": "Su proyecto aún no ha sido inicializado."
   },
   "ProjectStamp.expired": {
-    "string": "Trial expired"
+    "string": "Prueba caducada"
   },
   "ProjectStamp.production": {
-    "string": "Production"
+    "string": "Producción"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "Interrumpida"
   },
   "ProjectStamp.willExpire": {
     "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
