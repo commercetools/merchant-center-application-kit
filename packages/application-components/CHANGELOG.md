@@ -1,5 +1,25 @@
 # @commercetools-frontend/application-components
 
+## 22.21.0
+
+### Minor Changes
+
+- [#3440](https://github.com/commercetools/merchant-center-application-kit/pull/3440) [`a3c5849ae`](https://github.com/commercetools/merchant-center-application-kit/commit/a3c5849aee5a60ab8115baec1147a94edc4ffe9d) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Styling adjustments related to the upcoming new colours schema.
+
+### Patch Changes
+
+- [#3447](https://github.com/commercetools/merchant-center-application-kit/pull/3447) [`463a10122`](https://github.com/commercetools/merchant-center-application-kit/commit/463a101222d2a361de32a61839384b815efe2c50) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages to v13.4.1
+
+- Updated dependencies [[`dc5167fd4`](https://github.com/commercetools/merchant-center-application-kit/commit/dc5167fd4e6d52d5c3dd0faab806a3da78dee4b3), [`9e4697fff`](https://github.com/commercetools/merchant-center-application-kit/commit/9e4697fffaad77be9884ad5ba8f4e7d80177e6d7), [`9c817efc4`](https://github.com/commercetools/merchant-center-application-kit/commit/9c817efc4f55000570c5b8ce44bdf463bfe112f7)]:
+  - @commercetools-frontend/i18n@22.21.0
+  - @commercetools-frontend/assets@22.21.0
+  - @commercetools-frontend/application-config@22.21.0
+  - @commercetools-frontend/actions-global@22.21.0
+  - @commercetools-frontend/application-shell-connectors@22.21.0
+  - @commercetools-frontend/constants@22.21.0
+  - @commercetools-frontend/l10n@22.21.0
+  - @commercetools-frontend/sentry@22.21.0
+
 ## 22.20.0
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @commercetools-website/custom-views
 
+## 22.21.0
+
+### Patch Changes
+
+- Updated dependencies [[`9c817efc4`](https://github.com/commercetools/merchant-center-application-kit/commit/9c817efc4f55000570c5b8ce44bdf463bfe112f7)]:
+  - @commercetools-frontend/assets@22.21.0
+
 ## 22.20.0
 
 ### Patch Changes

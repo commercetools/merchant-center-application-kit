@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 22.21.0
+
+### Minor Changes
+
+- [#3445](https://github.com/commercetools/merchant-center-application-kit/pull/3445) [`9c817efc4`](https://github.com/commercetools/merchant-center-application-kit/commit/9c817efc4f55000570c5b8ce44bdf463bfe112f7) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Included a new temporary dialog to notify users about the new colour schema.
+
 ## 22.20.0
 
 ## 22.19.0
