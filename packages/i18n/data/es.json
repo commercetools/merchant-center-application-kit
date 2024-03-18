@@ -203,6 +203,12 @@
   "NavBar.MCSupport.title": {
     "string": "Soporte (en inglés)"
   },
+  "NewColoursSchemaAnnouncementDialog.content": {
+    "string": "From the new colors to an updated navigation, we've made a few changes to improve your experience within Merchant Center. You will also find that we are taking steps to ensure a consistent look and feel across all of our user tooling, from the Merchant Center to the Frontend Studio. Check out the updates!"
+  },
+  "NewColoursSchemaAnnouncementDialog.title": {
+    "string": "We've refreshed our Merchant Center!"
+  },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
     "string": "Ocultar notificación"
