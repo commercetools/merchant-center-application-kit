@@ -190,11 +190,11 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "Das ausgewählte Datengebietsschema dient als Standardeinstellung für alle lokalisierten Felder im Merchant Center, einschließlich Namen, Beschreibungen und anderer lokalisierter Attribute. <newline></newline><newline></newline>Es ist wichtig zu beachten, dass diese Auswahl keine Auswirkungen auf die Sprache der Benutzeroberfläche des Merchant Centers oder auf Datenformatierungsoptionen hat. Um diese Einstellungen zu ändern, navigieren Sie zu Ihrem Benutzerprofil."
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
-    "string": "Selecting a data locale"
+    "string": "Datengebietsschema auswählen"
   },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
@@ -247,13 +247,13 @@
     "string": "Ihr Projekt ist noch nicht initialisiert"
   },
   "ProjectStamp.expired": {
-    "string": "Trial expired"
+    "string": "Testversion abgelaufen"
   },
   "ProjectStamp.production": {
-    "string": "Production"
+    "string": "Produktion"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "Suspendiert"
   },
   "ProjectStamp.willExpire": {
     "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
