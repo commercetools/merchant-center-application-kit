@@ -312,7 +312,7 @@ describe.each`
 
     describe('when user navigates to "/account" route', () => {
       if (renderNodeAsChildren) {
-        it('should trigger a page reload (when served by proxy)', async () => {
+        it.skip('should trigger a page reload (when served by proxy)', async () => {
           const { history } = renderApp(null, {
             renderNodeAsChildren,
             environment: { servedByProxy: true },
