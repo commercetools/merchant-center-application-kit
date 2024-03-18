@@ -22,7 +22,6 @@ function useEnablebrandingAnnouncement() {
 
 const NewColoursSchemaAnnouncementDialog = () => {
   const intl = useIntl();
-  const isRebrandingAnnouncementEnabled = useEnablebrandingAnnouncement();
 
   const [
     hasUserSeenNewDesignNotificationDialog,
@@ -41,8 +40,7 @@ const NewColoursSchemaAnnouncementDialog = () => {
     setHasUserSeenNewDesignNotificationDialog(true);
   };
 
-  return !hasUserSeenNewDesignNotificationDialog &&
-    isRebrandingAnnouncementEnabled ? (
+  return !hasUserSeenNewDesignNotificationDialog ? (
     <InfoDialog
       title={intl.formatMessage(messages.title)}
       isOpen={true}
