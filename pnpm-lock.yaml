@@ -481,8 +481,8 @@ importers:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.3.3)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.3.3)
       omit-empty-es:
         specifier: 1.1.3
         version: 1.1.3
@@ -700,8 +700,8 @@ importers:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.0.4)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.0.4)
       omit-empty-es:
         specifier: 1.1.3
         version: 1.1.3
@@ -916,8 +916,8 @@ importers:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.3.3)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.3.3)
       omit-empty-es:
         specifier: 1.1.3
         version: 1.1.3
@@ -1135,8 +1135,8 @@ importers:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.0.4)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.0.4)
       omit-empty-es:
         specifier: 1.1.3
         version: 1.1.3
@@ -1512,8 +1512,8 @@ importers:
         specifier: 29.5.0
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.3.3)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.3.3)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -1841,8 +1841,8 @@ importers:
         specifier: 29.5.0
         version: 29.5.0
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.3.3)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.3.3)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -1935,8 +1935,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       headers-polyfill:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^3.2.5
+        version: 3.2.5
       jest:
         specifier: 29.5.0
         version: 29.5.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -1944,8 +1944,8 @@ importers:
         specifier: 29.5.0
         version: 29.5.0
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.0.4)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.0.4)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -2752,8 +2752,8 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.3.3)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.3.3)
       rimraf:
         specifier: 5.0.1
         version: 5.0.1
@@ -3269,8 +3269,8 @@ importers:
         specifier: 29.5.0
         version: 29.5.0(@types/node@16.18.48)(ts-node@10.9.1)
       msw:
-        specifier: 0.49.3
-        version: 0.49.3(typescript@5.0.4)
+        specifier: 1.3.3
+        version: 1.3.3(typescript@5.0.4)
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@16.18.48)(typescript@5.0.4)
@@ -13920,6 +13920,21 @@ packages:
       '@types/set-cookie-parser': 2.4.2
       set-cookie-parser: 2.6.0
 
+  /@mswjs/interceptors@0.17.10:
+    resolution: {integrity: sha512-N8x7eSLGcmUFNWZRxT1vsHvypzIRgQYdG0rJey/rZCy6zT/30qDt8Joj7FxzGNLSwXbeZqJOMqDurp7ra4hgbw==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@open-draft/until': 1.0.3
+      '@types/debug': 4.1.7
+      '@xmldom/xmldom': 0.8.7
+      debug: 4.3.4(supports-color@8.1.1)
+      headers-polyfill: 3.2.5
+      outvariant: 1.4.0
+      strict-event-emitter: 0.2.8
+      web-encoding: 1.1.5
+    transitivePeerDependencies:
+      - supports-color
+
   /@mswjs/interceptors@0.17.9:
     resolution: {integrity: sha512-4LVGt03RobMH/7ZrbHqRxQrS9cc2uh+iNKSj8UWr8M26A2i793ju+csaB5zaqYltqJmA2jUq4VeYfKmVqvsXQg==}
     engines: {node: '>=14'}
@@ -13928,12 +13943,13 @@ packages:
       '@types/debug': 4.1.7
       '@xmldom/xmldom': 0.8.7
       debug: 4.3.4(supports-color@8.1.1)
-      headers-polyfill: 3.1.2
+      headers-polyfill: 3.2.5
       outvariant: 1.4.0
       strict-event-emitter: 0.2.8
       web-encoding: 1.1.5
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3:
     resolution: {integrity: sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==}
@@ -18874,6 +18890,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
 
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -20750,7 +20767,7 @@ packages:
     peerDependencies:
       react: '>=16.12.0'
     dependencies:
-      '@babel/runtime': 7.24.0
+      '@babel/runtime': 7.22.15
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 18.2.0
@@ -24606,6 +24623,10 @@ packages:
 
   /headers-polyfill@3.1.2:
     resolution: {integrity: sha512-tWCK4biJ6hcLqTviLXVR9DTRfYGQMXEIUj3gwJ2rZ5wO/at3XtkI4g8mCvFdUF9l1KMBNCfmNAdnahm1cgavQA==}
+    dev: true
+
+  /headers-polyfill@3.2.5:
+    resolution: {integrity: sha512-tUCGvt191vNSQgttSyJoibR+VO+I6+iCHIUdhzEMJKE+EAL8BwCN7fUOZlY4ofOelNHsK+gEjxB/B+9N3EWtdA==}
 
   /history-query-enhancer@1.0.4(history@4.10.1):
     resolution: {integrity: sha512-zs3zt64jspt9RGS5hLarIkeC9/omIkMjU4KkC2windSqD04KGQY84sDZWfnFS5qeJ07Ig8Y1t9jjBffQ9ZHdpw==}
@@ -28557,28 +28578,64 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: true
 
-  /msw@0.49.3(typescript@5.3.3):
-    resolution: {integrity: sha512-kRCbDNbNnRq5LC1H/NUceZlrPAvSrMH6Or0mirIuH69NY84xwDruPn/hkXTovIK1KwDwbk+ZdoSyJlpiekLxEA==}
+  /msw@1.3.3(typescript@5.0.4):
+    resolution: {integrity: sha512-CiPyRFiYJCXYyH/vwxT7m+sa4VZHuUH6cGwRBj0kaTjBGpsk4EnL47YzhoA859htVCF2vzqZuOsomIUlFqg9GQ==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     peerDependencies:
-      typescript: '>= 4.4.x <= 4.9.x'
+      typescript: '>= 4.4.x'
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
       '@mswjs/cookies': 0.2.2
-      '@mswjs/interceptors': 0.17.9
+      '@mswjs/interceptors': 0.17.10
       '@open-draft/until': 1.0.3
       '@types/cookie': 0.4.1
       '@types/js-levenshtein': 1.1.1
-      chalk: 4.1.1
-      chokidar: 3.5.3
+      chalk: 4.1.2
+      chokidar: 3.6.0
       cookie: 0.4.2
       graphql: 16.8.1
-      headers-polyfill: 3.1.2
+      headers-polyfill: 3.2.5
+      inquirer: 8.2.5
+      is-node-process: 1.2.0
+      js-levenshtein: 1.1.6
+      node-fetch: 2.6.11
+      outvariant: 1.4.0
+      path-to-regexp: 6.2.1
+      strict-event-emitter: 0.4.6
+      type-fest: 2.19.0
+      typescript: 5.0.4
+      yargs: 17.7.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  /msw@1.3.3(typescript@5.3.3):
+    resolution: {integrity: sha512-CiPyRFiYJCXYyH/vwxT7m+sa4VZHuUH6cGwRBj0kaTjBGpsk4EnL47YzhoA859htVCF2vzqZuOsomIUlFqg9GQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      typescript: '>= 4.4.x'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@mswjs/cookies': 0.2.2
+      '@mswjs/interceptors': 0.17.10
+      '@open-draft/until': 1.0.3
+      '@types/cookie': 0.4.1
+      '@types/js-levenshtein': 1.1.1
+      chalk: 4.1.2
+      chokidar: 3.6.0
+      cookie: 0.4.2
+      graphql: 16.8.1
+      headers-polyfill: 3.2.5
       inquirer: 8.2.5
       is-node-process: 1.2.0
       js-levenshtein: 1.1.6
