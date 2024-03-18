@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { InfoDialog } from '@commercetools-frontend/application-components';
-import mcRebrandingAnnouncementSVG from '@commercetools-frontend/assets/images/mc-rebranding-announcement.svg';
+import mcRecolouringAnnouncementSVG from '@commercetools-frontend/assets/images/mc-recolouring-announcement.svg';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { STORAGE_KEYS } from '../../constants';
@@ -11,23 +11,23 @@ const NewColoursSchemaAnnouncementDialog = () => {
   const intl = useIntl();
 
   const [
-    hasUserSeenNewDesignNotificationDialog,
-    setHasUserSeenNewDesignNotificationDialog,
+    hasUserSeenRecolouringNotificationDialog,
+    setHasUserSeenRecolouringNotificationDialog,
   ] = useState(
     window.localStorage.getItem(
-      STORAGE_KEYS.IS_NEW_DESIGN_NOTIFICATION_CLOSED
+      STORAGE_KEYS.IS_RECOLOURING_NOTIFICATION_CLOSED
     ) === 'true'
   );
 
   const handleCloseDialog = () => {
     window.localStorage.setItem(
-      STORAGE_KEYS.IS_NEW_DESIGN_NOTIFICATION_CLOSED,
+      STORAGE_KEYS.IS_RECOLOURING_NOTIFICATION_CLOSED,
       'true'
     );
-    setHasUserSeenNewDesignNotificationDialog(true);
+    setHasUserSeenRecolouringNotificationDialog(true);
   };
 
-  return !hasUserSeenNewDesignNotificationDialog ? (
+  return !hasUserSeenRecolouringNotificationDialog ? (
     <InfoDialog
       title={intl.formatMessage(messages.title)}
       isOpen={true}
@@ -37,7 +37,7 @@ const NewColoursSchemaAnnouncementDialog = () => {
       <Spacings.Stack scale="xl">
         <img
           style={{ height: '300px', padding: '16px 16px 0' }}
-          src={mcRebrandingAnnouncementSVG}
+          src={mcRecolouringAnnouncementSVG}
           alt="merchant center redesign announcement"
         />
         <Text.Body>

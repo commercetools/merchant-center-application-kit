@@ -3,7 +3,7 @@ export const DIMENSIONS = {
 } as const;
 
 export const STORAGE_KEYS = {
-  IS_NEW_DESIGN_NOTIFICATION_CLOSED: 'isNewDesignNotificationClosed',
+  IS_RECOLOURING_NOTIFICATION_CLOSED: 'isRecolouringNotificationClosed',
 } as const;
 
 export const NAVBAR = {
