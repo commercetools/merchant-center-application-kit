@@ -1,5 +1,20 @@
 # @commercetools-frontend/react-notifications
 
+## 22.21.0
+
+### Minor Changes
+
+- [#3440](https://github.com/commercetools/merchant-center-application-kit/pull/3440) [`a3c5849ae`](https://github.com/commercetools/merchant-center-application-kit/commit/a3c5849aee5a60ab8115baec1147a94edc4ffe9d) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Styling adjustments related to the upcoming new colours schema.
+
+### Patch Changes
+
+- Updated dependencies [[`a3c5849ae`](https://github.com/commercetools/merchant-center-application-kit/commit/a3c5849aee5a60ab8115baec1147a94edc4ffe9d), [`463a10122`](https://github.com/commercetools/merchant-center-application-kit/commit/463a101222d2a361de32a61839384b815efe2c50)]:
+  - @commercetools-frontend/application-components@22.21.0
+  - @commercetools-frontend/actions-global@22.21.0
+  - @commercetools-frontend/constants@22.21.0
+  - @commercetools-frontend/notifications@22.21.0
+  - @commercetools-frontend/sentry@22.21.0
+
 ## 22.20.0
 
 ### Patch Changes
