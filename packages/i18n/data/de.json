@@ -262,7 +262,7 @@
     "string": "Suspendiert"
   },
   "ProjectStamp.willExpire": {
-    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} sonstige {Trial ends in {daysLeft} days}}"
+    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "Ihr Projekt wurde suspendiert"
