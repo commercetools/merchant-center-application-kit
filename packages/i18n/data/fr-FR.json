@@ -65,7 +65,7 @@
   },
   "ApiError.MaxResourceLimitExceeded": {
     "developer_comment": "User attempts to create a resource while having already reached the limit",
-    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+    "string": "Ce projet a atteint la limite de cette ressource. Pour ajouter d'autres ressources, supprimez des ressources existantes, ou contactez votre administrateur ou l'assistance client."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
@@ -171,10 +171,10 @@
     "string": "Fermer la fenêtre modale"
   },
   "CustomViewLoader.error.load": {
-    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+    "string": "Impossible de télécharger l'Affichage personnalisé. Contactez votre administrateur pour vérifier sa configuration."
   },
   "CustomViewsSelector.title": {
-    "string": "Custom Views:"
+    "string": "Affichages personnalisés :"
   },
   "ErrorApologizer.notifiedTeam": {
     "string": "Notre équipe est au courant de ce problème."
@@ -190,11 +190,11 @@
   },
   "LocaleSwitcher.dialogLocaleDescription": {
     "developer_comment": "The description for the data locale dialog",
-    "string": "The selected data locale will serve as the default setting for all localized fields within the Merchant Center, including names, descriptions, and other localized attributes. <newline></newline><newline></newline> It's important to note that this selection does not affect the interface language of the Merchant Center or any data formatting options. To modify these settings, navigate to your user profile."
+    "string": "Le paramètre régional de données sélectionné servira de paramètre par défaut pour tous les champs localisés dans le Merchant Center, y compris les noms, les descriptions et les autres attributs localisés. <newline></newline><newline></newline> Il est important de noter que cette sélection n'affecte pas la langue de l'interface du Merchant Center ni toute option de formatage des données. Pour modifier ces paramètres, naviguez vers votre profil d'utilisateur."
   },
   "LocaleSwitcher.dialogLocaleTitle": {
     "developer_comment": "The title for the data locale dialog",
-    "string": "Selecting a data locale"
+    "string": "Sélectionner un paramètre régional de données"
   },
   "LocaleSwitcher.localesLabel": {
     "developer_comment": "The label for project dropdown switcher",
@@ -202,6 +202,12 @@
   },
   "NavBar.MCSupport.title": {
     "string": "Assistance"
+  },
+  "NewColoursSchemaAnnouncementDialog.content": {
+    "string": "From the new colors to an updated navigation, we've made a few changes to improve your experience within Merchant Center. You will also find that we are taking steps to ensure a consistent look and feel across all of our user tooling, from the Merchant Center to the Frontend Studio. Check out the updates!"
+  },
+  "NewColoursSchemaAnnouncementDialog.title": {
+    "string": "We've refreshed our Merchant Center!"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
@@ -247,16 +253,16 @@
     "string": "Votre projet n'est pas encore initialisé"
   },
   "ProjectStamp.expired": {
-    "string": "Trial expired"
+    "string": "Période d'essai expirée"
   },
   "ProjectStamp.production": {
     "string": "Production"
   },
   "ProjectStamp.suspended": {
-    "string": "Suspended"
+    "string": "Suspendu"
   },
   "ProjectStamp.willExpire": {
-    "string": "{daysLeft, select, 0 {Trial ends today} 1 {Trial ends in 1 day} other {Trial ends in {daysLeft} days}}"
+    "string": "{daysLeft, select, 0 {La période d'essai termine aujourd'hui} 1 {La période d'essai termine dans 1 jour} other {La période d'essai termine dans {daysLeft} jours}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "Votre projet est suspendu"
