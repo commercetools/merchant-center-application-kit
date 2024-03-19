@@ -262,7 +262,7 @@
     "string": "Suspendu"
   },
   "ProjectStamp.willExpire": {
-    "string": "{daysLeft, select, 0 {La période d'essai termine aujourd'hui} 1 {La période d'essai termine dans 1 jour} autre {La période d'essai termine dans {daysLeft} jours}}"
+    "string": "{daysLeft, select, 0 {La période d'essai termine aujourd'hui} 1 {La période d'essai termine dans 1 jour} other {La période d'essai termine dans {daysLeft} jours}}"
   },
   "ProjectSuspended.defaultSuspensionMessage": {
     "string": "Votre projet est suspendu"
