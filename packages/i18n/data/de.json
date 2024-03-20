@@ -65,7 +65,7 @@
   },
   "ApiError.MaxResourceLimitExceeded": {
     "developer_comment": "User attempts to create a resource while having already reached the limit",
-    "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
+    "string": "Für dieses Projekt wurde das Limit von Ressourcen erreicht. Wenn Sie weitere Ressourcen hinzufügen möchten, löschen Sie bereits vorhandene Ressourcen, wenden Sie sich an Ihren Administrator oder den Kundensupport."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
@@ -171,10 +171,10 @@
     "string": "Modale Seite schließen"
   },
   "CustomViewLoader.error.load": {
-    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+    "string": "Die benutzerdefinierte Ansicht konnte nicht geladen werden. Bitte wenden Sie sich an Ihren Administrator, um die Konfiguration zu überprüfen."
   },
   "CustomViewsSelector.title": {
-    "string": "Custom Views:"
+    "string": "Benutzerdefinierte Ansichten:"
   },
   "ErrorApologizer.notifiedTeam": {
     "string": "Unser Team wurde über das Problem informiert. "
