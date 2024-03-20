@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-components
 
+## 22.22.0
+
+### Patch Changes
+
+- Updated dependencies [[`cf7c7bb9b`](https://github.com/commercetools/merchant-center-application-kit/commit/cf7c7bb9b1f032e621e1f6e26e61e4336aa690d8)]:
+  - @commercetools-frontend/i18n@22.22.0
+  - @commercetools-frontend/actions-global@22.22.0
+  - @commercetools-frontend/application-config@22.22.0
+  - @commercetools-frontend/application-shell-connectors@22.22.0
+  - @commercetools-frontend/assets@22.22.0
+  - @commercetools-frontend/constants@22.22.0
+  - @commercetools-frontend/l10n@22.22.0
+  - @commercetools-frontend/sentry@22.22.0
+
 ## 22.21.0
 
 ### Minor Changes
