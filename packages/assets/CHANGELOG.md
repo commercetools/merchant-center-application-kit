@@ -1,5 +1,7 @@
 # @commercetools-frontend/assets
 
+## 22.22.0
+
 ## 22.21.0
 
 ### Minor Changes
