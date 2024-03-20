@@ -182,6 +182,7 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
   const menuElementRef = useRef<HTMLAnchorElement>(null);
+  const { themedValue } = useTheme();
   useEffect(() => {
     menuElementRef.current?.focus();
   }, []);
@@ -216,6 +217,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
+              color={themedValue('accent', 'purple')}
             />
             <div>
               <Text.Subheadline as="h4">
