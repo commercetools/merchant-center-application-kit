@@ -26,7 +26,7 @@
     "@commercetools-uikit/text-input": "^18.2.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "formik": "2.2.9",
+    "formik": "2.4.5",
     "history": "4.10.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
@@ -42,7 +42,7 @@
     "@types/react": "^17.0.56",
     "@types/react-dom": "^17.0.19",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "4.1.0",
+    "@vitejs/plugin-react": "4.2.1",
     "vite": "4.5.2"
   }
 }
