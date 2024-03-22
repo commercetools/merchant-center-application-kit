@@ -84,7 +84,7 @@
     "msw": "0.49.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-intl": "^6.4.5",
+    "react-intl": "^6.4.7",
     "react-router-dom": "5.3.4"
   },
   "peerDependencies": {
