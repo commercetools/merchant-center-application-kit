@@ -43,7 +43,7 @@
     "wait-for-observables": "1.0.3"
   },
   "devDependencies": {
-    "@apollo/client": "3.9.8",
+    "@apollo/client": "3.7.14",
     "@testing-library/react": "12.1.5",
     "@types/jest": "^29.5.4",
     "headers-polyfill": "^3.1.2",

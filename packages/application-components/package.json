@@ -73,7 +73,7 @@
     "react-modal": "3.16.1"
   },
   "devDependencies": {
-    "@apollo/client": "3.9.8",
+    "@apollo/client": "3.7.14",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
