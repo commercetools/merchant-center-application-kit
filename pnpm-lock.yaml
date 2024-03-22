@@ -120,7 +120,7 @@ importers:
         version: 1.28.2
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@12.12.0)
       '@percy/puppeteer':
         specifier: 2.0.2
         version: 2.0.2(puppeteer@20.9.0)
@@ -138,7 +138,7 @@ importers:
         version: 6.5.1(@svgr/core@6.5.1)
       '@testing-library/cypress':
         specifier: 8.0.7
-        version: 8.0.7(cypress@12.17.4)
+        version: 8.0.7(cypress@12.12.0)
       '@testing-library/dom':
         specifier: ^9.3.1
         version: 9.3.1
@@ -188,8 +188,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 12.12.0
+        version: 12.12.0
       dotenv:
         specifier: 16.4.5
         version: 16.4.5
@@ -2178,8 +2178,8 @@ importers:
         specifier: ^16.1.1
         version: 16.1.1
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 12.12.0
+        version: 12.12.0
 
   packages/eslint-config-mc-app:
     dependencies:
@@ -9876,7 +9876,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -11845,7 +11845,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -15358,7 +15358,7 @@ packages:
     dependencies:
       '@percy/logger': 1.28.2
       ajv: 8.12.0
-      cosmiconfig: 8.1.3
+      cosmiconfig: 8.2.0
       yaml: 2.3.4
     dev: false
 
@@ -15387,13 +15387,13 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@percy/cypress@3.1.2(cypress@12.17.4):
+  /@percy/cypress@3.1.2(cypress@12.12.0):
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.23.0
-      cypress: 12.17.4
+      cypress: 12.12.0
     dev: false
 
   /@percy/dom@1.28.2:
@@ -16586,7 +16586,7 @@ packages:
     dependencies:
       defer-to-connect: 2.0.1
 
-  /@testing-library/cypress@8.0.7(cypress@12.17.4):
+  /@testing-library/cypress@8.0.7(cypress@12.12.0):
     resolution: {integrity: sha512-3HTV725rOS+YHve/gD9coZp/UcPK5xhr4H0GMnq/ni6USdtzVtSOG9WBFtd8rYnrXk8rrGD+0toRFYouJNIG0Q==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -16594,7 +16594,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.15
       '@testing-library/dom': 8.20.1
-      cypress: 12.17.4
+      cypress: 12.12.0
     dev: false
 
   /@testing-library/dom@8.20.1:
@@ -17107,10 +17107,10 @@ packages:
 
   /@types/node@14.18.33:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
-    dev: true
 
   /@types/node@16.18.48:
     resolution: {integrity: sha512-mlaecDKQ7rIZrYD7iiKNdzFb6e/qD5I9U1rAhq+Fd+DWvYVs+G2kv74UFHmSOlg5+i/vF3XxuR522V4u8BqO+Q==}
+    dev: true
 
   /@types/node@18.17.14:
     resolution: {integrity: sha512-ZE/5aB73CyGqgQULkLG87N9GnyGe5TcQjv34pwS8tfBs1IkCh0ASM69mydb2znqd6v0eX+9Ytvk6oQRqu8T1Vw==}
@@ -20897,15 +20897,15 @@ packages:
       fs-exists-sync: 0.1.0
     dev: false
 
-  /cypress@12.17.4:
-    resolution: {integrity: sha512-gAN8Pmns9MA5eCDFSDJXWKUpaL3IDd89N9TtIupjYnzLSmlpVr+ZR+vb4U/qaMp+lB6tBvAmt7504c3Z4RU5KQ==}
+  /cypress@12.12.0:
+    resolution: {integrity: sha512-UU5wFQ7SMVCR/hyKok/KmzG6fpZgBHHfrXcHzDmPHWrT+UUetxFzQgt7cxCszlwfozckzwkd22dxMwl/vNkWRw==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.12
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
-      '@types/node': 16.18.48
+      '@types/node': 14.18.33
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
       arch: 2.2.0
@@ -20938,7 +20938,6 @@ packages:
       minimist: 1.2.8
       ospath: 1.2.2
       pretty-bytes: 5.6.0
-      process: 0.11.10
       proxy-from-env: 1.0.0
       request-progress: 3.0.0
       semver: 7.6.0
@@ -21596,7 +21595,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
-      tslib: 2.6.2
+      tslib: 2.5.0
     dev: false
 
   /dset@3.1.2:
@@ -31534,6 +31533,7 @@ packages:
   /process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
     engines: {node: '>= 0.6.0'}
+    dev: false
 
   /progress@2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
