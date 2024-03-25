@@ -40,10 +40,10 @@
     "chalk": "4.1.2",
     "cldr": "7.5.0",
     "deep-diff": "1.0.2",
-    "node-fetch": "2.6.11",
+    "node-fetch": "2.7.0",
     "prompts": "^2.4.2",
     "react": "17.0.2",
-    "rimraf": "5.0.1"
+    "rimraf": "5.0.5"
   },
   "peerDependencies": {
     "react": "17.x"
