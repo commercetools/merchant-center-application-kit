@@ -1,6 +1,5 @@
 import { createApolloClient } from '@commercetools-frontend/application-shell';
 import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
-import { featureFlags } from '@commercetools-frontend/constants';
 import { entryPointUriPath } from '../constants';
 
 const mergeWithDefaultOptions = (options = {}) => ({
@@ -17,9 +16,7 @@ const renderApplicationWithRedux = (ui, options = {}) =>
     ui,
     mergeWithDefaultOptions({
       ...options,
-      flags: {
-        [featureFlags.CUSTOM_VIEWS]: true,
-      },
+      flags: {},
     })
   );
 

@@ -32,9 +32,7 @@ const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
   .sort()
   .map<TVisualRouteSpec>((key) => allUniqueVisualRouteComponents[key]);
 
-const appFlags = {
-  [featureFlags.CUSTOM_VIEWS]: true,
-};
+const appFlags = {};
 
 const App = () => (
   <ApolloProvider client={apolloClient}>

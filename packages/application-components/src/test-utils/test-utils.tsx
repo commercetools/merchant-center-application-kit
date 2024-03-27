@@ -12,7 +12,6 @@ import {
   ApplicationContextProvider,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { featureFlags } from '@commercetools-frontend/constants';
 import type { TProjectGraphql } from '../../../../test-data/project';
 import * as ProjectMock from '../../../../test-data/project';
 
@@ -53,9 +52,7 @@ const customRender = (
   }: Partial<CustomRenderOptions> = {}
 ) => {
   const client = apolloClient ?? createApolloClient();
-  const flags = {
-    [featureFlags.CUSTOM_VIEWS]: true,
-  };
+  const flags = {};
 
   return {
     ...render(

@@ -17,10 +17,8 @@
  *   them to off until fetched).
  */
 
-export const CUSTOM_VIEWS = 'enableCustomViews';
 export const RECOLOURING = 'mcRecolouring';
 
 export const FLAGS = {
-  [CUSTOM_VIEWS]: false,
   [RECOLOURING]: false,
 };
