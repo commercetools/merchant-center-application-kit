@@ -14,7 +14,6 @@
     "lint": "jest --projects jest.{eslint,stylelint,text}.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
-    "lint:text": "jest --config jest.text.config.js",
     "typecheck": "tsc --noEmit",
     "typecheck:cypress": "pnpm typecheck -p cypress",
     "typecheck:starter:custom-applications": "pnpm typecheck -p application-templates/starter-typescript",
@@ -58,7 +57,6 @@
     "template-custom-view-starter-typescript:start:prod:local": "pnpm --filter @commercetools-applications/merchant-center-custom-view-template-starter-typescript run start:prod:local",
     "build": "./scripts/build_packages.sh",
     "build:watch": "pnpm build --watch",
-    "build:website:custom-views": "./scripts/build_website_custom_views.sh",
     "vercel-build": "echo \"Nothing to do, the build and deployment is managed in GH actions.\"",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "graphql-codegen -r dotenv/config --config codegen.mc.yml",
@@ -181,12 +179,10 @@
       "@types/react-dom": "17.0.20",
       "@types/react-router": "5.1.20",
       "@typescript-eslint/eslint-plugin": "^5.52.0",
-      "@typescript-eslint/parser": "^5.52.0",
-      "@commercetools-docs/gatsby-theme-docs>gatsby-plugin-mdx": "3.20.0"
+      "@typescript-eslint/parser": "^5.52.0"
     },
     "patchedDependencies": {
-      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
-      "gatsby-plugin-mdx@3.20.0": "patches/gatsby-plugin-mdx@3.20.0.patch"
+      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch"
     }
   },
   "engines": {

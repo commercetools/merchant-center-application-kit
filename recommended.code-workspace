@@ -32,9 +32,6 @@
       "typescriptreact",
       "graphql"
     ],
-    "vale.core.useCLI": true,
-    "vale.valeCLI.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale-bin",
-    "vale.valeCLI.config": "${workspaceFolder}/node_modules/@commercetools-docs/writing-style/.vale.ini",
     "spellright.notificationClass": "error",
     "spellright.language": [
       "en"
@@ -53,7 +50,7 @@
           "/.custom-application-config.json",
           "/custom-application-config.json"
         ],
-        "url": "./packages/application-config/schema.json"
+        "url": "./packages/application-config/custom-application.schema.json"
       }
     ],
     "typescript.tsdk": "node_modules/typescript/lib"
@@ -68,8 +65,7 @@
       "kumar-harsh.graphql-for-vscode",
       "ms-vscode.vscode-typescript-tslint-plugin",
       "redhat.vscode-yaml",
-      "silvenon.mdx",
-      "testthedocs.vale"
+      "silvenon.mdx"
     ]
   }
 }
