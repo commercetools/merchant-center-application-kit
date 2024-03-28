@@ -33,7 +33,7 @@ const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
   .map<TVisualRouteSpec>((key) => allUniqueVisualRouteComponents[key]);
 
 const appFlags = {
-  [featureFlags.CUSTOM_VIEWS]: true,
+  [featureFlags.CUSTOM_VIEWS]: { value: true },
 };
 
 const App = () => (

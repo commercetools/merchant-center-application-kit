@@ -21,6 +21,10 @@ export const CUSTOM_VIEWS = 'enableCustomViews';
 export const RECOLOURING = 'mcRecolouring';
 
 export const FLAGS = {
-  [CUSTOM_VIEWS]: false,
   [RECOLOURING]: false,
+};
+
+// Long-lived feature flags, defined in the MC API.
+export const DEFAULT_FLAGS = {
+  [CUSTOM_VIEWS]: { value: true },
 };

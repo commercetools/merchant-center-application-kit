@@ -54,7 +54,7 @@ const customRender = (
 ) => {
   const client = apolloClient ?? createApolloClient();
   const flags = {
-    [featureFlags.CUSTOM_VIEWS]: true,
+    [featureFlags.CUSTOM_VIEWS]: { value: true },
   };
 
   return {
