@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.22.1
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#3464](https://github.com/commercetools/merchant-center-application-kit/pull/3464) [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07) Thanks [@emmenko](https://github.com/emmenko)! - Enable feature flag for Custom Views by default
+
+- Updated dependencies [[`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07)]:
+  - @commercetools-frontend/application-shell-connectors@22.22.1
+  - @commercetools-frontend/application-config@22.22.1
+  - @commercetools-frontend/actions-global@22.22.1
+  - @commercetools-frontend/sentry@22.22.1
+  - @commercetools-frontend/i18n@22.22.1
+  - @commercetools-frontend/l10n@22.22.1
+  - @commercetools-frontend/constants@22.22.1
+  - @commercetools-frontend/assets@22.22.1
+
 ## 22.22.0
 
 ### Patch Changes

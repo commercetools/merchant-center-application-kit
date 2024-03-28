@@ -1,5 +1,14 @@
 # @commercetools-website/custom-views
 
+## 22.22.1
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/assets@22.22.1
+
 ## 22.22.0
 
 ### Patch Changes
