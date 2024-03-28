@@ -152,7 +152,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
 
   const defaultFlags = useMemo(
     () => ({
-      ...featureFlags.FLAGS,
+      ...featureFlags.DEFAULT_FLAGS,
       ...allMenuFeatureToggles.allFeatureToggles,
       ...props.defaultFlags,
     }),

@@ -18,7 +18,7 @@ const renderApplicationWithRedux = (ui, options = {}) =>
     mergeWithDefaultOptions({
       ...options,
       flags: {
-        [featureFlags.CUSTOM_VIEWS]: true,
+        [featureFlags.CUSTOM_VIEWS]: { value: true },
       },
     })
   );
