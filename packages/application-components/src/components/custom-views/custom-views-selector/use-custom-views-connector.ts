@@ -1,4 +1,4 @@
-import { useFeatureToggle } from '@flopflip/react-broadcast';
+import { useFlagVariation } from '@flopflip/react-broadcast';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import {
   CustomViewData,
@@ -23,8 +23,10 @@ type TUseCustomViewsFetcher = (props: TUseCustomViewsFetcherParams) => {
 export const useCustomViewsConnector: TUseCustomViewsFetcher = ({
   customViewLocatorCode,
 }) => {
+  const enableCustomViews = useFlagVariation(featureFlags.CUSTOM_VIEWS);
   const areCustomViewsEnabled =
-    useFeatureToggle(featureFlags.CUSTOM_VIEWS) &&
+    // @ts-ignore In case it's coming from the MC API, it's an object { value: boolean }.
+    (enableCustomViews?.value ?? enableCustomViews) &&
     process.env.DISABLE_CUSTOM_VIEWS_FEATURE !== 'true';
 
   const { data, error, loading } = useMcQuery<
