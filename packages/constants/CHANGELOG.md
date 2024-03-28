@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.22.1
+
+### Patch Changes
+
+- [#3464](https://github.com/commercetools/merchant-center-application-kit/pull/3464) [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07) Thanks [@emmenko](https://github.com/emmenko)! - Enable feature flag for Custom Views by default
+
 ## 22.22.0
 
 ## 22.21.0
