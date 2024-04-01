@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
-    "cypress": "12.17.4"
+    "cypress": "12.17.3"
   },
   "peerDependencies": {
     "cypress": ">=8"

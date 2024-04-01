@@ -134,7 +134,7 @@
     "babel-plugin-typescript-to-proptypes": "1.4.2",
     "cac": "6.7.14",
     "cross-env": "7.0.3",
-    "cypress": "12.17.4",
+    "cypress": "12.17.3",
     "dotenv": "16.4.5",
     "eslint": "8.57.0",
     "eslint-formatter-pretty": "4.1.0",
