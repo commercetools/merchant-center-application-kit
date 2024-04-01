@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { graphql, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { screen } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants';
@@ -33,9 +33,9 @@ const renderApp = (options = {}) => {
 describe('custom panel demo', () => {
   it('should render selector with list of installed Custom Views', async () => {
     mockServer.use(
-      graphql.query('FetchCustomViewsByLocator', (req, res, ctx) =>
-        res(
-          ctx.data({
+      graphql.query('FetchCustomViewsByLocator', () => {
+        return HttpResponse.json({
+          data: {
             allCustomViewsInstallationsByLocator: [
               {
                 id: 'installation-id-1',
@@ -81,9 +81,9 @@ describe('custom panel demo', () => {
                 },
               },
             ],
-          })
-        )
-      )
+          },
+        });
+      }),
     );
     renderApp();
     await screen.findByText(/Avengers/i);

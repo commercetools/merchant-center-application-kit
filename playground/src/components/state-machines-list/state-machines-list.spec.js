@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { HttpResponse, graphql } from 'msw';
 import { buildGraphqlList } from '@commercetools-test-data/core';
 import { setupServer } from 'msw/node';
 import {
@@ -13,13 +13,13 @@ import { renderApplicationWithRedux } from '../../test-utils';
 import * as StateMock from '../../test-utils/test-data/state';
 
 const mockServer = setupServer(
-  graphql.query('FetchCustomViewsByLocator', (req, res, ctx) =>
-    res(
-      ctx.data({
+  graphql.query('FetchCustomViewsByLocator', () => {
+    return HttpResponse.json({
+      data: {
         allCustomViewsInstallationsByLocator: [],
-      })
-    )
-  )
+      }
+    })
+  })
 );
 afterEach(() => mockServer.resetHandlers());
 beforeAll(() =>
@@ -45,20 +45,19 @@ const renderApp = (options = {}) => {
 };
 
 const fetchState = () => {
-  return graphql.query('FetchState', (req, res, ctx) => {
-    const { id } = req.variables;
-    return res(
-      ctx.data({
-        state: StateMock.random().id(id).key(`state-key-${id}`).buildGraphql(),
-      })
-    );
-  });
+  return graphql.query('FetchState', ({ variables }) =>
+    HttpResponse.json({
+      data: {
+        state: StateMock.random().id(variables.id).key(`state-key-${variables.id}`).buildGraphql(),
+      }
+    })
+  );
 };
 
 const fetchAllStates = () => {
-  return graphql.query('FetchStatesRest', (req, res, ctx) =>
-    res(
-      ctx.data({
+  return graphql.query('FetchStatesRest', () =>
+    HttpResponse.json({
+      data: {
         states: buildGraphqlList(
           [
             StateMock.random().key('state-key-1').id('1'),
@@ -70,8 +69,8 @@ const fetchAllStates = () => {
             total: 3,
           }
         ),
-      })
-    )
+      },
+    })
   );
 };
 
@@ -133,16 +132,16 @@ describe('details view', () => {
     it('should render notification error message', async () => {
       mockServer.use(
         fetchAllStates(),
-        graphql.query('FetchState', (req, res, ctx) => {
-          return res(
-            ctx.errors([
+        graphql.query('FetchState', () => {
+          return HttpResponse.json({
+            errors: [
               {
                 statusCode: 500,
                 message: 'Something went wrong',
               },
-            ])
-          );
-        })
+            ]
+          });
+        }),
       );
       renderApp({
         route: `/my-project/${entryPointUriPath}/1`,
