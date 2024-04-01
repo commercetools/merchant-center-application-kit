@@ -120,7 +120,7 @@
     "@types/node-fetch": "2.6.11",
     "@types/serve-handler": "^6.1.1",
     "mock-fs": "^5.2.0",
-    "msw": "0.49.3",
+    "msw": "2.2.13",
     "rimraf": "5.0.5"
   },
   "engines": {

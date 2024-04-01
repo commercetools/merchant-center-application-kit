@@ -79,7 +79,7 @@
     "jest-runner-eslint": "2.2.0",
     "jest-watch-typeahead": "2.2.2",
     "moment": "^2.29.4",
-    "msw": "0.49.3",
+    "msw": "2.2.13",
     "omit-empty-es": "1.2.0",
     "prettier": "2.8.8",
     "prop-types": "15.8.1",
