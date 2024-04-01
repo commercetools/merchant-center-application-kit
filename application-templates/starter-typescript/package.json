@@ -19,7 +19,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.7.14",
+    "@apollo/client": "3.9.9",
     "@babel/core": "^7.22.17",
     "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-frontend/actions-global": "workspace:*",
@@ -58,7 +58,7 @@
     "@commercetools-uikit/text-input": "^19.2.0",
     "@commercetools/sync-actions": "^5.14.0",
     "@emotion/react": "^11.11.4",
-    "@formatjs/cli": "6.2.7",
+    "@formatjs/cli": "6.2.9",
     "@jest/types": "29.6.3",
     "@manypkg/cli": "0.21.3",
     "@testing-library/dom": "^9.3.1",
@@ -74,7 +74,7 @@
     "eslint": "8.57.0",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-graphql": "^4.0.0",
-    "formik": "2.2.9",
+    "formik": "2.4.5",
     "graphql": "^16.8.0",
     "graphql-tag": "^2.12.6",
     "jest": "29.7.0",
@@ -90,7 +90,7 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "redux": "4.2.1",
-    "typescript": "5.0.4"
+    "typescript": "5.4.3"
   },
   "resolutions": {
     "@emotion/react": "^11.11.1",
