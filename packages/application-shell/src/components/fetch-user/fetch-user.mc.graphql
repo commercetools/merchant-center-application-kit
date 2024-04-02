@@ -13,7 +13,6 @@ query FetchLoggedInUser {
     launchdarklyTrackingGroup
     launchdarklyTrackingSubgroup
     launchdarklyTrackingTeam
-    launchdarklyTrackingTenant
     launchdarklyTrackingCloudEnvironment
     defaultProjectKey
     businessRole
