@@ -19,6 +19,7 @@ type TBaseUser = {
   launchdarklyTrackingGroup: string;
   launchdarklyTrackingSubgroup: string;
   launchdarklyTrackingTeam: string[];
+  launchdarklyTrackingTenant: string;
   launchdarklyTrackingCloudEnvironment: string;
   defaultProjectKey: string;
   businessRole: string | undefined;
