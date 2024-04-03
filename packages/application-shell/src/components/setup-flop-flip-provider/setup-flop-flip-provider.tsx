@@ -70,7 +70,6 @@ type TLaunchDarklyUserCustomFields = {
   team: string[];
   group: string;
   subgroup: string;
-  tenant: string;
   cloudEnvironment: string;
 };
 
@@ -104,7 +103,6 @@ function getUserContextForLaunchDarklyAdapter(
     team: user?.launchdarklyTrackingTeam ?? [],
     group: user?.launchdarklyTrackingGroup ?? '',
     subgroup: user?.launchdarklyTrackingSubgroup ?? '',
-    tenant: user?.launchdarklyTrackingTenant ?? '',
     cloudEnvironment: user?.launchdarklyTrackingCloudEnvironment ?? '',
   };
 }
