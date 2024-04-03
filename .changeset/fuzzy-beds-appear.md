@@ -19,7 +19,6 @@
 '@commercetools-frontend/actions-global': patch
 '@commercetools-frontend/create-mc-app': patch
 '@commercetools-frontend/permissions': patch
-'@commercetools-website/custom-views': patch
 '@commercetools-frontend/mc-scripts': patch
 '@commercetools-local/visual-testing-app': patch
 '@commercetools-frontend/codemod': patch
