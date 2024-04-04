@@ -42,8 +42,6 @@ type TApplicationShellProps = {
   environment: TApplicationContext<{}>['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
-  /** @deprecated */
-  shouldWaitForRemoteFlags?: boolean;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners?: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;

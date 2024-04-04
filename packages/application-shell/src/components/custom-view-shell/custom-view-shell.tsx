@@ -119,7 +119,7 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 }
 
 function CustomViewThemeProvider() {
-  const theme = useFeatureToggle('mcRecolouring') ? 'recolouring' : 'default';
+  const theme = 'recolouring';
 
   const customViewThemeOverrides = {
     // @ts-ignore

@@ -25,8 +25,6 @@ type TSetupFlopFlipProviderProps = {
   ldClientSideId?: string;
   children: ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
-  /** @deprecated */
-  shouldWaitForRemoteFlags?: boolean;
 };
 
 type TLaunchDarklyUserCustomFields = {

@@ -51,8 +51,8 @@ const AuthCallbackErrorPage = (props: TProps) => {
       {({ locale, messages }) => (
         <ConfigureIntlProvider locale={locale} messages={messages}>
           <ThemeProvider
-            theme="default"
-            themeOverrides={themesOverrides.default}
+            theme="recolouring"
+            themeOverrides={themesOverrides.recolouring}
           />
           <PublicPageLayout contentScale="wide">
             <Spacings.Inline justifyContent="center">
