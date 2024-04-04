@@ -1939,8 +1939,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       headers-polyfill:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^4.0.3
+        version: 4.0.3
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -24862,10 +24862,6 @@ packages:
       capital-case: 1.0.4
       tslib: 2.6.2
 
-  /headers-polyfill@3.1.2:
-    resolution: {integrity: sha512-tWCK4biJ6hcLqTviLXVR9DTRfYGQMXEIUj3gwJ2rZ5wO/at3XtkI4g8mCvFdUF9l1KMBNCfmNAdnahm1cgavQA==}
-    dev: true
-
   /headers-polyfill@4.0.3:
     resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
 
@@ -24998,7 +24994,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.91.0(uglify-js@3.17.4)
+      webpack: 5.91.0
 
   /htmlparser2@3.10.1:
     resolution: {integrity: sha512-IgieNijUMbkDovyoKObU1DUhm1iwNYE/fuifEoEHfd1oZKZDaONBSkal7Y01shxsM49R4XaMdGez3WnF9UfiCQ==}
@@ -33861,6 +33857,7 @@ packages:
       terser: 5.29.2
       uglify-js: 3.17.4
       webpack: 5.91.0(uglify-js@3.17.4)
+    dev: true
 
   /terser-webpack-plugin@5.3.10(webpack@5.91.0):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
@@ -35778,6 +35775,7 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
+    dev: true
 
   /webpackbar@5.0.2(webpack@5.91.0):
     resolution: {integrity: sha512-BmFJo7veBDgQzfWXl/wwYXr/VFus0614qZ8i9znqcl9fnEdiVkdbi0TedLQ6xAK92HZHDJ0QmyQ0fmuZPAgCYQ==}

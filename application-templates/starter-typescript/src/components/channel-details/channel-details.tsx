@@ -88,6 +88,12 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
       showNotification,
     ]
   );
+
+  if (error) {
+    console.log('--------------------- Channel Details Error -------------------------');
+    console.log({ error, loading, channel });
+  }
+
   return (
     <ChannelsDetailsForm
       initialValues={docToFormValues(channel, projectLanguages)}

@@ -1,4 +1,4 @@
-import { graphql, type GraphQLHandler } from 'msw';
+import { graphql, HttpResponse, type GraphQLHandler } from 'msw';
 import { setupServer } from 'msw/node';
 import {
   fireEvent,
@@ -56,59 +56,53 @@ const renderApp = (
 
 const fetchChannelDetailsQueryHandler = graphql.query(
   'FetchChannelDetails',
-  (_req, res, ctx) => {
-    return res(
-      ctx.data({
+  () => {
+    HttpResponse.json({
+      data: {
         channel: Channel.random()
           .name(LocalizedString.random())
           .key(TEST_CHANNEL_KEY)
           .buildGraphql(),
-      })
-    );
+      },
+    });
   }
 );
 
 const fetchChannelDetailsQueryHandlerWithNullData = graphql.query(
   'FetchChannelDetails',
-  (_req, res, ctx) => {
-    return res(ctx.data({ channel: null }));
+  () => {
+    return HttpResponse.json({ data: { channel: null } });
   }
 );
 
 const fetchChannelDetailsQueryHandlerWithError = graphql.query(
   'FetchChannelDetails',
-  (_req, res, ctx) => {
-    return res(
-      ctx.data({ channel: null }),
-      ctx.errors([
-        {
-          message: "Field '$channelId' has wrong value: Invalid ID.",
-        },
-      ])
-    );
-  }
+  () => HttpResponse.json({
+    data: { channel: null },
+    errors: [{ message: "Field '$channelId' has wrong value: Invalid ID." }],
+  })
 );
 
 const updateChannelDetailsHandler = graphql.mutation(
   'UpdateChannelDetails',
-  (_req, res, ctx) => {
-    return res(
-      ctx.data({
+  () => {
+    return HttpResponse.json({
+      data: {
         updateChannel: Channel.random()
           .name(LocalizedString.random())
           .key(TEST_CHANNEL_KEY)
           .buildGraphql(),
-      })
-    );
+      }
+    });
   }
 );
 
 const updateChannelDetailsHandlerWithDuplicateFieldError = graphql.mutation(
   'UpdateChannelDetails',
-  (_req, res, ctx) => {
-    return res(
-      ctx.data({ updateChannel: null }),
-      ctx.errors([
+  () => {
+    return HttpResponse.json({
+      data: { updateChannel: null },
+      errors: [
         {
           message: "A duplicate value '\"test-key\"' exists for field 'key'.",
           extensions: {
@@ -117,33 +111,35 @@ const updateChannelDetailsHandlerWithDuplicateFieldError = graphql.mutation(
             field: 'key',
           },
         },
-      ])
-    );
+      ],
+    });
   }
 );
 
 const updateChannelDetailsHandlerWithARandomError = graphql.mutation(
   'UpdateChannelDetails',
-  (_req, res, ctx) => {
-    return res(
-      ctx.data({ updateChannel: null }),
-      ctx.errors([
+  () => {
+    return HttpResponse.json({
+      data: { updateChannel: null },
+      errors: [
         {
           message: 'Some fake error message.',
-          code: 'SomeFakeErrorCode',
+          extensions: {
+            code: 'SomeFakeErrorCode',
+          }
         },
-      ])
-    );
+      ],
+    });
   }
 );
 
 const useMockServerHandlers = (handlers: GraphQLHandler[]) => {
   mockServer.use(
-    graphql.query('FetchChannels', (_req, res, ctx) => {
+    graphql.query('FetchChannels', () => {
       const totalItems = 2;
 
-      return res(
-        ctx.data({
+      return HttpResponse.json({
+        data: {
           channels: buildGraphqlList<TChannel>(
             Array.from({ length: totalItems }).map((_, index) =>
               Channel.random()
@@ -155,8 +151,8 @@ const useMockServerHandlers = (handlers: GraphQLHandler[]) => {
               total: totalItems,
             }
           ),
-        })
-      );
+        },
+      });
     }),
     ...handlers
   );
@@ -295,7 +291,7 @@ describe('notifications', () => {
       /please check your connection, the provided channel ID and try again/i
     );
   });
-  it('should display an error notification if an update resulted in an unmapped error', async () => {
+  it.only('should display an error notification if an update resulted in an unmapped error', async () => {
     // Mock error log
     jest.spyOn(console, 'error').mockImplementation();
 

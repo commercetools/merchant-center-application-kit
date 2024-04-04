@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { HttpResponse, graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import {
   fireEvent,
@@ -43,14 +43,14 @@ const renderApp = (options: Partial<TRenderAppWithReduxOptions> = {}) => {
 
 it('should render channels and paginate to second page', async () => {
   mockServer.use(
-    graphql.query('FetchChannels', (req, res, ctx) => {
+    graphql.query('FetchChannels', ({ variables }) => {
       // Simulate a server side pagination.
-      const { offset } = req.variables;
+      const { offset } = variables;
       const totalItems = 25; // 2 pages
       const itemsPerPage = offset === 0 ? 20 : 5;
 
-      return res(
-        ctx.data({
+      return HttpResponse.json({
+        data: {
           channels: buildGraphqlList<TChannel>(
             Array.from({ length: itemsPerPage }).map((_, index) =>
               Channel.random()
@@ -62,8 +62,25 @@ it('should render channels and paginate to second page', async () => {
               total: totalItems,
             }
           ),
-        })
-      );
+        }
+      });
+      // return res(
+      //   ctx.data({
+      //     data: {
+      //       channels: buildGraphqlList<TChannel>(
+      //         Array.from({ length: itemsPerPage }).map((_, index) =>
+      //           Channel.random()
+      //             .name(LocalizedString.random())
+      //             .key(`channel-key-${offset === 0 ? index : 20 + index}`)
+      //         ),
+      //         {
+      //           name: 'Channel',
+      //           total: totalItems,
+      //         }
+      //       ),
+      //     }
+      //   })
+      // );
     })
   );
   renderApp();

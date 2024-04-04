@@ -57,6 +57,9 @@ const Channels = (props: TChannelsProps) => {
     tableSorting,
   });
 
+  console.log('--------------------- Channels List -------------------------');
+  console.log({ channelsPaginatedResult, error, loading });
+
   if (error) {
     return (
       <ContentNotification type="error">
