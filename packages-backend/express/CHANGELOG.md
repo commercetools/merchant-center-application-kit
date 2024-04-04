@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 22.23.1
+
 ## 22.23.0
 
 ### Patch Changes
