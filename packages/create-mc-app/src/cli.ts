@@ -23,12 +23,9 @@ process.on('unhandledRejection', (err) => {
 
 const messagesByApplicationType = {
   [applicationTypes['custom-application']]: {
-    docsLink: 'https://docs.commercetools.com/custom-applications',
     featureName: 'Custom Application',
   },
   [applicationTypes['custom-view']]: {
-    docsLink:
-      'https://docs-beta-custom-views.commercetools.vercel.app/custom-views',
     featureName: 'Custom View',
   },
 } as const;
@@ -91,7 +88,7 @@ const run = () => {
       const messages = messagesByApplicationType[taskOptions.applicationType];
 
       console.log('');
-      console.log(`Documentation available at ${messages.docsLink}`);
+      console.log('Documentation available at https://docs.commercetools.com/merchant-center-customizations/');
       console.log('');
 
       const shouldInstallDependencies =
@@ -125,7 +122,7 @@ const run = () => {
       console.log(`$ ${packageManager} start`);
       console.log('');
       console.log(
-        `Visit ${messages.docsLink} for more info about developing ${messages.featureName}. Enjoy 🚀`
+        `Visit https://docs.commercetools.com/merchant-center-customizations/ for more info about developing ${messages.featureName}. Enjoy 🚀`
       );
     });
 
