@@ -42,6 +42,7 @@ type TApplicationShellProps = {
   environment: TApplicationContext<{}>['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
+  /** @deprecated */
   shouldWaitForRemoteFlags?: boolean;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners?: (args: { dispatch: Dispatch }) => void;
@@ -92,7 +93,6 @@ const ApplicationShell = (props: TApplicationShellProps) => {
                   <ApplicationShellAuthenticated
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}
-                    shouldWaitForRemoteFlags={props.shouldWaitForRemoteFlags}
                     render={props.render}
                     applicationMessages={props.applicationMessages}
                     onMenuItemClick={props.onMenuItemClick}
