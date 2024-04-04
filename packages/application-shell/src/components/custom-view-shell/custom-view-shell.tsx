@@ -10,7 +10,6 @@ import {
 } from 'react';
 import styled from '@emotion/styled';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
-import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { TFlags } from '@flopflip/types';
 import { Route } from 'react-router-dom';
 import {
@@ -119,7 +118,7 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 }
 
 function CustomViewThemeProvider() {
-  const theme = useFeatureToggle('mcRecolouring') ? 'recolouring' : 'default';
+  const theme = 'recolouring';
 
   const customViewThemeOverrides = {
     // @ts-ignore
