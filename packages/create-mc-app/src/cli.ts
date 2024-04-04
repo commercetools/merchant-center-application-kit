@@ -88,7 +88,9 @@ const run = () => {
       const messages = messagesByApplicationType[taskOptions.applicationType];
 
       console.log('');
-      console.log('Documentation available at https://docs.commercetools.com/merchant-center-customizations/');
+      console.log(
+        'Documentation available at https://docs.commercetools.com/merchant-center-customizations/'
+      );
       console.log('');
 
       const shouldInstallDependencies =
