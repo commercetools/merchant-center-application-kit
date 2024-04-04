@@ -43,6 +43,6 @@
     "@types/react-dom": "^17.0.19",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "4.2.1",
-    "vite": "~4.5.3"
+    "vite": "~5.2.8"
   }
 }
