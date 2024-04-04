@@ -279,10 +279,11 @@ function loginByOidc(
               STORAGE_KEYS.SESSION_SCOPE,
               sessionScope
             );
-            // Disable redesign announcement
+            // To hide the dialog for the rebranding colors.
+            // TODO: remove once the dialog has been removed from App Kit.
             win.localStorage.setItem(
-              'isNewDesignReleaseNotificationClosed',
-              'true'
+              'isRecolouringNotificationClosed',
+              String(true)
             );
 
             if (commandOptions.onBeforeLoad) {
