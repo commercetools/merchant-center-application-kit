@@ -1,5 +1,24 @@
 # playground
 
+## 22.23.1
+
+### Patch Changes
+
+- [#3476](https://github.com/commercetools/merchant-center-application-kit/pull/3476) [`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90) Thanks [@tdeekens](https://github.com/tdeekens)! - Update flopflip
+
+- Updated dependencies [[`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90)]:
+  - @commercetools-frontend/application-components@22.23.1
+  - @commercetools-frontend/application-shell@22.23.1
+  - @commercetools-frontend/actions-global@22.23.1
+  - @commercetools-frontend/application-shell-connectors@22.23.1
+  - @commercetools-frontend/assets@22.23.1
+  - @commercetools-frontend/browser-history@22.23.1
+  - @commercetools-frontend/constants@22.23.1
+  - @commercetools-frontend/i18n@22.23.1
+  - @commercetools-frontend/l10n@22.23.1
+  - @commercetools-frontend/permissions@22.23.1
+  - @commercetools-frontend/sdk@22.23.1
+
 ## 22.23.0
 
 ### Patch Changes
