@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { HttpResponse, graphql } from 'msw';
 import { setupServer } from 'msw/node';
 import {
   renderCustomView,
@@ -26,31 +26,33 @@ afterAll(() => {
 
 it('should render channels and paginate to second page', async () => {
   mockServer.use(
-    graphql.query('FetchChannels', (req, res, ctx) => {
+    graphql.query('FetchChannels', ({ variables }) => {
       // Simulate a server side pagination.
-      const { offset } = req.variables;
+      const { offset } = variables;
       const totalItems = 25; // 2 pages
       const itemsPerPage = offset === 0 ? 20 : 5;
 
-      return res(
-        ctx.data({
-          channels: buildGraphqlList<TChannel>(
-            Array.from({ length: itemsPerPage }).map((_, index) => {
-              const channelNumber = offset === 0 ? index : 20 + index;
-              return Channel.random()
-                .name(
-                  LocalizedString.presets
-                    .empty()
-                    .en(`Channel no. ${channelNumber}`)
-                )
-                .key(`channel-key-${channelNumber}`);
-            }),
-            {
-              name: 'Channel',
-              total: totalItems,
-            }
-          ),
-        })
+      return HttpResponse.json(
+        {
+          data: {
+            channels: buildGraphqlList<TChannel>(
+              Array.from({ length: itemsPerPage }).map((_, index) => {
+                const channelNumber = offset === 0 ? index : 20 + index;
+                return Channel.random()
+                  .name(
+                    LocalizedString.presets
+                      .empty()
+                      .en(`Channel no. ${channelNumber}`)
+                  )
+                  .key(`channel-key-${channelNumber}`);
+              }),
+              {
+                name: 'Channel',
+                total: totalItems,
+              }
+            ),
+          }
+        }
       );
     })
   );
