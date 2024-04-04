@@ -1,5 +1,20 @@
 # @commercetools-local/visual-testing-app
 
+## 22.23.0
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`4708993`](https://github.com/commercetools/merchant-center-application-kit/commit/4708993cf3f45addcbc0102686c92e12c9fc46bb), [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07), [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6)]:
+  - @commercetools-frontend/application-shell@22.23.0
+  - @commercetools-frontend/application-shell-connectors@22.23.0
+  - @commercetools-frontend/application-components@22.23.0
+  - @commercetools-frontend/react-notifications@22.23.0
+  - @commercetools-frontend/application-config@22.23.0
+  - @commercetools-frontend/constants@22.23.0
+  - @commercetools-frontend/assets@22.23.0
+
 ## 22.22.0
 
 ### Patch Changes
