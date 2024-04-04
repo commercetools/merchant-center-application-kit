@@ -1,5 +1,13 @@
 # @commercetools-backend/loggers
 
+## 22.23.0
+
+### Patch Changes
+
+- [#3461](https://github.com/commercetools/merchant-center-application-kit/pull/3461) [`91c92e2`](https://github.com/commercetools/merchant-center-application-kit/commit/91c92e27df54348b5388b0d60cf606da11a6bdeb) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency express to v4.19.2 [security]
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
 ## 22.22.0
 
 ## 22.21.0

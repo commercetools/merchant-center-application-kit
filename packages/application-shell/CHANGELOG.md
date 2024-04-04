@@ -1,5 +1,40 @@
 # @commercetools-frontend/application-shell
 
+## 22.23.0
+
+### Minor Changes
+
+- [#3474](https://github.com/commercetools/merchant-center-application-kit/pull/3474) [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e) Thanks [@kark](https://github.com/kark)! - Use `recolouring` theme as default. Remove usage of `mcRecolouring` feature flag and delayed rendering logic.
+
+### Patch Changes
+
+- [#3473](https://github.com/commercetools/merchant-center-application-kit/pull/3473) [`4708993`](https://github.com/commercetools/merchant-center-application-kit/commit/4708993cf3f45addcbc0102686c92e12c9fc46bb) Thanks [@renovate](https://github.com/apps/renovate)! - Update vite dependency.
+
+  Fixes [this vulnerability](https://github.com/vitejs/vite/security/advisories/GHSA-8jhw-289h-jh2g).
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#3464](https://github.com/commercetools/merchant-center-application-kit/pull/3464) [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07) Thanks [@emmenko](https://github.com/emmenko)! - Enable feature flag for Custom Views by default
+
+- [#3470](https://github.com/commercetools/merchant-center-application-kit/pull/3470) [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Remove tenant variable related to launch darkly
+
+- Updated dependencies [[`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07), [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6)]:
+  - @commercetools-frontend/application-shell-connectors@22.23.0
+  - @commercetools-frontend/application-components@22.23.0
+  - @commercetools-frontend/react-notifications@22.23.0
+  - @commercetools-frontend/application-config@22.23.0
+  - @commercetools-frontend/actions-global@22.23.0
+  - @commercetools-frontend/permissions@22.23.0
+  - @commercetools-frontend/sentry@22.23.0
+  - @commercetools-frontend/i18n@22.23.0
+  - @commercetools-frontend/l10n@22.23.0
+  - @commercetools-frontend/sdk@22.23.0
+  - @commercetools-frontend/constants@22.23.0
+  - @commercetools-frontend/assets@22.23.0
+  - @commercetools-frontend/browser-history@22.23.0
+  - @commercetools-frontend/notifications@22.23.0
+  - @commercetools-frontend/url-utils@22.23.0
+
 ## 22.22.0
 
 ### Minor Changes
