@@ -151,6 +151,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           const response = await apolloClient.query<TAllFeaturesQuery>({
             query: AllFeaturesQuery,
             errorPolicy: 'ignore',
+            fetchPolicy: 'network-only',
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             },
