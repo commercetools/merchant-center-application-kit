@@ -182,6 +182,66 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     })
   );
 
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLUListElement>,
+    submenuRef: React.RefObject<HTMLUListElement>
+  ) => {
+    const currentlyFocused = submenuRef.current?.querySelector('a:focus');
+
+    function getCurrentSibling(
+      element: Element | null | undefined,
+      levels: number
+    ) {
+      if (levels === 0 || !element) {
+        return element;
+      }
+      return getCurrentSibling(element.parentElement, levels - 1);
+    }
+
+    switch (e.key) {
+      case 'ArrowUp':
+        const previousElement = getCurrentSibling(
+          currentlyFocused,
+          3
+        )?.previousElementSibling;
+        previousElement?.querySelector('a')?.focus();
+        break;
+
+      case 'ArrowDown':
+        const nextElement = getCurrentSibling(
+          currentlyFocused,
+          3
+        )?.nextElementSibling;
+        nextElement?.querySelector('a')?.focus();
+        break;
+
+      case 'ArrowLeft':
+        submenuRef?.current?.focus();
+        break;
+
+      case 'ArrowRight':
+        submenuRef.current
+          ?.querySelector<HTMLAnchorElement>('a:first-of-type')
+          ?.focus();
+        break;
+
+      case 'Tab':
+        e.preventDefault();
+
+        // if (submenuRef.current) {
+        //   const children = Array.from(
+        //     submenuRef.current.children
+        //   ) as HTMLElement[];
+        //   if (children.length > 0) {
+        //     children[0].click();
+        //   }
+        // }
+        break;
+      default:
+        break;
+    }
+  };
+
   useEffect(() => {
     // On first render, check which menu is active for the current application and expand
     // the submenu automatically unless the all navbar is collapsed or there are no submenu links.
@@ -194,7 +254,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
-
   return (
     <RestrictedMenuItem
       key={props.menu.key}
@@ -239,6 +298,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           submenuVerticalPosition={submenuVerticalPosition}
           isSubmenuAboveMenuItem={isSubmenuAboveMenuItem}
           ref={submenuRef}
+          handleKeyDown={(e) => handleKeyDown(e, submenuRef)}
         >
           {!props.isMenuOpen && (
             <TooltipContainer alignsAgainstBottom={isSubmenuAboveMenuItem}>
@@ -269,6 +329,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   }
                 >
                   <SublistItem
+                    id={`${props.menu.key}-submenu-${submenu.key}`}
                     isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
                   >
                     <Text>
