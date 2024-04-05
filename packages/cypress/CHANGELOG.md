@@ -1,5 +1,16 @@
 # @commercetools-frontend/cypress
 
+## 22.23.2
+
+### Patch Changes
+
+- [#3480](https://github.com/commercetools/merchant-center-application-kit/pull/3480) [`31d6a09`](https://github.com/commercetools/merchant-center-application-kit/commit/31d6a09379de3b5b9e603b8a1825afdd9d7f8409) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(cypress): onBeforeLoad being called during login
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.23.2
+  - @commercetools-frontend/application-shell@22.23.2
+  - @commercetools-frontend/constants@22.23.2
+
 ## 22.23.1
 
 ### Patch Changes

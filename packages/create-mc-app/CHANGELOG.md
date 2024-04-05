@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.23.2
+
+### Patch Changes
+
+- [#3478](https://github.com/commercetools/merchant-center-application-kit/pull/3478) [`ec61112`](https://github.com/commercetools/merchant-center-application-kit/commit/ec611124dad11f685d24bd33fbfca92decccc130) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Fix documentation links used in the cli when creating a new custom aplication or custom view.
+
 ## 22.23.1
 
 ## 22.23.0
