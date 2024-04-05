@@ -195,6 +195,25 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowUp') {
+      const currentlyFocused = submenuRef.current?.querySelector('a:focus');
+
+      currentlyFocused?.parentElement?.parentElement?.parentElement?.previousElementSibling
+        ?.querySelector('a')
+        ?.focus();
+    } else if (e.key === 'ArrowDown') {
+      const currentlyFocused = submenuRef.current?.querySelector('a:focus');
+
+      currentlyFocused?.parentElement?.parentElement?.parentElement?.nextElementSibling
+        ?.querySelector('a')
+        ?.focus();
+    } else if (e.key === 'ArrowRight') {
+      // only run if main menu item
+      submenuRef.current?.querySelector('a:first-of-type')?.focus();
+    }
+  };
+
   return (
     <RestrictedMenuItem
       key={props.menu.key}
@@ -214,6 +233,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
         onMouseEnter={props.handleToggleItem}
+        onKeyDown={handleKeyDown}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
       >

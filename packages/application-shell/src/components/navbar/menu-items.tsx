@@ -259,6 +259,7 @@ const MenuItem = (props: MenuItemProps) => {
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
+      onKeyDown={props.onKeyDown}
       data-menuitem={props.identifier}
       className={classnames({
         active: props.isActive,
