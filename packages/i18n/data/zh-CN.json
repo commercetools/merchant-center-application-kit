@@ -204,10 +204,10 @@
     "string": "支持"
   },
   "NewColoursSchemaAnnouncementDialog.content": {
-    "string": "From the new colors to an updated navigation, we've made a few changes to improve your experience within Merchant Center. You will also find that we are taking steps to ensure a consistent look and feel across all of our user tooling, from the Merchant Center to the Frontend Studio. Check out the updates!"
+    "string": "从全新的颜色到更新的导航，我们进行了一些更改，以改善您在 Merchant Center 的体验。您还会发现，我们正在采取措施，以确保从 Merchant Center 到 Frontend Studio 的所有用户工具都具有一致的界面外观。查看更新！"
   },
   "NewColoursSchemaAnnouncementDialog.title": {
-    "string": "We've refreshed our Merchant Center!"
+    "string": "我们已经刷新了我们的 Merchant Center！"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
