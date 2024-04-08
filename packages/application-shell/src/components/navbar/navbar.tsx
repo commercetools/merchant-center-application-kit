@@ -113,6 +113,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
   const submenuRef = useRef<HTMLUListElement>(null);
 
+  const { handleSubMenuKeyDown, isRightArrowPressed } = useNavbarStateManager({
+    environment: props,
+  });
+
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
@@ -197,46 +201,52 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       }
       return getCurrentSibling(element.parentElement, levels - 1);
     }
+    const previousElement = getCurrentSibling(
+      currentlyFocused,
+      3
+    )?.previousElementSibling;
+
+    const nextElement = getCurrentSibling(
+      currentlyFocused,
+      3
+    )?.nextElementSibling;
 
     switch (e.key) {
       case 'ArrowUp':
-        const previousElement = getCurrentSibling(
-          currentlyFocused,
-          3
-        )?.previousElementSibling;
         previousElement?.querySelector('a')?.focus();
         break;
 
       case 'ArrowDown':
-        const nextElement = getCurrentSibling(
-          currentlyFocused,
-          3
-        )?.nextElementSibling;
+        currentlyFocused?.querySelector('ul')?.focus();
         nextElement?.querySelector('a')?.focus();
         break;
 
-      case 'ArrowLeft':
-        submenuRef?.current?.focus();
-        break;
-
+      // ArrowRight open's submenu
       case 'ArrowRight':
+        submenuRef?.current?.focus();
         submenuRef.current
           ?.querySelector<HTMLAnchorElement>('a:first-of-type')
           ?.focus();
         break;
 
-      case 'Tab':
-        e.preventDefault();
-
-        // if (submenuRef.current) {
-        //   const children = Array.from(
-        //     submenuRef.current.children
-        //   ) as HTMLElement[];
-        //   if (children.length > 0) {
-        //     children[0].click();
-        //   }
-        // }
+      // ArrowLeft close's submenu
+      case 'ArrowLeft':
+        submenuRef?.current?.focus();
+        submenuRef?.current?.blur();
         break;
+
+      // Same as ArrowLeft, Escape close's submenu
+      case 'Escape':
+        submenuRef?.current?.focus();
+        submenuRef?.current?.blur();
+        break;
+
+      // Tab click's currently focused item
+      case 'Tab':
+        (currentlyFocused as HTMLUListElement)?.click();
+        e.preventDefault();
+        break;
+
       default:
         break;
     }
@@ -275,6 +285,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
+        handleSubMenuKeyDown={handleSubMenuKeyDown}
+        isRightArrowPressed={isRightArrowPressed}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
@@ -373,6 +385,8 @@ export type TNavbarProps = {
   isLoading: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
+  const navBarMenuRef = useRef(null);
+
   const {
     navBarNode,
     isMenuOpen,
@@ -421,6 +435,24 @@ const NavBar = (props: TNavbarProps) => {
     return <NavBarSkeleton isExpanded={isMenuOpen} />;
   }
 
+  const handleRightKey = (e) => {
+    if (e.key === 'ArrowRight') {
+      // // return subMenuRefLevelOne?.current?.focus()
+      const nextLevelElement =
+        subMenuRefLevelOne?.current?.querySelector('u:first-of-type');
+      if (nextLevelElement) {
+        return nextLevelElement.focus();
+      }
+    }
+    if (e.key === 'Tab') {
+      const nextLevelElement =
+        navBarMenuRef?.current?.querySelector('ul:first-of-type');
+      if (nextLevelElement) {
+        return nextLevelElement.focus();
+      }
+    }
+  };
+
   return (
     <NavBarLayout ref={navBarNode}>
       <NavigationHeader>
@@ -431,7 +463,12 @@ const NavBar = (props: TNavbarProps) => {
         </IconWrapper>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
-      <MenuGroup id="main" level={1}>
+      <MenuGroup
+        id="main"
+        level={1}
+        ref={navBarMenuRef}
+        handleKeyDown={handleRightKey}
+      >
         <ScrollableMenu>
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {

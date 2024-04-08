@@ -223,6 +223,7 @@ const MenuListItem = styled.li<{
   isActive: boolean;
   isRouteActive: boolean;
   isCollapsed: boolean;
+  isRightArrowPressed?: boolean;
 }>`
   height: ${NAVBAR.itemSize};
   width: ${NAVBAR.itemSize};
@@ -289,12 +290,6 @@ const MenuListItem = styled.li<{
     :hover
     ${MenuList}.sublist-collapsed__active__above,
     :hover
-    ${MenuList}.sublist-expanded__active,
-    :focus-within
-    ${MenuList}.sublist-collapsed__active,
-    :focus-within
-    ${MenuList}.sublist-collapsed__active__above,
-    :focus-within
     ${MenuList}.sublist-expanded__active {
     display: flex;
     flex-direction: column;
@@ -307,6 +302,29 @@ const MenuListItem = styled.li<{
     z-index: 20001;
     box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
   }
+
+  ${(props) => [
+    props.isRightArrowPressed &&
+      css`
+        :focus-within
+          ${MenuList}.sublist-collapsed__active,
+          :focus-within
+          ${MenuList}.sublist-collapsed__active__above,
+          :focus-within
+          ${MenuList}.sublist-expanded__active {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          background-color: ${uiKitDesignTokens.colorSurface};
+          min-height: ${NAVBAR.sublistItemMinHeight};
+          width: ${NAVBAR.sublistWidth};
+          border-radius: ${uiKitDesignTokens.borderRadius8};
+          /* z-index value must be higher than AppBar's z-index */
+          z-index: 20001;
+          box-shadow: -2px 4px 25px 0 rgba(89, 89, 89, 0.5);
+        }
+      `,
+  ]}
 
   :hover
     ${MenuList}.sublist-collapsed__active.sublist-collapsed__empty,

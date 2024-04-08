@@ -36,17 +36,20 @@ type State = {
   activeItemIndex?: string;
   isExpanderVisible: boolean;
   isMenuOpen: boolean;
+  isRightArrowPressed: boolean;
 };
 type Action =
   | { type: 'setActiveItemIndex'; payload: string }
   | { type: 'unsetActiveItemIndex' }
   | { type: 'setIsExpanderVisible' }
   | { type: 'toggleIsMenuOpen' }
+  | { type: 'setIsRightArrowPressed'; payload: boolean }
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
+  isRightArrowPressed: false,
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
 
@@ -60,6 +63,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, activeItemIndex: undefined };
     case 'setIsExpanderVisible':
       return { ...state, isExpanderVisible: true };
+    case 'setIsRightArrowPressed':
+      return { ...state, isRightArrowPressed: action.payload };
     case 'toggleIsMenuOpen':
       return { ...state, isMenuOpen: !state.isMenuOpen };
     case 'setIsMenuOpenAndMakeExpanderVisible':
@@ -68,6 +73,7 @@ const reducer = (state: State, action: Action): State => {
       return {
         isExpanderVisible: false,
         isMenuOpen: false,
+        isRightArrowPressed: false,
       };
     default:
       return state;
@@ -254,6 +260,23 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.activeItemIndex]
   );
 
+  const handleSubMenuKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowRight' && !state.isRightArrowPressed) {
+        return dispatch({
+          type: 'setIsRightArrowPressed',
+          payload: true,
+        });
+      } else if (e.key === 'ArrowLeft' && state.isRightArrowPressed) {
+        return dispatch({
+          type: 'setIsRightArrowPressed',
+          payload: false,
+        });
+      }
+    },
+    [state.isRightArrowPressed]
+  );
+
   const handleToggleMenu = useCallback(() => {
     if (state.isMenuOpen && state.activeItemIndex) {
       dispatch({ type: 'unsetActiveItemIndex' });
@@ -291,6 +314,7 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
+    handleSubMenuKeyDown,
     allApplicationsNavbarMenuGroups,
   };
 };

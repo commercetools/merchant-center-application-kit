@@ -8,7 +8,6 @@ import {
   type KeyboardEvent,
   type ReactNode,
   type SyntheticEvent,
-  useState,
 } from 'react';
 import { Global } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
@@ -195,7 +194,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   return (
     // eslint-disable-next-line jsx-a11y/role-supports-aria-props
     <MenuList
-      ref={ref && props.level === 2 ? ref : null}
+      ref={ref}
       level={props.level}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
@@ -204,7 +203,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuExpanded ||
         isSublistActiveWhileIsMenuCollapsed
       }
-      tabIndex={ref && props.level === 2 ? 0 : -1}
+      tabIndex={ref && props.level === 2 ? -1 : undefined}
       onKeyDown={props.handleKeyDown}
       className={classnames(
         {
@@ -255,9 +254,10 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
+  isRightArrowPressed?: boolean;
+  handleSubMenuKeyDown?: (e) => void;
 };
 const MenuItem = (props: MenuItemProps) => {
-  // const [isRightArrowPressed, setIsRightArrowPressed] = useState(false);
   return (
     <MenuListItem
       role="menuitem"
@@ -273,6 +273,8 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
+      isRightArrowPressed={props.isRightArrowPressed}
+      onKeyDown={props.handleSubMenuKeyDown}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>
