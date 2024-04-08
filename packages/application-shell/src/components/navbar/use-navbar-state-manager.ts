@@ -261,13 +261,13 @@ const useNavbarStateManager = (props: HookProps) => {
   );
 
   const handleSubMenuKeyDown = useCallback(
-    (e) => {
-      if (e.key === 'ArrowRight' && !state.isRightArrowPressed) {
+    (event: React.KeyboardEvent<HTMLLIElement>) => {
+      if (event.key === 'ArrowRight' && !state.isRightArrowPressed) {
         return dispatch({
           type: 'setIsRightArrowPressed',
           payload: true,
         });
-      } else if (e.key === 'ArrowLeft' && state.isRightArrowPressed) {
+      } else if (event.key === 'ArrowLeft' && state.isRightArrowPressed) {
         return dispatch({
           type: 'setIsRightArrowPressed',
           payload: false,

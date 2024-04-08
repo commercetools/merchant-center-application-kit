@@ -192,7 +192,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   );
 
   return (
-    // eslint-disable-next-line jsx-a11y/role-supports-aria-props
     <MenuList
       ref={ref}
       level={props.level}
@@ -255,7 +254,7 @@ type MenuItemProps = {
   children: ReactNode;
   identifier?: string;
   isRightArrowPressed?: boolean;
-  handleSubMenuKeyDown?: (e) => void;
+  handleSubMenuKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (

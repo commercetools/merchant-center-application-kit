@@ -89,6 +89,9 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  environment: TApplicationContext<{
+    useFullRedirectsForLinks?: boolean;
+  }>['environment'];
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -114,7 +117,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const submenuRef = useRef<HTMLUListElement>(null);
 
   const { handleSubMenuKeyDown, isRightArrowPressed } = useNavbarStateManager({
-    environment: props,
+    environment: props.environment,
   });
 
   const hasSubmenu =
@@ -435,20 +438,21 @@ const NavBar = (props: TNavbarProps) => {
     return <NavBarSkeleton isExpanded={isMenuOpen} />;
   }
 
-  const handleRightKey = (e) => {
+  const handleRightKey = (e: React.KeyboardEvent<HTMLUListElement>) => {
     if (e.key === 'ArrowRight') {
-      // // return subMenuRefLevelOne?.current?.focus()
-      const nextLevelElement =
-        subMenuRefLevelOne?.current?.querySelector('u:first-of-type');
+      const nextLevelElement = (
+        navBarMenuRef?.current as HTMLElement | null
+      )?.querySelector('ul:first-of-type');
       if (nextLevelElement) {
-        return nextLevelElement.focus();
+        return (nextLevelElement as HTMLElement | null)?.focus();
       }
     }
     if (e.key === 'Tab') {
-      const nextLevelElement =
-        navBarMenuRef?.current?.querySelector('ul:first-of-type');
+      const nextLevelElement = (
+        navBarMenuRef?.current as HTMLElement | null
+      )?.querySelector('ul:first-of-type');
       if (nextLevelElement) {
-        return nextLevelElement.focus();
+        return (nextLevelElement as HTMLElement | null)?.focus();
       }
     }
   };
@@ -492,6 +496,7 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
+                        environment={props.environment}
                       />
                     );
                   })}
