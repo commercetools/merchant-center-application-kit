@@ -160,7 +160,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
             fetchPolicy: 'network-only',
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-              projectKey: adapterArgs.user?.projectKey,
+              projectKey: adapterArgs.user?.project,
             },
           });
 
