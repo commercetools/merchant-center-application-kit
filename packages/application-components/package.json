@@ -56,7 +56,7 @@
     "@commercetools-uikit/utils": "^19.0.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@flopflip/react-broadcast": "13.5.2",
+    "@flopflip/react-broadcast": "13.6.0",
     "@react-hook/latest": "1.0.3",
     "@react-hook/resize-observer": "1.2.6",
     "@types/history": "^4.7.11",
