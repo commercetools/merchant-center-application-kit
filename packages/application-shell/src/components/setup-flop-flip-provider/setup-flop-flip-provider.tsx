@@ -37,6 +37,12 @@ type TLaunchDarklyUserCustomFields = {
   subgroup: string;
   cloudEnvironment: string;
 };
+type THttpAdapterUserCustomFields = {
+  user: {
+    key?: string;
+    project?: string;
+  };
+};
 
 type TFetchedHttpAdapterFlag = {
   name: string;
@@ -147,13 +153,14 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         user: {
           key: props.user?.id,
         },
-        execute: async function () {
+        execute: async (adapterArgs: THttpAdapterUserCustomFields) => {
           const response = await apolloClient.query<TAllFeaturesQuery>({
             query: AllFeaturesQuery,
             errorPolicy: 'ignore',
             fetchPolicy: 'network-only',
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey: adapterArgs.user?.projectKey,
             },
           });
 
