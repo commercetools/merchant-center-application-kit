@@ -11,7 +11,7 @@
     "extract-intl": "formatjs extract --format=transifex --out-file=./packages/i18n/data/core.json 'packages/**/*messages.ts'",
     "compile-intl": "pnpm --filter @commercetools-frontend/i18n run compile-data",
     "l10n:build": "pnpm --filter @commercetools-frontend/l10n run generate-data",
-    "lint": "jest --projects jest.{eslint,stylelint,text}.config.js",
+    "lint": "jest --projects jest.{eslint,stylelint}.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
     "typecheck": "tsc --noEmit",

@@ -32,8 +32,8 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
-    // https://github.com/mysticatea/eslint-plugin-node
-    'plugin:node/recommended',
+    // https://github.com/mysticatea/eslint-plugin-n
+    'plugin:n/recommended',
     // https://github.com/benmosher/eslint-plugin-import
     'plugin:import/errors',
     'plugin:import/warnings',
