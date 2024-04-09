@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import has from 'lodash/has';
-import type { IntlShape } from 'react-intl';
-
-import { useIntl } from 'react-intl';
+import { useIntl, type IntlShape } from 'react-intl';
 import type { TAppNotificationApiError } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
 const regexInvalidOperationRequiredAttribute =
-  /Required attribute '(.*)' cannot be removed/;
+  /^Required attribute '(.*)' cannot be removed/;
 
 // `error` fields for REST errors
 // `error.extensions` fields for GraphQL errors
