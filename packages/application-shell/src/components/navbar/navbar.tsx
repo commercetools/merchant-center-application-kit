@@ -116,7 +116,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
   const submenuRef = useRef<HTMLUListElement>(null);
 
-  const { handleKeyDown, isEnterKeyDown } = useNavbarStateManager({
+  const { handleKeyDown, isSubmenOpen } = useNavbarStateManager({
     environment: props.environment,
   });
 
@@ -224,7 +224,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
         handleSubMenuKeyDown={handleKeyDown}
-        isEnterKeyDown={isEnterKeyDown}
+        isSubmenOpen={isSubmenOpen}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}

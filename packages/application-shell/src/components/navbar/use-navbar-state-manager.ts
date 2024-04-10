@@ -36,20 +36,20 @@ type State = {
   activeItemIndex?: string;
   isExpanderVisible: boolean;
   isMenuOpen: boolean;
-  isEnterKeyDown: boolean;
+  isSubmenOpen: boolean;
 };
 type Action =
   | { type: 'setActiveItemIndex'; payload: string }
   | { type: 'unsetActiveItemIndex' }
   | { type: 'setIsExpanderVisible' }
   | { type: 'toggleIsMenuOpen' }
-  | { type: 'setIsEnterKeyDown'; payload: boolean }
+  | { type: 'setIsSubmenOpen'; payload: boolean }
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
-  isEnterKeyDown: false,
+  isSubmenOpen: false,
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
 
@@ -63,8 +63,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, activeItemIndex: undefined };
     case 'setIsExpanderVisible':
       return { ...state, isExpanderVisible: true };
-    case 'setIsEnterKeyDown':
-      return { ...state, isEnterKeyDown: action.payload };
+    case 'setIsSubmenOpen':
+      return { ...state, isSubmenOpen: action.payload };
     case 'toggleIsMenuOpen':
       return { ...state, isMenuOpen: !state.isMenuOpen };
     case 'setIsMenuOpenAndMakeExpanderVisible':
@@ -73,7 +73,7 @@ const reducer = (state: State, action: Action): State => {
       return {
         isExpanderVisible: false,
         isMenuOpen: false,
-        isEnterKeyDown: false,
+        isSubmenOpen: false,
       };
     default:
       return state;
@@ -262,22 +262,22 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLLIElement>) => {
-      if (event.key === 'Enter' && !state.isEnterKeyDown) {
+      if (event.key === 'Enter' && !state.isSubmenOpen) {
         return dispatch({
-          type: 'setIsEnterKeyDown',
+          type: 'setIsSubmenOpen',
           payload: true,
         });
       } else if (
         event.key === 'ArrowLeft' ||
-        (event.key === 'Escape' && state.isEnterKeyDown)
+        (event.key === 'Escape' && state.isSubmenOpen)
       ) {
         return dispatch({
-          type: 'setIsEnterKeyDown',
+          type: 'setIsSubmenOpen',
           payload: false,
         });
       }
     },
-    [state.isEnterKeyDown]
+    [state.isSubmenOpen]
   );
 
   const handleToggleMenu = useCallback(() => {

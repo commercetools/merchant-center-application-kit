@@ -223,7 +223,7 @@ const MenuListItem = styled.li<{
   isActive: boolean;
   isRouteActive: boolean;
   isCollapsed: boolean;
-  isEnterKeyDown?: boolean;
+  isSubmenOpen?: boolean;
 }>`
   height: ${NAVBAR.itemSize};
   width: ${NAVBAR.itemSize};
@@ -304,7 +304,7 @@ const MenuListItem = styled.li<{
   }
 
   ${(props) => [
-    props.isEnterKeyDown &&
+    props.isSubmenOpen &&
       css`
         :focus-within
           ${MenuList}.sublist-collapsed__active,
