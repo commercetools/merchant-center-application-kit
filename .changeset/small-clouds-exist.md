@@ -2,4 +2,4 @@
 '@commercetools-frontend/application-shell': minor
 ---
 
-add keyboard arrow navigation to improve navbar accessibility
+Improve keyboard accessibility by switching between the menu items and submenu items using mainly the Tab and Enter keys.
