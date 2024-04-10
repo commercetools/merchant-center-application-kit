@@ -256,8 +256,8 @@ However, there might be a case where the selected **data locale** does not match
 
 The `formatLocalizedString` util is authored with the following in mind:
 
-1. Help us Custom Application developers remain resilient as we attempt to derive a value of `LocalizedString` given a specified locale.
-2. Help us Custom Application developers remain consistent when rendering a value derived from `LocalizedString`.
+1. Help deriving a value of `LocalizedString` given a specified locale.
+2. Help rendering a value derived from `LocalizedString`.
 
 Let us take a look at the examples below putting this to action.
 
@@ -343,7 +343,7 @@ The default value of `fallback` is a `""`.
 #### Fallback order
 
 In **Scenario 2** above, we discussed that `formatLocalizedString` will pick the "next available value" from `product.name` when there is no matching value. In our case, the next available value was the locale `en`.
-Custom Application developers can take full control over the order of attempted lookups of the value while there is no match. Before `formatLocalizedString` eventually proceeds to rendering what is specified as `fallback`.
+Merchant Center customizations developers can take full control over the order of attempted lookups of the value while there is no match. Before `formatLocalizedString` eventually proceeds to rendering what is specified as `fallback`.
 
 `formatLocalizedString` accepts `fallbackOrder`, and this [test exemplifies the use case and resolve](./src/localize.spec.ts#L151:L170).
 

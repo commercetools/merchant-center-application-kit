@@ -37,7 +37,7 @@ export const RedirectToProjectCreate = () => {
             <Text.Body>
               The application is not running behind the{' '}
               <a
-                href="https://docs.commercetools.com/custom-applications/concepts/merchant-center-proxy-router"
+                href="https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,3 +1,3 @@
 # FormDialog
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/components/form-dialog) for more information.
+Check out the [documentation](https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-components#formdialog) for more information.

@@ -1,7 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Custom Application",
-
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
