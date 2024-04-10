@@ -36,20 +36,20 @@ type State = {
   activeItemIndex?: string;
   isExpanderVisible: boolean;
   isMenuOpen: boolean;
-  isRightArrowPressed: boolean;
+  isEnterKeyDown: boolean;
 };
 type Action =
   | { type: 'setActiveItemIndex'; payload: string }
   | { type: 'unsetActiveItemIndex' }
   | { type: 'setIsExpanderVisible' }
   | { type: 'toggleIsMenuOpen' }
-  | { type: 'setIsRightArrowPressed'; payload: boolean }
+  | { type: 'setIsEnterKeyDown'; payload: boolean }
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
-  isRightArrowPressed: false,
+  isEnterKeyDown: false,
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
 
@@ -63,8 +63,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, activeItemIndex: undefined };
     case 'setIsExpanderVisible':
       return { ...state, isExpanderVisible: true };
-    case 'setIsRightArrowPressed':
-      return { ...state, isRightArrowPressed: action.payload };
+    case 'setIsEnterKeyDown':
+      return { ...state, isEnterKeyDown: action.payload };
     case 'toggleIsMenuOpen':
       return { ...state, isMenuOpen: !state.isMenuOpen };
     case 'setIsMenuOpenAndMakeExpanderVisible':
@@ -73,7 +73,7 @@ const reducer = (state: State, action: Action): State => {
       return {
         isExpanderVisible: false,
         isMenuOpen: false,
-        isRightArrowPressed: false,
+        isEnterKeyDown: false,
       };
     default:
       return state;
@@ -260,24 +260,24 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.activeItemIndex]
   );
 
-  const handleSubMenuKeyDown = useCallback(
+  const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLLIElement>) => {
-      if (event.key === 'Enter' && !state.isRightArrowPressed) {
+      if (event.key === 'Enter' && !state.isEnterKeyDown) {
         return dispatch({
-          type: 'setIsRightArrowPressed',
+          type: 'setIsEnterKeyDown',
           payload: true,
         });
       } else if (
         event.key === 'ArrowLeft' ||
-        (event.key === 'Escape' && state.isRightArrowPressed)
+        (event.key === 'Escape' && state.isEnterKeyDown)
       ) {
         return dispatch({
-          type: 'setIsRightArrowPressed',
+          type: 'setIsEnterKeyDown',
           payload: false,
         });
       }
     },
-    [state.isRightArrowPressed]
+    [state.isEnterKeyDown]
   );
 
   const handleToggleMenu = useCallback(() => {
@@ -317,7 +317,7 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    handleSubMenuKeyDown,
+    handleKeyDown,
     allApplicationsNavbarMenuGroups,
   };
 };

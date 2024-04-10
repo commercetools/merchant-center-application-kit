@@ -252,7 +252,7 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
-  isRightArrowPressed?: boolean;
+  isEnterKeyDown?: boolean;
   handleSubMenuKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 const MenuItem = (props: MenuItemProps) => {
@@ -271,7 +271,7 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
-      isRightArrowPressed={props.isRightArrowPressed}
+      isEnterKeyDown={props.isEnterKeyDown}
       onKeyDown={props.handleSubMenuKeyDown}
     >
       <ItemContent>{props.children}</ItemContent>
