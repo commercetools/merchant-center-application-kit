@@ -234,12 +234,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
           ?.focus();
         break;
 
-      // Tab click's currently focused item
-      case 'Tab':
-        (currentlyFocused as HTMLUListElement)?.click();
-        e.preventDefault();
-        break;
-
       default:
         break;
     }
