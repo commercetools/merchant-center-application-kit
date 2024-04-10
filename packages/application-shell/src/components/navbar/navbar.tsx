@@ -325,8 +325,6 @@ export type TNavbarProps = {
   isLoading: boolean;
 };
 const NavBar = (props: TNavbarProps) => {
-  const navBarMenuRef = useRef(null);
-
   const {
     navBarNode,
     isMenuOpen,
@@ -385,7 +383,7 @@ const NavBar = (props: TNavbarProps) => {
         </IconWrapper>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
-      <MenuGroup id="main" level={1} ref={navBarMenuRef}>
+      <MenuGroup id="main" level={1}>
         <ScrollableMenu>
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {

@@ -193,7 +193,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
 
   return (
     <MenuList
-      ref={ref}
+      ref={ref && props.level === 2 ? ref : null}
       level={props.level}
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
@@ -203,6 +203,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuCollapsed
       }
       onKeyDown={props.handleKeyDown}
+      tabIndex={props.level === 2 ? 0 : -1}
       className={classnames(
         {
           'sublist-expanded__active': isSublistActiveWhileIsMenuExpanded,
