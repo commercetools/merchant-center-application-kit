@@ -157,6 +157,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const subListRef = useRef<HTMLLIElement | null>(null);
 
   useLayoutEffect(() => {
     observerRef.current = new IntersectionObserver(callbackFn, {
@@ -195,15 +196,16 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   ) => {
     const currentlyFocused = submenuRef.current?.querySelector('a:focus');
 
-    function getCurrentSibling(
+    const getCurrentSibling = (
       element: Element | null | undefined,
       levels: number
-    ) {
+    ): Element | null | undefined => {
       if (levels === 0 || !element) {
         return element;
       }
       return getCurrentSibling(element.parentElement, levels - 1);
-    }
+    };
+
     const previousElement = getCurrentSibling(
       currentlyFocused,
       3
@@ -230,18 +232,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         submenuRef.current
           ?.querySelector<HTMLAnchorElement>('a:first-of-type')
           ?.focus();
-        break;
-
-      // ArrowLeft close's submenu
-      case 'ArrowLeft':
-        submenuRef?.current?.focus();
-        submenuRef?.current?.blur();
-        break;
-
-      // Same as ArrowLeft, Escape close's submenu
-      case 'Escape':
-        submenuRef?.current?.focus();
-        submenuRef?.current?.blur();
         break;
 
       // Tab click's currently focused item
@@ -346,6 +336,9 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   <SublistItem
                     id={`${props.menu.key}-submenu-${submenu.key}`}
                     isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
+                    ref={
+                      subListRef as React.LegacyRef<HTMLLIElement> | undefined
+                    }
                   >
                     <Text>
                       <MenuItemLink
@@ -438,15 +431,17 @@ const NavBar = (props: TNavbarProps) => {
     return <NavBarSkeleton isExpanded={isMenuOpen} />;
   }
 
-  const handleRightKey = (e: React.KeyboardEvent<HTMLUListElement>) => {
-    if (e.key === 'ArrowRight') {
+  const handleMenuGroupKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    if (e.key === 'ArrowDown') {
       const nextLevelElement = (
         navBarMenuRef?.current as HTMLElement | null
-      )?.querySelector('ul:first-of-type');
+      )?.querySelector('ul');
+
       if (nextLevelElement) {
-        return (nextLevelElement as HTMLElement | null)?.focus();
+        return (nextLevelElement.querySelector('li') as HTMLElement)?.focus();
       }
     }
+
     if (e.key === 'Tab') {
       const nextLevelElement = (
         navBarMenuRef?.current as HTMLElement | null
@@ -471,7 +466,7 @@ const NavBar = (props: TNavbarProps) => {
         id="main"
         level={1}
         ref={navBarMenuRef}
-        handleKeyDown={handleRightKey}
+        handleKeyDown={handleMenuGroupKeyDown}
       >
         <ScrollableMenu>
           <Spacings.Stack scale="l">

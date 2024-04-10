@@ -267,7 +267,10 @@ const useNavbarStateManager = (props: HookProps) => {
           type: 'setIsRightArrowPressed',
           payload: true,
         });
-      } else if (event.key === 'ArrowLeft' && state.isRightArrowPressed) {
+      } else if (
+        event.key === 'ArrowLeft' ||
+        (event.key === 'Escape' && state.isRightArrowPressed)
+      ) {
         return dispatch({
           type: 'setIsRightArrowPressed',
           payload: false,

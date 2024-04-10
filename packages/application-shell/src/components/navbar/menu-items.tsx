@@ -202,7 +202,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuExpanded ||
         isSublistActiveWhileIsMenuCollapsed
       }
-      tabIndex={ref && props.level === 2 ? -1 : undefined}
       onKeyDown={props.handleKeyDown}
       className={classnames(
         {
