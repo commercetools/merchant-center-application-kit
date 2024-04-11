@@ -130,7 +130,7 @@ const processHeaders = (
     ...HTTP_SECURITY_HEADERS,
 
     // The `Content-Security-Policy` header is always generated
-    // based on the Custom Application config.
+    // based on the Merchant Center customization config.
     'Content-Security-Policy': toHeaderString(mergedCsp),
 
     // Allow to extend the `Strict-Transport-Security` header.

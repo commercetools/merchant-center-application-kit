@@ -103,7 +103,7 @@ The supported `options` can be found in the `api-request-builder`'s documentatio
 ## Action creators for external API usage
 
 By default, all requests with the SDK are configured to be sent to the MC API.
-However, Custom Applications using the [Proxy to external API](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api) need to configure the request a bit differently, and send additional headers.
+However, Custom Applications using the [Proxy to external API](https://docs.commercetools.com/merchant-center-customizations/concepts/integrate-with-your-own-api) need to configure the request a bit differently, and send additional headers.
 
 To make it easier to make requests to the proxy endpoint using the SDK, there is a new action creator wrapper that comes with built-in configuration options.
 
@@ -124,7 +124,7 @@ The `forwardTo` action creators additionally set the following headers:
 - `X-Forward-To`
 - `X-Forward-To-Audience-Policy`
 
-For more information, check the [Proxy to external API](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api) documentation.
+For more information, check the [Proxy to external API](https://docs.commercetools.com/merchant-center-customizations/concepts/integrate-with-your-own-api) documentation.
 
 ## Error handling
 

@@ -50,7 +50,7 @@ const writeSessionContext = <Request extends TBaseRequest>(
 // Given a cloud identifier, try to map it to one of the supported
 // environments and return the MC API URL for that environment.
 // The URL points to the new hostnames.
-// https://docs.commercetools.com/custom-applications/concepts/merchant-center-api#hostnames
+// https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api#hostnames
 const mapCloudIdentifierToIssuer = <Request extends TBaseRequest>(
   issuer: TSessionMiddlewareOptions<Request>['issuer']
 ): string | undefined => {
@@ -89,7 +89,7 @@ const throwIfIssuerIsNotAValidUrl = (issuer: string) => {
     new URL(issuer);
   } catch (error) {
     throw new Error(
-      `Invalid issuer URL "${issuer}". Expected a valid URL to the Merchant Center API Gateway, or a cloud identifier to one of the available cloud regions. See https://docs.commercetools.com/custom-applications/concepts/merchant-center-api#hostnames.`
+      `Invalid issuer URL "${issuer}". Expected a valid URL to the Merchant Center API Gateway, or a cloud identifier to one of the available cloud regions. See https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api#hostnames.`
     );
   }
 };
@@ -179,7 +179,7 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     if (!requestUrlPath || !requestUrlPath.startsWith('/')) {
       throw new Error(
-        `Invalid request URI path "${requestUrlPath}". Please make sure that the "request" object has either a property "originalUrl" or "url". If not, you should implement the "getRequestUrl" function and make sure to return a valid URI path value starting with "/". More info at https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api#validating-the-json-web-token`
+        `Invalid request URI path "${requestUrlPath}". Please make sure that the "request" object has either a property "originalUrl" or "url". If not, you should implement the "getRequestUrl" function and make sure to return a valid URI path value starting with "/". More info at https://docs.commercetools.com/merchant-center-customizations/concepts/integrate-with-your-own-api#validating-the-json-web-token`
       );
     }
 
