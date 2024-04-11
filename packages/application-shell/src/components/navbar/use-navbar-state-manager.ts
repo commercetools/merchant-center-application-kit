@@ -281,6 +281,13 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.isSubmenOpen]
   );
 
+  const handleBlur = useCallback(() => {
+    dispatch({
+      type: 'setIsSubmenOpen',
+      payload: false,
+    });
+  }, [dispatch]);
+
   const handleToggleMenu = useCallback(() => {
     if (state.isMenuOpen && state.activeItemIndex) {
       dispatch({ type: 'unsetActiveItemIndex' });
@@ -319,6 +326,7 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleMenu,
     shouldCloseMenuFly,
     handleKeyDown,
+    handleBlur,
     allApplicationsNavbarMenuGroups,
   };
 };

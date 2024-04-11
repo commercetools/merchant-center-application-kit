@@ -114,9 +114,11 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const subListRef = useRef<HTMLLIElement | null>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
 
-  const { handleKeyDown, isSubmenOpen } = useNavbarStateManager({
+  const { handleKeyDown, isSubmenOpen, handleBlur } = useNavbarStateManager({
     environment: props.environment,
   });
 
@@ -155,9 +157,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     },
     [menuItemIdentifier, props.isMenuOpen]
   );
-
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const subListRef = useRef<HTMLLIElement | null>(null);
 
   useLayoutEffect(() => {
     observerRef.current = new IntersectionObserver(callbackFn, {
@@ -198,6 +197,22 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
+
+  // Observe submenu to ensure it is not showing on screen when focus is out of it's focus
+  useEffect(() => {
+    const currentRef = submenuRef.current;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          // clean up existing visible state when tab focus leaves the submenu
+          handleBlur();
+        }
+      });
+    });
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+  }, [handleBlur]);
 
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
