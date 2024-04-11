@@ -7,13 +7,13 @@ import { processConfig } from '@commercetools-frontend/application-config';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
-import pluginCustomApplication from '../vite-plugins/vite-plugin-custom-application';
+import pluginMerchantCenterCustomization from '../vite-plugins/vite-plugin-merchant-center-customization';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
-  // Load the Custom Application config file first.
+  // Load the Merchant Center customization config file first.
   const applicationConfig = processConfig();
 
   // Ensure the `/public` folder exists.
@@ -44,7 +44,7 @@ async function run() {
       pluginGraphql() as Plugin,
       pluginReact(),
       pluginSvgr(),
-      pluginCustomApplication(applicationConfig),
+      pluginMerchantCenterCustomization(applicationConfig),
     ],
   });
   await server.listen();

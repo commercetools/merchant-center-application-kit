@@ -5,12 +5,12 @@
   <b>Custom Application starter template</b>
 </p>
 
-A starter template to [develop Custom Applications](https://docs.commercetools.com/custom-applications/) for the Merchant Center.
+A starter template to [develop Custom Applications](https://docs.commercetools.com/merchant-center-customizations/custom-applications) for the Merchant Center.
 
 # Installing the template
 
-Read the [Getting started](https://docs.commercetools.com/custom-applications/getting-started) documentation for more information.
+Read the [Getting started](https://docs.commercetools.com/merchant-center-customizations/custom-applications) documentation for more information.
 
 # Developing the Custom Application
 
-Learn more about [developing a Custom Application](https://docs.commercetools.com/custom-applications/development) and [how to use the CLI](https://docs.commercetools.com/custom-applications/api-reference/cli).
+Learn more about [developing a Custom Application](https://docs.commercetools.com/merchant-center-customizations/development) and [how to use the CLI](https://docs.commercetools.com/merchant-center-customizations/api-reference/cli).

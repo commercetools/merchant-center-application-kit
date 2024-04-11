@@ -30,7 +30,7 @@ function createMcDevAuthenticationMiddleware(
       response.setHeader('Content-Type', 'application/json');
       response.end(
         JSON.stringify({
-          message: `This GraphQL endpoint is only available in production in the [Merchant Center Proxy Router](https://docs.commercetools.com/custom-applications/concepts/merchant-center-proxy-router). Please check that you are not calling this endpoint in development mode.`,
+          message: `This GraphQL endpoint is only available in production in the [Merchant Center Proxy Router](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router). Please check that you are not calling this endpoint in development mode.`,
         })
       );
       return;

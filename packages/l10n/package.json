@@ -8,7 +8,7 @@
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
     "directory": "packages/l10n"
   },
-  "homepage": "https://docs.commercetools.com/custom-applications",
+  "homepage": "https://docs.commercetools.com/merchant-center-customizations",
   "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "publishConfig": {

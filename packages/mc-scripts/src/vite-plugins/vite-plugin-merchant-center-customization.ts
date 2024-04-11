@@ -14,7 +14,7 @@ const vitePluginCustomApplication = (
     configureServer(server) {
       return () => {
         // Users do not need to have/maintain the `index.html` (as expected by Vite)
-        // as it's generated and maintained by the Custom Application CLI.
+        // as it's generated and maintained by the Merchant Center customization CLI.
         // Therefore, the generated `index.html` (template) is written into the `/public`
         // folder so that it's gitignored.
         // As a result, we need to make sure to point the URI path to the correct location.
