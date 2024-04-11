@@ -1,19 +1,32 @@
 import PropTypes from 'prop-types';
-import { Route, useRouteMatch, useHistory } from 'react-router-dom';
+import {
+  Route,
+  useRouteMatch,
+  useHistory,
+  BrowserRouter as Router,
+  Switch,
+} from 'react-router-dom';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   InfoModalPage,
   InfoDialog,
   useModalState,
   Drawer,
+  TabularModalPage,
+  TabHeader,
 } from '@commercetools-frontend/application-components';
 import FlatButton from '@commercetools-uikit/flat-button';
+import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 
+const Tab1 = () => <div>Tab 1</div>;
+const Tab2 = () => <div>Tab 2</div>;
+
 const NotificationsTriggers = () => {
   const showNotification = useShowNotification();
-
+  const match = useRouteMatch();
+  const tabsModalState = useModalState();
   return (
     <Spacings.Stack scale="s">
       <Spacings.Inline>
@@ -57,6 +70,34 @@ const NotificationsTriggers = () => {
           }}
         />
       </Spacings.Inline>
+      <PrimaryButton
+        label="Open modal"
+        onClick={() => tabsModalState.openModal()}
+      />
+      {tabsModalState.isModalOpen && (
+        <Router>
+          <TabularModalPage
+            title="Manage your account"
+            isOpen={tabsModalState.isModalOpen}
+            onClose={tabsModalState.closeModal}
+            tabControls={
+              <>
+                <TabHeader to={`${match.url}/tab-one`} label="Tab One" />
+                <TabHeader to={`${match.url}/tab-two`} label="Tab Two" />
+              </>
+            }
+          >
+            <Switch>
+              <Route path={`${match.path}/tab-one`}>
+                <Tab1 />
+              </Route>
+              <Route path={`${match.path}/tab-two`}>
+                <Tab2 />
+              </Route>
+            </Switch>
+          </TabularModalPage>
+        </Router>
+      )}
     </Spacings.Stack>
   );
 };
