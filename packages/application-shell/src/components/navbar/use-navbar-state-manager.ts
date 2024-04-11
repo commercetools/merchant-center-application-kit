@@ -263,6 +263,7 @@ const useNavbarStateManager = (props: HookProps) => {
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLLIElement>) => {
       if (event.key === 'Enter' && !state.isSubmenOpen) {
+        event.preventDefault();
         return dispatch({
           type: 'setIsSubmenOpen',
           payload: true,
