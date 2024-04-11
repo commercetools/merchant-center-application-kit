@@ -18,6 +18,7 @@ import {
   TabularPageContainer,
   FormControlsContainer,
   CustomViewsSelectorWrapper,
+  CustomViewsTabularPageContainer,
 } from '../../internals/tabular-page';
 import ModalPage from '../internals/modal-page';
 
@@ -87,28 +88,30 @@ const TabularModalPage = (props: Props) => {
       shouldDelayOnClose={props.shouldDelayOnClose}
       afterOpenStyles={props.afterOpenStyles}
     >
-      <TabularPageContainer color="neutral">
-        {props.customTitleRow || (
-          <PageHeaderTitle
-            title={props.title}
-            titleSize="big"
-            subtitle={props.subtitle}
-            truncate
+      <CustomViewsTabularPageContainer>
+        <TabularPageContainer color="neutral">
+          {props.customTitleRow || (
+            <PageHeaderTitle
+              title={props.title}
+              titleSize="big"
+              subtitle={props.subtitle}
+              truncate
+            />
+          )}
+          <ControlsContainter
+            tabControls={props.tabControls}
+            formControls={
+              <FormControlsContainer>
+                {!props.hideControls && props.formControls && (
+                  <Spacings.Inline alignItems="flex-end">
+                    {props.formControls}
+                  </Spacings.Inline>
+                )}
+              </FormControlsContainer>
+            }
           />
-        )}
-        <ControlsContainter
-          tabControls={props.tabControls}
-          formControls={
-            <FormControlsContainer>
-              {!props.hideControls && props.formControls && (
-                <Spacings.Inline alignItems="flex-end">
-                  {props.formControls}
-                </Spacings.Inline>
-              )}
-            </FormControlsContainer>
-          }
-        />
-      </TabularPageContainer>
+        </TabularPageContainer>
+      </CustomViewsTabularPageContainer>
       <CustomViewsSelectorWrapper>
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}

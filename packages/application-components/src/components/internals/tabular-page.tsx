@@ -1,8 +1,11 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
+
+declare let window: ApplicationWindow;
 
 const TabControls = styled.div`
   margin-top: ${uiKitDesignTokens.spacingS};
@@ -59,9 +62,28 @@ const CustomViewsSelectorWrapper = styled.div`
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
 `;
 
+const CustomViewsTabularPageContainer = (props: { children: ReactNode }) => {
+  const isRenderedInCustomView = Boolean(window.app.customViewId);
+  // wrapper which only appears when rendered in a Custom View
+  const Wrapper = isRenderedInCustomView ? 'div' : Fragment;
+  return (
+    <Wrapper
+      css={css`
+        > div {
+          padding: ${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55}
+            0 !important;
+        }
+      `}
+    >
+      {props.children}
+    </Wrapper>
+  );
+};
+
 export {
   ControlsContainter,
   TabularPageContainer,
   FormControlsContainer,
   CustomViewsSelectorWrapper,
+  CustomViewsTabularPageContainer,
 };
