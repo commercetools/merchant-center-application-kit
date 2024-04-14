@@ -130,6 +130,8 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
 
   const adapterArgs = useMemo(
     () => ({
+      cacheIdentifier: 'local',
+      cacheMode: 'lazy',
       user: {
         key: props.user?.id,
       },
