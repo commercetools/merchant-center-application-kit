@@ -113,7 +113,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
   const [isSubmenuFocused, setIsSubmenuFocused] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const subListRef = useRef<HTMLLIElement | null>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
 
   const hasSubmenu =
@@ -298,11 +297,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   }
                 >
                   <SublistItem
-                    id={`${props.menu.key}-submenu-${submenu.key}`}
                     isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
-                    ref={
-                      subListRef as React.LegacyRef<HTMLLIElement> | undefined
-                    }
                   >
                     <Text>
                       <MenuItemLink
