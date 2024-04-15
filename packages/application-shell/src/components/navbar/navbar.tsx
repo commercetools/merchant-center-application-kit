@@ -89,9 +89,6 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
-  environment: TApplicationContext<{
-    useFullRedirectsForLinks?: boolean;
-  }>['environment'];
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -114,13 +111,10 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const [isSubmenuFocused, setIsSubmenuFocused] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const subListRef = useRef<HTMLLIElement | null>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
-
-  const { handleKeyDown, isSubmenOpen, handleBlur } = useNavbarStateManager({
-    environment: props.environment,
-  });
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -205,18 +199,30 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
           // clean up existing visible state when tab focus leaves the submenu
-          handleBlur();
+          setIsSubmenuFocused(false);
         }
       });
     });
     if (currentRef) {
       observer.observe(currentRef);
     }
-  }, [handleBlur]);
+  }, []);
 
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
+    const currentlyFocusedItem = submenuRef.current?.querySelector(':focus');
+
+    if (e.key === 'Enter') {
+      setIsSubmenuFocused(true);
+      if (!currentlyFocusedItem) {
+        submenuRef.current?.querySelector('a')?.focus();
+      }
+    }
+  };
+
   return (
     <RestrictedMenuItem
       key={props.menu.key}
@@ -235,11 +241,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         isMainMenuRouteActive={isMainMenuRouteActive}
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
+        onKeyDown={handleKeyDown}
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
-        handleSubMenuKeyDown={handleKeyDown}
-        isSubmenOpen={isSubmenOpen}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
@@ -310,6 +315,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                         }
                         onClick={props.onMenuItemClick}
                         isSubmenuLink
+                        isSubmenuFocused={isSubmenuFocused}
                       >
                         <MenuLabel
                           labelAllLocales={submenu.labelAllLocales}
@@ -422,7 +428,6 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
-                        environment={props.environment}
                       />
                     );
                   })}

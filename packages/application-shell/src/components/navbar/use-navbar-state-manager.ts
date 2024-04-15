@@ -36,20 +36,17 @@ type State = {
   activeItemIndex?: string;
   isExpanderVisible: boolean;
   isMenuOpen: boolean;
-  isSubmenOpen: boolean;
 };
 type Action =
   | { type: 'setActiveItemIndex'; payload: string }
   | { type: 'unsetActiveItemIndex' }
   | { type: 'setIsExpanderVisible' }
   | { type: 'toggleIsMenuOpen' }
-  | { type: 'setIsSubmenOpen'; payload: boolean }
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
-  isSubmenOpen: false,
   isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
 });
 
@@ -63,8 +60,6 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, activeItemIndex: undefined };
     case 'setIsExpanderVisible':
       return { ...state, isExpanderVisible: true };
-    case 'setIsSubmenOpen':
-      return { ...state, isSubmenOpen: action.payload };
     case 'toggleIsMenuOpen':
       return { ...state, isMenuOpen: !state.isMenuOpen };
     case 'setIsMenuOpenAndMakeExpanderVisible':
@@ -73,7 +68,6 @@ const reducer = (state: State, action: Action): State => {
       return {
         isExpanderVisible: false,
         isMenuOpen: false,
-        isSubmenOpen: false,
       };
     default:
       return state;
@@ -260,34 +254,6 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.activeItemIndex]
   );
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLLIElement>) => {
-      if (event.key === 'Enter' && !state.isSubmenOpen) {
-        event.preventDefault();
-        return dispatch({
-          type: 'setIsSubmenOpen',
-          payload: true,
-        });
-      } else if (
-        event.key === 'ArrowLeft' ||
-        (event.key === 'Escape' && state.isSubmenOpen)
-      ) {
-        return dispatch({
-          type: 'setIsSubmenOpen',
-          payload: false,
-        });
-      }
-    },
-    [state.isSubmenOpen]
-  );
-
-  const handleBlur = useCallback(() => {
-    dispatch({
-      type: 'setIsSubmenOpen',
-      payload: false,
-    });
-  }, [dispatch]);
-
   const handleToggleMenu = useCallback(() => {
     if (state.isMenuOpen && state.activeItemIndex) {
       dispatch({ type: 'unsetActiveItemIndex' });
@@ -325,8 +291,6 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    handleKeyDown,
-    handleBlur,
     allApplicationsNavbarMenuGroups,
   };
 };

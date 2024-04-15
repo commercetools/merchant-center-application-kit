@@ -203,7 +203,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuCollapsed
       }
       onKeyDown={props.handleKeyDown}
-      tabIndex={props.level === 2 ? 0 : -1}
       className={classnames(
         {
           'sublist-expanded__active': isSublistActiveWhileIsMenuExpanded,
@@ -253,8 +252,8 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
-  isSubmenOpen?: boolean;
   handleSubMenuKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
@@ -265,6 +264,7 @@ const MenuItem = (props: MenuItemProps) => {
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
+      onKeyDown={props.onKeyDown}
       data-menuitem={props.identifier}
       className={classnames({
         active: props.isActive,
@@ -272,8 +272,6 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
-      isSubmenOpen={props.isSubmenOpen}
-      onKeyDown={props.handleSubMenuKeyDown}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>
@@ -289,6 +287,7 @@ export type MenuItemLinkProps = {
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
   isSubmenuLink?: boolean;
+  isSubmenuFocused?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
@@ -314,6 +313,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
           activeClassName="highlighted"
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
+          tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();
