@@ -94,7 +94,7 @@ const TabularDetailPage = (props: TTabularDetailPageProps) => {
 
   return (
     <PageWrapper>
-      <TabularPageContainer color="neutral">
+      <TabularPageContainer>
         <PageTopBar
           color="neutral"
           previousPathLabel={props.previousPathLabel}
