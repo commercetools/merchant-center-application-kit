@@ -29,27 +29,11 @@ const ControlsContainter = (props: TControlsContainterProps) => (
 );
 ControlsContainter.displayName = 'ControlsContainter';
 
-type TTabularPageContainerProps = {
-  children: ReactNode;
-  color: 'surface' | 'neutral';
-};
-
-const TabularPageContainer = (props: TTabularPageContainerProps) => (
-  <div
-    css={css`
-      background-color: ${uiKitDesignTokens.colorSurface};
-      padding: ${appKitDesignTokens.paddingForTabularPageHeader};
-      border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
-    `}
-  >
-    {props.children}
-  </div>
-);
-TabularPageContainer.displayName = 'TabularPageContainer';
-const defaultProps: Pick<TTabularPageContainerProps, 'color'> = {
-  color: 'surface',
-};
-TabularPageContainer.defaultProps = defaultProps;
+const TabularPageContainer = styled.div`
+  background-color: ${uiKitDesignTokens.colorSurface};
+  padding: ${appKitDesignTokens.paddingForTabularPageHeader};
+  border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
+`;
 
 const FormControlsContainer = styled.div`
   margin-bottom: ${uiKitDesignTokens.spacingM};
@@ -59,9 +43,16 @@ const CustomViewsSelectorWrapper = styled.div`
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
 `;
 
+const TabularModalPageContainer = styled.div`
+  ${TabularPageContainer} {
+    padding: ${appKitDesignTokens.paddingForTabularModalPageHeader};
+  }
+`;
+
 export {
   ControlsContainter,
   TabularPageContainer,
+  TabularModalPageContainer,
   FormControlsContainer,
   CustomViewsSelectorWrapper,
 };

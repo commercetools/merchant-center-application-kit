@@ -13,6 +13,7 @@ export const themesOverrides = {
     paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} ${uiKitDesignTokens.spacing40}`,
     paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} 0`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
+    paddingForTabularModalPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
     // recolouring rollout
     backgroundColorForNavbar: uiKitDesignTokens.colorPrimary,
     backgroundColorForNavbarExpander: `linear-gradient(180deg, ${uiKitDesignTokens.colorPrimary} 0%, ${uiKitDesignTokens.colorPrimary25} 100%)`,
@@ -39,6 +40,7 @@ export const themesOverrides = {
     paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} ${uiKitDesignTokens.spacing40}`,
     paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} 0`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
+    paddingForTabularModalPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
     backgroundColorForNavbar: uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarExpander: uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarExpanderWhenHovered:

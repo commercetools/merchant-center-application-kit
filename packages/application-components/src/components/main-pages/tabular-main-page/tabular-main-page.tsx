@@ -72,7 +72,7 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
 
   return (
     <PageWrapper>
-      <TabularPageContainer color="surface">
+      <TabularPageContainer>
         {props.customTitleRow || (
           <PageHeaderTitle
             title={props.title ?? ''}
