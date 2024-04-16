@@ -6535,7 +6535,7 @@ packages:
     dependencies:
       '@babel/core': 7.24.0
       '@babel/helper-module-imports': 7.22.15
-      '@babel/helper-plugin-utils': 7.24.0
+      '@babel/helper-plugin-utils': 7.22.5
       babel-plugin-polyfill-corejs2: 0.4.5(@babel/core@7.24.0)
       babel-plugin-polyfill-corejs3: 0.8.3(@babel/core@7.24.0)
       babel-plugin-polyfill-regenerator: 0.5.2(@babel/core@7.24.0)

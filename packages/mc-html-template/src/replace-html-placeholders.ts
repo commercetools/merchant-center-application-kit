@@ -34,7 +34,7 @@ const replaceHtmlPlaceholders = (
     )
     .replace(
       new RegExp('__APPLICATION_ENVIRONMENT__', 'g'),
-      sanitizeAppEnvironment(options.env)
+      `<script>window.app = ${sanitizeAppEnvironment(options.env)};</script>`
     )
     .replace(
       new RegExp('__LOADING_SCREEN_JS__', 'g'),
