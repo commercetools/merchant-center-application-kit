@@ -89,7 +89,7 @@ const TabularModalPage = (props: Props) => {
       afterOpenStyles={props.afterOpenStyles}
     >
       <TabularModalPageContainer>
-        <TabularPageContainer color="neutral">
+        <TabularPageContainer>
           {props.customTitleRow || (
             <PageHeaderTitle
               title={props.title}
