@@ -1,11 +1,8 @@
-import { Fragment, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { designTokens as appKitDesignTokens } from '../../theming';
-
-declare let window: ApplicationWindow;
 
 const TabControls = styled.div`
   margin-top: ${uiKitDesignTokens.spacingS};
@@ -32,27 +29,11 @@ const ControlsContainter = (props: TControlsContainterProps) => (
 );
 ControlsContainter.displayName = 'ControlsContainter';
 
-type TTabularPageContainerProps = {
-  children: ReactNode;
-  color: 'surface' | 'neutral';
-};
-
-const TabularPageContainer = (props: TTabularPageContainerProps) => (
-  <div
-    css={css`
-      background-color: ${uiKitDesignTokens.colorSurface};
-      padding: ${appKitDesignTokens.paddingForTabularPageHeader};
-      border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
-    `}
-  >
-    {props.children}
-  </div>
-);
-TabularPageContainer.displayName = 'TabularPageContainer';
-const defaultProps: Pick<TTabularPageContainerProps, 'color'> = {
-  color: 'surface',
-};
-TabularPageContainer.defaultProps = defaultProps;
+const TabularPageContainer = styled.div`
+  background-color: ${uiKitDesignTokens.colorSurface};
+  padding: ${appKitDesignTokens.paddingForTabularPageHeader};
+  border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
+`;
 
 const FormControlsContainer = styled.div`
   margin-bottom: ${uiKitDesignTokens.spacingM};
@@ -62,28 +43,16 @@ const CustomViewsSelectorWrapper = styled.div`
   margin: ${appKitDesignTokens.marginForCustomViewsSelectorAsTabular};
 `;
 
-const CustomViewsTabularPageContainer = (props: { children: ReactNode }) => {
-  const isRenderedInCustomView = Boolean(window.app.customViewId);
-  // wrapper which only appears when rendered in a Custom View
-  const Wrapper = isRenderedInCustomView ? 'div' : Fragment;
-  return (
-    <Wrapper
-      css={css`
-        > div {
-          padding: ${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55}
-            0 !important;
-        }
-      `}
-    >
-      {props.children}
-    </Wrapper>
-  );
-};
+const TabularModalPageContainer = styled.div`
+  ${TabularPageContainer} {
+    padding: ${appKitDesignTokens.paddingForTabularModalPageHeader};
+  }
+`;
 
 export {
   ControlsContainter,
   TabularPageContainer,
+  TabularModalPageContainer,
   FormControlsContainer,
   CustomViewsSelectorWrapper,
-  CustomViewsTabularPageContainer,
 };

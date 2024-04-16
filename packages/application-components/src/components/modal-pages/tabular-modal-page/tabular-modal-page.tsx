@@ -16,9 +16,9 @@ import { ModalContentWrapper } from '../../internals/page.styles';
 import {
   ControlsContainter,
   TabularPageContainer,
+  TabularModalPageContainer,
   FormControlsContainer,
   CustomViewsSelectorWrapper,
-  CustomViewsTabularPageContainer,
 } from '../../internals/tabular-page';
 import ModalPage from '../internals/modal-page';
 
@@ -88,7 +88,7 @@ const TabularModalPage = (props: Props) => {
       shouldDelayOnClose={props.shouldDelayOnClose}
       afterOpenStyles={props.afterOpenStyles}
     >
-      <CustomViewsTabularPageContainer>
+      <TabularModalPageContainer>
         <TabularPageContainer color="neutral">
           {props.customTitleRow || (
             <PageHeaderTitle
@@ -111,7 +111,7 @@ const TabularModalPage = (props: Props) => {
             }
           />
         </TabularPageContainer>
-      </CustomViewsTabularPageContainer>
+      </TabularModalPageContainer>
       <CustomViewsSelectorWrapper>
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
