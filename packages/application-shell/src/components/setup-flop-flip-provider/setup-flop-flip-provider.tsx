@@ -4,6 +4,7 @@ import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { cacheIdentifiers, cacheModes } from '@flopflip/types';
 import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -130,6 +131,8 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
 
   const adapterArgs = useMemo(
     () => ({
+      cacheIdentifier: cacheIdentifiers.local,
+      cacheMode: cacheModes.lazy,
       user: {
         key: props.user?.id,
       },
