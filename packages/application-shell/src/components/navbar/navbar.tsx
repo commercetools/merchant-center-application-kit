@@ -191,22 +191,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
 
-  // Observe submenu to ensure it is not showing on screen when focus is out of it's focus
-  useEffect(() => {
-    const currentRef = submenuRef.current;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          // clean up existing visible state when tab focus leaves the submenu
-          setIsSubmenuFocused(false);
-        }
-      });
-    });
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-  }, []);
-
   const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
