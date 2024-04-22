@@ -7,10 +7,7 @@ import Application from './application';
 ReactDOM.render(
   <Suspense fallback={'Loading...'}>
     <>
-      <ThemeProvider
-        theme="recolouring"
-        themeOverrides={themesOverrides.recolouring}
-      />
+      <ThemeProvider theme="default" themeOverrides={themesOverrides.default} />
       <Application />
     </>
   </Suspense>,

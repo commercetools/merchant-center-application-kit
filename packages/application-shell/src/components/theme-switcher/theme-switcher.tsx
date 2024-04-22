@@ -7,7 +7,7 @@ const NewColoursSchemaAnnouncementDialog = lazy(
 );
 
 const ThemeSwitcher = () => {
-  const theme = 'recolouring';
+  const theme = 'default';
   return (
     <>
       <ThemeProvider theme={theme} themeOverrides={themesOverrides[theme]} />

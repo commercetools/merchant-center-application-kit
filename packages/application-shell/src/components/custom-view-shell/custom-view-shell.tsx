@@ -118,7 +118,7 @@ function StrictModeEnablement(props: TStrictModeEnablementProps) {
 }
 
 function CustomViewThemeProvider() {
-  const theme = 'recolouring';
+  const theme = 'default';
 
   const customViewThemeOverrides = {
     // @ts-ignore
