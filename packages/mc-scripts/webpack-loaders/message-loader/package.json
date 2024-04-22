@@ -1,0 +1,4 @@
+{
+  "main": "dist/commercetools-frontend-mc-scripts-webpack-loaders-message-loader.cjs.js",
+  "module": "dist/commercetools-frontend-mc-scripts-webpack-loaders-message-loader.esm.js"
+}
