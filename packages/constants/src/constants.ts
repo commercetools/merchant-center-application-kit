@@ -1,23 +1,25 @@
 import type { TCustomView } from './types/generated/settings';
 
 /**
- * The entryPointUriPath may be between 2 and 36 characters and only contain alphabetic lowercase characters,
- * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
+ * The project key must be between 2 and 36 characters long. It can only contain alphanumeric lowercase characters (a-z, 0-9),
+ * up to two consecutive underscores (_) and hyphens (-). Leading and trailing underscore and hyphens are also not allowed.
  */
-export const PROJECT_KEY_REGEX = /^[^-_#]([0-9a-z]|[-_](?![-_])){0,34}[^-_#]$/g;
+export const PROJECT_KEY_REGEX =
+  /^[^-_#\W]([0-9a-z]|([-_]{0,2})(?!([-_]))){0,34}[^-_#\W]$/g;
 
 /**
  * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
  * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
  */
 export const ENTRY_POINT_URI_PATH_REGEX =
-  /^[^-_#]([0-9a-z]|[-_](?![-_])){0,62}[^-_#]$/g;
+  /^[^-_#\W]([0-9a-z]|[-_](?![-_])){0,62}[^-_#\W]$/g;
 
 /**
- * The permission group name may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens. Leading and trailing hyphens are also not allowed.
+ * The permission group name may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens.
+ * Leading and trailing hyphens are also not allowed.
  */
 export const PERMISSION_GROUP_NAME_REGEX =
-  /^[^-#]([a-z]|[-](?![-])){0,62}[^-#]$/g;
+  /^[^-#\W]([a-z]|[-](?![-])){0,62}[^-#\W]$/g;
 
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
