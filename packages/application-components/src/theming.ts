@@ -14,33 +14,6 @@ export const themesOverrides = {
     paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} 0`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
     paddingForTabularModalPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
-    // recolouring rollout
-    backgroundColorForNavbar: uiKitDesignTokens.colorPrimary,
-    backgroundColorForNavbarExpander: `linear-gradient(180deg, ${uiKitDesignTokens.colorPrimary} 0%, ${uiKitDesignTokens.colorPrimary25} 100%)`,
-    backgroundColorForNavbarExpanderWhenHovered:
-      uiKitDesignTokens.colorPrimary40,
-    backgroundColorForNavbarHeader: uiKitDesignTokens.colorAccent10,
-    backgroundColorForNavbarMenuItemWhenActive: uiKitDesignTokens.colorAccent30,
-    backgroundColorForNavbarSubmenuItemWhenActive:
-      uiKitDesignTokens.colorAccent30,
-    backgroundColorForNavbarMenuItemWhenHovered:
-      uiKitDesignTokens.colorPrimary40,
-    backgroundColorForNavbarSkeleton: '#009987',
-    backgroundColorForNavbarSkeletonFooter:
-      'linear-gradient(180deg, #009987 0%, #004d44 100%)',
-    borderColorForNotificationWhenSuccess: uiKitDesignTokens.colorPrimary85,
-    fontColorForNotificationWhenSuccess: uiKitDesignTokens.colorPrimary,
-    fontColorForNotificationWhenWarning: uiKitDesignTokens.colorWarning,
-    fontColorForTabLabelWhenActive: uiKitDesignTokens.colorSolid,
-    visibilityForNavbarFaded: 'visible',
-  },
-  recolouring: {
-    marginForCustomViewsSelectorAsTabular: `0 ${uiKitDesignTokens.spacing55}`,
-    marginForPageContent: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55}`,
-    paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} ${uiKitDesignTokens.spacing40}`,
-    paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} 0`,
-    paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
-    paddingForTabularModalPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
     backgroundColorForNavbar: uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarExpander: uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarExpanderWhenHovered:
