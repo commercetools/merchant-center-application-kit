@@ -249,6 +249,7 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
+  onMouseMove?: MouseEventHandler<HTMLLIElement>;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
@@ -266,6 +267,7 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
+      onMouseMove={props.onMouseMove as MouseEventHandler<HTMLLIElement>}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>

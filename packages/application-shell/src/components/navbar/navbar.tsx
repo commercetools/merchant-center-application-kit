@@ -6,6 +6,7 @@ import {
   useMemo,
   useState,
   useRef,
+  MouseEvent,
 } from 'react';
 import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
@@ -76,6 +77,11 @@ type TSubmenuWithDefaultLabel = TBaseMenu & {
   defaultLabel?: string;
 };
 
+type TClientPositions = {
+  clientX: number;
+  clientY: number;
+};
+
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
   menu: TMenuWithDefaultLabel;
@@ -89,6 +95,8 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  onMouseMove: MouseEventHandler<HTMLLIElement>;
+  mousePosition: TClientPositions;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -134,12 +142,9 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     height: safeAreaHeight,
   } = submenuSafeAreaRefBoundingClientRect! ?? {};
 
-  onmousemove = (e) => {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-
-    const localX = mouseX - safeAreaLeftPos;
-    const localY = mouseY - safeAreaTopPos;
+  onmousemove = () => {
+    const localX = props.mousePosition.clientX - safeAreaLeftPos;
+    const localY = props.mousePosition.clientY - safeAreaTopPos;
 
     if (
       localX > 0 &&
@@ -155,7 +160,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   useLayoutEffect(() => {
     submenuRef.current?.style.setProperty(
       '--safe-start',
-      `${percentageX}% ${percentageY}%`
+      `${percentageX - 2}% ${percentageY - 2}%`
     );
   }, [percentageX, percentageY]);
 
@@ -261,6 +266,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onClick={props.handleToggleItem}
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
+        onMouseMove={props.onMouseMove}
         identifier={menuItemIdentifier}
       >
         <MenuItemLink
@@ -376,6 +382,14 @@ const NavBar = (props: TNavbarProps) => {
   );
   const location = useLocation();
 
+  const [mousePosition, setMousePosition] = useState({
+    clientX: 0,
+    clientY: 0,
+  });
+  const handleMouseMove = (e: MouseEvent) => {
+    setMousePosition({ clientX: e.clientX, clientY: e.clientY });
+  };
+
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
       permissions: normalizeAllAppliedPermissions(
@@ -441,6 +455,8 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
+                        onMouseMove={handleMouseMove}
+                        mousePosition={mousePosition}
                       />
                     );
                   })}
