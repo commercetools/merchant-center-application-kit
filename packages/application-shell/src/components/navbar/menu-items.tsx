@@ -252,7 +252,6 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
-  handleSubMenuKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 const MenuItem = (props: MenuItemProps) => {

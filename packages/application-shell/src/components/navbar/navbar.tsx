@@ -166,6 +166,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     if (observer && currentSubmenuRef) {
       observer.observe(currentSubmenuRef);
     }
+    setIsSubmenuFocused(false);
     return () => observer?.disconnect();
   }, [
     menuItemIdentifier,
