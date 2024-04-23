@@ -173,6 +173,7 @@ export type MenuGroupProps = {
   children?: ReactNode;
   submenuVerticalPosition?: number;
   isSubmenuAboveMenuItem?: boolean;
+  handleKeyDown?: React.KeyboardEventHandler<HTMLUListElement>;
 };
 
 const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
@@ -189,6 +190,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
   const isSublistActiveWhileIsMenuCollapsed = Boolean(
     props.level === 2 && props.isActive && !props.isExpanded
   );
+
   return (
     <MenuList
       ref={ref && props.level === 2 ? ref : null}
@@ -200,6 +202,7 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
         isSublistActiveWhileIsMenuExpanded ||
         isSublistActiveWhileIsMenuCollapsed
       }
+      onKeyDown={props.handleKeyDown}
       className={classnames(
         {
           'sublist-expanded__active': isSublistActiveWhileIsMenuExpanded,
@@ -250,6 +253,7 @@ type MenuItemProps = {
   children: ReactNode;
   identifier?: string;
   onMouseMove?: MouseEventHandler<HTMLLIElement>;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
@@ -260,6 +264,7 @@ const MenuItem = (props: MenuItemProps) => {
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
       onFocus={props.onMouseEnter as FocusEventHandler<HTMLElement>}
       onBlur={props.onMouseLeave as FocusEventHandler<HTMLElement>}
+      onKeyDown={props.onKeyDown}
       data-menuitem={props.identifier}
       className={classnames({
         active: props.isActive,
@@ -283,6 +288,7 @@ export type MenuItemLinkProps = {
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
   isSubmenuLink?: boolean;
+  isSubmenuFocused?: boolean;
 };
 const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
   exactMatch: false,
@@ -308,6 +314,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
           activeClassName="highlighted"
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
+          tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();
