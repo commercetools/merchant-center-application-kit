@@ -49,7 +49,7 @@ describe('message loader', () => {
   };
 
   describe('when messages are in KEYVALUEJSON format', () => {
-    it('returns compiled messages', async () => {
+    it('should return compiled messages', async () => {
       const stats = await compiler('example-keyvalue.json');
       const output = stats.toJson({ source: true }).modules?.[0].source;
 
@@ -58,11 +58,20 @@ describe('message loader', () => {
   });
 
   describe('when messages are in STRUCTURED_JSON format', () => {
-    it('returns compiled messages', async () => {
+    it('should return compiled messages', async () => {
       const stats = await compiler('example-structured.json');
       const output = stats.toJson({ source: true }).modules?.[0].source;
 
       expect(JSON.parse(output!.toString())).toEqual(expectedOutput);
+    });
+  });
+
+  describe('when messages are empty', () => {
+    it('should return an empty object', async () => {
+      const stats = await compiler('example-empty.json');
+      const output = stats.toJson({ source: true }).modules?.[0].source;
+
+      expect(JSON.parse(output!.toString())).toEqual({});
     });
   });
 });
