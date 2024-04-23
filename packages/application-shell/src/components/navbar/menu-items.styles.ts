@@ -34,16 +34,6 @@ const getContainerPositionBasedOnMenuItemPosition = (
     `,
 ];
 
-const Faded = styled.div`
-  position: absolute;
-  top: -32px;
-  height: 32px;
-  width: 100%;
-  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
-  z-index: 1;
-  visibility: ${appKitDesignTokens.visibilityForNavbarFaded};
-`;
-
 const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
   align-items: center;
@@ -324,7 +314,6 @@ const MenuListItem = styled.li<{
 export {
   Expander,
   ExpanderIcon,
-  Faded,
   LeftNavigation,
   MenuList,
   MenuListItem,

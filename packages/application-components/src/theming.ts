@@ -31,7 +31,6 @@ export const themesOverrides = {
     fontColorForNotificationWhenSuccess: uiKitDesignTokens.colorSuccess,
     fontColorForNotificationWhenWarning: uiKitDesignTokens.colorWarning60,
     fontColorForTabLabelWhenActive: uiKitDesignTokens.colorPrimary,
-    visibilityForNavbarFaded: 'hidden',
   },
 };
 

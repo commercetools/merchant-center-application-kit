@@ -43,7 +43,6 @@ import {
 import {
   Expander,
   ExpanderIcon,
-  Faded,
   LeftNavigation,
   MenuList,
   MenuListItem,
@@ -485,7 +484,6 @@ export {
   MenuGroup,
   MenuLabel,
   MenuExpander,
-  Faded,
   NavBarLayout,
   ItemContainer,
 };

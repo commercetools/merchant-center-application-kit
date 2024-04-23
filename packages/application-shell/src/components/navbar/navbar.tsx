@@ -50,7 +50,6 @@ import {
   MenuGroup,
   MenuLabel,
   ItemContainer,
-  Faded,
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
