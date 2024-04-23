@@ -65,12 +65,6 @@ const Expander = styled.li<{ isVisible: boolean }>`
     background: rgba(255, 255, 255, 0.5);
     width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
   }
-
-  // TODO: remove completely as part of the recolouring rollout cleanup process
-  :hover,
-  :focus {
-    background-color: ${appKitDesignTokens.backgroundColorForNavbarExpanderWhenHovered};
-  }
 `;
 
 const ExpanderIcon = styled.div`

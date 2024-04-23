@@ -50,18 +50,6 @@ const NavBarBody = styled.div`
   flex-shrink: 0;
   background: ${appKitDesignTokens.backgroundColorForNavbarSkeleton};
   position: relative;
-
-  // TODO: remove completely as part of the recolouring rollout cleanup process
-  // bottom gradient
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    height: 36px;
-    width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
-    background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #009987 100%);
-    visibility: ${appKitDesignTokens.visibilityForNavbarFaded};
-  }
 `;
 
 const NavBarFooter = styled.div<TNavBarSkeletonProps>`
