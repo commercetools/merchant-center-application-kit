@@ -1,5 +1,13 @@
 # @commercetools-frontend/constants
 
+## 22.24.0
+
+### Patch Changes
+
+- [#3495](https://github.com/commercetools/merchant-center-application-kit/pull/3495) [`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb) Thanks [@emmenko](https://github.com/emmenko)! - Refine some regex
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
 ## 22.23.3
 
 ## 22.23.2
