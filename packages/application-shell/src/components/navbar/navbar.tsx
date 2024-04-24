@@ -6,7 +6,6 @@ import {
   useMemo,
   useState,
   useRef,
-  MouseEvent,
 } from 'react';
 import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
@@ -386,10 +385,12 @@ const NavBar = (props: TNavbarProps) => {
     isMenuOpen,
     isExpanderVisible,
     activeItemIndex,
+    mousePosition,
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
     allApplicationsNavbarMenuGroups,
+    handleMouseMove,
   } = useNavbarStateManager({
     environment: props.environment,
   });
@@ -397,14 +398,6 @@ const NavBar = (props: TNavbarProps) => {
     props.environment.useFullRedirectsForLinks
   );
   const location = useLocation();
-
-  const [mousePosition, setMousePosition] = useState({
-    clientX: 0,
-    clientY: 0,
-  });
-  const handleMouseMove = (e: MouseEvent) => {
-    setMousePosition({ clientX: e.clientX, clientY: e.clientY });
-  };
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
@@ -471,7 +464,7 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
-                        onMouseMove={handleMouseMove}
+                        onMouseMove={(e) => handleMouseMove(e, itemIndex)}
                         mousePosition={mousePosition}
                       />
                     );
