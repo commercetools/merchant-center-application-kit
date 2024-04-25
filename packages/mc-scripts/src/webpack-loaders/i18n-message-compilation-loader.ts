@@ -1,7 +1,9 @@
 import { compile } from '@formatjs/cli-lib';
 import type { LoaderDefinitionFunction } from 'webpack';
 
-const messageLoader: LoaderDefinitionFunction = function (source) {
+const i18nMessageCompilationLoader: LoaderDefinitionFunction = function (
+  source
+) {
   const callback = this.async();
 
   const messageContents = JSON.parse(source);
@@ -13,4 +15,4 @@ const messageLoader: LoaderDefinitionFunction = function (source) {
   });
 };
 
-export default messageLoader;
+export default i18nMessageCompilationLoader;

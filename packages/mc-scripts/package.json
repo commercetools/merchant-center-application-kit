@@ -23,7 +23,7 @@
       "./cli.ts",
       "./postcss.ts",
       "./webpack.ts",
-      "./webpack-loaders/message-loader.ts"
+      "./webpack-loaders/i18n-message-compilation-loader.ts"
     ]
   },
   "files": [

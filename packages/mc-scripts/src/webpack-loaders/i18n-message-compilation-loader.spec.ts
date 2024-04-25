@@ -5,7 +5,7 @@ import webpack, { type Stats } from 'webpack';
 const compiler = (fixture: string): Promise<Stats> => {
   const compiler = webpack({
     context: __dirname,
-    entry: `./${fixture}`,
+    entry: `./fixtures/${fixture}`,
     output: {
       path: path.resolve(__dirname),
       filename: 'bundle.js',
@@ -15,7 +15,10 @@ const compiler = (fixture: string): Promise<Stats> => {
         {
           test: /\.json$/,
           use: {
-            loader: path.resolve(__dirname, './message-loader.ts'),
+            loader: path.resolve(
+              __dirname,
+              './i18n-message-compilation-loader.ts'
+            ),
           },
         },
       ],
