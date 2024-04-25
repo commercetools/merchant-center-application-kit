@@ -110,6 +110,8 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
+  const [isSubmenuFocused, setIsSubmenuFocused] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
 
   const hasSubmenu =
@@ -148,8 +150,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     [menuItemIdentifier, props.isMenuOpen]
   );
 
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
   useLayoutEffect(() => {
     observerRef.current = new IntersectionObserver(callbackFn, {
       rootMargin: '-100% 0px 0px 0px', // we want to observe if the submenu crosses the bottom line of the viewport - therefore we set the root element top margin to -100% of the viewport height
@@ -165,6 +165,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     if (observer && currentSubmenuRef) {
       observer.observe(currentSubmenuRef);
     }
+    setIsSubmenuFocused(false);
     return () => observer?.disconnect();
   }, [
     menuItemIdentifier,
@@ -194,6 +195,17 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     ? getMenuVisibilitiesOfSubmenus(props.menu)
     : getMenuVisibilityOfMainmenu(props.menu);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
+    const currentlyFocusedItem = submenuRef.current?.querySelector(':focus');
+
+    if (e.key === 'Enter') {
+      setIsSubmenuFocused(true);
+      if (!currentlyFocusedItem) {
+        submenuRef.current?.querySelector('a')?.focus();
+      }
+    }
+  };
+
   return (
     <RestrictedMenuItem
       key={props.menu.key}
@@ -212,6 +224,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         isMainMenuRouteActive={isMainMenuRouteActive}
         isMenuOpen={props.isMenuOpen}
         onClick={props.handleToggleItem}
+        onKeyDown={handleKeyDown}
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
         identifier={menuItemIdentifier}
@@ -281,6 +294,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                         }
                         onClick={props.onMenuItemClick}
                         isSubmenuLink
+                        isSubmenuFocused={isSubmenuFocused}
                       >
                         <MenuLabel
                           labelAllLocales={submenu.labelAllLocales}
