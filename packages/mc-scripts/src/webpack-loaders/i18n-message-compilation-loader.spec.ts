@@ -42,21 +42,35 @@ const compiler = (fixture: string): Promise<Stats> => {
 };
 
 describe('message loader', () => {
-  const expectedOutput = {
-    keyOne: [{ type: 0, value: expect.any(String) }],
-    keyTwo: [
-      { type: 0, value: expect.any(String) },
-      { type: 1, value: expect.any(String) },
-      { type: 0, value: expect.any(String) },
-    ],
-  };
-
   describe('when messages are in KEYVALUEJSON format', () => {
     it('should return compiled messages', async () => {
       const stats = await compiler('example-keyvalue.json');
       const output = stats.toJson({ source: true }).modules?.[0].source;
 
-      expect(JSON.parse(output!.toString())).toEqual(expectedOutput);
+      expect(JSON.parse(output!.toString())).toMatchInlineSnapshot(`
+        {
+          "keyOne": [
+            {
+              "type": 0,
+              "value": "Lorem ipsum dolor sit amet",
+            },
+          ],
+          "keyTwo": [
+            {
+              "type": 0,
+              "value": "consectetur adipiscing elit, ",
+            },
+            {
+              "type": 1,
+              "value": "sed",
+            },
+            {
+              "type": 0,
+              "value": " do eiusmod",
+            },
+          ],
+        }
+      `);
     });
   });
 
@@ -65,7 +79,30 @@ describe('message loader', () => {
       const stats = await compiler('example-structured.json');
       const output = stats.toJson({ source: true }).modules?.[0].source;
 
-      expect(JSON.parse(output!.toString())).toEqual(expectedOutput);
+      expect(JSON.parse(output!.toString())).toMatchInlineSnapshot(`
+        {
+          "keyOne": [
+            {
+              "type": 0,
+              "value": "Lorem ipsum dolor sit amet",
+            },
+          ],
+          "keyTwo": [
+            {
+              "type": 0,
+              "value": "consectetur adipiscing elit, ",
+            },
+            {
+              "type": 1,
+              "value": "sed",
+            },
+            {
+              "type": 0,
+              "value": " do eiusmod",
+            },
+          ],
+        }
+      `);
     });
   });
 
@@ -74,7 +111,7 @@ describe('message loader', () => {
       const stats = await compiler('example-empty.json');
       const output = stats.toJson({ source: true }).modules?.[0].source;
 
-      expect(JSON.parse(output!.toString())).toEqual({});
+      expect(JSON.parse(output!.toString())).toMatchInlineSnapshot(`{}`);
     });
   });
 });
