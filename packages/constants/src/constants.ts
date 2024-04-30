@@ -3,9 +3,20 @@ import type { TCustomView } from './types/generated/settings';
 /**
  * The project key must be between 2 and 36 characters long. It can only contain alphanumeric lowercase characters (a-z, 0-9),
  * up to two consecutive underscores (_) and hyphens (-). Leading and trailing underscore and hyphens are also not allowed.
+ *
+ * This regular expression has been generated using ChatGPT.
+ * Explanation of the regular expression:
+ * 1. ^: Asserts the start of the string.
+ * 2. (?!.*[-_]{3,}): Negative lookahead assertion ensures that there are no three or more consecutive hyphens or underscores anywhere in the string.
+ * 3. (?!^[-_]|.*[-_]$): Negative lookahead assertion ensures that there are no leading or trailing hyphens or underscores.
+ * 4. (?!^[0-9a-z]{37,}$): Negative lookahead assertion ensures that the length of the string is not 37 characters or more.
+ * 5. ^(?=.{2,36}$): Positive lookahead assertion ensures that the length of the string is between 2 and 36 characters.
+ * 6. [0-9a-z]+: Matches one or more alphanumeric lowercase characters at the beginning of the string.
+ * 7. (?:[-_]{0,2}[0-9a-z]+)*: Non-capturing group that matches zero, one, or two consecutive hyphens or underscores followed by one or more alphanumeric lowercase characters. This group can repeat zero or more times.
+ * 8. $: Asserts the end of the string.
  */
 export const PROJECT_KEY_REGEX =
-  /^[^-_#\W]([0-9a-z]|([-_]{0,2})(?!([-_]))){0,34}[^-_#\W]$/g;
+  /^(?!.*[-_]{3,})(?!^[-_]|.*[-_]$)(?!^[0-9a-z]{37,}$)^(?=.{2,36}$)[0-9a-z]+(?:[-_]{0,2}[0-9a-z]+)*$/g;
 
 /**
  * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
