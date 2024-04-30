@@ -153,6 +153,8 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         ),
       },
       http: {
+        // polling interval set to 15 minutes
+        pollingIntervalMs: 1000 * 60 * 15,
         cacheIdentifier: cacheIdentifiers.local,
         cacheMode: cacheModes.lazy,
         user: {
