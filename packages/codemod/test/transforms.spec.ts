@@ -8,14 +8,14 @@ import { runSnapshotTest } from 'jscodeshift/dist/testUtils';
 
 const fixturesPath = path.join(__dirname, 'fixtures');
 
-const doesFileExist = (filePath) => {
+const doesFileExist = (filePath: string): boolean => {
   try {
     fs.accessSync(filePath);
     return true;
   } catch (e) {
     return false;
   }
-}
+};
 
 describe.each`
   transformName                            | fixtureName

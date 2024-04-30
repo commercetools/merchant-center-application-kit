@@ -15,7 +15,7 @@ const doesFileExist = (path: string): boolean => {
   } catch (error) {
     return false;
   }
-}
+};
 
 const shouldUseYarn = () => {
   try {

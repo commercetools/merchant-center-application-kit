@@ -19,12 +19,12 @@ const prettierConfig = prettier.resolveConfig.sync();
 
 const doesFileExist = (filePath) => {
   try {
-    fs.accessSync(filePath)
-    return true
+    fs.accessSync(filePath);
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
-}
+};
 
 const L10N_KEYS = {
   COUNTRY: 'country',

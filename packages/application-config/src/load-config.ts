@@ -6,7 +6,6 @@ import { MissingOrInvalidConfigError } from './errors';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 
-
 function doesFileExist(path: string): boolean {
   try {
     fs.accessSync(path);
