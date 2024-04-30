@@ -95,6 +95,8 @@ type ApplicationMenuProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   onMouseMove: MouseEventHandler<HTMLLIElement>;
   mousePosition: TClientPositions;
+  itemIndex?: string;
+  activeItemIndex?: string;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -129,11 +131,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const submenuSafeAreaRef = useRef<HTMLElement>(null);
 
   /* Getting the width and height of the menu*/
-  const hasSubRefBoundingClientRect =
-    submenuRef.current?.getBoundingClientRect();
+  const subRefBoundingClientRect = submenuRef.current?.getBoundingClientRect();
 
   const { width: menuItemWidth, height: menuItemHeight } =
-    hasSubRefBoundingClientRect! ?? {};
+    subRefBoundingClientRect! ?? {};
 
   // /* We want to track the left, top, width, and height of the safe area */
   const submenuSafeAreaRefBoundingClientRect =
@@ -159,13 +160,21 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       setPercentageY((localY / safeAreaHeight) * 100);
     }
   };
+  console.log({
+    submenuRef: submenuRef.current,
 
+    activeItemIndex: props.activeItemIndex,
+    itemIndex: props.itemIndex,
+    menu: props.menu,
+  });
   useLayoutEffect(() => {
-    submenuRef.current?.style.setProperty(
-      '--safe-start',
-      `${percentageX - 2}% ${percentageY - 2}%`
-    );
-  }, [percentageX, percentageY]);
+    if (props.itemIndex === props.activeItemIndex) {
+      submenuRef.current?.style.setProperty(
+        '--safe-start',
+        `${percentageX - 2}% ${percentageY - 2}%`
+      );
+    }
+  }, [percentageX, percentageY, props.activeItemIndex, props.itemIndex]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -439,6 +448,10 @@ const NavBar = (props: TNavbarProps) => {
           </Icon>
         </IconWrapper>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
+        <div style={{ color: 'white' }}>
+          x: {mousePosition.clientX}
+          <p></p>y: {mousePosition.clientY}
+        </div>
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
         <ScrollableMenu>
@@ -466,6 +479,8 @@ const NavBar = (props: TNavbarProps) => {
                         onMenuItemClick={props.onMenuItemClick}
                         onMouseMove={(e) => handleMouseMove(e, itemIndex)}
                         mousePosition={mousePosition}
+                        itemIndex={itemIndex}
+                        activeItemIndex={activeItemIndex}
                       />
                     );
                   })}

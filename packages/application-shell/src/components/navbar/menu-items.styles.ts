@@ -102,6 +102,7 @@ const listStyles = css`
   flex-direction: column;
   min-height: 0;
   flex: 1 1 0;
+  --safe-start: 0% 0%;
 `;
 
 const sublistStyles = css`
@@ -114,7 +115,6 @@ const sublistStyles = css`
   list-style: none;
   position: fixed;
   display: none;
-  --safe-start: 0% 0%;
 `;
 
 const MenuList = styled.ul<
