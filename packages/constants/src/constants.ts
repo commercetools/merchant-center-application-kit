@@ -23,7 +23,8 @@ export const PROJECT_KEY_REGEX =
  * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
  */
 export const ENTRY_POINT_URI_PATH_REGEX =
-  /^[^-_#\W]([0-9a-z]|[-_](?![-_])){0,62}[^-_#\W]$/g;
+  // /^[^-_#\W]([0-9a-z]|[-_](?![-_])){0,62}[^-_#\W]$/g;
+  /^(?!.*[-_]{2,})(?!^[-_]|.*[-_]$)^(?=.{2,64}$)[a-z0-9]+(?:[-_]?[a-z0-9]+)*$/g;
 
 /**
  * The permission group name may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens.
