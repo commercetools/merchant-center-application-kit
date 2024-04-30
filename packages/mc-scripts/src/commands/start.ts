@@ -1,4 +1,3 @@
-import fs from 'fs';
 import chalk from 'chalk';
 import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
 import clearConsole from 'react-dev-utils/clearConsole';
@@ -14,15 +13,16 @@ import WebpackDevServer from 'webpack-dev-server';
 import createWebpackConfigForDevelopment from '../config/create-webpack-config-for-development';
 import paths from '../config/paths';
 import createDevServerConfig from '../config/webpack-dev-server.config';
+import doesFileExist from '../utils/does-file-exist';
 
 async function run() {
-  const useYarn = fs.existsSync(paths.yarnLockFile);
+  const useYarn = doesFileExist(paths.yarnLockFile);
   const isInteractive = process.stdout.isTTY;
 
   // Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
   // which is why it's disabled by default.
 
-  const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
+  const hasWebpackConfig = doesFileExist(paths.appWebpackConfig);
 
   // Warn and crash if required files are missing
   if (!checkRequiredFiles([])) {

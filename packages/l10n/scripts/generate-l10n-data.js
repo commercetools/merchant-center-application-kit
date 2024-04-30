@@ -17,6 +17,15 @@ const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
 const prettierConfig = prettier.resolveConfig.sync();
 
+const doesFileExist = (filePath) => {
+  try {
+    fs.accessSync(filePath)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 const L10N_KEYS = {
   COUNTRY: 'country',
   CURRENCY: 'currency',
@@ -350,7 +359,7 @@ function getUnhandledTimeZoneIds(
 }
 
 function ensureDirectoryExists(dir) {
-  if (!fs.existsSync(dir)) {
+  if (!doesFileExist(dir)) {
     fs.mkdirSync(dir, {
       recursive: true,
     });

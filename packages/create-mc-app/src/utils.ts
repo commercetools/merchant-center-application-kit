@@ -8,6 +8,15 @@ import type {
 
 const isSemVer = (version: string) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
+const doesFileExist = (path: string): boolean => {
+  try {
+    fs.accessSync(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 const shouldUseYarn = () => {
   try {
     const result = execa.commandSync('yarn --version', { stdio: 'ignore' });
@@ -56,7 +65,7 @@ const wordify = (slug: string) =>
 const resolveFilePathByExtension = (requestedModule: string) => {
   const fileExtension = ['.js', '.ts', '.mjs', '.cjs'].find((ext) => {
     const filePath = `${requestedModule}${ext}`;
-    return fs.existsSync(filePath);
+    return doesFileExist(filePath);
   });
   return `${requestedModule}${fileExtension}`;
 };
@@ -74,4 +83,5 @@ export {
   getPreferredPackageManager,
   getInstallCommand,
   isCustomView,
+  doesFileExist,
 };

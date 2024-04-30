@@ -3,7 +3,7 @@ import path from 'node:path';
 import semver from 'semver';
 import { applicationTypes, availableTemplates } from './constants';
 import type { TApplicationType, TTemplate } from './types';
-import { isSemVer } from './utils';
+import { isSemVer, doesFileExist } from './utils';
 
 const throwIfApplicationTypeIsNotSupported = (
   applicationType: TApplicationType
@@ -31,7 +31,7 @@ const throwIfTemplateIsNotSupported = (templateName: TTemplate) => {
 };
 
 const throwIfProjectDirectoryExists = (dirName: string, dirPath: string) => {
-  if (fs.existsSync(dirPath)) {
+  if (doesFileExist(dirPath)) {
     throw new Error(
       `A directory named "${dirName}" already exists at this location "${dirPath}". Please choose a different project name or remove the directory, then try running the command again.`
     );
@@ -43,7 +43,7 @@ const throwIfTemplateVersionDoesNotExist = (
   templateFolderPath: string,
   versionToCheck: string
 ) => {
-  if (!fs.existsSync(templateFolderPath)) {
+  if (!doesFileExist(templateFolderPath)) {
     throw new Error(
       `The downloaded template "${templateName}" does not exist for the given version "${versionToCheck}". Check the releases page if you are looking for a specific version: https://github.com/commercetools/merchant-center-application-kit/releases`
     );

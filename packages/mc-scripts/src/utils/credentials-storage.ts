@@ -2,6 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import type { TMcCliAuthToken, TMcCliCredentialsStorage } from '../types';
+import doesFileExist from '../utils/does-file-exist';
 
 const homedir = os.homedir();
 const credentialsFolderPath = path.join(homedir, `.commercetools`);
@@ -15,7 +16,7 @@ class CredentialsStorage {
 
   constructor() {
     // Ensure the credentials file is present
-    if (!fs.existsSync(credentialsFilePath)) {
+    if (!doesFileExist(credentialsFilePath)) {
       fs.mkdirSync(credentialsFolderPath, { recursive: true });
       // Initialize with an empty object
       this._writeCredentials();

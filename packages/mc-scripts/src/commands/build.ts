@@ -9,6 +9,7 @@ import webpack, { type Configuration, type Stats } from 'webpack';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import createWebpackConfigForProduction from '../config/create-webpack-config-for-production';
 import paths from '../config/paths';
+import doesFileExist from '../utils/does-file-exist';
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -19,7 +20,7 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 async function run() {
-  const hasWebpackConfig = fs.existsSync(paths.appWebpackConfig);
+  const hasWebpackConfig = doesFileExist(paths.appWebpackConfig);
 
   // Warn and crash if required files are missing
   if (!checkRequiredFiles([])) {
