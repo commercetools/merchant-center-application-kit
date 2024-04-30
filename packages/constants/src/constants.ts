@@ -14,7 +14,7 @@ import type { TCustomView } from './types/generated/settings';
  * 6. $: Asserts the end of the string.
  */
 export const PROJECT_KEY_REGEX =
-  /^(?!.*(?:[-_]{3}|^[-_]|[-_]$))(?=.{2,36}$)[a-z0-9]+(?:[-_]{0,2}[a-z0-9]+)*$/;
+  /^(?!.*(?:[-_]{3}|^[-_]|[-_]$))(?=.{2,36}$)(?:[a-z1-9][a-z0-9]*)?(?:[-_]{0,2}[a-z0-9]+)*$/;
 
 /**
  * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
