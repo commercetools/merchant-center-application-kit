@@ -21,9 +21,18 @@ export const PROJECT_KEY_REGEX =
 /**
  * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
  * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
+ *
+ * This regular expression has been generated using ChatGPT.
+ * Explanation of the regular expression:
+ * 1. ^: Asserts the start of the string.
+ * 2. (?!.*[-_]{2,}): Negative lookahead assertion ensures that there are no two or more consecutive hyphens or underscores anywhere in the string.
+ * 3. (?!^[-_]|.*[-_]$): Negative lookahead assertion ensures that there are no leading or trailing hyphens or underscores.
+ * 4. ^(?=.{2,64}$): Positive lookahead assertion ensures that the length of the string is between 2 and 64 characters.
+ * 5. [a-z0-9]+: Matches one or more alphanumeric lowercase characters at the beginning of the string.
+ * 6. (?:[-_]?[a-z0-9]+)*: Non-capturing group that matches zero or one hyphen or underscore followed by one or more alphanumeric lowercase characters. This group can repeat zero or more times.
+ * 7. $: Asserts the end of the string.
  */
 export const ENTRY_POINT_URI_PATH_REGEX =
-  // /^[^-_#\W]([0-9a-z]|[-_](?![-_])){0,62}[^-_#\W]$/g;
   /^(?!.*[-_]{2,})(?!^[-_]|.*[-_]$)^(?=.{2,64}$)[a-z0-9]+(?:[-_]?[a-z0-9]+)*$/g;
 
 /**
