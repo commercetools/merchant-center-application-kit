@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import doesFileExist from '../utils/does-file-exist';
 
 const moduleFileExtensions = ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx'];
 
@@ -12,7 +13,7 @@ const resolveApp = (relativePath: string) =>
 // Resolve file paths in the order given
 const resolveModule = (resolveFn: typeof resolveApp, filePath: string) => {
   const extension = moduleFileExtensions.find((extension) =>
-    fs.existsSync(resolveFn(`${filePath}.${extension}`))
+    doesFileExist(resolveFn(`${filePath}.${extension}`))
   );
 
   if (extension) {

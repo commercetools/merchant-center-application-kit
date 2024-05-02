@@ -6,11 +6,19 @@ import { MissingOrInvalidConfigError } from './errors';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 
+function doesFileExist(path: string): boolean {
+  try {
+    fs.accessSync(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 // Helper function to find the package root path from the current location,
 // for instance in respect to both source files and dist files.
 const findPackageRootPath = (dir: string): string => {
   const packageJsonPath = path.join(dir, 'package.json');
-  if (fs.existsSync(packageJsonPath)) {
+  if (doesFileExist(packageJsonPath)) {
     return dir;
   }
   const parentDir = path.join(dir, '..');

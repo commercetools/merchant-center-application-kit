@@ -8,6 +8,15 @@ import { runSnapshotTest } from 'jscodeshift/dist/testUtils';
 
 const fixturesPath = path.join(__dirname, 'fixtures');
 
+const doesFileExist = (filePath: string): boolean => {
+  try {
+    fs.accessSync(filePath);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 describe.each`
   transformName                            | fixtureName
   ${'remove-deprecated-modal-level-props'} | ${'remove-deprecated-modal-level-props.tsx'}
@@ -25,13 +34,13 @@ describe.each`
   beforeEach(() => {
     switch (transformName) {
       case 'rename-js-to-jsx':
-        if (!fs.existsSync(inputPath)) {
+        if (!doesFileExist(inputPath)) {
           fs.writeFileSync(inputPath, '/* Generated */\nexport {};');
         }
         break;
       case 'rename-mod-css-to-module-css':
         const stylesFilePath = path.join(fixturesPath, 'styles.mod.css');
-        if (!fs.existsSync(stylesFilePath)) {
+        if (!doesFileExist(stylesFilePath)) {
           fs.writeFileSync(
             stylesFilePath,
             '/* Generated */\nbody { font-size: 1rem; }'
