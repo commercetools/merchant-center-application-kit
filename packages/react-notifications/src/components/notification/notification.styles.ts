@@ -1,5 +1,4 @@
 import { css, keyframes, type SerializedStyles } from '@emotion/react';
-import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import type {
   TAppNotificationKind,
   TAppNotificationDomain,

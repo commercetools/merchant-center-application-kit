@@ -38,7 +38,7 @@ const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${uikitDesignTokens.colorPrimary10};
+  background: ${uiKitDesignTokens.colorPrimary10};
   padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing25};
   ${(props) =>
     !props.isVisible &&
