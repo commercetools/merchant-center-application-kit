@@ -1,5 +1,16 @@
 # @commercetools-frontend/cypress
 
+## 22.25.0
+
+### Patch Changes
+
+- [#3502](https://github.com/commercetools/merchant-center-application-kit/pull/3502) [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Replace fs.exists with fs.access
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`1985f69`](https://github.com/commercetools/merchant-center-application-kit/commit/1985f69301e4ab8eb218ed1a42425c3e27bb0a5a), [`1be0c35`](https://github.com/commercetools/merchant-center-application-kit/commit/1be0c357e0a14fd32626c61dff804a4bdcc51499), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/application-shell@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

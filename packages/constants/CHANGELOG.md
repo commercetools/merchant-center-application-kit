@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.25.0
+
+### Patch Changes
+
+- [#3503](https://github.com/commercetools/merchant-center-application-kit/pull/3503) [`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2) Thanks [@emmenko](https://github.com/emmenko)! - Refine some regular expressions
+
 ## 22.24.0
 
 ### Patch Changes
