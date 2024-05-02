@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.25.0
+
+### Patch Changes
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/sentry@22.25.0
+  - @commercetools-frontend/browser-history@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

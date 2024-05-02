@@ -1,5 +1,11 @@
 # @commercetools-backend/eslint-config-node
 
+## 22.25.0
+
+### Patch Changes
+
+- [#3499](https://github.com/commercetools/merchant-center-application-kit/pull/3499) [`0d48d6c`](https://github.com/commercetools/merchant-center-application-kit/commit/0d48d6c0770f2ab6c0f80597fba54dc0f13a3172) Thanks [@emmenko](https://github.com/emmenko)! - Leftovers for migrating from `eslint-plugin-node` to `eslint-plugin-n`
+
 ## 22.24.0
 
 ### Patch Changes
