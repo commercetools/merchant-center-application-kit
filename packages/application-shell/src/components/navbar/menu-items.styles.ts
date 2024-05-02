@@ -38,7 +38,7 @@ const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${appKitDesignTokens.backgroundColorForNavbarExpander};
+  background: ${uikitDesignTokens.colorPrimary10};
   padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing25};
   ${(props) =>
     !props.isVisible &&
@@ -179,7 +179,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
     props.isActive &&
       css`
         border-radius: ${uiKitDesignTokens.borderRadius4};
-        background: ${appKitDesignTokens.backgroundColorForNavbarSubmenuItemWhenActive};
+        background: ${uiKitDesignTokens.colorPrimary40};
       `,
     !props.isActive &&
       css`
@@ -224,14 +224,14 @@ const MenuListItem = styled.li<{
   ${(props) => [
     props.isRouteActive &&
       css`
-        background: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenActive};
+        background: ${uiKitDesignTokens.colorPrimary25};
         border-radius: ${uiKitDesignTokens.borderRadius8};
       `,
     !props.isRouteActive &&
       css`
         :hover,
         :focus-within {
-          background-color: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenHovered};
+          background-color: ${uiKitDesignTokens.colorPrimary20};
           border-radius: ${uiKitDesignTokens.borderRadius8};
         }
       `,

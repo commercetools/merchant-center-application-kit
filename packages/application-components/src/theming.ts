@@ -13,23 +13,8 @@ export const themesOverrides = {
     paddingForDetailPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} ${uiKitDesignTokens.spacing40}`,
     paddingForMainPageHeader: `${uiKitDesignTokens.spacing50} ${uiKitDesignTokens.spacing55} 0`,
     paddingForTabularPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
-    paddingForTabularModalPageHeader: `${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0`,
     backgroundColorForNavbar: uiKitDesignTokens.colorPrimary10,
-    backgroundColorForNavbarExpander: uiKitDesignTokens.colorPrimary10,
-    backgroundColorForNavbarExpanderWhenHovered:
-      uiKitDesignTokens.colorPrimary10,
     backgroundColorForNavbarHeader: uiKitDesignTokens.colorPrimary10,
-    backgroundColorForNavbarMenuItemWhenActive:
-      uiKitDesignTokens.colorPrimary25,
-    backgroundColorForNavbarSubmenuItemWhenActive:
-      uiKitDesignTokens.colorPrimary40,
-    backgroundColorForNavbarMenuItemWhenHovered:
-      uiKitDesignTokens.colorPrimary20,
-    backgroundColorForNavbarSkeleton: uiKitDesignTokens.colorPrimary10,
-    backgroundColorForNavbarSkeletonFooter: uiKitDesignTokens.colorPrimary10,
-    borderColorForNotificationWhenSuccess: uiKitDesignTokens.colorSuccess85,
-    fontColorForNotificationWhenSuccess: uiKitDesignTokens.colorSuccess,
-    fontColorForNotificationWhenWarning: uiKitDesignTokens.colorWarning60,
     fontColorForTabLabelWhenActive: uiKitDesignTokens.colorPrimary,
   },
 };

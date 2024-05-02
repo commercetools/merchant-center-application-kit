@@ -48,7 +48,7 @@ const NavBarBody = styled.div`
   align-items: flex-start;
   gap: ${uiKitDesignTokens.spacing40};
   flex-shrink: 0;
-  background: ${appKitDesignTokens.backgroundColorForNavbarSkeleton};
+  background: ${uiKitDesignTokens.colorPrimary10};
   position: relative;
 `;
 
@@ -57,7 +57,7 @@ const NavBarFooter = styled.div<TNavBarSkeletonProps>`
   display: flex;
   width: 100%;
   flex-direction: column;
-  background: ${appKitDesignTokens.backgroundColorForNavbarSkeletonFooter};
+  background: ${uiKitDesignTokens.colorPrimary10};
   padding: ${uiKitDesignTokens.spacing30}
     ${(props) => (props.isExpanded ? '58px' : '0px')};
   justify-content: center;
