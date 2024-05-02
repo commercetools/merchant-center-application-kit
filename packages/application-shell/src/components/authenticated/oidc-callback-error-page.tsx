@@ -4,7 +4,6 @@ import {
   PublicPageLayout,
   themesOverrides,
 } from '@commercetools-frontend/application-components';
-import FailedAuthenticationSVGRebranding from '@commercetools-frontend/assets/images/doors-closed-rebranding.svg';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 
@@ -14,7 +13,6 @@ import Constraints from '@commercetools-uikit/constraints';
 import {
   ThemeProvider,
   customProperties,
-  useTheme,
 } from '@commercetools-uikit/design-system';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
@@ -42,7 +40,6 @@ const Divider = styled.div`
 
 const AuthCallbackErrorPage = (props: TProps) => {
   const history = useHistory();
-  const { themedValue } = useTheme();
   return (
     <AsyncLocaleData
       locale={props.locale}
@@ -51,8 +48,8 @@ const AuthCallbackErrorPage = (props: TProps) => {
       {({ locale, messages }) => (
         <ConfigureIntlProvider locale={locale} messages={messages}>
           <ThemeProvider
-            theme="recolouring"
-            themeOverrides={themesOverrides.recolouring}
+            theme="default"
+            themeOverrides={themesOverrides.default}
           />
           <PublicPageLayout contentScale="wide">
             <Spacings.Inline justifyContent="center">
@@ -62,10 +59,7 @@ const AuthCallbackErrorPage = (props: TProps) => {
                     <Spacings.Inline justifyContent="center">
                       <img
                         width="100%"
-                        src={themedValue(
-                          FailedAuthenticationSVG,
-                          FailedAuthenticationSVGRebranding
-                        )}
+                        src={FailedAuthenticationSVG}
                         alt="Failed authentication"
                       />
                     </Spacings.Inline>

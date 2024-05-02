@@ -9,10 +9,7 @@ import Application from './application';
 const Main = () => {
   return (
     <>
-      <ThemeProvider
-        theme="recolouring"
-        themeOverrides={themesOverrides.recolouring}
-      />
+      <ThemeProvider theme="default" themeOverrides={themesOverrides.default} />
       <PortalsContainer />
       <Application />
     </>

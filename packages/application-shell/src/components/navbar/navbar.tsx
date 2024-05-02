@@ -50,7 +50,6 @@ import {
   MenuGroup,
   MenuLabel,
   ItemContainer,
-  Faded,
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
@@ -417,8 +416,6 @@ const NavBar = (props: TNavbarProps) => {
           </Spacings.Stack>
         </ScrollableMenu>
         <FixedMenu>
-          {/* TODO: remove <Faded /> completely as part of the recolouring rollout cleanup process */}
-          <Faded />
           <SupportMenu>
             <MenuItem
               hasSubmenu={false}
