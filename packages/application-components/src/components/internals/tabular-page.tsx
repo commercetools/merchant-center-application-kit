@@ -45,7 +45,7 @@ const CustomViewsSelectorWrapper = styled.div`
 
 const TabularModalPageContainer = styled.div`
   ${TabularPageContainer} {
-    padding: ${appKitDesignTokens.paddingForTabularModalPageHeader};
+    padding: ${uiKitDesignTokens.spacing40} ${uiKitDesignTokens.spacing55} 0;
   }
 `;
 

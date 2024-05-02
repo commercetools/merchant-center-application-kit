@@ -17,10 +17,7 @@ import {
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import Avatar from '@commercetools-uikit/avatar';
-import {
-  designTokens as uikitDesignTokens,
-  useTheme,
-} from '@commercetools-uikit/design-system';
+import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { DIMENSIONS } from '../../constants';
@@ -56,7 +53,6 @@ const MENU_LABEL_ID = 'user-menu-setting-menu-label';
 const UserAvatar = (
   props: Pick<Props, 'firstName' | 'lastName' | 'gravatarHash'>
 ) => {
-  const { themedValue } = useTheme();
   const [isMouseOver, setIsMouseOver] = useState(false);
   const handleMouseOver = useCallback(() => {
     setIsMouseOver(true);
@@ -73,7 +69,7 @@ const UserAvatar = (
           firstName={props.firstName}
           lastName={props.lastName}
           isHighlighted={isMouseOver}
-          color={themedValue('accent', 'purple')}
+          color="purple"
         />
       </Spacings.Inline>
     </div>
@@ -182,7 +178,6 @@ const getUserSettingsMenuItemLinkStyles = () => css`
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   // Focus on a menu item when it's opened through keyboard
   const menuElementRef = useRef<HTMLAnchorElement>(null);
-  const { themedValue } = useTheme();
   useEffect(() => {
     menuElementRef.current?.focus();
   }, []);
@@ -217,7 +212,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
-              color={themedValue('accent', 'purple')}
+              color="purple"
             />
             <div>
               <Text.Subheadline as="h4">

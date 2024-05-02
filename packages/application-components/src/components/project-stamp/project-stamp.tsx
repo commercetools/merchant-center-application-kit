@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { MessageDescriptor, useIntl } from 'react-intl';
-import { useTheme } from '@commercetools-uikit/design-system';
 import { DotIcon } from '@commercetools-uikit/icons';
 import Stamp, { TTone } from '@commercetools-uikit/stamp';
 import messages from './messages';
@@ -26,8 +25,6 @@ function CustomStamp(props: TCustomStampProps) {
 }
 
 const IsProduction = () => {
-  const { themedValue } = useTheme();
-
   return (
     <CustomStamp
       tone="positive"
@@ -42,7 +39,7 @@ const IsProduction = () => {
             }
           `}
         >
-          <DotIcon color={themedValue('primary', 'success')} />
+          <DotIcon color="success" />
         </div>
       }
     />

@@ -23,7 +23,7 @@ const Box = () => {
 
 export const Component = () => (
   <Suite>
-    <ThemeProvider theme="recolouring" />
+    <ThemeProvider theme="default" />
     <Spec label="PageContentContainerNarrow" size="xl">
       <PageContentNarrow>
         <Box />
