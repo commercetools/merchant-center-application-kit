@@ -10,6 +10,7 @@ import type {
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
 } from './types';
+import doesFileExist from './utils/does-file-exist';
 
 const cli = cac('mc-scripts');
 
@@ -241,7 +242,7 @@ function loadDotEnvFiles(globalOptions: TCliGlobalOptions) {
     const dotenvFilePath = path.resolve(
       path.join(applicationDirectory, dotenvFile)
     );
-    if (fs.existsSync(dotenvFilePath)) {
+    if (doesFileExist(dotenvFilePath)) {
       dotenvExpand.expand(dotenv.config({ path: dotenvFilePath }));
     }
   });

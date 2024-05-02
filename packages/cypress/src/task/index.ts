@@ -8,6 +8,15 @@ import {
 } from '@commercetools-frontend/application-config';
 import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 
+function doesFileExist(path: string): boolean {
+  try {
+    fs.accessSync(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 type CustomEntityConfigTaskOptions = {
   entryPointUriPath: string;
   dotfiles?: string[];
@@ -27,7 +36,7 @@ const loadEnvironmentVariables = (
   return dotfiles.reduce((mergedEnvs, dotfile) => {
     const envPath = path.join(packageDirPath, dotfile);
 
-    if (!fs.existsSync(envPath)) {
+    if (!doesFileExist(envPath)) {
       return mergedEnvs;
     }
 
