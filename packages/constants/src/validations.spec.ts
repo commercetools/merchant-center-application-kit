@@ -4,8 +4,14 @@ import {
   PERMISSION_GROUP_NAME_REGEX,
 } from './constants';
 
-function generateRandomString(length: number) {
-  return Array.from({ length: length + 1 }).join('x');
+function generateRandomString(length: number, numberOfHypens: number = 0) {
+  const chars = Array.from({ length }).map(() => 'x');
+  for (let index = 0; index < numberOfHypens; index++) {
+    if (length > 4) {
+      chars[index + 1] = '-';
+    }
+  }
+  return chars.join('');
 }
 
 describe.each`
@@ -18,6 +24,8 @@ describe.each`
   ${'xy'}                              | ${true}
   ${generateRandomString(36)}          | ${true}
   ${generateRandomString(37)}          | ${false}
+  ${generateRandomString(36, 2)}       | ${true}
+  ${generateRandomString(36, 3)}       | ${false}
   ${'__'}                              | ${false}
   ${'--'}                              | ${false}
   ${'..'}                              | ${false}
@@ -57,6 +65,8 @@ describe.each`
   ${'xy'}                              | ${true}
   ${generateRandomString(64)}          | ${true}
   ${generateRandomString(65)}          | ${false}
+  ${generateRandomString(64, 1)}       | ${true}
+  ${generateRandomString(64, 2)}       | ${false}
   ${'__'}                              | ${false}
   ${'--'}                              | ${false}
   ${'..'}                              | ${false}
@@ -102,6 +112,8 @@ describe.each`
   ${'xy'}                              | ${true}
   ${generateRandomString(64)}          | ${true}
   ${generateRandomString(65)}          | ${false}
+  ${generateRandomString(64, 1)}       | ${true}
+  ${generateRandomString(64, 2)}       | ${false}
   ${'__'}                              | ${true}
   ${'--'}                              | ${false}
   ${'..'}                              | ${false}

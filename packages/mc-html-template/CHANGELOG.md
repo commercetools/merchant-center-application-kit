@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.24.0
+
+### Patch Changes
+
+- [#3494](https://github.com/commercetools/merchant-center-application-kit/pull/3494) [`6a7900d`](https://github.com/commercetools/merchant-center-application-kit/commit/6a7900dd39cd66d85247a6b079e2ed16a877b10e) Thanks [@emmenko](https://github.com/emmenko)! - Ensure injected application environment script is rendered as one liner (to match the CSP hash)
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+- Updated dependencies [[`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb), [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d)]:
+  - @commercetools-frontend/constants@22.24.0
+  - @commercetools-frontend/application-config@22.24.0
+
 ## 22.23.3
 
 ### Patch Changes

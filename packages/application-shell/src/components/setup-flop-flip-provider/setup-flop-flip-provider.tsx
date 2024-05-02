@@ -131,12 +131,12 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
 
   const adapterArgs = useMemo(
     () => ({
-      cacheIdentifier: cacheIdentifiers.local,
-      cacheMode: cacheModes.lazy,
       user: {
         key: props.user?.id,
       },
       launchdarkly: {
+        cacheIdentifier: cacheIdentifiers.local,
+        cacheMode: cacheModes.lazy,
         sdk: {
           // Allow to overwrite the client ID, passed via the `additionalEnv` properties
           // of the application config.
@@ -153,6 +153,10 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         ),
       },
       http: {
+        // polling interval set to 15 minutes
+        pollingIntervalMs: 1000 * 60 * 15,
+        cacheIdentifier: cacheIdentifiers.local,
+        cacheMode: cacheModes.lazy,
         user: {
           key: props.user?.id,
         },

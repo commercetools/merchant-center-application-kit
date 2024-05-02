@@ -2,4 +2,4 @@
 '@commercetools-frontend/constants': patch
 ---
 
-Refine some regex
+Refine some regular expressions
