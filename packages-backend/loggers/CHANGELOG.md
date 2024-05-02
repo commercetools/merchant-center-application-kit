@@ -1,5 +1,7 @@
 # @commercetools-backend/loggers
 
+## 22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

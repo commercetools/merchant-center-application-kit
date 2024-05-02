@@ -1,5 +1,11 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.25.0
+
+### Patch Changes
+
+- [#3502](https://github.com/commercetools/merchant-center-application-kit/pull/3502) [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Replace fs.exists with fs.access
+
 ## 22.24.0
 
 ### Patch Changes
