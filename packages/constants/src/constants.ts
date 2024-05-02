@@ -3,23 +3,41 @@ import type { TCustomView } from './types/generated/settings';
 /**
  * The project key must be between 2 and 36 characters long. It can only contain alphanumeric lowercase characters (a-z, 0-9),
  * up to two consecutive underscores (_) and hyphens (-). Leading and trailing underscore and hyphens are also not allowed.
+ *
+ * This regular expression has been generated using ChatGPT.
+ * Explanation of the regular expression:
+ * 1. ^: Asserts the start of the string.
+ * 2. (?!.*(?:[-_]{3}|^[-_]|[-_]$)): Negative lookahead assertion ensures that there are no three consecutive hyphens or underscores ([-_]{3}), no leading hyphen or underscore (^[-_]), and no trailing hyphen or underscore ([-_]$).
+ * 3. (?=.{2,36}$): Positive lookahead assertion ensures that the length of the string is between 2 and 36 characters.
+ * 4. (?:[a-z1-9][a-z0-9]*)?: Non-capturing group matches an optional first character that cannot be '0' ([a-z1-9]) followed by zero or more lowercase alphanumeric characters ([a-z0-9]*).
+ * 5. (?:[-_]{0,2}[a-z0-9]+)*: Non-capturing group matches zero, one, or two hyphens or underscores followed by one or more lowercase alphanumeric characters. This group can repeat zero or more times.
+ * 6. $: Asserts the end of the string.
  */
 export const PROJECT_KEY_REGEX =
-  /^[^-_#\W]([0-9a-z]|([-_]{0,2})(?!([-_]))){0,34}[^-_#\W]$/g;
+  /^(?!.*(?:[-_]{3}|^[-_]|[-_]$))(?=.{2,36}$)(?:[a-z1-9][a-z0-9]*)?(?:[-_]{0,2}[a-z0-9]+)*$/;
 
 /**
  * The entryPointUriPath may be between 2 and 64 characters and only contain alphabetic lowercase characters,
  * non-consecutive underscores and hyphens. Leading and trailing underscore and hyphens are also not allowed.
+ *
+ * This regular expression has been generated using ChatGPT.
+ * Explanation of the regular expression:
+ * 1. ^: Asserts the start of the string.
+ * 2. (?!.*(?:[-_]{2}|^[-_]|[-_]$)): Negative lookahead assertion ensures that there are no two consecutive hyphens or underscores ([-_]{2}), no leading hyphen or underscore (^[-_]), and no trailing hyphen or underscore ([-_]$).
+ * 3. (?=.{2,64}$): Positive lookahead assertion ensures that the length of the string is between 2 and 64 characters.
+ * 4. (?:[a-z1-9][a-z0-9]*)?: Non-capturing group matches an optional first character that cannot be '0' ([a-z1-9]) followed by zero or more lowercase alphanumeric characters ([a-z0-9]*).
+ * 5. (?:[-_]{0,1}[a-z0-9]+)*: Non-capturing group matches zero, or one hyphen or underscore followed by one or more lowercase alphanumeric characters. This group can repeat zero or more times.
+ * 6. $: Asserts the end of the string.
  */
 export const ENTRY_POINT_URI_PATH_REGEX =
-  /^[^-_#\W]([0-9a-z]|[-_](?![-_])){0,62}[^-_#\W]$/g;
+  /^(?!.*(?:[-_]{2}|^[-_]|[-_]$))(?=.{2,64}$)(?:[a-z1-9][a-z0-9]*)?(?:[-_]{0,1}[a-z0-9]+)*$/;
 
 /**
  * The permission group name may be between 2 and 64 characters and only contain alphanumeric lowercase characters and non-consecutive hyphens.
  * Leading and trailing hyphens are also not allowed.
  */
 export const PERMISSION_GROUP_NAME_REGEX =
-  /^[^-#\W]([a-z]|[-](?![-])){0,62}[^-#\W]$/g;
+  /^[^-#\W]([a-z]|[-](?![-])){0,62}[^-#\W]$/;
 
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
