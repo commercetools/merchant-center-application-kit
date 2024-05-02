@@ -1,0 +1,10 @@
+{
+  "keyOne": {
+    "developer_comment": "Tempor incididunt ut labore et dolore magna aliqua.",
+    "string": "Lorem ipsum dolor sit amet"
+  },
+  "keyTwo": {
+    "developer_comment": "Ut enim ad minim veniam, quis nostrud exercitation.",
+    "string": "consectetur adipiscing elit, {sed} do eiusmod"
+  }
+}
