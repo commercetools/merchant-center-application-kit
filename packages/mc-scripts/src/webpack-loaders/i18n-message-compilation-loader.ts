@@ -1,15 +1,12 @@
 import { compile } from '@formatjs/cli-lib';
 import type { LoaderDefinitionFunction } from 'webpack';
+import getI18nMessageFormat from '../utils/get-i18n-message-format';
 
 const i18nMessageCompilationLoader: LoaderDefinitionFunction = function (
   source
 ) {
   const callback = this.async();
-
-  const messageContents = JSON.parse(source);
-  const firstValue = Object.values(messageContents)[0];
-  const format = typeof firstValue === 'string' ? 'simple' : 'transifex';
-
+  const format = getI18nMessageFormat(source);
   compile([this.resourcePath], { ast: true, format }).then((result) => {
     callback(null, result);
   });
