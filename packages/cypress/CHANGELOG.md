@@ -1,5 +1,14 @@
 # @commercetools-frontend/cypress
 
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies [[`bd2ea80`](https://github.com/commercetools/merchant-center-application-kit/commit/bd2ea80dfc22befef0eb1143b798e7591b3300eb)]:
+  - @commercetools-frontend/application-shell@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+
 ## 22.25.0
 
 ### Patch Changes
