@@ -27,6 +27,10 @@
     "developer_comment": "User tries to create a resource with an already existing slug",
     "string": "\"{slugValue}\" is already in use. Please enter a new slug value for this product."
   },
+  "ApiError.DuplicateStandalonePriceScope": {
+    "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
+    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+  },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
     "string": "The same variant already exists for this product. Please enter different values for the fields."
