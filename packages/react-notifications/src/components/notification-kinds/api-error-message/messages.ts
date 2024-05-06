@@ -66,6 +66,13 @@ export default defineMessages({
     defaultMessage:
       'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel and valid dates is unique per price.',
   },
+  DuplicateStandalonePriceScope: {
+    id: 'ApiError.DuplicateStandalonePriceScope',
+    description:
+      'User tries to create a standalone price with the exact same values as for an already existing standalone price',
+    defaultMessage:
+      'A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU.',
+  },
   DuplicateVariantValues: {
     id: 'ApiError.DuplicateVariantValues',
     description:
