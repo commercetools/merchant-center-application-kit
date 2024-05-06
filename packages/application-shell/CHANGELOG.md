@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 22.25.1
+
+### Patch Changes
+
+- [#3506](https://github.com/commercetools/merchant-center-application-kit/pull/3506) [`bd2ea80`](https://github.com/commercetools/merchant-center-application-kit/commit/bd2ea80dfc22befef0eb1143b798e7591b3300eb) Thanks [@emmenko](https://github.com/emmenko)! - Do not use lazy cache mode for feature flags when Cypress runs
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.25.1
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/application-shell-connectors@22.25.1
+  - @commercetools-frontend/assets@22.25.1
+  - @commercetools-frontend/browser-history@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/i18n@22.25.1
+  - @commercetools-frontend/l10n@22.25.1
+  - @commercetools-frontend/notifications@22.25.1
+  - @commercetools-frontend/permissions@22.25.1
+  - @commercetools-frontend/react-notifications@22.25.1
+  - @commercetools-frontend/sdk@22.25.1
+  - @commercetools-frontend/sentry@22.25.1
+  - @commercetools-frontend/url-utils@22.25.1
+
 ## 22.25.0
 
 ### Minor Changes
