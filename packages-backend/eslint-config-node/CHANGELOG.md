@@ -1,5 +1,7 @@
 # @commercetools-backend/eslint-config-node
 
+## 22.25.1
+
 ## 22.25.0
 
 ### Patch Changes
