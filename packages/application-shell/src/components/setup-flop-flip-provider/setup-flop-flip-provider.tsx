@@ -93,6 +93,16 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
     ])
   );
 
+const getCacheMode = () => {
+  // @ts-ignore
+  if (typeof window.Cypress !== 'undefined') {
+    // Temporary workaround: when running in Cypress, do not use lazy mode
+    // as the flag is not being updated in time during the test run.
+    return cacheModes.eager;
+  }
+  return cacheModes.lazy;
+};
+
 type TAdditionalEnvironmentProperties = {
   enableLongLivedFeatureFlags?: boolean;
 };
@@ -136,7 +146,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       },
       launchdarkly: {
         cacheIdentifier: cacheIdentifiers.local,
-        cacheMode: cacheModes.lazy,
+        cacheMode: getCacheMode(),
         sdk: {
           // Allow to overwrite the client ID, passed via the `additionalEnv` properties
           // of the application config.
@@ -156,7 +166,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         // polling interval set to 15 minutes
         pollingIntervalMs: 1000 * 60 * 15,
         cacheIdentifier: cacheIdentifiers.local,
-        cacheMode: cacheModes.lazy,
+        cacheMode: getCacheMode(),
         user: {
           key: props.user?.id,
         },
