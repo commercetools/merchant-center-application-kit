@@ -98,6 +98,7 @@
     "@types/react-dom": "<18",
     "@types/react-router": "<6",
     "@types/react-router-dom": "<6",
-    "headers-polyfill": "3.2.5"
+    "headers-polyfill": "3.2.5",
+    "nwsapi": "2.2.7"
   }
 }
