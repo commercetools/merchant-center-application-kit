@@ -62,7 +62,9 @@ const DrawerExample = () => (
               isOpen={isOpen}
               size={values.size as 10 | 20 | 30}
               onClose={() => setIsOpen(false)}
-              hideControls={values.hideControls as boolean}
+              hideControls={values.hideControls === 'true'}
+              onPrimaryButtonClick={() => setIsOpen(false)}
+              onSecondaryButtonClick={() => setIsOpen(false)}
             >
               <Spacings.Stack scale="m">
                 {(values.content as string).split('\n').map((text, index) => (
