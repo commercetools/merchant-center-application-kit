@@ -17,8 +17,8 @@ const DrawerExample = () => (
         },
         {
           kind: 'text',
-          name: 'title',
-          label: 'subTitle',
+          name: 'subtitle',
+          label: 'Subtitle',
           initialValue: 'Lorem ipsum dolor sit amet',
         },
         {
@@ -41,7 +41,7 @@ const DrawerExample = () => (
         {
           kind: 'select',
           name: 'hideControls',
-          label: 'hide controls',
+          label: 'Hide controls',
           valueOptions: [
             { value: 'true', label: 'true' },
             { value: 'false', label: 'false' },
