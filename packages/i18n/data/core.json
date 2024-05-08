@@ -75,6 +75,10 @@
     "developer_comment": "",
     "string": "Sorry, but a price with these details already exists. Please amend the price details so that they do not overlap with another price before saving."
   },
+  "ApiError.OverlappingStandalonePriceValidity": {
+    "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
+    "string": "Two standalone prices have overlapping validity periods."
+  },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",
     "string": "Sorry, but we are still processing the previous request. Please try again once it is complete."

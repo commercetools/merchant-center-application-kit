@@ -97,6 +97,12 @@ export default defineMessages({
     defaultMessage:
       'Slugs may only contain alphanumeric (0-9A-Z) characters, underscores and hyphens and must have a length between 2 and 256 characters.',
   },
+  OverlappingStandalonePriceValidity: {
+    id: 'ApiError.OverlappingStandalonePriceValidity',
+    description:
+      'Returned when a given standalone price validity period conflicts with an existing one',
+    defaultMessage: 'Two standalone prices have overlapping validity periods.',
+  },
   PendingOperation: {
     id: 'ApiError.PendingOperation',
     description:
