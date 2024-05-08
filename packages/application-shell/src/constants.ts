@@ -2,10 +2,6 @@ export const DIMENSIONS = {
   header: '56px',
 } as const;
 
-export const STORAGE_KEYS = {
-  IS_RECOLOURING_NOTIFICATION_CLOSED: 'isRecolouringNotificationClosed',
-} as const;
-
 export const NAVBAR = {
   expanderHeight: '50px',
   expanderSize: '40px',
