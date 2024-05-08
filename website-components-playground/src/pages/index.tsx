@@ -40,6 +40,9 @@ const Application = () => (
       <li>
         <Link to="/form-detail-page">{'<FormDetailPage>'}</Link>
       </li>
+      <li>
+        <Link to="/drawer">{'<Drawer>'}</Link>
+      </li>
     </ul>
   </div>
 );
