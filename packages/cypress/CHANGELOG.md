@@ -1,5 +1,80 @@
 # @commercetools-frontend/cypress
 
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies [[`bd2ea80`](https://github.com/commercetools/merchant-center-application-kit/commit/bd2ea80dfc22befef0eb1143b798e7591b3300eb)]:
+  - @commercetools-frontend/application-shell@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3502](https://github.com/commercetools/merchant-center-application-kit/pull/3502) [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Replace fs.exists with fs.access
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`1985f69`](https://github.com/commercetools/merchant-center-application-kit/commit/1985f69301e4ab8eb218ed1a42425c3e27bb0a5a), [`1be0c35`](https://github.com/commercetools/merchant-center-application-kit/commit/1be0c357e0a14fd32626c61dff804a4bdcc51499), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/application-shell@22.25.0
+
+## 22.24.0
+
+### Patch Changes
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+- Updated dependencies [[`d16ebd9`](https://github.com/commercetools/merchant-center-application-kit/commit/d16ebd98c1b99a0c0c0e0f9a9df24cc8dcc0f542), [`3836786`](https://github.com/commercetools/merchant-center-application-kit/commit/383678613d5e58977b6316dc95c0a3c63355c839), [`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb), [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d)]:
+  - @commercetools-frontend/application-shell@22.24.0
+  - @commercetools-frontend/constants@22.24.0
+  - @commercetools-frontend/application-config@22.24.0
+
+## 22.23.3
+
+### Patch Changes
+
+- Updated dependencies [[`f1144f9`](https://github.com/commercetools/merchant-center-application-kit/commit/f1144f9764d4ec366802e784e82f01697c0e0a2e)]:
+  - @commercetools-frontend/application-shell@22.23.3
+  - @commercetools-frontend/application-config@22.23.3
+  - @commercetools-frontend/constants@22.23.3
+
+## 22.23.2
+
+### Patch Changes
+
+- [#3480](https://github.com/commercetools/merchant-center-application-kit/pull/3480) [`31d6a09`](https://github.com/commercetools/merchant-center-application-kit/commit/31d6a09379de3b5b9e603b8a1825afdd9d7f8409) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(cypress): onBeforeLoad being called during login
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.23.2
+  - @commercetools-frontend/application-shell@22.23.2
+  - @commercetools-frontend/constants@22.23.2
+
+## 22.23.1
+
+### Patch Changes
+
+- Updated dependencies [[`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90)]:
+  - @commercetools-frontend/application-shell@22.23.1
+  - @commercetools-frontend/application-config@22.23.1
+  - @commercetools-frontend/constants@22.23.1
+
+## 22.23.0
+
+### Minor Changes
+
+- [#3474](https://github.com/commercetools/merchant-center-application-kit/pull/3474) [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e) Thanks [@kark](https://github.com/kark)! - Use `recolouring` theme as default. Remove usage of `mcRecolouring` feature flag and delayed rendering logic.
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`4708993`](https://github.com/commercetools/merchant-center-application-kit/commit/4708993cf3f45addcbc0102686c92e12c9fc46bb), [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07), [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6)]:
+  - @commercetools-frontend/application-shell@22.23.0
+  - @commercetools-frontend/application-config@22.23.0
+  - @commercetools-frontend/constants@22.23.0
+
 ## 22.22.0
 
 ### Patch Changes

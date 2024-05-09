@@ -10,6 +10,7 @@ import type {
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
 } from './types';
+import doesFileExist from './utils/does-file-exist';
 
 const cli = cac('mc-scripts');
 
@@ -155,7 +156,7 @@ async function run() {
 
   // Command: login
   const usageLogin =
-    'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Custom Application config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.';
+    'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Merchant Center customization config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.';
   cli
     .command('login', usageLogin)
     .usage(`\n\n  ${usageLogin}`)
@@ -173,7 +174,7 @@ async function run() {
 
   // Command: config:sync
   const usageConfigSync =
-    'Synchronizes the local Custom Application config with the Merchant Center. A new Custom Application will be created if none existed, otherwise it will be updated.';
+    'Synchronizes the local Merchant Center customization config with the Merchant Center. A new Merchant Center customization will be created if none existed, otherwise it will be updated.';
   cli
     .command('config:sync', usageConfigSync)
     .usage(`\n\n  ${usageConfigSync}`)
@@ -241,7 +242,7 @@ function loadDotEnvFiles(globalOptions: TCliGlobalOptions) {
     const dotenvFilePath = path.resolve(
       path.join(applicationDirectory, dotenvFile)
     );
-    if (fs.existsSync(dotenvFilePath)) {
+    if (doesFileExist(dotenvFilePath)) {
       dotenvExpand.expand(dotenv.config({ path: dotenvFilePath }));
     }
   });

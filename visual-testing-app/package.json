@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "22.22.0",
+  "version": "22.25.1",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -17,20 +17,20 @@
     "@commercetools-frontend/assets": "workspace:*",
     "@commercetools-frontend/constants": "workspace:*",
     "@commercetools-frontend/react-notifications": "workspace:*",
-    "@commercetools-uikit/accessible-button": "19.0.0",
-    "@commercetools-uikit/card": "19.0.0",
-    "@commercetools-uikit/design-system": "19.0.0",
-    "@commercetools-uikit/grid": "19.0.0",
-    "@commercetools-uikit/icon-button": "19.0.0",
-    "@commercetools-uikit/icons": "19.0.0",
-    "@commercetools-uikit/link": "19.0.0",
-    "@commercetools-uikit/spacings": "19.0.0",
-    "@commercetools-uikit/text": "19.0.0",
-    "@commercetools-uikit/text-field": "19.0.0",
-    "@commercetools-uikit/text-input": "19.0.0",
+    "@commercetools-uikit/accessible-button": "19.2.0",
+    "@commercetools-uikit/card": "19.2.0",
+    "@commercetools-uikit/design-system": "19.2.0",
+    "@commercetools-uikit/grid": "19.2.0",
+    "@commercetools-uikit/icon-button": "19.2.0",
+    "@commercetools-uikit/icons": "19.2.0",
+    "@commercetools-uikit/link": "19.2.0",
+    "@commercetools-uikit/spacings": "19.2.0",
+    "@commercetools-uikit/text": "19.2.0",
+    "@commercetools-uikit/text-field": "19.2.0",
+    "@commercetools-uikit/text-input": "19.2.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@flopflip/react-broadcast": "13.4.1",
+    "@flopflip/react-broadcast": "14.0.0",
     "@rollup/plugin-graphql": "2.0.4",
     "@types/react": "^17.0.56",
     "@types/react-dom": "^17.0.19",
@@ -47,6 +47,6 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "uuid": "9.0.1",
-    "vite": "4.5.2"
+    "vite": "~4.5.3"
   }
 }

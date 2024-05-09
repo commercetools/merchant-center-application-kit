@@ -78,7 +78,7 @@ export type TConfig = {
   /**
    * Configuration for using the `/proxy/forward-to` endpoint
    * to connect to an external API.
-   * {@link https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api}
+   * {@link https://docs.commercetools.com/merchant-center-customizations/concepts/integrate-with-your-own-api}
    *
    * @example
    * {

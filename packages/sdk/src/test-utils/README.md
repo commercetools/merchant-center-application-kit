@@ -2,7 +2,7 @@
 
 To facilitate testing components that implement action creators, we expose some **test utils**.
 
-> Usually you won't need to use those utils directly, as they are implicitly used by the [`<ApplicationShell>`'s `test-utils`](https://docs.commercetools.com/custom-applications/development/testing#test-utils-for-applicationshell).
+> Usually you won't need to use those utils directly, as they are implicitly used by the [`<ApplicationShell>`'s `test-utils`](https://docs.commercetools.com/merchant-center-customizations/development/testing#test-utils-for-applicationshell).
 
 ## Table of Contents
 

@@ -16,11 +16,4 @@ export const customViewsThemesOverrides = {
     paddingForMainPageHeader: '0',
     paddingForTabularPageHeader: '0',
   },
-  recolouring: {
-    marginForCustomViewsSelectorAsTabular: '0',
-    marginForPageContent: `${uiKitDesignTokens.spacing50} 0`,
-    paddingForDetailPageHeader: `0 0 ${uiKitDesignTokens.spacing40} 0`,
-    paddingForMainPageHeader: '0',
-    paddingForTabularPageHeader: '0',
-  },
 };

@@ -23,7 +23,7 @@ const Box = ({ size = 'm' }: { size?: 's' | 'm' | 'l' }) => {
 
 export const Component = () => (
   <Suite>
-    <ThemeProvider />
+    <ThemeProvider theme="default" />
     <NestedPages
       title="Page content container wide"
       basePath={routePath}

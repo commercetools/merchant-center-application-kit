@@ -34,21 +34,11 @@ const getContainerPositionBasedOnMenuItemPosition = (
     `,
 ];
 
-const Faded = styled.div`
-  position: absolute;
-  top: -32px;
-  height: 32px;
-  width: 100%;
-  background: linear-gradient(180deg, rgba(0, 153, 135, 0) 0%, #00b39e 100%);
-  z-index: 1;
-  visibility: ${appKitDesignTokens.visibilityForNavbarFaded};
-`;
-
 const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${appKitDesignTokens.backgroundColorForNavbarExpander};
+  background: ${uiKitDesignTokens.colorPrimary10};
   padding: ${uiKitDesignTokens.spacing30} ${uiKitDesignTokens.spacing25};
   ${(props) =>
     !props.isVisible &&
@@ -64,12 +54,6 @@ const Expander = styled.li<{ isVisible: boolean }>`
     height: 1px;
     background: rgba(255, 255, 255, 0.5);
     width: calc(100% - 2 * ${uiKitDesignTokens.spacing30});
-  }
-
-  // TODO: remove completely as part of the recolouring rollout cleanup process
-  :hover,
-  :focus {
-    background-color: ${appKitDesignTokens.backgroundColorForNavbarExpanderWhenHovered};
   }
 `;
 
@@ -195,7 +179,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
     props.isActive &&
       css`
         border-radius: ${uiKitDesignTokens.borderRadius4};
-        background: ${appKitDesignTokens.backgroundColorForNavbarSubmenuItemWhenActive};
+        background: ${uiKitDesignTokens.colorPrimary40};
       `,
     !props.isActive &&
       css`
@@ -240,14 +224,14 @@ const MenuListItem = styled.li<{
   ${(props) => [
     props.isRouteActive &&
       css`
-        background: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenActive};
+        background: ${uiKitDesignTokens.colorPrimary25};
         border-radius: ${uiKitDesignTokens.borderRadius8};
       `,
     !props.isRouteActive &&
       css`
         :hover,
         :focus-within {
-          background-color: ${appKitDesignTokens.backgroundColorForNavbarMenuItemWhenHovered};
+          background-color: ${uiKitDesignTokens.colorPrimary20};
           border-radius: ${uiKitDesignTokens.borderRadius8};
         }
       `,
@@ -330,7 +314,6 @@ const MenuListItem = styled.li<{
 export {
   Expander,
   ExpanderIcon,
-  Faded,
   LeftNavigation,
   MenuList,
   MenuListItem,

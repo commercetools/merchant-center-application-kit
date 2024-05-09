@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/eslint-config-node",
-  "version": "22.22.0",
+  "version": "22.25.1",
   "description": "ESLint config for Node.js projects.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
     "directory": "packages-backend/eslint-config-node"
   },
-  "homepage": "https://docs.commercetools.com/custom-applications",
+  "homepage": "https://docs.commercetools.com/merchant-center-customizations",
   "keywords": ["javascript", "nodejs", "toolkit", "eslint"],
   "license": "MIT",
   "publishConfig": {
@@ -26,7 +26,7 @@
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jest": "^27.2.3",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^17.1.0",
     "eslint-plugin-prettier": "^4.2.1"
   },
   "peerDependencies": {

@@ -1,5 +1,90 @@
 # @commercetools-frontend/react-notifications
 
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.25.1
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/notifications@22.25.1
+  - @commercetools-frontend/sentry@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-components@22.25.0
+  - @commercetools-frontend/actions-global@22.25.0
+  - @commercetools-frontend/sentry@22.25.0
+  - @commercetools-frontend/notifications@22.25.0
+
+## 22.24.0
+
+### Patch Changes
+
+- [#3486](https://github.com/commercetools/merchant-center-application-kit/pull/3486) [`79e0a78`](https://github.com/commercetools/merchant-center-application-kit/commit/79e0a783190adb438b69111967523414d469d84e) Thanks [@emmenko](https://github.com/emmenko)! - Refine regular expression for matching error message
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+- Updated dependencies [[`d16ebd9`](https://github.com/commercetools/merchant-center-application-kit/commit/d16ebd98c1b99a0c0c0e0f9a9df24cc8dcc0f542), [`d92d890`](https://github.com/commercetools/merchant-center-application-kit/commit/d92d8901913b29d45ae2c4df1d89f640e10bd257), [`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb), [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d)]:
+  - @commercetools-frontend/application-components@22.24.0
+  - @commercetools-frontend/constants@22.24.0
+  - @commercetools-frontend/actions-global@22.24.0
+  - @commercetools-frontend/notifications@22.24.0
+  - @commercetools-frontend/sentry@22.24.0
+
+## 22.23.3
+
+### Patch Changes
+
+- Updated dependencies [[`f1144f9`](https://github.com/commercetools/merchant-center-application-kit/commit/f1144f9764d4ec366802e784e82f01697c0e0a2e)]:
+  - @commercetools-frontend/application-components@22.23.3
+  - @commercetools-frontend/actions-global@22.23.3
+  - @commercetools-frontend/constants@22.23.3
+  - @commercetools-frontend/notifications@22.23.3
+  - @commercetools-frontend/sentry@22.23.3
+
+## 22.23.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.23.2
+  - @commercetools-frontend/application-components@22.23.2
+  - @commercetools-frontend/constants@22.23.2
+  - @commercetools-frontend/notifications@22.23.2
+  - @commercetools-frontend/sentry@22.23.2
+
+## 22.23.1
+
+### Patch Changes
+
+- Updated dependencies [[`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90)]:
+  - @commercetools-frontend/application-components@22.23.1
+  - @commercetools-frontend/actions-global@22.23.1
+  - @commercetools-frontend/constants@22.23.1
+  - @commercetools-frontend/notifications@22.23.1
+  - @commercetools-frontend/sentry@22.23.1
+
+## 22.23.0
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07)]:
+  - @commercetools-frontend/application-components@22.23.0
+  - @commercetools-frontend/actions-global@22.23.0
+  - @commercetools-frontend/sentry@22.23.0
+  - @commercetools-frontend/constants@22.23.0
+  - @commercetools-frontend/notifications@22.23.0
+
 ## 22.22.0
 
 ### Patch Changes

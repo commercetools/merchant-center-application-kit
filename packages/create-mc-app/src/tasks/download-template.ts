@@ -1,10 +1,10 @@
-import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import execa from 'execa';
 import { Listr, type ListrTask } from 'listr2';
 import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
+import { doesFileExist } from '../utils';
 import { throwIfTemplateVersionDoesNotExist } from '../validations';
 
 const filesToBeRemoved = ['CHANGELOG.md'];
@@ -91,7 +91,7 @@ function downloadTemplate(options: TCliTaskOptions): ListrTask {
               options.projectDirectoryPath,
               'package.json'
             );
-            if (!fs.existsSync(templatePackageJsonPath)) {
+            if (!doesFileExist(templatePackageJsonPath)) {
               throw new Error(
                 `Unable to verify that the template application has a package.json at "${templatePackageJsonPath}"`
               );

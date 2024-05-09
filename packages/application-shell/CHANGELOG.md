@@ -1,5 +1,190 @@
 # @commercetools-frontend/application-shell
 
+## 22.25.1
+
+### Patch Changes
+
+- [#3506](https://github.com/commercetools/merchant-center-application-kit/pull/3506) [`bd2ea80`](https://github.com/commercetools/merchant-center-application-kit/commit/bd2ea80dfc22befef0eb1143b798e7591b3300eb) Thanks [@emmenko](https://github.com/emmenko)! - Do not use lazy cache mode for feature flags when Cypress runs
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.25.1
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/application-shell-connectors@22.25.1
+  - @commercetools-frontend/assets@22.25.1
+  - @commercetools-frontend/browser-history@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/i18n@22.25.1
+  - @commercetools-frontend/l10n@22.25.1
+  - @commercetools-frontend/notifications@22.25.1
+  - @commercetools-frontend/permissions@22.25.1
+  - @commercetools-frontend/react-notifications@22.25.1
+  - @commercetools-frontend/sdk@22.25.1
+  - @commercetools-frontend/sentry@22.25.1
+  - @commercetools-frontend/url-utils@22.25.1
+
+## 22.25.0
+
+### Minor Changes
+
+- [#3504](https://github.com/commercetools/merchant-center-application-kit/pull/3504) [`1be0c35`](https://github.com/commercetools/merchant-center-application-kit/commit/1be0c357e0a14fd32626c61dff804a4bdcc51499) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - chore(flopflip): increase pooling interval from 1 to 15 minutes
+
+### Patch Changes
+
+- [#3500](https://github.com/commercetools/merchant-center-application-kit/pull/3500) [`1985f69`](https://github.com/commercetools/merchant-center-application-kit/commit/1985f69301e4ab8eb218ed1a42425c3e27bb0a5a) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix the cacheIdentifier and cacheMode being passed to each flopflip adapter.
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/l10n@22.25.0
+  - @commercetools-frontend/application-components@22.25.0
+  - @commercetools-frontend/react-notifications@22.25.0
+  - @commercetools-frontend/assets@22.25.0
+  - @commercetools-frontend/i18n@22.25.0
+  - @commercetools-frontend/actions-global@22.25.0
+  - @commercetools-frontend/application-shell-connectors@22.25.0
+  - @commercetools-frontend/sdk@22.25.0
+  - @commercetools-frontend/sentry@22.25.0
+  - @commercetools-frontend/permissions@22.25.0
+  - @commercetools-frontend/browser-history@22.25.0
+  - @commercetools-frontend/notifications@22.25.0
+  - @commercetools-frontend/url-utils@22.25.0
+
+## 22.24.0
+
+### Minor Changes
+
+- [#3482](https://github.com/commercetools/merchant-center-application-kit/pull/3482) [`3836786`](https://github.com/commercetools/merchant-center-application-kit/commit/383678613d5e58977b6316dc95c0a3c63355c839) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Improve keyboard accessibility by switching between the menu items and submenu items using mainly the Tab and Enter keys.
+
+### Patch Changes
+
+- [#3492](https://github.com/commercetools/merchant-center-application-kit/pull/3492) [`d16ebd9`](https://github.com/commercetools/merchant-center-application-kit/commit/d16ebd98c1b99a0c0c0e0f9a9df24cc8dcc0f542) Thanks [@renovate](https://github.com/apps/renovate)! - Update all flopflip packages to v14 (major)
+
+  In addition the the update to v14 the `merchant-center-application-kit` now uses a localStorage cache and an so called lazy `cacheMode`. This implies that `floplfip` will cause less flickering as a result of remote flags being resolved late and then applied after the application initially rendered. Instead cached flags are used and silently (lazily) updated in the background and their possibly changed value takes effect upon the next mounting of `flipflip` or upon reconfiguration.
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+- Updated dependencies [[`d16ebd9`](https://github.com/commercetools/merchant-center-application-kit/commit/d16ebd98c1b99a0c0c0e0f9a9df24cc8dcc0f542), [`b6b0003`](https://github.com/commercetools/merchant-center-application-kit/commit/b6b0003417d413fa26fb77750c75e95559af2f24), [`79e0a78`](https://github.com/commercetools/merchant-center-application-kit/commit/79e0a783190adb438b69111967523414d469d84e), [`d92d890`](https://github.com/commercetools/merchant-center-application-kit/commit/d92d8901913b29d45ae2c4df1d89f640e10bd257), [`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb), [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d)]:
+  - @commercetools-frontend/application-components@22.24.0
+  - @commercetools-frontend/i18n@22.24.0
+  - @commercetools-frontend/react-notifications@22.24.0
+  - @commercetools-frontend/constants@22.24.0
+  - @commercetools-frontend/application-shell-connectors@22.24.0
+  - @commercetools-frontend/application-config@22.24.0
+  - @commercetools-frontend/browser-history@22.24.0
+  - @commercetools-frontend/actions-global@22.24.0
+  - @commercetools-frontend/notifications@22.24.0
+  - @commercetools-frontend/permissions@22.24.0
+  - @commercetools-frontend/url-utils@22.24.0
+  - @commercetools-frontend/assets@22.24.0
+  - @commercetools-frontend/sentry@22.24.0
+  - @commercetools-frontend/l10n@22.24.0
+  - @commercetools-frontend/sdk@22.24.0
+
+## 22.23.3
+
+### Patch Changes
+
+- [#3483](https://github.com/commercetools/merchant-center-application-kit/pull/3483) [`f1144f9`](https://github.com/commercetools/merchant-center-application-kit/commit/f1144f9764d4ec366802e784e82f01697c0e0a2e) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages to v13.6.0
+
+- Updated dependencies [[`f1144f9`](https://github.com/commercetools/merchant-center-application-kit/commit/f1144f9764d4ec366802e784e82f01697c0e0a2e)]:
+  - @commercetools-frontend/application-components@22.23.3
+  - @commercetools-frontend/react-notifications@22.23.3
+  - @commercetools-frontend/actions-global@22.23.3
+  - @commercetools-frontend/application-config@22.23.3
+  - @commercetools-frontend/application-shell-connectors@22.23.3
+  - @commercetools-frontend/assets@22.23.3
+  - @commercetools-frontend/browser-history@22.23.3
+  - @commercetools-frontend/constants@22.23.3
+  - @commercetools-frontend/i18n@22.23.3
+  - @commercetools-frontend/l10n@22.23.3
+  - @commercetools-frontend/notifications@22.23.3
+  - @commercetools-frontend/permissions@22.23.3
+  - @commercetools-frontend/sdk@22.23.3
+  - @commercetools-frontend/sentry@22.23.3
+  - @commercetools-frontend/url-utils@22.23.3
+
+## 22.23.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.23.2
+  - @commercetools-frontend/application-components@22.23.2
+  - @commercetools-frontend/application-config@22.23.2
+  - @commercetools-frontend/application-shell-connectors@22.23.2
+  - @commercetools-frontend/assets@22.23.2
+  - @commercetools-frontend/browser-history@22.23.2
+  - @commercetools-frontend/constants@22.23.2
+  - @commercetools-frontend/i18n@22.23.2
+  - @commercetools-frontend/l10n@22.23.2
+  - @commercetools-frontend/notifications@22.23.2
+  - @commercetools-frontend/permissions@22.23.2
+  - @commercetools-frontend/react-notifications@22.23.2
+  - @commercetools-frontend/sdk@22.23.2
+  - @commercetools-frontend/sentry@22.23.2
+  - @commercetools-frontend/url-utils@22.23.2
+
+## 22.23.1
+
+### Patch Changes
+
+- [#3476](https://github.com/commercetools/merchant-center-application-kit/pull/3476) [`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90) Thanks [@tdeekens](https://github.com/tdeekens)! - Update flopflip
+
+- Updated dependencies [[`f2cec38`](https://github.com/commercetools/merchant-center-application-kit/commit/f2cec3830a9e07c3fa6030b947ddd090f70a4d90)]:
+  - @commercetools-frontend/application-components@22.23.1
+  - @commercetools-frontend/react-notifications@22.23.1
+  - @commercetools-frontend/actions-global@22.23.1
+  - @commercetools-frontend/application-config@22.23.1
+  - @commercetools-frontend/application-shell-connectors@22.23.1
+  - @commercetools-frontend/assets@22.23.1
+  - @commercetools-frontend/browser-history@22.23.1
+  - @commercetools-frontend/constants@22.23.1
+  - @commercetools-frontend/i18n@22.23.1
+  - @commercetools-frontend/l10n@22.23.1
+  - @commercetools-frontend/notifications@22.23.1
+  - @commercetools-frontend/permissions@22.23.1
+  - @commercetools-frontend/sdk@22.23.1
+  - @commercetools-frontend/sentry@22.23.1
+  - @commercetools-frontend/url-utils@22.23.1
+
+## 22.23.0
+
+### Minor Changes
+
+- [#3474](https://github.com/commercetools/merchant-center-application-kit/pull/3474) [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e) Thanks [@kark](https://github.com/kark)! - Use `recolouring` theme as default. Remove usage of `mcRecolouring` feature flag and delayed rendering logic.
+
+### Patch Changes
+
+- [#3473](https://github.com/commercetools/merchant-center-application-kit/pull/3473) [`4708993`](https://github.com/commercetools/merchant-center-application-kit/commit/4708993cf3f45addcbc0102686c92e12c9fc46bb) Thanks [@renovate](https://github.com/apps/renovate)! - Update vite dependency.
+
+  Fixes [this vulnerability](https://github.com/vitejs/vite/security/advisories/GHSA-8jhw-289h-jh2g).
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#3464](https://github.com/commercetools/merchant-center-application-kit/pull/3464) [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07) Thanks [@emmenko](https://github.com/emmenko)! - Enable feature flag for Custom Views by default
+
+- [#3470](https://github.com/commercetools/merchant-center-application-kit/pull/3470) [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Remove tenant variable related to launch darkly
+
+- Updated dependencies [[`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db), [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e), [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07), [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6)]:
+  - @commercetools-frontend/application-shell-connectors@22.23.0
+  - @commercetools-frontend/application-components@22.23.0
+  - @commercetools-frontend/react-notifications@22.23.0
+  - @commercetools-frontend/application-config@22.23.0
+  - @commercetools-frontend/actions-global@22.23.0
+  - @commercetools-frontend/permissions@22.23.0
+  - @commercetools-frontend/sentry@22.23.0
+  - @commercetools-frontend/i18n@22.23.0
+  - @commercetools-frontend/l10n@22.23.0
+  - @commercetools-frontend/sdk@22.23.0
+  - @commercetools-frontend/constants@22.23.0
+  - @commercetools-frontend/assets@22.23.0
+  - @commercetools-frontend/browser-history@22.23.0
+  - @commercetools-frontend/notifications@22.23.0
+  - @commercetools-frontend/url-utils@22.23.0
+
 ## 22.22.0
 
 ### Minor Changes

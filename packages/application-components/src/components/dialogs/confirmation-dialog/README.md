@@ -1,3 +1,3 @@
 # ConfirmationDialog
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/components/confirmation-dialog) for more information.
+Check out the [documentation](https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-components#confirmationdialog) for more information.

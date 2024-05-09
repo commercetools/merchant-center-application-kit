@@ -14,4 +14,4 @@ This package is primarily built for HTTP servers used by Custom Applications and
 $ npm install --save @commercetools-backend/express
 ```
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/concepts/integrate-with-your-own-api) for more information.
+Check out the [documentation](https://docs.commercetools.com/merchant-center-customizations/concepts/integrate-with-your-own-api) for more information.

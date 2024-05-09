@@ -1,3 +1,3 @@
 # InfoDialog
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/components/info-dialog) for more information.
+Check out the [documentation](https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-components#infodialog) for more information.

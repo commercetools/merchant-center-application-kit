@@ -1,3 +1,3 @@
 # TabularModalPage
 
-Check out the [documentation](https://docs.commercetools.com/custom-applications/api-reference/commercetools-frontend-application-components#tabularmodalpage) for more information.
+Check out the [documentation](https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-components#tabularmodalpage) for more information.

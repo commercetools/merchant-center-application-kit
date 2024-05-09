@@ -1,5 +1,67 @@
 # @commercetools-frontend/permissions
 
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.25.1
+  - @commercetools-frontend/sentry@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.25.0
+  - @commercetools-frontend/sentry@22.25.0
+
+## 22.24.0
+
+### Patch Changes
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+- Updated dependencies [[`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d)]:
+  - @commercetools-frontend/application-shell-connectors@22.24.0
+  - @commercetools-frontend/sentry@22.24.0
+
+## 22.23.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.23.3
+  - @commercetools-frontend/sentry@22.23.3
+
+## 22.23.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.23.2
+  - @commercetools-frontend/sentry@22.23.2
+
+## 22.23.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.23.1
+  - @commercetools-frontend/sentry@22.23.1
+
+## 22.23.0
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- [#3470](https://github.com/commercetools/merchant-center-application-kit/pull/3470) [`edda23e`](https://github.com/commercetools/merchant-center-application-kit/commit/edda23e5433c72780f447c42dc7123084353eac6) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Remove tenant variable related to launch darkly
+
+- Updated dependencies [[`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db)]:
+  - @commercetools-frontend/application-shell-connectors@22.23.0
+  - @commercetools-frontend/sentry@22.23.0
+
 ## 22.22.0
 
 ### Patch Changes

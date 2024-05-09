@@ -32,8 +32,8 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
-    // https://github.com/mysticatea/eslint-plugin-node
-    'plugin:node/recommended',
+    // https://github.com/mysticatea/eslint-plugin-n
+    'plugin:n/recommended',
     // https://github.com/benmosher/eslint-plugin-import
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -62,8 +62,8 @@ module.exports = {
 
   rules: {
     // Nodejs
-    'node/no-missing-import': statusCode.off,
-    'node/no-unsupported-features/es-syntax': statusCode.off,
+    'n/no-missing-import': statusCode.off,
+    'n/no-unsupported-features/es-syntax': statusCode.off,
 
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': statusCode.off,
@@ -106,7 +106,7 @@ module.exports = {
         'jest/globals': true,
       },
       rules: {
-        'node/no-extraneous-require': [
+        'n/no-extraneous-require': [
           statusCode.error,
           {
             allowModules: ['jest-each', 'msw'],

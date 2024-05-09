@@ -5,11 +5,11 @@ Please _read_ before contributing to Merchant Center Application Kit in order to
 ## Core Ideas
 
 The [Merchant Center](https://docs.commercetools.com/merchant-center/) is a _Multi Single-Page-Application_ where effectively multiple applications are running within the same domain, giving it a look and feel of being one big application. In fact, sections of the Merchant Center such as Dashboard, Orders, Products, etc are all different applications.
-You can read more about the architecture [here](https://docs.commercetools.com/custom-applications/main-concepts/architecture).
+You can read more about the architecture [here](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router).
 
-With that in mind, developing a Custom Application for the Merchant Center requires a set of tools and components that should be used across the different applications, as they share some common logic. This repository contains all the minimal packages that are necessary to do that. Some of them do not need to be used directly but are instead required by other packages. Let's have a deeper look.
+With that in mind, developing a customization for the Merchant Center requires a set of tools and components that should be used across the different applications, as they share some common logic. This repository contains all the minimal packages that are necessary to do that. Some of them do not need to be used directly but are instead required by other packages. Let's have a deeper look.
 
-If you are developing Custom Application please make sure refer to the documentation: https://docs.commercetools.com/custom-applications.
+If you are developing a Merchant Center customization please make sure refer to the documentation: https://docs.commercetools.com/merchant-center-customizations.
 
 ## Submitting a Pull Request
 
@@ -21,35 +21,6 @@ If possible, please try to provide a related issue first, where the topic is dis
 
 This repository is managed as a monorepo, meaning it contains multiple (sub)packages located in the [`packages`](./packages) directory.
 
-```
-packages/
-  actions-global/
-  application-components/
-  application-config/
-  application-shell/
-  application-shell-connectors/
-  assets/
-  babel-preset-mc-app/
-  browser-history/
-  constants/
-  create-mc-app/
-  eslint-config-mc-app/
-  i18n/
-  jest-preset-mc-app/
-  jest-stylelint-runner/
-  l10n/
-  mc-dev-authentication/
-  mc-html-template/
-  mc-http-server/
-  mc-scripts/
-  notifications/
-  permissions/
-  react-notifications/
-  sdk/
-  sentry/
-  url-utils/
-```
-
 ### Overview of main packages
 
 Below a short description of the most import packages:
@@ -60,12 +31,12 @@ This package contains React components for developing Merchant Center applicatio
 
 #### [application-config](./packages/application-config)
 
-This package contains utilities for configuring Custom Applications. It also defines the JSON schema for the Custom Application configuration file.
+This package contains utilities for configuring Custom Applications and Custom Views. It also defines the JSON schema for the Custom Application and Custom View configuration file.
 
 #### [application-shell](./packages/application-shell)
 
 This package is the most **important** one and contains the core logic of a Merchant Center application (login, intl, base layout, etc). To develop an application, you need to render the `<ApplicationShell>` component first (_see package documentation_).
-The package also initializes different things such as intl, apollo, routing, etc.
+The package also initializes different things such as intl, Apollo, routing, etc.
 
 #### [application-shell-connectors](./packages/application-shell-connectors)
 
@@ -105,11 +76,11 @@ If you're familiar with `react-scripts`, this CLI works very similarly except th
 
 #### [permissions](./packages/permissions)
 
-This package contains React components to apply permissions in your application code (e.g. prevent access to a view if the user does not have the correct scopes, etc).
+This package contains React components to apply permissions in your application code (for example to prevent access to a view if the user does not have the correct scopes, etc).
 
 #### [react-notifications](./packages/react-notifications)
 
-This package contains React components to render notification (e.g. error message, success message, etc).
+This package contains React components to render notification (for example to error message, success message, etc).
 
 #### [sdk](./packages/sdk)
 
@@ -126,13 +97,13 @@ Once it's done, you can run `pnpm run test` (`pnpm run test --watch`) to test yo
 
 To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `pnpm build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
-You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to rebundle and rebuild the application on each change.
+You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to re-bundle and rebuild the application on each change.
 
 ### Test Debugging
 
-Tests written with `react-testing-library` can give great confidence when refactoring. However, they can be painfully hard to debug when failing. This is mainly rooted in not having good visibility into what is being rendered and part of the DOM when testing at a specific moment in time.
+Tests written with `react-testing-library` can give great confidence when refactoring. However, they can be hard to debug when failing. This is mainly rooted in not having good visibility into what is being rendered and part of the DOM when testing at a specific moment in time.
 
-This is where [jest-preview](https://www.jest-preview.com) can help. You can see your test output directly in the browser as you would normally see the app you are working on. Write test and watch rendered output changes accordingly.
+This is where [jest-preview](https://www.jest-preview.com) can help. You can see your test output directly in the browser as you would see the app you are working on. Write test and watch rendered output changes accordingly.
 
 To use `jest-preview` you need two terminal processes running. One for a `jest-preview` server and the other for your test.
 
@@ -140,7 +111,7 @@ To use `jest-preview` you need two terminal processes running. One for a `jest-p
 2. Run the test your intend to debug ideally in watch mode using `pnpm test:watch test-suite-file.spec.js`
 3. Add `jest-preview` to the test you intend to debug by importing the library and debugging with `jest-preview` where you intend to see the HTML rendered
 
-In a nutshell your test could look like this:
+Therefore, your test could look like this:
 
 ```js
 import { debug } from 'jest-preview';
@@ -186,13 +157,13 @@ Note that canary releases **will not create git tags and version bump commits**.
 
 ## GraphQL files and linting
 
-In order to be able to validate GraphQL queries and mutations, defined as `.graphql` files, we use the [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql), which requires **introspection schemas** from the different GraphQL APIs being used.
+To be able to validate GraphQL queries and mutations, defined as `.graphql` files, we use the [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql), which requires **introspection schemas** from the different GraphQL APIs being used.
 
-To download the remote schemas simply run `pnpm generate-types`. The configuration of each schema is defined in the `codegen.*.yml` files, in the root directory. Running this script will download the schemas in the `schemas/*.json` files.
+To download the remote schemas run `pnpm generate-types`. The configuration of each schema is defined in the `codegen.*.yml` files, in the root directory. Running this script will download the schemas in the `schemas/*.json` files.
 
-> NOTE that you need your user `mcAccessToken` to be defined as an environment variable `MC_ACCESS_TOKEN` in `.env` file. This will be used by the introspection queries to be able to download the schemas from the MC API. Additionally, you also need to specify one of your `CTP_PROJECT_KEY` where you have access to.
+> Note that you need your user `mcAccessToken` to be defined as an environment variable `MC_ACCESS_TOKEN` in `.env` file. This will be used by the introspection queries to be able to download the schemas from the Merchant Center API. Additionally, you also need to specify one of your `CTP_PROJECT_KEY` where you have access to.
 
-Since the MC uses multiple GraphQL APIs, we need to differentiate which queries use which schema. To do so, prefix the file extension with one of the GraphQL targets:
+Since the Merchant Center uses multiple GraphQL APIs, we need to differentiate which queries use which schema. To do so, prefix the file extension with one of the GraphQL targets:
 
 - **mc**: instead of `.graphql` use `*.mc.graphql` (_graphql target: `mc`_)
 - **settings**: instead of `.graphql` use `*.settings.graphql` (_graphql target: `settings`_)

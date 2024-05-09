@@ -1,9 +1,10 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { useApolloClient } from '@apollo/client/react';
 import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
-import { ConfigureFlopFlip, useAdapterStatus } from '@flopflip/react-broadcast';
+import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { cacheIdentifiers, cacheModes } from '@flopflip/types';
 import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -17,40 +18,6 @@ import type {
 } from '../../types/generated/mc';
 import AllFeaturesQuery from './fetch-all-features.mc.graphql';
 
-const WAIT_FOR_REMOTE_FLAGS_TIMEOUT = 500; // milliseconds
-
-type TStatusAwareRendererProps = {
-  shouldWaitForRemoteFlags?: boolean;
-  children: ReactNode;
-};
-const StatusAwareRenderer = (props: TStatusAwareRendererProps) => {
-  const [shouldRender, setShouldRender] = useState(
-    !props.shouldWaitForRemoteFlags
-  );
-  const { isReady } = useAdapterStatus();
-  const displayTimeout = useRef<NodeJS.Timeout>();
-
-  if (isReady && !shouldRender) {
-    setShouldRender(true);
-    clearTimeout(displayTimeout.current);
-  }
-
-  useEffect(() => {
-    displayTimeout.current = setTimeout(() => {
-      setShouldRender(true);
-    }, WAIT_FOR_REMOTE_FLAGS_TIMEOUT);
-
-    return () => {
-      clearTimeout(displayTimeout.current);
-    };
-  }, []);
-
-  return shouldRender ? <>{props.children}</> : null;
-};
-StatusAwareRenderer.defaultProps = {
-  shouldWaitForRemoteFlags: process.env.NODE_ENV === 'test' ? false : true,
-};
-
 type TSetupFlopFlipProviderProps = {
   projectKey?: string;
   user?: TFetchLoggedInUserQuery['user'];
@@ -59,7 +26,6 @@ type TSetupFlopFlipProviderProps = {
   ldClientSideId?: string;
   children: ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
-  shouldWaitForRemoteFlags?: boolean;
 };
 
 type TLaunchDarklyUserCustomFields = {
@@ -70,8 +36,13 @@ type TLaunchDarklyUserCustomFields = {
   team: string[];
   group: string;
   subgroup: string;
-  tenant: string;
   cloudEnvironment: string;
+};
+type THttpAdapterUserCustomFields = {
+  user: {
+    key?: string;
+    project?: string;
+  };
 };
 
 type TFetchedHttpAdapterFlag = {
@@ -104,7 +75,6 @@ function getUserContextForLaunchDarklyAdapter(
     team: user?.launchdarklyTrackingTeam ?? [],
     group: user?.launchdarklyTrackingGroup ?? '',
     subgroup: user?.launchdarklyTrackingSubgroup ?? '',
-    tenant: user?.launchdarklyTrackingTenant ?? '',
     cloudEnvironment: user?.launchdarklyTrackingCloudEnvironment ?? '',
   };
 }
@@ -122,6 +92,16 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
       },
     ])
   );
+
+const getCacheMode = () => {
+  // @ts-ignore
+  if (typeof window.Cypress !== 'undefined') {
+    // Temporary workaround: when running in Cypress, do not use lazy mode
+    // as the flag is not being updated in time during the test run.
+    return cacheModes.eager;
+  }
+  return cacheModes.lazy;
+};
 
 type TAdditionalEnvironmentProperties = {
   enableLongLivedFeatureFlags?: boolean;
@@ -165,6 +145,8 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         key: props.user?.id,
       },
       launchdarkly: {
+        cacheIdentifier: cacheIdentifiers.local,
+        cacheMode: getCacheMode(),
         sdk: {
           // Allow to overwrite the client ID, passed via the `additionalEnv` properties
           // of the application config.
@@ -181,15 +163,21 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         ),
       },
       http: {
+        // polling interval set to 15 minutes
+        pollingIntervalMs: 1000 * 60 * 15,
+        cacheIdentifier: cacheIdentifiers.local,
+        cacheMode: getCacheMode(),
         user: {
           key: props.user?.id,
         },
-        execute: async function () {
+        execute: async (adapterArgs: THttpAdapterUserCustomFields) => {
           const response = await apolloClient.query<TAllFeaturesQuery>({
             query: AllFeaturesQuery,
             errorPolicy: 'ignore',
+            fetchPolicy: 'network-only',
             context: {
               target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey: adapterArgs.user?.project,
             },
           });
 
@@ -229,11 +217,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           : !props.user || allMenuFeatureToggles.isLoading
       }
     >
-      <StatusAwareRenderer
-        shouldWaitForRemoteFlags={props.shouldWaitForRemoteFlags}
-      >
-        {props.children}
-      </StatusAwareRenderer>
+      {props.children}
     </ConfigureFlopFlip>
   );
 };

@@ -125,7 +125,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     // const mcFrontendHostname = mcUrl.hostname.replace('mc-api', 'mc');
 
     function authCallback() {
-      cy.visit(url);
+      cy.visit(url, { onBeforeLoad: commandOptions.onBeforeLoad });
 
       // NOTE: using `cy.origin` is currently disabled as it does not seem to properly work.
       // Interestingly, starting an application locally using Vite works, however not when using Webpack.
@@ -279,12 +279,6 @@ function loginByOidc(
               STORAGE_KEYS.SESSION_SCOPE,
               sessionScope
             );
-            // Disable redesign announcement
-            win.localStorage.setItem(
-              'isNewDesignReleaseNotificationClosed',
-              'true'
-            );
-
             if (commandOptions.onBeforeLoad) {
               commandOptions.onBeforeLoad(win);
             }

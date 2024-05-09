@@ -1,5 +1,27 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 22.25.1
+
+## 22.25.0
+
+## 22.24.0
+
+### Patch Changes
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+## 22.23.3
+
+## 22.23.2
+
+## 22.23.1
+
+## 22.23.0
+
+### Patch Changes
+
+- [#3435](https://github.com/commercetools/merchant-center-application-kit/pull/3435) [`e7299e2`](https://github.com/commercetools/merchant-center-application-kit/commit/e7299e265ceb8579ed4901adddcb2fde791c62db) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
 ## 22.22.0
 
 ## 22.21.0

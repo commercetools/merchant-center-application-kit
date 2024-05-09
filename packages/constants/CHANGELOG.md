@@ -1,5 +1,37 @@
 # @commercetools-frontend/constants
 
+## 22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3503](https://github.com/commercetools/merchant-center-application-kit/pull/3503) [`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2) Thanks [@emmenko](https://github.com/emmenko)! - Refine some regular expressions
+
+## 22.24.0
+
+### Patch Changes
+
+- [#3495](https://github.com/commercetools/merchant-center-application-kit/pull/3495) [`2431917`](https://github.com/commercetools/merchant-center-application-kit/commit/2431917db9ee4297e58717924779855f556e38cb) Thanks [@emmenko](https://github.com/emmenko)! - Refine some regex
+
+- [#3491](https://github.com/commercetools/merchant-center-application-kit/pull/3491) [`c2bba1d`](https://github.com/commercetools/merchant-center-application-kit/commit/c2bba1d065b6fd7882e6feb9162d91538962d85d) Thanks [@emmenko](https://github.com/emmenko)! - Adjust links to new docs
+
+## 22.23.3
+
+## 22.23.2
+
+## 22.23.1
+
+## 22.23.0
+
+### Minor Changes
+
+- [#3474](https://github.com/commercetools/merchant-center-application-kit/pull/3474) [`5fa5dd6`](https://github.com/commercetools/merchant-center-application-kit/commit/5fa5dd6d29f0974a97718f86259f6e717d5fdb5e) Thanks [@kark](https://github.com/kark)! - Use `recolouring` theme as default. Remove usage of `mcRecolouring` feature flag and delayed rendering logic.
+
+### Patch Changes
+
+- [#3464](https://github.com/commercetools/merchant-center-application-kit/pull/3464) [`aa60c8e`](https://github.com/commercetools/merchant-center-application-kit/commit/aa60c8ed4d7e873485b6c7be80cc93ed988cca07) Thanks [@emmenko](https://github.com/emmenko)! - Enable feature flag for Custom Views by default
+
 ## 22.22.0
 
 ## 22.21.0
