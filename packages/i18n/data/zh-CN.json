@@ -27,6 +27,10 @@
     "developer_comment": "User tries to create a resource with an already existing slug",
     "string": "“{slugValue}”已被使用。请为此产品输入新的 slug 值。"
   },
+  "ApiError.DuplicateStandalonePriceScope": {
+    "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
+    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+  },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
     "string": "此产品已具有相同的变体。请为这些字段输入其他值。"
@@ -202,12 +206,6 @@
   },
   "NavBar.MCSupport.title": {
     "string": "支持"
-  },
-  "NewColoursSchemaAnnouncementDialog.content": {
-    "string": "从全新的颜色到更新的导航，我们进行了一些更改，以改善您在 Merchant Center 的体验。您还会发现，我们正在采取措施，以确保从 Merchant Center 到 Frontend Studio 的所有用户工具都具有一致的界面外观。查看更新！"
-  },
-  "NewColoursSchemaAnnouncementDialog.title": {
-    "string": "我们已经刷新了我们的 Merchant Center！"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
