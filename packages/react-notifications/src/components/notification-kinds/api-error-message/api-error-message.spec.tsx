@@ -284,6 +284,16 @@ describe('render', () => {
       )
     ).toBeInTheDocument();
   });
+  it('should show message for OverlappingPriceValidity', () => {
+    const error = {
+      extensions: { code: 'OverlappingPriceValidity' },
+      message: 'message-content',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText('Two prices have overlapping validity periods.')
+    ).toBeInTheDocument();
+  });
   it('should show message for OverlappingStandalonePriceValidity', () => {
     const error = {
       extensions: { code: 'OverlappingStandalonePriceValidity' },
