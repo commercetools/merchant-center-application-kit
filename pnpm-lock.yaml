@@ -1932,8 +1932,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       headers-polyfill:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^4.0.0
+        version: 4.0.3
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -8689,7 +8689,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.3)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -8996,7 +8996,7 @@ packages:
       '@emotion/react': 11.11.4(@types/react@17.0.56)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.3)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -9731,7 +9731,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.3)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -20281,6 +20281,10 @@ packages:
 
   /headers-polyfill@3.1.2:
     resolution: {integrity: sha512-tWCK4biJ6hcLqTviLXVR9DTRfYGQMXEIUj3gwJ2rZ5wO/at3XtkI4g8mCvFdUF9l1KMBNCfmNAdnahm1cgavQA==}
+
+  /headers-polyfill@4.0.3:
+    resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
+    dev: true
 
   /history-query-enhancer@1.0.4(history@4.10.1):
     resolution: {integrity: sha512-zs3zt64jspt9RGS5hLarIkeC9/omIkMjU4KkC2windSqD04KGQY84sDZWfnFS5qeJ07Ig8Y1t9jjBffQ9ZHdpw==}
