@@ -63,7 +63,7 @@
     "@commercetools-backend/express": "22.25.1",
     "@commercetools-frontend/mc-dev-authentication": "22.25.1",
     "@commercetools-frontend/mc-scripts": "22.25.1",
-    "@commercetools-test-data/commons": "7.4.0",
+    "@commercetools-test-data/commons": "7.11.0",
     "@formatjs/cli": "6.2.7",
     "@types/jest": "^29.5.4",
     "@types/node": "^16.18.48",
