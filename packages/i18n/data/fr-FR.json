@@ -71,9 +71,17 @@
     "developer_comment": "User attempts to create a resource while having already reached the limit",
     "string": "Ce projet a atteint la limite de cette ressource. Pour ajouter d'autres ressources, supprimez des ressources existantes, ou contactez votre administrateur ou l'assistance client."
   },
+  "ApiError.OverlappingPriceValidity": {
+    "developer_comment": "Returned when a given price validity period conflicts with an existing one",
+    "string": "Two prices have overlapping validity periods."
+  },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
     "string": "Un prix avec ces détails existe déjà. Modifiez les détails du prix pour éviter le chevauchement avec un autre prix avant d'enregistrer."
+  },
+  "ApiError.OverlappingStandalonePriceValidity": {
+    "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
+    "string": "Two standalone prices have overlapping validity periods."
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",
