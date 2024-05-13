@@ -63,5 +63,6 @@ query FetchProject($projectKey: String) {
       name
     }
     sampleDataImportDataset
+    isUserAdminOfCurrentProject
   }
 }
