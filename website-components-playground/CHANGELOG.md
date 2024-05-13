@@ -1,5 +1,20 @@
 # @commercetools-website/components-playground
 
+## 22.26.0
+
+### Minor Changes
+
+- [#3513](https://github.com/commercetools/merchant-center-application-kit/pull/3513) [`49953c6`](https://github.com/commercetools/merchant-center-application-kit/commit/49953c68a08923cd799d86d6ea34a3606dff9acc) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Add a playground example for drawer component to be used for drawer documentation.
+
+### Patch Changes
+
+- Updated dependencies [[`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720), [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb)]:
+  - @commercetools-frontend/i18n@22.26.0
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/browser-history@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/l10n@22.26.0
+
 ## 22.25.1
 
 ### Patch Changes

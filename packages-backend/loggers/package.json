@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/loggers",
-  "version": "22.25.1",
+  "version": "22.26.0",
   "description": "Opinionated JSON loggers for HTTP server applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
