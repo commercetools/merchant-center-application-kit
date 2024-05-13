@@ -260,4 +260,50 @@ describe('render', () => {
       )
     ).toBeInTheDocument();
   });
+  it('should show message for DuplicatePriceScope', () => {
+    const error = {
+      extensions: { code: 'DuplicatePriceScope' },
+      message: 'message-content',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText(
+        'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel and valid dates is unique per price.'
+      )
+    ).toBeInTheDocument();
+  });
+  it('should show message for DuplicateStandalonePriceScope', () => {
+    const error = {
+      extensions: { code: 'DuplicateStandalonePriceScope' },
+      message: 'message-content',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText(
+        'A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU.'
+      )
+    ).toBeInTheDocument();
+  });
+  it('should show message for OverlappingPriceValidity', () => {
+    const error = {
+      extensions: { code: 'OverlappingPriceValidity' },
+      message: 'message-content',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText('Two prices have overlapping validity periods.')
+    ).toBeInTheDocument();
+  });
+  it('should show message for OverlappingStandalonePriceValidity', () => {
+    const error = {
+      extensions: { code: 'OverlappingStandalonePriceValidity' },
+      message: 'message-content',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText(
+        'Two standalone prices have overlapping validity periods.'
+      )
+    ).toBeInTheDocument();
+  });
 });
