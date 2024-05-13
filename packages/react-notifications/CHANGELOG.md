@@ -1,5 +1,22 @@
 # @commercetools-frontend/react-notifications
 
+## 22.26.0
+
+### Minor Changes
+
+- [#3507](https://github.com/commercetools/merchant-center-application-kit/pull/3507) [`4870607`](https://github.com/commercetools/merchant-center-application-kit/commit/48706079972a32b3489dbc9eb59b8b0459b75784) Thanks [@ragafus](https://github.com/ragafus)! - Add message for `DuplicateStandalonePriceScope` error code
+
+- [#3517](https://github.com/commercetools/merchant-center-application-kit/pull/3517) [`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720) Thanks [@ragafus](https://github.com/ragafus)! - Add messages for `OverlappingPriceValidity` and `OverlappingStandalonePriceValidity` error code
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/actions-global@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/notifications@22.26.0
+  - @commercetools-frontend/sentry@22.26.0
+
 ## 22.25.1
 
 ### Patch Changes

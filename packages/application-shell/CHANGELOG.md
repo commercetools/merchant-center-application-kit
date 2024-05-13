@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 22.26.0
+
+### Patch Changes
+
+- [#3516](https://github.com/commercetools/merchant-center-application-kit/pull/3516) [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb) Thanks [@chloe0592](https://github.com/chloe0592)! - Removing the rebranding modal pup-up.
+
+- Updated dependencies [[`4870607`](https://github.com/commercetools/merchant-center-application-kit/commit/48706079972a32b3489dbc9eb59b8b0459b75784), [`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720), [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb)]:
+  - @commercetools-frontend/react-notifications@22.26.0
+  - @commercetools-frontend/i18n@22.26.0
+  - @commercetools-frontend/assets@22.26.0
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/application-config@22.26.0
+  - @commercetools-frontend/actions-global@22.26.0
+  - @commercetools-frontend/application-shell-connectors@22.26.0
+  - @commercetools-frontend/browser-history@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/l10n@22.26.0
+  - @commercetools-frontend/notifications@22.26.0
+  - @commercetools-frontend/permissions@22.26.0
+  - @commercetools-frontend/sdk@22.26.0
+  - @commercetools-frontend/sentry@22.26.0
+  - @commercetools-frontend/url-utils@22.26.0
+
 ## 22.25.1
 
 ### Patch Changes
