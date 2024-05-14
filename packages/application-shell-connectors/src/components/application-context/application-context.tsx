@@ -147,6 +147,8 @@ export const mapProjectToApplicationContextProject = (
     ownerId: project.owner.id,
     ownerName: project.owner.name,
     sampleDataImportDataset: project.sampleDataImportDataset,
+    // @ts-expect-error not typed yet
+    isUserAdminOfCurrentProject: project.isUserAdminOfCurrentProject,
   };
 };
 
