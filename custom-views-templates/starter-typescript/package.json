@@ -90,7 +90,7 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "redux": "4.2.1",
-    "typescript": "5.4.5"
+    "typescript": "5.0.4"
   },
   "resolutions": {
     "@emotion/react": "^11.11.1",
