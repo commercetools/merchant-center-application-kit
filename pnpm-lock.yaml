@@ -436,7 +436,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -655,7 +655,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -871,7 +871,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -1090,7 +1090,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -1205,7 +1205,7 @@ importers:
         version: 17.1.0(eslint@8.57.0)
       eslint-plugin-prettier:
         specifier: ^4.2.1
-        version: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.0)(prettier@3.2.5)
+        version: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.0)(prettier@2.8.8)
     devDependencies:
       '@tsconfig/node16':
         specifier: ^16.1.1
@@ -1318,7 +1318,7 @@ importers:
         specifier: ^4.14.198
         version: 4.14.198
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-redux':
         specifier: ^7.1.26
@@ -1457,7 +1457,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -1551,7 +1551,7 @@ importers:
         specifier: ^4.14.198
         version: 4.14.198
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       ajv:
         specifier: 8.13.0
@@ -1726,7 +1726,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -1892,7 +1892,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       apollo-link-logger:
         specifier: 2.0.1
@@ -2074,7 +2074,7 @@ importers:
         version: link:../application-components
       '@emotion/react':
         specifier: ^11.11.4
-        version: 11.11.4(react@18.3.1)
+        version: 11.11.4(@types/react@17.0.80)(react@17.0.2)
       '@tsconfig/node16':
         specifier: ^16.1.1
         version: 16.1.1
@@ -2275,7 +2275,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       moment:
         specifier: ^2.29.4
@@ -2422,7 +2422,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       lodash:
         specifier: 4.17.21
@@ -2805,7 +2805,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       lodash:
         specifier: 4.17.21
@@ -2896,7 +2896,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -2987,7 +2987,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-redux':
         specifier: ^7.1.26
@@ -3069,7 +3069,7 @@ importers:
         specifier: ^15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       prop-types:
         specifier: 15.8.1
@@ -3207,7 +3207,7 @@ importers:
         version: 14.0.0(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       apollo-link-rest:
         specifier: ^0.9.0
-        version: 0.9.0(@apollo/client@3.10.3)(graphql@16.8.1)(qs@6.11.2)
+        version: 0.9.0(@apollo/client@3.7.14)(graphql@16.8.1)(qs@6.11.2)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -3360,7 +3360,7 @@ importers:
         specifier: 2.0.4
         version: 2.0.4(graphql@16.8.1)(rollup@2.79.1)
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -3499,7 +3499,7 @@ importers:
         specifier: ^4.7.11
         version: 4.7.11
       '@types/react':
-        specifier: ^17.0.80
+        specifier: ^17.0.56
         version: 17.0.80
       '@types/react-dom':
         specifier: 17.0.25
@@ -3534,45 +3534,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.4
       '@jridgewell/trace-mapping': 0.3.23
-
-  /@apollo/client@3.10.3(@types/react@17.0.80)(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-4EIgZnFmRO1laWv3NCxlVIxcvimG63djuAXvyXhpQH3wkNMv9SykrasKRN08+z+cn/fVisBOLmkSRdyNyP9f4A==}
-    peerDependencies:
-      graphql: ^15.0.0 || ^16.0.0
-      graphql-ws: ^5.5.5
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
-      '@wry/caches': 1.0.1
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.5.0
-      graphql: 16.8.1
-      graphql-tag: 2.12.6(graphql@16.8.1)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.18.0
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      rehackt: 0.1.0(@types/react@17.0.80)(react@17.0.2)
-      response-iterator: 0.2.6
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.6.2
-      zen-observable-ts: 1.2.5
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
 
   /@apollo/client@3.7.14(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-BRvdkwq5PAXBkjXjboO12uksDm3nrZEqDi4xF97Fk3Mnaa0zDOEfJa7hoKTY9b9KA1EkeWv9BL3i7hSd4SfGBg==}
@@ -10305,26 +10266,6 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
 
-  /@emotion/react@11.11.4(react@18.3.1):
-    resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
-    peerDependencies:
-      '@types/react': '*'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.24.0
-      '@emotion/babel-plugin': 11.11.0
-      '@emotion/cache': 11.11.0
-      '@emotion/serialize': 1.1.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.1)
-      '@emotion/utils': 1.2.1
-      '@emotion/weak-memoize': 0.3.1
-      hoist-non-react-statics: 3.3.2
-      react: 18.3.1
-    dev: true
-
   /@emotion/serialize@1.1.3:
     resolution: {integrity: sha512-iD4D6QVZFDhcbH0RAG1uVu1CwVLMWUkCvAqqlewO/rxf8+87yIBAlt4+AxMiiKPLs5hFc0owNk/sLLAOROw3cA==}
     dependencies:
@@ -10367,14 +10308,6 @@ packages:
       react: '>=16.8.0'
     dependencies:
       react: 17.0.2
-
-  /@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.3.1):
-    resolution: {integrity: sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 18.3.1
-    dev: true
 
   /@emotion/utils@1.2.1:
     resolution: {integrity: sha512-Y2tGf3I+XVnajdItskUCn6LX+VUDmP6lTL4fcqsXAv43dnlbZiuW4MWQW38rW/BVWSE7Q/7+XQocmpnRYILUmg==}
@@ -14237,7 +14170,7 @@ packages:
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
-      csstype: 3.1.2
+      csstype: 3.1.3
 
   /@types/redux-logger@3.0.9:
     resolution: {integrity: sha512-cwYhVbYNgH01aepeMwhd0ABX6fhVB2rcQ9m80u8Fl50ZODhsZ8RhQArnLTkE7/Zrfq4Sz/taNoF7DQy9pCZSKg==}
@@ -14916,25 +14849,11 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@wry/caches@1.0.1:
-    resolution: {integrity: sha512-bXuaUNLVVkD20wcGBWRyo7j9N3TxePEWFZj2Y+r9OoUzfqmavM84+mFykRicNsBqatba5JLay1t48wxaXaWnlA==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.6.2
-    dev: false
-
   /@wry/context@0.7.3:
     resolution: {integrity: sha512-Nl8WTesHp89RF803Se9X3IiHjdmLBrIvPMaJkl+rKVJAYyPsz1TEUbu89943HpvujtSJgDUx9W4vZw3K1Mr3sA==}
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.6.2
-
-  /@wry/context@0.7.4:
-    resolution: {integrity: sha512-jmT7Sb4ZQWI5iyu3lobQxICu2nC/vbUhP0vIdd6tHC9PTfenmRmuIFqktc6GH9cgi+ZHnsLWPvfSvc4DrYmKiQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.6.2
-    dev: false
 
   /@wry/equality@0.1.11:
     resolution: {integrity: sha512-mwEVBDUVODlsQQ5dfuLUS5/Tf7jqUKyhKYHmVi4fPB6bDMOfWvUPJmKgS1Z7Za/sOI3vzWt4+O7yCiL/70MogA==}
@@ -14953,20 +14872,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.6.2
-
-  /@wry/trie@0.4.3:
-    resolution: {integrity: sha512-I6bHwH0fSf6RqQcnnXLJKhkSXG45MFral3GxPaY4uAl0LYDZM+YDVDAiU9bYwjTuysy1S0IeecWtmq1SZA3M1w==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.6.2
-    dev: false
-
-  /@wry/trie@0.5.0:
-    resolution: {integrity: sha512-FNoYzHawTMk/6KMQoEG5O4PuioX19UbwdQKF44yw0nLfOypfQdjtfZzo/UIJWAJ23sNIFbD1Ug9lbaDGMwbqQA==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.6.2
-    dev: false
 
   /@xmldom/xmldom@0.8.7:
     resolution: {integrity: sha512-sI1Ly2cODlWStkINzqGrZ8K6n+MTSbAeQnAipGyL+KZCXuHaRlj2gyyy8B/9MvsFFqN7XHryQnB2QwhzvJXovg==}
@@ -15219,14 +15124,14 @@ packages:
       '@apollo/client': 3.7.14(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2)
     dev: false
 
-  /apollo-link-rest@0.9.0(@apollo/client@3.10.3)(graphql@16.8.1)(qs@6.11.2):
+  /apollo-link-rest@0.9.0(@apollo/client@3.7.14)(graphql@16.8.1)(qs@6.11.2):
     resolution: {integrity: sha512-kuXjR56Y12w0TZcqwVaONKlipB6g3Ya1dAy4NMCaylPpNXq6tO+qzQFPUyDJC7B0JoJPIFjxPV2rAet4uGM4UQ==}
     peerDependencies:
       '@apollo/client': '>=3'
       graphql: '>=0.11'
       qs: '>=6'
     dependencies:
-      '@apollo/client': 3.10.3(@types/react@17.0.80)(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2)
+      '@apollo/client': 3.7.14(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2)
       graphql: 16.8.1
       qs: 6.11.2
     dev: false
@@ -17300,9 +17205,6 @@ packages:
     dependencies:
       rrweb-cssom: 0.6.0
 
-  /csstype@3.1.2:
-    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-
   /csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
@@ -18777,23 +18679,6 @@ packages:
       eslint: 8.57.0
       eslint-config-prettier: 8.10.0(eslint@8.57.0)
       prettier: 2.8.8
-      prettier-linter-helpers: 1.0.0
-    dev: false
-
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.0)(prettier@3.2.5):
-    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.57.0
-      eslint-config-prettier: 8.10.0(eslint@8.57.0)
-      prettier: 3.2.5
       prettier-linter-helpers: 1.0.0
     dev: false
 
@@ -24316,15 +24201,6 @@ packages:
       '@wry/context': 0.7.3
       '@wry/trie': 0.3.2
 
-  /optimism@0.18.0:
-    resolution: {integrity: sha512-tGn8+REwLRNFnb9WmcY5IfpOqeX2kpaYJ1s6Ae3mn12AeydLkR3j+jSCmVQFoXqU8D41PAJ1RG1rCRNWmNZVmQ==}
-    dependencies:
-      '@wry/caches': 1.0.1
-      '@wry/context': 0.7.4
-      '@wry/trie': 0.4.3
-      tslib: 2.6.2
-    dev: false
-
   /optionator@0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
     engines: {node: '>= 0.8.0'}
@@ -25248,12 +25124,6 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  /prettier@3.2.5:
-    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: false
-
   /pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
@@ -25862,13 +25732,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
 
-  /react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: true
-
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -26077,21 +25940,6 @@ packages:
     hasBin: true
     dependencies:
       jsesc: 0.5.0
-
-  /rehackt@0.1.0(@types/react@17.0.80)(react@17.0.2):
-    resolution: {integrity: sha512-7kRDOuLHB87D/JESKxQoRwv4DzbIdwkAGQ7p6QKGdVlY1IZheUnVhlk/4UZlNUVxdAXpyxikE3URsG067ybVzw==}
-    peerDependencies:
-      '@types/react': ^17.0.56
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 17.0.80
-      react: 17.0.2
-    dev: false
 
   /rehype-react@7.2.0(@types/react@17.0.80):
     resolution: {integrity: sha512-MHYyCHka+3TtzBMKtcuvVOBAbI1HrfoYA+XH9m7/rlrQQATCPwtJnPdkxKKcIGF8vc9mxqQja9r9f+FHItQeWg==}
