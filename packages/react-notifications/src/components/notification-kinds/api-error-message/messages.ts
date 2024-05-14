@@ -66,6 +66,13 @@ export default defineMessages({
     defaultMessage:
       'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel and valid dates is unique per price.',
   },
+  DuplicateStandalonePriceScope: {
+    id: 'ApiError.DuplicateStandalonePriceScope',
+    description:
+      'User tries to create a standalone price with the exact same values as for an already existing standalone price',
+    defaultMessage:
+      'A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU.',
+  },
   DuplicateVariantValues: {
     id: 'ApiError.DuplicateVariantValues',
     description:
@@ -89,6 +96,18 @@ export default defineMessages({
     description: 'User enters an invalid value for the product slug',
     defaultMessage:
       'Slugs may only contain alphanumeric (0-9A-Z) characters, underscores and hyphens and must have a length between 2 and 256 characters.',
+  },
+  OverlappingPriceValidity: {
+    id: 'ApiError.OverlappingPriceValidity',
+    description:
+      'Returned when a given price validity period conflicts with an existing one',
+    defaultMessage: 'Two prices have overlapping validity periods.',
+  },
+  OverlappingStandalonePriceValidity: {
+    id: 'ApiError.OverlappingStandalonePriceValidity',
+    description:
+      'Returned when a given standalone price validity period conflicts with an existing one',
+    defaultMessage: 'Two standalone prices have overlapping validity periods.',
   },
   PendingOperation: {
     id: 'ApiError.PendingOperation',

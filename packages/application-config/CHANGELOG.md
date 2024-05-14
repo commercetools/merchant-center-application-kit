@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-config
 
+## 22.26.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3502](https://github.com/commercetools/merchant-center-application-kit/pull/3502) [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Replace fs.exists with fs.access
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/babel-preset-mc-app@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

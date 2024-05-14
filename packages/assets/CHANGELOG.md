@@ -1,5 +1,19 @@
 # @commercetools-frontend/assets
 
+## 22.26.0
+
+### Patch Changes
+
+- [#3516](https://github.com/commercetools/merchant-center-application-kit/pull/3516) [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb) Thanks [@chloe0592](https://github.com/chloe0592)! - Removing the rebranding modal pup-up.
+
+## 22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
 ## 22.24.0
 
 ### Patch Changes

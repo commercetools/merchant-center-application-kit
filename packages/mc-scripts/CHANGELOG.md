@@ -1,5 +1,52 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.26.0
+
+### Patch Changes
+
+- Updated dependencies [[`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb)]:
+  - @commercetools-frontend/assets@22.26.0
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/application-config@22.26.0
+  - @commercetools-frontend/babel-preset-mc-app@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/mc-dev-authentication@22.26.0
+  - @commercetools-frontend/mc-html-template@22.26.0
+
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/assets@22.25.1
+  - @commercetools-frontend/babel-preset-mc-app@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/mc-dev-authentication@22.25.1
+  - @commercetools-frontend/mc-html-template@22.25.1
+
+## 22.25.0
+
+### Minor Changes
+
+- [#3496](https://github.com/commercetools/merchant-center-application-kit/pull/3496) [`4b5b680`](https://github.com/commercetools/merchant-center-application-kit/commit/4b5b6806b3e710ad2aa71c499d22216210ae1e49) Thanks [@dogayuksel](https://github.com/dogayuksel)! - Adds a `webpack` loader to compile i18n messages when building
+
+  When setting `ENABLE_WEBPACK_LOADER_I18N_MESSAGE_COMPILATION` to `true` on the `process.env` a `i18n-message-compilation-loader` will transform any file matching `/i18n\/data\/.*\.json$/` using the `compile` function from `@formatjs/cli-lib` when building.
+
+### Patch Changes
+
+- [#3502](https://github.com/commercetools/merchant-center-application-kit/pull/3502) [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Replace fs.exists with fs.access
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/application-components@22.25.0
+  - @commercetools-frontend/assets@22.25.0
+  - @commercetools-frontend/mc-html-template@22.25.0
+  - @commercetools-frontend/mc-dev-authentication@22.25.0
+  - @commercetools-frontend/babel-preset-mc-app@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

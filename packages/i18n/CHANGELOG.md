@@ -1,5 +1,34 @@
 # @commercetools-frontend/i18n
 
+## 22.26.0
+
+### Minor Changes
+
+- [#3517](https://github.com/commercetools/merchant-center-application-kit/pull/3517) [`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720) Thanks [@ragafus](https://github.com/ragafus)! - Add messages for `OverlappingPriceValidity` and `OverlappingStandalonePriceValidity` error code
+
+### Patch Changes
+
+- [#3516](https://github.com/commercetools/merchant-center-application-kit/pull/3516) [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb) Thanks [@chloe0592](https://github.com/chloe0592)! - Removing the rebranding modal pup-up.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.26.0
+
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

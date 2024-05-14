@@ -1,5 +1,44 @@
 # @commercetools-website/components-playground
 
+## 22.26.0
+
+### Minor Changes
+
+- [#3513](https://github.com/commercetools/merchant-center-application-kit/pull/3513) [`49953c6`](https://github.com/commercetools/merchant-center-application-kit/commit/49953c68a08923cd799d86d6ea34a3606dff9acc) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Add a playground example for drawer component to be used for drawer documentation.
+
+### Patch Changes
+
+- Updated dependencies [[`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720), [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb)]:
+  - @commercetools-frontend/i18n@22.26.0
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/browser-history@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/l10n@22.26.0
+
+## 22.25.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/browser-history@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/i18n@22.25.1
+  - @commercetools-frontend/l10n@22.25.1
+
+## 22.25.0
+
+### Patch Changes
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/l10n@22.25.0
+  - @commercetools-frontend/application-components@22.25.0
+  - @commercetools-frontend/i18n@22.25.0
+  - @commercetools-frontend/browser-history@22.25.0
+
 ## 22.24.0
 
 ### Patch Changes

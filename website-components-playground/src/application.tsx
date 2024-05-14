@@ -17,6 +17,8 @@ const FormDetailPage = lazy(() => import('./pages/form-detail-page'));
 const FormMainPage = lazy(() => import('./pages/form-main-page'));
 const FormModalPage = lazy(() => import('./pages/form-modal-page'));
 
+const Drawer = lazy(() => import('./pages/drawer'));
+
 const CustomFormDetailPage = lazy(
   () => import('./pages/custom-form-detail-page')
 );
@@ -78,6 +80,9 @@ const Application = () => (
       </Route>
       <Route path="/tabular-modal-page">
         <TabularModalPage />
+      </Route>
+      <Route path="/drawer">
+        <Drawer />
       </Route>
       <Route>
         <IndexPage />

@@ -1,5 +1,80 @@
 # @commercetools-frontend/application-shell
 
+## 22.26.0
+
+### Patch Changes
+
+- [#3516](https://github.com/commercetools/merchant-center-application-kit/pull/3516) [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb) Thanks [@chloe0592](https://github.com/chloe0592)! - Removing the rebranding modal pup-up.
+
+- Updated dependencies [[`4870607`](https://github.com/commercetools/merchant-center-application-kit/commit/48706079972a32b3489dbc9eb59b8b0459b75784), [`ec2410a`](https://github.com/commercetools/merchant-center-application-kit/commit/ec2410a5c238f4343371e246846f2bfdf5fcd720), [`179da9a`](https://github.com/commercetools/merchant-center-application-kit/commit/179da9a4fdc73ade7717b50bc1e5c106382bf9eb)]:
+  - @commercetools-frontend/react-notifications@22.26.0
+  - @commercetools-frontend/i18n@22.26.0
+  - @commercetools-frontend/assets@22.26.0
+  - @commercetools-frontend/application-components@22.26.0
+  - @commercetools-frontend/application-config@22.26.0
+  - @commercetools-frontend/actions-global@22.26.0
+  - @commercetools-frontend/application-shell-connectors@22.26.0
+  - @commercetools-frontend/browser-history@22.26.0
+  - @commercetools-frontend/constants@22.26.0
+  - @commercetools-frontend/l10n@22.26.0
+  - @commercetools-frontend/notifications@22.26.0
+  - @commercetools-frontend/permissions@22.26.0
+  - @commercetools-frontend/sdk@22.26.0
+  - @commercetools-frontend/sentry@22.26.0
+  - @commercetools-frontend/url-utils@22.26.0
+
+## 22.25.1
+
+### Patch Changes
+
+- [#3506](https://github.com/commercetools/merchant-center-application-kit/pull/3506) [`bd2ea80`](https://github.com/commercetools/merchant-center-application-kit/commit/bd2ea80dfc22befef0eb1143b798e7591b3300eb) Thanks [@emmenko](https://github.com/emmenko)! - Do not use lazy cache mode for feature flags when Cypress runs
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.25.1
+  - @commercetools-frontend/application-components@22.25.1
+  - @commercetools-frontend/application-config@22.25.1
+  - @commercetools-frontend/application-shell-connectors@22.25.1
+  - @commercetools-frontend/assets@22.25.1
+  - @commercetools-frontend/browser-history@22.25.1
+  - @commercetools-frontend/constants@22.25.1
+  - @commercetools-frontend/i18n@22.25.1
+  - @commercetools-frontend/l10n@22.25.1
+  - @commercetools-frontend/notifications@22.25.1
+  - @commercetools-frontend/permissions@22.25.1
+  - @commercetools-frontend/react-notifications@22.25.1
+  - @commercetools-frontend/sdk@22.25.1
+  - @commercetools-frontend/sentry@22.25.1
+  - @commercetools-frontend/url-utils@22.25.1
+
+## 22.25.0
+
+### Minor Changes
+
+- [#3504](https://github.com/commercetools/merchant-center-application-kit/pull/3504) [`1be0c35`](https://github.com/commercetools/merchant-center-application-kit/commit/1be0c357e0a14fd32626c61dff804a4bdcc51499) Thanks [@YahiaElTai](https://github.com/YahiaElTai)! - chore(flopflip): increase pooling interval from 1 to 15 minutes
+
+### Patch Changes
+
+- [#3500](https://github.com/commercetools/merchant-center-application-kit/pull/3500) [`1985f69`](https://github.com/commercetools/merchant-center-application-kit/commit/1985f69301e4ab8eb218ed1a42425c3e27bb0a5a) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix the cacheIdentifier and cacheMode being passed to each flopflip adapter.
+
+- [#3497](https://github.com/commercetools/merchant-center-application-kit/pull/3497) [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3) Thanks [@chloe0592](https://github.com/chloe0592)! - Remove the old theme from all App-Kit components and update UI-Kit dependencies to the newest version.
+
+- Updated dependencies [[`b5e797f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5e797f4c8a3552b911a16759ee8dd77416cefb2), [`b55d4e6`](https://github.com/commercetools/merchant-center-application-kit/commit/b55d4e606a07e5f5ac1522126b77213c67297a0c), [`a4cfaf1`](https://github.com/commercetools/merchant-center-application-kit/commit/a4cfaf11c700ae3634235281eacab39e325e5cc3)]:
+  - @commercetools-frontend/constants@22.25.0
+  - @commercetools-frontend/application-config@22.25.0
+  - @commercetools-frontend/l10n@22.25.0
+  - @commercetools-frontend/application-components@22.25.0
+  - @commercetools-frontend/react-notifications@22.25.0
+  - @commercetools-frontend/assets@22.25.0
+  - @commercetools-frontend/i18n@22.25.0
+  - @commercetools-frontend/actions-global@22.25.0
+  - @commercetools-frontend/application-shell-connectors@22.25.0
+  - @commercetools-frontend/sdk@22.25.0
+  - @commercetools-frontend/sentry@22.25.0
+  - @commercetools-frontend/permissions@22.25.0
+  - @commercetools-frontend/browser-history@22.25.0
+  - @commercetools-frontend/notifications@22.25.0
+  - @commercetools-frontend/url-utils@22.25.0
+
 ## 22.24.0
 
 ### Minor Changes
