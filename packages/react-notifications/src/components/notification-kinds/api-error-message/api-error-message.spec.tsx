@@ -291,7 +291,9 @@ describe('render', () => {
     };
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      screen.getByText('Two prices have overlapping validity periods.')
+      screen.getByText(
+        'Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates.'
+      )
     ).toBeInTheDocument();
   });
   it('should show message for OverlappingStandalonePriceValidity', () => {
@@ -302,7 +304,7 @@ describe('render', () => {
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
       screen.getByText(
-        'Two standalone prices have overlapping validity periods.'
+        'Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates.'
       )
     ).toBeInTheDocument();
   });

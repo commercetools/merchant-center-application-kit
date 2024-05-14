@@ -73,7 +73,7 @@
   },
   "ApiError.OverlappingPriceValidity": {
     "developer_comment": "Returned when a given price validity period conflicts with an existing one",
-    "string": "Two prices have overlapping validity periods."
+    "string": "Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
@@ -81,7 +81,7 @@
   },
   "ApiError.OverlappingStandalonePriceValidity": {
     "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
-    "string": "Two standalone prices have overlapping validity periods."
+    "string": "Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates."
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",
