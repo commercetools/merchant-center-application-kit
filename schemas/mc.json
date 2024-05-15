@@ -1532,6 +1532,18 @@
             "description": null,
             "args": [
               {
+                "name": "dataset",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SampleDatasets",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "projectKey",
                 "description": null,
                 "type": {
@@ -4474,6 +4486,29 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "SampleDatasets",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "B2B",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOODSTORE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "SetUserTimeZone",
         "description": null,
@@ -5210,8 +5245,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "This field is replaced by launchdarklyTrackingCloudEnvironment."
           },
           {
             "name": "numberFormat",
