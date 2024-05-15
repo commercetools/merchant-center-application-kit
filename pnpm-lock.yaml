@@ -34,8 +34,8 @@ importers:
         specifier: 2.27.1
         version: 2.27.1
       '@commercetools-docs/writing-style':
-        specifier: 3.3.8
-        version: 3.3.8
+        specifier: 3.3.9
+        version: 3.3.9
       '@commercetools-frontend/application-config':
         specifier: workspace:*
         version: link:packages/application-config
@@ -7726,8 +7726,8 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-docs/writing-style@3.3.8:
-    resolution: {integrity: sha512-igglLjuZONc2Viphha7uuGLm0IsZo6Z1IDB5lzeMYAYxlFCZAnrjVazRvmCli66XLWZLUOfNsaf9aK4qxPMuMg==}
+  /@commercetools-docs/writing-style@3.3.9:
+    resolution: {integrity: sha512-eE3dfCUEYYC1SNL36NUxXQx1fGnKCZBUCCgg/ZnNFBpjKHq8GKhLYvPufaImhZvfzviwC0w2kiR+TFfrb50xbg==}
     hasBin: true
     requiresBuild: true
     dependencies:
