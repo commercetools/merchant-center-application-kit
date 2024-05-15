@@ -7,6 +7,7 @@ import { packageLocation as applicationStaticAssetsPath } from '@commercetools-f
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
+import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
@@ -75,6 +76,7 @@ async function run() {
       }),
       pluginSvgr(),
       pluginDynamicBaseAssetsGlobals(),
+      pluginI18nMessageCompilation(),
     ],
   });
 

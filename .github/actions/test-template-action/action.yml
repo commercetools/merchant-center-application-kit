@@ -32,6 +32,9 @@ inputs:
   cypress-project-key:
     description: 'Cypress project key'
     required: true
+  cypress-package-name:
+    description: 'Cypress package name'
+    required: false
 
 runs:
   using: 'composite'
