@@ -101,13 +101,15 @@ export default defineMessages({
     id: 'ApiError.OverlappingPriceValidity',
     description:
       'Returned when a given price validity period conflicts with an existing one',
-    defaultMessage: 'Two prices have overlapping validity periods.',
+    defaultMessage:
+      'Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates.',
   },
   OverlappingStandalonePriceValidity: {
     id: 'ApiError.OverlappingStandalonePriceValidity',
     description:
       'Returned when a given standalone price validity period conflicts with an existing one',
-    defaultMessage: 'Two standalone prices have overlapping validity periods.',
+    defaultMessage:
+      'Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates.',
   },
   PendingOperation: {
     id: 'ApiError.PendingOperation',
