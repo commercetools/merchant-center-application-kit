@@ -31,7 +31,7 @@
     "@commercetools/sdk-middleware-http": "7.0.4",
     "@types/node-fetch": "2.6.11",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.56",
+    "@types/react": "^17.0.80",
     "@types/react-redux": "^7.1.26",
     "buffer": "6.0.3",
     "fast-equals": "2.0.4",

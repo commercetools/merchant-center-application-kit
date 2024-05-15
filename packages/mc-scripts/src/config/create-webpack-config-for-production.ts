@@ -495,8 +495,7 @@ function createWebpackConfigForProduction(
           exclude: /node_modules/,
           use: [require.resolve('graphql-tag/loader')],
         },
-        process.env.ENABLE_WEBPACK_LOADER_I18N_MESSAGE_COMPILATION ===
-          'true' && {
+        process.env.ENABLE_I18N_MESSAGE_COMPILATION === 'true' && {
           test: /i18n\/data\/.*\.json$/,
           use: [
             require.resolve(
