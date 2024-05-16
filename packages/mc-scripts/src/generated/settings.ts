@@ -67,6 +67,12 @@ export type TAverageOrderValueConfigurationInput = {
   showPreviousTimeframe: Scalars['Boolean'];
 };
 
+export type TBatchProcessResult = {
+  __typename?: 'BatchProcessResult';
+  failed: Array<TTdlqMessageResult>;
+  successful: Array<TTdlqMessageResult>;
+};
+
 export enum TBestSellingLimit {
   Fifteen = 'FIFTEEN',
   Five = 'FIVE',
@@ -430,6 +436,10 @@ export type TCustomViewsPagedQueryResult = {
   total: Scalars['Int'];
 };
 
+export type TCustomerEmailValidationSettingsInput = {
+  isCustomerEmailValidationDisabled: Scalars['Boolean'];
+};
+
 export type TCustomersListView = {
   __typename?: 'CustomersListView';
   createdAt: Scalars['DateTime'];
@@ -679,6 +689,19 @@ export type TLocalizedFieldDataInput = {
   value: Scalars['String'];
 };
 
+export type TMessage = {
+  __typename?: 'Message';
+  ackId: Scalars['String'];
+  data: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+export type TMessageInput = {
+  ackId: Scalars['String'];
+  data: Scalars['String'];
+  id: Scalars['ID'];
+};
+
 export enum TMetricCardType {
   AverageOrderValue = 'AVERAGE_ORDER_VALUE',
   OrderStatus = 'ORDER_STATUS',
@@ -762,11 +785,16 @@ export type TMutation = {
   deleteProjectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   installCustomApplication?: Maybe<TRestrictedCustomApplicationInstallationForOrganization>;
   installCustomView?: Maybe<TRestrictedCustomViewInstallationForOrganization>;
+  /** @deprecated Experimental feature - For internal usage only */
+  moveMessagesFromDeadLetterQueueToMainQueue?: Maybe<TBatchProcessResult>;
   random: Scalars['String'];
+  /** @deprecated Experimental feature - For internal usage only */
+  removeMessagesFromDeadLetterQueue?: Maybe<TBatchProcessResult>;
   sendLinkToVerifyCustomApplicationsMaintainerContactEmail?: Maybe<TCustomApplicationsMaintainerContactEmailVerificationRequest>;
   setCustomApplicationsMaintainerContactInformation?: Maybe<TOrganizationExtension>;
   setOrganizationExtensionOidcSsoConfig?: Maybe<TOrganizationExtension>;
   setProjectExtensionCategoryRecommendation?: Maybe<TProjectExtension>;
+  setProjectExtensionCustomerEmailValidationSettings?: Maybe<TProjectExtension>;
   setProjectExtensionImageRegex?: Maybe<TProjectExtension>;
   setProjectExtensionImportSampleDataset?: Maybe<TProjectExtension>;
   setProjectExtensionOrderStatesVisibility?: Maybe<TProjectExtension>;
@@ -1056,8 +1084,16 @@ export type TMutation_InstallCustomViewArgs = {
   projectKeys?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type TMutation_MoveMessagesFromDeadLetterQueueToMainQueueArgs = {
+  messages: Array<TMessageInput>;
+};
+
 export type TMutation_RandomArgs = {
   byteLength: Scalars['Int'];
+};
+
+export type TMutation_RemoveMessagesFromDeadLetterQueueArgs = {
+  messages: Array<TMessageInput>;
 };
 
 export type TMutation_SendLinkToVerifyCustomApplicationsMaintainerContactEmailArgs =
@@ -1077,6 +1113,10 @@ export type TMutation_SetOrganizationExtensionOidcSsoConfigArgs = {
 
 export type TMutation_SetProjectExtensionCategoryRecommendationArgs = {
   data?: InputMaybe<TCategoryRecommendationSettingsDataInput>;
+};
+
+export type TMutation_SetProjectExtensionCustomerEmailValidationSettingsArgs = {
+  data?: InputMaybe<TCustomerEmailValidationSettingsInput>;
 };
 
 export type TMutation_SetProjectExtensionImageRegexArgs = {
@@ -1287,6 +1327,15 @@ export type TNavbarSubmenu = {
   uriPath: Scalars['String'];
 };
 
+export type TNestedTable = {
+  __typename?: 'NestedTable';
+  visibleColumns?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type TNestedTableInput = {
+  visibleColumns?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export enum TOAuthScope {
   ManageBusinessUnits = 'ManageBusinessUnits',
   ManageCartDiscounts = 'ManageCartDiscounts',
@@ -1470,6 +1519,7 @@ export type TPimSearchListViewInput = {
 };
 
 export type TPimSearchListViewTableInput = {
+  nestedTable?: InputMaybe<TNestedTableInput>;
   visibleColumns: Array<Scalars['String']>;
 };
 
@@ -1516,6 +1566,7 @@ export type TProjectExtension = {
   imageRegex?: Maybe<TImageRegex>;
   installedApplications: Array<TRestrictedCustomApplicationInstallationForProject>;
   installedCustomViews: Array<TRestrictedCustomViewInstallationForProject>;
+  isCustomerEmailValidationDisabled: Scalars['Boolean'];
   isRichTextEditorEnabled: Scalars['Boolean'];
   orderStatesVisibility: Array<TOrderStatesVisibility>;
   projectKey: Scalars['String'];
@@ -1639,6 +1690,8 @@ export type TQuery = {
   projectExtension?: Maybe<TProjectExtension>;
   projectSettingsStoresView?: Maybe<TProjectSettingsStoresView>;
   projectSettingsStoresViews: Array<Maybe<TProjectSettingsStoresView>>;
+  /** @deprecated Experimental feature - For internal usage only */
+  readMessagesFromDeadLetterQueue: Array<TMessage>;
   release?: Maybe<Scalars['String']>;
   ruleBuilderQuickSelectionValues?: Maybe<
     Array<Maybe<TRuleBuilderQuickSelectionValues>>
@@ -1985,6 +2038,7 @@ export type TSampleDataImportMetadata = {
 };
 
 export enum TSampleDatasets {
+  B2B = 'B2B',
   Fashion = 'FASHION',
   Goodstore = 'GOODSTORE',
 }
@@ -2006,8 +2060,17 @@ export enum TSortOrder {
   Desc = 'Desc',
 }
 
+export type TTdlqMessageResult = {
+  __typename?: 'TDLQMessageResult';
+  ackId: Scalars['String'];
+  data: Scalars['String'];
+  error?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+};
+
 export type TTable = {
   __typename?: 'Table';
+  nestedTable?: Maybe<TNestedTable>;
   visibleColumns: Array<Scalars['String']>;
 };
 
