@@ -30,7 +30,7 @@
     "semver": "7.6.1"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.1"
+    "@tsconfig/node22": "^22.0.0"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"
