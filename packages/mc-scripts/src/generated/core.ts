@@ -40,6 +40,18 @@ export type TAttributeGroupLimits = {
   maxTotalAttributeGroups?: Maybe<Scalars['Int']>;
 };
 
+export type TAttribution = {
+  __typename?: 'Attribution';
+  clientId?: Maybe<Scalars['String']>;
+  source: TAttributionSource;
+  userRef?: Maybe<TReference>;
+};
+
+export enum TAttributionSource {
+  Export = 'Export',
+  Import = 'Import',
+}
+
 /** AWS S3 container config */
 export type TAwsContainer = {
   __typename?: 'AwsContainer';
@@ -47,6 +59,15 @@ export type TAwsContainer = {
   bucketUrl: Scalars['String'];
   /** Project part of the object path on s3 */
   projectPrefix: Scalars['String'];
+};
+
+/** Azure Blob Storage container config */
+export type TAzureBlobStorageContainer = {
+  __typename?: 'AzureBlobStorageContainer';
+  /** Project part of the object path on s3 */
+  baseUrl: Scalars['String'];
+  /** Public bucket url, without the project part */
+  name: Scalars['String'];
 };
 
 export enum TBusinessRole {
@@ -263,6 +284,7 @@ export type TInitiator = {
   __typename?: 'Initiator';
   anonymousId?: Maybe<Scalars['String']>;
   associateRef?: Maybe<TReference>;
+  attributedTo?: Maybe<TAttribution>;
   clientId?: Maybe<Scalars['String']>;
   customerRef?: Maybe<TReference>;
   externalUserId?: Maybe<Scalars['String']>;
@@ -276,7 +298,10 @@ export type TLocalizedString = {
   value: Scalars['String'];
 };
 
-export type TMediaContainer = TAwsContainer | TPublicContainer;
+export type TMediaContainer =
+  | TAwsContainer
+  | TAzureBlobStorageContainer
+  | TPublicContainer;
 
 export type TMessagesConfiguration = {
   __typename?: 'MessagesConfiguration';
@@ -442,6 +467,7 @@ export type TProductDiscountLimits = {
 export type TProductLimits = {
   __typename?: 'ProductLimits';
   pricesLimitPerVariant?: Maybe<Scalars['Int']>;
+  productTailoringLimit?: Maybe<Scalars['Int']>;
   variantLimit?: Maybe<Scalars['Int']>;
 };
 

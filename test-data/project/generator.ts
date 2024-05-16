@@ -16,6 +16,7 @@ const generator = Generator<TProject>({
     initialized: fake(() => true),
     isProductionProject: fake(() => false),
     sampleDataImportDataset: 'FASHION',
+    isUserAdminOfCurrentProject: fake(() => true),
     // The following fields are built in the builder
     owner: null,
     suspension: null,
