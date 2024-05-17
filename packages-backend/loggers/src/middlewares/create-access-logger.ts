@@ -39,15 +39,20 @@ const createAccessLoggerMiddleware = (
     skip: (req) =>
       Boolean(options.silent) || ignoreUrls.includes(req.originalUrl),
     dynamicMeta: (req) => {
-      const remoteAddress = req.socket?.remoteAddress;
-      const proxyIps = parseIps(req);
-      const [clientIp] = proxyIps;
-      return {
-        clientIp: clientIp ?? remoteAddress,
-        proxyIps,
-        hostname: req.hostname,
-        ...(remoteAddress ? { remoteAddress } : {}),
-      };
+      try {
+        const remoteAddress = req.socket?.remoteAddress;
+        const proxyIps = parseIps(req);
+        const [clientIp] = proxyIps;
+        return {
+          clientIp: clientIp ?? remoteAddress,
+          proxyIps,
+          hostname: req.socket ? req.hostname : undefined,
+          ...(remoteAddress ? { remoteAddress } : {}),
+        };
+      } catch (error) {
+        console.error(`Failed to parse request metadata`, error);
+        return {};
+      }
     },
   });
 };
