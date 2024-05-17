@@ -107,7 +107,7 @@
     "terser-webpack-plugin": "5.3.10",
     "thread-loader": "3.0.4",
     "url": "^0.11.0",
-    "vite": "~4.5.3",
+    "vite": "~5.2.11",
     "webpack": "5.91.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-dev-server": "4.15.2",
@@ -115,7 +115,7 @@
   },
   "devDependencies": {
     "@commercetools-test-data/custom-view": "^7.0.0",
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node22": "^22.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.198",
     "@types/mock-fs": "^4.13.1",
@@ -128,6 +128,6 @@
     "rimraf": "5.0.5"
   },
   "engines": {
-    "node": "16.x || >=18.0.0"
+    "node": "18.x || 20.x || >=22.0.0"
   }
 }

@@ -66,7 +66,7 @@
     "@commercetools-test-data/commons": "7.4.0",
     "@formatjs/cli": "6.2.10",
     "@types/jest": "^29.5.4",
-    "@types/node": "^16.18.48",
+    "@types/node": "^20.12.12",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@vercel/node": "^2.15.10",
     "dotenv-flow": "^4.0.0",
@@ -78,7 +78,7 @@
   },
   "packageManager": "pnpm@8.15.8",
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "pnpm": ">=8"
   }
 }
