@@ -114,7 +114,7 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@commercetools-test-data/custom-view": "^7.0.0",
+    "@commercetools-test-data/custom-view": "^8.0.0",
     "@tsconfig/node16": "^16.1.1",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.198",
