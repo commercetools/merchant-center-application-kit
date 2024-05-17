@@ -1,5 +1,28 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.27.0
+
+### Minor Changes
+
+- [#3511](https://github.com/commercetools/merchant-center-application-kit/pull/3511) [`bcdd553`](https://github.com/commercetools/merchant-center-application-kit/commit/bcdd5532992f61d95e05755d41b438fffcc6020a) Thanks [@dogayuksel](https://github.com/dogayuksel)! - Adds a `vite` plugin to compile i18n messages when building
+
+  When both `ENABLE_EXPERIMENTAL_VITE_BUNDLER` and `ENABLE_I18N_MESSAGE_COMPILATION` are set to `true` on the `process.env`, `vite-plugin-i18n-message-compilation` will transform any file matching `**/i18n/data/*.json` using the `compile` function from `@formatjs/cli-lib` when building.
+
+  Previously added `ENABLE_WEBPACK_LOADER_I18N_MESSAGE_COMPILATION` has been renamed to `ENABLE_I18N_MESSAGE_COMPILATION` for consistency.
+
+### Patch Changes
+
+- [#3468](https://github.com/commercetools/merchant-center-application-kit/pull/3468) [`4ab4bf6`](https://github.com/commercetools/merchant-center-application-kit/commit/4ab4bf6035d3c8b419fd439ca445c8f971ea2fc9) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`11eb32f`](https://github.com/commercetools/merchant-center-application-kit/commit/11eb32fa46461f7f68328130d881b3c8d8e0a0ee), [`4ab4bf6`](https://github.com/commercetools/merchant-center-application-kit/commit/4ab4bf6035d3c8b419fd439ca445c8f971ea2fc9), [`4f00d48`](https://github.com/commercetools/merchant-center-application-kit/commit/4f00d488be6da8689d8cb50ce060250749130013)]:
+  - @commercetools-frontend/application-components@22.27.0
+  - @commercetools-frontend/application-config@22.27.0
+  - @commercetools-frontend/constants@22.27.0
+  - @commercetools-frontend/mc-dev-authentication@22.27.0
+  - @commercetools-frontend/mc-html-template@22.27.0
+  - @commercetools-frontend/assets@22.27.0
+  - @commercetools-frontend/babel-preset-mc-app@22.27.0
+
 ## 22.26.0
 
 ### Patch Changes

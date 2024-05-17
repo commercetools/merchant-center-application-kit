@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.27.0
+
+### Patch Changes
+
+- [#3468](https://github.com/commercetools/merchant-center-application-kit/pull/3468) [`4ab4bf6`](https://github.com/commercetools/merchant-center-application-kit/commit/4ab4bf6035d3c8b419fd439ca445c8f971ea2fc9) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3523](https://github.com/commercetools/merchant-center-application-kit/pull/3523) [`7e48e90`](https://github.com/commercetools/merchant-center-application-kit/commit/7e48e9081dfc792740604b4d22b420919d717b89) Thanks [@obulaworld](https://github.com/obulaworld)! - Add `isUserAdminOfCurrentProject` to project query, map value to project context.
+
+- Updated dependencies [[`4ab4bf6`](https://github.com/commercetools/merchant-center-application-kit/commit/4ab4bf6035d3c8b419fd439ca445c8f971ea2fc9), [`4f00d48`](https://github.com/commercetools/merchant-center-application-kit/commit/4f00d488be6da8689d8cb50ce060250749130013)]:
+  - @commercetools-frontend/application-config@22.27.0
+  - @commercetools-frontend/sentry@22.27.0
+  - @commercetools-frontend/constants@22.27.0
+  - @commercetools-frontend/browser-history@22.27.0
+
 ## 22.26.0
 
 ### Patch Changes
