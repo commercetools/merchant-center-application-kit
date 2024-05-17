@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.27.0
+
+### Patch Changes
+
+- [#3524](https://github.com/commercetools/merchant-center-application-kit/pull/3524) [`4f00d48`](https://github.com/commercetools/merchant-center-application-kit/commit/4f00d488be6da8689d8cb50ce060250749130013) Thanks [@yassinejebli](https://github.com/yassinejebli)! - chore: add export api target
+
 ## 22.26.0
 
 ## 22.25.1

@@ -1,5 +1,13 @@
 # @commercetools-backend/loggers
 
+## 22.27.0
+
+### Patch Changes
+
+- [#3468](https://github.com/commercetools/merchant-center-application-kit/pull/3468) [`4ab4bf6`](https://github.com/commercetools/merchant-center-application-kit/commit/4ab4bf6035d3c8b419fd439ca445c8f971ea2fc9) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- [#3532](https://github.com/commercetools/merchant-center-application-kit/pull/3532) [`0f7a825`](https://github.com/commercetools/merchant-center-application-kit/commit/0f7a825ec2a01df8ab181dbd478e12c5fece66f9) Thanks [@emmenko](https://github.com/emmenko)! - Gracefully catch errors when parsing loggers metadata
+
 ## 22.26.0
 
 ## 22.25.1

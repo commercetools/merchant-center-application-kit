@@ -1,5 +1,7 @@
 # @commercetools-frontend/assets
 
+## 22.27.0
+
 ## 22.26.0
 
 ### Patch Changes
