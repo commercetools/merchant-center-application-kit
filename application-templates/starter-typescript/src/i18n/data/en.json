@@ -37,7 +37,7 @@
     "string": "There are no channels available in this project."
   },
   "Channels.title": {
-    "string": "Channels [force error] list"
+    "string": "Channels list"
   },
   "Welcome.cardChannelsContent": {
     "string": "Demo example to fetch some data using GraphQL and displaying it in a paginated table."
