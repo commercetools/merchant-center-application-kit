@@ -52,10 +52,10 @@ runs:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
     - name: Mock translate i18n messages for the build
-      if: ${{ inputs.application-type == 'custom-application' }}
       shell: bash
       run: node ./scripts/mock-translate-i18n-messages.mjs
       env:
+        APPLICATION_TYPE: ${{ inputs.application-type }}
         TEMPLATE_NAME: ${{ inputs.template-name }}
 
     - name: Building Starter template

@@ -7,17 +7,39 @@ const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
   throw new Error('Missing required environment variable "TEMPLATE_NAME"');
 }
-
-const { packages } = getPackagesSync();
-const targetPackage = packages.find((pack) =>
-  pack.dir.includes(`application-templates/${templateName}`)
-);
-if (!targetPackage) {
+const applicationType = process.env.APPLICATION_TYPE;
+if (!applicationType) {
   throw new Error(
-    `Mock translation error: Can not find specified application template "${templateName}".`
+    'Missing required environment variable "APPLICATION_TYPE" (either "custom-application" or "custom-view")'
   );
 }
 
+const isCustomApplicationStarterTemplate =
+  applicationType === 'custom-application' && templateName === 'starter';
+const isCustomViewStarterTypescriptTemplate =
+  applicationType === 'custom-view' && templateName === 'starter-typescript';
+if (
+  !(isCustomApplicationStarterTemplate || isCustomViewStarterTypescriptTemplate)
+) {
+  process.exit(0);
+}
+
+const { packages } = getPackagesSync();
+const templateFolderByApplicationType =
+  applicationType === 'custom-application'
+    ? 'application-templates'
+    : 'custom-views-templates';
+const targetPackage = packages.find((pack) =>
+  pack.dir.includes(`${templateFolderByApplicationType}/${templateName}`)
+);
+if (!targetPackage) {
+  throw new Error(
+    `Mock translation error: Can not find specified ${applicationType} template "${templateName}".`
+  );
+}
+
+// convert and override core.json in STRUCTURED_JSON format
+// performed on custom-view/starter-typescript template
 if (templateName === 'starter-typescript') {
   const coreJsonRaw = fs.readFileSync(
     path.join(targetPackage.dir, './src/i18n/data/core.json'),
@@ -40,10 +62,12 @@ if (templateName === 'starter-typescript') {
     newCoreJsonString
   );
   console.log(
-    `Mock translations ==> Converted i18n/data/core.json to STRUCTURED_JSON format for template "${templateName}".`
+    `Mock translations ==> Converted i18n/data/core.json to STRUCTURED_JSON format.`
   );
 }
 
+// copy core.json to en.json
+// performed on custom-application/starter and custom-view/starter-typescript templates
 const copyCoreJsonResult = shelljs.exec(
   ['cp', './src/i18n/data/core.json', './src/i18n/data/en.json'].join(' '),
   { cwd: targetPackage.dir }
@@ -55,5 +79,5 @@ if (copyCoreJsonResult.code > 0) {
   );
 }
 console.log(
-  `Mock translations ==> Copied i18n/data/core.json to i18n/data/en.json for the template "${templateName}".`
+  `Mock translations ==> Copied i18n/data/core.json to i18n/data/en.json.`
 );
