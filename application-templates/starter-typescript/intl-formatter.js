@@ -7,13 +7,8 @@ exports.format = function format(extractedMessages) {
       .reduce(
         (allMessages, messageId) => ({
           ...allMessages,
-          // return a simple STRUCTURED_JSON object
-          [messageId]: {
-            string: extractedMessages[messageId].defaultMessage,
-            ...(extractedMessages[messageId].description && {
-              developer_comment: extractedMessages[messageId].description,
-            }),
-          },
+          // Return a simple key/value JSON object.
+          [messageId]: extractedMessages[messageId].defaultMessage,
         }),
         {}
       )

@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { getPackagesSync } from '@manypkg/get-packages';
 import shelljs from 'shelljs';
 
@@ -13,6 +15,32 @@ const targetPackage = packages.find((pack) =>
 if (!targetPackage) {
   throw new Error(
     `Mock translation error: Can not find specified application template "${templateName}".`
+  );
+}
+
+if (templateName === 'starter-typescript') {
+  const coreJsonRaw = fs.readFileSync(
+    path.join(targetPackage.dir, './src/i18n/data/core.json'),
+    { encoding: 'utf-8' }
+  );
+  const coreJson = JSON.parse(coreJsonRaw);
+
+  const coreJsonInStructuredJsonFormat = Object.keys(coreJson).reduce(
+    (allMessages, messageId) => ({
+      ...allMessages,
+      // return a simple STRUCTURED_JSON object
+      [messageId]: { string: coreJson[messageId] },
+    }),
+    {}
+  );
+
+  const newCoreJsonString = JSON.stringify(coreJsonInStructuredJsonFormat);
+  fs.writeFileSync(
+    path.join(targetPackage.dir, './src/i18n/data/core.json'),
+    newCoreJsonString
+  );
+  console.log(
+    `Mock translations ==> Converted i18n/data/core.json to STRUCTURED_JSON format for template "${templateName}".`
   );
 }
 
