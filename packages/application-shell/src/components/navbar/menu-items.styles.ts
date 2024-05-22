@@ -313,15 +313,12 @@ const MenuListItem = styled.li<{
 `;
 
 const SafeAreaElement = styled.span`
-  background-color: gray;
-  opacity: 0.5;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 100%;
   width: calc(100% - 16px);
   clip-path: polygon(var(--safe-start), 100% 100%, 100% 0);
-  pointerevents: 'none';
 `;
 
 export {

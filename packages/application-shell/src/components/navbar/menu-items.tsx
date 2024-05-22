@@ -251,10 +251,7 @@ type MenuItemProps = {
     | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
-  onMouseMove?: MouseEventHandler<HTMLLIElement>;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
-  positionX: number;
-  positionY: number;
   onMouseMove?: MouseEventHandler<HTMLLIElement>;
 };
 const MenuItem = (props: MenuItemProps) => {

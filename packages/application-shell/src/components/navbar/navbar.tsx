@@ -95,8 +95,7 @@ type ApplicationMenuProps = {
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   onMouseMove: MouseEventHandler<HTMLLIElement>;
   mousePosition: TClientPositions;
-  itemIndex?: string;
-  activeItemIndex?: string;
+  pointerEvent?: string;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -119,13 +118,10 @@ const getIsSubmenuRouteActive = (
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
-  const [percentageX, setPercentageX] = useState(0);
-  const [percentageY, setPercentageY] = useState(0);
-
   const [isSubmenuFocused, setIsSubmenuFocused] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
   const [percentageX, setPercentageX] = useState(0);
   const [percentageY, setPercentageY] = useState(0);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const submenuRef = useRef<HTMLUListElement>(null);
   const submenuSafeAreaRef = useRef<HTMLElement>(null);
@@ -146,35 +142,44 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     height: safeAreaHeight,
   } = submenuSafeAreaRefBoundingClientRect! ?? {};
 
-  onmousemove = () => {
-    const localX = props.mousePosition.clientX - safeAreaLeftPos;
-    const localY = props.mousePosition.clientY - safeAreaTopPos;
+  useEffect(() => {
+    const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+      const localX = e.clientX - safeAreaLeftPos;
+      const localY = e.clientY - safeAreaTopPos;
 
-    if (
-      localX > 0 &&
-      localX < menuItemWidth &&
-      localY > 0 &&
-      localY < menuItemHeight
-    ) {
-      setPercentageX((localX / safeAreaWidth) * 100);
-      setPercentageY((localY / safeAreaHeight) * 100);
-    }
-  };
-  console.log({
-    submenuRef: submenuRef.current,
+      if (
+        localX > 0 &&
+        localX < menuItemWidth &&
+        localY > 0 &&
+        localY < menuItemHeight
+      ) {
+        setPercentageX((localX / safeAreaWidth) * 100);
+        setPercentageY((localY / safeAreaHeight) * 100);
+      }
+    };
 
-    activeItemIndex: props.activeItemIndex,
-    itemIndex: props.itemIndex,
-    menu: props.menu,
-  });
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [
+    menuItemHeight,
+    menuItemWidth,
+    safeAreaHeight,
+    safeAreaLeftPos,
+    safeAreaTopPos,
+    safeAreaWidth,
+  ]);
+
   useLayoutEffect(() => {
-    if (props.itemIndex === props.activeItemIndex) {
+    if (props.isActive) {
       submenuRef.current?.style.setProperty(
         '--safe-start',
-        `${percentageX - 2}% ${percentageY - 2}%`
+        `${percentageX}% ${percentageY + 1}%`
       );
     }
-  }, [percentageX, percentageY, props.activeItemIndex, props.itemIndex]);
+  }, [percentageX, percentageY, props.isActive, props.mousePosition]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -267,6 +272,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       }
     }
   };
+  const [pointerEvent, setPointerEvent] = useState('');
 
   return (
     <RestrictedMenuItem
@@ -295,7 +301,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
           useFullRedirectsForLinks={props.useFullRedirectsForLinks}
-          onClick={props.onMenuItemClick}
+          onClick={() => {
+            setPointerEvent('none');
+            return props.onMenuItemClick;
+          }}
         >
           <ItemContainer
             labelAllLocales={props.menu.labelAllLocales}
@@ -355,7 +364,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                         useFullRedirectsForLinks={
                           props.useFullRedirectsForLinks
                         }
-                        onClick={props.onMenuItemClick}
+                        // onClick={props.onMenuItemClick}
+                        onClick={() => {
+                          setPointerEvent('none');
+                          return props.onMenuItemClick;
+                        }}
                         isSubmenuLink
                         isSubmenuFocused={isSubmenuFocused}
                       >
@@ -370,7 +383,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                 </RestrictedMenuItem>
               ))
             : null}
-          <SafeAreaElement ref={submenuSafeAreaRef} />
+          <SafeAreaElement
+            ref={submenuSafeAreaRef}
+            pointerEvent={pointerEvent}
+          />
         </MenuGroup>
       </MenuItem>
     </RestrictedMenuItem>
@@ -448,10 +464,6 @@ const NavBar = (props: TNavbarProps) => {
           </Icon>
         </IconWrapper>
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
-        <div style={{ color: 'white' }}>
-          x: {mousePosition.clientX}
-          <p></p>y: {mousePosition.clientY}
-        </div>
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
         <ScrollableMenu>
@@ -479,8 +491,6 @@ const NavBar = (props: TNavbarProps) => {
                         onMenuItemClick={props.onMenuItemClick}
                         onMouseMove={(e) => handleMouseMove(e, itemIndex)}
                         mousePosition={mousePosition}
-                        itemIndex={itemIndex}
-                        activeItemIndex={activeItemIndex}
                       />
                     );
                   })}
