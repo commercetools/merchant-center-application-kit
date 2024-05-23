@@ -102,6 +102,7 @@ const listStyles = css`
   flex-direction: column;
   min-height: 0;
   flex: 1 1 0;
+  --safe-start: 0% 0%;
 `;
 
 const sublistStyles = css`
@@ -311,6 +312,15 @@ const MenuListItem = styled.li<{
   }
 `;
 
+const SafeAreaElement = styled.span`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: calc(100% - 16px);
+  clip-path: polygon(var(--safe-start), 100% 100%, 100% 0);
+`;
+
 export {
   Expander,
   ExpanderIcon,
@@ -320,4 +330,5 @@ export {
   SublistItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
+  SafeAreaElement,
 };
