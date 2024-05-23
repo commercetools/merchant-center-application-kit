@@ -157,8 +157,8 @@ importers:
         specifier: ^0.0.45
         version: 0.0.45
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       '@types/uuid':
         specifier: ^9.0.3
         version: 9.0.3
@@ -448,8 +448,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -667,8 +667,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -883,8 +883,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -1102,8 +1102,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -1503,8 +1503,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -1829,8 +1829,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -2824,8 +2824,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -2930,8 +2930,8 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@18.17.14)(ts-node@10.9.1)
@@ -3264,8 +3264,8 @@ importers:
         specifier: ^16.18.48
         version: 16.18.48
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
-        version: 5.14.9
+        specifier: ^6.0.0
+        version: 6.0.0
       '@vercel/node':
         specifier: ^2.15.10
         version: 2.15.10
@@ -3526,7 +3526,6 @@ packages:
 
   /@adobe/css-tools@4.2.0:
     resolution: {integrity: sha512-E09FiIft46CmH5Qnjb0wsW54/YQd69LsxeKUOWawmws1XWvyFGURnAChH0mlr7YPFR1ofwvUQfcL0J3lMxXqPA==}
-    dev: false
 
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
@@ -6863,7 +6862,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-module-imports': 7.24.3
+      '@babel/helper-module-imports': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
       babel-plugin-polyfill-corejs2: 0.4.5(@babel/core@7.24.5)
       babel-plugin-polyfill-corejs3: 0.8.3(@babel/core@7.24.5)
@@ -7545,7 +7544,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-transform-react-display-name': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.23.0)
       '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.23.0)
@@ -7560,7 +7559,7 @@ packages:
     dependencies:
       '@babel/core': 7.24.5
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
+      '@babel/helper-validator-option': 7.22.15
       '@babel/plugin-transform-react-display-name': 7.22.5(@babel/core@7.24.5)
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.24.5)
       '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.24.5)
@@ -8917,7 +8916,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.24.5
+      '@babel/runtime': 7.24.4
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/design-system': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)
@@ -9630,7 +9629,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.2.0(react@17.0.2)
@@ -10122,7 +10121,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/design-system': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)
@@ -11365,7 +11364,7 @@ packages:
     dependencies:
       '@babel/core': 7.24.5
       '@babel/plugin-transform-react-jsx': 7.22.15(@babel/core@7.24.5)
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.24.5
       '@emotion/babel-plugin': 11.11.0
       '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.24.5)
     dev: true
@@ -14823,7 +14822,6 @@ packages:
       dom-accessibility-api: 0.5.16
       lodash: 4.17.21
       redent: 3.0.0
-    dev: false
 
   /@testing-library/react-hooks@8.0.1(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
@@ -15450,6 +15448,12 @@ packages:
     resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
     dependencies:
       '@types/jest': 29.5.4
+
+  /@types/testing-library__jest-dom@6.0.0:
+    resolution: {integrity: sha512-bnreXCgus6IIadyHNlN/oI5FfX4dWgvGhOPvpr7zzCYDGAPIfvyIoAozMBINmhmsVuqV0cncejF2y5KC7ScqOg==}
+    deprecated: This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed.
+    dependencies:
+      '@testing-library/jest-dom': 5.17.0
 
   /@types/tough-cookie@4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
@@ -17374,7 +17378,6 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
-    dev: false
 
   /chalk@4.1.1:
     resolution: {integrity: sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==}
@@ -18284,7 +18287,6 @@ packages:
 
   /css.escape@1.5.1:
     resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
-    dev: false
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -21390,12 +21392,6 @@ packages:
       traverse: 0.6.7
     dev: true
 
-  /hasown@2.0.1:
-    resolution: {integrity: sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      function-bind: 1.1.2
-
   /hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
@@ -21977,7 +21973,7 @@ packages:
   /is-core-module@2.13.1:
     resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
     dependencies:
-      hasown: 2.0.1
+      hasown: 2.0.2
 
   /is-date-object@1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
