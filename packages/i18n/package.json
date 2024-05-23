@@ -38,14 +38,14 @@
     "@commercetools-frontend/sentry": "22.27.0",
     "@commercetools-uikit/i18n": "^19.2.0",
     "@emotion/react": "^11.11.4",
-    "@formatjs/icu-messageformat-parser": "2.7.6",
+    "@formatjs/icu-messageformat-parser": "2.7.8",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.80",
     "moment": "^2.29.4",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@formatjs/cli": "6.2.10",
+    "@formatjs/cli": "6.2.12",
     "@types/jest": "^29.5.4",
     "jest-mock": "29.7.0",
     "react": "17.0.2",
