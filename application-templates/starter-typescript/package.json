@@ -19,7 +19,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.10.4",
+    "@apollo/client": "3.7.14",
     "@babel/core": "^7.22.17",
     "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-frontend/actions-global": "workspace:*",
@@ -90,7 +90,7 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "redux": "4.2.1",
-    "typescript": "5.4.5"
+    "typescript": "5.0.4"
   },
   "resolutions": {
     "@emotion/react": "^11.11.1",
