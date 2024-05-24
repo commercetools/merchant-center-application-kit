@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "此产品变体已存在具有相同范围的价格。对于每个 SKU 的每个价格，货币、国家/地区、客户组、渠道和有效期的组合必须是唯一的。"
+    "string": "此产品变体已存在具有相同范围的价格。对于每个 SKU 的每个价格，货币、国家/地区、客户组、渠道和有效日期的组合必须是唯一的。"
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
