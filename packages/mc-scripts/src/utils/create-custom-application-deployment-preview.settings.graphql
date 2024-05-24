@@ -1,0 +1,15 @@
+mutation CreateCustomApplicationDeploymentPreview(
+  $organizationId: String!
+  $applicationId: ID!
+  $data: CustomApplicationDeploymentPreviewCreateInput!
+) {
+  createCustomApplicationDeploymentPreview(
+    organizationId: $organizationId
+    applicationId: $applicationId
+    data: $data
+  ) {
+    id
+    alias
+    url
+  }
+}

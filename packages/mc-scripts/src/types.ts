@@ -16,6 +16,10 @@ export type TCliCommandConfigSyncOptions = {
   dryRun: boolean;
 };
 
+export type TCliCommandPushDeploymentPreviewOptions = {
+  dryRun: boolean;
+};
+
 export type TMcCliAuthToken = {
   token: string;
   expiresAt: number;

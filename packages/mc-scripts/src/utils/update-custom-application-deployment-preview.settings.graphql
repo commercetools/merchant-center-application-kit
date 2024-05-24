@@ -1,0 +1,15 @@
+mutation UpdateCustomApplicationDeploymentPreview(
+  $organizationId: String!
+  $deploymentId: ID!
+  $data: CustomApplicationDeploymentPreviewUpdateInput!
+) {
+  updateCustomApplicationDeploymentPreview(
+    organizationId: $organizationId
+    deploymentId: $deploymentId
+    data: $data
+  ) {
+    id
+    alias
+    url
+  }
+}

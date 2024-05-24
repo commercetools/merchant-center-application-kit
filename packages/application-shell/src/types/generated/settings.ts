@@ -2273,6 +2273,15 @@ export type TFetchProjectExtensionsNavbarQueryVariables = Exact<{ [key: string]:
 
 export type TFetchProjectExtensionsNavbarQuery = { __typename?: 'Query', projectExtension?: { __typename?: 'ProjectExtension', id: string, installedApplications: Array<{ __typename?: 'RestrictedCustomApplicationInstallationForProject', application: { __typename?: 'RestrictedCustomApplicationForProject', id: string, entryPointUriPath: string, icon: string, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', id: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', id: string, uriPath: string, permissions: Array<string>, defaultLabel: string, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } }> } | null };
 
+export type TCreateCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  applicationId: Scalars['ID'];
+  data: TCustomApplicationDeploymentPreviewCreateInput;
+}>;
+
+
+export type TCreateCustomApplicationDeploymentPreviewMutation = { __typename?: 'Mutation', createCustomApplicationDeploymentPreview: { __typename?: 'CustomApplicationDeploymentPreview', id: string, alias?: string | null, url: string } };
+
 export type TCreateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
   data: TCustomApplicationDraftDataInput;
@@ -2289,12 +2298,20 @@ export type TCreateCustomViewFromCliMutationVariables = Exact<{
 
 export type TCreateCustomViewFromCliMutation = { __typename?: 'Mutation', createCustomView?: { __typename?: 'RestrictedCustomViewForOrganization', id: string } | null };
 
+export type TDeleteCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  deploymentId: Scalars['ID'];
+}>;
+
+
+export type TDeleteCustomApplicationDeploymentPreviewMutation = { __typename?: 'Mutation', deleteCustomApplicationDeploymentPreview: { __typename?: 'CustomApplicationDeploymentPreview', id: string } };
+
 export type TFetchCustomApplicationFromCliQueryVariables = Exact<{
   entryPointUriPath: Scalars['String'];
 }>;
 
 
-export type TFetchCustomApplicationFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }> } } | null };
+export type TFetchCustomApplicationFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomApplication?: { __typename?: 'OrganizationExtensionForCustomApplication', organizationId: string, application: { __typename?: 'RestrictedCustomApplicationForOrganization', id: string, entryPointUriPath: string, name: string, description?: string | null, url: string, icon: string, permissions: Array<{ __typename?: 'CustomApplicationPermission', name: string, oAuthScopes: Array<string> }>, mainMenuLink: { __typename?: 'CustomApplicationMenuLink', defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }, submenuLinks: Array<{ __typename?: 'CustomApplicationSubmenuLink', uriPath: string, defaultLabel: string, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }>, deployments: Array<{ __typename?: 'CustomApplicationDeploymentPreview', id: string, url: string, alias?: string | null }> } } | null };
 
 export type TFetchCustomViewFromCliQueryVariables = Exact<{
   customViewId: Scalars['String'];
@@ -2302,6 +2319,15 @@ export type TFetchCustomViewFromCliQueryVariables = Exact<{
 
 
 export type TFetchCustomViewFromCliQuery = { __typename?: 'Query', organizationExtensionForCustomView?: { __typename?: 'OrganizationExtensionForCustomView', organizationId: string, customView?: { __typename?: 'RestrictedCustomViewForOrganization', id: string, defaultLabel: string, url: string, type: TCustomViewType, locators: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, typeSettings?: { __typename?: 'CustomViewTypeSettings', size?: TCustomViewSize | null } | null, permissions: Array<{ __typename?: 'CustomViewPermission', name: string, oAuthScopes: Array<string> }> } | null } | null };
+
+export type TUpdateCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  deploymentId: Scalars['ID'];
+  data: TCustomApplicationDeploymentPreviewUpdateInput;
+}>;
+
+
+export type TUpdateCustomApplicationDeploymentPreviewMutation = { __typename?: 'Mutation', updateCustomApplicationDeploymentPreview: { __typename?: 'CustomApplicationDeploymentPreview', id: string, alias?: string | null, url: string } };
 
 export type TUpdateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
