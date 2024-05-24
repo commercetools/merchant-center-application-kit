@@ -90,9 +90,10 @@ async function pushDeploymentPreview({
     validate: (value) => value && value.length > 2,
   });
 
-  const existingDeploymentPreview = fetchedCustomApplication.deployments.find(
-    (deployment) => deployment.alias === deploymentAlias
-  );
+  const existingDeploymentPreview =
+    fetchedCustomApplication.application.deployments.find(
+      (deployment) => deployment.alias === deploymentAlias
+    );
 
   if (existingDeploymentPreview) {
     const { aliasOverrideConfirmation } = await prompts({
