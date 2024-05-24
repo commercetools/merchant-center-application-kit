@@ -13,6 +13,8 @@ import type {
   TCreateCustomApplicationFromCliMutationVariables,
   TCreateCustomViewFromCliMutation,
   TCreateCustomViewFromCliMutationVariables,
+  TCustomApplicationDeploymentPreviewCreateInput,
+  TCustomApplicationDeploymentPreviewUpdateInput,
   TCustomApplicationDraftDataInput,
   TCustomViewDraftDataInput,
   TDeleteCustomApplicationDeploymentPreviewMutation,
@@ -87,13 +89,13 @@ type TCreateCustomApplicationDeploymentPreviewOptions = {
   organizationId: string;
   applicationId: string;
   applicationIdentifier: string;
-  data: TCustomApplicationDraftDataInput;
+  data: TCustomApplicationDeploymentPreviewCreateInput;
 };
 type TUpdateCustomApplicationDeploymentPreviewOptions = {
   mcApiUrl: string;
   deploymentId: string;
   organizationId: string;
-  data: TCustomApplicationDraftDataInput;
+  data: TCustomApplicationDeploymentPreviewUpdateInput;
   applicationIdentifier: string;
 };
 type TDeleteCustomApplicationDeploymentPreviewOptions = {
