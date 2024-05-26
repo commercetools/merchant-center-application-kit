@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+    "string": "Já existe um preço com o mesmo escopo para esta variante de produto. A combinação de moeda, país, grupo de clientes, canal e data de validade deve ser exclusiva para cada preço por SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -73,7 +73,7 @@
   },
   "ApiError.OverlappingPriceValidity": {
     "developer_comment": "Returned when a given price validity period conflicts with an existing one",
-    "string": "Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates."
+    "string": "Existe outro preço com datas de validade sobrepostas. Cada combinação de preços precisa ter datas de validade exclusivas."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
