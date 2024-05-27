@@ -73,7 +73,7 @@
   },
   "ApiError.OverlappingPriceValidity": {
     "developer_comment": "Returned when a given price validity period conflicts with an existing one",
-    "string": "Ya existe otro precio que se solapa con las fechas de validez. Cada combinación de precios debe tener fechas de validez únicas"
+    "string": "Ya existe otro precio que se solapa con las fechas de validez. Cada combinación de precios debe tener fechas de validez únicas."
   },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
