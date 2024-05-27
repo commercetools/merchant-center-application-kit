@@ -197,6 +197,31 @@ async function run() {
       }
     );
 
+  // Command: deployments:push
+  const usageDeploymentsPush =
+    'Creates or updates a deployment preview for the customization application.';
+  cli
+    .command('deployments:push', usageDeploymentsPush)
+    .usage(`\n\n  ${usageDeploymentsPush}`)
+    .option(
+      '--dry-run',
+      '(optional) Executes the command but does not send any mutation request.',
+      { default: false }
+    )
+    .action(async (options: TCliGlobalOptions) => {
+      // Load dotenv files into the process environment.
+      // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+      loadDotEnvFiles(options);
+
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
+
+      const deploymentsPushCommand = await import(
+        './commands/deployments-push'
+      );
+      await deploymentsPushCommand.default(options);
+    });
+
   cli.help();
   cli.version(pkgJson.version);
 
