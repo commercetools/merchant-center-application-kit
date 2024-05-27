@@ -15,6 +15,25 @@ import {
 
 const credentialsStorage = new CredentialsStorage();
 
+const deploymentPreviewAliasRegex = /^[^-#]([a-z]|[-](?![-])){0,62}[^-#]$/g;
+export const fqdnRegex =
+  /(?=^.{4,253}$)(^((?!-)[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]\.)+[a-zA-Z]{2,63}$)/i;
+
+const validateUrl = (url = '') => {
+  try {
+    const urlSchema = new URL(url);
+    const isProtocolValid = ['http:', 'https:'].includes(urlSchema.protocol);
+    const isHostnameValid = urlSchema.hostname.match(fqdnRegex);
+    return isProtocolValid && isHostnameValid;
+  } catch (error) {
+    return false;
+  }
+};
+
+const validateAlias = (alias = '') => {
+  return Boolean(alias.match(deploymentPreviewAliasRegex));
+};
+
 type TGetMcUrlLink = {
   mcApiUrl: string;
   organizationId: string;
@@ -89,6 +108,11 @@ async function pushDeploymentPreview({
       .join('\n'),
     validate: (value) => value && value.length > 2,
   });
+  if (!validateAlias(deploymentAlias)) {
+    console.log(chalk.red('Invalid alias.'));
+    console.log(chalk.red('Aborted.'));
+    return;
+  }
 
   const existingDeploymentPreview =
     fetchedCustomApplication.application.deployments.find(
@@ -102,8 +126,8 @@ async function pushDeploymentPreview({
       message: [
         `The alias "${chalk.green(
           deploymentAlias
-        )}" already exists. Do you want to proceed??`,
-        'The URL you will provide will override the existing one.',
+        )}" already exists. Do you want to proceed?`,
+        '(The URL you will provide will override the existing one.)',
         options.dryRun &&
           chalk.gray(
             'Using "--dry-run", no deployment preview will be created.'
@@ -132,6 +156,11 @@ async function pushDeploymentPreview({
       .join('\n'),
     validate: (value) => value && value.length > 2,
   });
+  if (!validateUrl(deploymentUrl)) {
+    console.log(chalk.red('Invalid deployment URL.'));
+    console.log(chalk.red('Aborted.'));
+    return;
+  }
 
   if (options.dryRun) {
     const message = existingDeploymentPreview
