@@ -289,8 +289,31 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }, [state.activeItemIndex, state.isMenuOpen]);
 
+  const allInternalApplicationsNavbarMenu = [];
+  if (applicationsNavBarMenuGroups) {
+    for (let i = 10; i > 0; i--) {
+      const modifiedSubmenu =
+        applicationsNavBarMenuGroups[0].items[0].submenu.map((submenu) => {
+          return {
+            ...submenu,
+            key: `${submenu.key}${i}`,
+            uriPath: `${submenu.uriPath}${i}`,
+          };
+        });
+      const modifiedItem = {
+        ...applicationsNavBarMenuGroups[0].items[0],
+        submenu: modifiedSubmenu,
+        key: `${applicationsNavBarMenuGroups[0].items[0].key}${i}`,
+      };
+      allInternalApplicationsNavbarMenu.push({
+        ...applicationsNavBarMenuGroups[0],
+        key: `${applicationsNavBarMenuGroups[0].key}${i}`,
+        items: [modifiedItem],
+      });
+    }
+  }
   const allApplicationsNavbarMenuGroups: TNavbarMenuGroup[] = (
-    applicationsNavBarMenuGroups || []
+    allInternalApplicationsNavbarMenu || []
   )
     .map((navbarMenuGroup) =>
       navbarMenuGroup.key === '2' && allCustomApplicationsNavbarMenu.length > 0
