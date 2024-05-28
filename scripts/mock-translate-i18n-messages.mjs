@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getPackagesSync } from '@manypkg/get-packages';
-import shelljs from 'shelljs';
 
 const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
@@ -68,16 +67,11 @@ if (templateName === 'starter-typescript') {
 
 // copy core.json to en.json
 // performed on custom-application/starter and custom-view/starter-typescript templates
-const copyCoreJsonResult = shelljs.exec(
-  ['cp', './src/i18n/data/core.json', './src/i18n/data/en.json'].join(' '),
-  { cwd: targetPackage.dir }
+fs.copyFileSync(
+  path.join(targetPackage.dir, './src/i18n/data/core.json'),
+  path.join(targetPackage.dir, './src/i18n/data/en.json')
 );
-if (copyCoreJsonResult.code > 0) {
-  console.error(copyCoreJsonResult.stderr || copyCoreJsonResult.stdout);
-  throw new Error(
-    'Mock translation error: Copying core.json to en.json has failed.'
-  );
-}
+
 console.log(
   `Mock translations ==> Copied i18n/data/core.json to i18n/data/en.json.`
 );
