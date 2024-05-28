@@ -1,5 +1,4 @@
 {
-  "installCommand": "pnpm run -w install",
   "buildCommand": "pnpm run -w build && pnpm build",
   "outputDirectory": "public",
   "rewrites": [
