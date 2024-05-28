@@ -1,0 +1,23 @@
+name: Playground application deployment preview trigger
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [vercel_deployment]
+
+jobs:
+  playground-deployment-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install and build
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Create or update deployment preview
+        # Automated integration with MC deployment previews is not yet supported
+        # run: npx mc-scripts deployment-previews:push --token ${{ secrets.MC_API_TOKEN }} --alias ${{ github.ref }} --commit ${{ github.sha }} --repository ${{ github.repository }} --build-url ${{ github.run_id }} --build-number ${{ github.run_number }} --build-status ${{ job.status }} --build-name ${{ github.workflow }} --build-description ${{ github.event_name }} --build-author ${{ github.actor }} --build-author-email ${{ github.actor }} --build-date ${{ github.event.created_at }} --build-title ${{ github.event.head_commit.message }} --build-url ${{ github.event.head_commit.url }} --build-commit ${{ github.event.head_commit.id }} --build-commit-url ${{ github.event.head_commit.url }} --build-branch ${{ github.ref }} --build-tag ${{ github.ref }} --build-pr ${{ github.event.pull_request.number }} --build-pr-url ${{ github.event.pull_request.html_url }} --build-pr-title ${{ github.event.pull_request.title }} --build-pr-author ${{ github.event.pull_request.user.login }} --build-pr-author-email ${{ github.event.pull_request.user.email }} --build-pr-date ${{ github.event.pull_request.created_at }} --build-pr-merge ${{ github.event.pull_request.merged }} --build-pr-merge-commit ${{ github.event.pull_request.merge_commit_sha }} --build-pr-merge-url ${{ github.event.pull_request.merge_commit_sha }} --build-pr-merge-date ${{ github.event.pull_request.merged_at }} --build-pr-merge-author ${{ github.event.pull_request.merged_by.login }} --build-pr-merge-author-email ${{ github.event.pull_request.merged_by.email }} --build-pr-merge-title ${{ github.event.pull_request.title }} --build-pr-merge-url ${{ github.event.pull_request.html_url }} --build-pr-merge-commit ${{ github.event.pull_request.merge_commit_sha }} --build-pr-merge-commit-url ${{ github.event.pull_request.merge_commit_sha }} --build-pr-merge-commit-date ${{ github.event.pull_request.merged_at }} --build-pr-merge-commit-author ${{ github.event.pull_request.merged_by.login }} --build-pr-merge-commit-author-email ${{ github.event.pull_request.merged_by.email }} --build-pr-merge-commit-title ${{ github.event.pull_request.title }} --build-pr-merge-commit-url ${{ github.event.pull_request.html_url }} --url ${{ github.event.client_payload.url }}
+        run: echo "[TODO] Deployment preview created or updated with alias '${{ github.ref }}'' and url '${{ github.event.client_payload.url }}'"
