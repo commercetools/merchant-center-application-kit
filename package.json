@@ -38,6 +38,7 @@
     "test:e2e:template-custom-view-starter": "cypress run --spec 'cypress/e2e/custom-view-template-starter/**/*.cy.ts'",
     "vrt:components": "percy exec -- pnpm test:visual",
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
+    "playground:build:deployment": "pnpm build && pnpm playground:build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
     "playground:start:prod:local": "pnpm --filter @commercetools-local/playground run start:prod:local",
     "visual-testing-app:start": "pnpm --filter @commercetools-local/visual-testing-app run start",

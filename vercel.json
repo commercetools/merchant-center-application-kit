@@ -1,0 +1,10 @@
+{
+  "buildCommand": "playground:build:deployment",
+  "outputDirectory": "playground/public",
+  "rewrites": [
+    {
+      "source": "/:match*",
+      "destination": "/"
+    }
+  ]
+}
