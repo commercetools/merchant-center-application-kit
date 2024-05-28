@@ -81,7 +81,7 @@
   },
   "ApiError.OverlappingStandalonePriceValidity": {
     "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
-    "string": "Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates."
+    "string": "存在另一个有效日期重叠的价格。每个价格组合都需要有唯一的有效日期。"
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",
