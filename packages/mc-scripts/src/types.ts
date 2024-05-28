@@ -17,7 +17,9 @@ export type TCliCommandConfigSyncOptions = {
 };
 
 export type TCliCommandPushDeploymentPreviewOptions = {
-  dryRun: boolean;
+  alias?: string;
+  url?: string;
+  dryRun?: boolean;
 };
 
 export type TMcCliAuthToken = {

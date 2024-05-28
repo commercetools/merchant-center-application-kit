@@ -198,12 +198,20 @@ async function run() {
       }
     );
 
-  // Command: deployments:push
-  const usageDeploymentsPush =
+  // Command: deployment-previews:push
+  const usageDeploymentPreviewsPush =
     'Creates or updates a deployment preview for the customization application.';
   cli
-    .command('deployments:push', usageDeploymentsPush)
-    .usage(`\n\n  ${usageDeploymentsPush}`)
+    .command('deployment-previews:push', usageDeploymentPreviewsPush)
+    .usage(`\n\n  ${usageDeploymentPreviewsPush}`)
+    .option(
+      '--alias <deployment-preview-alias>',
+      "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the script will prompt you for it."
+    )
+    .option(
+      '--url <deployment-preview-url>',
+      "(optional) URL to be used for the deployment preview. If you don't provide a URL, the script will prompt you for it."
+    )
     .option(
       '--dry-run',
       '(optional) Executes the command but does not send any mutation request.',
@@ -221,7 +229,7 @@ async function run() {
         process.env.NODE_ENV = 'production';
 
         const deploymentsPushCommand = await import(
-          './commands/deployments-push'
+          './commands/deployment-previews-push'
         );
         await deploymentsPushCommand.default(options);
       }

@@ -96,18 +96,25 @@ async function pushDeploymentPreview({
     );
   }
 
-  const { deploymentAlias } = await prompts({
-    type: 'text',
-    name: 'deploymentAlias',
-    message: [
-      `What's the alias for the deployment preview? (my-alias)`,
-      options.dryRun &&
-        chalk.gray('Using "--dry-run", no deployment preview will be created.'),
-    ]
-      .filter(Boolean)
-      .join('\n'),
-    validate: (value) => value && value.length > 2,
-  });
+  let deploymentAlias = options.alias;
+  // If the alias was not provided as an argument to the script, let's ask for it.
+  if (!deploymentAlias) {
+    const { alias } = await prompts({
+      type: 'text',
+      name: 'alias',
+      message: [
+        `What's the alias for the deployment preview? (my-alias)`,
+        options.dryRun &&
+          chalk.gray(
+            'Using "--dry-run", no deployment preview will be created.'
+          ),
+      ]
+        .filter(Boolean)
+        .join('\n'),
+      validate: (value) => value && value.length > 2,
+    });
+    deploymentAlias = alias as string;
+  }
   if (!validateAlias(deploymentAlias)) {
     console.log(chalk.red('Invalid alias.'));
     console.log(chalk.red('Aborted.'));
@@ -119,7 +126,7 @@ async function pushDeploymentPreview({
       (deployment) => deployment.alias === deploymentAlias
     );
 
-  if (existingDeploymentPreview) {
+  if (!options.alias && !options.url && existingDeploymentPreview) {
     const { aliasOverrideConfirmation } = await prompts({
       type: 'confirm',
       name: 'aliasOverrideConfirmation',
@@ -144,18 +151,24 @@ async function pushDeploymentPreview({
     }
   }
 
-  const { deploymentUrl } = await prompts({
-    type: 'text',
-    name: 'deploymentUrl',
-    message: [
-      `What's the URL for the deployment preview?`,
-      options.dryRun &&
-        chalk.gray('Using "--dry-run", no deployment preview will be created.'),
-    ]
-      .filter(Boolean)
-      .join('\n'),
-    validate: (value) => value && value.length > 2,
-  });
+  let deploymentUrl = options.url;
+  if (!deploymentUrl) {
+    const { url } = await prompts({
+      type: 'text',
+      name: 'url',
+      message: [
+        `What's the URL for the deployment preview?`,
+        options.dryRun &&
+          chalk.gray(
+            'Using "--dry-run", no deployment preview will be created.'
+          ),
+      ]
+        .filter(Boolean)
+        .join('\n'),
+      validate: (value) => value && value.length > 2,
+    });
+    deploymentUrl = url as string;
+  }
   if (!validateUrl(deploymentUrl)) {
     console.log(chalk.red('Invalid deployment URL.'));
     console.log(chalk.red('Aborted.'));
