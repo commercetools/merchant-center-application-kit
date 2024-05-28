@@ -136,12 +136,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   // /* We want to track the left, top, width, and height of the safe area */
   const submenuSafeAreaRefBoundingClientRect =
     submenuSafeAreaRef.current?.getBoundingClientRect();
-  const {
-    left: safeAreaLeftPos,
-    top: safeAreaTopPos,
-    width: safeAreaWidth,
-    height: safeAreaHeight,
-  } = submenuSafeAreaRefBoundingClientRect! ?? {};
+  const safeAreaLeftPos = submenuSafeAreaRefBoundingClientRect?.left || 0;
+  const safeAreaTopPos = submenuSafeAreaRefBoundingClientRect?.top || 0;
+  const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
+  const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
 
   useEffect(() => {
     const handleMouseMove = (e: { clientX: number; clientY: number }) => {
