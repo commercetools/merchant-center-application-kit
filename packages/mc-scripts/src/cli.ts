@@ -206,11 +206,11 @@ async function run() {
     .usage(`\n\n  ${usageDeploymentPreviewsPush}`)
     .option(
       '--alias <deployment-preview-alias>',
-      "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the script will prompt you for it."
+      "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the command will prompt you for it."
     )
     .option(
       '--url <deployment-preview-url>',
-      "(optional) URL to be used for the deployment preview. If you don't provide a URL, the script will prompt you for it."
+      "(optional) URL to be used for the deployment preview. If you don't provide a URL, the command will prompt you for it."
     )
     .option(
       '--dry-run',

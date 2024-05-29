@@ -92,7 +92,7 @@ async function pushDeploymentPreview({
 
   if (!fetchedCustomApplication) {
     throw new Error(
-      `The Custom Application "${applicationIdentifier}" does not exist in the Merchant Center.`
+      `The Custom Application "${applicationIdentifier}" does not exist in the Merchant Center. Please create a Custom Application first before configuring deployment previews.`
     );
   }
 
@@ -103,7 +103,7 @@ async function pushDeploymentPreview({
       type: 'text',
       name: 'alias',
       message: [
-        `What's the alias for the deployment preview? (my-alias)`,
+        `Enter the alias for the deployment preview`,
         options.dryRun &&
           chalk.gray(
             'Using "--dry-run", no deployment preview will be created.'
@@ -133,8 +133,7 @@ async function pushDeploymentPreview({
       message: [
         `The alias "${chalk.green(
           deploymentAlias
-        )}" already exists. Do you want to proceed?`,
-        '(The URL you will provide will override the existing one.)',
+        )}" already exists. Do you want to proceed and update the URL?`,
         options.dryRun &&
           chalk.gray(
             'Using "--dry-run", no deployment preview will be created.'
@@ -157,7 +156,7 @@ async function pushDeploymentPreview({
       type: 'text',
       name: 'url',
       message: [
-        `What's the URL for the deployment preview?`,
+        `Enter the URL for the deployment preview`,
         options.dryRun &&
           chalk.gray(
             'Using "--dry-run", no deployment preview will be created.'
