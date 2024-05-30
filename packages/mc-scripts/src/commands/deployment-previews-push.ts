@@ -19,12 +19,12 @@ const deploymentPreviewAliasRegex = /^[^-#]([a-z]|[-](?![-])){0,62}[^-#]$/g;
 export const fqdnRegex =
   /(?=^.{4,253}$)(^((?!-)[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]\.)+[a-zA-Z]{2,63}$)/i;
 
-const validateUrl = (url = '') => {
+const validateUrl = (url = ''): boolean => {
   try {
     const urlSchema = new URL(url);
     const isProtocolValid = ['http:', 'https:'].includes(urlSchema.protocol);
     const isHostnameValid = urlSchema.hostname.match(fqdnRegex);
-    return isProtocolValid && isHostnameValid;
+    return isProtocolValid && Boolean(isHostnameValid);
   } catch (error) {
     return false;
   }
@@ -111,14 +111,9 @@ async function pushDeploymentPreview({
       ]
         .filter(Boolean)
         .join('\n'),
-      validate: (value) => value && value.length > 2,
+      validate: (value) => validateAlias(value),
     });
     deploymentAlias = alias as string;
-  }
-  if (!validateAlias(deploymentAlias)) {
-    console.log(chalk.red('Invalid alias.'));
-    console.log(chalk.red('Aborted.'));
-    return;
   }
 
   const existingDeploymentPreview =
@@ -164,14 +159,9 @@ async function pushDeploymentPreview({
       ]
         .filter(Boolean)
         .join('\n'),
-      validate: (value) => value && value.length > 2,
+      validate: (value) => validateUrl(value),
     });
     deploymentUrl = url as string;
-  }
-  if (!validateUrl(deploymentUrl)) {
-    console.log(chalk.red('Invalid deployment URL.'));
-    console.log(chalk.red('Aborted.'));
-    return;
   }
 
   if (options.dryRun) {
