@@ -1,8 +1,6 @@
 import { rest } from 'msw';
 import type { Handler } from 'express';
 import { setupServer } from 'msw/node';
-import { createSessionAuthVerifier } from '../auth';
-import { CLOUD_IDENTIFIERS } from '../constants';
 import { TBaseRequest } from '../types';
 import * as fixtureJWTToken from './fixtures/jwt-token';
 import createSessionMiddleware from './session-middleware';
