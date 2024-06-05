@@ -141,28 +141,26 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
   const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
 
-  useEffect(() => {
-    const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+  const handleMouseMove = useCallback(
+    (e) => {
       const localX = e.clientX - safeAreaLeftPos;
       const localY = e.clientY - safeAreaTopPos;
 
-      if (
-        localX > 0 &&
-        localX < menuItemWidth &&
-        localY > 0 &&
-        localY < menuItemHeight
-      ) {
-        setPercentageX((localX / safeAreaWidth) * 100);
-        setPercentageY((localY / safeAreaHeight) * 100);
-      }
-    };
+      setPercentageX((localX / safeAreaWidth) * 100);
+      setPercentageY((localY / safeAreaHeight) * 100);
+    },
+    [safeAreaHeight, safeAreaLeftPos, safeAreaTopPos, safeAreaWidth]
+  );
 
+  useEffect(() => {
+    handleMouseMove((e: MouseEventHandler) => e);
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [
+    handleMouseMove,
     menuItemHeight,
     menuItemWidth,
     safeAreaHeight,
@@ -173,12 +171,21 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   useLayoutEffect(() => {
     if (props.isActive) {
+      if (percentageY >= 20) {
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       submenuRef.current?.style.setProperty(
         '--safe-start',
         `${percentageX}% ${percentageY + 1}%`
       );
     }
-  }, [percentageX, percentageY, props.isActive, props.mousePosition]);
+  }, [
+    handleMouseMove,
+    percentageX,
+    percentageY,
+    props.isActive,
+    props.mousePosition,
+  ]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
