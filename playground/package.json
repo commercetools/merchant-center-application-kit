@@ -14,7 +14,7 @@
     "deploy": "vercel --scope=commercetools --confirm --no-clipboard"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "24.0.3",
+    "@commercetools-docs/ui-kit": "24.2.0",
     "@commercetools-frontend/actions-global": "22.27.0",
     "@commercetools-frontend/application-components": "22.27.0",
     "@commercetools-frontend/application-shell": "22.27.0",
