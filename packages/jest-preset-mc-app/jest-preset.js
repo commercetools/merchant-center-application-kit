@@ -24,10 +24,6 @@ module.exports = {
     'process.env': {
       NODE_ENV: 'test',
     },
-    // This is required for the `jose` library to work in the test environment.
-    // We use it in the packages-backend/express package.
-    // Reference: https://github.com/jestjs/jest/issues/4422#issuecomment-770274099
-    Uint8Array: Uint8Array,
   },
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'json'],
   moduleDirectories: ['src', 'node_modules'],
