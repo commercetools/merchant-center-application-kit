@@ -2,6 +2,7 @@ const modulesWithFaultyExports = [
   '@react-hook/resize-observer',
   '@react-hook/passive-layout-effect',
   '@react-hook/latest',
+  'jose',
 ];
 
 // https://jestjs.io/docs/configuration#resolver-string

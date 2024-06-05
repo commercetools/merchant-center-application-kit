@@ -1,19 +1,49 @@
-import { JWT, JWK, JWKS } from 'jose';
+import {
+  exportJWK,
+  generateKeyPair,
+  type KeyLike,
+  SignJWT,
+  type JWK,
+} from 'jose';
 
-const keyRS256 = JWK.generateSync('RSA', 2048, { use: 'sig', alg: 'RS256' });
+let keyRS256: KeyLike;
+let jwksStore: { keys: JWK[] };
 
-const jwksStore = new JWKS.KeyStore([keyRS256]);
+async function initialize() {
+  // Generate RSA key pair with 2048 bits for the RS256 algorithm
+  const { publicKey, privateKey } = await generateKeyPair('RS256', {
+    modulusLength: 2048,
+  });
+  keyRS256 = privateKey;
 
-const createToken = (options: { issuer: string; audience: string }) =>
-  JWT.sign(
-    {
-      sub: 'user-id',
-      iss: options.issuer,
-      aud: options.audience,
-      [`${options.issuer}/claims/project_key`]: 'project-key',
-    },
-    keyRS256,
-    { algorithm: 'RS256' }
-  );
+  // Export the public key to JWK format
+  const publicJWK: JWK = await exportJWK(publicKey);
 
-export { jwksStore, createToken };
+  // Add the necessary properties for the JWKS
+  publicJWK.use = 'sig'; // Signature
+  publicJWK.alg = 'RS256'; // Algorithm
+  publicJWK.kid = 'example-key-id'; // Key ID
+
+  jwksStore = {
+    keys: [publicJWK],
+  };
+}
+
+const createToken = (options: { issuer: string; audience: string }) => {
+  if (!keyRS256) {
+    throw new Error(
+      'Key not initialized. Please call the "initialize" function first.'
+    );
+  }
+
+  return new SignJWT({
+    [`${options.issuer}/claims/project_key`]: 'project-key',
+  })
+    .setAudience(options.audience)
+    .setIssuer(options.issuer)
+    .setProtectedHeader({ alg: 'RS256' })
+    .setSubject('user-id')
+    .sign(keyRS256);
+};
+
+export { initialize, jwksStore, createToken };
