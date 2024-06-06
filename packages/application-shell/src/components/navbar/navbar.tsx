@@ -171,9 +171,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   useLayoutEffect(() => {
     if (props.isActive) {
-      if (percentageY >= 20) {
-        window.removeEventListener('mousemove', handleMouseMove);
-      }
       submenuRef.current?.style.setProperty(
         '--safe-start',
         `${percentageX}% ${percentageY + 1}%`
