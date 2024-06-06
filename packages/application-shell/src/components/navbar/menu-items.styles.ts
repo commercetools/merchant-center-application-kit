@@ -313,8 +313,6 @@ const MenuListItem = styled.li<{
 `;
 
 const SafeArea = styled.span`
-  background-color: gray;
-  opacity: 0.5;
   position: absolute;
   top: 0;
   bottom: 0;
