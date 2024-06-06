@@ -54,7 +54,7 @@ import {
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
-import { SublistItem, SafeAreaElement } from './menu-items.styles';
+import { SublistItem, SafeArea } from './menu-items.styles';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
@@ -170,12 +170,15 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   ]);
 
   useLayoutEffect(() => {
-    if (props.isActive) {
-      submenuRef.current?.style.setProperty(
-        '--safe-start',
-        `${percentageX}% ${percentageY + 1}%`
-      );
-    }
+    const timeoutId = setTimeout(() => {
+      if (props.isActive) {
+        submenuRef.current?.style.setProperty(
+          '--safe-start',
+          `${percentageX}% ${percentageY + 1}%`
+        );
+      }
+    }, 100);
+    return () => clearTimeout(timeoutId);
   }, [
     handleMouseMove,
     percentageX,
@@ -378,7 +381,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                 </RestrictedMenuItem>
               ))
             : null}
-          <SafeAreaElement ref={submenuSafeAreaRef} />
+          <SafeArea ref={submenuSafeAreaRef} />
         </MenuGroup>
       </MenuItem>
     </RestrictedMenuItem>

@@ -102,7 +102,7 @@ const listStyles = css`
   flex-direction: column;
   min-height: 0;
   flex: 1 1 0;
-  --safe-start: 0% 0%;
+  --safe-start: 100% 100%;
 `;
 
 const sublistStyles = css`
@@ -312,7 +312,9 @@ const MenuListItem = styled.li<{
   }
 `;
 
-const SafeAreaElement = styled.span`
+const SafeArea = styled.span`
+  background-color: gray;
+  opacity: 0.5;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -330,5 +332,5 @@ export {
   SublistItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
-  SafeAreaElement,
+  SafeArea,
 };
