@@ -1,4 +1,3 @@
-// use-navbar-state-manager
 import {
   useCallback,
   useEffect,
