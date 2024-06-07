@@ -99,8 +99,8 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
   );
 
 const getCacheMode = (adapterIdentifier: TAdapterIdentifiers) => {
-  // @ts-ignore
   if (
+    // @ts-ignore
     typeof window.Cypress !== 'undefined' ||
     adapterIdentifier === adapterIdentifiers.http
   ) {
