@@ -1,4 +1,3 @@
-// navbar
 import {
   type MouseEventHandler,
   useCallback,
