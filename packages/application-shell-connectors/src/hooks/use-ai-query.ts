@@ -30,7 +30,7 @@ type TAIAction = {
   error?: Error;
 };
 
-const messagesCache: TAIMessage[] = [];
+let messagesCache: TAIMessage[] = [];
 
 const initialState: TAIState = {
   isLoading: false,
@@ -81,8 +81,8 @@ function useAiQuery() {
       });
       const data = (await response.json()) as TAIResponse;
 
-      const responseMessage: TAIMessage = data.messages[0];
-      messagesCache.push(responseMessage);
+      // const responseMessage: TAIMessage = data.messages[0];
+      messagesCache = [...data.messages];
       dispatch({ type: 'SUCCESS', payload: data.messages });
     } catch (error) {
       dispatch({ type: 'ERROR', error: error as Error });
