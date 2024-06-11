@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { css, keyframes } from '@emotion/react';
 import { createPortal } from 'react-dom';
 import Markdown from 'react-markdown';
@@ -7,15 +7,17 @@ import { useAiQuery } from '@commercetools-frontend/application-shell-connectors
 import Avatar from '@commercetools-uikit/avatar';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
-  ArrowLeftIcon,
   ArrowRightIcon,
   BrainIcon,
   CloseIcon,
 } from '@commercetools-uikit/icons';
 import MultilineTextInput from '@commercetools-uikit/multiline-text-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import { MessageBubble, MessageContainer } from './message-container';
-import { useAiAssistant } from './useAssistant';
+import {
+  BusyBubble,
+  MessageBubble,
+  MessageContainer,
+} from './message-container';
 
 const slideUp = keyframes`
   from {
@@ -31,10 +33,7 @@ const slideUp = keyframes`
 const modalContainerStyle = css`
   position: fixed;
   display: flex;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 250px;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   z-index: 999999;
@@ -93,14 +92,15 @@ const UnnecessaryModal = ({
 
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
-  const inputRef = useRef(null);
-  const { sendQuery, messages, isBusy } = useAiQuery();
+  const { sendQuery, messages, isBusy: isLoading } = useAiQuery();
+  const [q, setQ] = useState('How much is the fish?');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    const query = event.target.query.value;
-    sendQuery(query);
+    sendQuery(q);
   };
+
+  const isBusy = true;
 
   return (
     <div
@@ -142,13 +142,13 @@ const AiAssistant = () => {
                       gap: 16px;
                       align-items: center;
                       justify-content: ${message.role === 'assistant'
-                        ? 'flex-end'
-                        : 'flex-start'};
+                        ? 'flex-start'
+                        : 'flex-end'};
                     `}
                   >
                     <div
                       style={{
-                        order: message.role === 'assistant' ? 1 : 0,
+                        order: message.role === 'assistant' ? 0 : 1,
                       }}
                     >
                       <Avatar
@@ -165,6 +165,7 @@ const AiAssistant = () => {
                     </MessageBubble>
                   </li>
                 ))}
+              {isBusy && <BusyBubble />}
             </MessageContainer>
           </div>
 
@@ -182,15 +183,15 @@ const AiAssistant = () => {
                 `}
               >
                 <MultilineTextInput
-                  ref={inputRef}
                   name="query"
+                  value={q}
                   placeholder="How can I create a product variant?"
-                  onChange={() => {}}
+                  onChange={(e) => setQ(e.target.value)}
                 />
               </div>
               <div>
                 <PrimaryButton
-                  iconLeft={<ArrowLeftIcon />}
+                  iconLeft={<ArrowRightIcon />}
                   label="Send"
                   type="submit"
                 />
