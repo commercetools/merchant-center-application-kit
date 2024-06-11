@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useRouteMatch, useHistory } from 'react-router-dom';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
@@ -8,7 +7,6 @@ import {
   useModalState,
   Drawer,
 } from '@commercetools-frontend/application-components';
-import { useAiQuery } from '@commercetools-frontend/application-shell-connectors';
 import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
@@ -69,14 +67,6 @@ const NotificationsPlayground = (props) => {
   const drawerState = useModalState();
   const route = useRouteMatch();
   const history = useHistory();
-  const { state, sendQuery } = useAiQuery();
-
-  useEffect(() => {
-    sendQuery('I need to create a product discount of 20%. Can you help me?');
-  }, []);
-  useEffect(() => {
-    console.log({ state });
-  }, [state]);
 
   return (
     <Spacings.Inset>
