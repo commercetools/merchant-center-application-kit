@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import SyncLoader from 'react-spinners/SyncLoader';
 import Avatar from '@commercetools-uikit/avatar';
 import { designTokens } from '@commercetools-uikit/design-system';
+import { Icon } from '../../navbar/shared.styles';
+import { BrainIcon } from '@commercetools-uikit/icons';
 
 export const MessageBubble = styled.div`
   display: inline-block;
@@ -24,6 +26,24 @@ export const MessageContainer = styled.div`
   flex-direction: column;
 `;
 
+export const AiAvatar = () => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: ${designTokens.colorPrimary95};
+      `}
+    >
+      <BrainIcon color="primary40" />
+    </div>
+  );
+};
+
 export const BusyBubble = () => {
   return (
     <li
@@ -37,7 +57,7 @@ export const BusyBubble = () => {
       `}
     >
       <div>
-        <Avatar color="purple" firstName={'A'} lastName={'I'} size="m" />
+        <AiAvatar />
       </div>
       <MessageBubble isAi={true}>
         <SyncLoader size={8} color={designTokens.colorPrimary85} />

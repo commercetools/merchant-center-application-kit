@@ -14,6 +14,7 @@ import {
 import MultilineTextInput from '@commercetools-uikit/multiline-text-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import {
+  AiAvatar,
   BusyBubble,
   MessageBubble,
   MessageContainer,
@@ -93,11 +94,12 @@ const UnnecessaryModal = ({
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
   const { sendQuery, messages, isBusy } = useAiQuery();
-  const [q, setQ] = useState('How much is the fish?');
+  const [q, setQ] = useState('How can I create a product variant?');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     sendQuery(q);
+    setQ('');
   };
 
   return (
@@ -149,11 +151,11 @@ const AiAssistant = () => {
                         order: message.role === 'assistant' ? 0 : 1,
                       }}
                     >
-                      <Avatar
-                        firstName={message.role === 'assistant' ? 'A' : 'M'}
-                        lastName={message.role === 'assistant' ? 'I' : 'E'}
-                        size="m"
-                      />
+                      {message.role === 'assistant' ? (
+                        <AiAvatar />
+                      ) : (
+                        <Avatar firstName={'M'} lastName={'E'} size="m" />
+                      )}
                     </div>
                     <MessageBubble
                       key={index}
@@ -185,6 +187,7 @@ const AiAssistant = () => {
                   value={q}
                   placeholder="How can I create a product variant?"
                   onChange={(e) => setQ(e.target.value)}
+                  isDisabled={isBusy}
                 />
               </div>
               <div>
@@ -192,7 +195,7 @@ const AiAssistant = () => {
                   iconLeft={<ArrowRightIcon />}
                   label="Send"
                   type="submit"
-                  disabled={isBusy}
+                  isDisabled={isBusy}
                 />
               </div>
             </div>
