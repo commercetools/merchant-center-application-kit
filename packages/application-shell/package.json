@@ -54,6 +54,7 @@
     "@commercetools-uikit/icon-button": "^19.2.0",
     "@commercetools-uikit/icons": "^19.2.0",
     "@commercetools-uikit/loading-spinner": "^19.2.0",
+    "@commercetools-uikit/multiline-text-input": "^19.5.0",
     "@commercetools-uikit/notifications": "^19.2.0",
     "@commercetools-uikit/primary-button": "^19.2.0",
     "@commercetools-uikit/secondary-button": "^19.2.0",
