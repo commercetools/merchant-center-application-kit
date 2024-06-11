@@ -7,6 +7,7 @@ export const MessageBubble = styled.div`
   border-radius: 16px;
   max-width: 66%;
   background-color: ${({ isAi }) => (isAi ? '#f2f2f2' : '#e6f7ff')};
+  overflow: auto;
 `;
 
 export const MessageContainer = styled.div`

@@ -127,6 +127,7 @@ const AiAssistant = () => {
             css={css`
               flex-grow: 1;
               margin-top: 32px;
+              overflow: auto;
             `}
           >
             <MessageContainer as="ul">
