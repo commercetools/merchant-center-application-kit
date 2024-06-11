@@ -157,6 +157,7 @@ const AiAssistant = () => {
                         <Avatar firstName={'M'} lastName={'E'} size="m" />
                       )}
                     </div>
+
                     <MessageBubble
                       key={index}
                       isAi={message.role === 'assistant'}

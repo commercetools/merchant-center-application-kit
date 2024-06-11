@@ -42,6 +42,7 @@ const aiStateReducer = (state: TAIState, action: TAIAction): TAIState => {
       return {
         ...state,
         isLoading: true,
+        data: action.payload,
       };
     case 'SUCCESS':
       return {
@@ -64,9 +65,10 @@ function useAiQuery() {
   const [state, dispatch] = useReducer(aiStateReducer, initialState);
 
   const sendQuery = async (query: string) => {
-    dispatch({ type: 'LOADING' });
+    const newMessage: TAIMessage = { content: query, role: 'user' };
+    dispatch({ type: 'LOADING', payload: [...(state.data || []), newMessage] });
+
     try {
-      const newMessage: TAIMessage = { content: query, role: 'user' };
       messagesCache.push(newMessage);
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
