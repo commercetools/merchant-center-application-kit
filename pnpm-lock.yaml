@@ -1803,6 +1803,9 @@ importers:
       react-select:
         specifier: 5.8.0
         version: 5.8.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      react-spinners:
+        specifier: ^0.13.8
+        version: 0.13.8(react-dom@17.0.2)(react@17.0.2)
       redux-logger:
         specifier: 3.0.6
         version: 3.0.6
@@ -27503,6 +27506,16 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.80)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-spinners@0.13.8(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-3e+k56lUkPj0vb5NDXPVFAOkPC//XyhKPJjvcGjyMNPWsBKpplfeyialP74G7H7+It7KzhtET+MvGqbKgAqpZA==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
     dev: false
 
   /react-textarea-autosize@8.4.0(@types/react@17.0.80)(react@17.0.2):
