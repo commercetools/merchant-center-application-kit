@@ -97,9 +97,7 @@ const UnnecessaryModal = ({
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
   const { sendQuery, messages, isBusy } = useAiQuery();
-  const [q, setQ] = useState(
-    'How can I create a product variant in the merchant center?'
-  );
+  const [q, setQ] = useState('How can I create a product variant');
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
