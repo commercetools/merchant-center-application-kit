@@ -1,7 +1,9 @@
 import { useLayoutEffect, useRef } from 'react';
 import { css, keyframes } from '@emotion/react';
 import { createPortal } from 'react-dom';
+import Markdown from 'react-markdown';
 import { useModalState } from '@commercetools-frontend/application-components';
+import { useAiQuery } from '@commercetools-frontend/application-shell-connectors';
 import IconButton from '@commercetools-uikit/icon-button';
 import { BrainIcon, CloseIcon, SearchIcon } from '@commercetools-uikit/icons';
 import MultilineTextInput from '@commercetools-uikit/multiline-text-input';
@@ -81,6 +83,13 @@ const UnnecessaryModal = ({
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
   const inputRef = useRef(null);
+  const { state: aiState, sendQuery } = useAiQuery();
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const query = event.target.query.value;
+    sendQuery(query);
+  };
 
   useLayoutEffect(() => {
     if (inputRef && inputRef.current && isModalOpen) {
@@ -113,28 +122,43 @@ const AiAssistant = () => {
             css={css`
               flex-grow: 1;
             `}
-          ></div>
-          <div
-            css={css`
-              display: flex;
-              flex-grow: 0;
-            `}
           >
+            {aiState.isLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <div>
+                <Markdown>{aiState.data?.content}</Markdown>
+              </div>
+            )}
+          </div>
+          <form onSubmit={onSubmitHandler}>
             <div
               css={css`
-                flex-grow: 1;
-                margin-right: 16px;
+                display: flex;
+                flex-grow: 0;
               `}
             >
-              <MultilineTextInput
-                ref={inputRef}
-                placeholder="How can I create a product variant?"
-              />
+              <div
+                css={css`
+                  flex-grow: 1;
+                  margin-right: 16px;
+                `}
+              >
+                <MultilineTextInput
+                  ref={inputRef}
+                  name="query"
+                  placeholder="How can I create a product variant?"
+                />
+              </div>
+              <div>
+                <PrimaryButton
+                  iconLeft={<SearchIcon />}
+                  label="Send"
+                  type="submit"
+                />
+              </div>
             </div>
-            <div>
-              <PrimaryButton iconLeft={<SearchIcon />} label="Send" />
-            </div>
-          </div>
+          </form>
         </div>
       </UnnecessaryModal>
     </div>
