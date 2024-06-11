@@ -10,7 +10,12 @@ app.use(
   cors({
     origin: '*', // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Baggage',
+      'sentry-trace',
+    ], // Allow specific headers
   })
 );
 
