@@ -1,3 +1,4 @@
+import messages from '@commercetools-frontend/application-components/src/components/page-not-found/messages';
 import { useReducer } from 'react';
 
 // const API_ENDPOINT =
@@ -20,13 +21,13 @@ type TAIResponse = {
 
 type TAIState = {
   isLoading: boolean;
-  data?: TAIMessage;
+  data?: TAIMessage[];
   error?: Error;
 };
 
 type TAIAction = {
   type: 'LOADING' | 'SUCCESS' | 'ERROR';
-  payload?: TAIMessage;
+  payload?: TAIMessage[];
   error?: Error;
 };
 
@@ -82,7 +83,7 @@ function useAiQuery() {
       const data = (await response.json()) as TAIResponse;
       const responseMessage: TAIMessage = data.messages.pop()!;
       messagesCache.push(responseMessage);
-      dispatch({ type: 'SUCCESS', payload: responseMessage });
+      dispatch({ type: 'SUCCESS', payload: data.messages });
     } catch (error) {
       dispatch({ type: 'ERROR', error: error as Error });
     }
@@ -91,6 +92,8 @@ function useAiQuery() {
   return {
     state,
     sendQuery,
+    isBusy: state.isLoading,
+    messages: state.data,
   };
 }
 

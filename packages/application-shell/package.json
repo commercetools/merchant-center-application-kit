@@ -9,7 +9,12 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-shell",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -17,7 +22,11 @@
   "main": "dist/commercetools-frontend-application-shell.cjs.js",
   "module": "dist/commercetools-frontend-application-shell.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./ssr/index.ts", "./test-utils/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./ssr/index.ts",
+      "./test-utils/index.ts"
+    ]
   },
   "files": [
     "dist",
@@ -97,6 +106,7 @@
     "omit-empty-es": "1.2.0",
     "prop-types": "15.8.1",
     "qss": "2.0.3",
+    "react-markdown": "^9.0.1",
     "react-required-if": "1.0.3",
     "react-select": "5.8.0",
     "redux-logger": "3.0.6",
