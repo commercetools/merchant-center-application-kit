@@ -13,6 +13,7 @@ import {
 } from '@commercetools-uikit/icons';
 import MultilineTextInput from '@commercetools-uikit/multiline-text-input';
 import PrimaryButton from '@commercetools-uikit/primary-button';
+import Text from '@commercetools-uikit/text';
 import {
   AiAvatar,
   BusyBubble,
@@ -133,6 +134,13 @@ const AiAssistant = () => {
             padding: 16px;
           `}
         >
+          <div
+            css={css`
+              text-align: center;
+            `}
+          >
+            <Text.Headline as="h2">Merchant Center Assistant</Text.Headline>
+          </div>
           <div
             css={css`
               flex-grow: 1;

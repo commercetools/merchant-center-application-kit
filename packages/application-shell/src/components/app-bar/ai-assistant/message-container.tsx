@@ -1,9 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import SyncLoader from 'react-spinners/SyncLoader';
-import Avatar from '@commercetools-uikit/avatar';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { Icon } from '../../navbar/shared.styles';
 import { BrainIcon } from '@commercetools-uikit/icons';
 
 export const MessageBubble = styled.div`
