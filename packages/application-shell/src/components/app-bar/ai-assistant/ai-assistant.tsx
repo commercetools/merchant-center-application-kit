@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { css, keyframes } from '@emotion/react';
 import { createPortal } from 'react-dom';
 import Markdown from 'react-markdown';
@@ -95,12 +95,22 @@ const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
   const { sendQuery, messages, isBusy } = useAiQuery();
   const [q, setQ] = useState('How can I create a product variant?');
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     sendQuery(q);
     setQ('');
+    setTimeout(scrollToBottom, 100);
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div
@@ -167,6 +177,7 @@ const AiAssistant = () => {
                   </li>
                 ))}
               {isBusy && <BusyBubble />}
+              <div ref={messagesEndRef} />
             </MessageContainer>
           </div>
 
