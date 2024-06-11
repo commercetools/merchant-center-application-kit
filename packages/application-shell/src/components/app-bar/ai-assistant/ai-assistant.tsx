@@ -97,7 +97,7 @@ const UnnecessaryModal = ({
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
   const { sendQuery, messages, isBusy } = useAiQuery();
-  const [q, setQ] = useState('How can I create a product variant');
+  const [q, setQ] = useState('How can I create a product variant?');
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -146,7 +146,8 @@ const AiAssistant = () => {
           <div
             css={css`
               flex-grow: 1;
-              margin-top: 32px;
+              margin-top: 16px;
+              margin-bottom: 16px;
               overflow: auto;
             `}
           >
@@ -184,7 +185,9 @@ const AiAssistant = () => {
                         key={index}
                         isAi={message.role === 'assistant'}
                       >
-                        <Markdown>{message.content}</Markdown>
+                        <Markdown components={components}>
+                          {message.content}
+                        </Markdown>
                       </MessageBubble>
                     </li>
                   ))}
@@ -209,7 +212,7 @@ const AiAssistant = () => {
                 <MultilineTextInput
                   name="query"
                   value={q}
-                  placeholder="How can I create a product variant"
+                  placeholder="How can I create a product variant?"
                   onChange={(e) => setQ(e.target.value)}
                   isDisabled={isBusy}
                 />

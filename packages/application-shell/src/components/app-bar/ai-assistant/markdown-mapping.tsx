@@ -19,7 +19,7 @@ export const components = {
       margin-bottom: 22px;
     }
   `,
-  ol: styled.ul`
+  ol: styled.ol`
     font-size: 14px;
     line-height: 22px;
     margin: 0;
