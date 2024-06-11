@@ -9,7 +9,7 @@ const config = {
   cloudIdentifier: 'gcp-eu',
   env: {
     development: {
-      initialProjectKey: '${env:CTP_INITIAL_PROJECT_KEY}',
+      initialProjectKey: 'almond-40',
     },
     production: {
       applicationId: 'TODO',

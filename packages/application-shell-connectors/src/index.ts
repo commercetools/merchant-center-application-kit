@@ -51,3 +51,5 @@ export {
   setCachedApolloClient,
   getCachedApolloClient,
 } from './utils/apollo-client-runtime-cache';
+
+export { default as useAiQuery } from './hooks/use-ai-query';

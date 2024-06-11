@@ -30,7 +30,7 @@ const config = {
   },
   headers: {
     csp: {
-      'connect-src': ['${env:HOST_GCP_STAGING}'],
+      'connect-src': ['${env:HOST_GCP_STAGING}', 'assistant-api.commercetools.vercel.app', 'localhost:4004'],
     },
   },
   icon: '${path:@commercetools-frontend/assets/application-icons/rocket.svg}',
