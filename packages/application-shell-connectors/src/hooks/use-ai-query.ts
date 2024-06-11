@@ -10,7 +10,7 @@ const API_AUTH_TOKEN =
 export type TAIMessage = {
   id?: string;
   content: string;
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
 };
 
 type TAIResponse = {
@@ -78,7 +78,22 @@ function useAiQuery() {
         },
         body: JSON.stringify({
           conversationId: Date.now().toString(),
-          messages: messagesCache,
+          messages: [
+            ...messagesCache,
+            {
+              content: `
+              - I'm a Commercetools Merchant Center user
+              - I'm looking for help with the Merchant Center
+              - Use the Merchant Center documentation as your main source of truth
+              - All replies should focus on the steps to take in order to fulfill the task in the Merchant Center
+              - Provide detailed instructions
+              - I only want to use the Merchant Center UI
+              - Do not use API examples or instructions
+              - I don't have coding skills
+              `,
+              role: 'system',
+            },
+          ],
         }),
       });
       const data = (await response.json()) as TAIResponse;

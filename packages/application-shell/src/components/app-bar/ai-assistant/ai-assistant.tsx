@@ -154,61 +154,42 @@ const AiAssistant = () => {
           >
             <MessageContainer as="ul">
               {messages &&
-                messages.map((message, index) => (
-                  <>
-                    {message.role === 'system' && (
-                      <div>
-                        <MessageBubble
-                          key={index}
-                          style={{
-                            backgroundColor: designTokens.colorError95,
-                            color: designTokens.colorError40,
-                          }}
-                        >
-                          <Markdown components={components}>
-                            {message.content}
-                          </Markdown>
-                        </MessageBubble>
-                      </div>
-                    )}
-                    {message.role !== 'system' && (
-                      <li
-                        key={message.id}
-                        css={css`
-                          margin-bottom: 16px;
-                          display: flex;
-                          width: 100%;
-                          gap: 16px;
-                          align-items: center;
-                          justify-content: ${message.role === 'assistant'
-                            ? 'flex-start'
-                            : 'flex-end'};
-                        `}
+                messages
+                  .filter((message) => message.role !== 'system')
+                  .map((message, index) => (
+                    <li
+                      key={message.id}
+                      css={css`
+                        margin-bottom: 16px;
+                        display: flex;
+                        width: 100%;
+                        gap: 16px;
+                        align-items: center;
+                        justify-content: ${message.role === 'assistant'
+                          ? 'flex-start'
+                          : 'flex-end'};
+                      `}
+                    >
+                      <div
+                        style={{
+                          order: message.role === 'assistant' ? 0 : 1,
+                        }}
                       >
-                        <div
-                          style={{
-                            order: message.role === 'assistant' ? 0 : 1,
-                          }}
-                        >
-                          {message.role === 'assistant' ? (
-                            <AiAvatar />
-                          ) : (
-                            <Avatar firstName={'M'} lastName={'E'} size="m" />
-                          )}
-                        </div>
+                        {message.role === 'assistant' ? (
+                          <AiAvatar />
+                        ) : (
+                          <Avatar firstName={'M'} lastName={'E'} size="m" />
+                        )}
+                      </div>
 
-                        <MessageBubble
-                          key={index}
-                          isAi={message.role === 'assistant'}
-                        >
-                          <Markdown components={components}>
-                            {message.content}
-                          </Markdown>
-                        </MessageBubble>
-                      </li>
-                    )}
-                  </>
-                ))}
+                      <MessageBubble
+                        key={index}
+                        isAi={message.role === 'assistant'}
+                      >
+                        <Markdown>{message.content}</Markdown>
+                      </MessageBubble>
+                    </li>
+                  ))}
               {isBusy && <BusyBubble />}
               <div ref={messagesEndRef} />
             </MessageContainer>
@@ -230,7 +211,7 @@ const AiAssistant = () => {
                 <MultilineTextInput
                   name="query"
                   value={q}
-                  placeholder="How can I create a product variant in the merchant center?"
+                  placeholder="How can I create a product variant"
                   onChange={(e) => setQ(e.target.value)}
                   isDisabled={isBusy}
                 />
