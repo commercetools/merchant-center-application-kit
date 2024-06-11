@@ -1674,6 +1674,9 @@ importers:
       '@commercetools-uikit/loading-spinner':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.4.5)
+      '@commercetools-uikit/multiline-text-input':
+        specifier: ^19.5.0
+        version: 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.4.5)
       '@commercetools-uikit/notifications':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
@@ -9958,6 +9961,37 @@ packages:
       - typescript
     dev: false
 
+  /@commercetools-uikit/multiline-text-input@19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.4.5):
+    resolution: {integrity: sha512-1gdOXHy3/jeHKjueiRIOffvtVpSIHxqQ2NRQMF5BYNv4hVsRsfNWfsy1KWDCXybKInPYkVr3Q7vkgjevwza6mA==}
+    peerDependencies:
+      react: 17.x
+      react-intl: 6.x
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/constraints': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)
+      '@commercetools-uikit/flat-button': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.4.5)
+      '@commercetools-uikit/hooks': 19.5.0(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/icons': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.4.5)
+      '@commercetools-uikit/spacings-inline': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/tooltip': 19.5.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/utils': 19.5.0(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.80)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.80)(react@17.0.2)
+      downshift: 6.1.12(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.5)
+      react-textarea-autosize: 8.4.0(@types/react@17.0.80)(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - typescript
+    dev: false
+
   /@commercetools-uikit/notifications@19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-qgf2nsMNmtKjRcL1lZNGr+BCTEuBgHRo8kNmVicNLXrWxLfAMAyWmVfDX6ckKixPO7TPcMHm86h3qQGK36Cgww==}
     peerDependencies:
@@ -11118,7 +11152,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.4.5)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
