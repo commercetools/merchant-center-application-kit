@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { css, keyframes } from '@emotion/react';
 import { createPortal } from 'react-dom';
 import Markdown from 'react-markdown';
@@ -92,15 +92,13 @@ const UnnecessaryModal = ({
 
 const AiAssistant = () => {
   const { openModal, isModalOpen, closeModal } = useModalState();
-  const { sendQuery, messages, isBusy: isLoading } = useAiQuery();
+  const { sendQuery, messages, isBusy } = useAiQuery();
   const [q, setQ] = useState('How much is the fish?');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     sendQuery(q);
   };
-
-  const isBusy = true;
 
   return (
     <div
@@ -194,6 +192,7 @@ const AiAssistant = () => {
                   iconLeft={<ArrowRightIcon />}
                   label="Send"
                   type="submit"
+                  disabled={isBusy}
                 />
               </div>
             </div>

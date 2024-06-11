@@ -1,4 +1,3 @@
-import messages from '@commercetools-frontend/application-components/src/components/page-not-found/messages';
 import { useReducer } from 'react';
 
 // const API_ENDPOINT =
@@ -81,7 +80,8 @@ function useAiQuery() {
         }),
       });
       const data = (await response.json()) as TAIResponse;
-      const responseMessage: TAIMessage = data.messages.pop()!;
+
+      const responseMessage: TAIMessage = data.messages[0];
       messagesCache.push(responseMessage);
       dispatch({ type: 'SUCCESS', payload: data.messages });
     } catch (error) {
