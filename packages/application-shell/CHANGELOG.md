@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.28.0
+
+### Patch Changes
+
+- [#3548](https://github.com/commercetools/merchant-center-application-kit/pull/3548) [`222dd0c`](https://github.com/commercetools/merchant-center-application-kit/commit/222dd0cc55cd36d88e08ca61c92f7da872474b0e) Thanks [@tdeekens](https://github.com/tdeekens)! - Change `flopflip`'s `http-adapter` cache mode to be eager.
+
+- [#3538](https://github.com/commercetools/merchant-center-application-kit/pull/3538) [`6eb78a4`](https://github.com/commercetools/merchant-center-application-kit/commit/6eb78a463adf848696e984bd0e999b4753676ece) Thanks [@renovate](https://github.com/apps/renovate)! - Update `ui-kit` dependencies
+
+- Updated dependencies [[`6eb78a4`](https://github.com/commercetools/merchant-center-application-kit/commit/6eb78a463adf848696e984bd0e999b4753676ece), [`146cf67`](https://github.com/commercetools/merchant-center-application-kit/commit/146cf672eb15a7b4d858c54d6a01f92d0437a86f)]:
+  - @commercetools-frontend/application-components@22.28.0
+  - @commercetools-frontend/i18n@22.28.0
+  - @commercetools-frontend/react-notifications@22.28.0
+  - @commercetools-frontend/sentry@22.28.0
+  - @commercetools-frontend/l10n@22.28.0
+  - @commercetools-frontend/actions-global@22.28.0
+  - @commercetools-frontend/application-shell-connectors@22.28.0
+  - @commercetools-frontend/permissions@22.28.0
+  - @commercetools-frontend/application-config@22.28.0
+  - @commercetools-frontend/assets@22.28.0
+  - @commercetools-frontend/browser-history@22.28.0
+  - @commercetools-frontend/constants@22.28.0
+  - @commercetools-frontend/notifications@22.28.0
+  - @commercetools-frontend/sdk@22.28.0
+  - @commercetools-frontend/url-utils@22.28.0
+
 ## 22.27.0
 
 ### Patch Changes

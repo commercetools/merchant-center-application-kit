@@ -1,5 +1,11 @@
 # @commercetools-frontend/codemod
 
+## 22.28.0
+
+### Patch Changes
+
+- [#3533](https://github.com/commercetools/merchant-center-application-kit/pull/3533) [`146cf67`](https://github.com/commercetools/merchant-center-application-kit/commit/146cf672eb15a7b4d858c54d6a01f92d0437a86f) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
 ## 22.27.0
 
 ### Patch Changes

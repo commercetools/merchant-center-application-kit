@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.28.0
+
+### Minor Changes
+
+- [#3520](https://github.com/commercetools/merchant-center-application-kit/pull/3520) [`67cdb03`](https://github.com/commercetools/merchant-center-application-kit/commit/67cdb03ff30cff307bef496a2c5b8484b09c004c) Thanks [@renovate](https://github.com/apps/renovate)! - Update `commercetools-test-data/*` dependencies.
+
+### Patch Changes
+
+- [#3533](https://github.com/commercetools/merchant-center-application-kit/pull/3533) [`146cf67`](https://github.com/commercetools/merchant-center-application-kit/commit/146cf672eb15a7b4d858c54d6a01f92d0437a86f) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`6eb78a4`](https://github.com/commercetools/merchant-center-application-kit/commit/6eb78a463adf848696e984bd0e999b4753676ece)]:
+  - @commercetools-frontend/application-components@22.28.0
+  - @commercetools-frontend/application-config@22.28.0
+  - @commercetools-frontend/assets@22.28.0
+  - @commercetools-frontend/babel-preset-mc-app@22.28.0
+  - @commercetools-frontend/constants@22.28.0
+  - @commercetools-frontend/mc-dev-authentication@22.28.0
+  - @commercetools-frontend/mc-html-template@22.28.0
+
 ## 22.27.0
 
 ### Minor Changes
