@@ -122,13 +122,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [percentageX, setPercentageX] = useState(0);
   const [percentageY, setPercentageY] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
-
   const submenuRef = useRef<HTMLUListElement>(null);
   const submenuSafeAreaRef = useRef<HTMLElement>(null);
 
   /* Getting the width and height of the menu*/
   const subRefBoundingClientRect = submenuRef.current?.getBoundingClientRect();
-
   const { width: menuItemWidth, height: menuItemHeight } =
     subRefBoundingClientRect! ?? {};
 
@@ -169,22 +167,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   ]);
 
   useLayoutEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (props.isActive) {
-        submenuRef.current?.style.setProperty(
-          '--safe-start',
-          `${percentageX}% ${percentageY + 1}%`
-        );
-      }
-    }, 100);
-    return () => clearTimeout(timeoutId);
-  }, [
-    handleMouseMove,
-    percentageX,
-    percentageY,
-    props.isActive,
-    props.mousePosition,
-  ]);
+    submenuRef.current?.style.setProperty(
+      '--safe-start',
+      `${percentageX}% ${percentageY + 1}%`
+    );
+  }, [handleMouseMove, percentageX, percentageY]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
