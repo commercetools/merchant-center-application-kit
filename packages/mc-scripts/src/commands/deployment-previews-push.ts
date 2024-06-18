@@ -15,23 +15,22 @@ import {
 
 const credentialsStorage = new CredentialsStorage();
 
-const deploymentPreviewAliasRegex = /^[^-#]([a-z]|[-](?![-])){0,62}[^-#]$/g;
-export const fqdnRegex =
-  /(?=^.{4,253}$)(^((?!-)[a-zA-Z0-9-]{0,62}[a-zA-Z0-9]\.)+[a-zA-Z]{2,63}$)/i;
-
 const validateUrl = (url = ''): boolean => {
   try {
     const urlSchema = new URL(url);
-    const isProtocolValid = ['http:', 'https:'].includes(urlSchema.protocol);
-    const isHostnameValid = urlSchema.hostname.match(fqdnRegex);
-    return isProtocolValid && Boolean(isHostnameValid);
+    return ['http:', 'https:'].includes(urlSchema.protocol);
   } catch (error) {
     return false;
   }
 };
 
 const validateAlias = (alias = '') => {
-  return Boolean(alias.match(deploymentPreviewAliasRegex));
+  try {
+    new URL(`https://${alias}.commercetools.com/`);
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
 
 type TGetMcUrlLink = {
@@ -237,9 +236,7 @@ async function run(options: TCliCommandPushDeploymentPreviewOptions) {
   }
 
   if (isCustomView) {
-    throw new Error(
-      'Deployments previews are not supported for Custom Views yet.'
-    );
+    throw new Error('Deployments previews are not supported for Custom Views.');
   }
 
   await pushDeploymentPreview({
