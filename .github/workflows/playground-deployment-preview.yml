@@ -1,0 +1,23 @@
+name: Playground application deployment preview trigger
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [vercel_deployment]
+
+jobs:
+  playground-deployment-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install and build
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Create or update deployment preview
+        # Automated integration with MC deployment previews is not yet supported
+        # run: npx mc-scripts deployment-previews:push --token ${{ secrets.MC_API_TOKEN }} --alias ${{ github.ref }} --url ${{ github.event.client_payload.url }}
+        run: echo "[TODO] Deployment preview would be created or updated with alias '${{ github.ref }}'' and url '${{ github.event.client_payload.url }}'"

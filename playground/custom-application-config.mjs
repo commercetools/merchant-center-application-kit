@@ -1,6 +1,10 @@
 import { PERMISSIONS, entryPointUriPath } from './src/constants';
 const name = 'AppKit Playground Application';
 
+const productionUrl = process.env.VERCEL_ENV !== 'production' && Boolean(process.env.VERCEL_URL) ?
+  `https://${process.env.VERCEL_URL}` :
+  process.env.APP_URL;
+
 /**
  * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
  */
@@ -19,7 +23,7 @@ const config = {
     },
     production: {
       applicationId: '${env:APP_ID}',
-      url: '${env:APP_URL}',
+      url: productionUrl,
     },
   },
   additionalEnv: {

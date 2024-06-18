@@ -1,0 +1,10 @@
+{
+  "buildCommand": "pnpm run -w build && pnpm build",
+  "outputDirectory": "public",
+  "rewrites": [
+    {
+      "source": "/:match*",
+      "destination": "/"
+    }
+  ]
+}

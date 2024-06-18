@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-applications/merchant-center-custom-view-template-starter",
-  "version": "22.27.0",
+  "version": "22.28.0",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -34,9 +34,9 @@
     "@commercetools-frontend/mc-dev-authentication": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",
     "@commercetools-frontend/permissions": "workspace:*",
-    "@commercetools-test-data/channel": "8.2.3",
-    "@commercetools-test-data/commons": "8.2.3",
-    "@commercetools-test-data/core": "8.2.3",
+    "@commercetools-test-data/channel": "8.4.0",
+    "@commercetools-test-data/commons": "8.4.0",
+    "@commercetools-test-data/core": "8.4.0",
     "@commercetools-uikit/constraints": "^19.2.0",
     "@commercetools-uikit/data-table": "^19.2.0",
     "@commercetools-uikit/flat-button": "^19.2.0",
