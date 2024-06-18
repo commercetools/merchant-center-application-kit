@@ -112,7 +112,7 @@
     "@percy/core": "1.28.7",
     "@percy/cypress": "3.1.2",
     "@percy/puppeteer": "2.0.2",
-    "@preconstruct/cli": "2.8.4",
+    "@preconstruct/cli": "2.6.2",
     "@svgr/cli": "6.5.1",
     "@svgr/plugin-jsx": "6.5.1",
     "@svgr/plugin-svgo": "6.5.1",
@@ -168,7 +168,7 @@
     "stylelint-order": "5.0.0",
     "stylelint-value-no-unknown-custom-properties": "4.0.0",
     "tsc-files": "1.1.4",
-    "typescript": "5.4.5",
+    "typescript": "5.0.4",
     "vfile-message": "3.1.4"
   },
   "pnpm": {

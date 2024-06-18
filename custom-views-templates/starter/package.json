@@ -18,7 +18,7 @@
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
   },
   "dependencies": {
-    "@apollo/client": "3.10.5",
+    "@apollo/client": "3.7.14",
     "@babel/core": "^7.22.17",
     "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-frontend/actions-global": "workspace:*",
