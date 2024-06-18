@@ -33,7 +33,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.80",
     "apollo-link-logger": "2.0.1",
-    "graphql": "16.8.1",
+    "graphql": "16.8.2",
     "lodash": "4.17.21",
     "moment-timezone": "^0.5.40",
     "omit-empty-es": "1.2.0",
