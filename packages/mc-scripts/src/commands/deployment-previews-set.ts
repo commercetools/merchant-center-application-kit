@@ -5,7 +5,7 @@ import {
   type CustomApplicationData,
   type CustomViewData,
 } from '@commercetools-frontend/application-config';
-import type { TCliCommandPushDeploymentPreviewOptions } from '../types';
+import type { TCliCommandSetDeploymentPreviewOptions } from '../types';
 import CredentialsStorage from '../utils/credentials-storage';
 import {
   fetchCustomApplication,
@@ -58,23 +58,23 @@ const isCustomViewData = (
 ): data is CustomViewData =>
   (data as CustomApplicationData).entryPointUriPath === undefined;
 
-type TPushDeploymentPreviewParams = {
+type TSetDeploymentPreviewParams = {
   mcApiUrl: string;
   applicationId: string;
   applicationIdentifier: string;
   isCustomView: boolean;
   localCustomEntityData: CustomApplicationData;
-  options: TCliCommandPushDeploymentPreviewOptions;
+  options: TCliCommandSetDeploymentPreviewOptions;
 };
 
-async function pushDeploymentPreview({
+async function setDeploymentPreview({
   mcApiUrl,
   applicationId,
   applicationIdentifier,
   localCustomEntityData,
   isCustomView,
   options,
-}: TPushDeploymentPreviewParams) {
+}: TSetDeploymentPreviewParams) {
   /*
     1. Check if the Custom Application exists in the Merchant Center.
     2. Ask for the alias and URL of the deployment preview.
@@ -218,7 +218,7 @@ async function pushDeploymentPreview({
   }
 }
 
-async function run(options: TCliCommandPushDeploymentPreviewOptions) {
+async function run(options: TCliCommandSetDeploymentPreviewOptions) {
   const applicationConfig = processConfig();
   const localCustomEntityData: CustomApplicationData | CustomViewData =
     applicationConfig.data;
@@ -239,7 +239,7 @@ async function run(options: TCliCommandPushDeploymentPreviewOptions) {
     throw new Error('Deployments previews are not supported for Custom Views.');
   }
 
-  await pushDeploymentPreview({
+  await setDeploymentPreview({
     mcApiUrl,
     applicationId: localCustomEntityData.id,
     applicationIdentifier,
