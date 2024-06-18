@@ -33,14 +33,14 @@
     "@commercetools-frontend/application-config": "22.28.0",
     "@commercetools-frontend/constants": "22.28.0",
     "serialize-javascript": "6.0.2",
-    "uglify-js": "3.17.4",
+    "uglify-js": "3.18.0",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
     "@types/serialize-javascript": "^5.0.2",
     "html-webpack-plugin": "5.6.0",
-    "webpack": "5.91.0"
+    "webpack": "5.92.0"
   },
   "engines": {
     "node": "16.x || >=18.0.0"

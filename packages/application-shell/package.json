@@ -85,7 +85,7 @@
     "debounce-async": "0.0.2",
     "downshift": "6.1.12",
     "fuse.js": "6.6.2",
-    "graphql": "16.8.1",
+    "graphql": "16.8.2",
     "history": "4.10.1",
     "is-retina": "1.0.3",
     "jwt-decode": "3.1.2",
@@ -105,7 +105,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@apollo/client": "3.7.14",
+    "@apollo/client": "3.10.5",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
     "@types/jest": "^29.5.4",
