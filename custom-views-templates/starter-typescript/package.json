@@ -28,6 +28,7 @@
     "@commercetools-frontend/application-shell": "workspace:*",
     "@commercetools-frontend/application-shell-connectors": "workspace:*",
     "@commercetools-frontend/assets": "workspace:*",
+    "@commercetools-frontend/babel-preset-mc-app": "workspace:*",
     "@commercetools-frontend/constants": "workspace:*",
     "@commercetools-frontend/eslint-config-mc-app": "workspace:*",
     "@commercetools-frontend/i18n": "workspace:*",
