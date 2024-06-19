@@ -318,6 +318,9 @@ importers:
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../../packages/assets
+      '@commercetools-frontend/babel-preset-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/babel-preset-mc-app
       '@commercetools-frontend/constants':
         specifier: workspace:*
         version: link:../../packages/constants
@@ -537,6 +540,9 @@ importers:
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../../packages/assets
+      '@commercetools-frontend/babel-preset-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/babel-preset-mc-app
       '@commercetools-frontend/constants':
         specifier: workspace:*
         version: link:../../packages/constants
@@ -753,6 +759,9 @@ importers:
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../../packages/assets
+      '@commercetools-frontend/babel-preset-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/babel-preset-mc-app
       '@commercetools-frontend/constants':
         specifier: workspace:*
         version: link:../../packages/constants
@@ -972,6 +981,9 @@ importers:
       '@commercetools-frontend/assets':
         specifier: workspace:*
         version: link:../../packages/assets
+      '@commercetools-frontend/babel-preset-mc-app':
+        specifier: workspace:*
+        version: link:../../packages/babel-preset-mc-app
       '@commercetools-frontend/constants':
         specifier: workspace:*
         version: link:../../packages/constants
@@ -6356,10 +6368,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.23.0
-      '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-compilation-targets': 7.22.15
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.23.0)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.23.0)
     dev: false
@@ -6370,10 +6382,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.24.5
-      '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-compilation-targets': 7.22.15
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.24.5)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.24.5)
     dev: true
