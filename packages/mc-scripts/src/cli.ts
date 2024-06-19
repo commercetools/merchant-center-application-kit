@@ -200,7 +200,7 @@ async function run() {
 
   // Command: deployment-previews:set
   const usageDeploymentPreviewsSet =
-    'Creates or updates a deployment preview for the customization application.';
+    'Creates or updates a deployment preview for the Custom Application.';
   cli
     .command('deployment-previews:set', usageDeploymentPreviewsSet)
     .usage(`\n\n  ${usageDeploymentPreviewsSet}`)
