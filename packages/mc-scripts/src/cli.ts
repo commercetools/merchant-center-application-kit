@@ -9,6 +9,7 @@ import type {
   TCliCommandBuildOptions,
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
+  TCliCommandSetDeploymentPreviewOptions,
 } from './types';
 import doesFileExist from './utils/does-file-exist';
 
@@ -194,6 +195,43 @@ async function run() {
 
         const configSyncCommand = await import('./commands/config-sync');
         await configSyncCommand.default(options);
+      }
+    );
+
+  // Command: deployment-previews:set
+  const usageDeploymentPreviewsSet =
+    'Creates or updates a deployment preview for the Custom Application.';
+  cli
+    .command('deployment-previews:set', usageDeploymentPreviewsSet)
+    .usage(`\n\n  ${usageDeploymentPreviewsSet}`)
+    .option(
+      '--alias <deployment-preview-alias>',
+      "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the command will prompt you for it."
+    )
+    .option(
+      '--url <deployment-preview-url>',
+      "(optional) URL to be used for the deployment preview. If you don't provide a URL, the command will prompt you for it."
+    )
+    .option(
+      '--dry-run',
+      '(optional) Executes the command but does not send any mutation request.',
+      { default: false }
+    )
+    .action(
+      async (
+        options: TCliCommandSetDeploymentPreviewOptions & TCliGlobalOptions
+      ) => {
+        // Load dotenv files into the process environment.
+        // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+        loadDotEnvFiles(options);
+
+        // Do this as the first thing so that any code reading it knows the right env.
+        process.env.NODE_ENV = 'production';
+
+        const deploymentsSetCommand = await import(
+          './commands/deployment-previews-set'
+        );
+        await deploymentsSetCommand.default(options);
       }
     );
 

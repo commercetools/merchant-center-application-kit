@@ -26,6 +26,14 @@ declare module '*/fetch-project-extensions-navbar.settings.graphql' {
   export default defaultDocument;
 }
 
+declare module '*/create-custom-application-deployment-preview.settings.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateCustomApplicationDeploymentPreview: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module '*/create-custom-application.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -42,6 +50,14 @@ declare module '*/create-custom-view.settings.graphql' {
   export default defaultDocument;
 }
 
+declare module '*/delete-custom-application-deployment-preview.settings.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteCustomApplicationDeploymentPreview: DocumentNode;
+
+  export default defaultDocument;
+}
+
 declare module '*/fetch-custom-application.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -54,6 +70,14 @@ declare module '*/fetch-custom-view.settings.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const FetchCustomViewFromCli: DocumentNode;
+
+  export default defaultDocument;
+}
+
+declare module '*/update-custom-application-deployment-preview.settings.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const UpdateCustomApplicationDeploymentPreview: DocumentNode;
 
   export default defaultDocument;
 }
