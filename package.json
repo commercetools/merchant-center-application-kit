@@ -92,7 +92,7 @@
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*",
     "@commercetools-frontend/jest-stylelint-runner": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",
-    "@commercetools-test-data/core": "8.4.0",
+    "@commercetools-test-data/core": "8.5.0",
     "@commercetools-uikit/design-system": "^19.2.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.8.1",

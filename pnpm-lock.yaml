@@ -58,8 +58,8 @@ importers:
         specifier: workspace:*
         version: link:packages/mc-scripts
       '@commercetools-test-data/core':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-uikit/design-system':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)
@@ -346,14 +346,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/commons':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/core':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-uikit/constraints':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -568,14 +568,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/commons':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/core':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-uikit/constraints':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -787,14 +787,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/commons':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/core':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-uikit/constraints':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -1009,14 +1009,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/commons':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-test-data/core':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@commercetools-uikit/constraints':
         specifier: ^19.2.0
         version: 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -3261,8 +3261,8 @@ importers:
         specifier: 22.28.0
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
-        specifier: 8.4.0
-        version: 8.4.0
+        specifier: 8.5.0
+        version: 8.5.0
       '@formatjs/cli':
         specifier: 6.2.12
         version: 6.2.12
@@ -8199,14 +8199,14 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: true
 
-  /@commercetools-test-data/channel@8.4.0:
-    resolution: {integrity: sha512-W/52RUuceRZxY4reAksCOZrb9JOKvaPsDt3sWEymn7GgXT2EBnUTKLeYeNVIl0eAo8YJVDxm66/EFIeZreuYTw==}
+  /@commercetools-test-data/channel@8.5.0:
+    resolution: {integrity: sha512-FnWkxU5mTyR2AmI4ErE5Jz8M99avFJ0wKZXS9UTcuF+bjnrpuNtIpCHnV1VUirl1c/hfaaoU/8KgLehDarilUw==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/commons': 8.4.0
-      '@commercetools-test-data/core': 8.4.0
-      '@commercetools-test-data/utils': 8.4.0
+      '@commercetools-test-data/commons': 8.5.0
+      '@commercetools-test-data/core': 8.5.0
+      '@commercetools-test-data/utils': 8.5.0
       '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.4.1
     transitivePeerDependencies:
@@ -8228,13 +8228,13 @@ packages:
       - encoding
     dev: true
 
-  /@commercetools-test-data/commons@8.4.0:
-    resolution: {integrity: sha512-MZ0VlJjiRm/9FtgsAw64Yc3Bt8+KY6047NdhrWzWqJalNp8vSTc8DVNG+rPDc/2nZ0TbmUxwxFr3N1B9D3KljQ==}
+  /@commercetools-test-data/commons@8.5.0:
+    resolution: {integrity: sha512-VnO7pWyrN7Nx1hD7+13bsLXiZu8Tqp4pN7oIPQtH5Cy43NGrlJ5jlkP7BKM8UuEjCJtAvR2fWPW5GZ3rAaeaIA==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 8.4.0
-      '@commercetools-test-data/utils': 8.4.0
+      '@commercetools-test-data/core': 8.5.0
+      '@commercetools-test-data/utils': 8.5.0
       '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.4.1
       '@types/lodash': 4.17.4
@@ -8252,8 +8252,8 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /@commercetools-test-data/core@8.4.0:
-    resolution: {integrity: sha512-taJeDKduCfH3k1Y+eCFmGbg3YrjRAT2nQS+cc8a4LQTVhtd4aGSTEicxlEUMkxabTMTCQ0uxPfOgvRTCfhiqug==}
+  /@commercetools-test-data/core@8.5.0:
+    resolution: {integrity: sha512-S+PaEHX9iOtcoBzwx5exh77Y4+aGxoT15cG6ptADwFrMUdpGbI1x5XA/siBOu00Uy3Ge8FZrXA/hHPvuzxRLvw==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -8296,8 +8296,8 @@ packages:
       '@faker-js/faker': 8.4.1
     dev: true
 
-  /@commercetools-test-data/utils@8.4.0:
-    resolution: {integrity: sha512-2jTgkjHqpoUpcp7lixFDmrqOUxIBW4KIKAlNDIaV75kVj3lHO1UZmlQa4a/5ktOKSEUYZPZ6m3TEoht2UQ2kLw==}
+  /@commercetools-test-data/utils@8.5.0:
+    resolution: {integrity: sha512-gcEyLYkV8MhwH2t5szhvQuMpnQNqZGwrT9drSDDZmwWO7gQT3zKQ8NVCt+JUYTV/rffP7RLKJ2I4oRNOG6OaEA==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -9885,7 +9885,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/text': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.2.0(react@17.0.2)
@@ -10404,7 +10404,7 @@ packages:
     peerDependencies:
       react: 17.x
     dependencies:
-      '@babel/runtime': 7.24.4
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/accessible-button': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/design-system': 19.2.0(@types/react@17.0.80)(react-dom@17.0.2)
