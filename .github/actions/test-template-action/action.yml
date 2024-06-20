@@ -63,7 +63,6 @@ runs:
       run: pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:build
       env:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
-        ENABLE_I18N_MESSAGE_COMPILATION: 'true'
 
     - name: Running static type checking
       if: ${{ inputs.typecheck-command != '' }}
