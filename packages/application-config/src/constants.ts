@@ -5,7 +5,7 @@ export const CLOUD_IDENTIFIERS = {
   AWS_FRA: 'aws-fra',
   AWS_OHIO: 'aws-ohio',
   AWS_CN: 'aws-cn',
-  AZR_US: 'azr-us',
+  AZURE_US: 'azure-us',
 } as const;
 
 export const MC_API_URLS = {
@@ -15,7 +15,7 @@ export const MC_API_URLS = {
   AWS_FRA: 'https://mc-api.eu-central-1.aws.commercetools.com',
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
   AWS_CN: 'https://mc-api.cn-northwest-1.aws.commercetools.cn',
-  AZR_US: 'https://mc-api.eastus1.azure.commercetools.com',
+  AZURE_US: 'https://mc-api.eastus1.azure.commercetools.com',
 } as const;
 
 export const LOADED_CONFIG_TYPES = {
