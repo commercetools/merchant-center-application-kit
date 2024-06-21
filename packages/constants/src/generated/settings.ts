@@ -2244,6 +2244,22 @@ export type TFetchProjectExtensionsNavbarQuery = {
   } | null;
 };
 
+export type TCreateCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  applicationId: Scalars['ID'];
+  data: TCustomApplicationDeploymentPreviewCreateInput;
+}>;
+
+export type TCreateCustomApplicationDeploymentPreviewMutation = {
+  __typename?: 'Mutation';
+  createCustomApplicationDeploymentPreview: {
+    __typename?: 'CustomApplicationDeploymentPreview';
+    id: string;
+    alias?: string | null;
+    url: string;
+  };
+};
+
 export type TCreateCustomApplicationFromCliMutationVariables = Exact<{
   organizationId: Scalars['String'];
   data: TCustomApplicationDraftDataInput;
@@ -2268,6 +2284,19 @@ export type TCreateCustomViewFromCliMutation = {
     __typename?: 'RestrictedCustomViewForOrganization';
     id: string;
   } | null;
+};
+
+export type TDeleteCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  deploymentId: Scalars['ID'];
+}>;
+
+export type TDeleteCustomApplicationDeploymentPreviewMutation = {
+  __typename?: 'Mutation';
+  deleteCustomApplicationDeploymentPreview: {
+    __typename?: 'CustomApplicationDeploymentPreview';
+    id: string;
+  };
 };
 
 export type TFetchCustomApplicationFromCliQueryVariables = Exact<{
@@ -2313,6 +2342,12 @@ export type TFetchCustomApplicationFromCliQuery = {
           value: string;
         }>;
       }>;
+      deployments: Array<{
+        __typename?: 'CustomApplicationDeploymentPreview';
+        id: string;
+        url: string;
+        alias?: string | null;
+      }>;
     };
   } | null;
 };
@@ -2349,6 +2384,22 @@ export type TFetchCustomViewFromCliQuery = {
       }>;
     } | null;
   } | null;
+};
+
+export type TUpdateCustomApplicationDeploymentPreviewMutationVariables = Exact<{
+  organizationId: Scalars['String'];
+  deploymentId: Scalars['ID'];
+  data: TCustomApplicationDeploymentPreviewUpdateInput;
+}>;
+
+export type TUpdateCustomApplicationDeploymentPreviewMutation = {
+  __typename?: 'Mutation';
+  updateCustomApplicationDeploymentPreview: {
+    __typename?: 'CustomApplicationDeploymentPreview';
+    id: string;
+    alias?: string | null;
+    url: string;
+  };
 };
 
 export type TUpdateCustomApplicationFromCliMutationVariables = Exact<{

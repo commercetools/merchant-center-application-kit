@@ -85,11 +85,3 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-
-      - name: Deploying Playground application to Vercel (production)
-        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
-        run: |
-          pnpm --filter @commercetools-local/playground run deploy --prod --token="${{ secrets.VERCEL_TOKEN_PLAYGROUND }}"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_PLAYGROUND }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PLAYGROUND }}

@@ -4,7 +4,12 @@ import combineAdapters from '@flopflip/combine-adapters';
 import httpAdapter from '@flopflip/http-adapter';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { cacheIdentifiers, cacheModes } from '@flopflip/types';
+import {
+  type TAdapterIdentifiers,
+  cacheIdentifiers,
+  cacheModes,
+  adapterIdentifiers,
+} from '@flopflip/types';
 import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -93,13 +98,17 @@ const parseFlags = (fetchedFlags: TFetchedFlags): TParsedHttpAdapterFlags =>
     ])
   );
 
-const getCacheMode = () => {
-  // @ts-ignore
-  if (typeof window.Cypress !== 'undefined') {
+const getCacheMode = (adapterIdentifier: TAdapterIdentifiers) => {
+  if (
+    // @ts-ignore
+    typeof window.Cypress !== 'undefined' ||
+    adapterIdentifier === adapterIdentifiers.http
+  ) {
     // Temporary workaround: when running in Cypress, do not use lazy mode
     // as the flag is not being updated in time during the test run.
     return cacheModes.eager;
   }
+
   return cacheModes.lazy;
 };
 
@@ -146,7 +155,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       },
       launchdarkly: {
         cacheIdentifier: cacheIdentifiers.local,
-        cacheMode: getCacheMode(),
+        cacheMode: getCacheMode(adapterIdentifiers.launchdarkly),
         sdk: {
           // Allow to overwrite the client ID, passed via the `additionalEnv` properties
           // of the application config.
@@ -166,7 +175,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
         // polling interval set to 15 minutes
         pollingIntervalMs: 1000 * 60 * 15,
         cacheIdentifier: cacheIdentifiers.local,
-        cacheMode: getCacheMode(),
+        cacheMode: getCacheMode(adapterIdentifiers.http),
         user: {
           key: props.user?.id,
         },

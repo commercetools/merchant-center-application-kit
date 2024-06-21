@@ -51,11 +51,19 @@ runs:
         MC_API_URL: ${{ inputs.mc-api-url }}
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
+    - name: Mock translate i18n messages for the build
+      shell: bash
+      run: node ./scripts/mock-translate-i18n-messages.mjs
+      env:
+        APPLICATION_TYPE: ${{ inputs.application-type }}
+        TEMPLATE_NAME: ${{ inputs.template-name }}
+
     - name: Building Starter template
       shell: bash
       run: pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:build
       env:
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+        ENABLE_I18N_MESSAGE_COMPILATION: 'true'
 
     - name: Running static type checking
       if: ${{ inputs.typecheck-command != '' }}

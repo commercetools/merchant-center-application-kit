@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "22.27.0",
+  "version": "22.28.0",
   "private": true,
   "scripts": {
     "start": "vite --port 8001",
@@ -42,7 +42,7 @@
     "@types/react": "^17.0.80",
     "@types/react-dom": "^17.0.19",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "4.2.1",
+    "@vitejs/plugin-react": "4.3.1",
     "vite": "~4.5.3"
   }
 }

@@ -1,0 +1,11 @@
+mutation DeleteCustomApplicationDeploymentPreview(
+  $organizationId: String!
+  $deploymentId: ID!
+) {
+  deleteCustomApplicationDeploymentPreview(
+    organizationId: $organizationId
+    deploymentId: $deploymentId
+  ) {
+    id
+  }
+}

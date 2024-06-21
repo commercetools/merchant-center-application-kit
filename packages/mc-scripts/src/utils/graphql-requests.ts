@@ -7,27 +7,38 @@ import type {
   TFetchMyOrganizationsFromCliQueryVariables,
 } from '../generated/core';
 import type {
+  TCreateCustomApplicationDeploymentPreviewMutation,
+  TCreateCustomApplicationDeploymentPreviewMutationVariables,
   TCreateCustomApplicationFromCliMutation,
   TCreateCustomApplicationFromCliMutationVariables,
   TCreateCustomViewFromCliMutation,
   TCreateCustomViewFromCliMutationVariables,
+  TCustomApplicationDeploymentPreviewCreateInput,
+  TCustomApplicationDeploymentPreviewUpdateInput,
   TCustomApplicationDraftDataInput,
   TCustomViewDraftDataInput,
+  TDeleteCustomApplicationDeploymentPreviewMutation,
+  TDeleteCustomApplicationDeploymentPreviewMutationVariables,
   TFetchCustomApplicationFromCliQuery,
   TFetchCustomApplicationFromCliQueryVariables,
   TFetchCustomViewFromCliQuery,
   TFetchCustomViewFromCliQueryVariables,
+  TUpdateCustomApplicationDeploymentPreviewMutation,
+  TUpdateCustomApplicationDeploymentPreviewMutationVariables,
   TUpdateCustomApplicationFromCliMutation,
   TUpdateCustomApplicationFromCliMutationVariables,
   TUpdateCustomViewFromCliMutation,
   TUpdateCustomViewFromCliMutationVariables,
 } from '../generated/settings';
+import CreateCustomApplicationDeploymentPreviewFromCli from './create-custom-application-deployment-preview.settings.graphql';
 import CreateCustomApplicationFromCli from './create-custom-application.settings.graphql';
 import CreateCustomViewFromCli from './create-custom-view.settings.graphql';
 import CredentialsStorage from './credentials-storage';
+import DeleteCustomApplicationDeploymentPreviewFromCli from './delete-custom-application-deployment-preview.settings.graphql';
 import FetchCustomApplicationFromCli from './fetch-custom-application.settings.graphql';
 import FetchCustomViewFromCli from './fetch-custom-view.settings.graphql';
 import FetchMyOrganizationsFromCli from './fetch-user-organizations.core.graphql';
+import UpdateCustomApplicationDeploymentPreviewFromCli from './update-custom-application-deployment-preview.settings.graphql';
 import UpdateCustomApplicationFromCli from './update-custom-application.settings.graphql';
 import UpdateCustomViewFromCli from './update-custom-view.settings.graphql';
 import userAgent from './user-agent';
@@ -72,6 +83,26 @@ type TFetchUserOrganizationsOptions = {
   mcApiUrl: string;
   applicationIdentifier: string;
   customViewId?: string;
+};
+type TCreateCustomApplicationDeploymentPreviewOptions = {
+  mcApiUrl: string;
+  organizationId: string;
+  applicationId: string;
+  applicationIdentifier: string;
+  data: TCustomApplicationDeploymentPreviewCreateInput;
+};
+type TUpdateCustomApplicationDeploymentPreviewOptions = {
+  mcApiUrl: string;
+  deploymentId: string;
+  organizationId: string;
+  data: TCustomApplicationDeploymentPreviewUpdateInput;
+  applicationIdentifier: string;
+};
+type TDeleteCustomApplicationDeploymentPreviewOptions = {
+  mcApiUrl: string;
+  organizationId: string;
+  applicationIdentifier: string;
+  deploymentId: string;
 };
 
 const credentialsStorage = new CredentialsStorage();
@@ -313,6 +344,78 @@ const fetchUserOrganizations = async ({
   return userOrganizations.myOrganizations;
 };
 
+const createCustomApplicationDeploymentPreview = async ({
+  mcApiUrl,
+  organizationId,
+  applicationId,
+  applicationIdentifier,
+  data,
+}: TCreateCustomApplicationDeploymentPreviewOptions) => {
+  const createdDeploymentPreviewResult = await requestWithTokenRetry<
+    TCreateCustomApplicationDeploymentPreviewMutation,
+    TCreateCustomApplicationDeploymentPreviewMutationVariables
+  >(CreateCustomApplicationDeploymentPreviewFromCli, {
+    variables: {
+      organizationId,
+      applicationId,
+      data,
+    },
+    mcApiUrl,
+    headers: {
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+  return createdDeploymentPreviewResult.createCustomApplicationDeploymentPreview;
+};
+
+const updateCustomApplicationDeploymentPreview = async ({
+  mcApiUrl,
+  organizationId,
+  deploymentId,
+  data,
+  applicationIdentifier,
+}: TUpdateCustomApplicationDeploymentPreviewOptions) => {
+  const updatedDeploymentPreviewResult = await requestWithTokenRetry<
+    TUpdateCustomApplicationDeploymentPreviewMutation,
+    TUpdateCustomApplicationDeploymentPreviewMutationVariables
+  >(UpdateCustomApplicationDeploymentPreviewFromCli, {
+    variables: {
+      organizationId,
+      deploymentId,
+      data,
+    },
+    mcApiUrl,
+    headers: {
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+  return updatedDeploymentPreviewResult.updateCustomApplicationDeploymentPreview;
+};
+
+const deleteCustomApplicationDeploymentPreview = async ({
+  mcApiUrl,
+  organizationId,
+  applicationIdentifier,
+  deploymentId,
+}: TDeleteCustomApplicationDeploymentPreviewOptions) => {
+  await requestWithTokenRetry<
+    TDeleteCustomApplicationDeploymentPreviewMutation,
+    TDeleteCustomApplicationDeploymentPreviewMutationVariables
+  >(DeleteCustomApplicationDeploymentPreviewFromCli, {
+    variables: {
+      organizationId,
+      deploymentId,
+    },
+    mcApiUrl,
+    headers: {
+      'x-application-id': applicationIdentifier,
+      'x-graphql-target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+    },
+  });
+};
+
 export {
   fetchCustomApplication,
   fetchCustomView,
@@ -321,4 +424,7 @@ export {
   fetchUserOrganizations,
   createCustomView,
   updateCustomView,
+  createCustomApplicationDeploymentPreview,
+  updateCustomApplicationDeploymentPreview,
+  deleteCustomApplicationDeploymentPreview,
 };
