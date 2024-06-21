@@ -67,6 +67,8 @@ const mapCloudIdentifierToIssuer = <Request extends TBaseRequest>(
       return MC_API_URLS.AWS_OHIO;
     case CLOUD_IDENTIFIERS.AWS_CN:
       return MC_API_URLS.AWS_CN;
+    case CLOUD_IDENTIFIERS.AZURE_US:
+      return MC_API_URLS.AZURE_US;
     default:
       return undefined;
   }
