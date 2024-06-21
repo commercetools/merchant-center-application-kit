@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 type TMessageFormat = 'simple' | 'transifex';
 
 function getI18nMessageFormat(source: string): TMessageFormat {
@@ -14,9 +16,11 @@ function handleMessageCompilationError(
   if (!process.env.CI) {
     warnFunction(
       new Error(
-        `[i18n message compilation] Message compilation on ${fileIdentifier} has failed.
-Consider setting the environmental variable "DISABLE_I18N_MESSAGE_COMPILATION" to true to disable the message loader or resolve the issues on the messages file.
-${error instanceof Error ? `Error: ${error.message}` : ''}`
+        `[i18n message compilation] Message compilation on ${fileIdentifier} has failed.\n` +
+          `Consider setting the environmental variable ${chalk.yellow(
+            'DISABLE_I18N_MESSAGE_COMPILATION'
+          )} to true to disable the message loader or resolve the issues on the messages file.\n` +
+          `${error instanceof Error ? `Error: ${error.message}` : ''}`
       )
     );
   }
