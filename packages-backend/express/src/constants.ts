@@ -15,7 +15,7 @@ export const MC_API_URLS = {
   AWS_FRA: 'https://mc-api.eu-central-1.aws.commercetools.com',
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
   AWS_CN: 'https://mc-api.cn-northwest-1.aws.commercetools.cn',
-  AZURE_US: 'https://mc-api.eastus1.azure.commercetools.com',
+  AZURE_US: 'https://mc-api.eastus.azure.commercetools.com',
 } as const;
 
 export const MC_API_PROXY_HEADERS = {
