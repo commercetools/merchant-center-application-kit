@@ -19,13 +19,23 @@ const Content = styled.section<
   grid-template-areas: ${(props) =>
     props.columns === '1' ? 'none' : '"left-column right-column"'};
   grid-template-columns: ${(props) => {
+    // NOTE: using only `?fr` can cause the layout the "break" as `fr`
+    // is all about distribution of the available space.
+    // If the content of a column becomes "bigger", the system tries
+    // to compensate for the lack of space by reducing the width of the
+    // other column (it does not overflow).
+    // To fix that, we can use `minmax` to instruct the system that
+    // the column size has to be maintained. However, this will cause
+    // some overflow if the content is bigger.
+    // For us, it's important to ensure that the columns layout maintains
+    // the correct dimensions and sizes, thus using `minmax`.
     switch (props.columns) {
       case '1/1':
-        return '1fr 1fr';
+        return 'repeat(2, minmax(0, 1fr))';
       case '2/1':
-        return '2fr 1fr';
+        return 'minmax(0, 2fr) minmax(0, 1fr)';
       default:
-        return '1fr';
+        return 'minmax(0, 1fr)';
     }
   }};
   gap: ${(props) =>
