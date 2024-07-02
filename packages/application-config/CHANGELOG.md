@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-config
 
+## 22.29.0
+
+### Minor Changes
+
+- [#3558](https://github.com/commercetools/merchant-center-application-kit/pull/3558) [`5363548`](https://github.com/commercetools/merchant-center-application-kit/commit/53635480ff4aef9dbc3960970d8d6bc0ba3991ef) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Includes a new target for the [cloudIdentifier](https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#cloudidentifier) configuration property so both Custom Applications and Custom Views can use the upcoming Azure US environment.
+
+### Patch Changes
+
+- [#3539](https://github.com/commercetools/merchant-center-application-kit/pull/3539) [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.29.0
+  - @commercetools-frontend/constants@22.29.0
+
 ## 22.28.0
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 22.29.0
+
 ## 22.28.0
 
 ## 22.27.0

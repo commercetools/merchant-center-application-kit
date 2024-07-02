@@ -1,5 +1,7 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 22.29.0
+
 ## 22.28.0
 
 ## 22.27.0
