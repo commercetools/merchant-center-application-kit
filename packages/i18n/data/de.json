@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+    "string": "Für diese Produktvariante existiert bereits ein Preis mit gleichen Rahmenbedingungen. Die Kombination aus Währung, Land, Kundengruppe, Kanal und Gültigkeitsdatum muss für jeden Preis pro SKU einmalig sein."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -71,9 +71,17 @@
     "developer_comment": "User attempts to create a resource while having already reached the limit",
     "string": "The project reached the limit for the resource. To add more resources delete existing ones or reach out to the administrator or contact customer support."
   },
+  "ApiError.OverlappingPriceValidity": {
+    "developer_comment": "Returned when a given price validity period conflicts with an existing one",
+    "string": "Es existiert ein weiterer Preis mit überschneidenden Gültigkeitsdaten. Jede Preiskombination muss eindeutige Gültigkeitsdaten haben."
+  },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
     "string": "Es gibt leider schon einen Preis mit diesen Angaben. Bitte ändern Sie die Preisangaben vor dem Speichern, damit sie sich nicht mit einem anderen Preis überschneiden."
+  },
+  "ApiError.OverlappingStandalonePriceValidity": {
+    "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
+    "string": "Es existiert ein weiterer Preis mit überschneidenden Gültigkeitsdaten. Jede Preiskombination muss eindeutige Gültigkeitsdaten haben."
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",

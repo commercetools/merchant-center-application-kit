@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+    "string": "Ya existe un precio del mismo ámbito para esta variante de producto. La combinación de moneda, país, grupo de clientes, canal y fecha de validez debe ser única para cada precio por SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -71,9 +71,17 @@
     "developer_comment": "User attempts to create a resource while having already reached the limit",
     "string": "El proyecto alcanzó el límite del recurso. Para agregar más, elimina los existentes, comunícate con el administrador o servicio de atención al cliente."
   },
+  "ApiError.OverlappingPriceValidity": {
+    "developer_comment": "Returned when a given price validity period conflicts with an existing one",
+    "string": "Ya existe otro precio que se solapa con las fechas de validez. Cada combinación de precios debe tener fechas de validez únicas."
+  },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
     "string": "Lo sentimos, ya hay un precio con estos detalles. Por favor, modifíquelos de tal manera que no coincidan con otro antes de guardar."
+  },
+  "ApiError.OverlappingStandalonePriceValidity": {
+    "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
+    "string": "Another price with overlapping validity dates exists. Each price combination needs to have unique validity dates."
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",

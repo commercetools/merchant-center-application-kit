@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU."
+    "string": "此产品变体已存在具有相同范围的价格。对于每个 SKU 的每个价格，货币、国家/地区、客户组、渠道和有效日期的组合必须是唯一的。"
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -71,9 +71,17 @@
     "developer_comment": "User attempts to create a resource while having already reached the limit",
     "string": "项目受到资源限制。要添加更多资源，请删除现有资源，联系管理员或联系客户支持部门。"
   },
+  "ApiError.OverlappingPriceValidity": {
+    "developer_comment": "Returned when a given price validity period conflicts with an existing one",
+    "string": "存在另一个有效日期重叠的价格。每个价格组合都需要有唯一的有效日期。"
+  },
   "ApiError.OverlappingPrices": {
     "developer_comment": "",
     "string": "抱歉，已存在具有这些详情的价格。请修改价格详情，确保其未为其他价格重合，然后保存。"
+  },
+  "ApiError.OverlappingStandalonePriceValidity": {
+    "developer_comment": "Returned when a given standalone price validity period conflicts with an existing one",
+    "string": "存在另一个有效日期重叠的价格。每个价格组合都需要有唯一的有效日期。"
   },
   "ApiError.PendingOperation": {
     "developer_comment": "User tries to start a new process when one is already underway",
