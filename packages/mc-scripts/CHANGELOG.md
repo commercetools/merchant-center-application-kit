@@ -1,5 +1,26 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.29.0
+
+### Minor Changes
+
+- [#3541](https://github.com/commercetools/merchant-center-application-kit/pull/3541) [`df253eb`](https://github.com/commercetools/merchant-center-application-kit/commit/df253eb721fa33ba82eec939f05b7e3a6c491644) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Included a new command (`deployment-previews:set`) which allows to create [deployment previews](https://docs.commercetools.com/merchant-center-customizations/concepts/deployment-previews) for Custom Applications.
+
+- [#3556](https://github.com/commercetools/merchant-center-application-kit/pull/3556) [`c63fd6a`](https://github.com/commercetools/merchant-center-application-kit/commit/c63fd6ae02e4818267f0f133136bd823c5bb51d1) Thanks [@dogayuksel](https://github.com/dogayuksel)! - `ENABLE_I18N_MESSAGE_COMPILATION` has been renamed to `DISABLE_I18N_MESSAGE_COMPILATION`. With this change, the build command will now attempt to compile translation files located in the `/i18n/data` directory by default. If an error occurs during this process, the original files will be used for the bundle instead. Additionally, a warning message will be displayed in non-CI environments.
+
+### Patch Changes
+
+- [#3539](https://github.com/commercetools/merchant-center-application-kit/pull/3539) [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`fcc8ce7`](https://github.com/commercetools/merchant-center-application-kit/commit/fcc8ce72bd1bed70551bf07907ca65c13ad13307), [`03ae4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/03ae4b29ed78ee9d0fea6c5561125a56c5544945), [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52), [`5363548`](https://github.com/commercetools/merchant-center-application-kit/commit/53635480ff4aef9dbc3960970d8d6bc0ba3991ef)]:
+  - @commercetools-frontend/application-components@22.29.0
+  - @commercetools-frontend/application-config@22.29.0
+  - @commercetools-frontend/mc-html-template@22.29.0
+  - @commercetools-frontend/mc-dev-authentication@22.29.0
+  - @commercetools-frontend/assets@22.29.0
+  - @commercetools-frontend/babel-preset-mc-app@22.29.0
+  - @commercetools-frontend/constants@22.29.0
+
 ## 22.28.0
 
 ### Minor Changes

@@ -1,5 +1,30 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.29.0
+
+### Patch Changes
+
+- [#3552](https://github.com/commercetools/merchant-center-application-kit/pull/3552) [`ec43ee7`](https://github.com/commercetools/merchant-center-application-kit/commit/ec43ee72ab95c0245f6e4441930da641cae2a31f) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all test-data packages to v8.5.0
+
+- [#3551](https://github.com/commercetools/merchant-center-application-kit/pull/3551) [`8c10dd8`](https://github.com/commercetools/merchant-center-application-kit/commit/8c10dd837ffb27b20b40c1596707c64a96c7d41b) Thanks [@kark](https://github.com/kark)! - Ensure compatibility with yarn v3 by explicitly adding `@commercetools-frontend/babel-preset-mc-app` dependency for customization templates
+
+- Updated dependencies [[`fcc8ce7`](https://github.com/commercetools/merchant-center-application-kit/commit/fcc8ce72bd1bed70551bf07907ca65c13ad13307), [`03ae4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/03ae4b29ed78ee9d0fea6c5561125a56c5544945), [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52), [`df253eb`](https://github.com/commercetools/merchant-center-application-kit/commit/df253eb721fa33ba82eec939f05b7e3a6c491644), [`5363548`](https://github.com/commercetools/merchant-center-application-kit/commit/53635480ff4aef9dbc3960970d8d6bc0ba3991ef), [`999014a`](https://github.com/commercetools/merchant-center-application-kit/commit/999014a8feeb9d2b4a0873f4b064a75e1fafd242), [`c63fd6a`](https://github.com/commercetools/merchant-center-application-kit/commit/c63fd6ae02e4818267f0f133136bd823c5bb51d1)]:
+  - @commercetools-frontend/application-components@22.29.0
+  - @commercetools-frontend/application-shell@22.29.0
+  - @commercetools-frontend/application-shell-connectors@22.29.0
+  - @commercetools-frontend/application-config@22.29.0
+  - @commercetools-frontend/jest-preset-mc-app@22.29.0
+  - @commercetools-frontend/mc-scripts@22.29.0
+  - @commercetools-frontend/i18n@22.29.0
+  - @commercetools-frontend/permissions@22.29.0
+  - @commercetools-frontend/mc-dev-authentication@22.29.0
+  - @commercetools-frontend/actions-global@22.29.0
+  - @commercetools-frontend/l10n@22.29.0
+  - @commercetools-frontend/assets@22.29.0
+  - @commercetools-frontend/babel-preset-mc-app@22.29.0
+  - @commercetools-frontend/constants@22.29.0
+  - @commercetools-frontend/eslint-config-mc-app@22.29.0
+
 ## 22.28.0
 
 ### Patch Changes

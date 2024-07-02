@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 22.29.0
+
 ## 22.28.0
 
 ### Patch Changes
