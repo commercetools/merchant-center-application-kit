@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.29.0
+
+### Patch Changes
+
+- [#3561](https://github.com/commercetools/merchant-center-application-kit/pull/3561) [`fcc8ce7`](https://github.com/commercetools/merchant-center-application-kit/commit/fcc8ce72bd1bed70551bf07907ca65c13ad13307) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all flopflip packages to v14.0.2
+
+- [#3539](https://github.com/commercetools/merchant-center-application-kit/pull/3539) [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52) Thanks [@renovate](https://github.com/apps/renovate)! - Update all dependencies
+
+- Updated dependencies [[`fcc8ce7`](https://github.com/commercetools/merchant-center-application-kit/commit/fcc8ce72bd1bed70551bf07907ca65c13ad13307), [`03ae4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/03ae4b29ed78ee9d0fea6c5561125a56c5544945), [`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52), [`5363548`](https://github.com/commercetools/merchant-center-application-kit/commit/53635480ff4aef9dbc3960970d8d6bc0ba3991ef), [`999014a`](https://github.com/commercetools/merchant-center-application-kit/commit/999014a8feeb9d2b4a0873f4b064a75e1fafd242)]:
+  - @commercetools-frontend/application-components@22.29.0
+  - @commercetools-frontend/application-shell-connectors@22.29.0
+  - @commercetools-frontend/application-config@22.29.0
+  - @commercetools-frontend/sentry@22.29.0
+  - @commercetools-frontend/i18n@22.29.0
+  - @commercetools-frontend/react-notifications@22.29.0
+  - @commercetools-frontend/permissions@22.29.0
+  - @commercetools-frontend/actions-global@22.29.0
+  - @commercetools-frontend/l10n@22.29.0
+  - @commercetools-frontend/assets@22.29.0
+  - @commercetools-frontend/browser-history@22.29.0
+  - @commercetools-frontend/constants@22.29.0
+  - @commercetools-frontend/notifications@22.29.0
+  - @commercetools-frontend/sdk@22.29.0
+  - @commercetools-frontend/url-utils@22.29.0
+
 ## 22.28.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 22.29.0
+
+### Patch Changes
+
+- [#3522](https://github.com/commercetools/merchant-center-application-kit/pull/3522) [`999014a`](https://github.com/commercetools/merchant-center-application-kit/commit/999014a8feeb9d2b4a0873f4b064a75e1fafd242) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Updated translations
+
+- Updated dependencies [[`4bd0fb6`](https://github.com/commercetools/merchant-center-application-kit/commit/4bd0fb65319fde21dafdfee36b7e6c7b7c9a5a52)]:
+  - @commercetools-frontend/sentry@22.29.0
+
 ## 22.28.0
 
 ### Patch Changes
