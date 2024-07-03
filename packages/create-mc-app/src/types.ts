@@ -28,6 +28,6 @@ export type TCliTaskOptions = {
   tagOrBranchVersion: string;
   entryPointUriPath?: string;
   initialProjectKey: string;
-  cloudIdentifier?: string;
+  cloudIdentifier: string;
   packageManager: TCliCommandOptions['packageManager'];
 };
