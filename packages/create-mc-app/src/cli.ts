@@ -71,6 +71,10 @@ const run = () => {
       '(optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.'
     )
     .option(
+      '--cloud-identifier <value>',
+      '(optional) The cloud region for the new project. (default: gcp-eu)'
+    )
+    .option(
       '--package-manager <value>',
       '(optional) The preferred package manager to use: npm, yarn, pnpm.'
     )

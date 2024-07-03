@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import semver from 'semver';
-import { applicationTypes, availableTemplates } from './constants';
+import {
+  applicationTypes,
+  availableTemplates,
+  supportedCloudRegions,
+} from './constants';
 import type { TApplicationType, TTemplate } from './types';
 import { isSemVer, doesFileExist } from './utils';
 
@@ -87,6 +91,16 @@ const throwIfNodeVersionIsNotSupported = (
   }
 };
 
+const throwIfCloudRegionNotSupported = (cloudRegion: string) => {
+  if (!Object.values(supportedCloudRegions).includes(cloudRegion)) {
+    throw new Error(
+      `The cloud region "${cloudRegion}" is not supported. Supported regions are: ${Object.values(
+        supportedCloudRegions
+      ).join(', ')}.`
+    );
+  }
+};
+
 export {
   throwIfApplicationTypeIsNotSupported,
   throwIfTemplateIsNotSupported,
@@ -94,4 +108,5 @@ export {
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
   throwIfNodeVersionIsNotSupported,
+  throwIfCloudRegionNotSupported,
 };

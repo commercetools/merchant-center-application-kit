@@ -36,6 +36,14 @@ function replaceApplicationInfoInApplicationConfig(
                 );
               }
               if (
+                nodePath.isIdentifier({ name: 'cloudIdentifier' }) &&
+                nodePath.parent.type === 'ObjectProperty'
+              ) {
+                nodePath.parent.value = types.stringLiteral(
+                  options.cloudIdentifier
+                );
+              }
+              if (
                 options.applicationType ===
                   applicationTypes['custom-application'] &&
                 nodePath.isIdentifier({ name: 'defaultLabel' })

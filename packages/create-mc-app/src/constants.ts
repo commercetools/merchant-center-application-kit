@@ -8,4 +8,13 @@ const availableTemplates = {
   'starter-typescript': 'starter-typescript',
 } as const;
 
-export { applicationTypes, availableTemplates };
+const supportedCloudRegions = {
+  'gcp-au': 'gcp-au',
+  'gcp-eu': 'gcp-eu',
+  'gcp-us': 'gcp-us',
+  'aws-fra': 'aws-fra',
+  'aws-ohio': 'aws-ohio',
+  'aws-cn': 'aws-cn',
+};
+
+export { applicationTypes, availableTemplates, supportedCloudRegions };

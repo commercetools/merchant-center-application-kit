@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import path from 'node:path';
 import readline, { type Interface } from 'node:readline';
-import { applicationTypes } from './constants';
+import { applicationTypes, supportedCloudRegions } from './constants';
 import type { TCliCommandOptions, TCliTaskOptions } from './types';
 import { isSemVer } from './utils';
 import {
@@ -9,6 +9,7 @@ import {
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
   throwIfApplicationTypeIsNotSupported,
+  throwIfCloudRegionNotSupported,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -59,6 +60,26 @@ const getInitialProjectKey = async (
   return initialProjectKey;
 };
 
+const getCloudIdentifier = async (
+  rl: Interface,
+  options: TCliCommandOptions
+) => {
+  if (options.cloudIdentifier) {
+    throwIfCloudRegionNotSupported(options.cloudIdentifier);
+    return options.cloudIdentifier;
+  }
+
+  const cloudIdentifier = await question(
+    rl,
+    'Provide the cloudIdentifier (default "gcp-eu"): '
+  );
+  if (!cloudIdentifier) {
+    return supportedCloudRegions['gcp-eu'];
+  }
+  throwIfCloudRegionNotSupported(cloudIdentifier);
+  return cloudIdentifier;
+};
+
 async function processOptions(
   projectDirectoryName: string,
   options: TCliCommandOptions
@@ -89,6 +110,7 @@ async function processOptions(
   });
   const entryPointUriPath = await getEntryPointUriPath(rl, options);
   const initialProjectKey = await getInitialProjectKey(rl, options);
+  const cloudIdentifier = await getCloudIdentifier(rl, options);
   rl.close();
 
   return {
@@ -99,6 +121,7 @@ async function processOptions(
     tagOrBranchVersion,
     entryPointUriPath,
     initialProjectKey,
+    cloudIdentifier,
     packageManager: options.packageManager,
   };
 }

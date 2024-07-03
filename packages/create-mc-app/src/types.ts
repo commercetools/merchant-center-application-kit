@@ -16,6 +16,7 @@ export type TCliCommandOptions = {
   yes: boolean;
   entryPointUriPath?: string;
   initialProjectKey?: string;
+  cloudIdentifier?: string;
   packageManager?: TPackageManager;
 };
 
@@ -27,5 +28,6 @@ export type TCliTaskOptions = {
   tagOrBranchVersion: string;
   entryPointUriPath?: string;
   initialProjectKey: string;
+  cloudIdentifier?: string;
   packageManager: TCliCommandOptions['packageManager'];
 };
