@@ -1,11 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import semver from 'semver';
-import {
-  applicationTypes,
-  availableTemplates,
-  supportedCloudRegions,
-} from './constants';
+import { CLOUD_IDENTIFIERS } from '@commercetools-frontend/application-config';
+import { applicationTypes, availableTemplates } from './constants';
 import type { TApplicationType, TTemplate } from './types';
 import { isSemVer, doesFileExist } from './utils';
 
@@ -91,11 +88,13 @@ const throwIfNodeVersionIsNotSupported = (
   }
 };
 
-const throwIfCloudRegionNotSupported = (cloudRegion: string) => {
-  if (!Object.values(supportedCloudRegions).includes(cloudRegion)) {
+const throwIfCloudRegionIsNotSupported = (cloudRegion: string) => {
+  const allowedCloudIdentifiers = Object.values(CLOUD_IDENTIFIERS) as string[];
+
+  if (!allowedCloudIdentifiers.includes(cloudRegion)) {
     throw new Error(
       `The cloud region "${cloudRegion}" is not supported. Supported regions are: ${Object.values(
-        supportedCloudRegions
+        CLOUD_IDENTIFIERS
       ).join(', ')}.`
     );
   }
@@ -108,5 +107,5 @@ export {
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
   throwIfNodeVersionIsNotSupported,
-  throwIfCloudRegionNotSupported,
+  throwIfCloudRegionIsNotSupported,
 };

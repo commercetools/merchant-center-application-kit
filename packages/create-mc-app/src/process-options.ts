@@ -1,7 +1,8 @@
 import crypto from 'node:crypto';
 import path from 'node:path';
 import readline, { type Interface } from 'node:readline';
-import { applicationTypes, supportedCloudRegions } from './constants';
+import { CLOUD_IDENTIFIERS } from '@commercetools-frontend/application-config';
+import { applicationTypes } from './constants';
 import type { TCliCommandOptions, TCliTaskOptions } from './types';
 import { isSemVer } from './utils';
 import {
@@ -9,7 +10,7 @@ import {
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
   throwIfApplicationTypeIsNotSupported,
-  throwIfCloudRegionNotSupported,
+  throwIfCloudRegionIsNotSupported,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -65,8 +66,12 @@ const getCloudIdentifier = async (
   options: TCliCommandOptions
 ) => {
   if (options.cloudIdentifier) {
-    throwIfCloudRegionNotSupported(options.cloudIdentifier);
+    throwIfCloudRegionIsNotSupported(options.cloudIdentifier);
     return options.cloudIdentifier;
+  }
+
+  if (options.yes) {
+    return CLOUD_IDENTIFIERS['GCP_EU'];
   }
 
   const cloudIdentifier = await question(
@@ -74,9 +79,9 @@ const getCloudIdentifier = async (
     'Provide the cloudIdentifier (default "gcp-eu"): '
   );
   if (!cloudIdentifier) {
-    return supportedCloudRegions['gcp-eu'];
+    return CLOUD_IDENTIFIERS['GCP_EU'];
   }
-  throwIfCloudRegionNotSupported(cloudIdentifier);
+  throwIfCloudRegionIsNotSupported(cloudIdentifier);
   return cloudIdentifier;
 };
 
