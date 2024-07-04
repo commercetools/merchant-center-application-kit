@@ -42,13 +42,6 @@ if (!initialProjectKey) {
   );
 }
 
-const cloudIdentifier = process.env.CLOUD_IDENTIFIER;
-if (!cloudIdentifier) {
-  throw new Error(
-    'Missing required environment variable "CLOUD_IDENTIFIER"'
-  );
-}
-
 const branchName =
   process.env.GITHUB_EVENT_NAME === 'pull_request'
     ? process.env.GITHUB_HEAD_REF
@@ -68,7 +61,6 @@ const createAppCmdResult = shelljs.exec(
     `--template-version=${branchName}`,
     `--application-type=${applicationType}`,
     `--initial-project-key=${initialProjectKey}`,
-    `--cloud-identifier=${cloudIdentifier}`,
     `--yes`,
     '--skip-install',
   ].join(' '),
