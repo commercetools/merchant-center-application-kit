@@ -93,9 +93,7 @@ const throwIfCloudRegionIsNotSupported = (cloudRegion: string) => {
 
   if (!allowedCloudIdentifiers.includes(cloudRegion)) {
     throw new Error(
-      `The cloud region "${cloudRegion}" is not supported. Supported regions are: ${Object.values(
-        CLOUD_IDENTIFIERS
-      ).join(', ')}.`
+      `The cloud region "${cloudRegion}" is not supported. Supported regions are: ${allowedCloudIdentifiers.join(', ')}.`
     );
   }
 };
