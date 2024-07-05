@@ -71,7 +71,7 @@ const getCloudIdentifier = async (
   }
 
   if (options.yes) {
-    return CLOUD_IDENTIFIERS['GCP_EU'];
+    return CLOUD_IDENTIFIERS.GCP_EU;
   }
 
   const cloudIdentifier = await question(
@@ -79,7 +79,7 @@ const getCloudIdentifier = async (
     'Provide the cloudIdentifier (default "gcp-eu"): '
   );
   if (!cloudIdentifier) {
-    return CLOUD_IDENTIFIERS['GCP_EU'];
+    return CLOUD_IDENTIFIERS.GCP_EU;
   }
   throwIfCloudRegionIsNotSupported(cloudIdentifier);
   return cloudIdentifier;
