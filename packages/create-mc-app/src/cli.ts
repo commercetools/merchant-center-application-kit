@@ -72,7 +72,7 @@ const run = () => {
     )
     .option(
       '--cloud-identifier <value>',
-      '(optional) The cloud region for the new project. (default: gcp-eu)'
+      '(optional) Cloud region identifier. (default: gcp-eu)'
     )
     .option(
       '--package-manager <value>',
