@@ -39,7 +39,11 @@ const useFormattedLabel = (label: Label) => {
   return typeof label === 'string' ? label : intl.formatMessage(label);
 };
 
-const FormPrimaryButton = (props: Props) => {
+type PrimaryButtonProps = {
+  iconLeft?: ReactElement;
+} & Props;
+
+const FormPrimaryButton = (props: PrimaryButtonProps) => {
   const label = useFormattedLabel(props.label);
 
   return (
@@ -47,6 +51,7 @@ const FormPrimaryButton = (props: Props) => {
       label={label}
       onClick={props.onClick}
       isDisabled={props.isDisabled}
+      iconLeft={props.iconLeft}
       {...filterDataAttributes(props.dataAttributes)}
     />
   );
