@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import semver from 'semver';
+import { CLOUD_IDENTIFIERS } from '@commercetools-frontend/application-config';
 import { applicationTypes, availableTemplates } from './constants';
 import type { TApplicationType, TTemplate } from './types';
 import { isSemVer, doesFileExist } from './utils';
@@ -87,6 +88,18 @@ const throwIfNodeVersionIsNotSupported = (
   }
 };
 
+const throwIfCloudIdentifierIsNotSupported = (cloudIdentifier: string) => {
+  const allowedCloudIdentifiers = Object.values(CLOUD_IDENTIFIERS) as string[];
+
+  if (!allowedCloudIdentifiers.includes(cloudIdentifier)) {
+    throw new Error(
+      `The cloud region "${cloudIdentifier}" is not supported. Supported regions are: ${allowedCloudIdentifiers.join(
+        ', '
+      )}.`
+    );
+  }
+};
+
 export {
   throwIfApplicationTypeIsNotSupported,
   throwIfTemplateIsNotSupported,
@@ -94,4 +107,5 @@ export {
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
   throwIfNodeVersionIsNotSupported,
+  throwIfCloudIdentifierIsNotSupported,
 };

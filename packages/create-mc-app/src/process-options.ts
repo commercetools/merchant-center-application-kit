@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import path from 'node:path';
 import readline, { type Interface } from 'node:readline';
+import { CLOUD_IDENTIFIERS } from '@commercetools-frontend/application-config';
 import { applicationTypes } from './constants';
 import type { TCliCommandOptions, TCliTaskOptions } from './types';
 import { isSemVer } from './utils';
@@ -9,6 +10,7 @@ import {
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
   throwIfApplicationTypeIsNotSupported,
+  throwIfCloudIdentifierIsNotSupported,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -59,6 +61,30 @@ const getInitialProjectKey = async (
   return initialProjectKey;
 };
 
+const getCloudIdentifier = async (
+  rl: Interface,
+  options: TCliCommandOptions
+) => {
+  if (options.cloudIdentifier) {
+    throwIfCloudIdentifierIsNotSupported(options.cloudIdentifier);
+    return options.cloudIdentifier;
+  }
+
+  if (options.yes) {
+    return CLOUD_IDENTIFIERS.GCP_EU;
+  }
+
+  const cloudIdentifier = await question(
+    rl,
+    'Provide the cloudIdentifier (default "gcp-eu"): '
+  );
+  if (!cloudIdentifier) {
+    return CLOUD_IDENTIFIERS.GCP_EU;
+  }
+  throwIfCloudIdentifierIsNotSupported(cloudIdentifier);
+  return cloudIdentifier;
+};
+
 async function processOptions(
   projectDirectoryName: string,
   options: TCliCommandOptions
@@ -89,6 +115,7 @@ async function processOptions(
   });
   const entryPointUriPath = await getEntryPointUriPath(rl, options);
   const initialProjectKey = await getInitialProjectKey(rl, options);
+  const cloudIdentifier = await getCloudIdentifier(rl, options);
   rl.close();
 
   return {
@@ -99,6 +126,7 @@ async function processOptions(
     tagOrBranchVersion,
     entryPointUriPath,
     initialProjectKey,
+    cloudIdentifier,
     packageManager: options.packageManager,
   };
 }
