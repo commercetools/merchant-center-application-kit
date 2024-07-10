@@ -88,12 +88,12 @@ const throwIfNodeVersionIsNotSupported = (
   }
 };
 
-const throwIfCloudRegionIsNotSupported = (cloudRegion: string) => {
+const throwIfCloudIdentifierIsNotSupported = (cloudIdentifier: string) => {
   const allowedCloudIdentifiers = Object.values(CLOUD_IDENTIFIERS) as string[];
 
-  if (!allowedCloudIdentifiers.includes(cloudRegion)) {
+  if (!allowedCloudIdentifiers.includes(cloudIdentifier)) {
     throw new Error(
-      `The cloud region "${cloudRegion}" is not supported. Supported regions are: ${allowedCloudIdentifiers.join(
+      `The cloud region "${cloudIdentifier}" is not supported. Supported regions are: ${allowedCloudIdentifiers.join(
         ', '
       )}.`
     );
@@ -107,5 +107,5 @@ export {
   throwIfTemplateVersionDoesNotExist,
   throwIfInitialProjectKeyIsMissing,
   throwIfNodeVersionIsNotSupported,
-  throwIfCloudRegionIsNotSupported,
+  throwIfCloudIdentifierIsNotSupported,
 };

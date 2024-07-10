@@ -10,7 +10,7 @@ import {
   throwIfProjectDirectoryExists,
   throwIfInitialProjectKeyIsMissing,
   throwIfApplicationTypeIsNotSupported,
-  throwIfCloudRegionIsNotSupported,
+  throwIfCloudIdentifierIsNotSupported,
 } from './validations';
 
 const question = (rl: Interface, value: string) =>
@@ -66,7 +66,7 @@ const getCloudIdentifier = async (
   options: TCliCommandOptions
 ) => {
   if (options.cloudIdentifier) {
-    throwIfCloudRegionIsNotSupported(options.cloudIdentifier);
+    throwIfCloudIdentifierIsNotSupported(options.cloudIdentifier);
     return options.cloudIdentifier;
   }
 
@@ -81,7 +81,7 @@ const getCloudIdentifier = async (
   if (!cloudIdentifier) {
     return CLOUD_IDENTIFIERS.GCP_EU;
   }
-  throwIfCloudRegionIsNotSupported(cloudIdentifier);
+  throwIfCloudIdentifierIsNotSupported(cloudIdentifier);
   return cloudIdentifier;
 };
 
