@@ -128,7 +128,7 @@ it('should render a button', () => {
 
 When running the above test, open your browser in [http://localhost:3336](http://localhost:3336) and it should update and show the HTML of what has been rendered at the time of calling `debug`.
 
-Bear in mind we're using we are using [Automatic Mode](https://www.jest-preview.com/docs/getting-started/installation#6-optional--recommended-opt-in-to-automatic-mode), so if you're running the server, any failing test will update the browser view automatically.
+Bear in mind we are using [Automatic Mode](https://www.jest-preview.com/docs/getting-started/installation#6-optional--recommended-opt-in-to-automatic-mode), so if you're running the server, any failing test will update the browser view automatically.
 
 ## Adding changesets
 
