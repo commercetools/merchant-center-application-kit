@@ -97,7 +97,7 @@ Once it's done, you can run `pnpm run test` (`pnpm run test --watch`) to test yo
 
 To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `pnpm build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
-You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to re-bundle and rebuild the application on each change.
+You can also run the build in watch mode `pnpm build:watch` alongside `pnpm playground:start` to re-bundle and rebuild the application on each change.
 
 ### Test Debugging
 
