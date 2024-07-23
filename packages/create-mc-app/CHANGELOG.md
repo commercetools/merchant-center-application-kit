@@ -1,5 +1,25 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.30.0
+
+### Minor Changes
+
+- [#3564](https://github.com/commercetools/merchant-center-application-kit/pull/3564) [`96eb231`](https://github.com/commercetools/merchant-center-application-kit/commit/96eb231e0738ce152d2a792e8248466b32e3a0c8) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Added a `--cloud-identifier` option to the `create-mc-app` CLI, allowing to specify the [cloudIdentifier](https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#cloudidentifier) in the customization configuration file.
+
+  Example usage:
+
+  ```bash
+  npx @commercetools-frontend/create-mc-app@latest \
+    my-new-custom-application-project \
+    --template starter \
+    --cloud-identifier gcp-us
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.30.0
+
 ## 22.29.0
 
 ## 22.28.0

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "22.29.0",
+  "version": "22.30.0",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
