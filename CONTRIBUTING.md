@@ -97,7 +97,7 @@ Once it's done, you can run `pnpm run test` (`pnpm run test --watch`) to test yo
 
 To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `pnpm build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
-You can also run the build in watch mode `pnpm build:bundles:watch` alongside with `pnpm playground:start` to re-bundle and rebuild the application on each change.
+You can also run the build in watch mode `pnpm build:watch` alongside `pnpm playground:start` to re-bundle and rebuild the application on each change.
 
 ### Test Debugging
 
@@ -128,7 +128,7 @@ it('should render a button', () => {
 
 When running the above test, open your browser in [http://localhost:3336](http://localhost:3336) and it should update and show the HTML of what has been rendered at the time of calling `debug`.
 
-Bear in mind we're using we are using [Automatic Mode](https://www.jest-preview.com/docs/getting-started/installation#6-optional--recommended-opt-in-to-automatic-mode), so if you're running the server, any failing test will update the browser view automatically.
+Bear in mind we are using [Automatic Mode](https://www.jest-preview.com/docs/getting-started/installation#6-optional--recommended-opt-in-to-automatic-mode), so if you're running the server, any failing test will update the browser view automatically.
 
 ## Adding changesets
 
