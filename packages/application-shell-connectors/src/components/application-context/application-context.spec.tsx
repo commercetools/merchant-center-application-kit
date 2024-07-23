@@ -281,6 +281,7 @@ describe('mapProjectToApplicationContextProject', () => {
       ownerName: expect.any(String),
       sampleDataImportDataset: expect.any(String),
       isUserAdminOfCurrentProject: expect.any(Boolean),
+      isProductionProject: expect.any(Boolean),
     });
   });
 });
