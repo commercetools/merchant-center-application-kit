@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.30.0
+
+### Patch Changes
+
+- [#3571](https://github.com/commercetools/merchant-center-application-kit/pull/3571) [`a3a8e85`](https://github.com/commercetools/merchant-center-application-kit/commit/a3a8e85a4200e0495285cbf8befe9c407760d11b) Thanks [@ahmehri](https://github.com/ahmehri)! - Expose field `isProductionProject` to `ApplicationContext`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.30.0
+  - @commercetools-frontend/browser-history@22.30.0
+  - @commercetools-frontend/constants@22.30.0
+  - @commercetools-frontend/sentry@22.30.0
+
 ## 22.29.0
 
 ### Patch Changes
