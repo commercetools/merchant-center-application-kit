@@ -126,10 +126,9 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
   const flags = useMemo(
     () => ({
       ...featureFlags.FLAGS,
-      ...allMenuFeatureToggles.allFeatureToggles,
       ...props.flags,
     }),
-    [allMenuFeatureToggles.allFeatureToggles, props.flags]
+    [props.flags]
   );
   useMemo(() => {
     if (enableLongLivedFeatureFlags) {
