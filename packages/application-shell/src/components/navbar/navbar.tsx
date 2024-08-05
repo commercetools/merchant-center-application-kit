@@ -336,6 +336,7 @@ const NavBar = (props: TNavbarProps) => {
     allApplicationsNavbarMenuGroups,
   } = useNavbarStateManager({
     environment: props.environment,
+    project: props.project,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
