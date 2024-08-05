@@ -79,10 +79,7 @@ export type TQuery = {
   applicationsMenu: TApplicationsMenu;
 };
 
-export type TFetchAllMenuFeatureTogglesQueryVariables = Exact<{ [key: string]: never; }>;
 
-
-export type TFetchAllMenuFeatureTogglesQuery = { __typename?: 'Query', allFeatureToggles: Array<string> };
 
 export type TFetchApplicationsMenuQueryVariables = Exact<{ [key: string]: never; }>;
 

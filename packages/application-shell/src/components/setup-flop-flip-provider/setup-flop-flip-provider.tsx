@@ -16,7 +16,6 @@ import {
   GRAPHQL_TARGETS,
   featureFlags,
 } from '@commercetools-frontend/constants';
-import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import type {
   TAllFeaturesQuery,
   TFetchLoggedInUserQuery,
@@ -122,7 +121,6 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
     TAdditionalEnvironmentProperties['enableLongLivedFeatureFlags'],
     TAdditionalEnvironmentProperties
   >((context) => context.environment.enableLongLivedFeatureFlags);
-  const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = useMemo(
     () => ({
       ...featureFlags.FLAGS,
@@ -141,10 +139,9 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
   const defaultFlags = useMemo(
     () => ({
       ...featureFlags.DEFAULT_FLAGS,
-      ...allMenuFeatureToggles.allFeatureToggles,
       ...props.defaultFlags,
     }),
-    [allMenuFeatureToggles.allFeatureToggles, props.defaultFlags]
+    [props.defaultFlags]
   );
 
   const adapterArgs = useMemo(
@@ -222,7 +219,7 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
       shouldDeferAdapterConfiguration={
         typeof props.shouldDeferAdapterConfiguration === 'boolean'
           ? props.shouldDeferAdapterConfiguration
-          : !props.user || allMenuFeatureToggles.isLoading
+          : !props.user
       }
     >
       {props.children}

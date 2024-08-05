@@ -191,11 +191,6 @@ const getDefaultMockResolvers = (mocks = {}) => {
           })
         )
       ),
-    graphql
-      .link(`${window.location.origin}/api/graphql`)
-      .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
-        res(ctx.data({ allFeatureToggles: [] }))
-      ),
   ];
 };
 const mockServer = setupServer(
@@ -1343,11 +1338,6 @@ describe('navbar menu links interactions', () => {
                 },
               })
             )
-          ),
-        graphql
-          .link(`${window.location.origin}/api/graphql`)
-          .query('FetchAllMenuFeatureToggles', (req, res, ctx) =>
-            res(ctx.data({ allFeatureToggles: [] }))
           ),
         ...getDefaultMockResolvers()
       );
