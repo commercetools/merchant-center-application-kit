@@ -1372,6 +1372,41 @@ describe('navbar menu links interactions', () => {
       });
     });
   });
+  describe('when accessing a project that does not exist or the user has no access', () => {
+    it('should render page not found', async () => {
+      let isQueryCalled = false;
+      mockServer.use(
+        ...getDefaultMockResolvers(),
+        graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) => {
+          isQueryCalled = true;
+          return res(
+            ctx.status(401),
+            ctx.errors([
+              new GraphQLError('User is not authorized', {
+                extensions: {
+                  code: 'UNAUTHENTICATED',
+                },
+              }),
+            ])
+          );
+        }),
+        graphql
+          .link(`${window.location.origin}/api/graphql`)
+          .query('FetchApplicationsMenu', (req, res, ctx) =>
+            res(ctx.data({ applicationsMenu: null }))
+          )
+      );
+      renderApp(null, {
+        environment: {
+          servedByProxy: 'true',
+        },
+        route: '/not-found',
+      });
+
+      await screen.findByText('We could not find this Project');
+      expect(isQueryCalled).toBe(false);
+    });
+  });
 });
 describe('when navbar menu items are hidden', () => {
   beforeEach(() => {

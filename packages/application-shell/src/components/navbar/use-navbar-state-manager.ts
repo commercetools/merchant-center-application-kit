@@ -18,6 +18,7 @@ import {
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { WINDOW_SIZES } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
+import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type {
   TNavbarMenu,
   TNavbarMenuGroup,
@@ -31,6 +32,7 @@ import nonNullable from './non-nullable';
 
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
+  project: TFetchProjectQuery['project'];
 };
 type State = {
   activeItemIndex?: string;
@@ -97,7 +99,7 @@ const useNavbarStateManager = (props: HookProps) => {
     TFetchProjectExtensionsNavbarQuery,
     TFetchProjectExtensionsNavbarQueryVariables
   >(FetchProjectExtensionsNavbar, {
-    skip: !props.environment.servedByProxy,
+    skip: !props.project || !props.environment.servedByProxy,
     context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
