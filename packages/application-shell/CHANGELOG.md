@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 22.30.2
+
+### Patch Changes
+
+- [#3578](https://github.com/commercetools/merchant-center-application-kit/pull/3578) [`839d185`](https://github.com/commercetools/merchant-center-application-kit/commit/839d185a10eb5a74d781b9b865f7c07b29e1e824) Thanks [@tdeekens](https://github.com/tdeekens)! - Remove usage of query to load menu feature toggles.
+
+- [#3579](https://github.com/commercetools/merchant-center-application-kit/pull/3579) [`ed2158c`](https://github.com/commercetools/merchant-center-application-kit/commit/ed2158cc3b8173cdd86395fccf836b921edd4b1b) Thanks [@emmenko](https://github.com/emmenko)! - Do not fetch project extensions for navbar if user cannot access a project.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.30.2
+  - @commercetools-frontend/application-components@22.30.2
+  - @commercetools-frontend/application-config@22.30.2
+  - @commercetools-frontend/application-shell-connectors@22.30.2
+  - @commercetools-frontend/assets@22.30.2
+  - @commercetools-frontend/browser-history@22.30.2
+  - @commercetools-frontend/constants@22.30.2
+  - @commercetools-frontend/i18n@22.30.2
+  - @commercetools-frontend/l10n@22.30.2
+  - @commercetools-frontend/notifications@22.30.2
+  - @commercetools-frontend/permissions@22.30.2
+  - @commercetools-frontend/react-notifications@22.30.2
+  - @commercetools-frontend/sdk@22.30.2
+  - @commercetools-frontend/sentry@22.30.2
+  - @commercetools-frontend/url-utils@22.30.2
+
 ## 22.30.1
 
 ### Patch Changes
