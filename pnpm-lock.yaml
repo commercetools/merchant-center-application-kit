@@ -1695,6 +1695,9 @@ importers:
       '@commercetools-uikit/text':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/tooltip':
+        specifier: ^19.9.0
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@17.0.80)(react@17.0.2)
@@ -8128,16 +8131,16 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-frontend/application-config@22.30.2:
-    resolution: {integrity: sha512-qUQRPGeOaL8ZKkbjXrq/FxEY4LwQM/T6j3pBBqY7ez+KedL1gTmbmZNw7iLAMZELqxczZuIxK574pbAPbhNseQ==}
+  /@commercetools-frontend/application-config@22.30.3:
+    resolution: {integrity: sha512-7IlRM27vuwA7aYAAKn0d9j+gSFD1suhGQjxCkt3gxpw6S4x1zw77xbcN/04qlIcjKbX3QRtSygPDTcwXPkpI4A==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.24.5
       '@babel/register': 7.22.15(@babel/core@7.24.5)
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.30.2
-      '@commercetools-frontend/constants': 22.30.2
+      '@commercetools-frontend/babel-preset-mc-app': 22.30.3
+      '@commercetools-frontend/constants': 22.30.3
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.17.4
       '@types/react': 17.0.80
@@ -8155,8 +8158,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.30.2:
-    resolution: {integrity: sha512-R4hRwG2/fEpmWhdcw2LgKfTJTBu2jvpHZRI9hhX0nddB9paDIsSXT3v1w+qT5Gr1MHgA+NctA7dtFOQSZ8ogxw==}
+  /@commercetools-frontend/babel-preset-mc-app@22.30.3:
+    resolution: {integrity: sha512-4cLO7LYX38E7Y1UAuUghu9eVous9k9VJVE4ymGPZjV7PwjThs3nXxtetX7v96UF321MxKIKeAZzYwy1qsurQeg==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.24.5
@@ -8188,8 +8191,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.30.2:
-    resolution: {integrity: sha512-rxgGsi2rWf0YLQ2fis2OyPWz4vk+yrZJLHiyPqEAcC9iF/vntEvZCVE9vJiuNd0DvzFR1Xcep46tTdRU/IZRvA==}
+  /@commercetools-frontend/constants@22.30.3:
+    resolution: {integrity: sha512-CLlXzZSA/Sp7RRiAm+Ko1e8b27AIwTyYdqnmZ+JxkGaHfDEYYvANg6tppBvy15j1ubmFLFhA20L8MmRKpQDfYA==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -8262,8 +8265,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.30.2
-      '@commercetools-frontend/constants': 22.30.2
+      '@commercetools-frontend/application-config': 22.30.3
+      '@commercetools-frontend/constants': 22.30.3
       '@commercetools-test-data/commons': 8.2.3
       '@commercetools-test-data/core': 8.2.3
       '@commercetools-test-data/graphql-types': 8.2.3

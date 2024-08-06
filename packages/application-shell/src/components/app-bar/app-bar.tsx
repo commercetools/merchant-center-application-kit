@@ -10,6 +10,7 @@ import LoadingPlaceholder from '../loading-placeholder';
 import ProjectSwitcher from '../project-switcher';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import UserSettingsMenu from '../user-settings-menu';
+import WorkspacesNavigationButton from '../workspaces-navigation-button/workspaces-navigvation-button';
 
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
@@ -115,7 +116,17 @@ const AppBar = (props: Props) => {
           display: flex;
         `}
       >
-        <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
+        <div id={CONTAINERS.LEFT_OF_PROFILE}>
+          <div
+            css={css`
+              align-self: center;
+            `}
+          >
+            <WorkspacesNavigationButton
+              projectKey={props.projectKeyFromUrl || previousProjectKey}
+            />
+          </div>
+        </div>
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}
