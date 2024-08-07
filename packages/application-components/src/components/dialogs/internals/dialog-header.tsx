@@ -50,7 +50,7 @@ const DialogHeader = (props: Props) => (
           label="Close dialog"
           onClick={props.onClose}
           icon={<CloseIcon />}
-          size="medium"
+          size="30"
         />
       )}
     </Spacings.Inline>

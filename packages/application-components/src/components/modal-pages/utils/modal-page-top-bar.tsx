@@ -131,7 +131,7 @@ const ModalPageTopBar = (props: Props) => {
               <CloseIcon />
             </LargeIconWrapper>
           }
-          size="big"
+          size="40"
         />
       )}
     </div>

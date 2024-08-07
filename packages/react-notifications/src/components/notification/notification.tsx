@@ -90,7 +90,7 @@ const Notification = (props: Props) => {
             label={intl.formatMessage(messages.hideNotification)}
             onClick={props.onCloseClick}
             icon={<CloseBoldIcon />}
-            size="medium"
+            size="30"
           />
         </div>
       ) : null}
