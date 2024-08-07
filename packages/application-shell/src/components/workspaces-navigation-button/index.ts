@@ -1,1 +1,1 @@
-export { default } from './workspaces-navigvation-button';
+export { default } from './workspaces-navigation-button';
