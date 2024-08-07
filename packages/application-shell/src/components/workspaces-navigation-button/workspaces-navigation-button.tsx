@@ -13,7 +13,7 @@ type WorkspacesNavigationButtonProps = {
   projectKey: string | undefined;
 };
 
-const FEATURE_NAME = 'Workspaces';
+export const FEATURE_NAME = 'Workspaces';
 
 // TODO: This logo still TBD, placeholder for now
 const WorkspacesLogo = () => {
