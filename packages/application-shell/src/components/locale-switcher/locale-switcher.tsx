@@ -64,7 +64,7 @@ const CustomGroupHeading = (
           <IconButton
             icon={<InformationIcon />}
             label="Locales info"
-            size="small"
+            size="10"
             onClick={() => setIsOpen(true)}
           />
         </Spacings.Inline>
