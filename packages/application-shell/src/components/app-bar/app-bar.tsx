@@ -117,15 +117,9 @@ const AppBar = (props: Props) => {
         `}
       >
         <div id={CONTAINERS.LEFT_OF_PROFILE}>
-          <div
-            css={css`
-              align-self: center;
-            `}
-          >
-            <WorkspacesNavigationButton
-              projectKey={props.projectKeyFromUrl || previousProjectKey}
-            />
-          </div>
+          <WorkspacesNavigationButton
+            projectKey={props.projectKeyFromUrl || previousProjectKey}
+          />
         </div>
         {props.user ? (
           <UserSettingsMenu
