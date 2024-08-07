@@ -25,6 +25,5 @@ export const FLAGS = {};
 // Long-lived feature flags, defined in the MC API.
 export const DEFAULT_FLAGS = {
   [CUSTOM_VIEWS]: { value: true },
-  // TODO: set to false before making the PR
-  [ENABLE_WORKSPACES_UI]: { value: true },
+  [ENABLE_WORKSPACES_UI]: { value: false },
 };
