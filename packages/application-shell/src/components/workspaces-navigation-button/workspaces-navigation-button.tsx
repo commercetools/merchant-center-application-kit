@@ -13,6 +13,8 @@ type WorkspacesNavigationButtonProps = {
   projectKey: string | undefined;
 };
 
+const FEATURE_NAME = 'Workspaces';
+
 // TODO: This logo still TBD, placeholder for now
 const WorkspacesLogo = () => {
   return (
@@ -65,7 +67,7 @@ const WorkspacesNavigationButton = ({
           <SecondaryButton
             iconLeft={(<WorkspacesLogo />) as ReactElement}
             as={Link}
-            label={formatMessage(messages.label)}
+            label={FEATURE_NAME}
             to={`/${projectKey}/workspaces`}
           />
         </Tooltip>

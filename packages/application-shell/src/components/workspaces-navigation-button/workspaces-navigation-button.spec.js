@@ -1,7 +1,8 @@
 import { ENABLE_WORKSPACES_UI } from '@commercetools-frontend/constants/src/feature-toggles';
 import { screen, renderApp } from '../../test-utils';
-import messages from './messages';
-import WorkspacesNavigationButton from './workspaces-navigation-button';
+import WorkspacesNavigationButton, {
+  FEATURE_NAME,
+} from './workspaces-navigation-button';
 
 const createTestProps = (custom = {}) => ({
   projectKey: 'test-project-key',
@@ -19,7 +20,7 @@ describe('rendering', () => {
     });
 
     const button = await screen.findByRole('button', {
-      name: messages.label.defaultMessage,
+      name: FEATURE_NAME,
     });
 
     expect(button).toHaveAttribute('href', `/${props.projectKey}/workspaces`);
