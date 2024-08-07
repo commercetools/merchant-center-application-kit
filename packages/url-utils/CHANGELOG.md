@@ -1,5 +1,7 @@
 # @commercetools-frontend/url-utils
 
+## 22.30.3
+
 ## 22.30.2
 
 ## 22.30.1

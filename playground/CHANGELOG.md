@@ -1,5 +1,24 @@
 # playground
 
+## 22.30.3
+
+### Patch Changes
+
+- [#3574](https://github.com/commercetools/merchant-center-application-kit/pull/3574) [`1f325ac`](https://github.com/commercetools/merchant-center-application-kit/commit/1f325ac5127a0fe1ff1e0304d32353f691cd097f) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade to UI Kit v19.9.0, migrate deprecated size props
+
+- Updated dependencies [[`1f325ac`](https://github.com/commercetools/merchant-center-application-kit/commit/1f325ac5127a0fe1ff1e0304d32353f691cd097f)]:
+  - @commercetools-frontend/application-components@22.30.3
+  - @commercetools-frontend/application-shell@22.30.3
+  - @commercetools-frontend/i18n@22.30.3
+  - @commercetools-frontend/actions-global@22.30.3
+  - @commercetools-frontend/application-shell-connectors@22.30.3
+  - @commercetools-frontend/assets@22.30.3
+  - @commercetools-frontend/browser-history@22.30.3
+  - @commercetools-frontend/constants@22.30.3
+  - @commercetools-frontend/l10n@22.30.3
+  - @commercetools-frontend/permissions@22.30.3
+  - @commercetools-frontend/sdk@22.30.3
+
 ## 22.30.2
 
 ### Patch Changes
