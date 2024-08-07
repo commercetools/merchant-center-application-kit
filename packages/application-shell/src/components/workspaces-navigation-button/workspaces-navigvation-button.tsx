@@ -51,7 +51,7 @@ const WorkspacesNavigationButton = ({
   return (
     <div
       css={css`
-        margin-right: 48px;
+        margin-right: ${designTokens.spacing60};
       `}
     >
       <div
