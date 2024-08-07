@@ -112,7 +112,7 @@ function Drawer(props: TDrawerProps) {
                     <CloseIcon />
                   </LargeIconWrapper>
                 }
-                size="big"
+                size="40"
               />
             )}
           </Spacings.Inline>

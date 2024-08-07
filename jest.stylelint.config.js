@@ -11,6 +11,7 @@ module.exports = {
     'public/',
     'compiled',
     '.cache',
+    '.vercel',
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',

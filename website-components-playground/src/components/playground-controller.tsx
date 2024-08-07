@@ -71,7 +71,7 @@ const PlaygroundController = (props: TPlaygroundControllerProps) => {
                 </PreviewContainer>
                 <Spacings.Inline alignItems="center">
                   <IconButton
-                    size="medium"
+                    size="30"
                     icon={isPanelOpen ? <AngleDownIcon /> : <AngleRightIcon />}
                     label="Toggle interactive controls"
                     onClick={togglePanel}
