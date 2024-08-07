@@ -124,7 +124,7 @@
     "@types/jest": "^29.5.4",
     "@types/node": "^18.17.14",
     "@types/rosie": "^0.0.45",
-    "@types/testing-library__jest-dom": "^5.14.9",
+    "@types/testing-library__jest-dom": "^6.0.0",
     "@types/uuid": "^9.0.3",
     "@types/webpack-env": "1.18.5",
     "autoprefixer": "^10.4.15",
