@@ -51,13 +51,7 @@ const DialogFooter = (props: Props) => {
       `}
     >
       <Spacings.Inline alignItems="center" justifyContent="space-between">
-        <Spacings.Inline
-          scale="m"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <div>{props.footerContent}</div>
-        </Spacings.Inline>
+        <div>{props.footerContent}</div>
         <Spacings.Inline
           scale="m"
           alignItems="center"
