@@ -117,9 +117,7 @@ const AppBar = (props: Props) => {
         `}
       >
         <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
-        <WorkspacesNavigationButton
-          projectKey={props.projectKeyFromUrl || previousProjectKey}
-        />
+        <WorkspacesNavigationButton />
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}

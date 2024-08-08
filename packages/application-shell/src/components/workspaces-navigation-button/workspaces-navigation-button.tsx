@@ -9,10 +9,6 @@ import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Tooltip from '@commercetools-uikit/tooltip';
 import messages from './messages';
 
-type WorkspacesNavigationButtonProps = {
-  projectKey: string | undefined;
-};
-
 export const FEATURE_NAME = 'Workspaces';
 
 // TODO: This logo still TBD, placeholder for now
@@ -29,9 +25,7 @@ const WorkspacesLogo = () => {
   );
 };
 
-const WorkspacesNavigationButton = ({
-  projectKey,
-}: WorkspacesNavigationButtonProps) => {
+const WorkspacesNavigationButton = () => {
   const { formatMessage } = useIntl();
   const workspacesAppBarButtonEnabled = useFlagVariation(
     featureFlags.ENABLE_WORKSPACES_UI
@@ -41,14 +35,6 @@ const WorkspacesNavigationButton = ({
   const isWorkspacesButtonEnabled = workspacesAppBarButtonEnabled?.value;
 
   if (!isWorkspacesButtonEnabled) return null;
-
-  /**
-   * If we don't have a project key, there's no way to navigate to the workspaces page in the fallback application.
-   * Once Workspaces lives in a centralized location, we can navigate to that specific URL.
-   *
-   * TODO: Reevaluate this after the iterative launcher / junior is released.
-   */
-  if (!projectKey) return null;
 
   return (
     <div
@@ -68,7 +54,7 @@ const WorkspacesNavigationButton = ({
             iconLeft={(<WorkspacesLogo />) as ReactElement}
             as={Link}
             label={FEATURE_NAME}
-            to={`/${projectKey}/workspaces`}
+            to={'/workspaces'}
           />
         </Tooltip>
       </div>
