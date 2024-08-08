@@ -64,9 +64,7 @@ const FormDialogExample = () => (
                       event as FormEvent<HTMLFormElement>
                     )
                   }
-                  leftAlignedFooterContent={
-                    <a href="/#">Left aligned content</a>
-                  }
+                  footerContent={<a href="/#">Left aligned content</a>}
                 >
                   <Spacings.Stack scale="m">
                     <TextField

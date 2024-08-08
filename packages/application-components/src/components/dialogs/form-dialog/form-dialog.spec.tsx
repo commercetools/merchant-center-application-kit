@@ -58,7 +58,7 @@ describe('rendering', () => {
     validateComponent({
       title: 'Lorem ipsus',
       extraProps: {
-        leftAlignedFooterContent: <a href="/#">Left aligned content</a>,
+        footerContent: <a href="/#">Left aligned content</a>,
       },
       extraChecks: () => {
         screen.getByText('Left aligned content');
