@@ -59,3 +59,7 @@ Please look at the single packages in [`packages` folder](./packages) for docume
 ## Contributing
 
 Contributions are welcomed. Please have a read at our [contribution guidelines](CONTRIBUTING.md).
+
+## Need Help?
+
+In case you have any questions about or issues with the tools and components provided in this repository, please reach out to our [Support team](https://support.commercetools.com).
