@@ -58,10 +58,10 @@ describe('rendering', () => {
     validateComponent({
       title: 'Lorem ipsus',
       extraProps: {
-        leftAlignedFooterContent: <div>Additional Content</div>,
+        leftAlignedFooterContent: <a href="/#">Left aligned content</a>,
       },
       extraChecks: () => {
-        screen.getByText('Additional Content');
+        screen.getByText('Left aligned content');
       },
     }));
 });
