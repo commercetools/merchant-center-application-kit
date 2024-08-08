@@ -31,6 +31,7 @@ export type TFormDialogProps = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
   iconLeftSecondaryButton?: ReactElement;
+  leftAlignedFooterContent: ReactNode;
 };
 const defaultProps: Pick<TFormDialogProps, 'labelSecondary' | 'labelPrimary'> =
   {
@@ -59,6 +60,7 @@ const FormDialog = (props: TFormDialogProps) => (
       dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
       dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
       iconLeftSecondaryButton={props.iconLeftSecondaryButton}
+      leftAlignedFooterContent={props.leftAlignedFooterContent}
     />
   </DialogContainer>
 );

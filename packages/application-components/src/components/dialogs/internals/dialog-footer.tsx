@@ -1,4 +1,4 @@
-import type { ReactElement, SyntheticEvent } from 'react';
+import type { ReactElement, SyntheticEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useIntl, type IntlShape } from 'react-intl';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
@@ -26,6 +26,7 @@ type Props = {
   dataAttributesSecondaryButton: { [key: string]: string };
   children?: never;
   iconLeftSecondaryButton?: ReactElement;
+  leftAlignedFooterContent?: ReactNode;
 };
 const defaultProps: Pick<
   Props,
@@ -49,19 +50,34 @@ const DialogFooter = (props: Props) => {
         margin-top: ${uiKitDesignTokens.spacing50};
       `}
     >
-      <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
-        <SecondaryButton
-          label={getFormattedLabel(props.labelSecondary, intl)}
-          onClick={props.onCancel}
-          iconLeft={props.iconLeftSecondaryButton}
-          {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-        />
-        <PrimaryButton
-          label={getFormattedLabel(props.labelPrimary, intl)}
-          onClick={props.onConfirm}
-          isDisabled={props.isPrimaryButtonDisabled}
-          {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-        />
+      <Spacings.Inline alignItems="center" justifyContent="space-between">
+        {props.leftAlignedFooterContent && (
+          <Spacings.Inline
+            scale="m"
+            alignItems="center"
+            justifyContent="flex-start"
+          >
+            {props.leftAlignedFooterContent}
+          </Spacings.Inline>
+        )}
+        <Spacings.Inline
+          scale="m"
+          alignItems="center"
+          justifyContent="flex-end"
+        >
+          <SecondaryButton
+            label={getFormattedLabel(props.labelSecondary, intl)}
+            onClick={props.onCancel}
+            iconLeft={props.iconLeftSecondaryButton}
+            {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+          />
+          <PrimaryButton
+            label={getFormattedLabel(props.labelPrimary, intl)}
+            onClick={props.onConfirm}
+            isDisabled={props.isPrimaryButtonDisabled}
+            {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+          />
+        </Spacings.Inline>
       </Spacings.Inline>
     </div>
   );
