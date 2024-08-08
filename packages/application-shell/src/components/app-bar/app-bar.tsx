@@ -116,11 +116,10 @@ const AppBar = (props: Props) => {
           display: flex;
         `}
       >
-        <div id={CONTAINERS.LEFT_OF_PROFILE}>
-          <WorkspacesNavigationButton
-            projectKey={props.projectKeyFromUrl || previousProjectKey}
-          />
-        </div>
+        <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
+        <WorkspacesNavigationButton
+          projectKey={props.projectKeyFromUrl || previousProjectKey}
+        />
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}
