@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { featureFlags } from '@commercetools-frontend/constants/src';
+import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens } from '@commercetools-uikit/design-system';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Tooltip from '@commercetools-uikit/tooltip';

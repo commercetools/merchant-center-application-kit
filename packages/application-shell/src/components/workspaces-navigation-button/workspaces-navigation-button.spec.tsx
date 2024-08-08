@@ -1,4 +1,4 @@
-import { ENABLE_WORKSPACES_UI } from '@commercetools-frontend/constants/src/feature-toggles';
+import { featureFlags } from '@commercetools-frontend/constants';
 import { screen, renderApp } from '../../test-utils';
 import WorkspacesNavigationButton, {
   FEATURE_NAME,
@@ -8,7 +8,7 @@ describe('rendering', () => {
   it('should render the button when the feature flag is enabled and projectKey is provided', async () => {
     renderApp(<WorkspacesNavigationButton />, {
       flags: {
-        [ENABLE_WORKSPACES_UI]: { value: true },
+        [featureFlags.ENABLE_WORKSPACES_UI]: { value: true },
       },
     });
 
@@ -22,7 +22,7 @@ describe('rendering', () => {
   it('should not render the button when the feature flag is disabled', () => {
     renderApp(<WorkspacesNavigationButton />, {
       flags: {
-        [ENABLE_WORKSPACES_UI]: { value: false },
+        [featureFlags.ENABLE_WORKSPACES_UI]: { value: false },
       },
     });
 
