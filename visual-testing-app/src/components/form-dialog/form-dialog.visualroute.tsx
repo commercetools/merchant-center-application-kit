@@ -30,6 +30,7 @@ const FormDialogExample = (props: ContainerProps) => (
             document.querySelector(`#${props.portalId}`) as HTMLElement
           }
           zIndex={10001}
+          leftAlignedFooterContent={props.leftAlignedFooterContent}
         >
           <Spacings.Stack scale="m">
             <TextField
@@ -107,6 +108,17 @@ export const Component = () => (
         size="l"
         isPrimaryButtonDisabled={true}
         portalId="dialog-disabled"
+      />
+    </Spec>
+    <Spec
+      label="FormDialog - leftAlignedFooterContent provided"
+      size="l"
+      contentAlignment="center"
+    >
+      <FormDialogExample
+        size="l"
+        portalId="dialog-left-aligned-footer-content"
+        leftAlignedFooterContent={<a href="/#">lorem ipsum</a>}
       />
     </Spec>
   </Suite>

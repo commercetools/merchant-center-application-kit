@@ -31,7 +31,7 @@ export type TFormDialogProps = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
   iconLeftSecondaryButton?: ReactElement;
-  leftAlignedFooterContent: ReactNode;
+  leftAlignedFooterContent?: ReactNode;
 };
 const defaultProps: Pick<TFormDialogProps, 'labelSecondary' | 'labelPrimary'> =
   {

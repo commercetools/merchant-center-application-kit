@@ -60,24 +60,30 @@ const DialogFooter = (props: Props) => {
             {props.leftAlignedFooterContent}
           </Spacings.Inline>
         )}
-        <Spacings.Inline
-          scale="m"
-          alignItems="center"
-          justifyContent="flex-end"
+        <div
+          css={css`
+            margin-left: auto;
+          `}
         >
-          <SecondaryButton
-            label={getFormattedLabel(props.labelSecondary, intl)}
-            onClick={props.onCancel}
-            iconLeft={props.iconLeftSecondaryButton}
-            {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-          />
-          <PrimaryButton
-            label={getFormattedLabel(props.labelPrimary, intl)}
-            onClick={props.onConfirm}
-            isDisabled={props.isPrimaryButtonDisabled}
-            {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-          />
-        </Spacings.Inline>
+          <Spacings.Inline
+            scale="m"
+            alignItems="center"
+            justifyContent="flex-end"
+          >
+            <SecondaryButton
+              label={getFormattedLabel(props.labelSecondary, intl)}
+              onClick={props.onCancel}
+              iconLeft={props.iconLeftSecondaryButton}
+              {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+            />
+            <PrimaryButton
+              label={getFormattedLabel(props.labelPrimary, intl)}
+              onClick={props.onConfirm}
+              isDisabled={props.isPrimaryButtonDisabled}
+              {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+            />
+          </Spacings.Inline>
+        </div>
       </Spacings.Inline>
     </div>
   );
