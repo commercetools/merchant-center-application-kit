@@ -53,6 +53,17 @@ describe('rendering', () => {
         screen.getByText('button icon');
       },
     }));
+
+  it('should show additional content in footer', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+      extraProps: {
+        footerContent: <a href="/#">Left aligned content</a>,
+      },
+      extraChecks: () => {
+        screen.getByText('Left aligned content');
+      },
+    }));
 });
 
 describe('with custom title', () => {
