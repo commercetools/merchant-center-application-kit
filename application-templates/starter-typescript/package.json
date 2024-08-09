@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-applications/merchant-center-template-starter-typescript",
-  "version": "22.30.3",
+  "version": "22.31.0",
   "description": "A starter example in TypeScript for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
