@@ -10,6 +10,7 @@ import LoadingPlaceholder from '../loading-placeholder';
 import ProjectSwitcher from '../project-switcher';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import UserSettingsMenu from '../user-settings-menu';
+import WorkspacesNavigationButton from '../workspaces-navigation-button';
 
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
@@ -116,6 +117,7 @@ const AppBar = (props: Props) => {
         `}
       >
         <div id={CONTAINERS.LEFT_OF_PROFILE}></div>
+        <WorkspacesNavigationButton />
         {props.user ? (
           <UserSettingsMenu
             language={props.user.language}
