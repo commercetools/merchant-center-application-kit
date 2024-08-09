@@ -58,8 +58,8 @@ importers:
         specifier: workspace:*
         version: link:packages/mc-scripts
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-uikit/design-system':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)
@@ -346,14 +346,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -568,14 +568,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -787,14 +787,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -1009,14 +1009,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -2747,8 +2747,8 @@ importers:
         version: 5.0.2(webpack@5.92.0)
     devDependencies:
       '@commercetools-test-data/custom-view':
-        specifier: ^8.0.0
-        version: 8.2.3
+        specifier: ^9.0.0
+        version: 9.0.7
       '@tsconfig/node16':
         specifier: ^16.1.1
         version: 16.1.1
@@ -3267,8 +3267,8 @@ importers:
         specifier: 22.30.3
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.7
+        version: 9.0.7
       '@formatjs/cli':
         specifier: 6.2.12
         version: 6.2.12
@@ -3773,7 +3773,7 @@ packages:
       '@babel/traverse': 7.24.5
       '@babel/types': 7.24.5
       convert-source-map: 2.0.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -3796,7 +3796,7 @@ packages:
       '@babel/traverse': 7.24.5
       '@babel/types': 7.24.5
       convert-source-map: 2.0.0
-      debug: 4.3.5
+      debug: 4.3.5(supports-color@8.1.1)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -7781,7 +7781,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.24.5
       '@babel/parser': 7.24.5
       '@babel/types': 7.24.5
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -8198,42 +8198,27 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: true
 
-  /@commercetools-test-data/channel@8.5.0:
-    resolution: {integrity: sha512-FnWkxU5mTyR2AmI4ErE5Jz8M99avFJ0wKZXS9UTcuF+bjnrpuNtIpCHnV1VUirl1c/hfaaoU/8KgLehDarilUw==}
+  /@commercetools-test-data/channel@9.0.7:
+    resolution: {integrity: sha512-fS3cHSR2Oz0KPjf+ODYGzP4CPPmVv0a1LdXFtoXaY6pvB6/8BlMsqT/jukPbUVW5ZKYWUAfD2YDDBy5B79EVFQ==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/commons': 8.5.0
-      '@commercetools-test-data/core': 8.5.0
-      '@commercetools-test-data/utils': 8.5.0
+      '@commercetools-test-data/commons': 9.0.7
+      '@commercetools-test-data/core': 9.0.7
+      '@commercetools-test-data/utils': 9.0.7
       '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.4.1
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@commercetools-test-data/commons@8.2.3:
-    resolution: {integrity: sha512-hOeU8Z+tXdoqDJ9B7oHK4W2PNKUO2h6hHEP0W0vOYt2gmINczQ6Aq27TZ8Ga/i5YQpRF5CGSxH23mShodMY5Kg==}
+  /@commercetools-test-data/commons@9.0.7:
+    resolution: {integrity: sha512-pRnlWnpB33RYKBuMiDfD07QDjSKBSj7lcPcw1ZninxTmVa1cdRourdwRofwqhTHpMktctmqE6G4oFk7XtFneNA==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 8.2.3
-      '@commercetools-test-data/utils': 8.2.3
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.4.1
-      '@types/lodash': 4.17.4
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - encoding
-    dev: true
-
-  /@commercetools-test-data/commons@8.5.0:
-    resolution: {integrity: sha512-VnO7pWyrN7Nx1hD7+13bsLXiZu8Tqp4pN7oIPQtH5Cy43NGrlJ5jlkP7BKM8UuEjCJtAvR2fWPW5GZ3rAaeaIA==}
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 8.5.0
-      '@commercetools-test-data/utils': 8.5.0
+      '@commercetools-test-data/core': 9.0.7
+      '@commercetools-test-data/utils': 9.0.7
       '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.4.1
       '@types/lodash': 4.17.4
@@ -8241,18 +8226,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@commercetools-test-data/core@8.2.3:
-    resolution: {integrity: sha512-Of0mGrhw1uTCmcnlC4RUaxBltHbAoZKKgDRdP1fxIcr/ltCC0DopIhupa7rCusdK4xOWV6njzDPPO7guM0a23A==}
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
-      '@types/lodash': 4.17.4
-      lodash: 4.17.21
-    dev: true
-
-  /@commercetools-test-data/core@8.5.0:
-    resolution: {integrity: sha512-S+PaEHX9iOtcoBzwx5exh77Y4+aGxoT15cG6ptADwFrMUdpGbI1x5XA/siBOu00Uy3Ge8FZrXA/hHPvuzxRLvw==}
+  /@commercetools-test-data/core@9.0.7:
+    resolution: {integrity: sha512-Qo0I/agv9bpsAUv/gFtpE8+5rXul/JiouxAJW8xlEb7xf6Xcaf88rjTm3CzH78cAtrlj7FXXRSyf5s0PLmfHGg==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -8260,17 +8235,17 @@ packages:
       '@types/lodash': 4.17.4
       lodash: 4.17.21
 
-  /@commercetools-test-data/custom-view@8.2.3:
-    resolution: {integrity: sha512-L++qEV3Z46kAhwCfL3EyR90rw6PhlFzIN9dmLH9wXF0kT8FvZxel0nqOjBFWtTseLc1yFmwBCgLCGeLZCvuu9w==}
+  /@commercetools-test-data/custom-view@9.0.7:
+    resolution: {integrity: sha512-JNVzxzngdLl2h/rB5328/goG/wun/wS8VPsjmKRT4QHkJsh/NY5IvLICoyCYNkJJyARaYm/Wez/XRJTkLUBCYg==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-frontend/application-config': 22.30.3
       '@commercetools-frontend/constants': 22.30.3
-      '@commercetools-test-data/commons': 8.2.3
-      '@commercetools-test-data/core': 8.2.3
-      '@commercetools-test-data/graphql-types': 8.2.3
-      '@commercetools-test-data/utils': 8.2.3
+      '@commercetools-test-data/commons': 9.0.7
+      '@commercetools-test-data/core': 9.0.7
+      '@commercetools-test-data/graphql-types': 9.0.7
+      '@commercetools-test-data/utils': 9.0.7
       '@commercetools/platform-sdk': 7.1.0
       '@faker-js/faker': 8.4.1
       '@types/lodash': 4.17.4
@@ -8283,20 +8258,12 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-test-data/graphql-types@8.2.3:
-    resolution: {integrity: sha512-fFkNMKCytxAFbCA/qu3v3xv+5eGo/BRIHKEy0IWJ920R7ic0dRNrN5Hlm96iZLSQ11SeTAJPUrq0mld+wr8LAw==}
+  /@commercetools-test-data/graphql-types@9.0.7:
+    resolution: {integrity: sha512-yFnyxDM7uIwydT1iwQCvamse+B1NjGKyYGb9V91bPoRofq+YYztCBmWTSNX4NikVYJJ1dsL0BL6bYBzDABywhg==}
     dev: true
 
-  /@commercetools-test-data/utils@8.2.3:
-    resolution: {integrity: sha512-SHgtDgU3ZqK6jRIQStX6jBo1boHu1Wzq7/C0rxGHhJl9zbLKV7ic59piWnDxCG7AMSN+Dy0PDsF8iW1UV3Z24g==}
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
-    dev: true
-
-  /@commercetools-test-data/utils@8.5.0:
-    resolution: {integrity: sha512-gcEyLYkV8MhwH2t5szhvQuMpnQNqZGwrT9drSDDZmwWO7gQT3zKQ8NVCt+JUYTV/rffP7RLKJ2I4oRNOG6OaEA==}
+  /@commercetools-test-data/utils@9.0.7:
+    resolution: {integrity: sha512-+wzu+VLOJhSXlQe64Yc2wOVeoNZYYCbJ54HYUSYQCjqCcRTH/np6nvu096zb+uuutuTky7TNyc6lW9LE4VrMWg==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -12392,7 +12359,7 @@ packages:
       '@types/json-stable-stringify': 1.0.34
       '@whatwg-node/fetch': 0.8.4
       chalk: 4.1.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       dotenv: 16.4.5
       graphql: 16.8.2
       graphql-request: 6.0.0(graphql@16.8.2)
@@ -13171,7 +13138,7 @@ packages:
       '@open-draft/until': 1.0.3
       '@types/debug': 4.1.7
       '@xmldom/xmldom': 0.8.7
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       headers-polyfill: 3.1.2
       outvariant: 1.4.0
       strict-event-emitter: 0.2.8
@@ -15395,7 +15362,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.58.0
       '@typescript-eslint/visitor-keys': 5.58.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.6.2
@@ -15849,6 +15816,7 @@ packages:
 
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
 
   /abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -15911,7 +15879,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -15919,7 +15887,7 @@ packages:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
     engines: {node: '>= 14'}
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -18358,7 +18326,7 @@ packages:
       ms: 2.1.2
       supports-color: 8.1.1
 
-  /debug@4.3.5:
+  /debug@4.3.5(supports-color@8.1.1):
     resolution: {integrity: sha512-pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==}
     engines: {node: '>=6.0'}
     peerDependencies:
@@ -18368,6 +18336,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+      supports-color: 8.1.1
 
   /decamelize-keys@1.1.1:
     resolution: {integrity: sha512-WiPxgEirIV0/eIOMcnFBA3/IJZAZqKnwAwWyvvdi4lsr1WCN22nhdf/3db3DoZcUjTV2SqfzIwNyp6y2xs3nmg==}
@@ -20030,7 +19999,7 @@ packages:
     engines: {node: '>= 10.17.0'}
     hasBin: true
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -20359,7 +20328,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.5
+      debug: 4.3.5(supports-color@8.1.1)
     dev: false
 
   /for-each@0.3.3:
@@ -20678,7 +20647,7 @@ packages:
     dependencies:
       basic-ftp: 5.0.5
       data-uri-to-buffer: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       fs-extra: 11.2.0
     transitivePeerDependencies:
       - supports-color
@@ -21413,7 +21382,7 @@ packages:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -21422,7 +21391,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -21478,7 +21447,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -21487,7 +21456,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -22220,7 +22189,7 @@ packages:
     resolution: {integrity: sha512-n3s8EwkdFIJCG3BPKBYvskgXGoy88ARzvegkitk60NxRdwltLOTaH7CUiMRXvwYorl0Q712iEjcWB+fK/MrWVw==}
     engines: {node: '>=10'}
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       istanbul-lib-coverage: 3.2.0
       source-map: 0.6.1
     transitivePeerDependencies:
@@ -23097,7 +23066,7 @@ packages:
       data-urls: 3.0.2
       decimal.js: 10.4.3
       domexception: 4.0.0
-      escodegen: 2.0.0
+      escodegen: 2.1.0
       form-data: 4.0.0
       html-encoding-sniffer: 3.0.0
       http-proxy-agent: 5.0.0
@@ -24348,7 +24317,7 @@ packages:
     resolution: {integrity: sha512-6Mj0yHLdUZjHnOPgr5xfWIMqMWS12zDN6iws9SLuSz76W8jTtAv24MN4/CL7gJrl5vtxGInkkqDv/JIoRsQOvA==}
     dependencies:
       '@types/debug': 4.1.7
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       decode-named-character-reference: 1.0.2
       micromark-core-commonmark: 1.0.6
       micromark-factory-space: 1.0.0
@@ -25284,7 +25253,7 @@ packages:
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       get-uri: 6.0.3
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.4
@@ -27656,7 +27625,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       socks: 2.8.1
     transitivePeerDependencies:
       - supports-color
@@ -27744,7 +27713,7 @@ packages:
   /spdy-transport@3.0.0:
     resolution: {integrity: sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw==}
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       detect-node: 2.1.0
       hpack.js: 2.1.6
       obuf: 1.1.2
@@ -27758,7 +27727,7 @@ packages:
     resolution: {integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==}
     engines: {node: '>=6.0.0'}
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.5(supports-color@8.1.1)
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
@@ -27834,7 +27803,7 @@ packages:
       arg: 5.0.2
       bluebird: 3.7.2
       check-more-types: 2.24.0
-      debug: 4.3.5
+      debug: 4.3.5(supports-color@8.1.1)
       execa: 5.1.1
       lazy-ass: 1.6.0
       ps-tree: 1.2.0
@@ -28727,7 +28696,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 14.18.33
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -28789,7 +28758,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 18.17.14
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -28819,7 +28788,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 20.5.1
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
