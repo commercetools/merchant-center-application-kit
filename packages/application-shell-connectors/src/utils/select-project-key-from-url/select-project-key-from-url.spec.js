@@ -5,6 +5,7 @@ describe.each`
   ${'/login'}                         | ${undefined}
   ${'/logout'}                        | ${undefined}
   ${'/account'}                       | ${undefined}
+  ${'/workspaces'}                    | ${undefined}
   ${'/foo'}                           | ${'foo'}
   ${'/foo/bar'}                       | ${'foo'}
   ${'/foo/bar/123'}                   | ${'foo'}
