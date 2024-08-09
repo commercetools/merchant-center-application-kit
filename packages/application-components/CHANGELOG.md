@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.31.0
+
+### Minor Changes
+
+- [#3587](https://github.com/commercetools/merchant-center-application-kit/pull/3587) [`d37e74e`](https://github.com/commercetools/merchant-center-application-kit/commit/d37e74e500026766b1360c7db89798262c128898) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Add a new property `footerContent`to the form dialog. This provides an additional content positioned to the left area of the form dialog footer.
+
+### Patch Changes
+
+- Updated dependencies [[`2fe2e11`](https://github.com/commercetools/merchant-center-application-kit/commit/2fe2e119982c7fa347f70ac8e203eb1f1e1743b7), [`d4a26cd`](https://github.com/commercetools/merchant-center-application-kit/commit/d4a26cd4daba200567486a81b580749a17d648f5)]:
+  - @commercetools-frontend/application-config@22.31.0
+  - @commercetools-frontend/constants@22.31.0
+  - @commercetools-frontend/application-shell-connectors@22.31.0
+  - @commercetools-frontend/actions-global@22.31.0
+  - @commercetools-frontend/sentry@22.31.0
+  - @commercetools-frontend/i18n@22.31.0
+  - @commercetools-frontend/l10n@22.31.0
+  - @commercetools-frontend/assets@22.31.0
+
 ## 22.30.3
 
 ### Patch Changes

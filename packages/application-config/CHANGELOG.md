@@ -1,5 +1,15 @@
 # @commercetools-frontend/application-config
 
+## 22.31.0
+
+### Patch Changes
+
+- [#3584](https://github.com/commercetools/merchant-center-application-kit/pull/3584) [`2fe2e11`](https://github.com/commercetools/merchant-center-application-kit/commit/2fe2e119982c7fa347f70ac8e203eb1f1e1743b7) Thanks [@emmenko](https://github.com/emmenko)! - Keep JS comments in type declarations
+
+- Updated dependencies [[`d4a26cd`](https://github.com/commercetools/merchant-center-application-kit/commit/d4a26cd4daba200567486a81b580749a17d648f5)]:
+  - @commercetools-frontend/constants@22.31.0
+  - @commercetools-frontend/babel-preset-mc-app@22.31.0
+
 ## 22.30.3
 
 ### Patch Changes
