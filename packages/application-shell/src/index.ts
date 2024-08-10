@@ -2,15 +2,20 @@ export * from './export-types';
 export { default as version } from './version';
 export { default as ApplicationShell } from './components/application-shell';
 export { default as ApplicationShellProvider } from './components/application-shell-provider';
+export { getBrowserLocale } from './components/application-shell-provider/utils';
 export { default as ApplicationPageTitle } from './components/application-page-title';
 export { default as CustomViewShell } from './components/custom-view-shell';
+export { default as FetchUser } from './components/fetch-user';
+export { default as ErrorApologizer } from './components/error-apologizer';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
+export { default as RedirectToLogin } from './components/redirect-to-login';
+export { default as RedirectToLogout } from './components/redirect-to-logout';
 export { default as RouteCatchAll } from './components/route-catch-all';
-export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as ConfigureIntlProvider } from './components/configure-intl-provider';
 export { default as SuspendedRoute } from './components/suspended-route';
+export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';
 
 export {
