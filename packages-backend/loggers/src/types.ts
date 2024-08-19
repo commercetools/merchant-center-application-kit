@@ -8,5 +8,5 @@ export type TLoggerOptions = {
 };
 
 export type TAccessLoggerOptions = TLoggerOptions & {
-  ignoreUrls?: string[];
+  ignoreUrls?: (string | RegExp)[];
 };
