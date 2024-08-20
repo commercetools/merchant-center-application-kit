@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.31.0
+
+### Minor Changes
+
+- [#3586](https://github.com/commercetools/merchant-center-application-kit/pull/3586) [`d4a26cd`](https://github.com/commercetools/merchant-center-application-kit/commit/d4a26cd4daba200567486a81b580749a17d648f5) Thanks [@jaikamat](https://github.com/jaikamat)! - Adds functionality to the AppBar component for an ongoing feature effort
+
 ## 22.30.3
 
 ## 22.30.2
