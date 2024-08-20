@@ -37,7 +37,9 @@ const ApplicationRoutes = () => {
         <CustomPanelDemo />
       </Route>
       <Route>
-        <PublicPageLayout welcomeMessage="Welcome to the Merchant Center" />
+        <PublicPageLayout welcomeMessage="Welcome to the Merchant Center">
+          content
+        </PublicPageLayout>
       </Route>
     </Switch>
   );
