@@ -1,5 +1,21 @@
 # @commercetools-backend/loggers
 
+## 22.31.0
+
+### Minor Changes
+
+- [#3592](https://github.com/commercetools/merchant-center-application-kit/pull/3592) [`d1c89d2`](https://github.com/commercetools/merchant-center-application-kit/commit/d1c89d2e29a53cd8fe77e4119e5b4f14410979fd) Thanks [@emmenko](https://github.com/emmenko)! - In the access logger the option `ignoreUrls` supports both strings and regular expressions.
+
+  For strings, the value is matched as-is. You can now use the regular expression to match a certain path structure, for example to ignore requests to load assets.
+
+  ```ts
+  const access = createAccessLoggerMiddleware({
+    level: 'info',
+    json: true,
+    ignoreUrls: ['/', '/health', /^\/static\/(.*)/],
+  });
+  ```
+
 ## 22.30.3
 
 ## 22.30.2
