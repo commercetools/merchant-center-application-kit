@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
+import { PublicPageLayout } from '@commercetools-frontend/application-components';
+
 import { CustomPanelDemo } from './components/custom-views';
 import EchoServer from './components/echo-server';
 import FormattersDemo from './components/formatters-demo';
@@ -35,13 +37,7 @@ const ApplicationRoutes = () => {
         <CustomPanelDemo />
       </Route>
       <Route>
-        <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
-          <Route path={`${match.path}/:id`}>
-            <StateMachinesDetails
-              goToStateMachinesList={goToStateMachinesList}
-            />
-          </Route>
-        </StateMachinesList>
+        <PublicPageLayout welcomeMessage="Welcome to the Merchant Center" />
       </Route>
     </Switch>
   );

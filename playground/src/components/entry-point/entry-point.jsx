@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
+import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
@@ -21,12 +22,13 @@ const AsyncPlaygroundRoutes = lazy(() =>
 setupGlobalErrorListener();
 
 const apolloClient = configureApolloClient();
+//        <DemoCustomView />
 
 const EntryPoint = () => (
   <Router history={history}>
     <Switch>
       <Route path="/custom-views/:customViewId/projects/:projectKey">
-        <DemoCustomView />
+        <PublicPageLayout welcomeMessage="Welcome to the Merchant Center" />
       </Route>
 
       <Route>
