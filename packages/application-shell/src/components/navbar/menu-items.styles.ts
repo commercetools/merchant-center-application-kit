@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
@@ -33,6 +33,11 @@ const getContainerPositionBasedOnMenuItemPosition = (
       top: 0;
     `,
 ];
+
+const bounce = keyframes`
+from {opacity: 0;}
+  to { opacity: 1;}
+`;
 
 const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
@@ -141,7 +146,7 @@ const MenuList = styled.ul<
       props.isSublistCollapsedAndActive ||
       props.isSublistCollapsedAndActiveAndAbove) &&
       css`
-        opacity: 1;
+        opacity: 0;
         display: none;
         text-align: left;
         background-color: ${uiKitDesignTokens.colorAccent20};
@@ -281,6 +286,10 @@ const MenuListItem = styled.li<{
     ${MenuList}.sublist-collapsed__active__above,
     :focus-within
     ${MenuList}.sublist-expanded__active {
+    animation-name: ${bounce};
+    animation-duration: 16ms;
+    animation-delay: 100ms;
+    animation-fill-mode: forwards;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
