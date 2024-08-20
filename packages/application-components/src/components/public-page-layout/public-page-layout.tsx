@@ -3,13 +3,10 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
+import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import {
-  ENABLE_SIGN_UP,
-  ENABLE_WORKSPACES_UI,
-} from '../../constants/feature-toggles';
 const year = new Date().getUTCFullYear();
 
 type TProps = {
@@ -720,7 +717,9 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 };
 
 const PublicPageLayout: FC<TProps> = (props) => {
-  const enableWorkspacesUi = useFlagVariation('enableWorkspacesUi');
+  const enableWorkspacesUi = useFlagVariation(
+    featureFlags.ENABLE_WORKSPACES_UI
+  );
   const isWorkspacesUiEnabled =
     // @ts-ignore In case it's coming from the MC API, it's an object { value: boolean }.
     enableWorkspacesUi?.value ?? enableWorkspacesUi;
