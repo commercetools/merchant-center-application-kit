@@ -34,7 +34,7 @@ const getContainerPositionBasedOnMenuItemPosition = (
     `,
 ];
 
-const bounce = keyframes`
+const fadeIn = keyframes`
 from {opacity: 0;}
   to { opacity: 1;}
 `;
@@ -286,7 +286,7 @@ const MenuListItem = styled.li<{
     ${MenuList}.sublist-collapsed__active__above,
     :focus-within
     ${MenuList}.sublist-expanded__active {
-    animation-name: ${bounce};
+    animation-name: ${fadeIn};
     animation-duration: 16ms;
     animation-delay: 100ms;
     animation-fill-mode: forwards;

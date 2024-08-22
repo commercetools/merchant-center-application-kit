@@ -271,7 +271,7 @@ const MenuItem = (props: MenuItemProps) => {
       isActive={props.isActive}
       isRouteActive={Boolean(props.isMainMenuRouteActive)}
       isCollapsed={!props.isMenuOpen}
-      onMouseMove={props.onMouseMove as MouseEventHandler<HTMLLIElement>}
+      onMouseMove={props.onMouseMove}
     >
       <ItemContent>{props.children}</ItemContent>
     </MenuListItem>
