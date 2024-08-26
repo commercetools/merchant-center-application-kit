@@ -325,7 +325,10 @@ const SafeArea = styled.span`
   top: 0;
   bottom: 0;
   right: 100%;
-  width: calc(100% - 16px);
+  /** Ensure the full width of the safe triangle is 100% of the scrollable menu area, less of its left padding (16px)
+   * which is also the starting point of the safe triangle/menu item.
+   */
+  width: calc(100% - ${uiKitDesignTokens.spacing30});
   clip-path: polygon(var(--safe-start), 100% 100%, 100% 0);
 `;
 

@@ -135,7 +135,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
   const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
 
-  const handleMouseMove = useCallback(
+  const calculateSafeAreaStartPositon = useCallback(
     (e) => {
       const localX = e.clientX - safeAreaLeftPos;
       const localY = e.clientY - safeAreaTopPos;
@@ -147,14 +147,14 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   useEffect(() => {
-    handleMouseMove((e: MouseEventHandler) => e);
-    window.addEventListener('mousemove', handleMouseMove);
+    calculateSafeAreaStartPositon((e: MouseEventHandler) => e);
+    window.addEventListener('mousemove', calculateSafeAreaStartPositon);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', calculateSafeAreaStartPositon);
     };
   }, [
-    handleMouseMove,
+    calculateSafeAreaStartPositon,
     menuItemHeight,
     menuItemWidth,
     safeAreaHeight,
@@ -169,7 +169,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       // Adding the +1 to slightly keep the cursor inside the safe area while moving
       `${percentageX}% ${percentageY + 1}%`
     );
-  }, [handleMouseMove, percentageX, percentageY]);
+  }, [calculateSafeAreaStartPositon, percentageX, percentageY]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -394,7 +394,7 @@ const NavBar = (props: TNavbarProps) => {
     handleToggleMenu,
     shouldCloseMenuFly,
     allApplicationsNavbarMenuGroups,
-    handleMouseMove,
+    getMousePosition,
   } = useNavbarStateManager({
     environment: props.environment,
     project: props.project,
@@ -469,7 +469,7 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
-                        onMouseMove={(e) => handleMouseMove(e, itemIndex)}
+                        onMouseMove={(e) => getMousePosition(e, itemIndex)}
                         mousePosition={mousePosition}
                       />
                     );

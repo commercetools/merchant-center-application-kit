@@ -266,7 +266,7 @@ const useNavbarStateManager = (props: HookProps) => {
     [state.activeItemIndex]
   );
 
-  const handleMouseMove = useCallback(
+  const getMousePosition = useCallback(
     (e, itemIndex) => {
       if (state.activeItemIndex === itemIndex) {
         dispatch({
@@ -315,7 +315,7 @@ const useNavbarStateManager = (props: HookProps) => {
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
-    handleMouseMove,
+    getMousePosition,
     allApplicationsNavbarMenuGroups,
   };
 };
