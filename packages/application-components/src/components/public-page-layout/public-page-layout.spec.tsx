@@ -1,4 +1,3 @@
-import { debug } from 'jest-preview';
 import { renderComponent, screen } from '../../test-utils';
 import PublicPageLayout from './public-page-layout';
 
@@ -12,6 +11,5 @@ describe('rendering', () => {
 
     await screen.findByText('Welcome to the Merchant Center');
     await screen.findByText(/commercetools/);
-    debug();
   });
 });

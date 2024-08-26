@@ -2,11 +2,13 @@ import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useFlagVariation } from '@flopflip/react-broadcast';
-import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
+import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
+import CommercetoolsLogoSmallSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
 import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+
 const year = new Date().getUTCFullYear();
 
 type TProps = {
@@ -43,7 +45,7 @@ const Container = styled.div`
   background-position: center;
 `;
 const NewContainer = styled.div`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -718,22 +720,32 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 
 const PublicPageLayout: FC<TProps> = (props) => {
   // JK: Do this in development
-  const enableWorkspacesUi = { value: true };
+  //const enableWorkspacesUi = { value: true };
   // JK: Do this for the real thing
-  // const enableWorkspacesUi = useFlagVariation(
-  //   featureFlags.ENABLE_WORKSPACES_UI
-  // );
+  const enableWorkspacesUi = useFlagVariation(
+    featureFlags.ENABLE_WORKSPACES_UI
+  );
   const isWorkspacesUiEnabled =
     // @ts-ignore In case it's coming from the MC API, it's an object { value: boolean }.
     enableWorkspacesUi?.value ?? enableWorkspacesUi;
-  console.log('isWorkspacesUiEnabled: ', enableWorkspacesUi);
   const ContainerToShow = isWorkspacesUiEnabled ? NewContainer : Container;
   return (
     <ContainerToShow>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <div>
-            <img src={CommercetoolsLogoOnWhiteSvg} alt="commercetools logo" />
+            <img
+              src={
+                isWorkspacesUiEnabled
+                  ? CommercetoolsLogoSmallSvg
+                  : CommercetoolsLogoOnWhiteSvg
+              }
+              alt={
+                isWorkspacesUiEnabled
+                  ? 'commercetools small logo'
+                  : 'commercetools logo'
+              }
+            />
           </div>
         </ContainerColumn>
         {props.welcomeMessage && (
