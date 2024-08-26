@@ -107,7 +107,6 @@ const listStyles = css`
   flex-direction: column;
   min-height: 0;
   flex: 1 1 0;
-  --safe-start: 100% 100%;
 `;
 
 const sublistStyles = css`

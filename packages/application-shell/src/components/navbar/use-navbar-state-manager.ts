@@ -34,7 +34,7 @@ type HookProps = {
   environment: TApplicationContext<{}>['environment'];
   project: TFetchProjectQuery['project'];
 };
-type TMousePosition = {
+export type TMousePosition = {
   clientX: number;
   clientY: number;
 };
@@ -50,7 +50,7 @@ type Action =
   | { type: 'setIsExpanderVisible' }
   | { type: 'toggleIsMenuOpen' }
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
-  | { type: 'setMousePosition'; payload: TMousePosition }
+  | { type: 'getMousePosition'; payload: TMousePosition }
   | { type: 'reset' };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
@@ -73,7 +73,7 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, isMenuOpen: !state.isMenuOpen };
     case 'setIsMenuOpenAndMakeExpanderVisible':
       return { ...state, isExpanderVisible: true, isMenuOpen: action.payload };
-    case 'setMousePosition':
+    case 'getMousePosition':
       return { ...state, mousePosition: action.payload };
     case 'reset':
       return {
@@ -270,7 +270,7 @@ const useNavbarStateManager = (props: HookProps) => {
     (e, itemIndex) => {
       if (state.activeItemIndex === itemIndex) {
         dispatch({
-          type: 'setMousePosition',
+          type: 'getMousePosition',
           payload: { clientX: e.clientX, clientY: e.clientY },
         });
       }

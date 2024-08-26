@@ -58,7 +58,9 @@ import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
-import useNavbarStateManager from './use-navbar-state-manager';
+import useNavbarStateManager, {
+  TMousePosition,
+} from './use-navbar-state-manager';
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -75,11 +77,6 @@ type TSubmenuWithDefaultLabel = TBaseMenu & {
   defaultLabel?: string;
 };
 
-type TClientPositions = {
-  clientX: number;
-  clientY: number;
-};
-
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
   menu: TMenuWithDefaultLabel;
@@ -94,7 +91,7 @@ type ApplicationMenuProps = {
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
   onMouseMove: MouseEventHandler<HTMLLIElement>;
-  mousePosition: TClientPositions;
+  mousePosition: TMousePosition;
   pointerEvent?: string;
 };
 
@@ -128,7 +125,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   /* Getting the width and height of the menu*/
   const subRefBoundingClientRect = submenuRef.current?.getBoundingClientRect();
   const { width: menuItemWidth, height: menuItemHeight } =
-    subRefBoundingClientRect! ?? {};
+    subRefBoundingClientRect ?? {};
 
   // /* We want to track the left, top, width, and height of the safe area */
   const submenuSafeAreaRefBoundingClientRect =
@@ -169,6 +166,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   useLayoutEffect(() => {
     submenuRef.current?.style.setProperty(
       '--safe-start',
+      // Adding the +1 to slightly keep the cursor inside the safe area while moving
       `${percentageX}% ${percentageY + 1}%`
     );
   }, [handleMouseMove, percentageX, percentageY]);
