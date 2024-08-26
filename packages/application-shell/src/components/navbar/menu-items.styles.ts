@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { designTokens as appKitDesignTokens } from '@commercetools-frontend/application-components';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
@@ -33,6 +33,11 @@ const getContainerPositionBasedOnMenuItemPosition = (
       top: 0;
     `,
 ];
+
+const fadeIn = keyframes`
+from {opacity: 0;}
+  to { opacity: 1;}
+`;
 
 const Expander = styled.li<{ isVisible: boolean }>`
   display: flex;
@@ -140,7 +145,7 @@ const MenuList = styled.ul<
       props.isSublistCollapsedAndActive ||
       props.isSublistCollapsedAndActiveAndAbove) &&
       css`
-        opacity: 1;
+        opacity: 0;
         display: none;
         text-align: left;
         background-color: ${uiKitDesignTokens.colorAccent20};
@@ -280,6 +285,10 @@ const MenuListItem = styled.li<{
     ${MenuList}.sublist-collapsed__active__above,
     :focus-within
     ${MenuList}.sublist-expanded__active {
+    animation-name: ${fadeIn};
+    animation-duration: 16ms;
+    animation-delay: 100ms;
+    animation-fill-mode: forwards;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -311,6 +320,18 @@ const MenuListItem = styled.li<{
   }
 `;
 
+const SafeArea = styled.span`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  /** Ensure the full width of the safe triangle is 100% of the scrollable menu area, less of its left padding (16px)
+   * which is also the starting point of the safe triangle/menu item.
+   */
+  width: calc(100% - ${uiKitDesignTokens.spacing30});
+  clip-path: polygon(var(--safe-start), 100% 100%, 100% 0);
+`;
+
 export {
   Expander,
   ExpanderIcon,
@@ -320,4 +341,5 @@ export {
   SublistItem,
   TextLinkSublistWrapper,
   NavlinkClickableContent,
+  SafeArea,
 };
