@@ -740,11 +740,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
                   ? CommercetoolsLogoSmallSvg
                   : CommercetoolsLogoOnWhiteSvg
               }
-              alt={
-                isWorkspacesUiEnabled
-                  ? 'commercetools small logo'
-                  : 'commercetools logo'
-              }
+              alt="commercetools logo"
             />
           </div>
         </ContainerColumn>
