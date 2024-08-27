@@ -722,6 +722,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
   const enableWorkspacesUi = useFlagVariation(
     featureFlags.ENABLE_WORKSPACES_UI
   );
+  // @ts-ignore It's coming from the MC API, it's an object { value: boolean }.
   const isWorkspacesUiEnabled = enableWorkspacesUi?.value;
   const ContainerToShow = isWorkspacesUiEnabled ? NewContainer : Container;
   return (
