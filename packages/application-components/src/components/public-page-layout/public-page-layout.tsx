@@ -44,7 +44,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
 `;
-const NewContainer = styled.div`
+const GradientBackgroundContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -724,7 +724,9 @@ const PublicPageLayout: FC<TProps> = (props) => {
   );
   // @ts-ignore It's coming from the MC API, it's an object { value: boolean }.
   const isWorkspacesUiEnabled = enableWorkspacesUi?.value;
-  const ContainerToShow = isWorkspacesUiEnabled ? NewContainer : Container;
+  const ContainerToShow = isWorkspacesUiEnabled
+    ? GradientBackgroundContainer
+    : Container;
   return (
     <ContainerToShow>
       <Spacings.Stack scale="xl" alignItems="center">
