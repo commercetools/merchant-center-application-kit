@@ -33,29 +33,7 @@ width: 100%;
 --3y: 75%;
 --4x: 75%;
 --4y: 75%;
-background: radial-gradient(
-    70% 70% at var(--3x) var(--3y),
-    var(--color-primary-90) 1%,
-    transparent 65%
-  ),
-  radial-gradient(
-    70% 70% at var(--2x) var(--2y),
-    var(--color-primary-90) 1%,
-    transparent 75%
-  ),
-  radial-gradient(
-    30% 90% at var(--4x) var(--4y),
-    var(--color-turquoise-90) 0% 5%,
-    transparent 80%
-  ),
-  radial-gradient(
-    30% 90% at var(--1x) var(--1y),
-    var(--color-turquoise-90) 0% 5%,
-    transparent 80%
-  );
-background-blend-mode: color;
-animation: gradients 10s ease both infinite;
-}
+
 
 @keyframes gradients {
 0% {
@@ -676,5 +654,29 @@ animation: gradients 10s ease both infinite;
   --4x: 75%;
   --4y: 75%;
 }
+}
+
+background: radial-gradient(
+    70% 70% at var(--3x) var(--3y),
+    var(--color-primary-90) 1%,
+    transparent 65%
+  ),
+  radial-gradient(
+    70% 70% at var(--2x) var(--2y),
+    var(--color-primary-90) 1%,
+    transparent 75%
+  ),
+  radial-gradient(
+    30% 90% at var(--4x) var(--4y),
+    var(--color-turquoise-90) 0% 5%,
+    transparent 80%
+  ),
+  radial-gradient(
+    30% 90% at var(--1x) var(--1y),
+    var(--color-turquoise-90) 0% 5%,
+    transparent 80%
+  );
+background-blend-mode: color;
+animation: gradients 10s ease both infinite;
 }
 `;
