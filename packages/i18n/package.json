@@ -9,25 +9,14 @@
     "directory": "packages/i18n"
   },
   "homepage": "https://docs.commercetools.com/merchant-center-customizations",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "main": "dist/commercetools-frontend-i18n.cjs.js",
   "module": "dist/commercetools-frontend-i18n.esm.js",
-  "files": [
-    "compiled-data",
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["compiled-data", "dist", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "compile-data": "./scripts/compile_data.sh"
   },
@@ -40,7 +29,7 @@
     "@emotion/react": "^11.11.4",
     "@formatjs/icu-messageformat-parser": "2.7.8",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.80",
+    "@types/react": "18.3.4",
     "moment": "^2.29.4",
     "prop-types": "15.8.1"
   },
@@ -48,11 +37,11 @@
     "@formatjs/cli": "6.2.12",
     "@types/jest": "^29.5.4",
     "jest-mock": "29.7.0",
-    "react": "17.0.2",
+    "react": "18.3.1",
     "react-intl": "^6.4.7"
   },
   "peerDependencies": {
-    "react": "17.x",
+    "react": "18.x",
     "react-intl": "6.x"
   }
 }

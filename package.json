@@ -118,7 +118,7 @@
     "@svgr/plugin-svgo": "6.5.1",
     "@testing-library/cypress": "8.0.7",
     "@testing-library/dom": "^9.3.1",
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "16.0.1",
     "@tsconfig/cypress": "^1.0.1",
     "@types/eslint": "^8.44.2",
     "@types/jest": "^29.5.4",
@@ -156,8 +156,8 @@
     "prettier": "2.8.8",
     "puppeteer": "20.9.0",
     "qss": "2.0.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "replace": "1.2.2",
     "rosie": "2.1.1",
     "shelljs": "0.8.5",
@@ -174,8 +174,8 @@
   "pnpm": {
     "overrides": {
       "@types/eslint": "^8.2.2",
-      "@types/react": "^17.0.56",
-      "@types/react-dom": "17.0.25",
+      "@types/react": "18.3.4",
+      "@types/react-dom": "18.3.0",
       "@types/react-router": "5.1.20",
       "@typescript-eslint/eslint-plugin": "^5.52.0",
       "@typescript-eslint/parser": "^5.52.0"
