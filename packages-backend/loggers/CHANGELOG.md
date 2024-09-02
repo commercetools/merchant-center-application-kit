@@ -1,5 +1,7 @@
 # @commercetools-backend/loggers
 
+## 22.32.0
+
 ## 22.31.0
 
 ### Minor Changes
