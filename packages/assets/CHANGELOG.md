@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 22.32.0
+
+### Minor Changes
+
+- [#3596](https://github.com/commercetools/merchant-center-application-kit/pull/3596) [`6fc21a8`](https://github.com/commercetools/merchant-center-application-kit/commit/6fc21a87b45da82e820c86601ceee5374d1eb299) Thanks [@jocelyn-dunkley](https://github.com/jocelyn-dunkley)! - Added a gradient background and smaller commercetools logo to the public-page-layout component as part of an ongoing feature effort
+
 ## 22.31.0
 
 ## 22.30.3
