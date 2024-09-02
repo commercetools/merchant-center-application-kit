@@ -1,10 +1,17 @@
 import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
+import { useFlagVariation } from '@flopflip/react-broadcast';
+import CommercetoolsLogoSmallSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
+import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import {
+  Container,
+  ContainerColumn,
+  ContainerColumnWide,
+  GradientBackgroundContainer,
+} from './public-page-layout.styles';
 
 const year = new Date().getUTCFullYear();
 
@@ -32,22 +39,6 @@ type TProps = {
   children: ReactNode;
 };
 
-const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  padding: ${uiKitDesignTokens.spacingXl} 0;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-`;
-const ContainerColumn = styled.div`
-  width: calc(${uiKitDesignTokens.constraint16} / 2);
-`;
-const ContainerColumnWide = styled.div`
-  width: ${uiKitDesignTokens.constraint15};
-`;
-
 const PublicPageLayoutContent: FC<TProps> = (props) => {
   if (props.contentScale === 'wide') {
     return <ContainerColumnWide>{props.children}</ContainerColumnWide>;
@@ -56,13 +47,22 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 };
 
 const PublicPageLayout: FC<TProps> = (props) => {
+  const enableWorkspacesUi = useFlagVariation(
+    featureFlags.ENABLE_WORKSPACES_UI
+  );
+
+  // @ts-ignore It's coming from the MC API, it's an object { value: boolean }.
+  const isWorkspacesUiEnabled = enableWorkspacesUi?.value;
+  const ContainerToShow = isWorkspacesUiEnabled
+    ? GradientBackgroundContainer
+    : Container;
   return (
-    <Container>
+    <ContainerToShow>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
-          <div>
-            <img src={CommercetoolsLogoOnWhiteSvg} alt="commercetools logo" />
-          </div>
+          <Spacings.Inline justifyContent="center">
+            <img src={CommercetoolsLogoSmallSvg} alt="commercetools logo" />
+          </Spacings.Inline>
         </ContainerColumn>
         {props.welcomeMessage && (
           <ContainerColumn>
@@ -95,7 +95,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
           </PublicPageLayoutContent>
         </Spacings.Stack>
       </Spacings.Stack>
-    </Container>
+    </ContainerToShow>
   );
 };
 PublicPageLayout.displayName = 'PublicPageLayout';
