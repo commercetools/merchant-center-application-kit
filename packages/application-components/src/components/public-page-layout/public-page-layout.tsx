@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
-import CommercetoolsLogoOnWhiteSvg from '@commercetools-frontend/assets/logos/color-on-white-horizontal.svg';
 import CommercetoolsLogoSmallSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
 import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
@@ -62,14 +61,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <Spacings.Inline justifyContent="center">
-            <img
-              src={
-                isWorkspacesUiEnabled
-                  ? CommercetoolsLogoSmallSvg
-                  : CommercetoolsLogoOnWhiteSvg
-              }
-              alt="commercetools logo"
-            />
+            <img src={CommercetoolsLogoSmallSvg} alt="commercetools logo" />
           </Spacings.Inline>
         </ContainerColumn>
         {props.welcomeMessage && (
