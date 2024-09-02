@@ -22,7 +22,6 @@ const AsyncPlaygroundRoutes = lazy(() =>
 setupGlobalErrorListener();
 
 const apolloClient = configureApolloClient();
-//        <DemoCustomView />
 
 const EntryPoint = () => (
   <Router history={history}>
