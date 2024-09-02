@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
