@@ -28,7 +28,7 @@ const EntryPoint = () => (
   <Router history={history}>
     <Switch>
       <Route path="/custom-views/:customViewId/projects/:projectKey">
-        <PublicPageLayout welcomeMessage="Welcome to the Merchant Center" />
+        <DemoCustomView />
       </Route>
 
       <Route>
