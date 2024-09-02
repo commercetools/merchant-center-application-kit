@@ -8,6 +8,7 @@ describe('rendering', () => {
         Test
       </PublicPageLayout>
     );
+
     await screen.findByText('Welcome to the Merchant Center');
     await screen.findByText(/commercetools/);
   });

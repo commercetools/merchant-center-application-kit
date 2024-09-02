@@ -53,12 +53,14 @@ import {
   MenuExpander,
   NavBarLayout,
 } from './menu-items';
-import { SublistItem } from './menu-items.styles';
+import { SublistItem, SafeArea } from './menu-items.styles';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
 import nonNullable from './non-nullable';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
-import useNavbarStateManager from './use-navbar-state-manager';
+import useNavbarStateManager, {
+  TMousePosition,
+} from './use-navbar-state-manager';
 
 type TProjectPermissions = {
   permissions: TNormalizedPermissions | null;
@@ -88,6 +90,9 @@ type ApplicationMenuProps = {
   projectKey: string;
   useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  onMouseMove: MouseEventHandler<HTMLLIElement>;
+  mousePosition: TMousePosition;
+  pointerEvent?: string;
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
@@ -111,8 +116,60 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const [submenuVerticalPosition, setSubmenuVerticalPosition] = useState(0);
   const [isSubmenuAboveMenuItem, setIsSubmenuAboveMenuItem] = useState(false);
   const [isSubmenuFocused, setIsSubmenuFocused] = useState(false);
+  const [percentageX, setPercentageX] = useState(0);
+  const [percentageY, setPercentageY] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
+  const submenuSafeAreaRef = useRef<HTMLElement>(null);
+
+  /* Getting the width and height of the menu*/
+  const subRefBoundingClientRect = submenuRef.current?.getBoundingClientRect();
+  const { width: menuItemWidth, height: menuItemHeight } =
+    subRefBoundingClientRect ?? {};
+
+  // /* We want to track the left, top, width, and height of the safe area */
+  const submenuSafeAreaRefBoundingClientRect =
+    submenuSafeAreaRef.current?.getBoundingClientRect();
+  const safeAreaLeftPos = submenuSafeAreaRefBoundingClientRect?.left || 0;
+  const safeAreaTopPos = submenuSafeAreaRefBoundingClientRect?.top || 0;
+  const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
+  const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
+
+  const calculateSafeAreaStartPositon = useCallback(
+    (e) => {
+      const localX = e.clientX - safeAreaLeftPos;
+      const localY = e.clientY - safeAreaTopPos;
+
+      setPercentageX((localX / safeAreaWidth) * 100);
+      setPercentageY((localY / safeAreaHeight) * 100);
+    },
+    [safeAreaHeight, safeAreaLeftPos, safeAreaTopPos, safeAreaWidth]
+  );
+
+  useEffect(() => {
+    calculateSafeAreaStartPositon((e: MouseEventHandler) => e);
+    window.addEventListener('mousemove', calculateSafeAreaStartPositon);
+
+    return () => {
+      window.removeEventListener('mousemove', calculateSafeAreaStartPositon);
+    };
+  }, [
+    calculateSafeAreaStartPositon,
+    menuItemHeight,
+    menuItemWidth,
+    safeAreaHeight,
+    safeAreaLeftPos,
+    safeAreaTopPos,
+    safeAreaWidth,
+  ]);
+
+  useLayoutEffect(() => {
+    submenuRef.current?.style.setProperty(
+      '--safe-start',
+      // Adding the +1 to slightly keep the cursor inside the safe area while moving
+      `${percentageX}% ${percentageY + 1}%`
+    );
+  }, [calculateSafeAreaStartPositon, percentageX, percentageY]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
@@ -227,6 +284,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onKeyDown={handleKeyDown}
         onMouseEnter={props.handleToggleItem}
         onMouseLeave={props.shouldCloseMenuFly}
+        onMouseMove={props.onMouseMove}
         identifier={menuItemIdentifier}
       >
         <MenuItemLink
@@ -307,6 +365,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                 </RestrictedMenuItem>
               ))
             : null}
+          <SafeArea ref={submenuSafeAreaRef} />
         </MenuGroup>
       </MenuItem>
     </RestrictedMenuItem>
@@ -330,10 +389,12 @@ const NavBar = (props: TNavbarProps) => {
     isMenuOpen,
     isExpanderVisible,
     activeItemIndex,
+    mousePosition,
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
     allApplicationsNavbarMenuGroups,
+    getMousePosition,
   } = useNavbarStateManager({
     environment: props.environment,
     project: props.project,
@@ -408,6 +469,8 @@ const NavBar = (props: TNavbarProps) => {
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}
                         onMenuItemClick={props.onMenuItemClick}
+                        onMouseMove={(e) => getMousePosition(e, itemIndex)}
+                        mousePosition={mousePosition}
                       />
                     );
                   })}
