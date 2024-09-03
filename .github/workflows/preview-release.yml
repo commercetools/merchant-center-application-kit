@@ -1,0 +1,53 @@
+name: Preview Release
+
+on:
+  push:
+    branches:
+      - 'preview/**' 
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      # Get GitHub token via the CT Changesets App
+      - name: Generate GitHub token (via CT Changesets App)
+        id: generate_github_token
+        uses: tibdex/github-app-token@v2.1.0
+        with:
+          app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
+          private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # Pass a personal access token (using our `ct-changesets` app) to be able to trigger other workflows
+
+          # https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+          # https://github.community/t/action-does-not-trigger-another-on-push-tag-action/17148/8
+          token: ${{ steps.generate_github_token.outputs.token }}      
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            provenance=true
+            email=npmjs@commercetools.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publishing preview releases to npm registry
+        if: steps.changesets.outputs.published != 'true' && startsWith(github.ref, 'refs/heads/preview/')
+        run: |
+          git checkout ${{ github.ref }}
+          pnpm changeset version --snapshot preview
+          pnpm changeset publish --tag preview
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+
