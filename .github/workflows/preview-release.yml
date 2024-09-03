@@ -45,7 +45,7 @@ jobs:
       - name: Publishing preview releases to npm registry
         if: steps.changesets.outputs.published != 'true' && startsWith(github.ref, 'refs/heads/preview/')
         run: |
-          git checkout ${{ github.ref }}
+          git checkout ${{ github.head_ref }}
           pnpm changeset version --snapshot preview
           pnpm changeset publish --tag preview
         env:
