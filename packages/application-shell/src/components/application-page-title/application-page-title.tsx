@@ -45,14 +45,14 @@ const getPageTitle = (pathname: string, additionalParts: string[]) => {
   if (staticPaths.includes(projectKeyOrStaticPath)) {
     return [
       ...(customTitleParts || []),
-      upperFirst(projectKeyOrStaticPath),
+      projectKeyOrStaticPath,
       'Merchant Center',
     ].join(' - ');
   }
 
   return [
     ...(customTitleParts || []),
-    upperFirst(entryPointUriPath),
+    entryPointUriPath,
     projectKeyOrStaticPath,
     'Merchant Center',
   ].join(' - ');
