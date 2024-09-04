@@ -188,7 +188,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
       const doesSubmenuFitWithinViewportBelowMenuItem =
         entry.boundingClientRect.height +
-          (props.isMenuOpen ? menuItemTop : menuItemBottom) >
+          (props.isMenuOpen ? menuItemTop : menuItemBottom) +
+          12 >
         window.innerHeight;
       // if the submenu does not fit at the bottom of the viewport (below the menu item)
       if (doesSubmenuFitWithinViewportBelowMenuItem) {
