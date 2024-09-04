@@ -1,5 +1,4 @@
 import { useLayoutEffect } from 'react';
-import upperFirst from 'lodash/upperFirst';
 import { useLocation } from 'react-router-dom';
 
 type TApplicationPageTitleProps = {
