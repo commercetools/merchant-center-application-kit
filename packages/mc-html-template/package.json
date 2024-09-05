@@ -40,7 +40,7 @@
     "@tsconfig/node16": "^16.1.1",
     "@types/serialize-javascript": "^5.0.2",
     "html-webpack-plugin": "5.6.0",
-    "webpack": "5.92.0"
+    "webpack": "5.94.0"
   },
   "engines": {
     "node": "16.x || >=18.0.0"
