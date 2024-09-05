@@ -186,12 +186,18 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
       const [entry] = entries;
 
-      /** Adding a 12 pixel (spacing-25) buffer to the height calculation when determining if the submenu fits within the viewport below the menu item,
-       * this value accounts for the padding introduced on link hover. We need this to account for the additional card height when a hovered submenu text link wraps to the next line*/
+      /**
+       * Adding a 12 pixel buffer to the height calculation when determining if the submenu fits within the viewport below the menu item.
+       * This buffer accounts for the padding added during link hover, accommodating one additional line height.
+       * We need this to account for the additional card height when a hovered submenu text link wraps to the next line,
+       * as otherwise the submenu would extend beyond the viewport's bottom edge and flip above the menu item.
+       */
+      const SINGLE_LINE_HEIGHT_BUFFER = 12;
+
       const doesSubmenuFitWithinViewportBelowMenuItem =
         entry.boundingClientRect.height +
           (props.isMenuOpen ? menuItemTop : menuItemBottom) +
-          12 >
+          SINGLE_LINE_HEIGHT_BUFFER >
         window.innerHeight;
       // if the submenu does not fit at the bottom of the viewport (below the menu item)
       if (doesSubmenuFitWithinViewportBelowMenuItem) {
