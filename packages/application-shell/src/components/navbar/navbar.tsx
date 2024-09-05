@@ -186,6 +186,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
       const [entry] = entries;
 
+      /** Adding a 12 pixel (spacing-25) buffer to the height calculation when determining if the submenu fits within the viewport below the menu item,
+       * this value accounts for the padding introduced on link hover. We need this to account for the additional card height when a hovered submenu text link wraps to the next line*/
       const doesSubmenuFitWithinViewportBelowMenuItem =
         entry.boundingClientRect.height +
           (props.isMenuOpen ? menuItemTop : menuItemBottom) +
