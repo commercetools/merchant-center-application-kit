@@ -23,7 +23,7 @@ describe('Channels', () => {
     });
     cy.title().should(
       'eq',
-      `Store Munich - Template-starter - ${Cypress.env(
+      `Store Munich - template-starter - ${Cypress.env(
         'PROJECT_KEY'
       )} - Merchant Center`
     );
