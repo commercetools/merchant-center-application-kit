@@ -1,8 +1,8 @@
-import { ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
+import WorkspacesIcon from '@commercetools-frontend/assets/images/workspaces-icon.svg';
 import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens } from '@commercetools-uikit/design-system';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
@@ -10,20 +10,6 @@ import Tooltip from '@commercetools-uikit/tooltip';
 import messages from './messages';
 
 export const FEATURE_NAME = 'Workspaces';
-
-// TODO: This logo still TBD, placeholder for now
-const WorkspacesLogo = () => {
-  return (
-    <div
-      css={css`
-        height: 22px;
-        width: 22px;
-        background-color: lightgray;
-        border-radius: 4px;
-      `}
-    />
-  );
-};
 
 const WorkspacesNavigationButton = () => {
   const { formatMessage } = useIntl();
@@ -51,7 +37,7 @@ const WorkspacesNavigationButton = () => {
       >
         <Tooltip placement="bottom" title={formatMessage(messages.tooltip)}>
           <SecondaryButton
-            iconLeft={(<WorkspacesLogo />) as ReactElement}
+            iconLeft={<WorkspacesIcon />}
             as={Link}
             label={FEATURE_NAME}
             to={'/workspaces'}
