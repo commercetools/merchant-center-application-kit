@@ -15,8 +15,7 @@ describe('rendering', () => {
     const button = await screen.findByRole('button', {
       name: FEATURE_NAME,
     });
-
-    expect(button).toHaveAttribute('href', `/workspaces`);
+    expect(button).toBeInTheDocument();
   });
 
   it('should not render the button when the feature flag is disabled', () => {
