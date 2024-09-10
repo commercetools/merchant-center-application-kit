@@ -11,6 +11,10 @@ import messages from './messages';
 
 export const FEATURE_NAME = 'Workspaces';
 
+const WorkspacesIconComponent = () => {
+  return <img src={WorkspacesIcon} />;
+};
+
 const WorkspacesNavigationButton = () => {
   const { formatMessage } = useIntl();
   const workspacesAppBarButtonEnabled = useFlagVariation(
@@ -37,7 +41,7 @@ const WorkspacesNavigationButton = () => {
       >
         <Tooltip placement="bottom" title={formatMessage(messages.tooltip)}>
           <SecondaryButton
-            iconLeft={<WorkspacesIcon />}
+            iconLeft={<WorkspacesIconComponent />}
             as={Link}
             label={FEATURE_NAME}
             to={'/workspaces'}
