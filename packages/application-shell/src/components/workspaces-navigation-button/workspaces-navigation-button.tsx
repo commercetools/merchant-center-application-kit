@@ -43,6 +43,7 @@ const WorkspacesNavigationButton = () => {
           <SecondaryButton
             iconLeft={<WorkspacesIconComponent />}
             label={FEATURE_NAME}
+            as="a"
             onClick={() => {
               location.replace('/workspaces');
             }}
