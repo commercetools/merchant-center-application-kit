@@ -1,5 +1,11 @@
 # @commercetools-frontend/assets
 
+## 22.32.1
+
+### Patch Changes
+
+- [#3603](https://github.com/commercetools/merchant-center-application-kit/pull/3603) [`eb756ff`](https://github.com/commercetools/merchant-center-application-kit/commit/eb756ff6a0333209ab27d01d5fa5ad335c8b892d) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds the workspaces icon to the app-bar workspaces redirect button.
+
 ## 22.32.0
 
 ### Minor Changes

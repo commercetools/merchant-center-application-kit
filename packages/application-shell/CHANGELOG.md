@@ -1,5 +1,33 @@
 # @commercetools-frontend/application-shell
 
+## 22.32.1
+
+### Patch Changes
+
+- [#3600](https://github.com/commercetools/merchant-center-application-kit/pull/3600) [`d50a0ae`](https://github.com/commercetools/merchant-center-application-kit/commit/d50a0aecad6aa4684fdc8bac8af36e2ac008c1ab) Thanks [@ddouglasz](https://github.com/ddouglasz)! - When the submenu has a text link that wraps to the next line, the vertical position of the submenu is adjusted, causing the submenu submenu position to be recalculated and as a result, hidden.
+  This change fixes the issue by adding a 12-pixel buffer to the height calculation when determining if the submenu fits within the viewport below the menu item, this value accounts for the padding introduced on link hover.
+
+- [#3603](https://github.com/commercetools/merchant-center-application-kit/pull/3603) [`eb756ff`](https://github.com/commercetools/merchant-center-application-kit/commit/eb756ff6a0333209ab27d01d5fa5ad335c8b892d) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds the workspaces icon to the app-bar workspaces redirect button.
+
+- [#3601](https://github.com/commercetools/merchant-center-application-kit/pull/3601) [`064635b`](https://github.com/commercetools/merchant-center-application-kit/commit/064635b0454a9b67cebae12d302c55d2da18de1c) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Remove case transformations in browser tab titles for Merchant Center
+
+- Updated dependencies [[`eb756ff`](https://github.com/commercetools/merchant-center-application-kit/commit/eb756ff6a0333209ab27d01d5fa5ad335c8b892d)]:
+  - @commercetools-frontend/assets@22.32.1
+  - @commercetools-frontend/application-components@22.32.1
+  - @commercetools-frontend/application-config@22.32.1
+  - @commercetools-frontend/react-notifications@22.32.1
+  - @commercetools-frontend/actions-global@22.32.1
+  - @commercetools-frontend/application-shell-connectors@22.32.1
+  - @commercetools-frontend/browser-history@22.32.1
+  - @commercetools-frontend/constants@22.32.1
+  - @commercetools-frontend/i18n@22.32.1
+  - @commercetools-frontend/l10n@22.32.1
+  - @commercetools-frontend/notifications@22.32.1
+  - @commercetools-frontend/permissions@22.32.1
+  - @commercetools-frontend/sdk@22.32.1
+  - @commercetools-frontend/sentry@22.32.1
+  - @commercetools-frontend/url-utils@22.32.1
+
 ## 22.32.0
 
 ### Minor Changes
