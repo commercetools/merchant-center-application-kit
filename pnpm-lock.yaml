@@ -1312,16 +1312,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1367,28 +1367,28 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^19.9.0
@@ -1548,10 +1548,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@types/dompurify':
         specifier: ^2.4.0
@@ -1606,49 +1606,49 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^19.9.0
@@ -1880,16 +1880,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2131,7 +2131,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: ^22.32.1
+        specifier: ^22.32.2
         version: link:../application-config
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2168,13 +2168,13 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2205,7 +2205,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)(eslint@8.57.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^22.32.1
+        specifier: ^22.32.2
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.3.3
@@ -2275,7 +2275,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^19.9.0
@@ -2321,7 +2321,7 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2425,7 +2425,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2514,10 +2514,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.2
@@ -2554,25 +2554,25 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-components':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2805,10 +2805,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2860,19 +2860,19 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../application-components
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^19.9.0
@@ -2978,7 +2978,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3066,10 +3066,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../constants
       '@sentry/browser':
         specifier: 7.117.0
@@ -3128,37 +3128,37 @@ importers:
         specifier: 24.2.0
         version: 24.2.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 19.9.0
@@ -3258,13 +3258,13 @@ importers:
         version: 24.2.5(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 22.32.1
+        specifier: 22.32.2
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
         specifier: 8.5.0
@@ -3895,6 +3895,60 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       semver: 6.3.1
     dev: false
+
+  /@babel/helper-create-class-features-plugin@7.22.15(@babel/core@7.23.0):
+    resolution: {integrity: sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBDvHvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.23.0
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-function-name': 7.23.0
+      '@babel/helper-member-expression-to-functions': 7.23.0
+      '@babel/helper-optimise-call-expression': 7.22.5
+      '@babel/helper-replace-supers': 7.24.1(@babel/core@7.23.0)
+      '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      semver: 6.3.1
+    dev: false
+
+  /@babel/helper-create-class-features-plugin@7.22.15(@babel/core@7.24.0):
+    resolution: {integrity: sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBDvHvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.24.0
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-function-name': 7.23.0
+      '@babel/helper-member-expression-to-functions': 7.23.0
+      '@babel/helper-optimise-call-expression': 7.22.5
+      '@babel/helper-replace-supers': 7.24.1(@babel/core@7.24.0)
+      '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      semver: 6.3.1
+    dev: false
+
+  /@babel/helper-create-class-features-plugin@7.22.15(@babel/core@7.24.5):
+    resolution: {integrity: sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBDvHvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-function-name': 7.23.0
+      '@babel/helper-member-expression-to-functions': 7.23.0
+      '@babel/helper-optimise-call-expression': 7.22.5
+      '@babel/helper-replace-supers': 7.24.1(@babel/core@7.24.5)
+      '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      semver: 6.3.1
+    dev: true
 
   /@babel/helper-create-class-features-plugin@7.24.1(@babel/core@7.22.17):
     resolution: {integrity: sha512-1yJa9dX9g//V6fDebXoEfEsxkZHk3Hcbm+zLhyu6qVgYFLvmTALTeV+jNU9e5RnYtioBrGEOdoI2joMSNQ/+aA==}
@@ -5598,7 +5652,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
     dev: false
 
   /@babel/plugin-transform-destructuring@7.22.15(@babel/core@7.24.5):
@@ -5608,7 +5662,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-transform-dotall-regex@7.22.5(@babel/core@7.22.17):
     resolution: {integrity: sha512-5/Yk9QxCQCl+sOIB1WelKnVRxTJDSAIxtJLL2/pqL14ZVlbH0fUQUZa/T5/UnQtBNgghR7mfB8ERBKyKPCi7Vw==}
@@ -5757,7 +5811,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.0)
     dev: false
 
@@ -5768,7 +5822,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.24.5)
     dev: true
 
@@ -5938,7 +5992,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.23.0)
     dev: false
 
@@ -5949,7 +6003,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.24.5)
     dev: true
 
@@ -6306,10 +6360,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.23.0
-      '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-compilation-targets': 7.22.15
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.23.0)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.23.0)
     dev: false
@@ -6320,10 +6374,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.23.5
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.24.5
-      '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-compilation-targets': 7.22.15
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.24.5)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.24.5)
     dev: true
@@ -6488,8 +6542,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-create-class-features-plugin': 7.24.1(@babel/core@7.23.0)
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.23.0)
+      '@babel/helper-plugin-utils': 7.22.5
     dev: false
 
   /@babel/plugin-transform-private-methods@7.22.5(@babel/core@7.24.0):
@@ -6499,8 +6553,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.0
-      '@babel/helper-create-class-features-plugin': 7.24.1(@babel/core@7.24.0)
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.24.0)
+      '@babel/helper-plugin-utils': 7.22.5
     dev: false
 
   /@babel/plugin-transform-private-methods@7.22.5(@babel/core@7.24.5):
@@ -6510,8 +6564,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-create-class-features-plugin': 7.24.1(@babel/core@7.24.5)
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.24.5)
+      '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
   /@babel/plugin-transform-private-property-in-object@7.22.11(@babel/core@7.22.17):
@@ -6761,7 +6815,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       regenerator-transform: 0.15.2
     dev: false
 
@@ -6772,7 +6826,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.24.5
+      '@babel/helper-plugin-utils': 7.22.5
       regenerator-transform: 0.15.2
     dev: true
 
@@ -28575,7 +28629,7 @@ packages:
       uglify-js:
         optional: true
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.23
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2

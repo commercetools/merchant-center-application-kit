@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 22.32.2
+
+### Patch Changes
+
+- [#3598](https://github.com/commercetools/merchant-center-application-kit/pull/3598) [`c9d0d03`](https://github.com/commercetools/merchant-center-application-kit/commit/c9d0d03b4b83eca89221f0922cd448a7b1d9442f) Thanks [@renovate](https://github.com/apps/renovate)! - Bump security dependencies
+
 ## 22.32.1
 
 ## 22.32.0
