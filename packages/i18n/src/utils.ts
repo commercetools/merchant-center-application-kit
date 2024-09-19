@@ -24,11 +24,9 @@ export const parseChunkImport = (
       const messageAsString = isStructuredJson(messageValue)
         ? messageValue.string
         : messageValue;
+      messages[messageKey] = messageAsString;
 
-      return {
-        ...messages,
-        [messageKey]: messageAsString,
-      };
+      return messages;
     },
     {} as TMessageTranslations
   );
