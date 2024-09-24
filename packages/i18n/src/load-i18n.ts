@@ -99,17 +99,17 @@ const getCommunityKitChunkImport = async (
 export default async function loadI18n(
   locale: string
 ): Promise<TMessageTranslations> {
-  // Load moment localizations
-  await loadMomentLocales(locale);
-
-  // Load ui-kit translations
-  const uiKitChunkImport = await getUiKitChunkImport(locale);
-
-  // Load app-kit translations
-  const appKitChunkImport = await getAppKitChunkImport(locale);
-
-  // Load community-kit translations
-  const communityKitChunkImport = await getCommunityKitChunkImport(locale);
+  const [, uiKitChunkImport, appKitChunkImport, communityKitChunkImport] =
+    await Promise.all([
+      // Load moment localizations
+      loadMomentLocales(locale),
+      // Load ui-kit translations
+      getUiKitChunkImport(locale),
+      // Load app-kit translations
+      getAppKitChunkImport(locale),
+      // Load community-kit translations
+      getCommunityKitChunkImport(locale),
+    ]);
 
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
