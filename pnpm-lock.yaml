@@ -62,7 +62,7 @@ importers:
         version: 8.5.0
       '@commercetools-uikit/design-system':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools/github-labels':
         specifier: 1.1.0
         version: 1.1.0(@octokit/core@6.1.2)
@@ -1573,7 +1573,7 @@ importers:
         version: 7.1.0
       dompurify:
         specifier: ^2.4.7
-        version: 2.5.4
+        version: 2.5.5
       jsdom:
         specifier: ^21.1.2
         version: 21.1.2
@@ -3126,7 +3126,7 @@ importers:
     dependencies:
       '@commercetools-docs/ui-kit':
         specifier: 24.2.0
-        version: 24.2.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+        version: 24.2.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
         specifier: 22.32.2
         version: link:../packages/actions-global
@@ -3162,61 +3162,61 @@ importers:
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/checkbox-input':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/constraints':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/data-table':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/date-time-input':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(moment-timezone@0.5.40)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(moment-timezone@0.5.40)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/flat-button':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/grid':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react@17.0.2)
       '@commercetools-uikit/hooks':
         specifier: 19.9.0
         version: 19.9.0(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/icons':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/label':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/loading-spinner':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/notifications':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/pagination':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/primary-button':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/secondary-button':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
       '@commercetools-uikit/spacings':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/text':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@emotion/react':
         specifier: ^11.11.4
-        version: 11.11.4(@types/react@17.0.81)(react@17.0.2)
+        version: 11.11.4(@types/react@17.0.82)(react@17.0.2)
       '@flopflip/react-broadcast':
         specifier: 14.0.2
         version: 14.0.2(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
@@ -3546,7 +3546,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@apollo/client@3.11.8(@types/react@17.0.81)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2):
+  /@apollo/client@3.11.8(@types/react@17.0.82)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-CgG1wbtMjsV2pRGe/eYITmV5B8lXUCYljB2gB/6jWTFQcrvirUVvKg7qtFdjYkQSFbIffU1IDyxgeaN81eTjbA==}
     peerDependencies:
       graphql: ^15.0.0 || ^16.0.0
@@ -3575,7 +3575,7 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      rehackt: 0.1.0(@types/react@17.0.81)(react@17.0.2)
+      rehackt: 0.1.0(@types/react@17.0.82)(react@17.0.2)
       response-iterator: 0.2.6
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
@@ -4036,6 +4036,8 @@ packages:
       '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
       semver: 6.3.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@babel/helper-create-class-features-plugin@7.22.15(@babel/core@7.23.0):
@@ -5848,6 +5850,8 @@ packages:
       '@babel/core': 7.22.17
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.22.17)
       '@babel/helper-plugin-utils': 7.22.5
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@babel/plugin-transform-class-properties@7.22.5(@babel/core@7.23.0):
@@ -7082,6 +7086,8 @@ packages:
       '@babel/core': 7.22.17
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.22.17)
       '@babel/helper-plugin-utils': 7.22.5
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@babel/plugin-transform-private-methods@7.22.5(@babel/core@7.23.0):
@@ -7134,6 +7140,8 @@ packages:
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.22.17)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.22.17)
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@babel/plugin-transform-private-property-in-object@7.22.11(@babel/core@7.23.0):
@@ -8736,7 +8744,7 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
     dev: false
 
-  /@commercetools-docs/ui-kit@24.2.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-docs/ui-kit@24.2.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-+VEBhduXDuXJtacIB8+JogAxIzGq6hJUNfmokzWgAYMkdGNHb9g8oMe1RZnUWlJ4d42qDCQ47nUB6fZM7Y4j5Q==}
     peerDependencies:
       react: 18.x
@@ -8744,22 +8752,22 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/card': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/flat-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/icons': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/loading-spinner': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/primary-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/secondary-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/spacings': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/card': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/flat-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/icons': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/loading-spinner': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/primary-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/secondary-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/spacings': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/tooltip': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@react-hook/latest': 1.0.3(react@17.0.2)
       '@react-hook/resize-observer': 1.2.6(react@17.0.2)
       '@types/lodash.kebabcase': 4.1.9
@@ -8780,7 +8788,7 @@ packages:
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-is: 18.2.0
       react-modal: 3.16.1(react-dom@17.0.2)(react@17.0.2)
-      rehype-react: 7.2.0(@types/react@17.0.81)
+      rehype-react: 7.2.0(@types/react@17.0.82)
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
@@ -8966,17 +8974,17 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
       '@faker-js/faker': 8.4.1
 
-  /@commercetools-uikit/accessible-button@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/accessible-button@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-CmSHDUnG3bNxhXHe4S1JWfEg6+ZlkKuvzugB2m+vukDtyuk/vMoWEV8bWXrh94K30QMJNpxJP7JE7wG7dF5HxA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/react-is': 17.0.7
       lodash: 4.17.21
       prop-types: 15.8.1
@@ -9008,17 +9016,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/accessible-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/accessible-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-E9xqiio/jv2aCDLe8IVLIXK4Hcgu0lzHVCt1wbQuijSv9t6J7VJ48AZ8vDZUCbwLpe08QbABHLvOe68vPv3HVQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/react-is': 17.0.7
       lodash: 4.17.21
       prop-types: 15.8.1
@@ -9043,14 +9051,14 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/accessible-hidden@19.9.0(@types/react@17.0.81)(react@17.0.2):
+  /@commercetools-uikit/accessible-hidden@19.9.0(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-NWGWXzl6seX8QXYRRS2A8KiG3eQhnvyGYRL3oRSIG5fyaqtR87M/KlWwgq1M4Nq9aJzWLprsO77gBGuydU0sjQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -9117,7 +9125,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/async-select-input@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/async-select-input@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-usPVo9cvEcbLUAT6fWmPOqLz1MwLkCHSThWPtwx5Pd/iiuTDOruNR0Pd3E8PQeD8h85hXj7qCK7pGv2fRaoxhA==}
     peerDependencies:
       react: 17.x
@@ -9126,22 +9134,22 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/loading-spinner': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/loading-spinner': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-select: 5.8.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      react-select: 5.8.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
       - typescript
@@ -9179,7 +9187,7 @@ packages:
       - react
     dev: false
 
-  /@commercetools-uikit/calendar-utils@19.9.0(@types/react@17.0.81)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/calendar-utils@19.9.0(@types/react@17.0.82)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-hcRz4ZmHgwKhljZJb2ExRxwbjP0SqtvFj942IkUm3a2r92r9DOnqGI7T186MyHauOHktpbLLpbNPJpG18+YqCA==}
     peerDependencies:
       moment: 2.x
@@ -9189,31 +9197,31 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       moment: 2.29.4
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-select: 5.8.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      react-select: 5.8.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
       - typescript
     dev: false
 
-  /@commercetools-uikit/card@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
+  /@commercetools-uikit/card@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-D63NPkeI0HmcPrK22qSQrGeI6DpyzmM9iZzmnwVH3V3dieCHTDYHsa9jhSVA4tLEvsA5nG4vclXznj48tBZjNQ==}
     peerDependencies:
       react: 17.x
@@ -9221,11 +9229,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inset': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inset': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/react-router-dom': 5.3.3
       prop-types: 15.8.1
       react: 17.0.2
@@ -9257,7 +9265,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/card@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
+  /@commercetools-uikit/card@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-3kIpnFAKa7007Tk3Y+GtHBwKtZkT/Wp5cZSz0SvHdnytuzLbmRz5daZ4Sjb68kF0Mg1JsJAIDW4k5++fbTjJ6w==}
     peerDependencies:
       react: 17.x
@@ -9265,11 +9273,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/react-router-dom': 5.3.3
       prop-types: 15.8.1
       react: 17.0.2
@@ -9279,20 +9287,20 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/checkbox-input@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/checkbox-input@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-f7hMVHCGDPR7rEzSzaKL2dR2vKkXn9PmUoq/EJRezpYdpZaW3GT4Gynm/VlvyfcUpygBCAnmIC84UpEx0en4zg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -9321,7 +9329,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/collapsible-motion@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/collapsible-motion@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-D/wTZ2KHp0eVv6Mn0Ur0A3HNvHobqd8g4oGTiu4NLK6eV1i3NN91KlyqMt2uVFWjAJuxlTAEXx3FBbTQbWiegA==}
     peerDependencies:
       react: 17.x
@@ -9330,8 +9338,8 @@ packages:
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -9340,17 +9348,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/constraints@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/constraints@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-3sACZtHho1Sc599WSXFjI2/woTWo7gcP2CqUKuxyPioayC3l8Gh1Ol8qPsRiWSO+Z1xLGk4UCIUJeOwRtCEmig==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -9376,17 +9384,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/constraints@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/constraints@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-f5Damq2j8fzZ0QnPomw/HYi6l6YNw/zrlNX7xhL80Neb8RZV/9NPtHf+1UkVT4POF3kYIcCwBD78xNBMXkROAg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -9488,7 +9496,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/data-table-manager@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/data-table-manager@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-lnhnBnCbqLBX/h8q/xCh87WDzaxz/sD1AF5VA0aqfyg1vR3KohpYcCJI/8KcoZBqOiw83nfahQML5vnVPvOftg==}
     peerDependencies:
       react: 17.x
@@ -9497,30 +9505,30 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/accessible-hidden': 19.9.0(@types/react@17.0.81)(react@17.0.2)
-      '@commercetools-uikit/async-select-input': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/card': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
-      '@commercetools-uikit/collapsible-motion': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/dropdown-menu': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/field-label': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/grid': 19.9.0(@types/react@17.0.81)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/accessible-hidden': 19.9.0(@types/react@17.0.82)(react@17.0.2)
+      '@commercetools-uikit/async-select-input': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/card': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/collapsible-motion': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/dropdown-menu': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/field-label': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/grid': 19.9.0(@types/react@17.0.82)(react@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/primary-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/radio-input': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/secondary-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/select-input': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/tag': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/primary-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/radio-input': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/secondary-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-input': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/tag': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       debounce-promise: 3.1.2
       lodash: 4.17.21
       prop-types: 15.8.1
@@ -9591,22 +9599,22 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/data-table@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/data-table@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-EVb1KMtnzIcYaeLF+bS185T5dzDzizLwEiOy07bXqfbENX1Qmi/aMsM4ij3f87dJz6ZcKMubORpXq8pwLqisUA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/data-table-manager': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/data-table-manager': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -9619,7 +9627,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/date-time-input@19.9.0(@types/react@17.0.81)(moment-timezone@0.5.40)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/date-time-input@19.9.0(@types/react@17.0.82)(moment-timezone@0.5.40)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-4mNU4YfWeH46bma8VYkGmZ06vE0aIy4dFevR9MFGgsLF6onU4KpQDWpxaSIvM3XspArAmmdNNm4Gn+IhZmM4Jw==}
     peerDependencies:
       moment: 2.x
@@ -9628,21 +9636,21 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/calendar-time-utils': 19.9.0(moment-timezone@0.5.40)(react@17.0.2)
-      '@commercetools-uikit/calendar-utils': 19.9.0(@types/react@17.0.81)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/calendar-utils': 19.9.0(@types/react@17.0.82)(moment@2.29.4)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/tooltip': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       downshift: 6.1.12(react@17.0.2)
       moment: 2.29.4
       prop-types: 15.8.1
@@ -9657,13 +9665,13 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/design-system@18.4.0(@types/react@17.0.81)(react-dom@17.0.2):
+  /@commercetools-uikit/design-system@18.4.0(@types/react@17.0.82)(react-dom@17.0.2):
     resolution: {integrity: sha512-6gLcZfwpX6wWnP0gv28dD9IPJfMVuS346uz/CBy83TU3gYXwE4JgIPnseHxpaM9q1WU9AQW41cOjsQdtaO76hg==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/hooks': 18.4.0(react-dom@17.0.2)(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -9687,13 +9695,13 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/design-system@19.9.0(@types/react@17.0.81)(react-dom@17.0.2):
+  /@commercetools-uikit/design-system@19.9.0(@types/react@17.0.82)(react-dom@17.0.2):
     resolution: {integrity: sha512-L9/xvUXXDbXVEL6XWFL4hDpURSR/aSjhVlj7EzDCRL2ZFkUthPumo7cIF1e7HvGV/zeAOsjft8zcu6LgbDqsaA==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -9756,23 +9764,23 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/dropdown-menu@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/dropdown-menu@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-WSEaNl05iFqBG8TMSaFHFgh3WsSmYLZVcp2QAZnhoBINOD3aQaPR0kru2m2+o/UxnmKV+IglVdPRqaWlGC7CSg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/secondary-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/secondary-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -9879,25 +9887,25 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/field-label@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/field-label@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-llU2EgiQOX5h/IAQyfsK2Ot8qvsWMDslyPCNQ76KGSRdrg4d3MXqiU2zMCAVKV6HEAylxSL6T/o9SYpR2m5xzQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/label': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/label': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -9947,20 +9955,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/flat-button@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/flat-button@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-smPGax2L4EfJe34+3pRnHM/ckWspGGrKMD5MPrKXcWt7Y0lYf41hZr6niGMfExSMmv8Ptr4TfR7nOjpaDuSqZQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -10019,20 +10027,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/flat-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/flat-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-lSlfW3OhaNWzi2jVRdU3pNwIuP8OwNZr7zYlm3zr/qbXo1vegGpNy6YVMM+Gc3QbseBz3X5ogXHHeZxvJJ/AUw==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -10058,15 +10066,15 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/grid@19.9.0(@types/react@17.0.81)(react@17.0.2):
+  /@commercetools-uikit/grid@19.9.0(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-z9JwaW058dQMTB/s8TEHqVwodHAbC11dG3qUkZNqdMjxyVbPNsS4xDzNy5ISULZ+5eScvSVtrrLJlwAe6ZJpIA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -10160,20 +10168,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/icon-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/icon-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-21FhzCT50KGbpnFmZMnnIClNIxKFOuZ8L+BRuUWNUIFcvH5KkNh0f5Sbph7ZjAfXKv/Wq2/oFiU5N13sOJyYoQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -10184,17 +10192,17 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/icons@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/icons@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-srRaj/yJCc+s9i9Tkl19mVB8TIf4Jpma7RieyRoIueBORo9PrliAKcvbWtATEFAackcCTyW1UfJQdTRKqewi5A==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/dompurify': 2.4.0
       dompurify: 2.4.7
       prop-types: 15.8.1
@@ -10226,17 +10234,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/icons@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/icons@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-1lFAkdZfMeCgHjl5mV4QIKNdv8p3uOsz1Hi/2Ua0tv4zYpjOC2a5UbtFKLNo64VoPaUQXTGZE8vwSoSAbfwASg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/dompurify': 2.4.0
       dompurify: 2.5.5
       prop-types: 15.8.1
@@ -10293,7 +10301,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/input-utils@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/input-utils@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-lmjDeuc56GmhF6mOYRbAZ9BO+7Dk9E+Jt+BwRaQjRfEdwtEoxEF0bChf7YhjWh+aSr9QCLvte6l2VbXWtsdS3w==}
     peerDependencies:
       react: 17.x
@@ -10301,15 +10309,15 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/flat-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/flat-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-textarea-autosize: 8.4.0(@types/react@17.0.81)(react@17.0.2)
+      react-textarea-autosize: 8.4.0(@types/react@17.0.82)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -10337,7 +10345,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/label@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/label@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-xmbe0nEH5ilcMI5CWEHQ5b7dz0O1hqOP7ARjgkaYCRshREYz+5eKsvIq8u/cdf9KvKTYMODsl+B4xcjGCJs/Vg==}
     peerDependencies:
       react: 17.x
@@ -10345,11 +10353,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -10385,7 +10393,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/link@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
+  /@commercetools-uikit/link@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-UpQa4hfyk2ae68f1hTnincKpbQJP/PtplmKvkDaKduI0hMxc0qtxog83YsFgk9Tu7sZHqgOtNFL4JzB/uMK67Q==}
     peerDependencies:
       react: 17.x
@@ -10394,12 +10402,12 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       '@types/history': 4.7.11
       '@types/react-router-dom': 5.3.3
       history: 4.10.1
@@ -10412,18 +10420,18 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/loading-spinner@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/loading-spinner@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-nfmxjc0SWMEOFTfvlSpPm4H1oPuNAhUQhMItPrm78bxAoHA2hJPjOIVEmNwzrm1kN6+CVfBbyVGGLqIGZKTsPA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -10475,18 +10483,18 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/loading-spinner@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/loading-spinner@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-8GIKO72oTGzx6wpQ9Y9sM1TgKh+Q2cbAb3+qJjhbWPXvBDuctmKix71Tp9pvEDMB8IueSVmHfaeYfi/pAM88uA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -10740,7 +10748,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/notifications@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/notifications@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-g1g79gTcMIhlQUPv69fDrerkilar1XAq3LWgpVA3iKsD8ngk+a4axfGvEzW6P7mG699BXBoh/1C7ONK9lmkXEQ==}
     peerDependencies:
       react: 17.x
@@ -10748,11 +10756,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -10805,19 +10813,19 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/number-input@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/number-input@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-rMxLI5m65CCnn40U1YvyaT5ooMRtaIP9WSbx00oLKl20bU+xyCZ+UyqUCRrCyi2q+jUphvlF4pvLcy9o0oVzlw==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -10889,7 +10897,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/pagination@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/pagination@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-xNaT+Wn+IoCSYaQfUIK/at4ngHzGhKX7QHFvi5k6DwuF/k7N49RrpCprHn9VwGdN8bKtkgl94MnVY1YBzmCaOg==}
     peerDependencies:
       react: 17.x
@@ -10897,18 +10905,18 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/label': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/number-input': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/select-input': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/label': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/number-input': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/secondary-icon-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/select-input': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       formik: 2.4.6(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
@@ -10920,20 +10928,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/primary-button@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/primary-button@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-vDtZea6jZpeWYZeW8PUHaJaoQKEX4fRrV0VFVNDPR8IY3tvThKYOt1y7ur3MkM8w40mtPDKrz1EyqMLY/Z46iw==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -10992,20 +11000,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/primary-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/primary-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-5JAX+NLHGivlRDkmRB8T23onSHcZrMJEFD4zy9nI63N65AyIQD0kA8kprEEP3ivl82ApyDYErbWdcqkoN6Bmrw==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11070,23 +11078,23 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/radio-input@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/radio-input@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-+Z+Liyn7ugv/pplNpFPnYq5m8Z2VtwkVaPJDh/RfOLlFNp5oLP8fIfPChhhcXTYJGLr0/4DhK3y2us/x/r+LxQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-is: 17.0.2
@@ -11097,7 +11105,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/secondary-button@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
+  /@commercetools-uikit/secondary-button@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-CiqnLfbrOpi3e9NT0wno14AdGO5n61rZza6UDwBYb/bZ7CLz9PA9a/5qKATwXgUWh1zpfK15ySbTsFhQUTZvhw==}
     peerDependencies:
       react: 17.x
@@ -11106,13 +11114,13 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11149,7 +11157,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/secondary-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
+  /@commercetools-uikit/secondary-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-2Ct3w7TnljAQlA1avv4d/rRidOUT6aqv5Hilrc5zK8Qh9LPZVCHhMpko1R8Clu6yadecxGITqNGdmcu1pTRFjw==}
     peerDependencies:
       react: 17.x
@@ -11158,13 +11166,13 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11175,20 +11183,20 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/secondary-icon-button@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/secondary-icon-button@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-XJIYTN5GVZL8s8FJPRPFC/qLFpyyYUYQJXP4b3nk6SHr6Ns6U3tBixjefdQTgehcFbJTmm3uwS4HnIzpqcoH8w==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11247,20 +11255,20 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/secondary-icon-button@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/secondary-icon-button@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-kvBnwHYUsqOMsVNu3q1HfxLPqSyxbDfl2Cec1IOPiKw8yjJ9FKXNGAlcmIu6DB5g3dYbB/LtYMl/t3fVNesVxA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11350,7 +11358,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/select-input@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/select-input@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-xVe+wEmTUrG6IjOa3ivHt81fjxl6jiJRO1wHz+KeSznHmrcYHuKKDTR/qSUWaSCuAJLKlPn4T44JSHkIiJXMpQ==}
     peerDependencies:
       react: 17.x
@@ -11359,20 +11367,20 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/select-utils': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
       '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-select: 5.8.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      react-select: 5.8.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -11404,7 +11412,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/select-utils@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/select-utils@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-eHW0hUn1X9MGd33J3IpOfhrAq0NwWrBtIRbT7dDpaNprI8Bidmc7TpH+cfTQ4MvYFQnXEIy9QbEk9Iv5v+LxlQ==}
     peerDependencies:
       react: 17.x
@@ -11413,34 +11421,34 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-select: 5.8.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      react-select: 5.8.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
 
-  /@commercetools-uikit/spacings-inline@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inline@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-6/o3k1qLEd5il50g6Opz7XYbTP4JachPOpM9ACHj9cLIjAfIUPkLVG7UkJj4nIDFUNjClLnEwG001PdZmoPfqA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11465,16 +11473,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-inline@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inline@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-cYKZAdnAE+wPng5wm31upCiimNPdpx18xZijXp3NGHo/AAa+KFRXH8nKQrgb4szD6JDZsgT0o7luzI8sX2IMkQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11482,16 +11490,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-inset-squish@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inset-squish@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-oVOnD2xDPpktjUuighVgDmA7NgTPBvnCcxyNnrbZFcnRrbSh+ZtHL+wsV29uuvhqPUzL6gzOT1wmFf0pcExNAA==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11516,16 +11524,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-inset-squish@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inset-squish@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-AitqDhqntwMdzhUpjWNrMI/7LBIqvp2bjSYOEZLa94H/4USIdH27y8zwkW46Ahv6/GHe9H/FkK5FJ5MQkTHh9g==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11533,16 +11541,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-inset@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inset@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-push4wB9W9S7PEUBc/m0MghECKVMhDnQvw5vMrLfH5U/WgHuNtAyGzabsRrJEQjkLhXBI4HMda3xM3OPcNJcuw==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11567,16 +11575,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-inset@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-inset@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-lgBvo2/liy0eSB79aNyzBRve5Z0Fu3EBAYWJajMyQKG4mkphLMSJyeqb/Lf++O5cG/uvmd/LDRqHX2PUElnUvg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11584,16 +11592,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-stack@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-stack@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-kG2BTzTcH0sehs+dSIeeNU9uiuCT3ESD5PFIo1xNAkqbLAGFyiKNAlmNeVeFDriI7xO8jxIXWfckGs1pqAAzHQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11618,16 +11626,16 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings-stack@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings-stack@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-vIOY3Kr4YTpAjUhe3B1xi2nYLqo1iZY854cAsu0jjJvjboih0ydRLkq8gZLij6TWUS9ABxD2JdMaYAq2TM1yEQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
     transitivePeerDependencies:
@@ -11635,17 +11643,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-S4AoYQIN4BlWFV7ZgIoMiv82/5W3VVdVY9IBG1LVV+N/GvEoKsCsHFjIiCz/c8Rp4dLTy0BqUKdrt1oibu8WJQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inset': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inset-squish': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inset': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inset-squish': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
@@ -11669,17 +11677,17 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/spacings@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/spacings@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-h5jjcssQkIwHaq85Nvo7vVr1VEpHQBdrKSOiBk9Rxq58xuN9zYTkioBGdlGkvn/JLRExiILfrZrhuP8amh4T3Q==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-inset-squish': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-inset-squish': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
@@ -11760,7 +11768,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/tag@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
+  /@commercetools-uikit/tag@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
     resolution: {integrity: sha512-hSDoeEx3x0dTxC2nDxvaROKYRqyWbyeAwPYz0hRrkcdHlByD8AJlLsqzUvXvUx9qMs63xewuf/cG76a/TGwZZg==}
     peerDependencies:
       react: 17.x
@@ -11768,15 +11776,15 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
-      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
+      '@commercetools-uikit/icons': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
@@ -11883,7 +11891,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-uikit/text@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/text@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-5+FfW/q9/mstlSSj7OAzXg0lQPVN0Y5dbf9zyEbexNm2xoMjpwP01mnxSfqq8/3ywHuMPSbAHeWF/C/UCSgk2g==}
     peerDependencies:
       react: 17.x
@@ -11891,9 +11899,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11925,7 +11933,7 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/text@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
+  /@commercetools-uikit/text@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
     resolution: {integrity: sha512-9ImnFfkEe08leYsvin5cEVTved0z/7Ywlo3eGlf3ayZ0Howocu1jameh12QSv9YhsvhmjzDHyXP8Np51zmqTWQ==}
     peerDependencies:
       react: 17.x
@@ -11933,9 +11941,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11946,19 +11954,19 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/tooltip@18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/tooltip@18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-ft8poSeinOx6CzbIvTtIH88ZX+N49fx6qGpX4WPQJfZSwEUlxksLKQc2n0wPAWIkPT6YMPGoykQj5FYrivN2Rg==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/constraints': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 18.4.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 18.4.0(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 18.4.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -11992,19 +12000,19 @@ packages:
       - react-dom
     dev: false
 
-  /@commercetools-uikit/tooltip@19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /@commercetools-uikit/tooltip@19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-B1YfjdRBnstZUwGBKVC7fF8aLy4CgY1k5i2PTnncGrJlLxjEJoVSmV12S1CFI6ia+5cJ2NpJRa5HqDWltCjqmQ==}
     peerDependencies:
       react: 17.x
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.81)(react-dom@17.0.2)
+      '@commercetools-uikit/constraints': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.82)(react-dom@17.0.2)
       '@commercetools-uikit/hooks': 19.9.0(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2)
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
@@ -12525,7 +12533,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
 
-  /@emotion/react@11.11.4(@types/react@17.0.81)(react@17.0.2):
+  /@emotion/react@11.11.4(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
@@ -12541,7 +12549,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@17.0.2)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
     dev: false
@@ -12609,7 +12617,7 @@ packages:
       react: 17.0.2
     dev: false
 
-  /@emotion/styled@11.11.0(@emotion/react@11.11.4)(@types/react@17.0.81)(react@17.0.2):
+  /@emotion/styled@11.11.0(@emotion/react@11.11.4)(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-hM5Nnvu9P3midq5aaXj4I+lnSfNi7Pmd4EWk1fOZ3pxookaQTNew6bp4JaCBYM4HVFZF9g7UjJmsUmC2JlxOng==}
     peerDependencies:
       '@emotion/react': ^11.0.0-rc.0
@@ -12622,11 +12630,11 @@ packages:
       '@babel/runtime': 7.24.5
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       '@emotion/serialize': 1.1.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@17.0.2)
       '@emotion/utils': 1.2.1
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       react: 17.0.2
     dev: false
 
@@ -14845,8 +14853,8 @@ packages:
       '@octokit/auth-token': 5.1.1
       '@octokit/graphql': 8.1.1
       '@octokit/request': 9.1.3
-      '@octokit/request-error': 6.1.4
-      '@octokit/types': 13.5.0
+      '@octokit/request-error': 6.1.5
+      '@octokit/types': 13.5.1
       before-after-hook: 3.0.2
       universal-user-agent: 7.0.2
     dev: false
@@ -14855,7 +14863,7 @@ packages:
     resolution: {integrity: sha512-JYjh5rMOwXMJyUpj028cu0Gbp7qe/ihxfJMLc8VZBMMqSwLgOxDI1911gV4Enl1QSavAQNJcwmwBF9M0VvLh6Q==}
     engines: {node: '>= 18'}
     dependencies:
-      '@octokit/types': 13.5.0
+      '@octokit/types': 13.5.1
       universal-user-agent: 7.0.2
     dev: false
 
@@ -14872,7 +14880,7 @@ packages:
     engines: {node: '>= 18'}
     dependencies:
       '@octokit/request': 9.1.3
-      '@octokit/types': 13.5.0
+      '@octokit/types': 13.5.1
       universal-user-agent: 7.0.2
     dev: false
 
@@ -14921,11 +14929,11 @@ packages:
       once: 1.4.0
     dev: false
 
-  /@octokit/request-error@6.1.4:
-    resolution: {integrity: sha512-VpAhIUxwhWZQImo/dWAN/NpPqqojR6PSLgLYAituLM6U+ddx9hCioFGwBr5Mi+oi5CLeJkcAs3gJ0PYYzU6wUg==}
+  /@octokit/request-error@6.1.5:
+    resolution: {integrity: sha512-IlBTfGX8Yn/oFPMwSfvugfncK2EwRLjzbrpifNaMY8o/HTEAFqCA1FZxjD9cWvSKBHgrIhc4CSBIzMxiLsbzFQ==}
     engines: {node: '>= 18'}
     dependencies:
-      '@octokit/types': 13.5.0
+      '@octokit/types': 13.5.1
     dev: false
 
   /@octokit/request@5.6.3:
@@ -14946,8 +14954,8 @@ packages:
     engines: {node: '>= 18'}
     dependencies:
       '@octokit/endpoint': 10.1.1
-      '@octokit/request-error': 6.1.4
-      '@octokit/types': 13.5.0
+      '@octokit/request-error': 6.1.5
+      '@octokit/types': 13.5.1
       universal-user-agent: 7.0.2
     dev: false
 
@@ -14975,8 +14983,8 @@ packages:
       - encoding
     dev: false
 
-  /@octokit/types@13.5.0:
-    resolution: {integrity: sha512-HdqWTf5Z3qwDVlzCrP8UJquMwunpDiMPt5er+QjGzL4hqr/vBVY/MauQgS1xWxCDT1oMx1EULyqxncdCY/NVSQ==}
+  /@octokit/types@13.5.1:
+    resolution: {integrity: sha512-F41lGiWBKPIWPBgjSvaDXTTQptBujnozENAK3S//nj7xsFdYdirImKlBB/hTjr+Vii68SM+8jG3UJWRa6DMuDA==}
     dependencies:
       '@octokit/openapi-types': 22.2.0
     dev: false
@@ -16742,8 +16750,8 @@ packages:
       '@types/scheduler': 0.16.3
       csstype: 3.1.3
 
-  /@types/react@17.0.81:
-    resolution: {integrity: sha512-So+arrwwUFFWCX/lqv4w8z1glovD1zLE0KVP1z4eFCPU8WE4yTCotHjssKbrcnZ3W5Fcxcsl1vkKTh6k6V+/2A==}
+  /@types/react@17.0.82:
+    resolution: {integrity: sha512-wTW8Lu/PARGPFE8tOZqCvprOKg5sen/2uS03yKn2xbCDFP9oLncm7vMDQ2+dEQXHVIXrOpW6u72xUXEXO0ypSw==}
     dependencies:
       '@types/prop-types': 15.7.13
       '@types/scheduler': 0.16.8
@@ -17888,7 +17896,7 @@ packages:
       graphql: '>=0.11'
       qs: '>=6'
     dependencies:
-      '@apollo/client': 3.11.8(@types/react@17.0.81)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
+      '@apollo/client': 3.11.8(@types/react@17.0.82)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
       graphql: 16.8.2
       qs: 6.11.2
     dev: false
@@ -20506,10 +20514,6 @@ packages:
 
   /dompurify@2.4.7:
     resolution: {integrity: sha512-kxxKlPEDa6Nc5WJi+qRgPbOAbgTpSULL+vI3NUXsZMlkJxTqYI9wg5ZTay2sFrdZRWHPWNi+EdAhcJf81WtoMQ==}
-    dev: false
-
-  /dompurify@2.5.4:
-    resolution: {integrity: sha512-l5NNozANzaLPPe0XaAwvg3uZcHtDBnziX/HjsY1UcDj1MxTK8Dd0Kv096jyPK5HRzs/XM5IMj20dW8Fk+HnbUA==}
     dev: false
 
   /dompurify@2.5.5:
@@ -28569,7 +28573,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /react-select@5.8.0(@types/react@17.0.81)(react-dom@17.0.2)(react@17.0.2):
+  /react-select@5.8.0(@types/react@17.0.82)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-TfjLDo58XrhP6VG5M/Mi56Us0Yt8X7xD6cDybC7yoRMUNm7BGO7qk8J0TLQOua/prb8vUOtsfnXZwfm30HGsAA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -28577,7 +28581,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@emotion/cache': 11.11.0
-      '@emotion/react': 11.11.4(@types/react@17.0.81)(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.82)(react@17.0.2)
       '@floating-ui/dom': 1.2.6
       '@types/react-transition-group': 4.4.5
       memoize-one: 6.0.0
@@ -28585,7 +28589,7 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
-      use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.81)(react@17.0.2)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.82)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -28604,7 +28608,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /react-textarea-autosize@8.4.0(@types/react@17.0.81)(react@17.0.2):
+  /react-textarea-autosize@8.4.0(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-YrTFaEHLgJsi8sJVYHBzYn+mkP3prGkmP2DKb/tm0t7CLJY5t1Rxix8070LAKb0wby7bl/lf2EeHkuMihMZMwQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -28613,7 +28617,7 @@ packages:
       '@babel/runtime': 7.24.5
       react: 17.0.2
       use-composed-ref: 1.3.0(react@17.0.2)
-      use-latest: 1.2.1(@types/react@17.0.81)(react@17.0.2)
+      use-latest: 1.2.1(@types/react@17.0.82)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -28846,7 +28850,7 @@ packages:
     dependencies:
       jsesc: 0.5.0
 
-  /rehackt@0.1.0(@types/react@17.0.81)(react@17.0.2):
+  /rehackt@0.1.0(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-7kRDOuLHB87D/JESKxQoRwv4DzbIdwkAGQ7p6QKGdVlY1IZheUnVhlk/4UZlNUVxdAXpyxikE3URsG067ybVzw==}
     peerDependencies:
       '@types/react': ^17.0.56
@@ -28857,18 +28861,18 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       react: 17.0.2
     dev: false
 
-  /rehype-react@7.2.0(@types/react@17.0.81):
+  /rehype-react@7.2.0(@types/react@17.0.82):
     resolution: {integrity: sha512-MHYyCHka+3TtzBMKtcuvVOBAbI1HrfoYA+XH9m7/rlrQQATCPwtJnPdkxKKcIGF8vc9mxqQja9r9f+FHItQeWg==}
     peerDependencies:
       '@types/react': ^17.0.56
     dependencies:
       '@mapbox/hast-util-table-cell-style': 0.2.0
       '@types/hast': 2.3.4
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       hast-to-hyperscript: 10.0.3
       hast-util-whitespace: 2.0.1
       unified: 10.1.2
@@ -31462,7 +31466,7 @@ packages:
       react: 17.0.2
     dev: false
 
-  /use-isomorphic-layout-effect@1.1.2(@types/react@17.0.81)(react@17.0.2):
+  /use-isomorphic-layout-effect@1.1.2(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
       '@types/react': '*'
@@ -31471,7 +31475,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       react: 17.0.2
     dev: false
 
@@ -31489,7 +31493,7 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.80)(react@17.0.2)
     dev: false
 
-  /use-latest@1.2.1(@types/react@17.0.81)(react@17.0.2):
+  /use-latest@1.2.1(@types/react@17.0.82)(react@17.0.2):
     resolution: {integrity: sha512-xA+AVm/Wlg3e2P/JiItTziwS7FK92LWrDB0p+hgXloIMuVCeJJ8v6f0eeHyPZaJrM+usM1FkFfbNCrJGs8A/zw==}
     peerDependencies:
       '@types/react': '*'
@@ -31498,9 +31502,9 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 17.0.81
+      '@types/react': 17.0.82
       react: 17.0.2
-      use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.81)(react@17.0.2)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.82)(react@17.0.2)
     dev: false
 
   /use-memo-one@1.1.3(react@17.0.2):
