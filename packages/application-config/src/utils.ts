@@ -20,6 +20,8 @@ const mapCloudIdentifierToApiUrl = (
       return MC_API_URLS.AWS_CN;
     case CLOUD_IDENTIFIERS.AZURE_US:
       return MC_API_URLS.AZURE_US;
+    case CLOUD_IDENTIFIERS.AZURE_EU:
+      return MC_API_URLS.AZURE_EU;
     default:
       // We would probably never get to this point, as the JSON schema validation
       // kicks in before.
