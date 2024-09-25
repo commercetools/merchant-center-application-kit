@@ -6,6 +6,7 @@ export const CLOUD_IDENTIFIERS = {
   AWS_OHIO: 'aws-ohio',
   AWS_CN: 'aws-cn',
   AZURE_US: 'azure-us',
+  AZURE_EU: 'azure-eu',
 } as const;
 
 export const MC_API_URLS = {
@@ -16,6 +17,7 @@ export const MC_API_URLS = {
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
   AWS_CN: 'https://mc-api.cn-northwest-1.aws.commercetools.cn',
   AZURE_US: 'https://mc-api.eastus.azure.commercetools.com',
+  AZURE_EU: 'https://mc-api.germanywestcentral.azure.commercetools.com',
 } as const;
 
 export const MC_API_PROXY_HEADERS = {
