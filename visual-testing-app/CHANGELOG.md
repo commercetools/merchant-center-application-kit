@@ -1,5 +1,18 @@
 # @commercetools-local/visual-testing-app
 
+## 22.33.0
+
+### Patch Changes
+
+- Updated dependencies [[`c699f1b`](https://github.com/commercetools/merchant-center-application-kit/commit/c699f1bd797f52764944e18dc5e138f22f25a79b)]:
+  - @commercetools-frontend/application-config@22.33.0
+  - @commercetools-frontend/application-components@22.33.0
+  - @commercetools-frontend/application-shell@22.33.0
+  - @commercetools-frontend/application-shell-connectors@22.33.0
+  - @commercetools-frontend/react-notifications@22.33.0
+  - @commercetools-frontend/assets@22.33.0
+  - @commercetools-frontend/constants@22.33.0
+
 ## 22.32.2
 
 ### Patch Changes

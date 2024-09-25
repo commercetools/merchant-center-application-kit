@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 22.33.0
+
+### Patch Changes
+
+- [#3607](https://github.com/commercetools/merchant-center-application-kit/pull/3607) [`87d2686`](https://github.com/commercetools/merchant-center-application-kit/commit/87d268669ed8bfd44ed10658abefefc9728583d8) Thanks [@ragafus](https://github.com/ragafus)! - Fix performance issue on parseChunkImport helper function
+
+- [#3609](https://github.com/commercetools/merchant-center-application-kit/pull/3609) [`f7fc56c`](https://github.com/commercetools/merchant-center-application-kit/commit/f7fc56cf8444602d71d4648f938752d70ae522a9) Thanks [@ragafus](https://github.com/ragafus)! - Parallel loading in `loadI18n` helper function
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.33.0
+
 ## 22.32.2
 
 ### Patch Changes

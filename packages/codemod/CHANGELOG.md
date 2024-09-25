@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 22.33.0
+
 ## 22.32.2
 
 ## 22.32.1
