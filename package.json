@@ -153,7 +153,7 @@
     "lint-staged": "11.2.6",
     "postcss": "8.4.38",
     "postcss-load-config": "3.1.4",
-    "prettier": "2.8.8",
+    "prettier": "3.3.3",
     "puppeteer": "20.9.0",
     "qss": "2.0.3",
     "react": "17.0.2",

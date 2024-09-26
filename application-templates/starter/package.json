@@ -82,7 +82,7 @@
     "moment": "^2.29.4",
     "msw": "0.49.3",
     "omit-empty-es": "1.2.0",
-    "prettier": "2.8.8",
+    "prettier": "3.3.3",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
