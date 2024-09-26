@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import { build, type Plugin } from 'vite';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import { manualChunks } from '../config/optimizations';
 import paths from '../config/paths';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
@@ -41,7 +42,8 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
-        // Reduce the memory footpring when building sourcemaps.
+        output: { manualChunks },
+        // Reduce the memory footprint when building sourcemaps.
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
       },
