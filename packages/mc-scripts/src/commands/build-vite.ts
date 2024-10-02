@@ -3,6 +3,7 @@ import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
 import fs from 'fs-extra';
 import { build, type Plugin } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { manualChunks } from '../config/optimizations';
@@ -46,6 +47,9 @@ async function run() {
         // Reduce the memory footprint when building sourcemaps.
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
+        external: [
+          '!!raw-loader!@commercetools-frontend/assets/application-icons/rocket.svg',
+        ],
       },
       sourcemap:
         // Generating sourcemaps can increase the memory footprint of the build process,
@@ -79,6 +83,8 @@ async function run() {
       pluginSvgr(),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
+      process.env.ANALYZE_BUNDLE === 'true' &&
+        analyzer({ defaultSizes: 'gzip' }),
     ],
   });
 

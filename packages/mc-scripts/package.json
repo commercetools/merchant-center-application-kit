@@ -111,7 +111,8 @@
     "webpack": "5.94.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-dev-server": "4.15.2",
-    "webpackbar": "5.0.2"
+    "webpackbar": "5.0.2",
+    "vite-bundle-analyzer": "^0.12.1"
   },
   "devDependencies": {
     "@commercetools-test-data/custom-view": "^8.0.0",
