@@ -1,5 +1,5 @@
 import { mocked } from 'jest-mock';
-import { graphql, rest } from 'msw';
+import { graphql } from 'msw';
 import {
   screen,
   render,
@@ -193,12 +193,7 @@ const getDefaultMockResolvers = (mocks = {}) => {
       ),
   ];
 };
-const mockServer = setupServer(
-  // Other network requests
-  rest.post(/\/proxy\/mc-metrics\/metrics\//, (req, res, ctx) =>
-    res(ctx.json({ message: 'ok' }))
-  )
-);
+const mockServer = setupServer();
 
 beforeEach(() => {
   jest.clearAllMocks();

@@ -43,7 +43,6 @@ import RequestsInFlightLoader from '../requests-in-flight-loader';
 import RouteCatchAll from '../route-catch-all';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import ThemeSwitcher from '../theme-switcher';
-import VersionTracker from '../version-tracker';
 
 type TApplicationShellAuthenticationProps = {
   featureFlags?: TFlags;
@@ -203,7 +202,6 @@ export const ApplicationShellAuthenticated = (
                   >
                     <>
                       <ThemeSwitcher />
-                      <VersionTracker />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
