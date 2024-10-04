@@ -37,7 +37,7 @@ Build the application bundles
 $ pnpm build
 
 # or
-$ pnpm build:bundles:watch
+$ pnpm build:watch
 ```
 
 Start the [playground application](./playground):
