@@ -2,7 +2,8 @@ import path from 'path';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
 import fs from 'fs-extra';
-import { build, type Plugin } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { build, PluginOption, type Plugin } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
@@ -84,7 +85,9 @@ async function run() {
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
       process.env.ANALYZE_BUNDLE === 'true' &&
-        analyzer({ defaultSizes: 'gzip' }),
+        analyzer({ defaultSizes: 'parsed', openAnalyzer: true }),
+      process.env.ANALYZE_BUNDLE_TREE === 'true' &&
+        (visualizer({ open: true, template: 'network' }) as PluginOption),
     ],
   });
 
