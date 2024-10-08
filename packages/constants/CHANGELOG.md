@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.34.0
+
+### Minor Changes
+
+- [#3620](https://github.com/commercetools/merchant-center-application-kit/pull/3620) [`e27a447`](https://github.com/commercetools/merchant-center-application-kit/commit/e27a447ba610aa54290224e9a504d47a34149ea0) Thanks [@leventekobor](https://github.com/leventekobor)! - Remove VersionTracker component
+
 ## 22.33.0
 
 ## 22.32.2
