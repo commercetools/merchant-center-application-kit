@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 22.34.0
+
+### Patch Changes
+
+- [#3616](https://github.com/commercetools/merchant-center-application-kit/pull/3616) [`545f22d`](https://github.com/commercetools/merchant-center-application-kit/commit/545f22de90be07244bbab73112e2a74662e9d231) Thanks [@ragafus](https://github.com/ragafus)! - Add extra info when an ErrorEvent is captured
+
+- Updated dependencies [[`e27a447`](https://github.com/commercetools/merchant-center-application-kit/commit/e27a447ba610aa54290224e9a504d47a34149ea0)]:
+  - @commercetools-frontend/constants@22.34.0
+  - @commercetools-frontend/browser-history@22.34.0
+
 ## 22.33.0
 
 ### Patch Changes
