@@ -25,7 +25,7 @@ async function run() {
     // Define the module entry point (path relative to the `/public` folder).
     // NOTE: that this is different from the production configuration.
     scriptImports: [
-      `<script type="module" src="/../${appEntryPoint}"></script>`,
+      `<script type="module" src="/../${appEntryPoint}" defer></script>`,
     ],
   });
   // Write `index.html` (template) into the `/public` folder.
