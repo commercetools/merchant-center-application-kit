@@ -20,7 +20,6 @@ import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
-import { webpackCacheGroups } from './optimizations';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 
@@ -128,9 +127,6 @@ function createWebpackConfigForProduction(
       // Keep the runtime chunk separated to enable long term caching
       runtimeChunk: {
         name: 'runtime',
-      },
-      splitChunks: {
-        cacheGroups: webpackCacheGroups,
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',
