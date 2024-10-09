@@ -15,7 +15,7 @@ import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
-import { webpackCacheGroups } from './optimizations';
+import { getWepbackCacheGroups } from './optimizations';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 
@@ -58,6 +58,11 @@ function createWebpackConfigForDevelopment(
     },
   } as Required<TWebpackConfigOptions<'development'>>;
 
+  const appDependencies = require(paths.appPackageJson).dependencies as Record<
+    string,
+    string
+  >;
+
   return {
     // https://webpack.js.org/concepts/#mode
     mode: 'development',
@@ -79,7 +84,7 @@ function createWebpackConfigForDevelopment(
         name: 'runtime',
       },
       splitChunks: {
-        cacheGroups: webpackCacheGroups,
+        cacheGroups: getWepbackCacheGroups(appDependencies),
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',

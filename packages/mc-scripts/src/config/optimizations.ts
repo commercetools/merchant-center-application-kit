@@ -1,18 +1,8 @@
-// Helper function to check if a module exists
-const moduleExists = (moduleName: string) => {
-  try {
-    require.resolve(moduleName);
-    return true;
-  } catch (err) {
-    return false;
-  }
-};
+import chalk from 'chalk';
 
 // Dependencies to be split/grouped into separate chunks.
 // This is useful to reduce the main bundle size and have more
 // dedicated caching strategy for specific chunks.
-// https://webpack.js.org/plugins/split-chunks-plugin/
-// https://rollupjs.org/configuration-options/#output-manualchunks
 const manualChunks = {
   'commercetools-uikit-icons': ['@commercetools-uikit/icons'],
   moment: ['moment', 'moment-timezone'],
@@ -22,30 +12,55 @@ const manualChunks = {
   ],
 };
 
-// Filter out non-existent modules
-const filteredManualChunks = Object.entries(manualChunks).reduce(
-  (acc, [chunkName, vendors]) => {
-    const existingVendors = vendors.filter(moduleExists);
+const removeNonExistantDependencies = (
+  manualChunks: Record<string, string[]>,
+  appDependencies: string[]
+) => {
+  return Object.entries(manualChunks).reduce((acc, [chunkName, vendors]) => {
+    const existingVendors = vendors.filter((vendor) =>
+      appDependencies.includes(vendor)
+    );
     if (existingVendors.length > 0) {
       acc[chunkName] = existingVendors;
+    } else {
+      console.log(
+        chalk.yellow(
+          `\nFiltering out chunk "${chunkName}" because its configured dependencies does not exist in the application: ${vendors}\n`
+        )
+      );
     }
     return acc;
-  },
-  {} as Record<string, string[]>
-);
+  }, {} as Record<string, string[]>);
+};
 
-const webpackCacheGroups = Object.entries(filteredManualChunks).reduce(
-  (previousChunks, [chunkName, vendors]) => {
-    return {
-      ...previousChunks,
-      [chunkName]: {
-        test: new RegExp(`[\\/]node_modules[\\/](${vendors.join('|')})[\\/]`),
-        name: chunkName,
-        chunks: 'all',
-      },
-    };
-  },
-  {}
-);
+// Reference: https://rollupjs.org/configuration-options/#output-manualchunks
+export function getViteCacheGroups(appDependencies: Record<string, string>) {
+  return removeNonExistantDependencies(
+    manualChunks,
+    Object.keys(appDependencies)
+  );
+}
 
-export { manualChunks, webpackCacheGroups };
+// Reference: https://webpack.js.org/plugins/split-chunks-plugin/
+export function getWepbackCacheGroups(appDependencies: Record<string, string>) {
+  const filteredDependencies = removeNonExistantDependencies(
+    manualChunks,
+    Object.keys(appDependencies)
+  );
+
+  const result = Object.entries(filteredDependencies).reduce(
+    (previousChunks, [chunkName, vendors]) => {
+      return {
+        ...previousChunks,
+        [chunkName]: {
+          test: new RegExp(`[\\/]node_modules[\\/](${vendors.join('|')})[\\/]`),
+          name: chunkName,
+          chunks: 'all',
+        },
+      };
+    },
+    {}
+  );
+
+  return result;
+}
