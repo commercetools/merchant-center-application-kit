@@ -53,9 +53,6 @@ async function run() {
         // Reduce the memory footprint when building sourcemaps.
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
-        external: [
-          '!!raw-loader!@commercetools-frontend/assets/application-icons/rocket.svg',
-        ],
       },
       sourcemap:
         // Generating sourcemaps can increase the memory footprint of the build process,
