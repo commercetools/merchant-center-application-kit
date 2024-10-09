@@ -18,12 +18,10 @@
  */
 
 export const CUSTOM_VIEWS = 'enableCustomViews';
-export const ENABLE_WORKSPACES_UI = 'enableWorkspacesUi';
 
 export const FLAGS = {};
 
 // Long-lived feature flags, defined in the MC API.
 export const DEFAULT_FLAGS = {
   [CUSTOM_VIEWS]: { value: true },
-  [ENABLE_WORKSPACES_UI]: { value: false },
 };
