@@ -16,6 +16,9 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
+  vite-bundle-analyzer@0.12.1:
+    hash: 7ajbjk5hiy45vciwrmysf4hciy
+    path: patches/vite-bundle-analyzer@0.12.1.patch
 
 importers:
 
@@ -2737,8 +2740,8 @@ importers:
         specifier: ~4.5.3
         version: 4.5.3(@types/node@18.17.14)
       vite-bundle-analyzer:
-        specifier: ^0.12.1
-        version: 0.12.1
+        specifier: 0.12.1
+        version: 0.12.1(patch_hash=7ajbjk5hiy45vciwrmysf4hciy)
       webpack:
         specifier: 5.94.0
         version: 5.94.0
@@ -23161,7 +23164,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.94.0
+      webpack: 5.94.0(uglify-js@3.18.0)
 
   /htmlparser2@6.1.0:
     resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
@@ -30319,7 +30322,6 @@ packages:
       terser: 5.29.2
       uglify-js: 3.18.0
       webpack: 5.94.0(uglify-js@3.18.0)
-    dev: true
 
   /terser-webpack-plugin@5.3.10(webpack@5.94.0):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
@@ -31545,9 +31547,10 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /vite-bundle-analyzer@0.12.1:
+  /vite-bundle-analyzer@0.12.1(patch_hash=7ajbjk5hiy45vciwrmysf4hciy):
     resolution: {integrity: sha512-mIYwsDvTYCqXAUtOZIL3f7NdwWUeL/MlNFhOJzlTdcZE4pye6h06IEnOvWhnc/e+HM4oVVNxuRHZt0Rz6VO7EA==}
     dev: false
+    patched: true
 
   /vite@4.5.3(@types/node@18.17.14):
     resolution: {integrity: sha512-kQL23kMeX92v3ph7IauVkXkikdDRsYMGTVl5KY2E9OY4ONLvkHf04MDTbnfo6NKxZiDLWzVpP5oTa8hQD8U3dg==}
@@ -31856,7 +31859,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpackbar@5.0.2(webpack@5.94.0):
     resolution: {integrity: sha512-BmFJo7veBDgQzfWXl/wwYXr/VFus0614qZ8i9znqcl9fnEdiVkdbi0TedLQ6xAK92HZHDJ0QmyQ0fmuZPAgCYQ==}
