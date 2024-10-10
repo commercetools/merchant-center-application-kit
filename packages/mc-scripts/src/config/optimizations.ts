@@ -16,21 +16,24 @@ const removeNonExistantDependencies = (
   manualChunks: Record<string, string[]>,
   appDependencies: string[]
 ) => {
-  return Object.entries(manualChunks).reduce((acc, [chunkName, vendors]) => {
-    const existingVendors = vendors.filter((vendor) =>
-      appDependencies.includes(vendor)
-    );
-    if (existingVendors.length > 0) {
-      acc[chunkName] = existingVendors;
-    } else {
-      console.log(
-        chalk.yellow(
-          `\nFiltering out chunk "${chunkName}" because its configured dependencies does not exist in the application: ${vendors}\n`
-        )
+  return Object.entries(manualChunks).reduce(
+    (chunkGroups, [chunkName, vendors]) => {
+      const existingVendors = vendors.filter((vendor) =>
+        appDependencies.includes(vendor)
       );
-    }
-    return acc;
-  }, {} as Record<string, string[]>);
+      if (existingVendors.length > 0) {
+        chunkGroups[chunkName] = existingVendors;
+      } else {
+        console.log(
+          chalk.yellow(
+            `\nFiltering out chunk "${chunkName}" because its configured dependencies does not exist in the application: ${vendors}\n`
+          )
+        );
+      }
+      return chunkGroups;
+    },
+    {} as Record<string, string[]>
+  );
 };
 
 // Reference: https://rollupjs.org/configuration-options/#output-manualchunks
