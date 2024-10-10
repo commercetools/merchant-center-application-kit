@@ -1,8 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { useFlagVariation } from '@flopflip/react-broadcast';
 import CommercetoolsLogoSmallSvg from '@commercetools-frontend/assets/logos/commercetools_logo_small.svg';
-import { featureFlags } from '@commercetools-frontend/constants';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -10,7 +8,6 @@ import {
   Container,
   ContainerColumn,
   ContainerColumnWide,
-  GradientBackgroundContainer,
 } from './public-page-layout.styles';
 
 const year = new Date().getUTCFullYear();
@@ -47,17 +44,8 @@ const PublicPageLayoutContent: FC<TProps> = (props) => {
 };
 
 const PublicPageLayout: FC<TProps> = (props) => {
-  const enableWorkspacesUi = useFlagVariation(
-    featureFlags.ENABLE_WORKSPACES_UI
-  );
-
-  // @ts-ignore It's coming from the MC API, it's an object { value: boolean }.
-  const isWorkspacesUiEnabled = enableWorkspacesUi?.value;
-  const ContainerToShow = isWorkspacesUiEnabled
-    ? GradientBackgroundContainer
-    : Container;
   return (
-    <ContainerToShow>
+    <Container>
       <Spacings.Stack scale="xl" alignItems="center">
         <ContainerColumn>
           <Spacings.Inline justifyContent="center">
@@ -95,7 +83,7 @@ const PublicPageLayout: FC<TProps> = (props) => {
           </PublicPageLayoutContent>
         </Spacings.Stack>
       </Spacings.Stack>
-    </ContainerToShow>
+    </Container>
   );
 };
 PublicPageLayout.displayName = 'PublicPageLayout';
