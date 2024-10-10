@@ -1,5 +1,14 @@
 # @commercetools-frontend/l10n
 
+## 22.34.0
+
+### Patch Changes
+
+- [#3618](https://github.com/commercetools/merchant-center-application-kit/pull/3618) [`850c917`](https://github.com/commercetools/merchant-center-application-kit/commit/850c917fa981ff7dd0d77146a9bb0be8d4a6b811) Thanks [@emmenko](https://github.com/emmenko)! - Explicitly include `supported-locales` export and type declarations from bundle.
+
+- Updated dependencies [[`545f22d`](https://github.com/commercetools/merchant-center-application-kit/commit/545f22de90be07244bbab73112e2a74662e9d231)]:
+  - @commercetools-frontend/sentry@22.34.0
+
 ## 22.33.0
 
 ### Patch Changes

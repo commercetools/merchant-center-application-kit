@@ -1,5 +1,12 @@
 # @commercetools-frontend/sdk
 
+## 22.34.0
+
+### Patch Changes
+
+- Updated dependencies [[`e27a447`](https://github.com/commercetools/merchant-center-application-kit/commit/e27a447ba610aa54290224e9a504d47a34149ea0)]:
+  - @commercetools-frontend/constants@22.34.0
+
 ## 22.33.0
 
 ### Patch Changes

@@ -24,7 +24,9 @@ async function run() {
   const html = generateTemplate({
     // Define the module entry point (path relative from the `/public` folder).
     // NOTE: that this is different from the development configuration.
-    scriptImports: [`<script type="module" src="/${appEntryPoint}"></script>`],
+    scriptImports: [
+      `<script type="module" src="/${appEntryPoint}" defer></script>`,
+    ],
   });
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });

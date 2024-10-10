@@ -142,6 +142,13 @@ export const reportErrorToSentry = (
       } else {
         Sentry.setExtra('extra', extraInfo.extra);
       }
+    } else if (error instanceof ErrorEvent) {
+      Sentry.setExtras({
+        filename: error.filename,
+        lineno: error.lineno,
+        colno: error.colno,
+        error: error.error,
+      });
     }
     // Generate a unique ID referring to the last generated Sentry error
     const errorId = sendErrorToSentry(error);

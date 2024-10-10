@@ -181,7 +181,6 @@ export const MC_API_PROXY_TARGETS = {
   MACHINE_LEARNING: 'ml',
   PIM_SEARCH: 'pim-search',
   ORDER_SEARCH: 'order-search',
-  MC_METRICS: 'mc-metrics',
   IMPORT: 'import',
   EXPORT: 'export',
 } as const;

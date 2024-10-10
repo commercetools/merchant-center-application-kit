@@ -30,7 +30,7 @@ function webpackHtmlTemplate(templateParams: TemplateParameter) {
       `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'>`
   );
   const scriptImports = scriptChunks.map(
-    (chunkPath) => `<script src="__CDN_URL__${chunkPath}"></script>`
+    (chunkPath) => `<script src="__CDN_URL__${chunkPath}" defer></script>`
   );
 
   return generateTemplate({ cssImports, scriptImports });
