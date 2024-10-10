@@ -1,18 +1,18 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { transformFileSync, types, type PluginItem } from '@babel/core';
+import { transformFileAsync, types, type PluginItem } from '@babel/core';
 import type { ListrTask } from 'listr2';
 import prettier from 'prettier';
 import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { wordify, resolveFilePathByExtension } from '../utils';
 
-function replaceApplicationInfoInApplicationConfig(
+async function replaceApplicationInfoInApplicationConfig(
   filePath: string,
   options: TCliTaskOptions
 ) {
-  const result = transformFileSync(filePath, {
+  const result = await transformFileAsync(filePath, {
     plugins: [
       function replaceConfig(): PluginItem {
         const appName = wordify(
@@ -69,10 +69,10 @@ function replaceApplicationInfoInApplicationConfig(
   });
 
   if (result?.code) {
-    const prettierConfig = prettier.resolveConfig.sync(
+    const prettierConfig = await prettier.resolveConfig(
       options.projectDirectoryPath
     );
-    const formattedData = prettier.format(
+    const formattedData = await prettier.format(
       result.code + os.EOL,
       prettierConfig ?? undefined
     );
@@ -96,14 +96,14 @@ function getApplicationConfigName(options: TCliTaskOptions) {
 function updateApplicationConfig(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating application config file',
-    task: () => {
+    task: async () => {
       const configPath = resolveFilePathByExtension(
         path.join(
           options.projectDirectoryPath,
           getApplicationConfigName(options)
         )
       );
-      replaceApplicationInfoInApplicationConfig(configPath, options);
+      await replaceApplicationInfoInApplicationConfig(configPath, options);
     },
   };
 }

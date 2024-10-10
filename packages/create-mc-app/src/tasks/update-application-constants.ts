@@ -1,18 +1,18 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { type PluginItem, transformFileSync, types } from '@babel/core';
+import { type PluginItem, transformFileAsync, types } from '@babel/core';
 import type { ListrTask } from 'listr2';
 import prettier from 'prettier';
 import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { resolveFilePathByExtension } from '../utils';
 
-function replaceEntryPointUriPathInConstants(
+async function replaceEntryPointUriPathInConstants(
   filePath: string,
   options: TCliTaskOptions
 ) {
-  const result = transformFileSync(filePath, {
+  const result = await transformFileAsync(filePath, {
     plugins: [
       function replaceConstants(): PluginItem {
         return {
@@ -34,11 +34,11 @@ function replaceEntryPointUriPathInConstants(
     retainLines: true,
   });
   if (result?.code) {
-    const prettierConfig = prettier.resolveConfig.sync(
+    const prettierConfig = await prettier.resolveConfig(
       options.projectDirectoryPath
     );
 
-    const formattedData = prettier.format(
+    const formattedData = await prettier.format(
       result.code + os.EOL,
       prettierConfig ?? undefined
     );
@@ -52,11 +52,14 @@ function updateApplicationConstants(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating application constants',
     enabled: options.applicationType === applicationTypes['custom-application'],
-    task: () => {
+    task: async () => {
       const applicationConstantsPath = resolveFilePathByExtension(
         path.join(options.projectDirectoryPath, 'src/constants')
       );
-      replaceEntryPointUriPathInConstants(applicationConstantsPath, options);
+      await replaceEntryPointUriPathInConstants(
+        applicationConstantsPath,
+        options
+      );
     },
   };
 }

@@ -15,8 +15,6 @@ const prettier = require('prettier');
 const supportedLocales = require('../supported-locales');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
-const prettierConfig = prettier.resolveConfig.sync();
-
 const doesFileExist = (filePath) => {
   try {
     fs.accessSync(filePath);
@@ -314,9 +312,13 @@ function readTimeZoneTranslationFiles(sourceFilePath) {
   return JSON.parse(fs.readFileSync(sourceFilePath, { encoding: 'utf8' }));
 }
 
-function writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations) {
+async function writeTimeZoneTranslationFiles(
+  sourceFilePath,
+  updatedTranslations
+) {
   const json = JSON.stringify(updatedTranslations, null, 2);
-  const formatted = prettier.format(json, {
+  const prettierConfig = await prettier.resolveConfig();
+  const formatted = await prettier.format(json, {
     ...prettierConfig,
     parser: 'json',
   });
@@ -385,7 +387,7 @@ function throwIfIncludedTimeZoneIsNotTranslated(
   }
 }
 
-function writeTranslatedTimeZonesForLocale(
+async function writeTranslatedTimeZonesForLocale(
   sourceFilePath,
   newTranslations,
   key
@@ -404,7 +406,7 @@ function writeTranslatedTimeZonesForLocale(
           : newTranslations[timeZoneId],
       };
     }, {});
-  writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations);
+  await writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations);
   console.log(
     `[${key}]: writing ${
       Object.keys(newTranslations).length
@@ -469,8 +471,10 @@ async function updateTimeZoneData(key) {
           path.join(dataFolderPath, `${locale}.json`)
         ),
       ];
-      translationFilePaths.map((sourceFilePath) =>
-        writeTranslatedTimeZonesForLocale(sourceFilePath, TRANSLATE, key)
+      Promise.all(
+        translationFilePaths.map((sourceFilePath) =>
+          writeTranslatedTimeZonesForLocale(sourceFilePath, TRANSLATE, key)
+        )
       );
       writeTimeZoneTranslationFiles(
         translationsMapFilePath,
