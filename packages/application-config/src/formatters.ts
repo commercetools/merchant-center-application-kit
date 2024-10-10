@@ -3,7 +3,7 @@ import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/c
 import type { CamelCase } from './types';
 
 type TImplicitCustomApplicationResourceAccesses<
-  PermissionGroupName extends string = ''
+  PermissionGroupName extends string = '',
 > = Record<
   | `view`
   | `manage`
@@ -13,11 +13,11 @@ type TImplicitCustomApplicationResourceAccesses<
 >;
 
 type TImplicitCustomViewResourceAccesses<
-  PermissionGroupName extends string = ''
+  PermissionGroupName extends string = '',
 > = TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
 
 type TImplicitCustomApplicationPermissionKeys<
-  PermissionGroupName extends string = ''
+  PermissionGroupName extends string = '',
 > = Record<
   | `View`
   | `Manage`
@@ -82,13 +82,13 @@ function entryPointUriPathToResourceAccesses(
   entryPointUriPath: string
 ): TImplicitCustomApplicationResourceAccesses<''>;
 function entryPointUriPathToResourceAccesses<
-  PermissionGroupName extends string
+  PermissionGroupName extends string,
 >(
   entryPointUriPath: string,
   permissionGroupNames: PermissionGroupName[]
 ): TImplicitCustomApplicationResourceAccesses<PermissionGroupName>;
 function entryPointUriPathToResourceAccesses<
-  PermissionGroupName extends string
+  PermissionGroupName extends string,
 >(
   entryPointUriPath: string,
   permissionGroupNames?: PermissionGroupName[]

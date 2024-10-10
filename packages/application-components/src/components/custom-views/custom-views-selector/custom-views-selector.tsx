@@ -40,7 +40,9 @@ type TWrapperProps = {
 const Wrapper = styled.div<TWrapperProps>`
   height: ${(props) => (props.shouldRender ? COMPONENT_HEIGHT : '0')};
   overflow: hidden;
-  transition: margin 0.3s ease-in-out, height 0.3s ease-in-out;
+  transition:
+    margin 0.3s ease-in-out,
+    height 0.3s ease-in-out;
   margin: ${(props) => (props.shouldRender ? props.margin : '0')};
 `;
 

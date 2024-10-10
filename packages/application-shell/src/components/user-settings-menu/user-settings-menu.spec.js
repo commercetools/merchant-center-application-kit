@@ -57,9 +57,8 @@ describe('rendering', () => {
       });
 
       // Make sure Downshift combobox is correctly labelled (a11y)
-      const dropdownCombobox = await screen.findByLabelText(
-        /^user settings menu$/i
-      );
+      const dropdownCombobox =
+        await screen.findByLabelText(/^user settings menu$/i);
       expect(dropdownCombobox).toHaveAttribute('role', 'combobox');
 
       const dropdownMenu = await screen.findByRole('button', {

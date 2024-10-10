@@ -161,8 +161,8 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     let issuer =
       options.inferIssuer && cloudIdentifierHeader
-        ? mapCloudIdentifierToIssuer<Request>(cloudIdentifierHeader) ??
-          configuredDefaultIssuer
+        ? (mapCloudIdentifierToIssuer<Request>(cloudIdentifierHeader) ??
+          configuredDefaultIssuer)
         : configuredDefaultIssuer;
 
     // Get the `Accept-version` header, forwarded by the `/proxy/forward-to` endpoint.
@@ -179,7 +179,7 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     const requestUrlPath = options.getRequestUrl
       ? options.getRequestUrl(request)
-      : request.originalUrl ?? request.url;
+      : (request.originalUrl ?? request.url);
 
     if (!requestUrlPath || !requestUrlPath.startsWith('/')) {
       throw new Error(

@@ -97,6 +97,6 @@ export type TWebpackConfigOptions<ConfigMode extends TWebpackConfigMode> = {
   toggleFlags?: ConfigMode extends 'development'
     ? TWebpackConfigToggleFlagsForDevelopment
     : ConfigMode extends 'production'
-    ? TWebpackConfigToggleFlagsForProduction
-    : never;
+      ? TWebpackConfigToggleFlagsForProduction
+      : never;
 };

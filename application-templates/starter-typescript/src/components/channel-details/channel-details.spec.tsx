@@ -167,9 +167,8 @@ describe('rendering', () => {
     useMockServerHandlers([fetchChannelDetailsQueryHandler]);
     renderApp();
 
-    const keyInput: HTMLInputElement = await screen.findByLabelText(
-      /channel key/i
-    );
+    const keyInput: HTMLInputElement =
+      await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     screen.getByRole('combobox', { name: /channel roles/i });
@@ -184,9 +183,8 @@ describe('rendering', () => {
     });
     expect(resetButton).toBeDisabled();
 
-    const keyInput: HTMLInputElement = await screen.findByLabelText(
-      /channel key/i
-    );
+    const keyInput: HTMLInputElement =
+      await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     fireEvent.change(keyInput, {
@@ -238,9 +236,8 @@ describe('rendering', () => {
     ]);
     renderApp();
 
-    const keyInput: HTMLInputElement = await screen.findByLabelText(
-      /channel key/i
-    );
+    const keyInput: HTMLInputElement =
+      await screen.findByLabelText(/channel key/i);
 
     fireEvent.change(keyInput, {
       target: { value: TEST_CHANNEL_NEW_KEY },
@@ -262,9 +259,8 @@ describe('notifications', () => {
     ]);
     renderApp();
 
-    const keyInput: HTMLInputElement = await screen.findByLabelText(
-      /channel key/i
-    );
+    const keyInput: HTMLInputElement =
+      await screen.findByLabelText(/channel key/i);
     expect(keyInput.value).toBe(TEST_CHANNEL_KEY);
 
     fireEvent.change(keyInput, {

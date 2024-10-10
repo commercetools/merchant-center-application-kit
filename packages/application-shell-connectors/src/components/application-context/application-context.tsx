@@ -121,7 +121,7 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
 
 // Adjust certain fields which depend e.g. on the origin
 export const mapEnvironmentToApplicationContextEnvironment = <
-  AdditionalEnvironmentProperties extends {}
+  AdditionalEnvironmentProperties extends {},
 >(
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
   origin?: string
@@ -235,7 +235,7 @@ function withApplicationContext<
   AdditionalEnvironmentProperties extends {},
   MappedProps extends {} = {
     applicationContext?: TApplicationContext<AdditionalEnvironmentProperties>;
-  }
+  },
 >(
   mapApplicationContextToProps?: (
     context: TApplicationContext<AdditionalEnvironmentProperties>
@@ -264,11 +264,11 @@ function withApplicationContext<
 // Use function overloading to declare two possible signatures with two
 // distict return types, based on the selector function argument.
 function useApplicationContextHook<
-  AdditionalEnvironmentProperties extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {},
 >(): TApplicationContext<AdditionalEnvironmentProperties>;
 function useApplicationContextHook<
   SelectedContext,
-  AdditionalEnvironmentProperties extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {},
 >(
   selector: (
     context: TApplicationContext<AdditionalEnvironmentProperties>
@@ -279,7 +279,7 @@ function useApplicationContextHook<
 // based on the function arguments.
 function useApplicationContextHook<
   SelectedContext,
-  AdditionalEnvironmentProperties extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {},
 >(
   selector?: (
     context: TApplicationContext<AdditionalEnvironmentProperties>

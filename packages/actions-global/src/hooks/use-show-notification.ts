@@ -25,7 +25,7 @@ type TNotificationHook<Notification extends TShowNotification> = (
  * });
  */
 function useShowNotification<
-  Notification extends TShowNotification
+  Notification extends TShowNotification,
 >(): TNotificationHook<Notification>;
 /**
  * Dispatch a notification.

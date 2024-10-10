@@ -44,15 +44,18 @@ const getPermissions = (
 ) => {
   const additionalResourceAccessKeyToOauthScopeMap = (
     appConfig.additionalOAuthScopes || []
-  ).reduce((previousOauthScope, { name, view, manage }) => {
-    const formattedResourceKey =
-      formatEntryPointUriPathToResourceAccessKey(name);
-    return {
-      ...previousOauthScope,
-      [`view${formattedResourceKey}`]: view,
-      [`manage${formattedResourceKey}`]: manage,
-    };
-  }, {} as Record<string, string[]>);
+  ).reduce(
+    (previousOauthScope, { name, view, manage }) => {
+      const formattedResourceKey =
+        formatEntryPointUriPathToResourceAccessKey(name);
+      return {
+        ...previousOauthScope,
+        [`view${formattedResourceKey}`]: view,
+        [`manage${formattedResourceKey}`]: manage,
+      };
+    },
+    {} as Record<string, string[]>
+  );
 
   const additionalPermissionNames =
     appConfig.additionalOAuthScopes?.map(({ name }) => name) || [];

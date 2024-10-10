@@ -22,8 +22,8 @@ export type MenuKey = 'appBar' | 'navBarGroups';
 export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
   ? TFetchApplicationsMenuQuery['applicationsMenu']['appBar']
   : Key extends 'navBarGroups'
-  ? TFetchApplicationsMenuQuery['applicationsMenu']['navBarGroups']
-  : never;
+    ? TFetchApplicationsMenuQuery['applicationsMenu']['navBarGroups']
+    : never;
 export type Config = {
   environment: TApplicationContext<{}>['environment'];
   queryOptions?: {

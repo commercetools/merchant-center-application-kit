@@ -20,14 +20,17 @@ const visualRoutesModules = import.meta.glob<TVisualRouteSpec>(
 
 const allUniqueVisualRouteComponents = Object.values(
   visualRoutesModules
-).reduce<Record<string, TVisualRouteSpec>>((allComponents, RouteComponent) => {
-  const route = RouteComponent.routePath.substring(1);
-  if (allComponents[route]) {
-    console.error(`Duplicate route generated for: /${route}`);
-  }
-  allComponents[route] = RouteComponent;
-  return allComponents;
-}, {} as Record<string, TVisualRouteSpec>);
+).reduce<Record<string, TVisualRouteSpec>>(
+  (allComponents, RouteComponent) => {
+    const route = RouteComponent.routePath.substring(1);
+    if (allComponents[route]) {
+      console.error(`Duplicate route generated for: /${route}`);
+    }
+    allComponents[route] = RouteComponent;
+    return allComponents;
+  },
+  {} as Record<string, TVisualRouteSpec>
+);
 const allSortedComponents = Object.keys(allUniqueVisualRouteComponents)
   .sort()
   .map<TVisualRouteSpec>((key) => allUniqueVisualRouteComponents[key]);

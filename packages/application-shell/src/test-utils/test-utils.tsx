@@ -301,7 +301,7 @@ type TApplicationProvidersProps = {
 };
 
 function createApplicationProviders<
-  AdditionalEnvironmentProperties extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {},
 >({
   // application
   disableAutomaticEntryPointRoutes = false,
@@ -441,7 +441,7 @@ function renderApp<AdditionalEnvironmentProperties extends {} = {}>(
 
 export type TRenderAppWithReduxOptions<
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 > = {
   store: ReturnType<typeof createReduxStore>;
   storeState: StoreState;
@@ -450,7 +450,7 @@ export type TRenderAppWithReduxOptions<
 } & TRenderAppOptions<AdditionalEnvironmentProperties>;
 type TRenderAppWithReduxResult<
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 > = TRenderAppResult<AdditionalEnvironmentProperties> &
   Pick<
     TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
@@ -459,7 +459,7 @@ type TRenderAppWithReduxResult<
 
 function createReduxProviders<
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 >({
   // The store option is kept around to keep the API open as not all use-cases
   // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
@@ -554,7 +554,7 @@ function createReduxProviders<
 // Use this function only when your test actually needs Redux
 function renderAppWithRedux<
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 >(
   ui: ReactElement,
   options: Partial<
@@ -585,7 +585,7 @@ function renderAppWithRedux<
 export type TRenderHookOptions<
   RenderedHookProps,
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 > = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState> &
   rtlHooks.RenderHookOptions<RenderedHookProps>;
 
@@ -593,7 +593,7 @@ export type TRenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue,
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 > = rtlHooks.RenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue
@@ -607,7 +607,7 @@ function renderHook<
   RenderedHookProps,
   RenderedHookResult,
   AdditionalEnvironmentProperties extends {} = {},
-  StoreState extends {} = {}
+  StoreState extends {} = {},
 >(
   callback: (props: RenderedHookProps) => RenderedHookResult,
   options: Partial<

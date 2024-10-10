@@ -100,10 +100,10 @@ export type TAppNotificationOfKind<T extends TAppNotificationOfDomain> =
     kind: 'global' extends T['domain']
       ? TAppNotificationKindGlobal
       : 'page' extends T['domain']
-      ? TAppNotificationKindPage
-      : 'side' extends T['domain']
-      ? TAppNotificationKindSide
-      : never;
+        ? TAppNotificationKindPage
+        : 'side' extends T['domain']
+          ? TAppNotificationKindSide
+          : never;
   };
 export type TAppNotificationApiError<ExtraFields extends {} = {}> = {
   message: string;
@@ -125,8 +125,8 @@ export type TAppNotification<T extends TAppNotificationOfKind<T>> =
     values?: 'api-error' extends T['kind']
       ? TAppNotificationValuesApiError
       : 'unexpected-error' extends T['kind']
-      ? TAppNotificationValuesUnexpectedError
-      : never;
+        ? TAppNotificationValuesUnexpectedError
+        : never;
   };
 export type TAppNotificationGlobal = TAppNotification<{
   domain: typeof NOTIFICATION_DOMAINS.GLOBAL;

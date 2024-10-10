@@ -11,7 +11,7 @@ import { addNotification } from '@commercetools-frontend/notifications';
 import type { TShowNotification } from '../types';
 
 export default function showNotification<
-  Notification extends TShowNotification
+  Notification extends TShowNotification,
 >(notification: Notification, meta: TNotificationMetaOptions = {}) {
   if (process.env.NODE_ENV !== 'production')
     if (notification.domain) {
