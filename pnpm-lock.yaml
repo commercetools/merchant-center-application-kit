@@ -1698,9 +1698,6 @@ importers:
       '@commercetools-uikit/text':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
-      '@commercetools-uikit/tooltip':
-        specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@17.0.80)(react@17.0.2)
@@ -3081,8 +3078,8 @@ importers:
         specifier: 22.34.0
         version: link:../constants
       '@sentry/browser':
-        specifier: 7.117.0
-        version: 7.117.0
+        specifier: 7.119.1
+        version: 7.119.1
       '@sentry/react':
         specifier: 7.117.0
         version: 7.117.0(react@17.0.2)
@@ -8794,16 +8791,16 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-frontend/application-config@22.33.0:
-    resolution: {integrity: sha512-ISX0JC6p5GC4u7lWtudXt+mKJvOpjlGUnr8kTFSkvlMpsPSTWtT6eDuY+lNR2i/8R06RX30GmhDlzPNtktF5MQ==}
+  /@commercetools-frontend/application-config@22.34.0:
+    resolution: {integrity: sha512-S3lwjQx8MuEMOl5xCc6EQy80yOS9ZjB7vl8ERLkkdp9uja7UHCvd4frCRCR8aUxY0ril+azV05vfBr77u4aBFg==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.24.5
       '@babel/register': 7.22.15(@babel/core@7.24.5)
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/babel-preset-mc-app': 22.33.0
-      '@commercetools-frontend/constants': 22.33.0
+      '@commercetools-frontend/babel-preset-mc-app': 22.34.0
+      '@commercetools-frontend/constants': 22.34.0
       '@types/dompurify': 2.4.0
       '@types/lodash': 4.17.4
       '@types/react': 17.0.80
@@ -8821,8 +8818,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@commercetools-frontend/babel-preset-mc-app@22.33.0:
-    resolution: {integrity: sha512-F/0z++RoOIyRyciSZUHWSspFJhocxDdLRDSUD3t6iOenj90Er6QVY0Z4Lxzr7+TqzhpuRKHpMrjYRNNldAwPXw==}
+  /@commercetools-frontend/babel-preset-mc-app@22.34.0:
+    resolution: {integrity: sha512-keKxSiZ1Hjv64gnAdr93Wu4VBcD48BiuaRtIRL4wl75gEHirbYZRVg4GNIyTzGdCHL0/D75NTqObkDjenHDswA==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
       '@babel/core': 7.25.2
@@ -8854,8 +8851,8 @@ packages:
       - supports-color
     dev: true
 
-  /@commercetools-frontend/constants@22.33.0:
-    resolution: {integrity: sha512-a1Ud+BLzEkz7SbYpQ1RbRlgFc108wdumU7IMvzwEasnQjQi+DuVZ3bSwLFuUR4zaRp/6m3LB+f0ohWrtHAEMRA==}
+  /@commercetools-frontend/constants@22.34.0:
+    resolution: {integrity: sha512-pg7WqxsK1+ewOQcZM9IvYNW4Om5VmKhRZuwcPaiEOm707ThNgHjFCnQcK4F6kV5/A5NvoO8xAUju8+5oVr32ag==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
@@ -8928,8 +8925,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.33.0
-      '@commercetools-frontend/constants': 22.33.0
+      '@commercetools-frontend/application-config': 22.34.0
+      '@commercetools-frontend/constants': 22.34.0
       '@commercetools-test-data/commons': 8.2.3
       '@commercetools-test-data/core': 8.2.3
       '@commercetools-test-data/graphql-types': 8.2.3
@@ -15577,6 +15574,15 @@ packages:
       '@sentry/utils': 7.117.0
     dev: false
 
+  /@sentry-internal/feedback@7.119.1:
+    resolution: {integrity: sha512-EPyW6EKZmhKpw/OQUPRkTynXecZdYl4uhZwdZuGqnGMAzswPOgQvFrkwsOuPYvoMfXqCH7YuRqyJrox3uBOrTA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@sentry/core': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
+    dev: false
+
   /@sentry-internal/replay-canvas@7.117.0:
     resolution: {integrity: sha512-7hjIhwEcoosr+BIa0AyEssB5xwvvlzUpvD5fXu4scd3I3qfX8gdnofO96a8r+LrQm3bSj+eN+4TfKEtWb7bU5A==}
     engines: {node: '>=12'}
@@ -15587,6 +15593,16 @@ packages:
       '@sentry/utils': 7.117.0
     dev: false
 
+  /@sentry-internal/replay-canvas@7.119.1:
+    resolution: {integrity: sha512-O/lrzENbMhP/UDr7LwmfOWTjD9PLNmdaCF408Wx8SDuj7Iwc+VasGfHg7fPH4Pdr4nJON6oh+UqoV4IoG05u+A==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@sentry/core': 7.119.1
+      '@sentry/replay': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
+    dev: false
+
   /@sentry-internal/tracing@7.117.0:
     resolution: {integrity: sha512-fAIyijNvKBZNA12IcKo+dOYDRTNrzNsdzbm3DP37vJRKVQu19ucqP4Y6InvKokffDP2HZPzFPDoGXYuXkDhUZg==}
     engines: {node: '>=8'}
@@ -15594,6 +15610,15 @@ packages:
       '@sentry/core': 7.117.0
       '@sentry/types': 7.117.0
       '@sentry/utils': 7.117.0
+    dev: false
+
+  /@sentry-internal/tracing@7.119.1:
+    resolution: {integrity: sha512-cI0YraPd6qBwvUA3wQdPGTy8PzAoK0NZiaTN1LM3IczdPegehWOaEG5GVTnpGnTsmBAzn1xnBXNBhgiU4dgcrQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
     dev: false
 
   /@sentry/browser@7.117.0:
@@ -15610,12 +15635,34 @@ packages:
       '@sentry/utils': 7.117.0
     dev: false
 
+  /@sentry/browser@7.119.1:
+    resolution: {integrity: sha512-aMwAnFU4iAPeLyZvqmOQaEDHt/Dkf8rpgYeJ0OEi50dmP6AjG+KIAMCXU7CYCCQDn70ITJo8QD5+KzCoZPYz0A==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry-internal/feedback': 7.119.1
+      '@sentry-internal/replay-canvas': 7.119.1
+      '@sentry-internal/tracing': 7.119.1
+      '@sentry/core': 7.119.1
+      '@sentry/integrations': 7.119.1
+      '@sentry/replay': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
+    dev: false
+
   /@sentry/core@7.117.0:
     resolution: {integrity: sha512-1XZ4/d/DEwnfM2zBMloXDwX+W7s76lGKQMgd8bwgPJZjjEztMJ7X0uopKAGwlQcjn242q+hsCBR6C+fSuI5kvg==}
     engines: {node: '>=8'}
     dependencies:
       '@sentry/types': 7.117.0
       '@sentry/utils': 7.117.0
+    dev: false
+
+  /@sentry/core@7.119.1:
+    resolution: {integrity: sha512-YUNnH7O7paVd+UmpArWCPH4Phlb5LwrkWVqzFWqL3xPyCcTSof2RL8UmvpkTjgYJjJ+NDfq5mPFkqv3aOEn5Sw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
     dev: false
 
   /@sentry/integrations@7.117.0:
@@ -15625,6 +15672,16 @@ packages:
       '@sentry/core': 7.117.0
       '@sentry/types': 7.117.0
       '@sentry/utils': 7.117.0
+      localforage: 1.10.0
+    dev: false
+
+  /@sentry/integrations@7.119.1:
+    resolution: {integrity: sha512-CGmLEPnaBqbUleVqrmGYjRjf5/OwjUXo57I9t0KKWViq81mWnYhaUhRZWFNoCNQHns+3+GPCOMvl0zlawt+evw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
       localforage: 1.10.0
     dev: false
 
@@ -15652,8 +15709,23 @@ packages:
       '@sentry/utils': 7.117.0
     dev: false
 
+  /@sentry/replay@7.119.1:
+    resolution: {integrity: sha512-4da+ruMEipuAZf35Ybt2StBdV1S+oJbSVccGpnl9w6RoeQoloT4ztR6ML3UcFDTXeTPT1FnHWDCyOfST0O7XMw==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@sentry-internal/tracing': 7.119.1
+      '@sentry/core': 7.119.1
+      '@sentry/types': 7.119.1
+      '@sentry/utils': 7.119.1
+    dev: false
+
   /@sentry/types@7.117.0:
     resolution: {integrity: sha512-5dtdulcUttc3F0Te7ekZmpSp/ebt/CA71ELx0uyqVGjWsSAINwskFD77sdcjqvZWek//WjiYX1+GRKlpJ1QqsA==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /@sentry/types@7.119.1:
+    resolution: {integrity: sha512-4G2mcZNnYzK3pa2PuTq+M2GcwBRY/yy1rF+HfZU+LAPZr98nzq2X3+mJHNJoobeHRkvVh7YZMPi4ogXiIS5VNQ==}
     engines: {node: '>=8'}
     dev: false
 
@@ -15662,6 +15734,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       '@sentry/types': 7.117.0
+    dev: false
+
+  /@sentry/utils@7.119.1:
+    resolution: {integrity: sha512-ju/Cvyeu/vkfC5/XBV30UNet5kLEicZmXSyuLwZu95hEbL+foPdxN+re7pCI/eNqfe3B2vz7lvz5afLVOlQ2Hg==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.119.1
     dev: false
 
   /@sheerun/mutationobserver-shim@0.3.3:
