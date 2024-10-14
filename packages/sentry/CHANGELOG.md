@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 22.35.0
+
+### Patch Changes
+
+- [#3621](https://github.com/commercetools/merchant-center-application-kit/pull/3621) [`292719b`](https://github.com/commercetools/merchant-center-application-kit/commit/292719bcad34c04a5a242af48c0db5d533d0bca9) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `@sentry/browser` to `v7.119.1` [security]
+
+- Updated dependencies [[`be08ecc`](https://github.com/commercetools/merchant-center-application-kit/commit/be08ecc1607ef0a2eecb5d8272fc634d2c297a21)]:
+  - @commercetools-frontend/constants@22.35.0
+  - @commercetools-frontend/browser-history@22.35.0
+
 ## 22.34.0
 
 ### Patch Changes
