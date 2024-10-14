@@ -44,9 +44,8 @@ describe.each`
   ${'gcp-au'}                     | ${'https://mc-api.australia-southeast1.gcp.commercetools.com'}
   ${'gcp-eu'}                     | ${'https://mc-api.europe-west1.gcp.commercetools.com'}
   ${'gcp-us'}                     | ${'https://mc-api.us-central1.gcp.commercetools.com'}
-  ${'aws-fra'}                    | ${'https://mc-api.eu-central-1.aws.commercetools.com'}
-  ${'aws-ohio'}                   | ${'https://mc-api.us-east-2.aws.commercetools.com'}
-  ${'aws-cn'}                     | ${'https://mc-api.cn-northwest-1.aws.commercetools.cn'}
+  ${'aws-eu'}                     | ${'https://mc-api.eu-central-1.aws.commercetools.com'}
+  ${'aws-us'}                     | ${'https://mc-api.us-east-2.aws.commercetools.com'}
 `(
   'when the middleware uses as "issuer": "$cloudIdentifier"',
   ({ cloudIdentifier, issuer }) => {
