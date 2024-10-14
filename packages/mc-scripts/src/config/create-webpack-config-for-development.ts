@@ -15,6 +15,7 @@ import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import momentLocalesToKeep from /* preval */ './moment-locales';
+import { getWepbackCacheGroups } from './optimizations';
 import paths from './paths';
 import vendorsToTranspile from './vendors-to-transpile';
 
@@ -57,6 +58,11 @@ function createWebpackConfigForDevelopment(
     },
   } as Required<TWebpackConfigOptions<'development'>>;
 
+  const appDependencies = require(paths.appPackageJson).dependencies as Record<
+    string,
+    string
+  >;
+
   return {
     // https://webpack.js.org/concepts/#mode
     mode: 'development',
@@ -71,16 +77,14 @@ function createWebpackConfigForDevelopment(
     // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
-      // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      splitChunks: {
-        chunks: 'all',
-      },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
         name: 'runtime',
+      },
+      splitChunks: {
+        cacheGroups: getWepbackCacheGroups(appDependencies),
       },
       moduleIds: 'named',
       chunkIds: 'deterministic',

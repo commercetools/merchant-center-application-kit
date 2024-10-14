@@ -16,6 +16,9 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
+  vite-bundle-analyzer@0.12.1:
+    hash: 7ajbjk5hiy45vciwrmysf4hciy
+    path: patches/vite-bundle-analyzer@0.12.1.patch
 
 importers:
 
@@ -2706,6 +2709,9 @@ importers:
       react-refresh:
         specifier: 0.14.2
         version: 0.14.2
+      rollup-plugin-visualizer:
+        specifier: ^5.12.0
+        version: 5.12.0(rollup@2.79.1)
       serve-handler:
         specifier: 6.1.5
         version: 6.1.5
@@ -2730,6 +2736,9 @@ importers:
       vite:
         specifier: ~4.5.3
         version: 4.5.3(@types/node@18.17.14)
+      vite-bundle-analyzer:
+        specifier: 0.12.1
+        version: 0.12.1(patch_hash=7ajbjk5hiy45vciwrmysf4hciy)
       webpack:
         specifier: 5.94.0
         version: 5.94.0
@@ -22550,7 +22559,7 @@ packages:
     dependencies:
       basic-ftp: 5.0.5
       data-uri-to-buffer: 6.0.2
-      debug: 4.3.5(supports-color@8.1.1)
+      debug: 4.3.7
       fs-extra: 11.2.0
     transitivePeerDependencies:
       - supports-color
@@ -29060,6 +29069,23 @@ packages:
       glob: 10.3.10
     dev: true
 
+  /rollup-plugin-visualizer@5.12.0(rollup@2.79.1):
+    resolution: {integrity: sha512-8/NU9jXcHRs7Nnj07PF2o4gjxmm9lXIrZ8r175bT9dK8qoLlvKTwRMArRCMgpMGlq8CTLugRvEmyMeMXIU2pNQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      rollup: 2.x || 3.x || 4.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      open: 8.4.2
+      picomatch: 2.3.1
+      rollup: 2.79.1
+      source-map: 0.7.4
+      yargs: 17.7.1
+    dev: false
+
   /rollup-pluginutils@2.8.2:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
     dependencies:
@@ -31602,6 +31628,11 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
     dev: false
+
+  /vite-bundle-analyzer@0.12.1(patch_hash=7ajbjk5hiy45vciwrmysf4hciy):
+    resolution: {integrity: sha512-mIYwsDvTYCqXAUtOZIL3f7NdwWUeL/MlNFhOJzlTdcZE4pye6h06IEnOvWhnc/e+HM4oVVNxuRHZt0Rz6VO7EA==}
+    dev: false
+    patched: true
 
   /vite@4.5.3(@types/node@18.17.14):
     resolution: {integrity: sha512-kQL23kMeX92v3ph7IauVkXkikdDRsYMGTVl5KY2E9OY4ONLvkHf04MDTbnfo6NKxZiDLWzVpP5oTa8hQD8U3dg==}

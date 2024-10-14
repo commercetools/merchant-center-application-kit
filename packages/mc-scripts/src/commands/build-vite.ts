@@ -2,9 +2,12 @@ import path from 'path';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react';
 import fs from 'fs-extra';
-import { build, type Plugin } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { build, PluginOption, type Plugin } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import { getViteCacheGroups } from '../config/optimizations';
 import paths from '../config/paths';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
@@ -28,6 +31,11 @@ async function run() {
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
 
+  const appDependencies = require(paths.appPackageJson).dependencies as Record<
+    string,
+    string
+  >;
+
   await build({
     root: paths.appRoot,
     base: './', // <-- Important to allow configuring the runtime base path.
@@ -43,7 +51,8 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
-        // Reduce the memory footpring when building sourcemaps.
+        output: { manualChunks: getViteCacheGroups(appDependencies) },
+        // Reduce the memory footprint when building sourcemaps.
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
       },
@@ -79,6 +88,10 @@ async function run() {
       pluginSvgr(),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
+      process.env.ANALYZE_BUNDLE === 'true' &&
+        analyzer({ defaultSizes: 'parsed', openAnalyzer: true }),
+      process.env.ANALYZE_BUNDLE_TREE === 'true' &&
+        (visualizer({ open: true, template: 'network' }) as PluginOption),
     ],
   });
 
