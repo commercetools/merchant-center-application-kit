@@ -1,5 +1,13 @@
 # @commercetools-backend/express
 
+## 22.35.0
+
+### Patch Changes
+
+- [#3628](https://github.com/commercetools/merchant-center-application-kit/pull/3628) [`8e5b0cf`](https://github.com/commercetools/merchant-center-application-kit/commit/8e5b0cf6584b9205df39977745f29db0fdb13c44) Thanks [@emmenko](https://github.com/emmenko)! - The cloud identifiers for AWS regions have been renamed to `aws-eu` and `aws-us`.
+
+  For backwards compatibility the value `aws-fra` and `aws-ohio` still work.
+
 ## 22.34.0
 
 ## 22.33.0

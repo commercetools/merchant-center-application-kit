@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.35.0
+
+### Minor Changes
+
+- [#3623](https://github.com/commercetools/merchant-center-application-kit/pull/3623) [`be08ecc`](https://github.com/commercetools/merchant-center-application-kit/commit/be08ecc1607ef0a2eecb5d8272fc634d2c297a21) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Removes the workspaces button from app-bar, and the workspaces gradient background from public page layout.
+
 ## 22.34.0
 
 ### Minor Changes

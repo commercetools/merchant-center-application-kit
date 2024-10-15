@@ -1,5 +1,15 @@
 # @commercetools-frontend/actions-global
 
+## 22.35.0
+
+### Patch Changes
+
+- Updated dependencies [[`292719b`](https://github.com/commercetools/merchant-center-application-kit/commit/292719bcad34c04a5a242af48c0db5d533d0bca9), [`be08ecc`](https://github.com/commercetools/merchant-center-application-kit/commit/be08ecc1607ef0a2eecb5d8272fc634d2c297a21)]:
+  - @commercetools-frontend/sentry@22.35.0
+  - @commercetools-frontend/constants@22.35.0
+  - @commercetools-frontend/browser-history@22.35.0
+  - @commercetools-frontend/notifications@22.35.0
+
 ## 22.34.0
 
 ### Patch Changes
