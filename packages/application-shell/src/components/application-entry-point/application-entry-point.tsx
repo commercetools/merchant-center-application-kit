@@ -51,10 +51,12 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
           // For development, it's useful to redirect to the actual
           // application routes when you open the browser at http://localhost:3001
           process.env.NODE_ENV === 'production' ? null : (
-            <Redirect
+            <Route
               exact={true}
-              from="/:projectKey"
-              to={`/:projectKey/${entryPointUriPath}`}
+              path="/:projectKey"
+              render={() => (
+                <Redirect to={`/:projectKey/${entryPointUriPath}`} />
+              )}
             />
           )
         }

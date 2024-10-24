@@ -135,7 +135,13 @@ const TabularModalPageExample = () => {
                   <Route path={`${match.path}/tabular-modal-page/tab-two`}>
                     <Text.Body>{values['tab-two-content']}</Text.Body>
                   </Route>
-                  <Redirect to={`${match.url}/tabular-modal-page/tab-one`} />
+                  <Route
+                    render={() => (
+                      <Redirect
+                        to={`${match.url}/tabular-modal-page/tab-one`}
+                      />
+                    )}
+                  />
                 </Switch>
               </TabularModalPage>
             )}

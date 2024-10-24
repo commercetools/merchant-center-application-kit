@@ -155,7 +155,11 @@ const TabularMainPageExample = () => {
               <Route path={`${match.path}/tabular-main-page/tab-two`}>
                 <Text.Body>{values['tab-two-content']}</Text.Body>
               </Route>
-              <Redirect to={`${match.url}/tabular-main-page/tab-one`} />
+              <Route
+                render={() => (
+                  <Redirect to={`${match.url}/tabular-main-page/tab-one`} />
+                )}
+              />
             </Switch>
           </TabularMainPage>
         )}
