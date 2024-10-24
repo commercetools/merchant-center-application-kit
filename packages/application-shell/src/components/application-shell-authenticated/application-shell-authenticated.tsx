@@ -387,10 +387,13 @@ export const ApplicationShellAuthenticated = (
                                 }
                               />
                               <Switch>
-                                <Redirect
-                                  from="/profile"
-                                  to="/account/profile"
+                                <Route
+                                  path="/profile"
+                                  render={() => (
+                                    <Redirect to="/account/profile" />
+                                  )}
                                 />
+
                                 <Route path="/account">
                                   {
                                     /**
