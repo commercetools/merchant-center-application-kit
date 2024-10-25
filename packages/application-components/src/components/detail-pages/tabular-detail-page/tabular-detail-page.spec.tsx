@@ -19,9 +19,7 @@ jest.mock('@commercetools-uikit/utils', () => ({
 const Content = () => (
   <Spacings.Stack scale="m">
     <Switch>
-      <Route exact={true} path="/">
-        <Redirect to="/tab-one" />
-      </Route>
+      <Route exact={true} path="/" render={() => <Redirect to="/tab-one" />} />
       <Route path="/tab-one">
         <Text.Body>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
