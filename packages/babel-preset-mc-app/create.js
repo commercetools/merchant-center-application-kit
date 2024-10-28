@@ -189,6 +189,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         require('@emotion/babel-plugin').default,
       // Cherry-pick Lodash modules
       require('babel-plugin-lodash').default,
+      require('babel-plugin-istanbul').default,
     ].filter(Boolean),
   };
 };
