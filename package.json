@@ -36,6 +36,9 @@
     "test:e2e:playground": "cypress run --spec 'cypress/e2e/playground/**/*.cy.ts'",
     "test:e2e:template-custom-application-starter": "cypress run --spec 'cypress/e2e/custom-application-template-starter/**/*.cy.ts'",
     "test:e2e:template-custom-view-starter": "cypress run --spec 'cypress/e2e/custom-view-template-starter/**/*.cy.ts'",
+    "combine:reports": "npx nyc merge reports && mv coverage.json .nyc_output/out.json",
+    "report:combined": "npx nyc report -t .nyc_output --report-dir coverage --reporter=html",
+    "copy:reports": "cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json",
     "vrt:components": "percy exec -- pnpm test:visual",
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
@@ -192,5 +195,8 @@
     "npm": ">=6",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@8.15.8"
+  "packageManager": "pnpm@8.15.8",
+  "nyc": {
+    "report-dir": "cypress-coverage"
+  }
 }
