@@ -19,6 +19,7 @@ export default defineConfig({
         const dotenv = await import('dotenv');
         dotenv.config({ path: envPath });
       }
+      require('@cypress/code-coverage/task')(on, cypressConfig);
 
       on('task', {
         customApplicationConfig,

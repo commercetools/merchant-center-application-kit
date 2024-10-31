@@ -36,6 +36,9 @@
     "test:e2e:playground": "cypress run --spec 'cypress/e2e/playground/**/*.cy.ts'",
     "test:e2e:template-custom-application-starter": "cypress run --spec 'cypress/e2e/custom-application-template-starter/**/*.cy.ts'",
     "test:e2e:template-custom-view-starter": "cypress run --spec 'cypress/e2e/custom-view-template-starter/**/*.cy.ts'",
+    "combine:reports": "npx nyc merge reports && mv coverage.json .nyc_output/out.json",
+    "report:combined": "npx nyc report -t .nyc_output --report-dir coverage --reporter=html",
+    "copy:reports": "cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json",
     "vrt:components": "percy exec -- pnpm test:visual",
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
@@ -97,6 +100,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-conventional": "17.8.1",
+    "@cypress/code-coverage": "^3.13.4",
     "@faker-js/faker": "8.4.1",
     "@formatjs/cli": "6.2.12",
     "@graphql-codegen/add": "3.2.3",
@@ -151,6 +155,7 @@
     "jest-silent-reporter": "0.6.0",
     "jest-watch-typeahead": "2.2.2",
     "lint-staged": "11.2.6",
+    "nyc": "^17.1.0",
     "postcss": "8.4.38",
     "postcss-load-config": "3.1.4",
     "prettier": "2.8.8",
@@ -190,5 +195,8 @@
     "npm": ">=6",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@8.15.8"
+  "packageManager": "pnpm@8.15.8",
+  "nyc": {
+    "report-dir": "cypress-coverage"
+  }
 }
