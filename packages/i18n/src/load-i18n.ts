@@ -25,10 +25,6 @@ const getUiKitChunkImport = (locale: string): Promise<TI18NImportData> => {
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-pt-BR" */ '@commercetools-uikit/i18n/compiled-data/pt-BR.json'
       );
-    case 'zh-CN':
-      return import(
-        /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-uikit/i18n/compiled-data/zh-CN.json'
-      );
     default:
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-uikit/i18n/compiled-data/en.json'
@@ -55,10 +51,6 @@ const getAppKitChunkImport = (locale: string): Promise<TI18NImportData> => {
       return import(
         /* webpackChunkName: "i18n-app-kit-locale-pt-BR" */ '../compiled-data/pt-BR.json'
       );
-    case 'zh-CN':
-      return import(
-        /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../compiled-data/zh-CN.json'
-      );
     default:
       return import(
         /* webpackChunkName: "i18n-app-kit-locale-en" */ '../compiled-data/en.json'
@@ -82,10 +74,6 @@ const getCommunityKitChunkImport = async (
     case 'fr-FR':
       return await import(
         /* webpackChunkName: "i18n-community-kit-locale-fr-FR" */ '@commercetools-community-kit/i18n/compiled-data/fr-FR.json'
-      );
-    case 'zh-CN':
-      return await import(
-        /* webpackChunkName: "i18n-community-kit-locale-zh-CN" */ '@commercetools-community-kit/i18n/compiled-data/zh-CN.json'
       );
     default:
       return await import(

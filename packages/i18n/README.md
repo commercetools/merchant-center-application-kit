@@ -19,7 +19,6 @@ $ npm install --save @commercetools-frontend/i18n
 - `es`
 - `fr-FR`
 - `pt_BR`
-- `zh-CN`
 
 ## Usage
 

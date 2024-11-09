@@ -8,7 +8,6 @@ export const mapLocaleToIntlLocale = (locale: string): TSupportedLocale => {
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';
   if (locale === 'pt-BR') return 'pt-BR';
-  if (locale === 'zh-CN') return 'zh-CN';
   return 'en';
 };
 

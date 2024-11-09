@@ -18,7 +18,6 @@ $ npm install --save @commercetools-frontend/l10n
 - `de`
 - `es`
 - `fr-FR`
-- `zh-CN`
 
 ## Hooks
 

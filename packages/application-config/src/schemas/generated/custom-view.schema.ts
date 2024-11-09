@@ -116,7 +116,7 @@ export interface JSONSchemaForCustomViewConfigurationFiles {
    * See https://docs.commercetools.com/TODO
    */
   labelAllLocales: {
-    locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR' | 'zh-CN';
+    locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR';
     value: string;
   }[];
   /**
