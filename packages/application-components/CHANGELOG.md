@@ -1,5 +1,21 @@
 # @commercetools-frontend/application-components
 
+## 22.35.1
+
+### Patch Changes
+
+- [#3630](https://github.com/commercetools/merchant-center-application-kit/pull/3630) [`26a31c9`](https://github.com/commercetools/merchant-center-application-kit/commit/26a31c93eea4d3c16801268838395c73d73d9e2d) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update usages of `Redirect` component in order to set the path for the upcoming migration to `react-router` v6.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.35.1
+  - @commercetools-frontend/application-config@22.35.1
+  - @commercetools-frontend/application-shell-connectors@22.35.1
+  - @commercetools-frontend/assets@22.35.1
+  - @commercetools-frontend/constants@22.35.1
+  - @commercetools-frontend/i18n@22.35.1
+  - @commercetools-frontend/l10n@22.35.1
+  - @commercetools-frontend/sentry@22.35.1
+
 ## 22.35.0
 
 ### Minor Changes
