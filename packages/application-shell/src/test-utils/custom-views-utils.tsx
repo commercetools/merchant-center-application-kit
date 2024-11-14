@@ -10,7 +10,7 @@ import {
   type CustomViewData,
 } from '@commercetools-frontend/constants';
 import { TCustomViewType } from '../types/generated/settings';
-import { renderApp } from './test-utils';
+import { renderAppWithRedux } from './test-utils';
 
 const testCustomViewData: CustomViewData = {
   id: 'custom-view-id',
@@ -42,7 +42,7 @@ type TRenderCustomViewParams = {
 export const renderCustomView = (
   props: TRenderCustomViewParams
 ): RenderResult => {
-  return renderApp(
+  return renderAppWithRedux(
     <CustomViewContextProvider
       hostUrl={
         props.customViewHostUrl ??
