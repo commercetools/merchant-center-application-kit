@@ -12,7 +12,7 @@ export const NAVBAR = {
   sublistIndentationWhenCollapsed: '72px',
   sublistIndentationWhenExpanded: '248px',
   sublistItemMinHeight: '50px',
-  sublistWidth: '253px',
+  sublistWidth: '272px',
   leftNavigationTransition: 'all 150ms cubic-bezier(1, 0, 0.58, 1)',
   widthLeftNavigation: '80px',
   widthLeftNavigationWhenExpanded: '256px',

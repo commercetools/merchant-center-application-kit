@@ -98,6 +98,16 @@ const TextLinkSublistWrapper = styled.div`
 const NavlinkClickableContent = styled.div`
   height: 100%;
   width: 100%;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 150ms ease-out;
+
+  position: relative;
+  left: calc(-1 * ${uiKitDesignTokens.spacing20});
 `;
 
 const listStyles = css`
@@ -179,11 +189,11 @@ const SublistItem = styled.li<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   align-self: stretch;
+  border-radius: ${uiKitDesignTokens.borderRadius4};
 
   ${(props) => [
     props.isActive &&
       css`
-        border-radius: ${uiKitDesignTokens.borderRadius4};
         background: ${uiKitDesignTokens.colorPrimary40};
       `,
     !props.isActive &&
@@ -196,12 +206,9 @@ const SublistItem = styled.li<{ isActive: boolean }>`
           background: ${uiKitDesignTokens.colorPrimary95};
 
           [data-link-level='text-link-sublist'] {
-            /* additional left padding on hover and focus */
-            padding: ${uiKitDesignTokens.spacing25}
-              ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing25}
-              calc(
-                ${uiKitDesignTokens.spacing30} + ${uiKitDesignTokens.spacing20}
-              );
+            > ${NavlinkClickableContent} {
+              left: 0;
+            }
           }
         }
       `,
