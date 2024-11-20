@@ -1,0 +1,13 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 6a491b2b03b5bf351e1ff07e2ac8659bd47c54c5..14ab7acbe91591fb1ae914739f9073ea59dd6841 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -28,7 +28,7 @@ interface AnalyzerPluginOptionsWithStatic extends BasicAnalyzerPluginOptions {
+ }
+ type AnalyzerPluginOptions = AnalyzerPluginOptionsWithServer | AnalyzerPluginOptionsWithStatic | AnalyzerPluginOptionsWithJson;
+ 
+-declare function adapter(userPlugin: Plugin): Plugin$1<any>;
++declare function adapter(userPlugin: Plugin): Plugin$1;
+ 
+ declare function analyzer(opts?: AnalyzerPluginOptions): Plugin;
+ 

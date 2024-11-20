@@ -32,13 +32,13 @@
     "express-winston": "4.2.0",
     "fast-safe-stringify": "2.1.1",
     "lodash": "4.17.21",
-    "logform": "2.6.0",
+    "logform": "2.7.0",
     "triple-beam": "1.4.1",
-    "winston": "3.13.0"
+    "winston": "3.17.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
     "@types/express": "^4.17.17",
-    "express": "4.20.0"
+    "express": "4.21.1"
   }
 }
