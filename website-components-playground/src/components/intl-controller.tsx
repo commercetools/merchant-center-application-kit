@@ -28,8 +28,6 @@ const namifyLocale = (locale: string) => {
       return 'Français';
     case 'pt-BR':
       return 'Português brasileiro';
-    case 'zh-CN':
-      return '简化字';
     default:
       return locale;
   }

@@ -167,10 +167,6 @@ async function loadMomentLocales(locale: string): Promise<void> {
       await import('moment/dist/locale/pt-br');
       break;
 
-    case 'zh-cn':
-      await import('moment/dist/locale/zh-cn');
-      break;
-
     default:
       break;
   };

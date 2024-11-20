@@ -128,7 +128,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
      * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinklabelalllocales
      */
     labelAllLocales: {
-      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR' | 'zh-CN';
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR';
       value: string;
     }[];
     /**
@@ -153,7 +153,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
      * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinkslabelalllocales
      */
     labelAllLocales: {
-      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR' | 'zh-CN';
+      locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR';
       value: string;
     }[];
     /**
