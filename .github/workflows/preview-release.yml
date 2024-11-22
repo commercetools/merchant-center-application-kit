@@ -5,14 +5,39 @@ on:
     types:
       - created
 
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write
+
 jobs:
+  log_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log Issue Details
+        run: |
+          echo "Issue Title: ${{ github.event.issue.title }}"
+          echo "Issue Body: ${{ github.event.issue.body }}"
+          echo "Issue URL: ${{ github.event.issue.html_url }}"
+          echo "Issue Number: ${{ github.event.issue.number }}"
+          echo "Issue Author: ${{ github.event.issue.user.login }}"
+          echo "Repository: ${{ github.repository }}"
+          
   release:
-    if: startsWith(github.event.comment.body, '[preview_deployment]')
+    if: contains(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
 
     steps:
+      # Log GitHub context for debugging
+      - name: Log GitHub Context
+        run: |
+          echo "GitHub context: ${{ toJson(github) }}"
+          echo "Comment body: ${{ github.event.comment.body }}"
+          echo "PR head ref: ${{ github.event.issue.pull_request.head.ref }}"
+
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
