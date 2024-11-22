@@ -1,12 +1,13 @@
 name: Preview Release
 
 on:
-  push:
-    branches:
-      - 'preview/**' 
+  issue_comment:
+    types:
+      - created
 
 jobs:
   release:
+    if: startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -23,10 +24,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          # Pass a personal access token (using our `ct-changesets` app) to be able to trigger other workflows
-
-          # https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
-          # https://github.community/t/action-does-not-trigger-another-on-push-tag-action/17148/8
           token: ${{ steps.generate_github_token.outputs.token }}      
 
       - name: Installing dependencies and building packages
