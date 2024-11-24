@@ -1,13 +1,18 @@
 name: Preview Release
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
 on:
   issue_comment:
-    types:
-      - created
+    types: [created]
 
 jobs:
   release:
-    if: startsWith(github.event.comment.body, '[preview_deployment]')
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -20,33 +25,39 @@ jobs:
         with:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
+      
+      - name: Get branch of PR
+        uses: xt0rted/pull-request-comment-branch@v1
+        id: comment-branch
 
-      - name: Checkout code
+      - name: Set latest commit status as pending
+        uses: myrotvorets/set-commit-status-action@master
+        with:
+          sha: ${{ steps.comment-branch.outputs.head_sha }}
+          token: ${{ steps.generate_github_token.outputs.token }}
+          status: pending
+
+      - name: Checkout PR branch
         uses: actions/checkout@v2
         with:
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}   
-          
-      - name: Fetch PR branch
-        run: |
-          git fetch origin ${{ github.event.issue.pull_request.head.ref }}
-          git checkout ${{ github.event.issue.pull_request.head.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+          scope: "@commercetools"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Creating .npmrc
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            provenance=true
-            email=npmjs@commercetools.com
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Configure prerelease mode
         run: |
-          git checkout ${{ github.head_ref }}
+          git checkout ${{ steps.comment-branch.outputs.head_ref }}
           pnpm changeset pre enter preview
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
@@ -65,4 +76,26 @@ jobs:
           pnpm changeset pre exit
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      - name: Post workflow result on PR as a comment
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const name = '${{ github.workflow }}';
+            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const success = '${{ job.status }}' === 'success';
+            const body = `Release workflow ${success ? 'succeeded ✅' : 'failed ❌'}\nSee details: ${url}`;
 
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+      - name: Set latest commit status as ${{ job.status }}
+        uses: myrotvorets/set-commit-status-action@master
+        if: always()
+        with:
+          sha: ${{ steps.comment-branch.outputs.head_sha }}
+          token: ${{ steps.generate_github_token.outputs.token }}
+          status: ${{ job.status }}
