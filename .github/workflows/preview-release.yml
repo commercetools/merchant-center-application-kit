@@ -6,13 +6,17 @@ permissions:
   issues: write
   statuses: write
 
-on:
-  issue_comment:
-    types: [created]
+# This is temporary for testing purposes
+on: [push]
+
+# on:
+#   issue_comment:
+#     types: [created]
+
 
 jobs:
   release:
-    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    # if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
