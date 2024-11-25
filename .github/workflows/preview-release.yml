@@ -6,13 +6,16 @@ permissions:
   issues: write
   statuses: write
 
-on:
-  issue_comment:
-    types: [created]
+# on:
+#   issue_comment:
+#     types: [created]
+
+# Just for testing since we can't trigger the workflow with issue_comment event in the PR
+on: [push]
 
 jobs:
   release:
-    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    # if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
