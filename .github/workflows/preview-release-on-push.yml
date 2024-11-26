@@ -59,8 +59,5 @@ jobs:
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           PUBLISH_OUTPUT=$(pnpm changeset publish --tag ${PREVIEW_TAG})
           echo "$PUBLISH_OUTPUT"
-          PACKAGE_NAME=$(echo "$PUBLISH_OUTPUT" | grep -oP '(?<=Successfully published: ).*')
-          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-          
