@@ -29,6 +29,14 @@ jobs:
       - name: Get branch of PR
         uses: xt0rted/pull-request-comment-branch@v1
         id: comment-branch
+      
+      - name: Ensure branch name matches 'preview/**'
+        run: |
+          BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
+          if [[ ! "$BRANCH_NAME" =~ ^preview/ ]]; then
+            echo "Branch name does not match 'preview/**'. Exiting workflow."
+            exit 1
+          fi
         
       - name: Set latest commit status as pending
         uses: myrotvorets/set-commit-status-action@master
@@ -38,7 +46,7 @@ jobs:
           status: pending
 
       - name: Checkout PR branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}   
@@ -55,27 +63,16 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Configure prerelease mode
+      - name: Publishing preview releases to npm registry
         run: |
+          BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
+          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
           git checkout ${{ steps.comment-branch.outputs.head_ref }}
-          pnpm changeset pre enter preview
+          pnpm changeset version --snapshot ${PREVIEW_TAG}
+          pnpm changeset publish --tag ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-      - name: Verson package in prerelease mode
-        run: |
-          pnpm changeset version
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-      - name: Publish prerelease packages to npm
-        run: |
-          pnpm changeset publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Exit prerelease mode
-        run: |
-          pnpm changeset pre exit
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+
       - name: Post workflow result on PR as a comment
         uses: actions/github-script@v6
         if: always()
@@ -92,6 +89,7 @@ jobs:
               repo: context.repo.repo,
               body: body
             });
+            
       - name: Set latest commit status as ${{ job.status }}
         uses: myrotvorets/set-commit-status-action@master
         if: always()
