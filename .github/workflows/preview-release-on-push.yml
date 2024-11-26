@@ -19,40 +19,40 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
       
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          token: ${{ steps.generate_github_token.outputs.token }}   
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
+      #   with:
+      #     token: ${{ steps.generate_github_token.outputs.token }}   
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-          scope: "@commercetools"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     registry-url: https://registry.npmjs.org/
+      #     scope: "@commercetools"
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
+      # - name: Installing dependencies and building packages
+      #   uses: ./.github/actions/ci
 
-      - name: Configure prerelease mode
-        run: |
-          pnpm changeset pre enter preview
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-      - name: Verson package in prerelease mode
-        run: |
-          pnpm changeset version
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-      - name: Publish prerelease packages to npm
-        run: |
-          pnpm changeset publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Exit prerelease mode
-        run: |
-          pnpm changeset pre exit
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      # - name: Configure prerelease mode
+      #   run: |
+      #     pnpm changeset pre enter preview
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      # - name: Verson package in prerelease mode
+      #   run: |
+      #     pnpm changeset version
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      # - name: Publish prerelease packages to npm
+      #   run: |
+      #     pnpm changeset publish
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Exit prerelease mode
+      #   run: |
+      #     pnpm changeset pre exit
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}

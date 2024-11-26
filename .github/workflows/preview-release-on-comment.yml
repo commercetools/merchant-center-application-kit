@@ -6,14 +6,16 @@ permissions:
   issues: write
   statuses: write
 
-on:
-  issue_comment:
-    types: [created]
+# Just for testing
+on: [push]  
+# on:
+#   issue_comment:
+#     types: [created]
 
 
 jobs:
   release:
-    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    # if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -69,7 +71,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
       - name: Publish prerelease packages to npm
         run: |
-          pnpm changeset publish --tag preview
+          pnpm changeset publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Exit prerelease mode
