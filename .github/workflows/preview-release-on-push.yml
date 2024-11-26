@@ -16,7 +16,7 @@ jobs:
           BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
           if [[ ! "$BRANCH_NAME" =~ ^preview/ ]]; then
             echo "Branch name does not match 'preview/**'. Exiting workflow."
-            exit 0
+            exit 1
           fi
 
       # Get GitHub token via the CT Changesets App
