@@ -11,6 +11,14 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      - name: Ensure branch name matches 'preview/**'
+        run: |
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          if [[ ! "$BRANCH_NAME" =~ ^preview/ ]]; then
+            echo "Branch name does not match 'preview/**'. Exiting workflow."
+            exit 0
+          fi
+
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
@@ -46,8 +54,9 @@ jobs:
       - name: Publishing preview releases to npm registry
         run: |
           BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
           git checkout ${{ github.head_ref }}
-          pnpm changeset version --snapshot ${BRANCH_NAME}
-          pnpm changeset publish --tag ${BRANCH_NAME}
+          pnpm changeset version --snapshot ${PREVIEW_TAG}
+          pnpm changeset publish --tag ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
