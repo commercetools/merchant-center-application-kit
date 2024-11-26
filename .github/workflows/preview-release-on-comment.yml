@@ -29,7 +29,7 @@ jobs:
       - name: Get branch of PR
         uses: xt0rted/pull-request-comment-branch@v1
         id: comment-branch
-
+        
       - name: Set latest commit status as pending
         uses: myrotvorets/set-commit-status-action@master
         with:
