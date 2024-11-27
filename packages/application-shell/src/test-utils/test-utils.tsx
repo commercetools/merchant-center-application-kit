@@ -19,7 +19,7 @@ import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
@@ -361,7 +361,7 @@ function createApplicationProviders<
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
-            <Router history={memoryHistory}>
+            <HistoryRouter history={memoryHistory}>
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
@@ -379,7 +379,7 @@ function createApplicationProviders<
                       props.children}
                 </ApplicationEntryPoint>
               </Suspense>
-            </Router>
+            </HistoryRouter>
           </ApplicationContextProvider>
         </TestProviderFlopFlip>
       </ApolloProviderWrapper>

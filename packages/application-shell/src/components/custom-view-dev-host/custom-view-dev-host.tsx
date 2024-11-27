@@ -1,7 +1,11 @@
 import { type ReactNode, useState } from 'react';
-import { Route, Router, Switch, useRouteMatch } from 'react-router-dom';
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useMatch,
+} from 'react-router-dom';
 import { CustomViewLoader } from '@commercetools-frontend/application-components';
-import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import Constraints from '@commercetools-uikit/constraints';
@@ -97,18 +101,20 @@ export type TCustomViewDevHost = {
 };
 
 const SimulatedIframeRoute = (props: Pick<TCustomViewDevHost, 'children'>) => {
-  const routeMatch = useRouteMatch();
+  const routeMatch = useMatch(
+    '/custom-views/:customViewId/projects/:projectKey'
+  );
   console.info(
     `ℹ️ Rendering a Custom View as it would be rendered within an iframe`,
-    routeMatch.url
+    routeMatch?.pathname
   );
   return <>{props.children}</>;
 };
 
 const CustomViewDevHost = (props: TCustomViewDevHost) => {
   return (
-    <Router history={history}>
-      <Switch>
+    <Router>
+      <Routes>
         {/* Simulate the rendering of the Custom View as if it would be served
         from a different host via an iframe. */}
         <Route path="/custom-views/:customViewId/projects/:projectKey">
@@ -124,7 +130,7 @@ const CustomViewDevHost = (props: TCustomViewDevHost) => {
             <LocalCustomViewLauncher environment={window.app} />
           </ApplicationShell>
         </Route>
-      </Switch>
+      </Routes>
     </Router>
   );
 };

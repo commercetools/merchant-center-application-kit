@@ -1661,7 +1661,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/card':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -1688,7 +1688,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.6.3)
       '@commercetools-uikit/secondary-button':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/select-input':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
@@ -1865,8 +1865,8 @@ importers:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2)(react@17.0.2)
       react-router-dom:
-        specifier: 5.3.4
-        version: 5.3.4(react@17.0.2)
+        specifier: '6'
+        version: 6.21.0(react-dom@17.0.2)(react@17.0.2)
       redux:
         specifier: 4.2.1
         version: 4.2.1
@@ -9253,6 +9253,28 @@ packages:
       - react-dom
     dev: false
 
+  /@commercetools-uikit/card@19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@6.21.0)(react@17.0.2):
+    resolution: {integrity: sha512-3kIpnFAKa7007Tk3Y+GtHBwKtZkT/Wp5cZSz0SvHdnytuzLbmRz5daZ4Sjb68kF0Mg1JsJAIDW4k5++fbTjJ6w==}
+    peerDependencies:
+      react: 17.x
+      react-router-dom: 5.x
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inset': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.80)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.80)(react@17.0.2)
+      '@types/react-router-dom': 5.3.3
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-router-dom: 6.21.0(react-dom@17.0.2)(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+    dev: false
+
   /@commercetools-uikit/card@19.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
     resolution: {integrity: sha512-3kIpnFAKa7007Tk3Y+GtHBwKtZkT/Wp5cZSz0SvHdnytuzLbmRz5daZ4Sjb68kF0Mg1JsJAIDW4k5++fbTjJ6w==}
     peerDependencies:
@@ -11140,6 +11162,32 @@ packages:
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
       react-router-dom: 5.3.4(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+    dev: false
+
+  /@commercetools-uikit/secondary-button@19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2):
+    resolution: {integrity: sha512-2Ct3w7TnljAQlA1avv4d/rRidOUT6aqv5Hilrc5zK8Qh9LPZVCHhMpko1R8Clu6yadecxGITqNGdmcu1pTRFjw==}
+    peerDependencies:
+      react: 17.x
+      react-intl: 6.x
+      react-router-dom: 5.x
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-uikit/accessible-button': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
+      '@commercetools-uikit/text': 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)
+      '@commercetools-uikit/utils': 19.9.0(react@17.0.2)
+      '@emotion/react': 11.11.4(@types/react@17.0.80)(react@17.0.2)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.4)(@types/react@17.0.80)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-router-dom: 6.21.0(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -15408,7 +15456,6 @@ packages:
   /@remix-run/router@1.14.0:
     resolution: {integrity: sha512-WOHih+ClN7N8oHk9N4JUiMxQJmRVaOxcg8w7F/oHUXzJt920ekASLI/7cYX8XkntDWRhLZtsk6LbGrkgOAvi5A==}
     engines: {node: '>=14.0.0'}
-    dev: false
 
   /@remix-run/server-runtime@1.4.3(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-NgzoEAlIuZWv53oZRgxGz+jqkEtAa+veAuxlp5/UcZ/VhygpYIcfKwdx4eCOqJOi1TqILNWrh3cedEVvV0jccQ==}
@@ -28513,7 +28560,6 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-router: 6.21.0(react@17.0.2)
-    dev: false
 
   /react-router@5.3.4(react@17.0.2):
     resolution: {integrity: sha512-Ys9K+ppnJah3QuaRiLxk+jDWOR1MekYQrlytiXxC1RyfbdsZkS5pvKAzCCr031xHixZwpnsYNT5xysdFHQaYsA==}
@@ -28539,7 +28585,6 @@ packages:
     dependencies:
       '@remix-run/router': 1.14.0
       react: 17.0.2
-    dev: false
 
   /react-select@5.8.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-TfjLDo58XrhP6VG5M/Mi56Us0Yt8X7xD6cDybC7yoRMUNm7BGO7qk8J0TLQOua/prb8vUOtsfnXZwfm30HGsAA==}

@@ -1,5 +1,5 @@
 import { Children, ReactNode } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
@@ -46,26 +46,24 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
   if (props.children) {
     const entryPointUriPath = props.environment.entryPointUriPath;
     return (
-      <Switch>
+      <Routes>
         {
           // For development, it's useful to redirect to the actual
           // application routes when you open the browser at http://localhost:3001
           process.env.NODE_ENV === 'production' ? null : (
             <Route
-              exact={true}
               path="/:projectKey"
-              render={() => (
-                <Redirect to={`/:projectKey/${entryPointUriPath}`} />
-              )}
+              element={<Navigate to={`/:projectKey/${entryPointUriPath}`} />}
             />
           )
         }
-        <Route path={`/:projectKey/${entryPointUriPath}`}>
-          <ApplicationRoute {...props} />
-        </Route>
+        <Route
+          path={`/:projectKey/${entryPointUriPath}`}
+          element={<ApplicationRoute {...props} />}
+        />
         {/* Catch-all route */}
-        <RouteCatchAll />
-      </Switch>
+        <Route path="*" element={<RouteCatchAll />} />
+      </Routes>
     );
   }
 

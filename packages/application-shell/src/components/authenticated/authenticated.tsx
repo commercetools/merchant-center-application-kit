@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import SuspendedRoute from '../suspended-route';
@@ -37,7 +37,7 @@ const Authenticated = (props: TAuthenticatedProps) => {
 Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TAuthenticatedProps) => (
-  <Switch>
+  <Routes>
     <SuspendedRoute path={`/account/oidc/callback`}>
       <OidcCallback
         locale={props.locale}
@@ -53,7 +53,7 @@ const AuthenticationRoutes = (props: TAuthenticatedProps) => (
     <Route>
       <Authenticated {...props} />
     </Route>
-  </Switch>
+  </Routes>
 );
 AuthenticationRoutes.displayName = 'AuthenticationRoutes';
 
