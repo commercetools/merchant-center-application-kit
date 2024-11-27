@@ -67,28 +67,18 @@ jobs:
         run: |
           BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
           PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
-          git checkout ${{ steps.comment-branch.outputs.head_ref }}
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           pnpm changeset publish --tag ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Post workflow result on PR as a comment
-        uses: actions/github-script@v6
         if: always()
-        with:
-          script: |
-            const name = '${{ github.workflow }}';
-            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
-            const success = '${{ job.status }}' === 'success';
-            const body = `Release workflow ${success ? 'succeeded ✅' : 'failed ❌'}\nSee details: ${url}`;
-
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: body
-            });
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
       - name: Set latest commit status as ${{ job.status }}
         uses: myrotvorets/set-commit-status-action@master
