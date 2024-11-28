@@ -47,7 +47,6 @@ const Content = () => (
   <Spacings.Stack scale="m">
     <Routes>
       <Route
-        exact={true}
         path="/tabular-main-page"
         element={<Navigate to="/tabular-main-page/tab-one" />}
       />

@@ -309,7 +309,6 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
       <NavLinkWrapper {...props}>
         <NavLink
           to={props.linkTo}
-          exact={props.exactMatch}
           activeClassName="highlighted"
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
