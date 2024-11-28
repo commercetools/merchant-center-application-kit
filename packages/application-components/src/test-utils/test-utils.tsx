@@ -6,7 +6,7 @@ import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
 import { createMemoryHistory, type MemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
-import { Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import {
   createApolloClient,
   ApplicationContextProvider,
@@ -68,7 +68,8 @@ const customRender = (
               .buildGraphql<TProjectGraphql>()}
           >
             <IntlProvider locale={locale}>
-              <Router history={history}>{node}</Router>
+              {/* TODO: get this to work well with history */}
+              <MemoryRouter>{node}</MemoryRouter>
             </IntlProvider>
           </ApplicationContextProvider>
         </ApolloProvider>

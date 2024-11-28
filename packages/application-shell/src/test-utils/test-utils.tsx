@@ -361,6 +361,7 @@ function createApplicationProviders<
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
+            {/* TODO: get this to work properly with history */}
             <HistoryRouter history={memoryHistory}>
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint

@@ -11,12 +11,7 @@ const useCustomViewLocatorSelector = (
 
   const customViewLocator = Object.entries(customViewLocatorCodes).find(
     ([, locator]) => {
-      return matchPath(location.pathname, {
-        // strip the search, otherwise the path won't match
-        path: pathWithoutSearch(locator),
-        exact: true,
-        strict: false,
-      });
+      return matchPath(pathWithoutSearch(locator) || '', location.pathname);
     }
   );
 

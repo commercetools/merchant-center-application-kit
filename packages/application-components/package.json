@@ -65,7 +65,6 @@
     "@types/react": "^17.0.80",
     "@types/react-dom": "^17.0.19",
     "@types/react-modal": "^3.16.0",
-    "@types/react-router-dom": "^5.3.3",
     "history": "4.10.1",
     "lodash": "4.17.21",
     "prop-types": "15.8.1",
@@ -85,12 +84,12 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "^6.4.7",
-    "react-router-dom": "5.3.4"
+    "react-router-dom": "6"
   },
   "peerDependencies": {
     "react": "17.x",
     "react-dom": "17.x",
     "react-intl": "6.x",
-    "react-router-dom": "5.x"
+    "react-router-dom": "6.x"
   }
 }

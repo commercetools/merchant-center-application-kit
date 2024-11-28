@@ -1398,7 +1398,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/card':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/constraints':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -1428,7 +1428,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.6.3)
       '@commercetools-uikit/secondary-button':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/secondary-icon-button':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.6.3)
@@ -1477,9 +1477,6 @@ importers:
       '@types/react-modal':
         specifier: ^3.16.0
         version: 3.16.0
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       history:
         specifier: 4.10.1
         version: 4.10.1
@@ -1533,8 +1530,8 @@ importers:
         specifier: ^6.4.7
         version: 6.4.7(react@17.0.2)(typescript@5.6.3)
       react-router-dom:
-        specifier: 5.3.4
-        version: 5.3.4(react@17.0.2)
+        specifier: '6'
+        version: 6.21.0(react-dom@17.0.2)(react@17.0.2)
 
   packages/application-config:
     dependencies:
@@ -1746,12 +1743,6 @@ importers:
       '@types/react-redux':
         specifier: ^7.1.26
         version: 7.1.26
-      '@types/react-router':
-        specifier: 5.1.20
-        version: 5.1.20
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       '@types/redux-logger':
         specifier: ^3.0.9
         version: 3.0.9
@@ -11160,7 +11151,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
