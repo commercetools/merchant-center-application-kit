@@ -40,8 +40,6 @@
     "@types/react": "^17.0.80",
     "@types/react-dom": "^17.0.19",
     "@types/react-redux": "^7.1.26",
-    "@types/react-router": "^5.1.20",
-    "@types/react-router-dom": "^5.3.3",
     "lodash": "4.17.21",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
@@ -57,13 +55,13 @@
     "react-dom": "17.0.2",
     "react-intl": "^6.4.7",
     "react-redux": "7.2.9",
-    "react-router-dom": "5.3.4"
+    "react-router-dom": "6"
   },
   "peerDependencies": {
     "react": "17.x",
     "react-dom": "17.x",
     "react-intl": "6.x",
     "react-redux": "7.x",
-    "react-router-dom": "5.x"
+    "react-router-dom": "6"
   }
 }
