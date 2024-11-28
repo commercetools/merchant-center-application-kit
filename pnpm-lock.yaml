@@ -3328,7 +3328,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/card':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/design-system':
         specifier: 19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)
@@ -3343,7 +3343,7 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: 19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/spacings':
         specifier: 19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -3408,8 +3408,8 @@ importers:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2)(react@17.0.2)
       react-router-dom:
-        specifier: 5.3.4
-        version: 5.3.4(react@17.0.2)
+        specifier: '6'
+        version: 6.21.0(react-dom@17.0.2)(react@17.0.2)
       uuid:
         specifier: 9.0.1
         version: 9.0.1
@@ -3445,13 +3445,13 @@ importers:
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/multiline-text-field':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/secondary-button':
         specifier: ^19.9.0
-        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)
+        version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@6.21.0)(react@17.0.2)
       '@commercetools-uikit/select-field':
         specifier: ^19.9.0
         version: 19.9.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
@@ -3495,8 +3495,8 @@ importers:
         specifier: ^6.4.7
         version: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom:
-        specifier: 5.3.4
-        version: 5.3.4(react@17.0.2)
+        specifier: '6'
+        version: 6.21.0(react-dom@17.0.2)(react@17.0.2)
       react-select:
         specifier: 5.8.0
         version: 5.8.0(@types/react@17.0.80)(react-dom@17.0.2)(react@17.0.2)
@@ -3513,9 +3513,6 @@ importers:
       '@types/react-dom':
         specifier: 17.0.25
         version: 17.0.25
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       '@vitejs/plugin-react':
         specifier: 4.3.1
         version: 4.3.1(vite@4.5.5)
@@ -10585,7 +10582,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -10612,7 +10609,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 6.21.0(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -10968,7 +10965,7 @@ packages:
       '@emotion/react': 11.11.4(@types/react@17.0.80)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -12232,7 +12229,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.6.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -17071,12 +17068,14 @@ packages:
       '@types/history': 4.7.11
       '@types/react': 17.0.83
       '@types/react-router': 5.1.20
+    dev: false
 
   /@types/react-router@5.1.20:
     resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
     dependencies:
       '@types/history': 4.7.11
       '@types/react': 17.0.83
+    dev: false
 
   /@types/react-transition-group@4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
@@ -27683,8 +27682,8 @@ packages:
   /path-to-regexp@0.1.10:
     resolution: {integrity: sha512-7lf7qcQidTku0Gu3YDPc8DJ1q7OOucfa/BSsIwjuh56VU7katFvuM8hULfkwB3Fns/rsVF7PwPKVw1sl5KQS9w==}
 
-  /path-to-regexp@1.8.0:
-    resolution: {integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==}
+  /path-to-regexp@1.9.0:
+    resolution: {integrity: sha512-xIp7/apCFJuUHdDLWe8O1HIkb0kQrOMb/0u6FXQjemHn/ii5LrIzU6bdECnsiTF/GjZkMEKg1xdiZwNqDYlZ6g==}
     dependencies:
       isarray: 0.0.1
 
@@ -28804,13 +28803,13 @@ packages:
     peerDependencies:
       react: '>=15'
     dependencies:
-      '@babel/runtime': 7.22.15
+      '@babel/runtime': 7.24.5
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
       react: 17.0.2
       react-router: 5.3.4(react@17.0.2)
-      tiny-invariant: 1.3.1
+      tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
   /react-router-dom@6.21.0(react-dom@17.0.2)(react@17.0.2):
@@ -28834,7 +28833,7 @@ packages:
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
-      path-to-regexp: 1.8.0
+      path-to-regexp: 1.9.0
       prop-types: 15.8.1
       react: 17.0.2
       react-is: 16.13.1

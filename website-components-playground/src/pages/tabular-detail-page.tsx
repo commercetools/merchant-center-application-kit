@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import { Routes, Route, Navigate, useResolvedPath } from 'react-router-dom';
 import {
   TabularDetailPage,
   TabHeader,
@@ -57,7 +57,8 @@ const getCustomTitleRow = (useCustomTitleRow: string) => {
 };
 
 const TabularDetailPageExample = () => {
-  const match = useRouteMatch();
+  const { pathname } = useResolvedPath('');
+
   return (
     <LayoutApp>
       <PlaygroundController
@@ -113,15 +114,15 @@ const TabularDetailPageExample = () => {
             tabControls={
               <>
                 <TabHeader
-                  to={`${match.url}/tabular-detail-page/tab-one`}
+                  to={`${pathname}/tabular-detail-page/tab-one`}
                   label="Tab One"
                 />
                 <TabHeader
-                  to={`${match.url}/tabular-detail-page/tab-two`}
+                  to={`${pathname}/tabular-detail-page/tab-two`}
                   label="Tab Two"
                 />
                 <TabHeader
-                  to={`${match.url}/tabular-modal-page/tab-three`}
+                  to={`${pathname}/tabular-modal-page/tab-three`}
                   label="Disabled tab"
                   isDisabled
                 />
@@ -149,19 +150,21 @@ const TabularDetailPageExample = () => {
             hideControls={Boolean(values.hideControls)}
             onPreviousPathClick={() => window.alert('Back button clicked')}
           >
-            <Switch>
-              <Route path={`${match.path}/tabular-detail-page/tab-one`}>
-                <Text.Body>{values['tab-one-content']}</Text.Body>
-              </Route>
-              <Route path={`${match.path}/tabular-detail-page/tab-two`}>
-                <Text.Body>{values['tab-two-content']}</Text.Body>
-              </Route>
+            <Routes>
               <Route
-                render={() => (
-                  <Redirect to={`${match.url}/tabular-detail-page/tab-one`} />
-                )}
+                path={`${pathname}/tabular-detail-page/tab-one`}
+                element={<Text.Body>{values['tab-one-content']}</Text.Body>}
               />
-            </Switch>
+              <Route
+                path={`${pathname}/tabular-detail-page/tab-two`}
+                element={<Text.Body>{values['tab-two-content']}</Text.Body>}
+              />
+              <Route
+                element={
+                  <Navigate to={`${pathname}/tabular-detail-page/tab-one`} />
+                }
+              />
+            </Routes>
           </TabularDetailPage>
         )}
       </PlaygroundController>
