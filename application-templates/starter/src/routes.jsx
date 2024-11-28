@@ -1,10 +1,10 @@
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
 
 const ApplicationRoutes = () => {
-  const match = useRouteMatch();
+  const params = useParams();
 
   /**
    * When using routes, there is a good chance that you might want to
@@ -19,14 +19,13 @@ const ApplicationRoutes = () => {
 
   return (
     <Spacings.Inset scale="l">
-      <Switch>
-        <Route path={`${match.path}/channels`}>
-          <Channels linkToWelcome={match.url} />
-        </Route>
-        <Route>
-          <Welcome />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route
+          path={`${params.path}/channels`}
+          element={<Channels linkToWelcome={params.url} />}
+        />
+        <Route element={<Welcome />} />
+      </Routes>
     </Spacings.Inset>
   );
 };

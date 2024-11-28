@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
@@ -8,7 +8,7 @@ type ApplicationRoutesProps = {
   children?: ReactNode;
 };
 const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
-  const match = useRouteMatch();
+  const params = useParams();
 
   /**
    * When using routes, there is a good chance that you might want to
@@ -23,14 +23,13 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
 
   return (
     <Spacings.Inset scale="l">
-      <Switch>
-        <Route path={`${match.path}/channels`}>
-          <Channels linkToWelcome={match.url} />
-        </Route>
-        <Route>
-          <Welcome />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route
+          path={`${params.path}/channels`}
+          element={<Channels linkToWelcome={params.url || '/'} />}
+        />
+        <Route element={<Welcome />} />
+      </Routes>
     </Spacings.Inset>
   );
 };

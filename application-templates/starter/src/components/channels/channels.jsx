@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import {
   Link as RouterLink,
   Switch,
-  useHistory,
-  useRouteMatch,
+  useNavigate,
+  useParams,
 } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
@@ -58,8 +58,8 @@ const itemRenderer = (item, column, dataLocale, projectLanguages) => {
 
 const Channels = (props) => {
   const intl = useIntl();
-  const match = useRouteMatch();
-  const { push } = useHistory();
+  const params = useParams();
+  const navigate = useNavigate();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
@@ -112,7 +112,7 @@ const Channels = (props) => {
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}
-            onRowClick={(row) => push(`${match.url}/${row.id}`)}
+            onRowClick={(row) => navigate(`${params.url}/${row.id}`)}
           />
           <Pagination
             page={page.value}
@@ -122,8 +122,8 @@ const Channels = (props) => {
             totalItems={channelsPaginatedResult.total}
           />
           <Switch>
-            <SuspendedRoute path={`${match.path}/:id`}>
-              <ChannelDetails onClose={() => push(`${match.url}`)} />
+            <SuspendedRoute path={`${params.path}/:id`}>
+              <ChannelDetails onClose={() => navigate(`${params.url}`)} />
             </SuspendedRoute>
           </Switch>
         </Spacings.Stack>

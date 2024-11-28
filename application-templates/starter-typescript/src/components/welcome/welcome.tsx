@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useRouteMatch, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Constraints from '@commercetools-uikit/constraints';
 import Grid from '@commercetools-uikit/grid';
@@ -65,7 +65,7 @@ const InfoCard = (props: TInfoCardProps) => (
 InfoCard.displayName = 'InfoCard';
 
 const Welcome = () => {
-  const match = useRouteMatch();
+  const params = useParams();
   const intl = useIntl();
 
   return (
@@ -105,7 +105,7 @@ const Welcome = () => {
             <InfoCard
               title={intl.formatMessage(messages.cardChannelsTitle)}
               content={intl.formatMessage(messages.cardChannelsContent)}
-              linkTo={`${match.url}/channels`}
+              linkTo={`${params.url}/channels`}
             />
           </Grid>
         </Spacings.Stack>
