@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CustomPanelDemo } from './components/custom-views';
 import EchoServer from './components/echo-server';
 import FormattersDemo from './components/formatters-demo';
@@ -8,42 +8,38 @@ import StateMachinesDetails from './components/state-machines-details';
 import StateMachinesList from './components/state-machines-list';
 
 const ApplicationRoutes = () => {
-  const match = useRouteMatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToStateMachinesList = useCallback(() => {
-    history.push(match.url);
-  }, [history, match.url]);
+    navigate('/state-machines');
+  }, [navigate]);
   const goToStateMachineDetail = useCallback(
     (id) => {
-      history.push(`${match.url}/${id}`);
+      navigate(`/state-machines/${id}`);
     },
-    [history, match.url]
+    [navigate]
   );
   return (
-    <Switch>
-      <Route path={`${match.path}/echo-server`}>
-        <EchoServer />
-      </Route>
-      <Route path={`${match.path}/notifications`}>
-        <NotificationsPlayground />
-      </Route>
-      <Route path={`${match.path}/formatters`}>
-        <FormattersDemo />
-      </Route>
-      <Route path={`${match.path}/custom-panel`}>
-        <CustomPanelDemo />
-      </Route>
-      <Route>
-        <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
-          <Route path={`${match.path}/:id`}>
-            <StateMachinesDetails
-              goToStateMachinesList={goToStateMachinesList}
+    <Routes>
+      <Route path={`/echo-server`} element={<EchoServer />} />
+      <Route path={`/notifications`} element={<NotificationsPlayground />} />
+      <Route path={`/formatters`} element={<FormattersDemo />} />
+      <Route path={`/custom-panel`} element={<CustomPanelDemo />} />
+      <Route
+        element={
+          <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
+            <Route
+              path={`/:id`}
+              element={
+                <StateMachinesDetails
+                  goToStateMachinesList={goToStateMachinesList}
+                />
+              }
             />
-          </Route>
-        </StateMachinesList>
-      </Route>
-    </Switch>
+          </StateMachinesList>
+        }
+      />
+    </Routes>
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
