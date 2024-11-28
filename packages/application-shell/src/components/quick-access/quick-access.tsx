@@ -4,7 +4,7 @@ import { useFeatureToggles } from '@flopflip/react-broadcast';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { useIntl } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
@@ -104,7 +104,7 @@ const QuickAccess = (props: Props) => {
     saveHistoryEntries(entries);
     setHistoryEntries(entries);
   }, []);
-  const history = useHistory();
+  const navigate = useNavigate();
   const apolloClient = useApolloClient();
   const intl = useIntl();
   const [
@@ -502,10 +502,10 @@ const QuickAccess = (props: Props) => {
       } else if (applicationContext.environment.useFullRedirectsForLinks) {
         location.replace(command.action.to);
       } else {
-        history.push(command.action.to);
+        navigate(command.action.to);
       }
     },
-    [applicationContext.environment.useFullRedirectsForLinks, history]
+    [applicationContext.environment.useFullRedirectsForLinks, navigate]
   );
 
   return (

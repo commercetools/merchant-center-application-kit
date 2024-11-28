@@ -309,8 +309,12 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
       <NavLinkWrapper {...props}>
         <NavLink
           to={props.linkTo}
-          activeClassName="highlighted"
-          data-link-level={linkLevel}
+          className={({ isActive }) =>
+            classnames(
+              { highlighted: isActive },
+              `data-link-level-${linkLevel}`
+            )
+          }
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
           onClick={(event) => {
