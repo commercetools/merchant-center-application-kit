@@ -3,7 +3,7 @@ import {
   Link as RouterLink,
   Routes,
   useNavigate,
-  useParams,
+  useResolvedPath,
 } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
@@ -43,7 +43,9 @@ type TChannelsProps = {
 
 const Channels = (props: TChannelsProps) => {
   const intl = useIntl();
-  const params = useParams();
+  const resolvedPath = useResolvedPath('');
+  const basePath = resolvedPath.pathname;
+
   const navigate = useNavigate();
   const { page, perPage } = usePaginationState();
   const tableSorting = useDataTableSortingState({ key: 'key', order: 'asc' });
@@ -118,7 +120,7 @@ const Channels = (props: TChannelsProps) => {
             sortedBy={tableSorting.value.key}
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}
-            onRowClick={(row) => navigate(`${params.url}/${row.id}`)}
+            onRowClick={(row) => navigate(`${basePath}/${row.id}`)}
           />
           <Pagination
             page={page.value}
@@ -128,8 +130,8 @@ const Channels = (props: TChannelsProps) => {
             totalItems={channelsPaginatedResult.total}
           />
           <Routes>
-            <SuspendedRoute path={`${params.url}/:id`}>
-              <ChannelDetails onClose={() => navigate(`${params.url}`)} />
+            <SuspendedRoute path={`${basePath}/:id`}>
+              <ChannelDetails onClose={() => navigate(basePath)} />
             </SuspendedRoute>
           </Routes>
         </Spacings.Stack>

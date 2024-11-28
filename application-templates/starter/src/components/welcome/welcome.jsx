@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Constraints from '@commercetools-uikit/constraints';
 import Grid from '@commercetools-uikit/grid';
@@ -63,7 +63,6 @@ InfoCard.propTypes = {
 };
 
 const Welcome = () => {
-  const params = useParams();
   const intl = useIntl();
 
   return (
@@ -103,7 +102,7 @@ const Welcome = () => {
             <InfoCard
               title={intl.formatMessage(messages.cardChannelsTitle)}
               content={intl.formatMessage(messages.cardChannelsContent)}
-              linkTo={`${params.url}/channels`}
+              linkTo={'/channels'}
             />
           </Grid>
         </Spacings.Stack>

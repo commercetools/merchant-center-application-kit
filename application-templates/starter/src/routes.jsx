@@ -1,11 +1,9 @@
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import Channels from './components/channels';
 import Welcome from './components/welcome';
 
 const ApplicationRoutes = () => {
-  const params = useParams();
-
   /**
    * When using routes, there is a good chance that you might want to
    * restrict the access to a certain route based on the user permissions.
@@ -20,10 +18,7 @@ const ApplicationRoutes = () => {
   return (
     <Spacings.Inset scale="l">
       <Routes>
-        <Route
-          path={`${params.path}/channels`}
-          element={<Channels linkToWelcome={params.url} />}
-        />
+        <Route path={`/channels`} element={<Channels linkToWelcome={'/'} />} />
         <Route element={<Welcome />} />
       </Routes>
     </Spacings.Inset>
