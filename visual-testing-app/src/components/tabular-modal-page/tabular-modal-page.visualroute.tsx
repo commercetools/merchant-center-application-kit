@@ -1,9 +1,9 @@
 import {
-  useHistory,
-  useRouteMatch,
-  Switch,
+  useNavigate,
+  useResolvedPath,
+  Routes,
   Route,
-  Redirect,
+  Navigate,
 } from 'react-router-dom';
 import {
   TabularModalPage,
@@ -26,20 +26,21 @@ export const routePath = '/tabular-modal-page';
 type ContainerProps = Partial<Parameters<typeof TabularModalPage>[0]>;
 
 const ModalPageWithPortalParentSelector = (props: ContainerProps) => {
-  const history = useHistory();
-  const match = useRouteMatch();
+  const navigate = useNavigate();
+  const resolvedPath = useResolvedPath('');
+  const pathname = resolvedPath.pathname;
   return (
     <TabularModalPage
       isOpen
       title="Lorem ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      onClose={() => history.push(routePath)}
+      onClose={() => navigate(routePath)}
       tabControls={
         <>
-          <TabHeader to={`${match.url}/tab-one`} label="Tab One" />
-          <TabHeader to={`${match.url}/tab-two`} label="Tab Two" />
+          <TabHeader to={`${pathname}/tab-one`} label="Tab One" />
+          <TabHeader to={`${pathname}/tab-two`} label="Tab Two" />
           <TabHeader
-            to={`${match.url}/tab-three`}
+            to={`${pathname}/tab-three`}
             label="Disabled tab"
             isDisabled
           />
@@ -55,29 +56,38 @@ ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
 
 const Content = () => {
-  const match = useRouteMatch();
+  const resolvedPath = useResolvedPath('');
+  const pathname = resolvedPath.pathname;
+
   return (
     <Spacings.Stack scale="m">
-      <Switch>
+      <Routes>
         <Route
-          exact={true}
-          path={`${match.path}`}
-          render={() => <Redirect to={`${match.url}/tab-one`} />}
+          path={`${pathname}`}
+          element={<Navigate to={`${pathname}/tab-one`} />}
         />
-        <Route path={`${match.path}/tab-one`}>
-          <Text.Body>
-            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
-          </Text.Body>
-          <Text.Body>
-            {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
-          </Text.Body>
-        </Route>
-        <Route path={`${match.path}/tab-two`}>
-          <Text.Body>
-            {`Integer dignissim in sapien vitae elementum. Vivamus vestibulum leo at tempus auctor. Nunc dictum tincidunt porta. Vestibulum ornare odio leo, vitae rutrum arcu rutrum sit amet. Suspendisse elementum lacus nisl, sit amet sollicitudin ex luctus semper. Mauris rutrum venenatis sodales. Proin dictum, lorem at tincidunt mattis, tortor felis sodales arcu, id congue orci purus in libero. In porta semper enim, sed ornare ante commodo eget. Donec facilisis nibh sed sollicitudin elementum. Donec hendrerit lobortis ante eget interdum. Fusce sodales dui nunc, sed rhoncus enim sodales eget. Vestibulum vestibulum metus molestie volutpat tincidunt.`}
-          </Text.Body>
-        </Route>
-      </Switch>
+        <Route
+          path={`${pathname}/tab-one`}
+          element={
+            <>
+              <Text.Body>
+                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
+              </Text.Body>
+              <Text.Body>
+                {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
+              </Text.Body>
+            </>
+          }
+        />
+        <Route
+          path={`${pathname}/tab-two`}
+          element={
+            <Text.Body>
+              {`Integer dignissim in sapien vitae elementum. Vivamus vestibulum leo at tempus auctor. Nunc dictum tincidunt porta. Vestibulum ornare odio leo, vitae rutrum arcu rutrum sit amet. Suspendisse elementum lacus nisl, sit amet sollicitudin ex luctus semper. Mauris rutrum venenatis sodales. Proin dictum, lorem at tincidunt mattis, tortor felis sodales arcu, id congue orci purus in libero. In porta semper enim, sed ornare ante commodo eget. Donec facilisis nibh sed sollicitudin elementum. Donec hendrerit lobortis ante eget interdum. Fusce sodales dui nunc, sed rhoncus enim sodales eget. Vestibulum vestibulum metus molestie volutpat tincidunt.`}
+            </Text.Body>
+          }
+        />
+      </Routes>
     </Spacings.Stack>
   );
 };
