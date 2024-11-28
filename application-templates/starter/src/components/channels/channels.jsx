@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import {
   Link as RouterLink,
-  Switch,
+  Routes,
   useNavigate,
   useParams,
 } from 'react-router-dom';
@@ -121,11 +121,11 @@ const Channels = (props) => {
             onPerPageChange={perPage.onChange}
             totalItems={channelsPaginatedResult.total}
           />
-          <Switch>
+          <Routes>
             <SuspendedRoute path={`${params.path}/:id`}>
               <ChannelDetails onClose={() => navigate(`${params.url}`)} />
             </SuspendedRoute>
-          </Switch>
+          </Routes>
         </Spacings.Stack>
       ) : null}
     </Spacings.Stack>
