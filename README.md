@@ -2,6 +2,7 @@
 <p align="center">
   <i>✨ Mono-repository with tools and components for developing Merchant Center customizations 🛠</i>
 </p>
+
 <p align="center">
   <a href="https://github.com/commercetools/merchant-center-application-kit/releases"><img src="https://badgen.net/github/release/commercetools/merchant-center-application-kit" alt="Latest release" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/main/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
