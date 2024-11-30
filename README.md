@@ -16,7 +16,7 @@ If you are developing a Merchant Center Custom View, follow the [Custom Views ge
 
 ## Developing application-kit packages
 
-Install the dependencies (uses [pnpm workspaces](https://pnpm.io/workspaces)):
+Install dependencies (uses [pnpm workspaces](https://pnpm.io/workspaces)):
 
 ```bash
 $ pnpm install
