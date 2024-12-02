@@ -25,11 +25,11 @@ jobs:
         with:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
-      
+
       - name: Get branch of PR
         uses: xt0rted/pull-request-comment-branch@v1
         id: comment-branch
-      
+
       - name: Ensure branch name matches 'preview/**'
         run: |
           BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
@@ -37,31 +37,33 @@ jobs:
             echo "Branch name does not match 'preview/**'. Exiting workflow."
             exit 1
           fi
-        
+
       - name: Set latest commit status as pending
-        uses: myrotvorets/set-commit-status-action@master
+        uses: myrotvorets/set-commit-status-action@v2
         with:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ steps.generate_github_token.outputs.token }}
           status: pending
+          allowForks: false
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
-          token: ${{ steps.generate_github_token.outputs.token }}   
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-          scope: "@commercetools"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
+
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            provenance=true
+            email=npmjs@commercetools.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publishing preview releases to npm registry
         run: |
@@ -79,11 +81,12 @@ jobs:
             --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
+
       - name: Set latest commit status as ${{ job.status }}
-        uses: myrotvorets/set-commit-status-action@master
+        uses: myrotvorets/set-commit-status-action@v2
         if: always()
         with:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ steps.generate_github_token.outputs.token }}
           status: ${{ job.status }}
+          allowForks: false
