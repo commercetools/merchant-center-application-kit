@@ -34,15 +34,7 @@ jobs:
         run: |
           BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
           if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
-            echo "Invalid branch name. Exiting workflow."
-            exit 1
-          fi
-
-      - name: Ensure branch name matches 'preview/**'
-        run: |
-          BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
-          if [[ ! "$BRANCH_NAME" =~ ^preview/ ]]; then
-            echo "Branch name does not match 'preview/**'. Exiting workflow."
+            echo "Ignoring PR because of the branch name. Exiting workflow."
             exit 1
           fi
 
