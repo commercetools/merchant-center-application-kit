@@ -30,11 +30,11 @@ jobs:
         uses: xt0rted/pull-request-comment-branch@v1
         id: comment-branch
 
-      - name: Ensure branch name matches 'preview/**'
+      - name: Validate branch name
         run: |
           BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
-          if [[ ! "$BRANCH_NAME" =~ ^preview/ ]]; then
-            echo "Branch name does not match 'preview/**'. Exiting workflow."
+          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
+            echo "Ignoring PR because of the branch name. Exiting workflow."
             exit 1
           fi
 
