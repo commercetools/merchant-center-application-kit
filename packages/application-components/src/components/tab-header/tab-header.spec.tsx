@@ -1,5 +1,5 @@
 import { warning } from '@commercetools-uikit/utils';
-import { screen, renderComponent, fireEvent, waitFor } from '../../test-utils';
+import { screen, renderComponent, fireEvent } from '../../test-utils';
 import TabHeader from './tab-header';
 
 jest.mock('@commercetools-uikit/utils', () => ({
@@ -36,12 +36,11 @@ describe('rendering', () => {
 });
 describe('navigation', () => {
   it('should navigate to link when clicked', async () => {
-    const { history } = renderTabHeader();
+    renderTabHeader();
 
+    await screen.findByRole('tab', { name: /tab one/i, selected: false });
     fireEvent.click(screen.getByRole('tab', { name: /tab one/i }));
-    await waitFor(() => {
-      expect(history.location.pathname).toBe('/tab-one');
-    });
+    await screen.findByRole('tab', { name: /tab one/i, selected: true });
   });
 });
 describe('warnings', () => {

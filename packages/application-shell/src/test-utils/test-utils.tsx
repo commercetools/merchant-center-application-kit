@@ -16,10 +16,9 @@ import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import * as rtl from '@testing-library/react';
 import * as rtlHooks from '@testing-library/react-hooks';
-import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
@@ -27,7 +26,6 @@ import {
   createApolloClient,
   type TProviderProps,
 } from '@commercetools-frontend/application-shell-connectors';
-import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import {
   NotificationsList,
@@ -102,7 +100,7 @@ const defaultUser = {
 const defaultEnvironment: Partial<TProviderProps<{}>['environment']> = {
   applicationId: '__local',
   applicationName: 'my-app',
-  entryPointUriPath: 'random-entry-point',
+  entryPointUriPath: 'random-entry-point/*',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
   location: 'eu',
@@ -279,7 +277,6 @@ export type TRenderAppOptions<AdditionalEnvironmentProperties extends {} = {}> =
     route: string;
     disableRoutePermissionCheck: boolean;
     disableAutomaticEntryPointRoutes: boolean;
-    history: ReturnType<typeof createEnhancedHistory>;
     flags: TFlags;
     environment: Partial<
       TProviderProps<AdditionalEnvironmentProperties>['environment']
@@ -294,7 +291,7 @@ type TRenderAppResult<AdditionalEnvironmentProperties extends {} = {}> =
   rtl.RenderResult &
     Pick<
       TRenderAppOptions<AdditionalEnvironmentProperties>,
-      'history' | 'user' | 'project' | 'environment'
+      'user' | 'project' | 'environment'
     >;
 type TApplicationProvidersProps = {
   children: ReactNode;
@@ -313,7 +310,6 @@ function createApplicationProviders<
   apolloClient,
   // react-router
   route,
-  history,
   // flopflip
   flags = {},
   // application-context
@@ -341,16 +337,10 @@ function createApplicationProviders<
     }
   }
 
-  let initialRoute = route;
+  let initialRoute = route || '/';
   if (!route && mergedProject) {
     initialRoute = `/${mergedProject.key}/${mergedEnvironment.entryPointUriPath}`;
   }
-  const memoryHistory =
-    history ??
-    createEnhancedHistory(
-      createMemoryHistory({ initialEntries: [initialRoute || '/'] })
-    );
-
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
       <ApolloProviderWrapper apolloClient={apolloClient} mocks={mocks}>
@@ -361,8 +351,7 @@ function createApplicationProviders<
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
-            {/* TODO: get this to work properly with history */}
-            <HistoryRouter history={memoryHistory}>
+            <MemoryRouter initialEntries={[initialRoute]}>
               <Suspense fallback={<LoadingFallback />}>
                 <ApplicationEntryPoint
                   environment={mergedEnvironment}
@@ -380,7 +369,7 @@ function createApplicationProviders<
                       props.children}
                 </ApplicationEntryPoint>
               </Suspense>
-            </HistoryRouter>
+            </MemoryRouter>
           </ApplicationContextProvider>
         </TestProviderFlopFlip>
       </ApolloProviderWrapper>
@@ -395,7 +384,6 @@ function createApplicationProviders<
     mergedUser,
     mergedProject,
     mergedEnvironment,
-    history: memoryHistory,
   };
 }
 
@@ -405,13 +393,8 @@ function renderApp<AdditionalEnvironmentProperties extends {} = {}>(
   ui: ReactElement,
   options: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
 ): TRenderAppResult<AdditionalEnvironmentProperties> {
-  const {
-    ApplicationProviders,
-    mergedUser,
-    mergedProject,
-    mergedEnvironment,
-    history,
-  } = createApplicationProviders(options);
+  const { ApplicationProviders, mergedUser, mergedProject, mergedEnvironment } =
+    createApplicationProviders(options);
 
   // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = rtl.render(ui, {
@@ -427,10 +410,6 @@ function renderApp<AdditionalEnvironmentProperties extends {} = {}>(
   return {
     ...rendered,
 
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    history,
     // Adding user, project & environment so tests know about the merge results
     // Note that these objects do not resemble the application context, they are
     // only intended to communicate the test setup back to the tests.
@@ -601,7 +580,7 @@ export type TRenderHookResult<
 > &
   Pick<
     TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>,
-    'store' | 'history' | 'user' | 'project' | 'environment'
+    'store' | 'user' | 'project' | 'environment'
   >;
 
 function renderHook<
@@ -625,13 +604,8 @@ function renderHook<
   StoreState
 > {
   const { ReduxProviders, reduxStore } = createReduxProviders(options);
-  const {
-    ApplicationProviders,
-    mergedUser,
-    mergedProject,
-    mergedEnvironment,
-    history,
-  } = createApplicationProviders(options);
+  const { ApplicationProviders, mergedUser, mergedProject, mergedEnvironment } =
+    createApplicationProviders(options);
 
   // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = rtlHooks.renderHook(callback, {
@@ -649,7 +623,6 @@ function renderHook<
   return {
     ...rendered,
     store: reduxStore,
-    history,
     user: mergedUser,
     project: mergedProject,
     environment: mergedEnvironment,

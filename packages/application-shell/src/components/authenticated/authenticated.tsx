@@ -38,21 +38,29 @@ Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TAuthenticatedProps) => (
   <Routes>
-    <SuspendedRoute path={`/account/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <SuspendedRoute path={`/:projectKey/:identifier/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <Route>
-      <Authenticated {...props} />
-    </Route>
+    <Route
+      path={`/account/oidc/callback`}
+      element={
+        <SuspendedRoute>
+          <OidcCallback
+            locale={props.locale}
+            applicationMessages={props.applicationMessages}
+          />
+        </SuspendedRoute>
+      }
+    />
+    <Route
+      path={`/:projectKey/:identifier/oidc/callback`}
+      element={
+        <SuspendedRoute>
+          <OidcCallback
+            locale={props.locale}
+            applicationMessages={props.applicationMessages}
+          />
+        </SuspendedRoute>
+      }
+    />
+    <Route path="*" element={<Authenticated {...props} />} />
   </Routes>
 );
 AuthenticationRoutes.displayName = 'AuthenticationRoutes';

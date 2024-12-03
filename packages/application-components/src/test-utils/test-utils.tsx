@@ -4,7 +4,6 @@ import { ApolloProvider } from '@apollo/client/react';
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
-import { createMemoryHistory, type MemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import {
@@ -20,7 +19,6 @@ type CustomRenderOptions = {
   locale: string;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   route: string;
-  history: MemoryHistory;
   environment?: TApplicationContext<{}>['environment'];
   projectKey?: string;
   user?: TApplicationContext<{}>['user'];
@@ -46,7 +44,6 @@ const customRender = (
     locale = 'en',
     apolloClient,
     route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
     environment = defaultEnvironment,
     projectKey = 'default-project-key',
     ...rtlOptions
@@ -76,10 +73,6 @@ const customRender = (
       </TestProviderFlopFlip>,
       rtlOptions
     ),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    history,
   };
 };
 

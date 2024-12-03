@@ -36,6 +36,10 @@ const Content = () => (
           </Text.Body>
         }
       />
+      <Route
+        path="/start"
+        element={<Text.Body>Start route content</Text.Body>}
+      />
     </Routes>
   </Spacings.Stack>
 );
@@ -101,19 +105,17 @@ describe('rendering', () => {
 });
 describe('navigation', () => {
   it('should navigate to the other tab when clicked and show content that it leads to', async () => {
-    const { history } = renderTabularDetailPage({ title: 'Test page' });
+    renderTabularDetailPage({ title: 'Test page' });
 
     fireEvent.click(screen.getByRole('tab', { name: /tab two/i }));
-    await waitFor(() => {
-      expect(history.location.pathname).toBe('/tab-two');
-      screen.getByText(/nam id orci ut risus accumsan pellentesque/i);
-    });
+
+    await screen.findByText(/nam id orci ut risus accumsan pellentesque/i);
   });
   it('should navigate to link on back button click', async () => {
-    const { history } = renderComponent(<TabularDetailPageWithHistory />);
+    renderComponent(<TabularDetailPageWithHistory />);
+
     fireEvent.click(screen.getByRole('button', { name: /go back/i }));
-    await waitFor(() => {
-      expect(history.location.pathname).toBe('/start');
-    });
+
+    await screen.findByText(/start route content/i);
   });
 });
