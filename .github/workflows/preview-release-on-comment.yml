@@ -1,10 +1,10 @@
 name: Preview Release on Comment
 
 permissions:
+  id-token: write
   contents: read
   pull-requests: write
   issues: write
-  statuses: write
 
 on:
   issue_comment:
