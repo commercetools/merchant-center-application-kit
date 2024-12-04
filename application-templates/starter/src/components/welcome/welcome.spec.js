@@ -24,3 +24,15 @@ it('should render welcome page', async () => {
   renderApp();
   await screen.findByText('Develop applications for the Merchant Center');
 });
+
+/*
+  Overall architecture
+
+  Relationship between application permissions and OAuth scopes
+
+  What's inside the mcAccessToken?
+
+  What are data fences?
+
+  What are implied permissions?
+*/

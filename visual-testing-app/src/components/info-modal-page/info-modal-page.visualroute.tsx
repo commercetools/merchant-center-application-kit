@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import Text from '@commercetools-uikit/text';
 import { CUSTOM_VIEW_LOCATORS } from '../../constants';
@@ -9,12 +9,12 @@ export const routePath = '/info-modal-page';
 type ContainerProps = Partial<Parameters<typeof InfoModalPage>[0]>;
 
 const ModalPageWithPortalParentSelector = (props: ContainerProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <InfoModalPage
       isOpen
       title="Lorem ipsum"
-      onClose={() => history.push(routePath)}
+      onClose={() => navigate(routePath)}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       {...props}
     >

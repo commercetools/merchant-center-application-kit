@@ -1,7 +1,11 @@
 import './globals.css';
 import { lazy } from 'react';
 import { createBrowserHistory } from 'history';
-import { Router, Switch, Route } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import IndexPage from './pages';
 
@@ -34,61 +38,30 @@ const TabularModalPage = lazy(() => import('./pages/tabular-modal-page'));
 const history = createEnhancedHistory(createBrowserHistory());
 
 const Application = () => (
-  <Router history={history}>
-    <Switch>
-      <Route path="/confirmation-dialog">
-        <ConfirmationDialog />
-      </Route>
-      <Route path="/info-dialog">
-        <InfoDialog />
-      </Route>
-      <Route path="/info-detail-page">
-        <InfoDetailPage />
-      </Route>
-      <Route path="/info-main-page">
-        <InfoMainPage />
-      </Route>
-      <Route path="/info-modal-page">
-        <InfoModalPage />
-      </Route>
-      <Route path="/form-dialog">
-        <FormDialog />
-      </Route>
-      <Route path="/form-detail-page">
-        <FormDetailPage />
-      </Route>
-      <Route path="/form-main-page">
-        <FormMainPage />
-      </Route>
-      <Route path="/form-modal-page">
-        <FormModalPage />
-      </Route>
-      <Route path="/custom-form-detail-page">
-        <CustomFormDetailPage />
-      </Route>
-      <Route path="/custom-form-main-page">
-        <CustomFormMainPage />
-      </Route>
-      <Route path="/custom-form-modal-page">
-        <CustomFormModalPage />
-      </Route>
-      <Route path="/tabular-detail-page">
-        <TabularDetailPage />
-      </Route>
-      <Route path="/tabular-main-page">
-        <TabularMainPage />
-      </Route>
-      <Route path="/tabular-modal-page">
-        <TabularModalPage />
-      </Route>
-      <Route path="/drawer">
-        <Drawer />
-      </Route>
-      <Route>
-        <IndexPage />
-      </Route>
-    </Switch>
-  </Router>
+  <HistoryRouter history={history}>
+    <Routes>
+      <Route path="/confirmation-dialog" element={<ConfirmationDialog />} />
+      <Route path="/info-dialog" element={<InfoDialog />} />
+      <Route path="/info-detail-page" element={<InfoDetailPage />} />
+      <Route path="/info-main-page" element={<InfoMainPage />} />
+      <Route path="/info-modal-page" element={<InfoModalPage />} />
+      <Route path="/form-dialog" element={<FormDialog />} />
+      <Route path="/form-detail-page" element={<FormDetailPage />} />
+      <Route path="/form-main-page" element={<FormMainPage />} />
+      <Route path="/form-modal-page" element={<FormModalPage />} />
+      <Route
+        path="/custom-form-detail-page"
+        element={<CustomFormDetailPage />}
+      />
+      <Route path="/custom-form-main-page" element={<CustomFormMainPage />} />
+      <Route path="/custom-form-modal-page" element={<CustomFormModalPage />} />
+      <Route path="/tabular-detail-page" element={<TabularDetailPage />} />
+      <Route path="/tabular-main-page" element={<TabularMainPage />} />
+      <Route path="/tabular-modal-page" element={<TabularModalPage />} />
+      <Route path="/drawer" element={<Drawer />} />
+      <Route element={<IndexPage />} />
+    </Routes>
+  </HistoryRouter>
 );
 
 export default Application;

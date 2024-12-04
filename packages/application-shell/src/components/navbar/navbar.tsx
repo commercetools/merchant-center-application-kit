@@ -105,11 +105,7 @@ const getIsSubmenuRouteActive = (
   props: ApplicationMenuProps
 ) =>
   Boolean(
-    matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${uriPath}`,
-      exact: true,
-      strict: false,
-    })
+    matchPath(props.location.pathname, `/${props.projectKey}/${uriPath}`)
   );
 
 export const ApplicationMenu = (props: ApplicationMenuProps) => {
@@ -241,11 +237,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   ]);
 
   const isMainMenuRouteActive = Boolean(
-    matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${props.menu.uriPath}`,
-      exact: false,
-      strict: false,
-    })
+    matchPath(
+      `/${props.projectKey}/${props.menu.uriPath}`,
+      props.location.pathname
+    )
   );
 
   useEffect(() => {

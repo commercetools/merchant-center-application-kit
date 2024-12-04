@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import useCustomViewLocatorSelector from './use-custom-view-locator-selector';
 
 const mockConfig = {
@@ -16,7 +16,9 @@ const createMockHistory = (location: string) =>
 const render = (location: string) =>
   renderHook(() => useCustomViewLocatorSelector(mockConfig), {
     wrapper: ({ children }) => (
-      <Router history={createMockHistory(location)}>{children}</Router>
+      <HistoryRouter history={createMockHistory(location)}>
+        {children}
+      </HistoryRouter>
     ),
   });
 

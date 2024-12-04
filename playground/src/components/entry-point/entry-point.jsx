@@ -1,5 +1,9 @@
 import { lazy } from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import {
+  unstable_HistoryRouter as HistoryRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
@@ -23,23 +27,25 @@ setupGlobalErrorListener();
 const apolloClient = configureApolloClient();
 
 const EntryPoint = () => (
-  <Router history={history}>
-    <Switch>
-      <Route path="/custom-views/:customViewId/projects/:projectKey">
-        <DemoCustomView />
-      </Route>
-
-      <Route>
-        <ApplicationShell
-          environment={window.app}
-          applicationMessages={loadMessages}
-          apolloClient={apolloClient}
-        >
-          <AsyncPlaygroundRoutes />
-        </ApplicationShell>
-      </Route>
-    </Switch>
-  </Router>
+  <HistoryRouter history={history}>
+    <Routes>
+      <Route
+        path="/custom-views/:customViewId/projects/:projectKey"
+        element={<DemoCustomView />}
+      />
+      <Route
+        element={
+          <ApplicationShell
+            environment={window.app}
+            applicationMessages={loadMessages}
+            apolloClient={apolloClient}
+          >
+            <AsyncPlaygroundRoutes />
+          </ApplicationShell>
+        }
+      />
+    </Routes>
+  </HistoryRouter>
 );
 EntryPoint.displayName = 'EntryPoint';
 

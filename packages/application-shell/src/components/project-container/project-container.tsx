@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import { useIntl } from 'react-intl';
 import {
   Route,
-  Switch,
-  Redirect,
+  Routes,
+  Navigate,
   useLocation,
-  useRouteMatch,
+  useMatch,
 } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -32,9 +32,6 @@ import ProjectSuspended from '../project-suspended';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import messages from './messages';
 
-type QueryParams = {
-  projectKey?: string;
-};
 type TProjectContainerProps = {
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<{ enableSignUp?: boolean }>['environment'];
@@ -54,7 +51,7 @@ const shouldShowNotificationForTrialExpired = (daysLeft?: number) =>
 const ProjectContainer = (props: TProjectContainerProps) => {
   const intl = useIntl();
   const location = useLocation();
-  const match = useRouteMatch<QueryParams>();
+  const match = useMatch('/:projectKey');
   const [localeSwitcherNode, setLocaleSwitcherNode] =
     useState<HTMLElement | null>(null);
 
@@ -80,7 +77,7 @@ const ProjectContainer = (props: TProjectContainerProps) => {
     setLocaleSwitcherNode(document.getElementById(CONTAINERS.LOCALE_SWITCHER));
   }, [setLocaleSwitcherNode]);
 
-  const projectKey = match.params.projectKey;
+  const projectKey = match?.params.projectKey;
   useEffect(() => {
     // Ensure to sync the `projectKey` from the URL with localStorage.
     if (projectKey) {
@@ -105,15 +102,15 @@ const ProjectContainer = (props: TProjectContainerProps) => {
     props.environment.enableSignUp !== true &&
     props.environment.servedByProxy
   )
-    return <Redirect to={`/logout?reason=${LOGOUT_REASONS.NO_PROJECTS}`} />;
+    return <Navigate to={`/logout?reason=${LOGOUT_REASONS.NO_PROJECTS}`} />;
   if (hasNoProjects && props.environment.enableSignUp)
     return (
-      <Switch>
+      <Routes>
         <Route path="/account">{props.render?.()}</Route>
         <Route>
           <RedirectToProjectCreate />
         </Route>
-      </Switch>
+      </Routes>
     );
 
   return (

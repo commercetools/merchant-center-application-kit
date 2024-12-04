@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
@@ -19,7 +19,7 @@ type FormValues = {
 };
 
 const ModalPageWithPortalParentSelector = (props: ContainerProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <Formik<FormValues>
       initialValues={{ email: '' }}
@@ -29,7 +29,7 @@ const ModalPageWithPortalParentSelector = (props: ContainerProps) => {
         <CustomFormModalPage
           title="Lorem ipsum"
           isOpen
-          onClose={() => history.push(routePath)}
+          onClose={() => navigate(routePath)}
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           {...props}
         >

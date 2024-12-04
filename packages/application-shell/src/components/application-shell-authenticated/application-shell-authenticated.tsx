@@ -8,7 +8,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
@@ -386,16 +386,15 @@ export const ApplicationShellAuthenticated = (
                                     : '0px'
                                 }
                               />
-                              <Switch>
+                              <Routes>
                                 <Route
                                   path="/profile"
-                                  render={() => (
-                                    <Redirect to="/account/profile" />
-                                  )}
+                                  element={<Navigate to="/account/profile" />}
                                 />
 
-                                <Route path="/account">
-                                  {
+                                <Route
+                                  path="/account"
+                                  element={
                                     /**
                                      * In case the AppShell uses the `render` function, we assume it's one of two cases:
                                      * 1. The application does not use `children` and therefore implements the routes including
@@ -411,10 +410,11 @@ export const ApplicationShellAuthenticated = (
                                       <RouteCatchAll />
                                     )
                                   }
-                                </Route>
+                                />
                                 {/* Project routes */}
-                                <Route exact={true} path="/">
-                                  {(() => {
+                                <Route
+                                  path="/"
+                                  element={(() => {
                                     const previousProjectKey =
                                       getPreviousProjectKey(
                                         user?.defaultProjectKey ?? undefined
@@ -432,11 +432,11 @@ export const ApplicationShellAuthenticated = (
                                     if (!previousProjectKey)
                                       return <RedirectToProjectCreate />;
                                     return (
-                                      <Redirect to={`/${previousProjectKey}`} />
+                                      <Navigate to={`/${previousProjectKey}`} />
                                     );
                                   })()}
-                                </Route>
-                                <Route exact={false} path="/:projectKey">
+                                />
+                                <Route path="/:projectKey">
                                   <ProjectContainer
                                     user={user}
                                     environment={applicationEnvironment}
@@ -451,7 +451,7 @@ export const ApplicationShellAuthenticated = (
                                     {props.children}
                                   </ProjectContainer>
                                 </Route>
-                              </Switch>
+                              </Routes>
                             </div>
                           </MainContainer>
                         )}

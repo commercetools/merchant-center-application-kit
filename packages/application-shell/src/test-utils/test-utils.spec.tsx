@@ -12,7 +12,7 @@ import { screen } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { useIntl } from 'react-intl';
 import { useSelector, useStore } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import {
   ApplicationContext,
   useMcQuery,
@@ -330,11 +330,11 @@ describe('ApplicationContext', () => {
 
 describe('router', () => {
   const TestComponent = () => (
-    <Switch>
-      <Route path="/foo/avengers">{'Foo'}</Route>
+    <Routes>
+      <Route path="/foo/avengers" element={<div>Foo</div>} />
       {/* Define a catch-all route */}
-      <Route>{'None'}</Route>
-    </Switch>
+      <Route path="*" element={<div>None</div>} />
+    </Routes>
   );
   it('should render fallback when no route is provided', async () => {
     renderApp(<TestComponent />, createDefaultOptions());

@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import SuspendedRoute from '../suspended-route';
@@ -37,23 +37,31 @@ const Authenticated = (props: TAuthenticatedProps) => {
 Authenticated.displayName = 'Authenticated';
 
 const AuthenticationRoutes = (props: TAuthenticatedProps) => (
-  <Switch>
-    <SuspendedRoute path={`/account/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <SuspendedRoute path={`/:projectKey/:identifier/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <Route>
-      <Authenticated {...props} />
-    </Route>
-  </Switch>
+  <Routes>
+    <Route
+      path={`/account/oidc/callback`}
+      element={
+        <SuspendedRoute>
+          <OidcCallback
+            locale={props.locale}
+            applicationMessages={props.applicationMessages}
+          />
+        </SuspendedRoute>
+      }
+    />
+    <Route
+      path={`/:projectKey/:identifier/oidc/callback`}
+      element={
+        <SuspendedRoute>
+          <OidcCallback
+            locale={props.locale}
+            applicationMessages={props.applicationMessages}
+          />
+        </SuspendedRoute>
+      }
+    />
+    <Route path="*" element={<Authenticated {...props} />} />
+  </Routes>
 );
 AuthenticationRoutes.displayName = 'AuthenticationRoutes';
 

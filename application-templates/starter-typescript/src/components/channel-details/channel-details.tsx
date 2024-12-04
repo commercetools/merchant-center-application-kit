@@ -36,7 +36,7 @@ type TChannelDetailsProps = {
 const ChannelDetails = (props: TChannelDetailsProps) => {
   const intl = useIntl();
   const params = useParams<{ id: string }>();
-  const { loading, error, channel } = useChannelDetailsFetcher(params.id);
+  const { loading, error, channel } = useChannelDetailsFetcher(params.id!);
   const { dataLocale, projectLanguages } = useApplicationContext((context) => ({
     dataLocale: context.dataLocale ?? '',
     projectLanguages: context.project?.languages ?? [],

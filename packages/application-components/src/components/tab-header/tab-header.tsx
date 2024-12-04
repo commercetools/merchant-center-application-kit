@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { LocationDescriptor } from 'history';
 import { useIntl, type MessageDescriptor } from 'react-intl';
-import { Link, matchPath, useLocation } from 'react-router-dom';
+import { Link, useLocation, matchPath } from 'react-router-dom';
 import Text from '@commercetools-uikit/text';
 import { warning } from '@commercetools-uikit/utils';
 import { getLinkStyles } from './tab.styles';
@@ -61,14 +61,11 @@ const TabLabel = ({ children }: { children?: string }) => {
 export const TabHeader = (props: TTabHeaderProps) => {
   const intl = useIntl();
   const location = useLocation();
+
   const isActive = Boolean(
-    matchPath(location.pathname, {
-      // strip the search, otherwise the path won't match
-      path: pathWithoutSearch(props.to),
-      exact: props.exactPathMatch,
-      strict: false,
-    })
+    matchPath(pathWithoutSearch(props.to) || '', location.pathname)
   );
+
   const isDisabled = props.isDisabled;
 
   let label = props.label;

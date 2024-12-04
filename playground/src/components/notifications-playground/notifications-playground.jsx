@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Route, useRouteMatch, useHistory } from 'react-router-dom';
+import { Routes, Route, useNavigate, useResolvedPath } from 'react-router-dom';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   InfoModalPage,
@@ -65,8 +65,8 @@ const NotificationsPlayground = (props) => {
   const dialogState = useModalState();
   const dialogStateInDrawer = useModalState();
   const drawerState = useModalState();
-  const route = useRouteMatch();
-  const history = useHistory();
+  const path = useResolvedPath();
+  const navigate = useNavigate();
 
   return (
     <Spacings.Inset>
@@ -75,7 +75,7 @@ const NotificationsPlayground = (props) => {
         <FlatButton
           label={`Open modal ${props.level}`}
           onClick={() => {
-            history.push(`${route.url}/${props.level}`);
+            navigate(`${path.url}/${props.level}`);
           }}
         />
         <FlatButton
@@ -86,19 +86,23 @@ const NotificationsPlayground = (props) => {
           label={`Open drawer ${props.level}`}
           onClick={drawerState.openModal}
         />
-
-        <Route path={`${route.path}/${props.level}`}>
-          <InfoModalPage
-            isOpen
-            title={`Modal page ${props.level}`}
-            customViewLocatorCode="products.product_details.general"
-            onClose={() => {
-              history.push(route.url);
-            }}
-          >
-            <NotificationsPlayground level={props.level + 1} />
-          </InfoModalPage>
-        </Route>
+        <Routes>
+          <Route
+            path={`${path.path}/${props.level}`}
+            element={
+              <InfoModalPage
+                isOpen
+                title={`Modal page ${props.level}`}
+                customViewLocatorCode="products.product_details.general"
+                onClose={() => {
+                  navigate(path.url);
+                }}
+              >
+                <NotificationsPlayground level={props.level + 1} />
+              </InfoModalPage>
+            }
+          />
+        </Routes>
         <InfoDialog
           isOpen={dialogState.isModalOpen}
           title={`Dialog ${props.level}`}

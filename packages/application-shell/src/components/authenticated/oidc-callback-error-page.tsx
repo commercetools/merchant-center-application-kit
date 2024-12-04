@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   PublicPageLayout,
   themesOverrides,
@@ -39,7 +39,7 @@ const Divider = styled.div`
 `;
 
 const AuthCallbackErrorPage = (props: TProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <AsyncLocaleData
       locale={props.locale}
@@ -77,7 +77,7 @@ const AuthCallbackErrorPage = (props: TProps) => {
                         label="Try log in again"
                         icon={<AngleLeftIcon />}
                         onClick={() => {
-                          history.push('/');
+                          navigate('/');
                         }}
                       />
                     </Spacings.Stack>

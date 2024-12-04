@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import { Routes, Route, Navigate, useResolvedPath } from 'react-router-dom';
 import {
   TabularModalPage,
   TabHeader,
@@ -33,7 +33,7 @@ const exampleCustomTitleRow = (
 );
 
 const TabularModalPageExample = () => {
-  const match = useRouteMatch();
+  const { pathname } = useResolvedPath('');
   return (
     <LayoutApp>
       <PlaygroundController
@@ -92,15 +92,15 @@ const TabularModalPageExample = () => {
                 tabControls={
                   <>
                     <TabHeader
-                      to={`${match.url}/tabular-modal-page/tab-one`}
+                      to={`${pathname}/tabular-modal-page/tab-one`}
                       label="Tab One"
                     />
                     <TabHeader
-                      to={`${match.url}/tabular-modal-page/tab-two`}
+                      to={`${pathname}/tabular-modal-page/tab-two`}
                       label="Tab Two"
                     />
                     <TabHeader
-                      to={`${match.url}/tabular-modal-page/tab-three`}
+                      to={`${pathname}/tabular-modal-page/tab-three`}
                       label="Disabled tab"
                       isDisabled
                     />
@@ -128,21 +128,21 @@ const TabularModalPageExample = () => {
                 }
                 hideControls={Boolean(values.hideControls)}
               >
-                <Switch>
-                  <Route path={`${match.path}/tabular-modal-page/tab-one`}>
-                    <Text.Body>{values['tab-one-content']}</Text.Body>
-                  </Route>
-                  <Route path={`${match.path}/tabular-modal-page/tab-two`}>
-                    <Text.Body>{values['tab-two-content']}</Text.Body>
-                  </Route>
+                <Routes>
                   <Route
-                    render={() => (
-                      <Redirect
-                        to={`${match.url}/tabular-modal-page/tab-one`}
-                      />
-                    )}
+                    path={`${pathname}/tabular-modal-page/tab-one`}
+                    element={<Text.Body>{values['tab-one-content']}</Text.Body>}
                   />
-                </Switch>
+                  <Route
+                    path={`${pathname}/tabular-modal-page/tab-two`}
+                    element={<Text.Body>{values['tab-two-content']}</Text.Body>}
+                  />
+                  <Route
+                    element={
+                      <Navigate to={`${pathname}/tabular-modal-page/tab-one`} />
+                    }
+                  />
+                </Routes>
               </TabularModalPage>
             )}
           </ModalController>

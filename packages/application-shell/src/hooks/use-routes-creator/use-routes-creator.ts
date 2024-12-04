@@ -1,9 +1,9 @@
 import type { History } from 'history';
 import {
-  useHistory,
-  useRouteMatch,
-  generatePath,
+  useNavigate,
   useLocation,
+  useMatch,
+  generatePath,
 } from 'react-router-dom';
 
 export interface RouteParams extends Record<string, string> {}
@@ -50,8 +50,10 @@ const makeRoute = <Params extends RouteParams>(
 };
 
 function useRoutesCreator() {
-  const { params } = useRouteMatch();
-  const { push: goTo, location } = useHistory();
+  const match = useMatch('/:projectKey/*');
+  const params = match?.params ?? {};
+  const goTo = useNavigate();
+  const location = useLocation();
 
   const createRoute = <ParamKeys>(routePath: RoutePath) =>
     makeRoute<ParamKeys extends string ? Record<ParamKeys, string> : never>(

@@ -7,7 +7,7 @@ import {
 import type { NormalizedCacheObject } from '@apollo/client';
 import { ApolloClient } from '@apollo/client';
 import type { TFlags } from '@flopflip/types';
-import { Switch } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import type { Dispatch } from 'redux';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -83,7 +83,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
         {({ isAuthenticated }) => {
           if (isAuthenticated) {
             return (
-              <Switch>
+              <Routes>
                 <SuspendedRoute path="/logout">
                   <RedirectToLogout />
                 </SuspendedRoute>
@@ -101,7 +101,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
                     {props.children}
                   </ApplicationShellAuthenticated>
                 </SuspendedRoute>
-              </Switch>
+              </Routes>
             );
           }
           return <RedirectToLogin />;
