@@ -1,4 +1,6 @@
-import { PERMISSIONS, entryPointUriPath } from './src/constants';
+// eslint-disable-next-line import/extensions
+import { PERMISSIONS, entryPointUriPath } from './src/constants.js';
+
 const name = 'AppKit Playground Application';
 
 const productionUrl = process.env.VERCEL_ENV !== 'production' && Boolean(process.env.VERCEL_URL) ?
