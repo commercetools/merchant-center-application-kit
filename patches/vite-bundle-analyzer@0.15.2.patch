@@ -1,0 +1,13 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 2fbb0bfe6942d68a334811c6b95dd6dbad9ae09b..07246b92e90ae8c94a3fca44c327bbc8e6f4b565 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -129,7 +129,7 @@ interface AnalyzerStore {
+     hasSetupSourcemapOption: boolean;
+ }
+ 
+-declare function adapter(userPlugin: Plugin): Plugin$1<any>;
++declare function adapter(userPlugin: Plugin): Plugin$1;
+ 
+ interface RenderOptions {
+     title: string;

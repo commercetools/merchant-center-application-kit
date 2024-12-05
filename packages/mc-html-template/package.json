@@ -37,12 +37,12 @@
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node22": "^22.0.0",
     "@types/serialize-javascript": "^5.0.2",
     "html-webpack-plugin": "5.6.0",
     "webpack": "5.94.0"
   },
   "engines": {
-    "node": "16.x || >=18.0.0"
+    "node": "18.x || 20.x || >=22.0.0"
   }
 }
