@@ -13,4 +13,4 @@
 '@commercetools-local/playground': major
 ---
 
-Drop support for Node.js v16, which reached EOL. The minimal required version is v18 but we recommend to use v20 or v22 if possible.
+Drop support for Node.js `v16`, which reached EOL. The minimal required version is `v18` but we recommend to use `v20` or `v22` if possible.
