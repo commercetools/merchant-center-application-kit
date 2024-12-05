@@ -124,7 +124,7 @@
     "@tsconfig/cypress": "^1.0.1",
     "@types/eslint": "^8.44.2",
     "@types/jest": "^29.5.4",
-    "@types/node": "^20.12.12",
+    "@types/node": "^22.10.1",
     "@types/prettier": "2.7.3",
     "@types/rosie": "^0.0.45",
     "@types/testing-library__jest-dom": "^5.14.9",
@@ -190,7 +190,7 @@
     }
   },
   "engines": {
-    "node": "20.x || >=22",
+    "node": ">=22",
     "npm": ">=6",
     "pnpm": ">=8"
   },
