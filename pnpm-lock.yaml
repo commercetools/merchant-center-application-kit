@@ -16,6 +16,9 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
+  vite-bundle-analyzer@0.15.2:
+    hash: i77bs7angtrizseperdq6hjlca
+    path: patches/vite-bundle-analyzer@0.15.2.patch
 
 importers:
 
@@ -2771,7 +2774,7 @@ importers:
         version: 6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2)
       vite-bundle-analyzer:
         specifier: 0.15.2
-        version: 0.15.2
+        version: 0.15.2(patch_hash=i77bs7angtrizseperdq6hjlca)
       webpack:
         specifier: 5.94.0
         version: 5.94.0(@swc/core@1.10.14)
@@ -34784,7 +34787,7 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite-bundle-analyzer@0.15.2: {}
+  vite-bundle-analyzer@0.15.2(patch_hash=i77bs7angtrizseperdq6hjlca): {}
 
   vite@6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2):
     dependencies:
