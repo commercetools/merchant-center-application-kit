@@ -1,5 +1,16 @@
 # @commercetools-frontend/l10n
 
+## 22.36.0
+
+### Minor Changes
+
+- [#3636](https://github.com/commercetools/merchant-center-application-kit/pull/3636) [`1f67b19`](https://github.com/commercetools/merchant-center-application-kit/commit/1f67b1976ff0cb36409a4303523bae95c35e850f) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Remove support for locale `zh-CN`
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@22.36.0
+
 ## 22.35.1
 
 ### Patch Changes
