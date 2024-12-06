@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/extensions
-import { PERMISSIONS, entryPointUriPath } from './src/constants.js';
+import { PERMISSIONS, entryPointUriPath } from './src/constants';
 
 const name = 'AppKit Playground Application';
 
