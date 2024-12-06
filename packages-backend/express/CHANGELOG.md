@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 22.36.0
+
+### Minor Changes
+
+- [#3666](https://github.com/commercetools/merchant-center-application-kit/pull/3666) [`57ef01b`](https://github.com/commercetools/merchant-center-application-kit/commit/57ef01b81e27f1ae5e5a1f2c18ed27f1eb9cb1be) Thanks [@emmenko](https://github.com/emmenko)! - Remove unsupported cloud identifiers
+
 ## 22.35.1
 
 ## 22.35.0

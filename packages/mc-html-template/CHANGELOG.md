@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.36.0
+
+### Patch Changes
+
+- [#3634](https://github.com/commercetools/merchant-center-application-kit/pull/3634) [`3767c25`](https://github.com/commercetools/merchant-center-application-kit/commit/3767c25cf78bb53d50ff8ab9bbb1b37c92e51b6c) Thanks [@misama-ct](https://github.com/misama-ct)! - added meta-tag to the mc-html-template file, preventing search engines from listing merchant center apps in search result pages
+
+- Updated dependencies [[`57ef01b`](https://github.com/commercetools/merchant-center-application-kit/commit/57ef01b81e27f1ae5e5a1f2c18ed27f1eb9cb1be), [`1f67b19`](https://github.com/commercetools/merchant-center-application-kit/commit/1f67b1976ff0cb36409a4303523bae95c35e850f)]:
+  - @commercetools-frontend/application-config@22.36.0
+  - @commercetools-frontend/constants@22.36.0
+
 ## 22.35.1
 
 ### Patch Changes
