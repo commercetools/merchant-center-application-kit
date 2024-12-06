@@ -13,14 +13,14 @@ const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
-const createWebpackDevServerConfig = ({
+const createWebpackDevServerConfig = async ({
   port,
   publicPath,
 }: {
   port: number;
   publicPath?: string;
-}): Configuration => {
-  const applicationConfig = processConfig();
+}): Promise<Configuration> => {
+  const applicationConfig = await processConfig();
   const compiledHeaders = processHeaders(applicationConfig);
 
   return {

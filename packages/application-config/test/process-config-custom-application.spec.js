@@ -27,13 +27,15 @@ beforeEach(() => {
 
 describe('processing a simple config', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigSimple,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigSimple,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -100,8 +102,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -160,8 +162,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -238,8 +240,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -302,13 +304,15 @@ describe('processing a simple config', () => {
 
 describe('processing a full config', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigFull,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigFull,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -392,8 +396,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -460,8 +464,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -553,8 +557,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -625,13 +629,15 @@ describe('processing a full config', () => {
 
 describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigEnvVariables,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigEnvVariables,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           ENTRY_POINT_URI_PATH: 'avengers',
@@ -708,8 +714,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -772,8 +778,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
-      const result = processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -854,8 +860,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=staging and NODE_ENV=production', () => {
-    it('should process the config in production mode', () => {
-      const result = processConfig(
+    it('should process the config in production mode', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             ENTRY_POINT_URI_PATH: 'avengers',
@@ -922,13 +928,15 @@ describe('processing a config with environment variable placeholders', () => {
 
 describe('processing a config with intl variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigIntlVariables,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigIntlVariables,
+      })
+    );
   });
-  it('should process the config and correctly parse the translations', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and correctly parse the translations', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -1030,13 +1038,15 @@ describe('processing a config with intl variable placeholders', () => {
 
 describe('processing a config with file path variable placeholders', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigFilePathVariables,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigFilePathVariables,
+      })
+    );
   });
-  it('should process the config and correctly parse the file content', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and correctly parse the file content', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -1116,13 +1126,15 @@ describe('processing a config with file path variable placeholders', () => {
 
 describe('processing a config with OIDC', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigOidc,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigOidc,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
-    const result = processConfig(
+  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           APP_URL: 'https://avengers.app',
@@ -1224,8 +1236,8 @@ describe('processing a config with OIDC', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production without the __DEVELOPMENT__ object', () => {
-      const result = processConfig(
+    it('should process the config as if for production without the __DEVELOPMENT__ object', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             APP_URL: 'https://avengers.app',
@@ -1305,13 +1317,15 @@ describe('processing a config with OIDC', () => {
 
 describe('processing a config with account links', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigAccountLinks,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigAccountLinks,
+      })
+    );
   });
-  it('should process the config and correctly parse the file content', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and correctly parse the file content', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'app-id-123',
@@ -1389,22 +1403,24 @@ describe('processing a config with account links', () => {
 
 describe('when app URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: {
-        ...fixtureConfigSimple,
-        env: {
-          ...fixtureConfigSimple.env,
-          production: {
-            ...fixtureConfigSimple.env.production,
-            url: 'wrong url',
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: {
+          ...fixtureConfigSimple,
+          env: {
+            ...fixtureConfigSimple.env,
+            production: {
+              ...fixtureConfigSimple.env.production,
+              url: 'wrong url',
+            },
           },
         },
-      },
-    });
+      })
+    );
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(() =>
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1420,22 +1436,24 @@ describe('when app URL is malformed', () => {
 describe('when app URL has non-root path without ending backslash', () => {
   const appUrl = 'https://avengers.app/admin';
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: {
-        ...fixtureConfigSimple,
-        env: {
-          ...fixtureConfigSimple.env,
-          production: {
-            ...fixtureConfigSimple.env.production,
-            url: appUrl,
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: {
+          ...fixtureConfigSimple,
+          env: {
+            ...fixtureConfigSimple.env,
+            production: {
+              ...fixtureConfigSimple.env.production,
+              url: appUrl,
+            },
           },
         },
-      },
-    });
+      })
+    );
   });
-  it('CSP headers should include app URL with a backslash', () => {
-    const result = processConfig(
+  it('CSP headers should include app URL with a backslash', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           NODE_ENV: 'production',
@@ -1451,13 +1469,15 @@ describe('when app URL has non-root path without ending backslash', () => {
 
 describe('processing a config with OIDC with teamId', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: fixtureConfigOidcWithTeamId,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigOidcWithTeamId,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', () => {
-    const result = processConfig(
+  it('should process the config and prepare the application environment and headers, as well as the __DEVELOPMENT__ object', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           APP_URL: 'https://avengers.app',
@@ -1564,22 +1584,24 @@ describe('processing a config with OIDC with teamId', () => {
 
 describe('when CDN URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: {
-        ...fixtureConfigSimple,
-        env: {
-          ...fixtureConfigSimple.env,
-          production: {
-            ...fixtureConfigSimple.env.production,
-            cdnUrl: 'wrong url',
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: {
+          ...fixtureConfigSimple,
+          env: {
+            ...fixtureConfigSimple.env,
+            production: {
+              ...fixtureConfigSimple.env.production,
+              cdnUrl: 'wrong url',
+            },
           },
         },
-      },
-    });
+      })
+    );
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(() =>
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1596,23 +1618,25 @@ describe('when CDN URL has non-root path without ending backslash', () => {
   const appUrl = 'https://avengers.app/admin';
   const cdnUrl = 'https://justice-league.app/inventory';
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: {
-        ...fixtureConfigSimple,
-        env: {
-          ...fixtureConfigSimple.env,
-          production: {
-            ...fixtureConfigSimple.env.production,
-            url: appUrl,
-            cdnUrl: cdnUrl,
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: {
+          ...fixtureConfigSimple,
+          env: {
+            ...fixtureConfigSimple.env,
+            production: {
+              ...fixtureConfigSimple.env.production,
+              url: appUrl,
+              cdnUrl: cdnUrl,
+            },
           },
         },
-      },
-    });
+      })
+    );
   });
-  it('CSP headers should include CDN URL with a backslash', () => {
-    const result = processConfig(
+  it('CSP headers should include CDN URL with a backslash', async () => {
+    const result = await processConfig(
       createTestOptions({
         processEnv: {
           NODE_ENV: 'production',
@@ -1635,16 +1659,18 @@ describe('when CDN URL has non-root path without ending backslash', () => {
 
 describe('when MC API URL is malformed', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-application-config.js',
-      config: {
-        ...fixtureConfigSimple,
-        mcApiUrl: 'wrong url',
-      },
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: {
+          ...fixtureConfigSimple,
+          mcApiUrl: 'wrong url',
+        },
+      })
+    );
   });
-  it('should throw', () => {
-    expect(() =>
+  it('should throw', async () => {
+    await expect(() =>
       processConfig(createTestOptions())
     ).toThrowErrorMatchingInlineSnapshot(`"Invalid MC API URL: "wrong url""`);
   });

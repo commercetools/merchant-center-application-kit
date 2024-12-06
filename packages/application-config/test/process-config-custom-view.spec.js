@@ -20,13 +20,15 @@ beforeEach(() => {
 
 describe('processing a simple config', () => {
   beforeEach(() => {
-    loadConfig.mockReturnValue({
-      filepath: '/custom-view-config.js',
-      config: fixtureConfigSimple,
-    });
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-view-config.js',
+        config: fixtureConfigSimple,
+      })
+    );
   });
-  it('should process the config and prepare the application environment and headers', () => {
-    const result = processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', async () => {
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       data: {
         id: 'custom-view-id-123',
@@ -107,8 +109,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', () => {
-      const result = processConfig(
+    it('should process the config as if for production', async () => {
+      const result = await processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',

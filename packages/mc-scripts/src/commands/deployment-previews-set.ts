@@ -219,7 +219,7 @@ async function setDeploymentPreview({
 }
 
 async function run(options: TCliCommandSetDeploymentPreviewOptions) {
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
   const localCustomEntityData: CustomApplicationData | CustomViewData =
     applicationConfig.data;
   const { mcApiUrl, applicationIdentifier } = applicationConfig.env;
