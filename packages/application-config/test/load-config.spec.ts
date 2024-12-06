@@ -61,10 +61,9 @@ describe('validation', () => {
         __dirname,
         'fixtures/custom-applications/app-without-config'
       );
-      await expect(() =>
-        loadConfig(applicationPath)
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"Missing or invalid configuration file."`
+
+      await expect(loadConfig(applicationPath)).rejects.toMatchInlineSnapshot(
+        `[MissingOrInvalidConfigError: Missing or invalid configuration file.]`
       );
     });
   });
