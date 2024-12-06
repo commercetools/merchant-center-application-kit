@@ -108,7 +108,6 @@ const loadConfig = async (
     applicationPath
   );
   const customViewConfigFile = await customViewExplorer.search(applicationPath);
-
   if (
     (!customApplicationConfigFile || !customApplicationConfigFile.config) &&
     (!customViewConfigFile || !customViewConfigFile.config)

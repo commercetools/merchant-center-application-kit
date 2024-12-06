@@ -1420,7 +1420,7 @@ describe('when app URL is malformed', () => {
     );
   });
   it('should throw', async () => {
-    await expect(() =>
+    await expect(
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1428,8 +1428,8 @@ describe('when app URL is malformed', () => {
           },
         })
       )
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application URL: "wrong url""`
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Invalid application URL: "wrong url"]`
     );
   });
 });
@@ -1601,7 +1601,7 @@ describe('when CDN URL is malformed', () => {
     );
   });
   it('should throw', async () => {
-    await expect(() =>
+    await expect(
       processConfig(
         createTestOptions({
           processEnv: {
@@ -1609,8 +1609,8 @@ describe('when CDN URL is malformed', () => {
           },
         })
       )
-    ).toThrowErrorMatchingInlineSnapshot(
-      `"Invalid application CDN URL: "wrong url""`
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Invalid application CDN URL: "wrong url"]`
     );
   });
 });
@@ -1670,8 +1670,8 @@ describe('when MC API URL is malformed', () => {
     );
   });
   it('should throw', async () => {
-    await expect(() =>
+    await expect(
       processConfig(createTestOptions())
-    ).toThrowErrorMatchingInlineSnapshot(`"Invalid MC API URL: "wrong url""`);
+    ).rejects.toMatchInlineSnapshot(`[Error: Invalid MC API URL: "wrong url"]`);
   });
 });
