@@ -135,7 +135,7 @@
     "cross-env": "7.0.3",
     "cypress": "12.17.4",
     "dotenv": "16.4.5",
-    "eslint": "8.57.0",
+    "eslint": "9.16.0",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-graphql": "^4.0.0",
     "find-up": "5.0.0",
