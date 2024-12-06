@@ -14,7 +14,7 @@ async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
   // Load the Merchant Center customization config file first.
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
 
   // Ensure the `/public` folder exists.
   fs.mkdirSync(paths.appBuild, { recursive: true });
