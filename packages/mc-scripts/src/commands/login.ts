@@ -7,7 +7,7 @@ import CredentialsStorage from '../utils/credentials-storage';
 const credentialsStorage = new CredentialsStorage();
 
 async function run() {
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);

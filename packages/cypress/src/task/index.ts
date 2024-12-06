@@ -63,43 +63,43 @@ const loadAllCustomEntityConfigs = async (
   }
 
   const { packages } = await getPackages(process.cwd());
-  cachedAllCustomEntityConfigs = packages.reduce<AllCustomEntityConfigs>(
-    (allConfigs, packageInfo) => {
-      const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
-      try {
-        const processedConfig = processConfig({
-          disableCache: true,
-          processEnv,
-          applicationPath: packageInfo.dir,
-        });
-        const isCustomViewConfig = Boolean(processedConfig.env.customViewId);
+  cachedAllCustomEntityConfigs = await packages.reduce<
+    Promise<AllCustomEntityConfigs>
+  >(async (allConfigsPromise, packageInfo) => {
+    const allConfigs = await allConfigsPromise;
+    const processEnv = loadEnvironmentVariables(packageInfo.dir, options);
+    try {
+      const processedConfig = await processConfig({
+        disableCache: true,
+        processEnv,
+        applicationPath: packageInfo.dir,
+      });
+      const isCustomViewConfig = Boolean(processedConfig.env.customViewId);
 
-        console.log(
-          `Found Custom ${
-            isCustomViewConfig ? 'View' : 'Application'
-          } config for ${packageInfo.packageJson.name}`
-        );
+      console.log(
+        `Found Custom ${
+          isCustomViewConfig ? 'View' : 'Application'
+        } config for ${packageInfo.packageJson.name}`
+      );
 
-        const customEntityConfigCacheKey = isCustomViewConfig
-          ? `${processedConfig.env.entryPointUriPath}-${packageInfo.packageJson.name}`
-          : processedConfig.env.entryPointUriPath;
+      const customEntityConfigCacheKey = isCustomViewConfig
+        ? `${processedConfig.env.entryPointUriPath}-${packageInfo.packageJson.name}`
+        : processedConfig.env.entryPointUriPath;
 
-        return {
-          ...allConfigs,
-          [customEntityConfigCacheKey]: processedConfig.env,
-        };
-      } catch (error) {
-        // Ignore packages that do not have a valid config file, either because
-        // the package is not a Custom Entity or because the config file
-        // is invalid.
-        if (error instanceof MissingOrInvalidConfigError) {
-          return allConfigs;
-        }
-        throw error;
+      return {
+        ...allConfigs,
+        [customEntityConfigCacheKey]: processedConfig.env,
+      };
+    } catch (error) {
+      // Ignore packages that do not have a valid config file, either because
+      // the package is not a Custom Entity or because the config file
+      // is invalid.
+      if (error instanceof MissingOrInvalidConfigError) {
+        return allConfigs;
       }
-    },
-    {}
-  );
+      throw error;
+    }
+  }, Promise.resolve({}));
 
   return cachedAllCustomEntityConfigs;
 };

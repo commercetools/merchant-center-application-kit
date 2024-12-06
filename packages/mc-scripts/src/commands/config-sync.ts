@@ -459,7 +459,7 @@ async function createOrUpdateCustomView({
 }
 
 async function run(options: TCliCommandConfigSyncOptions) {
-  const applicationConfig = processConfig();
+  const applicationConfig = await processConfig();
   const localCustomEntityData: CustomApplicationData | CustomViewData =
     applicationConfig.data;
   const { mcApiUrl, applicationIdentifier, customViewId } =
