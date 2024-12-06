@@ -19,5 +19,9 @@ jobs:
 
       - name: Create or update deployment preview
         # Automated integration with MC deployment previews is not yet supported
-        # run: npx mc-scripts deployment-previews:push --token ${{ secrets.MC_API_TOKEN }} --alias ${{ github.ref }} --url ${{ github.event.client_payload.url }}
-        run: echo "[TODO] Deployment preview would be created or updated with alias '${{ github.ref }}'' and url '${{ github.event.client_payload.url }}'"
+        # run: npx mc-scripts deployment-previews:push --token ${MC_API_TOKEN} --alias ${GITHUB_REF} --url ${GITHUB_CLIENT_PAYLOAD_URL}
+        run: echo "[TODO] Deployment preview would be created or updated with alias '${GITHUB_REF}' and url '${GITHUB_CLIENT_PAYLOAD_URL}'"
+        env:
+          MC_API_TOKEN: ${{ secrets.MC_API_TOKEN }}
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_CLIENT_PAYLOAD_URL: ${{ github.event.client_payload.url }}
