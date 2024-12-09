@@ -40,8 +40,10 @@ const defaultToggleFlags: TWebpackConfigToggleFlagsForProduction = {
   // it explicitely. This will disable `core-js` for `preset-env` and the
   // `plugin-transform-runtime`.
   disableCoreJs: false,
-  // Allow to remove default `formatjs` messages from bundles.
-  removeI18nDefaultMessage: false,
+  // Pre-parse default `formatjs` messages into AST
+  i18nAst: false,
+  // Remove default `formatjs` messages from bundles.
+  i18nRemoveDefaultMessage: false,
 };
 const defaultOptions: TWebpackConfigOptions<'production'> = {
   entryPoint: paths.entryPoint,
@@ -257,8 +259,9 @@ function createWebpackConfigForProduction(
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
                       disableCoreJs: mergedOptions.toggleFlags.disableCoreJs,
-                      removeI18nDefaultMessage:
-                        mergedOptions.toggleFlags.removeI18nDefaultMessage,
+                      i18nAst: mergedOptions.toggleFlags.i18nAst,
+                      i18nRemoveDefaultMessage:
+                        mergedOptions.toggleFlags.i18nRemoveDefaultMessage,
                     },
                   ],
                 ],

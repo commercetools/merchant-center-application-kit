@@ -86,9 +86,13 @@ async function run() {
               'babel-plugin-formatjs',
               {
                 removeDefaultMessage:
-                  // Allow to remove default `formatjs` messages from bundles.
+                  // Remove default `formatjs` messages from bundles.
                   // TODO: make it a CLI option when Vite support becomes stable.
-                  process.env.ENABLE_REMOVE_I18N_DEFAULT_MESSAGE === 'true',
+                  process.env.ENABLE_I18N_REMOVE_DEFAULT_MESSAGE === 'true',
+                ast:
+                  // Enable pre-parse default `formatjs` messages into AST.
+                  // TODO: make it a CLI option when Vite support becomes stable.
+                  process.env.ENABLE_I18N_AST === 'true',
               },
             ],
           ],

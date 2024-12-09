@@ -60,9 +60,13 @@ export type TWebpackConfigToggleFlagsForDevelopment = {
    */
   disableCoreJs?: boolean;
   /**
-   * Allow to remove default `formatjs` messages from bundles.
+   * Pre-parse default `formatjs` messages into AST
    */
-  removeI18nDefaultMessage?: boolean;
+  i18nAst?: boolean;
+  /**
+   * Remove default `formatjs` messages from bundles.
+   */
+  i18nRemoveDefaultMessage?: boolean;
 };
 
 export type TWebpackConfigToggleFlagsForProduction =
