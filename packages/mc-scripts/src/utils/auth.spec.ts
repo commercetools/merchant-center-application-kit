@@ -63,11 +63,10 @@ describe('when login details are incorrect', () => {
   });
   it('should throw error', async () => {
     await expect(
-      async () =>
-        await getAuthToken(mcApiUrl, {
-          email: 'user@email.com',
-          password: 'secret',
-        })
-    ).rejects.toThrow('Invalid email or password');
+      getAuthToken(mcApiUrl, {
+        email: 'user@email.com',
+        password: 'secret',
+      })
+    ).rejects.toMatchInlineSnapshot(`[Error: Invalid email or password]`);
   });
 });

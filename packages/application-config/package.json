@@ -41,14 +41,14 @@
     "@babel/register": "^7.22.15",
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/babel-preset-mc-app": "22.36.0",
     "@commercetools-frontend/constants": "22.36.0",
     "@types/dompurify": "^2.4.0",
     "@types/lodash": "^4.14.198",
     "@types/react": "^17.0.80",
     "ajv": "8.16.0",
     "core-js": "^3.32.2",
-    "cosmiconfig": "7.1.0",
+    "cosmiconfig": "9.0.0",
+    "cosmiconfig-typescript-loader": "6.1.0",
     "dompurify": "^2.4.7",
     "jsdom": "^21.1.2",
     "lodash": "4.17.21",
@@ -57,8 +57,7 @@
   "devDependencies": {
     "@commercetools-frontend/assets": "workspace:*",
     "@types/jsdom": "^21.1.2",
-    "json-schema-to-typescript": "13.1.2",
-    "shelljs": "0.8.5"
+    "json-schema-to-typescript": "13.1.2"
   },
   "engines": {
     "node": "16.x || >=18.0.0"
