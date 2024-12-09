@@ -22,6 +22,9 @@ const defaultOptions = {
   // it explicitely. This will disable `core-js` for `preset-env` and the
   // `plugin-transform-runtime`.
   disableCoreJs: false,
+  // If `formatjs` default messages should be removed from the bundle or not.
+  // https://formatjs.github.io/docs/tooling/babel-plugin#removedefaultmessage
+  removeI18nDefaultMessage: false,
 };
 
 /* eslint-disable global-require */
@@ -189,6 +192,12 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         require('@emotion/babel-plugin').default,
       // Cherry-pick Lodash modules
       require('babel-plugin-lodash').default,
+      [
+        require('babel-plugin-formatjs').default,
+        {
+          removeDefaultMessage: options.removeI18nDefaultMessage,
+        },
+      ],
     ].filter(Boolean),
   };
 };

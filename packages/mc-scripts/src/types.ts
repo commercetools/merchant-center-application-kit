@@ -59,6 +59,10 @@ export type TWebpackConfigToggleFlagsForDevelopment = {
    * `plugin-transform-runtime`.
    */
   disableCoreJs?: boolean;
+  /**
+   * Allow to remove default `formatjs` messages from bundles.
+   */
+  removeI18nDefaultMessage?: boolean;
 };
 
 export type TWebpackConfigToggleFlagsForProduction =

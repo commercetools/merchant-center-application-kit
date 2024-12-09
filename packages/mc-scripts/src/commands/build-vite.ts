@@ -82,6 +82,15 @@ async function run() {
           plugins: [
             '@emotion/babel-plugin',
             '@babel/plugin-proposal-do-expressions',
+            [
+              'babel-plugin-formatjs',
+              {
+                removeDefaultMessage:
+                  // Allow to remove default `formatjs` messages from bundles.
+                  // TODO: make it a CLI option when Vite support becomes stable.
+                  process.env.ENABLE_REMOVE_I18N_DEFAULT_MESSAGE === 'true',
+              },
+            ],
           ],
         },
       }),
