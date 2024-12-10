@@ -14,13 +14,13 @@ describe.each`
 `(
   'loading config for file extension "$extension"',
   ({ fixtureApp }: { fixtureApp: string }) => {
-    it('should load and parse the config for Custom Applications', () => {
+    it('should load and parse the config for Custom Applications', async () => {
       const applicationPath = path.join(
         __dirname,
         'fixtures/custom-applications',
         fixtureApp
       );
-      const { config } = loadConfig(applicationPath);
+      const { config } = await loadConfig(applicationPath);
       validateConfig(LOADED_CONFIG_TYPES.CUSTOM_APPLICATION, config);
       expect(
         (config as JSONSchemaForCustomApplicationConfigurationFiles)
@@ -39,13 +39,13 @@ describe.each`
 `(
   'loading config for file extension "$extension"',
   ({ fixtureApp }: { fixtureApp: string }) => {
-    it('should load and parse the config for Custom Views', () => {
+    it('should load and parse the config for Custom Views', async () => {
       const applicationPath = path.join(
         __dirname,
         'fixtures/custom-views',
         fixtureApp
       );
-      const { config } = loadConfig(applicationPath);
+      const { config } = await loadConfig(applicationPath);
       validateConfig(LOADED_CONFIG_TYPES.CUSTOM_VIEW, config);
       expect((config as JSONSchemaForCustomViewConfigurationFiles).type).toBe(
         'CustomPanel'
@@ -56,15 +56,14 @@ describe.each`
 
 describe('validation', () => {
   describe('when configuration file is missing or invalid', () => {
-    it('should throw an error', () => {
+    it('should throw an error', async () => {
       const applicationPath = path.join(
         __dirname,
         'fixtures/custom-applications/app-without-config'
       );
-      expect(() =>
-        loadConfig(applicationPath)
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"Missing or invalid configuration file."`
+
+      await expect(loadConfig(applicationPath)).rejects.toMatchInlineSnapshot(
+        `[MissingOrInvalidConfigError: Missing or invalid configuration file.]`
       );
     });
   });

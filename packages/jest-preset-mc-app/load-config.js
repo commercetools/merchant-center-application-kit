@@ -1,7 +1,9 @@
 const { cosmiconfigSync } = require('cosmiconfig');
 
 const moduleName = 'jest-preset-mc-app';
-const explorer = cosmiconfigSync(moduleName);
+const explorer = cosmiconfigSync(moduleName, {
+  searchStrategy: 'project',
+});
 
 function createListMergerWithDefaults(key) {
   return (config) => ({

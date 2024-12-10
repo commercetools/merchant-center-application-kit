@@ -1,83 +1,85 @@
-import { execFileSync } from 'node:child_process';
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
-import { cosmiconfigSync, defaultLoaders, type LoaderSync } from 'cosmiconfig';
+import {
+  cosmiconfig,
+  defaultLoaders,
+  defaultLoadersSync,
+  Loader,
+} from 'cosmiconfig';
+import { TypeScriptLoader } from 'cosmiconfig-typescript-loader';
 import { MissingOrInvalidConfigError } from './errors';
 import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schemas/generated/custom-application.schema';
 import type { JSONSchemaForCustomViewConfigurationFiles } from './schemas/generated/custom-view.schema';
 
-function doesFileExist(path: string): boolean {
+// See the following issues for more context, contributing to failing Jest tests:
+//  - Issue: https://github.com/nodejs/node/issues/40058
+//  - Resolution: https://github.com/nodejs/node/pull/48510 (Node v20.8.0)
+// Copied from @commitlint/load/src/utils/load-config.ts
+export const isDynamicAwaitSupported = () => {
+  const [major, minor] = process.version
+    .replace('v', '')
+    .split('.')
+    .map((val) => parseInt(val));
+
+  return major >= 20 && minor >= 8;
+};
+
+// Is the given directory set up to use ESM (ECMAScript Modules)?
+// Copied from @commitlint/load/src/utils/load-config.ts
+export const isEsmModule = async (cwd: string) => {
+  const packagePath = path.join(cwd, 'package.json');
+
   try {
-    fs.accessSync(path);
-    return true;
+    const packageJSON = await fs.readFile(packagePath, {
+      encoding: 'utf-8',
+    });
+    return JSON.parse(packageJSON)?.type === 'module';
   } catch (error) {
     return false;
   }
-}
-// Helper function to find the package root path from the current location,
-// for instance in respect to both source files and dist files.
-const findPackageRootPath = (dir: string): string => {
-  const packageJsonPath = path.join(dir, 'package.json');
-  if (doesFileExist(packageJsonPath)) {
-    return dir;
-  }
-  const parentDir = path.join(dir, '..');
-  return findPackageRootPath(parentDir);
 };
 
-const loadJsModule: LoaderSync = (filePath) => {
-  const packageRootPath = findPackageRootPath(
-    // Start from the parent folder
-    path.join(__dirname, '..')
-  );
-  // Load the JS module using a child process. This is primarly to avoid
-  // unwanted behaviors using `@babel/register` in the main process.
-  // The loader script does the actual `require` of the given `filePath`
-  // and uses `@babel/register` to correctly parse and execute the file.
-  // The "required module output" is then written into `stdout` and parsed
-  // as JSON.
-  const output = execFileSync(
-    'node',
-    [path.join(packageRootPath, 'scripts/load-js-module.js'), filePath],
-    { encoding: 'utf8' }
-  );
-  return JSON.parse(output);
-};
+const createExplorerFor = async (configFileName: string) => {
+  // Copied from @commitlint/load/src/utils/load-config.ts
+  let tsLoaderInstance: Loader | undefined;
+  const tsLoader: Loader = (...args) => {
+    if (!tsLoaderInstance) {
+      tsLoaderInstance = TypeScriptLoader();
+    }
+    return tsLoaderInstance(...args);
+  };
 
-const createExplorerFor = (configFileName: string) => {
-  return cosmiconfigSync(configFileName, {
-    // Restrict the supported file formats / names
+  // If dynamic await is supported (Node >= v20.8.0) or directory uses ESM, support
+  // async js/cjs loaders (dynamic import). Otherwise, use synchronous js/cjs loaders.
+  const loaders =
+    isDynamicAwaitSupported() || (await isEsmModule(process.cwd()))
+      ? defaultLoaders
+      : defaultLoadersSync;
+
+  return cosmiconfig(configFileName, {
+    searchStrategy: 'project',
     searchPlaces: [
-      `.${configFileName}rc`,
-      `.${configFileName}.json`,
-      `.${configFileName}.js`,
-      `.${configFileName}.cjs`,
-      `.${configFileName}.mjs`,
-      `.${configFileName}.ts`,
-      `${configFileName}.json`,
       `${configFileName}.js`,
       `${configFileName}.cjs`,
       `${configFileName}.mjs`,
       `${configFileName}.ts`,
     ],
     loaders: {
-      noExt: defaultLoaders['.json'],
-      '.js': loadJsModule,
-      '.cjs': loadJsModule,
-      '.mjs': loadJsModule,
-      '.ts': loadJsModule,
+      '.js': loaders['.js'],
+      '.cjs': loaders['.cjs'],
+      '.mjs': tsLoader,
+      '.ts': tsLoader,
     },
   });
 };
 
-const customApplicationExplorer = createExplorerFor(
-  'custom-application-config'
-);
-const customViewExplorer = createExplorerFor('custom-view-config');
-
-export const getConfigPath = () => {
-  const customApplicationConfigFile = customApplicationExplorer.search();
-  const customViewConfigFile = customViewExplorer.search();
+export const getConfigPath = async () => {
+  const customApplicationExplorer = await createExplorerFor(
+    'custom-application-config'
+  );
+  const customViewExplorer = await createExplorerFor('custom-view-config');
+  const customApplicationConfigFile = await customApplicationExplorer.search();
+  const customViewConfigFile = await customViewExplorer.search();
 
   if (!customApplicationConfigFile && !customViewConfigFile) {
     throw new Error(`Missing or invalid configuration file.`);
@@ -87,18 +89,24 @@ export const getConfigPath = () => {
   );
 };
 
-const loadConfig = (
-  applicationPath: string
-): {
+export type TLoadConfigResult = {
   filepath: string;
   config:
     | JSONSchemaForCustomApplicationConfigurationFiles
     | JSONSchemaForCustomViewConfigurationFiles;
-} => {
-  const customApplicationConfigFile =
-    customApplicationExplorer.search(applicationPath);
-  const customViewConfigFile = customViewExplorer.search(applicationPath);
+};
 
+const loadConfig = async (
+  applicationPath: string
+): Promise<TLoadConfigResult> => {
+  const customApplicationExplorer = await createExplorerFor(
+    'custom-application-config'
+  );
+  const customViewExplorer = await createExplorerFor('custom-view-config');
+  const customApplicationConfigFile = await customApplicationExplorer.search(
+    applicationPath
+  );
+  const customViewConfigFile = await customViewExplorer.search(applicationPath);
   if (
     (!customApplicationConfigFile || !customApplicationConfigFile.config) &&
     (!customViewConfigFile || !customViewConfigFile.config)

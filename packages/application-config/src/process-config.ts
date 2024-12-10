@@ -220,13 +220,13 @@ const getRuntimeEnvironmentConfig = ({
 // again will result in returning the cached value.
 let cachedConfig: ApplicationRuntimeConfig;
 
-const processConfig = ({
+const processConfig = async ({
   disableCache = false,
   processEnv = process.env,
   applicationPath = fs.realpathSync(process.cwd()),
-}: ProcessConfigOptions = {}): ApplicationRuntimeConfig => {
+}: ProcessConfigOptions = {}): Promise<ApplicationRuntimeConfig> => {
   if (cachedConfig && !disableCache) return cachedConfig;
-  const { filepath, config: rawConfig } = loadConfig(applicationPath);
+  const { filepath, config: rawConfig } = await loadConfig(applicationPath);
   const configType = getLoadedConfigurationType(parseFilePath(filepath).name);
 
   validateConfig(configType, rawConfig);
