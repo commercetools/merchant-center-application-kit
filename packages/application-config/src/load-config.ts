@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
   cosmiconfig,
@@ -30,8 +30,7 @@ export const isEsmModule = async (cwd: string) => {
   const packagePath = path.join(cwd, 'package.json');
 
   try {
-    await fs.promises.access(packagePath, fs.constants.F_OK);
-    const packageJSON = await fs.promises.readFile(packagePath, {
+    const packageJSON = await fs.readFile(packagePath, {
       encoding: 'utf-8',
     });
     return JSON.parse(packageJSON)?.type === 'module';
