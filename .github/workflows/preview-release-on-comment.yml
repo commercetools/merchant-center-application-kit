@@ -32,11 +32,12 @@ jobs:
 
       - name: Validate branch name
         run: |
-          BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
           if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
             echo "Ignoring PR because of the branch name. Exiting workflow."
             exit 1
           fi
+        env:
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -59,12 +60,12 @@ jobs:
 
       - name: Publishing preview releases to npm registry
         run: |
-          BRANCH_NAME=${{ steps.comment-branch.outputs.head_ref }}
           PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           pnpm changeset publish --tag ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Post workflow result on PR as a comment
         if: always()
