@@ -44,24 +44,23 @@ type Props = {
   render: (isAuthorized: boolean) => ReactNode;
   children?: never;
 };
-const defaultProps: Pick<Props, 'shouldMatchSomePermissions'> = {
-  shouldMatchSomePermissions: false,
-};
 
-const Authorized = (props: Props) => {
+const Authorized = ({
+  shouldMatchSomePermissions = false,
+  ...props
+}: Props) => {
   const isAuthorized = useIsAuthorized({
     demandedPermissions: props.demandedPermissions,
     demandedActionRights: props.demandedActionRights,
     demandedDataFences: props.demandedDataFences,
     selectDataFenceData: props.selectDataFenceData,
-    shouldMatchSomePermissions: props.shouldMatchSomePermissions,
+    shouldMatchSomePermissions: shouldMatchSomePermissions,
     projectPermissions: props.projectPermissions,
   });
 
   return <>{props.render(isAuthorized)}</>;
 };
 Authorized.displayName = 'Authorized';
-Authorized.defaultProps = defaultProps;
 
 type TInjectAuthorizedOptions<OwnProps extends {}> = {
   shouldMatchSomePermissions?: boolean;

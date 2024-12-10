@@ -58,7 +58,11 @@ type CustomFormMainPageProps = {
   hideDivider?: boolean;
 };
 
-const CustomFormMainPage = (props: CustomFormMainPageProps) => {
+const CustomFormMainPage = ({
+  hideControls = false,
+  hideDivider = false,
+  ...props
+}: CustomFormMainPageProps) => {
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
     'CustomFormMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
@@ -78,7 +82,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
           margin={headerRowMargin}
           customViewLocatorCode={props.customViewLocatorCode}
         />
-        {!props.hideControls && props.formControls && (
+        {!hideControls && props.formControls && (
           <div
             css={css`
               margin: ${headerRowMargin};
@@ -89,7 +93,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
             </Spacings.Inline>
           </div>
         )}
-        {!props.hideDivider && (
+        {!hideDivider && (
           <div
             css={css`
               & > ${Divider} {
@@ -106,16 +110,7 @@ const CustomFormMainPage = (props: CustomFormMainPageProps) => {
   );
 };
 
-const defaultProps: Pick<
-  CustomFormMainPageProps,
-  'hideControls' | 'hideDivider'
-> = {
-  hideControls: false,
-  hideDivider: false,
-};
-
 CustomFormMainPage.displayName = 'CustomFormMainPage';
-CustomFormMainPage.defaultProps = defaultProps;
 
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row

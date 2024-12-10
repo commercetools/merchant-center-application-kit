@@ -18,15 +18,11 @@ type TApplicationPageTitleProps = {
    * <ApplicationPageTitle additionalParts={['T-Shirt red']} />
    * // T-Shirt red - Products - my-shop - Merchant Center
    */
-  additionalParts: string[];
+  additionalParts?: string[];
 };
 
 const maxTitleCharLength = 24;
 const staticPaths = ['account', 'login'];
-
-const defaultProps: TApplicationPageTitleProps = {
-  additionalParts: [],
-};
 
 const getPageTitle = (pathname: string, additionalParts: string[]) => {
   const [, projectKeyOrStaticPath, entryPointUriPath] = pathname.split('/');
@@ -57,17 +53,18 @@ const getPageTitle = (pathname: string, additionalParts: string[]) => {
   ].join(' - ');
 };
 
-const ApplicationPageTitle = (props: TApplicationPageTitleProps) => {
+const ApplicationPageTitle = ({
+  additionalParts = [],
+}: TApplicationPageTitleProps) => {
   const location = useLocation();
 
   useLayoutEffect(() => {
-    const pageTitle = getPageTitle(location.pathname, props.additionalParts);
+    const pageTitle = getPageTitle(location.pathname, additionalParts);
     document.title = pageTitle;
-  }, [location.pathname, props.additionalParts]);
+  }, [location.pathname, additionalParts]);
 
   return null;
 };
 ApplicationPageTitle.displayName = 'ApplicationPageTitle';
-ApplicationPageTitle.defaultProps = defaultProps;
 
 export default ApplicationPageTitle;

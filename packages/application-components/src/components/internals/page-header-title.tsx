@@ -8,14 +8,10 @@ type TTitleSize = 'big' | 'medium' | 'small';
 
 type Props = {
   title: string;
-  titleSize: TTitleSize;
-  truncate: boolean;
+  titleSize?: TTitleSize;
+  truncate?: boolean;
   subtitle?: string | ReactElement;
   children?: never;
-};
-const defaultProps: Pick<Props, 'titleSize' | 'truncate'> = {
-  titleSize: 'small',
-  truncate: false,
 };
 
 const SubtitleWrapper = styled.div`
@@ -50,10 +46,10 @@ const Title = (props: TitleProps) => {
 
 type SubtitleProps = {
   subtitle?: Props['subtitle'];
-  truncate: Props['truncate'];
+  truncate?: Props['truncate'];
 };
 
-const Subtitle = (props: SubtitleProps) => {
+const Subtitle = ({ truncate = false, ...props }: SubtitleProps) => {
   if (!props.subtitle) {
     return null;
   }
@@ -64,7 +60,7 @@ const Subtitle = (props: SubtitleProps) => {
     <SubtitleWrapper>
       <Text.Body
         title={typeof props.subtitle === 'string' ? props.subtitle : undefined}
-        truncate={props.truncate}
+        truncate={truncate}
         tone="secondary"
       >
         {props.subtitle}
@@ -72,25 +68,21 @@ const Subtitle = (props: SubtitleProps) => {
     </SubtitleWrapper>
   );
 };
-Subtitle.defaultProps = {
-  truncate: false,
-};
 
-const PageHeaderTitle = (props: Props) => (
+const PageHeaderTitle = ({
+  titleSize = 'small',
+  truncate = false,
+  ...props
+}: Props) => (
   <div
     css={css`
       overflow: hidden;
     `}
   >
-    <Title
-      title={props.title}
-      titleSize={props.titleSize}
-      truncate={props.truncate}
-    />
-    <Subtitle subtitle={props.subtitle} truncate={props.truncate} />
+    <Title title={props.title} titleSize={titleSize} truncate={truncate} />
+    <Subtitle subtitle={props.subtitle} truncate={truncate} />
   </div>
 );
 PageHeaderTitle.displayName = 'PageHeaderTitle';
-PageHeaderTitle.defaultProps = defaultProps;
 
 export default PageHeaderTitle;

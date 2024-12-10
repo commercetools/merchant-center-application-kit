@@ -17,19 +17,19 @@ type Props = {
   meta?: { [key: string]: unknown };
   dismissAfter?: number;
 };
-const defaultProps: Pick<Props, 'domain' | 'kind'> = {
-  domain: NOTIFICATION_DOMAINS.SIDE,
-  kind: NOTIFICATION_KINDS_SIDE.success,
-};
 
-const Notifier = (props: Props) => {
+const Notifier = ({
+  domain = NOTIFICATION_DOMAINS.SIDE,
+  kind = NOTIFICATION_KINDS_SIDE.success,
+  ...props
+}: Props) => {
   const showNotification = useShowNotification<Props>();
 
   useEffect(() => {
     const notification = showNotification(
       {
-        domain: props.domain,
-        kind: props.kind,
+        domain: domain,
+        kind: kind,
         text: props.text,
       },
       isNumber(props.dismissAfter)
@@ -46,6 +46,5 @@ const Notifier = (props: Props) => {
   return null;
 };
 Notifier.displayName = 'Notifier';
-Notifier.defaultProps = defaultProps;
 
 export default Notifier;

@@ -62,15 +62,12 @@ NotificationIcon.displayName = 'NotificationIcon';
 export type Props = {
   domain: TAppNotificationDomain;
   type: TAppNotificationKind;
-  fixed: boolean;
+  fixed?: boolean;
   onCloseClick?: (event: SyntheticEvent) => void;
   children: ReactNode;
 };
-const defaultProps: Pick<Props, 'fixed'> = {
-  fixed: false,
-};
 
-const Notification = (props: Props) => {
+const Notification = ({ fixed = false, ...props }: Props) => {
   const intl = useIntl();
   const id = useFieldId(undefined, sequentialId);
 
@@ -78,14 +75,14 @@ const Notification = (props: Props) => {
     <div
       role="alertdialog"
       aria-describedby={id}
-      css={getStylesForNotification(props)}
+      css={getStylesForNotification({ fixed, ...props })}
       {...filterDataAttributes(props)}
     >
-      <div id={id} css={getStylesForContent(props)}>
+      <div id={id} css={getStylesForContent({ fixed, ...props })}>
         {props.children}
       </div>
       {props.onCloseClick ? (
-        <div css={getStylesForCloseIcon(props)}>
+        <div css={getStylesForCloseIcon({ fixed, ...props })}>
           <SecondaryIconButton
             label={intl.formatMessage(messages.hideNotification)}
             onClick={props.onCloseClick}
@@ -95,7 +92,7 @@ const Notification = (props: Props) => {
         </div>
       ) : null}
       {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
-        <div css={getStylesForNotificationIcon(props)}>
+        <div css={getStylesForNotificationIcon({ fixed, ...props })}>
           <NotificationIcon type={props.type} color="surface" />
         </div>
       ) : null}
@@ -103,6 +100,5 @@ const Notification = (props: Props) => {
   );
 };
 Notification.displayName = 'Notification';
-Notification.defaultProps = defaultProps;
 
 export default Notification;

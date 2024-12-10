@@ -12,19 +12,23 @@ import {
   type TMenuItemProps,
 } from './navbar-skeleton.styles';
 
-const MenuItem = (props: TMenuItemProps & TNavBarSkeletonProps) => {
+type TMenuItemComponentProps = Omit<TMenuItemProps, 'contentWidth'> &
+  TNavBarSkeletonProps & {
+    contentWidth?: 'narrow' | 'wide';
+  };
+const MenuItem = ({
+  contentWidth = 'wide',
+  ...props
+}: TMenuItemComponentProps) => {
   return (
     <MenuItemContainer
       isExpanded={props.isExpanded}
-      contentWidth={props.contentWidth}
+      contentWidth={contentWidth}
     >
       <MenuItemIcon />
       {props.isExpanded && <MenuItemTitle />}
     </MenuItemContainer>
   );
-};
-MenuItem.defaultProps = {
-  contentWidth: 'wide',
 };
 
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {

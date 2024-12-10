@@ -49,15 +49,11 @@ type Props = {
   labelSecondaryButton?: Label;
   onPrimaryButtonClick: (event: SyntheticEvent) => void;
   onSecondaryButtonClick: (event: SyntheticEvent) => void;
-  hideControls: boolean;
+  hideControls?: boolean;
   iconLeftSecondaryButton?: ReactElement;
 };
 
-const defaultProps: Pick<Props, 'hideControls'> = {
-  hideControls: false,
-};
-
-const FormModalPage = (props: Props) => (
+const FormModalPage = ({ hideControls = false, ...props }: Props) => (
   <CustomFormModalPage
     title={props.title}
     subtitle={props.subtitle}
@@ -68,7 +64,7 @@ const FormModalPage = (props: Props) => (
     topBarPreviousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
-    hideControls={props.hideControls}
+    hideControls={hideControls}
     afterOpenStyles={props.afterOpenStyles}
     formControls={
       <>
@@ -93,7 +89,6 @@ const FormModalPage = (props: Props) => (
   </CustomFormModalPage>
 );
 FormModalPage.displayName = 'FormModalPage';
-FormModalPage.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 FormModalPage.Intl = sharedMessages;

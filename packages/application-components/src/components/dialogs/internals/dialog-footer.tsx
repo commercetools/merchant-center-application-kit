@@ -21,28 +21,23 @@ type Props = {
   labelPrimary: Label;
   onCancel: (event: SyntheticEvent) => void;
   onConfirm: (event: SyntheticEvent) => void;
-  isPrimaryButtonDisabled: boolean;
-  dataAttributesPrimaryButton: { [key: string]: string };
-  dataAttributesSecondaryButton: { [key: string]: string };
+  isPrimaryButtonDisabled?: boolean;
+  dataAttributesPrimaryButton?: { [key: string]: string };
+  dataAttributesSecondaryButton?: { [key: string]: string };
   children?: never;
   iconLeftSecondaryButton?: ReactElement;
   footerContent?: ReactNode;
-};
-const defaultProps: Pick<
-  Props,
-  | 'isPrimaryButtonDisabled'
-  | 'dataAttributesPrimaryButton'
-  | 'dataAttributesSecondaryButton'
-> = {
-  isPrimaryButtonDisabled: false,
-  dataAttributesPrimaryButton: {},
-  dataAttributesSecondaryButton: {},
 };
 
 const getFormattedLabel = (label: Label, intl: IntlShape) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
-const DialogFooter = (props: Props) => {
+const DialogFooter = ({
+  isPrimaryButtonDisabled = false,
+  dataAttributesPrimaryButton = {},
+  dataAttributesSecondaryButton = {},
+  ...props
+}: Props) => {
   const intl = useIntl();
   return (
     <div
@@ -61,13 +56,13 @@ const DialogFooter = (props: Props) => {
             label={getFormattedLabel(props.labelSecondary, intl)}
             onClick={props.onCancel}
             iconLeft={props.iconLeftSecondaryButton}
-            {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+            {...filterDataAttributes(dataAttributesSecondaryButton)}
           />
           <PrimaryButton
             label={getFormattedLabel(props.labelPrimary, intl)}
             onClick={props.onConfirm}
-            isDisabled={props.isPrimaryButtonDisabled}
-            {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+            isDisabled={isPrimaryButtonDisabled}
+            {...filterDataAttributes(dataAttributesPrimaryButton)}
           />
         </Spacings.Inline>
       </Spacings.Inline>
@@ -75,6 +70,5 @@ const DialogFooter = (props: Props) => {
   );
 };
 DialogFooter.displayName = 'DialogFooter';
-DialogFooter.defaultProps = defaultProps;
 
 export default DialogFooter;
