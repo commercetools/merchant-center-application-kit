@@ -87,18 +87,17 @@ type FormDetailPageProps = {
   /**
    * Hides the form controls.
    */
-  hideControls: boolean;
+  hideControls?: boolean;
   /**
    * The Icon for the secondary button label
    */
   iconLeftSecondaryButton?: ReactElement;
 };
 
-const defaultProps: Pick<FormDetailPageProps, 'hideControls'> = {
-  hideControls: false,
-};
-
-const FormDetailPage = (props: FormDetailPageProps) => (
+const FormDetailPage = ({
+  hideControls = false,
+  ...props
+}: FormDetailPageProps) => (
   <CustomFormDetailPage
     title={props.title}
     subtitle={props.subtitle}
@@ -106,7 +105,7 @@ const FormDetailPage = (props: FormDetailPageProps) => (
     customViewLocatorCode={props.customViewLocatorCode}
     previousPathLabel={props.previousPathLabel}
     onPreviousPathClick={props.onPreviousPathClick}
-    hideControls={props.hideControls}
+    hideControls={hideControls}
     formControls={
       <>
         <CustomFormDetailPage.FormSecondaryButton
@@ -129,7 +128,6 @@ const FormDetailPage = (props: FormDetailPageProps) => (
   </CustomFormDetailPage>
 );
 FormDetailPage.displayName = 'FormDetailPage';
-FormDetailPage.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 // Static export of pre-configured page header title component to easily

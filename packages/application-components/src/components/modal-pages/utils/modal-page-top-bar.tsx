@@ -51,23 +51,20 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 type Props = {
-  color: 'surface' | 'neutral';
+  color?: 'surface' | 'neutral';
   currentPathLabel?: string;
-  previousPathLabel: Label;
+  previousPathLabel?: Label;
   hidePathLabel?: boolean;
   onClose: (event: SyntheticEvent) => void;
   children?: never;
 };
-const defaultProps: Pick<
-  Props,
-  'color' | 'previousPathLabel' | 'hidePathLabel'
-> = {
-  color: 'surface',
-  previousPathLabel: messages.back,
-  hidePathLabel: false,
-};
 
-const ModalPageTopBar = (props: Props) => {
+const ModalPageTopBar = ({
+  color = 'surface',
+  previousPathLabel = messages.back,
+  hidePathLabel = false,
+  ...props
+}: Props) => {
   const intl = useIntl();
   return (
     <div
@@ -101,13 +98,13 @@ const ModalPageTopBar = (props: Props) => {
           }
         `}
       >
-        {!props.hidePathLabel && (
+        {!hidePathLabel && (
           <FlatButton
             tone="primary"
             label={
-              typeof props.previousPathLabel === 'string'
-                ? props.previousPathLabel
-                : intl.formatMessage(props.previousPathLabel)
+              typeof previousPathLabel === 'string'
+                ? previousPathLabel
+                : intl.formatMessage(previousPathLabel)
             }
             icon={<AngleLeftIcon size="medium" color="primary" />}
             onClick={props.onClose}
@@ -138,6 +135,5 @@ const ModalPageTopBar = (props: Props) => {
   );
 };
 ModalPageTopBar.displayName = 'ModalPageTopBar';
-ModalPageTopBar.defaultProps = defaultProps;
 
 export default ModalPageTopBar;

@@ -43,11 +43,11 @@ export type TTabHeaderProps = {
   /**
    * If `true`, indicates that the element is in a disabled state.
    */
-  isDisabled: boolean;
+  isDisabled?: boolean;
   /**
    * If `true`, marks the tab as active if the link matches exactly the route.
    */
-  exactPathMatch: boolean;
+  exactPathMatch?: boolean;
 };
 
 const TabLabel = ({ children }: { children?: string }) => {
@@ -58,25 +58,28 @@ const TabLabel = ({ children }: { children?: string }) => {
   );
 };
 
-export const TabHeader = (props: TTabHeaderProps) => {
+export const TabHeader = ({
+  isDisabled = false,
+  exactPathMatch = false,
+  ...props
+}: TTabHeaderProps) => {
   const intl = useIntl();
   const location = useLocation();
   const isActive = Boolean(
     matchPath(location.pathname, {
       // strip the search, otherwise the path won't match
       path: pathWithoutSearch(props.to),
-      exact: props.exactPathMatch,
+      exact: exactPathMatch,
       strict: false,
     })
   );
-  const isDisabled = props.isDisabled;
 
   let label = props.label;
   if (props.intlMessage) {
     label = intl.formatMessage(props.intlMessage);
   }
 
-  warnIfMissingContent(props);
+  warnIfMissingContent({ exactPathMatch, isDisabled, ...props });
 
   return (
     <Link
@@ -92,11 +95,5 @@ export const TabHeader = (props: TTabHeaderProps) => {
 };
 
 TabHeader.displayName = 'TabHeader';
-
-const defaultProps: Pick<TTabHeaderProps, 'isDisabled' | 'exactPathMatch'> = {
-  isDisabled: false,
-  exactPathMatch: false,
-};
-TabHeader.defaultProps = defaultProps;
 
 export default TabHeader;

@@ -6,15 +6,11 @@ import type { TEnhancedStore } from '../../configure-store';
 type Props = {
   id: string;
   reducers: ReducersMapObject;
-  shouldCleanUpOnUnmount: boolean;
+  shouldCleanUpOnUnmount?: boolean;
   children: ReactNode;
 };
 
-const defaultProps: Pick<Props, 'shouldCleanUpOnUnmount'> = {
-  shouldCleanUpOnUnmount: true,
-};
-
-const InjectReducers = (props: Props) => {
+const InjectReducers = ({ shouldCleanUpOnUnmount = true, ...props }: Props) => {
   const [areReducersInjected, setAreReducersInjected] = useState(false);
   const store = useStore() as TEnhancedStore;
 
@@ -26,17 +22,16 @@ const InjectReducers = (props: Props) => {
     setAreReducersInjected(true);
 
     return () => {
-      if (props.shouldCleanUpOnUnmount) {
+      if (shouldCleanUpOnUnmount) {
         store.removeReducers({ id: props.id });
       }
     };
-  }, [props.id, props.reducers, props.shouldCleanUpOnUnmount, store]);
+  }, [props.id, props.reducers, shouldCleanUpOnUnmount, store]);
 
   // Render children only when the plugin reducers have been injected
   if (areReducersInjected) return <>{props.children}</>;
   return null;
 };
 InjectReducers.displayName = 'InjectReducers';
-InjectReducers.defaultProps = defaultProps;
 
 export default InjectReducers;

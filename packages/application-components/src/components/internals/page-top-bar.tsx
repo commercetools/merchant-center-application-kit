@@ -17,20 +17,19 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 type Props = {
-  color: 'surface' | 'neutral';
-  previousPathLabel: Label;
+  color?: 'surface' | 'neutral';
+  previousPathLabel?: Label;
   onClick: (
     event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
   ) => void;
   children?: never;
 };
 
-const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
-  color: 'surface',
-  previousPathLabel: messages.back,
-};
-
-const PageTopBar = (props: Props) => {
+const PageTopBar = ({
+  color = 'surface',
+  previousPathLabel = messages.back,
+  ...props
+}: Props) => {
   const intl = useIntl();
 
   return (
@@ -47,9 +46,9 @@ const PageTopBar = (props: Props) => {
       <FlatButton
         tone="primary"
         label={
-          typeof props.previousPathLabel === 'string'
-            ? props.previousPathLabel
-            : intl.formatMessage(props.previousPathLabel)
+          typeof previousPathLabel === 'string'
+            ? previousPathLabel
+            : intl.formatMessage(previousPathLabel)
         }
         icon={<ListIcon size="medium" color="primary" />}
         onClick={props.onClick}
@@ -58,6 +57,5 @@ const PageTopBar = (props: Props) => {
   );
 };
 PageTopBar.displayName = 'PageTopBar';
-PageTopBar.defaultProps = defaultProps;
 
 export default PageTopBar;

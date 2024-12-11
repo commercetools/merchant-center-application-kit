@@ -27,7 +27,7 @@ type Label = string | MessageDescriptor;
 type TDrawerSize = 10 | 20 | 30;
 
 type TDrawerProps = {
-  size: TDrawerSize;
+  size?: TDrawerSize;
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
@@ -50,19 +50,9 @@ type TDrawerProps = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   labelPrimaryButton?: Label;
   labelSecondaryButton?: Label;
-  onPrimaryButtonClick: (event: SyntheticEvent) => void;
-  onSecondaryButtonClick: (event: SyntheticEvent) => void;
+  onPrimaryButtonClick?: (event: SyntheticEvent) => void;
+  onSecondaryButtonClick?: (event: SyntheticEvent) => void;
   iconLeftSecondaryButton?: ReactElement;
-};
-
-const defaultProps: Pick<
-  TDrawerProps,
-  'size' | 'hideControls' | 'onPrimaryButtonClick' | 'onSecondaryButtonClick'
-> = {
-  size: 10,
-  hideControls: false,
-  onPrimaryButtonClick: () => {},
-  onSecondaryButtonClick: () => {},
 };
 
 const ContentWrapper = styled.div`
@@ -77,7 +67,13 @@ const HeaderWrapper = styled.div`
   border-bottom: 1px solid ${uiKitDesignTokens.colorNeutral90};
 `;
 
-function Drawer(props: TDrawerProps) {
+function Drawer({
+  size = 10,
+  hideControls = false,
+  onPrimaryButtonClick = () => {},
+  onSecondaryButtonClick = () => {},
+  ...props
+}: TDrawerProps) {
   const intl = useIntl();
   return (
     <ModalPage
@@ -85,7 +81,7 @@ function Drawer(props: TDrawerProps) {
       hidePathLabel
       hideTopBar
       onClose={props.onClose}
-      size={props.size}
+      size={size}
       title={props.title}
       afterOpenStyles={props.afterOpenStyles}
       getParentSelector={props.getParentSelector}
@@ -118,20 +114,20 @@ function Drawer(props: TDrawerProps) {
           </Spacings.Inline>
 
           <Spacings.Inline justifyContent="flex-end">
-            {!props.hideControls && props.formControls && props.formControls}
+            {!hideControls && props.formControls && props.formControls}
 
-            {!props.hideControls && !props.formControls && (
+            {!hideControls && !props.formControls && (
               <>
                 <FormSecondaryButton
                   label={props.labelSecondaryButton}
-                  onClick={props.onSecondaryButtonClick}
+                  onClick={onSecondaryButtonClick}
                   isDisabled={props.isSecondaryButtonDisabled}
                   dataAttributes={props.dataAttributesSecondaryButton}
                   iconLeft={props.iconLeftSecondaryButton}
                 />
                 <FormPrimaryButton
                   label={props.labelPrimaryButton}
-                  onClick={props.onPrimaryButtonClick}
+                  onClick={onPrimaryButtonClick}
                   isDisabled={props.isPrimaryButtonDisabled}
                   dataAttributes={props.dataAttributesPrimaryButton}
                 />
@@ -147,7 +143,6 @@ function Drawer(props: TDrawerProps) {
 }
 
 Drawer.displayName = 'Drawer';
-Drawer.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.
 Drawer.FormPrimaryButton = FormPrimaryButton;

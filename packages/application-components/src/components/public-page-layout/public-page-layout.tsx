@@ -36,14 +36,20 @@ type TProps = {
   children: ReactNode;
 };
 
-const PublicPageLayoutContent: FC<TProps> = (props) => {
-  if (props.contentScale === 'wide') {
+const PublicPageLayoutContent: FC<TProps> = ({
+  contentScale = 'normal',
+  ...props
+}) => {
+  if (contentScale === 'wide') {
     return <ContainerColumnWide>{props.children}</ContainerColumnWide>;
   }
   return <ContainerColumn>{props.children}</ContainerColumn>;
 };
 
-const PublicPageLayout: FC<TProps> = (props) => {
+const PublicPageLayout: FC<TProps> = ({
+  contentScale = 'normal',
+  ...props
+}) => {
   return (
     <Container>
       <Spacings.Stack scale="xl" alignItems="center">
@@ -68,10 +74,10 @@ const PublicPageLayout: FC<TProps> = (props) => {
         )}
         <Spacings.Stack scale="xl">
           <PublicPageLayoutContent {...props} />
-          <PublicPageLayoutContent contentScale={props.contentScale}>
+          <PublicPageLayoutContent contentScale={contentScale}>
             <Spacings.Stack
               scale="xs"
-              alignItems={props.contentScale === 'wide' ? 'center' : 'stretch'}
+              alignItems={contentScale === 'wide' ? 'center' : 'stretch'}
             >
               {props.legalMessage && (
                 <Text.Detail tone="secondary">{props.legalMessage}</Text.Detail>
@@ -87,8 +93,5 @@ const PublicPageLayout: FC<TProps> = (props) => {
   );
 };
 PublicPageLayout.displayName = 'PublicPageLayout';
-PublicPageLayout.defaultProps = {
-  contentScale: 'normal',
-};
 
 export default PublicPageLayout;

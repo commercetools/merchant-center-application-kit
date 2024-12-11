@@ -22,8 +22,8 @@ export type TConfirmationDialogProps = {
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
-  labelSecondary: Label;
-  labelPrimary: Label;
+  labelSecondary?: Label;
+  labelPrimary?: Label;
   isPrimaryButtonDisabled?: boolean;
   onCancel: (event: SyntheticEvent) => void;
   onConfirm: (event: SyntheticEvent) => void;
@@ -31,15 +31,12 @@ export type TConfirmationDialogProps = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
 };
-const defaultProps: Pick<
-  TConfirmationDialogProps,
-  'labelSecondary' | 'labelPrimary'
-> = {
-  labelSecondary: sharedMessages.cancel,
-  labelPrimary: sharedMessages.confirm,
-};
 
-const ConfirmationDialog = (props: TConfirmationDialogProps) => (
+const ConfirmationDialog = ({
+  labelSecondary = sharedMessages.cancel,
+  labelPrimary = sharedMessages.confirm,
+  ...props
+}: TConfirmationDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
@@ -52,8 +49,8 @@ const ConfirmationDialog = (props: TConfirmationDialogProps) => (
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
     <DialogFooter
-      labelSecondary={props.labelSecondary}
-      labelPrimary={props.labelPrimary}
+      labelSecondary={labelSecondary}
+      labelPrimary={labelPrimary}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
       onCancel={props.onCancel}
       onConfirm={props.onConfirm}
@@ -63,7 +60,6 @@ const ConfirmationDialog = (props: TConfirmationDialogProps) => (
   </DialogContainer>
 );
 ConfirmationDialog.displayName = 'ConfirmationDialog';
-ConfirmationDialog.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 ConfirmationDialog.Intl = sharedMessages;

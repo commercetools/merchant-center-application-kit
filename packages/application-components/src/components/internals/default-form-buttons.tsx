@@ -17,20 +17,11 @@ type MessageDescriptor = {
 };
 type Label = string | MessageDescriptor;
 type Props = {
-  label: Label;
+  label?: Label;
   onClick: (event: SyntheticEvent) => void;
-  isDisabled: boolean;
-  dataAttributes: { [key: string]: string };
+  isDisabled?: boolean;
+  dataAttributes?: { [key: string]: string };
   children?: never;
-};
-
-const primaryDefaultProps: Pick<
-  Props,
-  'label' | 'isDisabled' | 'dataAttributes'
-> = {
-  label: sharedMessages.confirm,
-  isDisabled: false,
-  dataAttributes: {},
 };
 
 const useFormattedLabel = (label: Label) => {
@@ -43,77 +34,71 @@ type PrimaryButtonProps = {
   iconLeft?: ReactElement;
 } & Props;
 
-const FormPrimaryButton = (props: PrimaryButtonProps) => {
-  const label = useFormattedLabel(props.label);
+const FormPrimaryButton = ({
+  label = sharedMessages.confirm,
+  isDisabled = false,
+  dataAttributes = {},
+  ...props
+}: PrimaryButtonProps) => {
+  const _label = useFormattedLabel(label);
 
   return (
     <PrimaryButton
-      label={label}
+      label={_label}
       onClick={props.onClick}
-      isDisabled={props.isDisabled}
+      isDisabled={isDisabled}
       iconLeft={props.iconLeft}
-      {...filterDataAttributes(props.dataAttributes)}
+      {...filterDataAttributes(dataAttributes)}
     />
   );
 };
 
 FormPrimaryButton.displayName = 'FormPrimaryButton';
-FormPrimaryButton.defaultProps = primaryDefaultProps;
 
 type SecondaryButtonProps = {
   iconLeft?: ReactElement;
 } & Props;
 
-const secondaryDefaultProps: Pick<
-  SecondaryButtonProps,
-  'label' | 'isDisabled' | 'dataAttributes'
-> = {
-  label: sharedMessages.cancel,
-  isDisabled: false,
-  dataAttributes: {},
-};
-
-const FormSecondaryButton = (props: SecondaryButtonProps) => {
-  const label = useFormattedLabel(props.label);
+const FormSecondaryButton = ({
+  label = sharedMessages.cancel,
+  isDisabled = false,
+  dataAttributes = {},
+  ...props
+}: SecondaryButtonProps) => {
+  const _label = useFormattedLabel(label);
 
   return (
     <SecondaryButton
-      label={label}
+      label={_label}
       onClick={props.onClick}
-      isDisabled={props.isDisabled}
+      isDisabled={isDisabled}
       iconLeft={props.iconLeft}
-      {...filterDataAttributes(props.dataAttributes)}
+      {...filterDataAttributes(dataAttributes)}
     />
   );
 };
 
 FormSecondaryButton.displayName = 'FormSecondaryButton';
-FormSecondaryButton.defaultProps = secondaryDefaultProps;
 
-const deleteDefaultProps: Pick<
-  Props,
-  'label' | 'isDisabled' | 'dataAttributes'
-> = {
-  label: sharedMessages.delete,
-  isDisabled: false,
-  dataAttributes: {},
-};
-
-const FormDeleteButton = (props: Props) => {
-  const label = useFormattedLabel(props.label);
+const FormDeleteButton = ({
+  label = sharedMessages.delete,
+  isDisabled = false,
+  dataAttributes = {},
+  ...props
+}: Props) => {
+  const _label = useFormattedLabel(label);
 
   return (
     <IconButton
       icon={<BinLinearIcon />}
-      label={label}
+      label={_label}
       onClick={props.onClick}
-      isDisabled={props.isDisabled}
-      {...filterDataAttributes(props.dataAttributes)}
+      isDisabled={isDisabled}
+      {...filterDataAttributes(dataAttributes)}
     />
   );
 };
 
 FormDeleteButton.displayName = 'FormDeleteButton';
-FormDeleteButton.defaultProps = deleteDefaultProps;
 
 export { FormPrimaryButton, FormSecondaryButton, FormDeleteButton };

@@ -4,8 +4,8 @@ import { designTokens } from '@commercetools-uikit/design-system';
 import { useWarning } from '@commercetools-uikit/utils';
 
 export type TPageContentWide = {
-  columns: '1' | '1/1' | '2/1';
-  gapSize: '10' | '20';
+  columns?: '1' | '1/1' | '2/1';
+  gapSize?: '10' | '20';
   children: ReactNode;
   // @deprecated
   themeParentSelector?: () => HTMLElement | null;
@@ -63,15 +63,18 @@ const Container = styled.div`
   width: 100%;
 `;
 
-function PageContentWide(props: TPageContentWide) {
+function PageContentWide({
+  columns = '1',
+  gapSize = '20',
+  ...props
+}: TPageContentWide) {
   const [leftChild, rightChild] = Children.toArray(props.children);
   const childrenCount = Children.count(props.children);
 
-  const isOneColumnAndMoreThanOneChild =
-    props.columns === '1' && childrenCount > 1;
+  const isOneColumnAndMoreThanOneChild = columns === '1' && childrenCount > 1;
 
   const isTwoColumnsAndMoreThanTwoChildren =
-    props.columns !== '1' && childrenCount > 2;
+    columns !== '1' && childrenCount > 2;
 
   useWarning(
     !isOneColumnAndMoreThanOneChild,
@@ -85,14 +88,14 @@ function PageContentWide(props: TPageContentWide) {
 
   return (
     <Container>
-      <Content columns={props.columns} gapSize={props.gapSize}>
-        {props.columns === '1' ? (
+      <Content columns={columns} gapSize={gapSize}>
+        {columns === '1' ? (
           <>{leftChild}</>
         ) : (
           <>
             <LeftContentColumn>{leftChild}</LeftContentColumn>
             <RightContentColumn>
-              <RightColumnContentWrapper columns={props.columns}>
+              <RightColumnContentWrapper columns={columns}>
                 {rightChild}
               </RightColumnContentWrapper>
             </RightContentColumn>
@@ -102,11 +105,5 @@ function PageContentWide(props: TPageContentWide) {
     </Container>
   );
 }
-
-const defaultProps: Pick<TPageContentWide, 'columns' | 'gapSize'> = {
-  columns: '1',
-  gapSize: '20',
-};
-PageContentWide.defaultProps = defaultProps;
 
 export default PageContentWide;

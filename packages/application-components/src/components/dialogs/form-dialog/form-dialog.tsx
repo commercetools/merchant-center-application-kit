@@ -22,8 +22,8 @@ export type TFormDialogProps = {
   size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   children: ReactNode;
-  labelSecondary: Label;
-  labelPrimary: Label;
+  labelSecondary?: Label;
+  labelPrimary?: Label;
   isPrimaryButtonDisabled?: boolean;
   onSecondaryButtonClick: (event: SyntheticEvent) => void;
   onPrimaryButtonClick: (event: SyntheticEvent) => void;
@@ -33,13 +33,12 @@ export type TFormDialogProps = {
   iconLeftSecondaryButton?: ReactElement;
   footerContent?: ReactNode;
 };
-const defaultProps: Pick<TFormDialogProps, 'labelSecondary' | 'labelPrimary'> =
-  {
-    labelSecondary: sharedMessages.cancel,
-    labelPrimary: sharedMessages.save,
-  };
 
-const FormDialog = (props: TFormDialogProps) => (
+const FormDialog = ({
+  labelSecondary = sharedMessages.cancel,
+  labelPrimary = sharedMessages.save,
+  ...props
+}: TFormDialogProps) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
@@ -52,8 +51,8 @@ const FormDialog = (props: TFormDialogProps) => (
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
     <DialogFooter
-      labelSecondary={props.labelSecondary}
-      labelPrimary={props.labelPrimary}
+      labelSecondary={labelSecondary}
+      labelPrimary={labelPrimary}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
       onCancel={props.onSecondaryButtonClick}
       onConfirm={props.onPrimaryButtonClick}
@@ -65,7 +64,6 @@ const FormDialog = (props: TFormDialogProps) => (
   </DialogContainer>
 );
 FormDialog.displayName = 'FormDialog';
-FormDialog.defaultProps = defaultProps;
 // This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
 // The Intl messages can be used for button labels.
 FormDialog.Intl = sharedMessages;
