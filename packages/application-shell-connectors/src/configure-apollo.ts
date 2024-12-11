@@ -34,7 +34,7 @@ const createApolloLink = (options: TApolloClientOptions = {}) => {
     const queryName = operation.operationName || 'unknownQuery';
 
     // Append the query parameter to the URI
-    operation.setContext(({ uri }) => {
+    operation.setContext(({ uri }: { uri?: string }) => {
       if (!uri) return {};
 
       const separator = uri.indexOf('?') >= 0 ? '&' : '?';
