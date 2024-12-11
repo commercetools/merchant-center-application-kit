@@ -1,5 +1,20 @@
 # @commercetools-frontend/cypress
 
+## 22.37.0
+
+### Minor Changes
+
+- [#3669](https://github.com/commercetools/merchant-center-application-kit/pull/3669) [`5583f0c`](https://github.com/commercetools/merchant-center-application-kit/commit/5583f0cbd9b09e7382a81c57df33dac80420cceb) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade `consmiconfig` to `v9`.
+
+  This is mostly an internal change to load the config using async/await and to use the `cosmiconfig-typescript-loader`.
+
+### Patch Changes
+
+- Updated dependencies [[`5583f0c`](https://github.com/commercetools/merchant-center-application-kit/commit/5583f0cbd9b09e7382a81c57df33dac80420cceb), [`7044f96`](https://github.com/commercetools/merchant-center-application-kit/commit/7044f9651e45c6005dc1138592e8fe3ed8280f36)]:
+  - @commercetools-frontend/application-config@22.37.0
+  - @commercetools-frontend/application-shell@22.37.0
+  - @commercetools-frontend/constants@22.37.0
+
 ## 22.36.0
 
 ### Patch Changes

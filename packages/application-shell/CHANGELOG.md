@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 22.37.0
+
+### Patch Changes
+
+- [#3677](https://github.com/commercetools/merchant-center-application-kit/pull/3677) [`7044f96`](https://github.com/commercetools/merchant-center-application-kit/commit/7044f9651e45c6005dc1138592e8fe3ed8280f36) Thanks [@kark](https://github.com/kark)! - Resolve incorrect parameter handling during project switch
+
+- Updated dependencies [[`5583f0c`](https://github.com/commercetools/merchant-center-application-kit/commit/5583f0cbd9b09e7382a81c57df33dac80420cceb)]:
+  - @commercetools-frontend/application-config@22.37.0
+  - @commercetools-frontend/application-components@22.37.0
+  - @commercetools-frontend/application-shell-connectors@22.37.0
+  - @commercetools-frontend/react-notifications@22.37.0
+  - @commercetools-frontend/permissions@22.37.0
+  - @commercetools-frontend/actions-global@22.37.0
+  - @commercetools-frontend/assets@22.37.0
+  - @commercetools-frontend/browser-history@22.37.0
+  - @commercetools-frontend/constants@22.37.0
+  - @commercetools-frontend/i18n@22.37.0
+  - @commercetools-frontend/l10n@22.37.0
+  - @commercetools-frontend/notifications@22.37.0
+  - @commercetools-frontend/sdk@22.37.0
+  - @commercetools-frontend/sentry@22.37.0
+  - @commercetools-frontend/url-utils@22.37.0
+
 ## 22.36.0
 
 ### Patch Changes
