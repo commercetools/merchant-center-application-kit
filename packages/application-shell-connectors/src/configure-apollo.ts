@@ -29,6 +29,22 @@ const createApolloLink = (options: TApolloClientOptions = {}) => {
     fetch,
   });
 
+  // Add an interceptor link to append queryName as a query parameter
+  const queryParamInterceptor = new ApolloLink((operation, forward) => {
+    const queryName = operation.operationName || 'unknownQuery';
+    const originalUri = `${getMcApiUrl()}/graphql`;
+    const separator = originalUri.indexOf('?') >= 0 ? '&' : '?';
+    const modifiedUri = `${originalUri}${separator}queryName=${encodeURIComponent(
+      queryName
+    )}`;
+
+    operation.setContext({
+      uri: modifiedUri,
+    });
+
+    return forward(operation);
+  });
+
   // The order of links is IMPORTANT!
   // In the request-phase they are executed top to bottom.
   // In the response/phase they are executed bottom to top.
@@ -45,6 +61,7 @@ const createApolloLink = (options: TApolloClientOptions = {}) => {
     ...(isLoggerEnabled() ? [loggerLink] : []),
     // Must be after `errorLink`.
     tokenRetryLink,
+    queryParamInterceptor,
     // Must be last.
     httpLink,
   ]);
