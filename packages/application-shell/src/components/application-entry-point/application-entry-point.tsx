@@ -54,9 +54,10 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
             <Route
               exact={true}
               path="/:projectKey"
-              render={() => (
-                <Redirect to={`/:projectKey/${entryPointUriPath}`} />
-              )}
+              render={({ match }) => {
+                const projectKey = match.params.projectKey;
+                return <Redirect to={`/${projectKey}/${entryPointUriPath}`} />;
+              }}
             />
           )
         }
