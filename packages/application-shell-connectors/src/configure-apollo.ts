@@ -23,10 +23,29 @@ type TApolloClientOptions = {
   restLink?: ApolloLink;
 };
 
+// Inspired by https://www.apollographql.com/docs/react/api/link/apollo-link-http#dynamic-uri
+const customFetch: WindowOrWorkerGlobalScope['fetch'] = (uri, options) => {
+  const searchParams = new URLSearchParams();
+  // We attempt to read the GraphQL `operationName` to append it as a query parameter.
+  // This is only useful for debugging purposes (network tab) and does not have any functional implication.
+  if (options?.body)
+    try {
+      const parsed = JSON.parse(options.body as string);
+      searchParams.set('op', parsed.operationName);
+    } catch {
+      // noop
+    }
+
+  return fetch(
+    searchParams.size > 0 ? `${uri}?${searchParams.toString()}` : uri,
+    options
+  );
+};
+
 const createApolloLink = (options: TApolloClientOptions = {}) => {
   const httpLink = createHttpLink({
     uri: `${getMcApiUrl()}/graphql`,
-    fetch,
+    fetch: customFetch,
   });
 
   // The order of links is IMPORTANT!
