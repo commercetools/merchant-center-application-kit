@@ -1,5 +1,48 @@
 # @commercetools-frontend/application-components
 
+## 22.37.1
+
+### Patch Changes
+
+- [#3676](https://github.com/commercetools/merchant-center-application-kit/pull/3676) [`9504631`](https://github.com/commercetools/merchant-center-application-kit/commit/9504631da837e78cf66c84286d5e7e98c2009148) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - As part of the preparations for the upcoming update to the newest React version, we have updated how we manage components default properties as our current implementation will no longer be supported ([reference](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-proptypes-and-defaultprops)).
+
+  ```ts
+  // BEFORE
+  type TMyComponentProps = {
+    message: string;
+    size: string;
+  }
+
+  function MyComponent(props: TMyComponentProps) {
+   ...
+  }
+
+  MyComponent.defaultProps = {
+    size: 'big'
+  }
+
+
+  // AFTER
+  type TMyComponentProps = {
+    message: string;
+    size?: string; // <--- Note this property is now defined as optional
+  }
+
+  function MyComponent({ size = 'big', ...props }: TMyComponentProps) {
+   ...
+  }
+  ```
+
+- Updated dependencies [[`3bcdba5`](https://github.com/commercetools/merchant-center-application-kit/commit/3bcdba5452b8b7b7940b3e8570dbfd6837e4788b)]:
+  - @commercetools-frontend/application-shell-connectors@22.37.1
+  - @commercetools-frontend/actions-global@22.37.1
+  - @commercetools-frontend/application-config@22.37.1
+  - @commercetools-frontend/assets@22.37.1
+  - @commercetools-frontend/constants@22.37.1
+  - @commercetools-frontend/i18n@22.37.1
+  - @commercetools-frontend/l10n@22.37.1
+  - @commercetools-frontend/sentry@22.37.1
+
 ## 22.37.0
 
 ### Patch Changes

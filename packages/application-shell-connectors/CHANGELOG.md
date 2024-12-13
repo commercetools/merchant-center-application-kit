@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.37.1
+
+### Patch Changes
+
+- [#3679](https://github.com/commercetools/merchant-center-application-kit/pull/3679) [`3bcdba5`](https://github.com/commercetools/merchant-center-application-kit/commit/3bcdba5452b8b7b7940b3e8570dbfd6837e4788b) Thanks [@emmenko](https://github.com/emmenko)! - Append the GraphQL operation name as a query parameter to the `/graphql` endpoint. This is useful for debugging purposes, for example when inspecting the network tab.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.37.1
+  - @commercetools-frontend/browser-history@22.37.1
+  - @commercetools-frontend/constants@22.37.1
+  - @commercetools-frontend/sentry@22.37.1
+
 ## 22.37.0
 
 ### Patch Changes
