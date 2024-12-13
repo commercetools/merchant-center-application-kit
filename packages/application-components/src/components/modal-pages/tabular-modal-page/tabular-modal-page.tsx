@@ -63,14 +63,10 @@ type Props = {
   // Header Props
   subtitle?: string | ReactElement;
   formControls?: ReactNode;
-  hideControls: boolean;
+  hideControls?: boolean;
 };
 
-const defaultProps: Pick<Props, 'hideControls'> = {
-  hideControls: false,
-};
-
-const TabularModalPage = (props: Props) => {
+const TabularModalPage = ({ hideControls = false, ...props }: Props) => {
   const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
     props.customViewLocatorCodes
   );
@@ -102,7 +98,7 @@ const TabularModalPage = (props: Props) => {
             tabControls={props.tabControls}
             formControls={
               <FormControlsContainer>
-                {!props.hideControls && props.formControls && (
+                {!hideControls && props.formControls && (
                   <Spacings.Inline alignItems="flex-end">
                     {props.formControls}
                   </Spacings.Inline>
@@ -123,7 +119,6 @@ const TabularModalPage = (props: Props) => {
   );
 };
 TabularModalPage.displayName = 'TabularModalPage';
-TabularModalPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.
 TabularModalPage.FormPrimaryButton = FormPrimaryButton;

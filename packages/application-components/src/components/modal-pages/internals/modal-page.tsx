@@ -77,27 +77,24 @@ type Props = {
    * @deprecated Not used anymore, as the value is controlled via the Stacking Layer System.
    */
   baseZIndex?: number;
-  getParentSelector: typeof getDefaultParentSelector;
-  shouldDelayOnClose: boolean;
+  getParentSelector?: typeof getDefaultParentSelector;
+  shouldDelayOnClose?: boolean;
   afterOpenStyles?: string | CSSObject;
   // TopBar props:
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
   previousPathLabel?: Label;
   hidePathLabel?: boolean;
-  size: TModalPageSize;
+  size?: TModalPageSize;
   hideTopBar?: boolean;
 };
-const defaultProps: Pick<
-  Props,
-  'getParentSelector' | 'shouldDelayOnClose' | 'size'
-> = {
-  size: 'scale',
-  getParentSelector: getDefaultParentSelector,
-  shouldDelayOnClose: true,
-};
 
-const ModalPage = (props: Props) => {
+const ModalPage = ({
+  size = 'scale',
+  getParentSelector = getDefaultParentSelector,
+  shouldDelayOnClose = true,
+  ...props
+}: Props) => {
   const [forceClose, setForceClose] = useState(false);
   const closingTimer = useRef<NodeJS.Timeout>();
   useEffect(() => {
@@ -110,11 +107,11 @@ const ModalPage = (props: Props) => {
   }, [props.isOpen]);
   const { onClose } = props;
 
-  const TRANSITION_DURATION = stylesBySize[props.size].transitionTime;
+  const TRANSITION_DURATION = stylesBySize[size].transitionTime;
 
   const handleClose = useCallback(
     (event) => {
-      if (props.shouldDelayOnClose) {
+      if (shouldDelayOnClose) {
         // In this case we want the closing animation to be shown
         // and therefore we need wait for it to be completed
         // before calling `onClose`.
@@ -126,7 +123,7 @@ const ModalPage = (props: Props) => {
       }
       onClose && onClose(event);
     },
-    [onClose, props.shouldDelayOnClose, TRANSITION_DURATION]
+    [onClose, shouldDelayOnClose, TRANSITION_DURATION]
   );
   return (
     <ClassNames>
@@ -138,22 +135,24 @@ const ModalPage = (props: Props) => {
           shouldCloseOnEsc={Boolean(props.onClose)}
           overlayElement={getOverlayElement}
           overlayClassName={{
-            base: makeClassName(getOverlayStyles(props)),
+            base: makeClassName(getOverlayStyles({ size, ...props })),
             afterOpen: makeClassName(getAfterOpenOverlayAnimation()),
             beforeClose: makeClassName(getBeforeCloseOverlayAnimation()),
           }}
           className={{
-            base: makeClassName(getContainerStyles(props)),
+            base: makeClassName(getContainerStyles({ size, ...props })),
             afterOpen:
               typeof props.afterOpenStyles === 'string'
                 ? props.afterOpenStyles
                 : makeClassName(
                     props.afterOpenStyles ?? getAfterOpenContainerAnimation()
                   ),
-            beforeClose: makeClassName(getBeforeCloseContainerAnimation(props)),
+            beforeClose: makeClassName(
+              getBeforeCloseContainerAnimation({ size, ...props })
+            ),
           }}
           contentLabel={props.title}
-          parentSelector={props.getParentSelector}
+          parentSelector={getParentSelector}
           ariaHideApp={false}
           // Adjust this value if the (beforeClose) animation duration is changed
           closeTimeoutMS={TRANSITION_DURATION}
@@ -180,6 +179,5 @@ const ModalPage = (props: Props) => {
   );
 };
 ModalPage.displayName = 'ModalPage';
-ModalPage.defaultProps = defaultProps;
 
 export default ModalPage;

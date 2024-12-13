@@ -12,7 +12,8 @@ import {
   type TMenuItemProps,
 } from './navbar-skeleton.styles';
 
-const MenuItem = (props: TMenuItemProps & TNavBarSkeletonProps) => {
+type TMenuItemComponentProps = TMenuItemProps & TNavBarSkeletonProps;
+const MenuItem = (props: TMenuItemComponentProps) => {
   return (
     <MenuItemContainer
       isExpanded={props.isExpanded}
@@ -22,9 +23,6 @@ const MenuItem = (props: TMenuItemProps & TNavBarSkeletonProps) => {
       {props.isExpanded && <MenuItemTitle />}
     </MenuItemContainer>
   );
-};
-MenuItem.defaultProps = {
-  contentWidth: 'wide',
 };
 
 const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
@@ -39,16 +37,24 @@ const NavBarSkeleton = (props: TNavBarSkeletonProps) => {
       <NavBarBody>
         <MenuItemGroup>
           {[...Array(2).keys()].map((index) => (
-            <MenuItem key={index} isExpanded={props.isExpanded} />
+            <MenuItem
+              key={index}
+              contentWidth="wide"
+              isExpanded={props.isExpanded}
+            />
           ))}
         </MenuItemGroup>
         <MenuItemGroup>
           {[...Array(10).keys()].map((index) => (
-            <MenuItem key={index} isExpanded={props.isExpanded} />
+            <MenuItem
+              key={index}
+              contentWidth="wide"
+              isExpanded={props.isExpanded}
+            />
           ))}
         </MenuItemGroup>
         <MenuItemGroup>
-          <MenuItem isExpanded={props.isExpanded} />
+          <MenuItem contentWidth="wide" isExpanded={props.isExpanded} />
         </MenuItemGroup>
       </NavBarBody>
       <NavBarFooter isExpanded={props.isExpanded}>

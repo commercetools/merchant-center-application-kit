@@ -76,18 +76,17 @@ type FormMainPageProps = {
   onSecondaryButtonClick: (event: SyntheticEvent) => void;
 };
 
-const defaultProps: Pick<FormMainPageProps, 'hideControls'> = {
-  hideControls: false,
-};
-
-const FormMainPage = (props: FormMainPageProps) => {
+const FormMainPage = ({
+  hideControls = false,
+  ...props
+}: FormMainPageProps) => {
   return (
     <CustomFormMainPage
       title={props.title}
       subtitle={props.subtitle}
       customTitleRow={props.customTitleRow}
       customViewLocatorCode={props.customViewLocatorCode}
-      hideControls={props.hideControls}
+      hideControls={hideControls}
       formControls={
         <>
           <CustomFormMainPage.FormSecondaryButton
@@ -112,7 +111,6 @@ const FormMainPage = (props: FormMainPageProps) => {
 };
 
 FormMainPage.displayName = 'FormMainPage';
-FormMainPage.defaultProps = defaultProps;
 
 // Static export of pre-configured page header title component to easily
 // use as part of a custom title row

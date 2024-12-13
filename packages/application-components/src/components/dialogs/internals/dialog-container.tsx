@@ -42,20 +42,12 @@ const getOverlayElement: ModalProps['overlayElement'] = (
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
-  size: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
+  size?: 'm' | 'l' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 16 | 'scale';
   zIndex?: number;
   title: ReactNode;
   'aria-label'?: string;
   children: ReactNode;
-  getParentSelector: typeof getDefaultParentSelector;
-};
-const defaultProps: Pick<Props, 'size' | 'getParentSelector'> = {
-  // TODO: t-shirt sizes are deprecated but we need to keep using them for
-  // backwards compatibility and to help with styling migration
-  // After the migration is done, we should change this default value to 13.
-  // t-shirt sizes then can be removed in a next breaking change release
-  size: 'l',
-  getParentSelector: getDefaultParentSelector,
+  getParentSelector?: typeof getDefaultParentSelector;
 };
 
 type GridAreaProps = {
@@ -65,7 +57,11 @@ const GridArea = styled.div<GridAreaProps>`
   grid-area: ${(props) => props.name};
 `;
 
-const DialogContainer = (props: Props) => {
+const DialogContainer = ({
+  size = 13,
+  getParentSelector = getDefaultParentSelector,
+  ...props
+}: Props) => {
   useWarning(
     typeof props.title === 'string' ||
       (typeof props.title !== 'string' && Boolean(props['aria-label'])),
@@ -81,12 +77,12 @@ const DialogContainer = (props: Props) => {
           shouldCloseOnOverlayClick={Boolean(props.onClose)}
           shouldCloseOnEsc={Boolean(props.onClose)}
           overlayElement={getOverlayElement}
-          overlayClassName={makeClassName(getOverlayStyles(props))}
-          className={makeClassName(getModalContentStyles(props))}
+          overlayClassName={makeClassName(getOverlayStyles({ size, ...props }))}
+          className={makeClassName(getModalContentStyles({ size, ...props }))}
           contentLabel={
             typeof props.title === 'string' ? props.title : props['aria-label']
           }
-          parentSelector={props.getParentSelector}
+          parentSelector={getParentSelector}
           ariaHideApp={false}
         >
           <GridArea name="top" />
@@ -140,6 +136,5 @@ const DialogContainer = (props: Props) => {
   );
 };
 DialogContainer.displayName = 'DialogContainer';
-DialogContainer.defaultProps = defaultProps;
 
 export default DialogContainer;

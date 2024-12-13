@@ -282,16 +282,14 @@ MenuItem.displayName = 'MenuItem';
 
 export type MenuItemLinkProps = {
   linkTo?: string;
-  exactMatch: boolean;
+  exactMatch?: boolean;
   children: ReactNode;
   onClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   useFullRedirectsForLinks?: boolean;
   isSubmenuLink?: boolean;
   isSubmenuFocused?: boolean;
 };
-const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
-  exactMatch: false,
-};
+
 const NavLinkWrapper = (props: MenuItemLinkProps) => {
   const Wrapper = props.isSubmenuLink ? TextLinkSublistWrapper : Fragment;
   return <Wrapper>{props.children}</Wrapper>;
@@ -301,15 +299,15 @@ const NavLinkClickableContentWrapper = (props: MenuItemLinkProps) => {
   return <Wrapper>{props.children}</Wrapper>;
 };
 
-const MenuItemLink = (props: MenuItemLinkProps) => {
+const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
   const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     const linkLevel = props.isSubmenuLink ? 'text-link-sublist' : 'text-link';
     return (
-      <NavLinkWrapper {...props}>
+      <NavLinkWrapper exactMatch={exactMatch} {...props}>
         <NavLink
           to={props.linkTo}
-          exact={props.exactMatch}
+          exact={exactMatch}
           activeClassName="highlighted"
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
@@ -324,7 +322,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
             }
           }}
         >
-          <NavLinkClickableContentWrapper {...props}>
+          <NavLinkClickableContentWrapper exactMatch={exactMatch} {...props}>
             {props.children}
           </NavLinkClickableContentWrapper>
         </NavLink>
@@ -334,7 +332,6 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
   return <>{props.children}</>;
 };
 MenuItemLink.displayName = 'MenuItemLink';
-MenuItemLink.defaultProps = menuItemLinkDefaultProps;
 
 const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TNormalizedMenuVisibilities | null,
@@ -362,18 +359,16 @@ type TLongLivedFlag = {
   value: boolean;
   reason?: string;
 };
-const restrictedMenuItemDefaultProps: Pick<
-  RestrictedMenuItemProps,
-  'permissions'
-> = {
-  permissions: [],
-};
+
 function isLongLivedFlag(
   flag: TFlagVariation | TLongLivedFlag
 ): flag is TLongLivedFlag {
   return typeof (flag as TLongLivedFlag)?.value === 'boolean';
 }
-const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
+const RestrictedMenuItem = ({
+  permissions = [],
+  ...props
+}: RestrictedMenuItemProps) => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
   const flagVariation = useFlagVariation(props.featureToggle);
@@ -386,10 +381,10 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
     return null;
 
   const permissionsWrapper =
-    (Array.isArray(props.permissions) && props.permissions.length > 0) ||
+    (Array.isArray(permissions) && permissions.length > 0) ||
     (Array.isArray(props.dataFences) && props.dataFences.length > 0) ? (
       <RestrictedByPermissions
-        permissions={props.permissions}
+        permissions={permissions}
         actionRights={props.actionRights}
         dataFences={props.dataFences}
         selectDataFenceData={(demandedDataFence) => {
@@ -423,7 +418,6 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
   return permissionsWrapper;
 };
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
-RestrictedMenuItem.defaultProps = restrictedMenuItemDefaultProps;
 
 type MenuLabelProps = {
   labelAllLocales: TLocalizedField[];

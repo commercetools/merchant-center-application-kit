@@ -45,10 +45,6 @@ export class SdkGet extends Component<Props, State> {
   static errorHandler: StaticErrorHandler = (error: TSdkError) => {
     throw error;
   };
-  static defaultProps: Pick<Props, 'actionCreatorArgs' | 'shouldRefetch'> = {
-    actionCreatorArgs: [],
-    shouldRefetch: (prevArgs, nextArgs) => !deepEqual(prevArgs, nextArgs),
-  };
   state = {
     // We want the component to have a loading state by default, so we
     // keep track of whether the first request has completed.
@@ -58,6 +54,11 @@ export class SdkGet extends Component<Props, State> {
     requestsInFlight: 0,
     result: undefined,
     error: undefined,
+    actionCreatorArgs: [],
+    shouldRefetch: (
+      prevArgs: TActionCreatorArgs,
+      nextArgs: TActionCreatorArgs
+    ) => !deepEqual(prevArgs, nextArgs),
   };
   isComponentMounted = false;
   changeRequestsInFlight = (delta: number) => {

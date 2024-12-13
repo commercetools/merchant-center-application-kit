@@ -49,18 +49,17 @@ type TTabularMainPageProps = {
   /**
    * Determines if the form controls should be rendered.
    */
-  hideControls: boolean;
+  hideControls?: boolean;
   /**
    * These codes are used to configure which Custom Views are available for every tab.
    */
   customViewLocatorCodes?: Record<string, LocationDescriptor>;
 };
 
-const defaultProps: Pick<TTabularMainPageProps, 'hideControls'> = {
-  hideControls: false,
-};
-
-const TabularMainPage = (props: TTabularMainPageProps) => {
+const TabularMainPage = ({
+  hideControls = false,
+  ...props
+}: TTabularMainPageProps) => {
   const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
     props.customViewLocatorCodes
   );
@@ -84,7 +83,7 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
           tabControls={props.tabControls}
           formControls={
             <FormControlsContainer>
-              {!props.hideControls && props.formControls && (
+              {!hideControls && props.formControls && (
                 <Spacings.Inline alignItems="flex-end">
                   {props.formControls}
                 </Spacings.Inline>
@@ -110,7 +109,6 @@ const TabularMainPage = (props: TTabularMainPageProps) => {
   );
 };
 TabularMainPage.displayName = 'TabularMainPage';
-TabularMainPage.defaultProps = defaultProps;
 // Static export of pre-configured form control buttons to easily re-use
 // them in the custom controls.
 TabularMainPage.FormPrimaryButton = FormPrimaryButton;
