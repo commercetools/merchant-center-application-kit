@@ -218,20 +218,17 @@ async function reactDefaultPropsMigration(
         if (defaultPropsNode.type === 'Identifier') {
           //  REFERENCE -- MyComponent.defaultProps: defaultProps
           // 1. Look for the identifier declaration
-          const defaultPropsDeclaration = root
-            .find(j.VariableDeclarator, {
-              id: { type: 'Identifier', name: defaultPropsNode.name },
-            })
-            .nodes()[0];
+          const defaultPropsDeclarations = root.find(j.VariableDeclarator, {
+            id: { type: 'Identifier', name: defaultPropsNode.name },
+          });
 
-          if (defaultPropsDeclaration) {
+          if (defaultPropsDeclarations.size() === 1) {
             // 2. Extract default props keys/values
             defaultPropsMap = extractDefaultPropsFromNode(
-              defaultPropsDeclaration.init as ObjectExpression
+              defaultPropsDeclarations.nodes()[0].init as ObjectExpression
             );
             // 3. Remove the identifier declaration
-            // defaultPropsDeclaration.remove();
-            j(defaultPropsDeclaration).remove();
+            defaultPropsDeclarations.remove();
           } else {
             console.warn(
               `[WARNING]: Could not find defaultProps declaration for "${componentName}"`
@@ -247,6 +244,91 @@ async function reactDefaultPropsMigration(
               path
             ).toSource()}`
           );
+        }
+
+        // Update the component function signature
+        //   function MyComnponent(props) { ... }
+        const functionComponentDeclaration = root.find(j.FunctionDeclaration, {
+          id: { name: componentName },
+        });
+        console.log('///---> ', {
+          componentName,
+          functionComponentDeclaration: functionComponentDeclaration.size(),
+        });
+        if (functionComponentDeclaration.length === 1) {
+          console.log(
+            'functionComponentDeclaration:',
+            j(functionComponentDeclaration.nodes()[0]).toSource()
+          );
+        } else {
+          //   const MyComnponent = (props) => { ... }
+          const variableComponentDeclaration = root.find(
+            j.VariableDeclaration,
+            {
+              declarations: [
+                {
+                  id: { name: componentName },
+                },
+              ],
+            }
+          );
+          if (variableComponentDeclaration.length === 1) {
+            // init: ArrowFunctionExpression
+            //   params: ObjectPattern
+            //     properties: Array<ObjectProperty>
+            //       type: ObjectProperty
+            //       type: RestElement
+            //   params: Identifier
+            const functionFirstParamNode =
+              variableComponentDeclaration.nodes()[0].declarations[0];
+
+            //   const MyComnponent = ({ prop1, ...props }) => { ... }
+            if (
+              functionFirstParamNode.type === 'VariableDeclarator' &&
+              functionFirstParamNode.init?.type === 'ArrowFunctionExpression'
+            ) {
+              switch (functionFirstParamNode.init.params[0].type) {
+                //   const MyComnponent = ({ prop1, ...props }) => { ... }
+                case 'ObjectPattern':
+                  const functionFirstParam =
+                    functionFirstParamNode.init.params[0];
+                  // TODO: Add the default props to the already existing destructured object
+                  break;
+                //   const MyComnponent = (props) => { ... }
+                case 'Identifier':
+                  const refactoredParameter = j.objectPattern([
+                    ...Object.entries(defaultPropsMap).map(([key, value]) => {
+                      const prop = j.objectProperty(
+                        j.identifier(key),
+                        j.assignmentPattern(
+                          j.identifier(key),
+                          j.literal(value as string)
+                        )
+                      );
+                      prop.shorthand = true;
+                      return prop;
+                    }),
+                    j.spreadProperty(j.identifier('props')),
+                  ]);
+
+                  // Make sure the refactored parameter has the same type annotation
+                  // as the original one
+                  refactoredParameter.typeAnnotation =
+                    functionFirstParamNode.init.params[0].typeAnnotation;
+                  // Replace the original simple parameter with the refactored (destructured object) one
+                  functionFirstParamNode.init.params[0] = refactoredParameter;
+                  break;
+                default:
+                  console.warn(
+                    `[WARNING]: Could not parse component function first parameter "${componentName}"`
+                  );
+              }
+            } else {
+              console.warn(
+                `[WARNING]: Could parse component function first parameter "${componentName}"`
+              );
+            }
+          }
         }
 
         // Remove the defaultProps assignment
@@ -266,6 +348,7 @@ async function reactDefaultPropsMigration(
 
   if (!options.dry) {
     // Format output code with prettier
+    // return null;
     const prettierConfig = await prettier.resolveConfig(file.path);
     return prettier.format(root.toSource(), prettierConfig!);
   } else {
