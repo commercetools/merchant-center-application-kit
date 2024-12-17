@@ -3,10 +3,12 @@ import {
   AssignmentExpression,
   ASTPath,
   CallExpression,
+  Collection,
   FileInfo,
   JSCodeshift,
   MemberExpression,
   ObjectExpression,
+  PropertyPattern,
   TSTypeAliasDeclaration,
 } from 'jscodeshift';
 import prettier from 'prettier';
@@ -35,7 +37,7 @@ function replacePropsUsage({
 }: {
   j: JSCodeshift;
   defaultPropsKeys: string[];
-  scope: JSCodeshift;
+  scope: Collection;
 }) {
   /*
     Next code block replaces destructured props usage in the component body.
@@ -137,7 +139,7 @@ function updateComponentTypes({
   destructuredKeys,
 }: {
   j: JSCodeshift;
-  root: JSCodeshift;
+  root: Collection;
   typeName: string;
   destructuredKeys: string[];
 }) {
@@ -163,6 +165,66 @@ function updateComponentTypes({
     });
 }
 
+/*
+  This helper transforms the component function signature to use a destructured object
+  as first parameter, so we can append the default props to it.
+  Example:
+  ```
+  // BEFORE
+  const MyComponent = (props) => { ... }
+
+  // AFTER
+  const MyComponent = ({ prop1, ...props }) => { ... }
+  ```
+*/
+function transformComponentFunctionSignature({
+  functionPropsParam,
+  defaultPropsMap,
+  componentName,
+  j,
+}: {
+  functionPropsParam: PropertyPattern['pattern'];
+  defaultPropsMap: Record<string, unknown>;
+  componentName: string;
+  j: JSCodeshift;
+}): PropertyPattern['pattern'] {
+  let refactoredParameter: PropertyPattern['pattern'];
+  switch (functionPropsParam.type) {
+    // In this case, the component already has a destructured object as first parameter
+    // so we need to append the defaultProps to it
+    //   const MyComnponent = ({ prop1, ...props }) => { ... }
+    case 'ObjectPattern':
+      refactoredParameter = functionPropsParam;
+      refactoredParameter.properties = [
+        ...transformDefaultPropsToAST(defaultPropsMap, j),
+        ...functionPropsParam.properties,
+      ];
+      break;
+    // In this case, the component has a simple parameter as first parameter
+    // so we need to refactor it to a destructured object
+    //   const MyComnponent = (props) => { ... }
+    case 'Identifier':
+      refactoredParameter = j.objectPattern([
+        ...transformDefaultPropsToAST(defaultPropsMap, j),
+        j.spreadProperty(j.identifier('props')),
+      ]);
+
+      // Make sure the refactored parameter has the same type annotation
+      // as the original one
+      refactoredParameter.typeAnnotation = functionPropsParam.typeAnnotation;
+      break;
+    default:
+      console.warn(
+        `[WARNING]: Could not parse component function first parameter "${componentName}"`
+      );
+  }
+
+  return refactoredParameter!;
+}
+
+/*
+  This helper extracts the default props keys/values from the defaultProps object node
+*/
 function extractDefaultPropsFromNode(
   defaultPropsNode: ObjectExpression
 ): Record<string, unknown> {
@@ -179,6 +241,24 @@ function extractDefaultPropsFromNode(
     }
     return acc;
   }, {} as Record<string, unknown>);
+}
+
+/*
+  This helper transforms the default props keys/values to an AST representation
+  so we can easily append them to the component function signature
+*/
+function transformDefaultPropsToAST(
+  defaultPropsMap: Record<string, unknown>,
+  j: JSCodeshift
+) {
+  return Object.entries(defaultPropsMap).map(([key, value]) => {
+    const prop = j.objectProperty(
+      j.identifier(key),
+      j.assignmentPattern(j.identifier(key), j.literal(value as string))
+    );
+    prop.shorthand = true;
+    return prop;
+  });
 }
 
 async function reactDefaultPropsMigration(
@@ -211,23 +291,25 @@ async function reactDefaultPropsMigration(
         const componentName = path.node.left.object.name;
         const defaultPropsNode = path.node.right;
         let defaultPropsMap: Record<string, unknown> = {};
+        let functionScope: Collection;
 
+        // 2. We now extract the default props values
         // Default props can be defined inline or as a reference to another object
         //  INLINE -- MyComponent.defaultProps: { prop1: 'value1', prop2: 'value2' }
         //  REFERENCE -- MyComponent.defaultProps: defaultProps
         if (defaultPropsNode.type === 'Identifier') {
           //  REFERENCE -- MyComponent.defaultProps: defaultProps
-          // 1. Look for the identifier declaration
+          // A) Look for the identifier declaration
           const defaultPropsDeclarations = root.find(j.VariableDeclarator, {
             id: { type: 'Identifier', name: defaultPropsNode.name },
           });
 
           if (defaultPropsDeclarations.size() === 1) {
-            // 2. Extract default props keys/values
+            // B) Extract default props keys/values
             defaultPropsMap = extractDefaultPropsFromNode(
               defaultPropsDeclarations.nodes()[0].init as ObjectExpression
             );
-            // 3. Remove the identifier declaration
+            // C) Remove the identifier declaration
             defaultPropsDeclarations.remove();
           } else {
             console.warn(
@@ -246,22 +328,29 @@ async function reactDefaultPropsMigration(
           );
         }
 
-        // Update the component function signature
+        // 3. Next we update the component function signature
+        // We first look for classic function declarations
         //   function MyComnponent(props) { ... }
         const functionComponentDeclaration = root.find(j.FunctionDeclaration, {
           id: { name: componentName },
         });
-        console.log('///---> ', {
-          componentName,
-          functionComponentDeclaration: functionComponentDeclaration.size(),
-        });
         if (functionComponentDeclaration.length === 1) {
-          console.log(
-            'functionComponentDeclaration:',
-            j(functionComponentDeclaration.nodes()[0]).toSource()
-          );
+          functionComponentDeclaration.nodes()[0].params[0] =
+            transformComponentFunctionSignature({
+              functionPropsParam:
+                functionComponentDeclaration.nodes()[0].params[0],
+              defaultPropsMap,
+              componentName,
+              j,
+            });
+
+          // Get the function body scope so we only do the replacement
+          // within the component function we're currently processing
+          functionScope = j(functionComponentDeclaration.nodes()[0].body);
         } else {
+          // If we don't find a function declaration, we look for arrow function declarations
           //   const MyComnponent = (props) => { ... }
+          //   const MyComnponent = ({ prop1, ...props }) => { ... }
           const variableComponentDeclaration = root.find(
             j.VariableDeclaration,
             {
@@ -273,56 +362,24 @@ async function reactDefaultPropsMigration(
             }
           );
           if (variableComponentDeclaration.length === 1) {
-            // init: ArrowFunctionExpression
-            //   params: ObjectPattern
-            //     properties: Array<ObjectProperty>
-            //       type: ObjectProperty
-            //       type: RestElement
-            //   params: Identifier
             const functionFirstParamNode =
               variableComponentDeclaration.nodes()[0].declarations[0];
 
-            //   const MyComnponent = ({ prop1, ...props }) => { ... }
             if (
               functionFirstParamNode.type === 'VariableDeclarator' &&
               functionFirstParamNode.init?.type === 'ArrowFunctionExpression'
             ) {
-              switch (functionFirstParamNode.init.params[0].type) {
-                //   const MyComnponent = ({ prop1, ...props }) => { ... }
-                case 'ObjectPattern':
-                  const functionFirstParam =
-                    functionFirstParamNode.init.params[0];
-                  // TODO: Add the default props to the already existing destructured object
-                  break;
-                //   const MyComnponent = (props) => { ... }
-                case 'Identifier':
-                  const refactoredParameter = j.objectPattern([
-                    ...Object.entries(defaultPropsMap).map(([key, value]) => {
-                      const prop = j.objectProperty(
-                        j.identifier(key),
-                        j.assignmentPattern(
-                          j.identifier(key),
-                          j.literal(value as string)
-                        )
-                      );
-                      prop.shorthand = true;
-                      return prop;
-                    }),
-                    j.spreadProperty(j.identifier('props')),
-                  ]);
+              functionFirstParamNode.init.params[0] =
+                transformComponentFunctionSignature({
+                  functionPropsParam: functionFirstParamNode.init.params[0],
+                  defaultPropsMap,
+                  componentName,
+                  j,
+                });
 
-                  // Make sure the refactored parameter has the same type annotation
-                  // as the original one
-                  refactoredParameter.typeAnnotation =
-                    functionFirstParamNode.init.params[0].typeAnnotation;
-                  // Replace the original simple parameter with the refactored (destructured object) one
-                  functionFirstParamNode.init.params[0] = refactoredParameter;
-                  break;
-                default:
-                  console.warn(
-                    `[WARNING]: Could not parse component function first parameter "${componentName}"`
-                  );
-              }
+              // Get the function body scope so we only do the replacement
+              // within the component function we're currently processing
+              functionScope = j(functionFirstParamNode.init.body);
             } else {
               console.warn(
                 `[WARNING]: Could parse component function first parameter "${componentName}"`
@@ -331,13 +388,24 @@ async function reactDefaultPropsMigration(
           }
         }
 
-        // Remove the defaultProps assignment
-        j(path).remove();
+        // 4. Refactor the usages of the default props in the body of the component
+        replacePropsUsage({
+          j,
+          defaultPropsKeys: Object.keys(defaultPropsMap),
+          scope: functionScope!,
+        });
 
-        console.log('   //---> defaultProps:', defaultPropsMap);
+        // 5. Update the component TS type definition so we make sure the default props are optional
+        updateComponentTypes({
+          j,
+          root,
+          typeName: `${componentName}Props`,
+          destructuredKeys: Object.keys(defaultPropsMap),
+        });
+
+        // 6. Remove the defaultProps assignment from the component
+        j(path).remove();
       }
-      // const foo = j(path);
-      // console.log('   //---> defaultProps:', foo.toSource());
     });
 
   // Do not return anything if no changes were applied
@@ -348,7 +416,6 @@ async function reactDefaultPropsMigration(
 
   if (!options.dry) {
     // Format output code with prettier
-    // return null;
     const prettierConfig = await prettier.resolveConfig(file.path);
     return prettier.format(root.toSource(), prettierConfig!);
   } else {
