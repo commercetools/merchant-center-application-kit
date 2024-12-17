@@ -52,7 +52,7 @@ $ npx @commercetools-frontend/codemod@latest redesign-cleanup 'src/**/*.{jsx,tsx
 
 ### `react-default-props-migration`
 
-Migrates the way React Components `defaultProps` are used to comply with the new pattern.
+Migrates the way React Components `defaultProps` to use JavaScript default parameters instead. This is needed for React v18 or later.
 Example:
 
 ```jsx
