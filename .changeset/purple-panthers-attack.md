@@ -2,7 +2,7 @@
 '@commercetools-frontend/codemod': minor
 ---
 
-There's a new codemod which helps migrating the way React Components `defaultProps` are used.
+Introduces a new codemod which helps migrating away from React's `defaultProps` to `prop` destructuring.
 
 This is how the change looks like:
 
