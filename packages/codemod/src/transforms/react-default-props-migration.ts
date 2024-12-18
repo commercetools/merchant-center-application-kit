@@ -33,6 +33,7 @@ function resolvePropsTypescriptType(
   ) {
     return propsParam.typeAnnotation.typeAnnotation.typeName.name;
   }
+  return undefined;
 }
 
 /*
