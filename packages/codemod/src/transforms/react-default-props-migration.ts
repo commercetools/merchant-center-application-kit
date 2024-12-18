@@ -251,14 +251,21 @@ function extractDefaultPropsFromNode(
   defaultPropsNode: ObjectExpression
 ): Record<string, unknown> {
   return defaultPropsNode.properties.reduce((acc, prop) => {
-    if (
-      prop.type === 'ObjectProperty' &&
-      'name' in prop.key &&
-      'value' in prop.value
-    ) {
+    if (prop.type === 'ObjectProperty' && prop.key.type === 'Identifier') {
+      let propValue: unknown;
+      if (prop.value.type === 'ArrayExpression') {
+        propValue = prop.value.elements.map((element) => {
+          return element && 'value' in element ? element.value : undefined;
+        });
+      } else if (prop.value.type === 'ObjectExpression') {
+        propValue = extractDefaultPropsFromNode(prop.value);
+      } else if ('value' in prop.value) {
+        propValue = prop.value.value;
+      }
+
       return {
         ...acc,
-        [prop.key.name as string]: prop.value.value,
+        [prop.key.name as string]: propValue,
       };
     }
     return acc;
@@ -267,19 +274,46 @@ function extractDefaultPropsFromNode(
 
 /*
   This helper transforms the default props keys/values to an AST representation
-  so we can easily append them to the component function signature
+  so we can easily append them to the component function signature.
+
+  It ONLY support properties of primitive types (string, number, boolean, null)
+  or array/object with primitive types.
+  Example:
+  ```
+  const defaultProps = {
+    prop1: 'value1',
+    prop2: 42,
+    prop3: true,
+    prop5: ['value1', 'value2'],
+    prop6: { key1: 'value1', key2: 44 },
+  }
+  ```
 */
 function transformDefaultPropsToAST(
   defaultPropsMap: Record<string, unknown>,
   j: JSCodeshift
 ) {
   return Object.entries(defaultPropsMap).map(([key, value]) => {
-    const prop = j.objectProperty(
+    let valueNode;
+    if (Array.isArray(value)) {
+      // Transform array into array of Literal nodes
+      valueNode = j.arrayExpression(value.map((item) => j.literal(item)));
+    } else if (typeof value === 'object' && value !== null) {
+      // Transform object into array of ObjectProperty nodes
+      const properties = Object.entries(value).map(([objKey, objValue]) =>
+        j.objectProperty(j.identifier(objKey), j.literal(objValue))
+      );
+      valueNode = j.objectExpression(properties);
+    } else {
+      valueNode = j.literal(value as string | number | boolean | null);
+    }
+
+    const propNode = j.objectProperty(
       j.identifier(key),
-      j.assignmentPattern(j.identifier(key), j.literal(value as string))
+      j.assignmentPattern(j.identifier(key), valueNode)
     );
-    prop.shorthand = true;
-    return prop;
+    propNode.shorthand = true;
+    return propNode;
   });
 }
 
