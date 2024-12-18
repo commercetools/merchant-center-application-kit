@@ -15,6 +15,27 @@ import prettier from 'prettier';
 import { TRunnerOptions } from '../types';
 
 /*
+  Given the component function parameter description, we extract the
+  Typescript type name (if any).
+
+  Somethibng like this:
+    (props: MyComponentProps) -> MyComponentProps
+*/
+function resolvePropsTypescriptType(
+  propsParam: PropertyPattern['pattern']
+): string | undefined {
+  if (
+    propsParam.type === 'ObjectPattern' &&
+    propsParam.typeAnnotation &&
+    propsParam.typeAnnotation.type === 'TSTypeAnnotation' &&
+    propsParam.typeAnnotation.typeAnnotation.type === 'TSTypeReference' &&
+    propsParam.typeAnnotation.typeAnnotation.typeName.type === 'Identifier'
+  ) {
+    return propsParam.typeAnnotation.typeAnnotation.typeName.name;
+  }
+}
+
+/*
   This helper takes care of replacing the defaultProps usage in the component body
   Previously the component code was relying on the props object to access the default values
   but now the default props are destructured in the function signature
@@ -290,6 +311,7 @@ async function reactDefaultPropsMigration(
         //  defaultProps: MyComponent.defaultProps = defaultProps;
         const componentName = path.node.left.object.name;
         const defaultPropsNode = path.node.right;
+        let componentPropsTypescriptType: string | undefined; // Only TypeScript files have type annotations
         let defaultPropsMap: Record<string, unknown> = {};
         let functionScope: Collection;
 
@@ -344,6 +366,11 @@ async function reactDefaultPropsMigration(
               j,
             });
 
+          // Extract the component props TS type name
+          componentPropsTypescriptType = resolvePropsTypescriptType(
+            functionComponentDeclaration.nodes()[0].params[0]
+          );
+
           // Get the function body scope so we only do the replacement
           // within the component function we're currently processing
           functionScope = j(functionComponentDeclaration.nodes()[0].body);
@@ -377,6 +404,11 @@ async function reactDefaultPropsMigration(
                   j,
                 });
 
+              // Extract the component props TS type name
+              componentPropsTypescriptType = resolvePropsTypescriptType(
+                functionFirstParamNode.init.params[0]
+              );
+
               // Get the function body scope so we only do the replacement
               // within the component function we're currently processing
               functionScope = j(functionFirstParamNode.init.body);
@@ -396,12 +428,15 @@ async function reactDefaultPropsMigration(
         });
 
         // 5. Update the component TS type definition so we make sure the default props are optional
-        updateComponentTypes({
-          j,
-          root,
-          typeName: `${componentName}Props`,
-          destructuredKeys: Object.keys(defaultPropsMap),
-        });
+        //  (not needed for Javascript files)
+        if (componentPropsTypescriptType) {
+          updateComponentTypes({
+            j,
+            root,
+            typeName: componentPropsTypescriptType,
+            destructuredKeys: Object.keys(defaultPropsMap),
+          });
+        }
 
         // 6. Remove the defaultProps assignment from the component
         j(path).remove();
