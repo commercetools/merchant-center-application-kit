@@ -17,6 +17,13 @@ import { TRunnerOptions } from '../types';
 
 type TDefaultPropsMap = Record<string, ExpressionStatement['expression']>;
 
+// When adjusting the component body where the previous props object was used
+// we don't need to adjust the function calls that are listed here
+const IGNORED_FUNCTIONS_ON_BODY_ADJUSTMENTS = [
+  'filterAriaAttributes',
+  'filterDataAttributes',
+];
+
 /*
   Given the component function parameter description, we extract the
   Typescript type name (if any).
@@ -111,6 +118,13 @@ function replacePropsUsage({
   */
   scope
     .find(j.CallExpression, {
+      // There are some functions that don't need to be adjusted
+      // (example: filterAriaAttributes, filterDataAttributes)
+      callee: {
+        type: 'Identifier',
+        name: (name: string) =>
+          !IGNORED_FUNCTIONS_ON_BODY_ADJUSTMENTS.includes(name),
+      },
       arguments: [{ type: 'Identifier', name: 'props' }],
     })
     .forEach((callPath: ASTPath<CallExpression>) => {
@@ -247,6 +261,7 @@ function transformComponentFunctionSignature({
   j: JSCodeshift;
 }): PropertyPattern['pattern'] {
   let refactoredParameter: PropertyPattern['pattern'];
+  const defaultPropsKeys = Object.keys(defaultPropsMap);
   switch (functionPropsParam.type) {
     // In this case, the component already has a destructured object as first parameter
     // so we need to append the defaultProps to it
@@ -255,7 +270,14 @@ function transformComponentFunctionSignature({
       refactoredParameter = functionPropsParam;
       refactoredParameter.properties = [
         ...transformDefaultPropsToAST(defaultPropsMap, j),
-        ...functionPropsParam.properties,
+        // If the destructured object already had one of the default props, filter it out
+        ...functionPropsParam.properties.filter((prop) => {
+          return (
+            prop.type !== 'ObjectProperty' ||
+            prop.key.type !== 'Identifier' ||
+            !defaultPropsKeys.includes(prop.key.name)
+          );
+        }),
       ];
       break;
     // In this case, the component has a simple parameter as first parameter
@@ -383,6 +405,7 @@ async function reactDefaultPropsMigration(
               path
             ).toSource()}`
           );
+          return;
         }
 
         // 3. Next we update the component function signature
@@ -451,7 +474,13 @@ async function reactDefaultPropsMigration(
               console.warn(
                 `[WARNING]: Could parse component function first parameter "${componentName}"`
               );
+              return;
             }
+          } else {
+            console.warn(
+              `[WARNING]: Could not find component declaration for "${componentName}" (class component are ignored)`
+            );
+            return;
           }
         }
 
