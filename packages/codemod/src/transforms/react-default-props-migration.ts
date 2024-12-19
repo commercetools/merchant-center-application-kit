@@ -4,6 +4,7 @@ import {
   ASTPath,
   CallExpression,
   Collection,
+  ExpressionStatement,
   FileInfo,
   JSCodeshift,
   MemberExpression,
@@ -13,6 +14,8 @@ import {
 } from 'jscodeshift';
 import prettier from 'prettier';
 import { TRunnerOptions } from '../types';
+
+type TDefaultPropsMap = Record<string, ExpressionStatement['expression']>;
 
 /*
   Given the component function parameter description, we extract the
@@ -127,6 +130,39 @@ function replacePropsUsage({
       // Replace the 'props' argument with the destructured object
       callPath.node.arguments[0] = objectExpression;
     });
+
+  /*
+    Next code block replaces props spread in JSX elements
+    ```
+      // BEFORE
+      const MyComponent = (props) => {
+        return <SubComponent {...props} />
+      }
+
+      // AFTER
+      const MyComponent = ({ prop1, ...props }) => {
+        return <SubComponent prop1={prop1} prop2={prop2} {...props} />
+      }
+    ```
+  */
+  scope
+    .find(j.JSXSpreadAttribute, {
+      argument: { type: 'Identifier', name: 'props' },
+    })
+    .forEach((path) => {
+      const attributes = defaultPropsKeys.map((key) =>
+        j.jsxAttribute(
+          j.jsxIdentifier(key),
+          j.jsxExpressionContainer(j.identifier(key))
+        )
+      );
+
+      // Replace the spread with individual attributes
+      j(path).replaceWith([
+        ...attributes,
+        j.jsxSpreadAttribute(j.identifier('props')),
+      ]);
+    });
 }
 
 /*
@@ -206,7 +242,7 @@ function transformComponentFunctionSignature({
   j,
 }: {
   functionPropsParam: PropertyPattern['pattern'];
-  defaultPropsMap: Record<string, unknown>;
+  defaultPropsMap: TDefaultPropsMap;
   componentName: string;
   j: JSCodeshift;
 }): PropertyPattern['pattern'] {
@@ -249,68 +285,32 @@ function transformComponentFunctionSignature({
 */
 function extractDefaultPropsFromNode(
   defaultPropsNode: ObjectExpression
-): Record<string, unknown> {
+): TDefaultPropsMap {
   return defaultPropsNode.properties.reduce((acc, prop) => {
     if (prop.type === 'ObjectProperty' && prop.key.type === 'Identifier') {
-      let propValue: unknown;
-      if (prop.value.type === 'ArrayExpression') {
-        propValue = prop.value.elements.map((element) => {
-          return element && 'value' in element ? element.value : undefined;
-        });
-      } else if (prop.value.type === 'ObjectExpression') {
-        propValue = extractDefaultPropsFromNode(prop.value);
-      } else if ('value' in prop.value) {
-        propValue = prop.value.value;
-      }
-
       return {
         ...acc,
-        [prop.key.name as string]: propValue,
+        [prop.key.name as string]:
+          prop.value as ExpressionStatement['expression'],
       };
     }
     return acc;
-  }, {} as Record<string, unknown>);
+  }, {} as TDefaultPropsMap);
 }
 
 /*
   This helper transforms the default props keys/values to an AST representation
   so we can easily append them to the component function signature.
-
-  It ONLY support properties of primitive types (string, number, boolean, null)
-  or array/object with primitive types.
-  Example:
-  ```
-  const defaultProps = {
-    prop1: 'value1',
-    prop2: 42,
-    prop3: true,
-    prop5: ['value1', 'value2'],
-    prop6: { key1: 'value1', key2: 44 },
-  }
   ```
 */
 function transformDefaultPropsToAST(
-  defaultPropsMap: Record<string, unknown>,
+  defaultPropsMap: TDefaultPropsMap,
   j: JSCodeshift
 ) {
   return Object.entries(defaultPropsMap).map(([key, value]) => {
-    let valueNode;
-    if (Array.isArray(value)) {
-      // Transform array into array of Literal nodes
-      valueNode = j.arrayExpression(value.map((item) => j.literal(item)));
-    } else if (typeof value === 'object' && value !== null) {
-      // Transform object into array of ObjectProperty nodes
-      const properties = Object.entries(value).map(([objKey, objValue]) =>
-        j.objectProperty(j.identifier(objKey), j.literal(objValue))
-      );
-      valueNode = j.objectExpression(properties);
-    } else {
-      valueNode = j.literal(value as string | number | boolean | null);
-    }
-
     const propNode = j.objectProperty(
       j.identifier(key),
-      j.assignmentPattern(j.identifier(key), valueNode)
+      j.assignmentPattern(j.identifier(key), value)
     );
     propNode.shorthand = true;
     return propNode;
@@ -347,7 +347,7 @@ async function reactDefaultPropsMigration(
         const componentName = path.node.left.object.name;
         const defaultPropsNode = path.node.right;
         let componentPropsTypescriptType: string | undefined; // Only TypeScript files have type annotations
-        let defaultPropsMap: Record<string, unknown> = {};
+        let defaultPropsMap: TDefaultPropsMap = {};
         let functionScope: Collection;
 
         // 2. We now extract the default props values
