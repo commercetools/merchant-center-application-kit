@@ -43,7 +43,18 @@ const executeCodemod = async (
   globPattern: string,
   globalOptions: TCliGlobalOptions
 ) => {
-  const files = glob.sync(globPattern);
+  const absoluteGlobPattern = path.resolve(globPattern);
+  const files = glob.sync(
+    path.join(absoluteGlobPattern, '**/*.{ts,tsx,js,jsx}'),
+    {
+      ignore: [
+        '**/node_modules/**',
+        '**/public/**',
+        '**/dist/**',
+        '**/build/**',
+      ],
+    }
+  );
 
   const runJscodeshift = async (
     transformPath: string,
@@ -62,12 +73,6 @@ const executeCodemod = async (
 
       await runJscodeshift(transformPath, files, {
         extensions: 'tsx,ts,jsx,js',
-        ignorePattern: [
-          '**/node_modules/**',
-          '**/public/**',
-          '**/dist/**',
-          '**/build/**',
-        ],
         parser: 'tsx',
         verbose: 0,
         dry: globalOptions.dryRun,
