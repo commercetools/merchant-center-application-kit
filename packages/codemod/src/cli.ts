@@ -31,6 +31,11 @@ const transforms: { name: TCliTransformName; description: string }[] = [
     description:
       'Remove code related to the old design when using the "useTheme" hook, for example the usage of "themedValue".',
   },
+  {
+    name: 'react-default-props-migration',
+    description:
+      'Migrate React components using defaultProps as a component property to a destructured object param.',
+  },
 ];
 
 const executeCodemod = async (
@@ -49,6 +54,7 @@ const executeCodemod = async (
   };
   switch (transform) {
     case 'redesign-cleanup':
+    case 'react-default-props-migration':
     case 'remove-deprecated-modal-level-props':
     case 'rename-js-to-jsx':
     case 'rename-mod-css-to-module-css': {
