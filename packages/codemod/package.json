@@ -34,9 +34,12 @@
   "devDependencies": {
     "@commercetools-frontend/application-components": "workspace:*",
     "@emotion/react": "^11.11.4",
+    "@jest/globals": "29.7.0",
     "@tsconfig/node16": "^16.1.1",
     "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.11",
+    "@types/prop-types": "^15.7.5",
+    "prop-types": "15.8.1",
     "rimraf": "5.0.7",
     "typescript": "5.0.4"
   },
