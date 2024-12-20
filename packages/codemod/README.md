@@ -49,3 +49,41 @@ Remove code related to the old design when using the `useTheme` hook, for exampl
 ```
 $ npx @commercetools-frontend/codemod@latest redesign-cleanup 'src/**/*.{jsx,tsx}'
 ```
+
+### `react-default-props-migration`
+
+Migrates the way React Components `defaultProps` to use JavaScript default parameters instead. This is needed for React v18 or later.
+Example:
+
+```jsx
+// BEFORE
+function MyComponent(props) {
+  return (
+    <ul>
+    <li>Prop 1: {props.prop1}</li>
+    <li>Prop 2: {props.prop2}</li>
+    <li>Prop 3: {props.prop3}</li>
+  </ul>
+  );
+}
+MyComponent.defaultProps = {
+  prop1: 'My default value',
+};
+
+// AFTER
+function MyComponent({ prop1: 'My default value', ...props }) {
+  return (
+    <ul>
+    <li>Prop 1: {prop1}</li>
+    <li>Prop 2: {props.prop2}</li>
+    <li>Prop 3: {props.prop3}</li>
+  </ul>
+  );
+}
+```
+
+You can run this codemod by using the following command:
+
+```
+$ npx @commercetools-frontend/codemod@latest react-default-props-migration 'src/**/*.{jsx,tsx}'
+```

@@ -31,6 +31,11 @@ const transforms: { name: TCliTransformName; description: string }[] = [
     description:
       'Remove code related to the old design when using the "useTheme" hook, for example the usage of "themedValue".',
   },
+  {
+    name: 'react-default-props-migration',
+    description:
+      'Migrate React components using defaultProps as a component property to a destructured object param.',
+  },
 ];
 
 const executeCodemod = async (
@@ -38,7 +43,18 @@ const executeCodemod = async (
   globPattern: string,
   globalOptions: TCliGlobalOptions
 ) => {
-  const files = glob.sync(globPattern);
+  const absoluteGlobPattern = path.resolve(globPattern);
+  const files = glob.sync(
+    path.join(absoluteGlobPattern, '**/*.{ts,tsx,js,jsx}'),
+    {
+      ignore: [
+        '**/node_modules/**',
+        '**/public/**',
+        '**/dist/**',
+        '**/build/**',
+      ],
+    }
+  );
 
   const runJscodeshift = async (
     transformPath: string,
@@ -49,6 +65,7 @@ const executeCodemod = async (
   };
   switch (transform) {
     case 'redesign-cleanup':
+    case 'react-default-props-migration':
     case 'remove-deprecated-modal-level-props':
     case 'rename-js-to-jsx':
     case 'rename-mod-css-to-module-css': {
@@ -56,12 +73,6 @@ const executeCodemod = async (
 
       await runJscodeshift(transformPath, files, {
         extensions: 'tsx,ts,jsx,js',
-        ignorePattern: [
-          '**/node_modules/**',
-          '**/public/**',
-          '**/dist/**',
-          '**/build/**',
-        ],
         parser: 'tsx',
         verbose: 0,
         dry: globalOptions.dryRun,

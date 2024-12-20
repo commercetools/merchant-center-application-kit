@@ -16,4 +16,5 @@ export type TCliTransformName =
   | 'remove-deprecated-modal-level-props'
   | 'rename-js-to-jsx'
   | 'rename-mod-css-to-module-css'
-  | 'redesign-cleanup';
+  | 'redesign-cleanup'
+  | 'react-default-props-migration';
