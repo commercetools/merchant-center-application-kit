@@ -59,7 +59,7 @@ describe.each`
     }
   });
 
-  it(`transforms correctly: ${fixtureName}`, () => {
+  it(`transforms correctly: ${fixtureName}`, async () => {
     return runSnapshotTest({
       transformerModule: module,
       codeToTransformPath: inputPath,
