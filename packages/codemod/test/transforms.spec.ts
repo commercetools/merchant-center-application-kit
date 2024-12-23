@@ -39,6 +39,7 @@ describe.each`
   const inputPath = path.join(fixturesPath, fixtureName);
 
   beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation();
     switch (transformName) {
       case 'rename-js-to-jsx':
         if (!doesFileExist(inputPath)) {
