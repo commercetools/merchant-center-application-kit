@@ -309,7 +309,10 @@ function extractDefaultPropsFromNode(
   defaultPropsNode: ObjectExpression
 ): TDefaultPropsMap {
   return defaultPropsNode.properties.reduce((acc, prop) => {
-    if (prop.type === 'ObjectProperty' && prop.key.type === 'Identifier') {
+    if (
+      (prop.type === 'ObjectProperty' || prop.type === 'Property') &&
+      prop.key.type === 'Identifier'
+    ) {
       return {
         ...acc,
         [prop.key.name as string]:
