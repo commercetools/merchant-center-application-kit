@@ -49,7 +49,7 @@
     "core-js": "^3.32.2",
     "cosmiconfig": "9.0.0",
     "cosmiconfig-typescript-loader": "6.1.0",
-    "dompurify": "^2.4.7",
+    "dompurify": "^2.5.5",
     "jsdom": "^21.1.2",
     "lodash": "4.17.21",
     "omit-empty-es": "1.2.0"
