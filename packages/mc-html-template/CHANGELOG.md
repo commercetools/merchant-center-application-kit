@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.38.0
+
+### Patch Changes
+
+- Updated dependencies [[`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e)]:
+  - @commercetools-frontend/application-config@22.38.0
+  - @commercetools-frontend/constants@22.38.0
+
 ## 22.37.0
 
 ### Minor Changes
