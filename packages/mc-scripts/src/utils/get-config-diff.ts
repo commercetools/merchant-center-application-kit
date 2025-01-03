@@ -322,6 +322,18 @@ const getSubmenuLinksDiff = ({
 }: TGetSubmenuLinksDiffParams) => {
   const submenuLinksDiff: string[] = ['submenuLink changed'];
 
+  // Check for order mismatch by comparing the positions of uriPaths
+  nextValue.forEach((newSubmenuLink, index) => {
+    const previousIndex = previousValue.findIndex(
+      (link) => link.uriPath === newSubmenuLink.uriPath
+    );
+
+    // If uriPath exists in previousValue but at a different index, order has changed
+    if (previousIndex !== -1 && previousIndex !== index) {
+      submenuLinksDiff.push(`${indent(1)}Submenu link order changed`);
+    }
+  });
+
   const mappedSubmenuLinks = previousValue.reduce<
     Record<string, TSubmenuLinks>
   >(
