@@ -2090,6 +2090,9 @@ importers:
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@17.0.83)(react@17.0.2)
+      '@jest/globals':
+        specifier: 29.7.0
+        version: 29.7.0
       '@tsconfig/node16':
         specifier: ^16.1.1
         version: 16.1.1
@@ -2099,6 +2102,12 @@ importers:
       '@types/jscodeshift':
         specifier: 0.11.11
         version: 0.11.11
+      '@types/prop-types':
+        specifier: ^15.7.5
+        version: 15.7.5
+      prop-types:
+        specifier: 15.8.1
+        version: 15.8.1
       rimraf:
         specifier: 5.0.7
         version: 5.0.7
@@ -13791,7 +13800,7 @@ packages:
       jest-haste-map: 29.7.0
       jest-regex-util: 29.6.3
       jest-util: 29.7.0
-      micromatch: 4.0.5
+      micromatch: 4.0.8
       pirates: 4.0.5
       slash: 3.0.0
       write-file-atomic: 4.0.2
@@ -18173,7 +18182,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.1.1
-    dev: false
 
   /breakword@1.0.5:
     resolution: {integrity: sha512-ex5W9DoOQ/LUEU3PMdLs9ua/CYZl1678NUkKOdUSi8Aw5F1idieaiRURCBFJCwVcrD1J8Iy3vfWSloaMwO2qFg==}
@@ -21628,7 +21636,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
-    dev: false
 
   /finalhandler@1.1.2:
     resolution: {integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==}
@@ -24234,7 +24241,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/generator': 7.24.5
+      '@babel/generator': 7.25.6
       '@babel/plugin-syntax-jsx': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-syntax-typescript': 7.25.4(@babel/core@7.25.2)
       '@babel/types': 7.25.6
@@ -24252,7 +24259,7 @@ packages:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.6.3
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
 
@@ -25856,7 +25863,6 @@ packages:
     dependencies:
       braces: 3.0.3
       picomatch: 2.3.1
-    dev: false
 
   /mime-db@1.33.0:
     resolution: {integrity: sha512-BHJ/EKruNIqJf/QahvxwQZXKygOQ256myeN/Ew+THcAa5q+PjyTTMMeNQC4DZw5AwfvelsUrA6B67NKMqXDbzQ==}

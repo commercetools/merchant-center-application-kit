@@ -1,6 +1,141 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing transform "remove-deprecated-modal-level-props" transforms correctly 1`] = `
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/simple-arrow-function.jsx 1`] = `
+"import * as PropTypes from 'prop-types';
+
+const MyComponent = ({ foo = 'bar', ...props }) => {
+  return <div>{foo}</div>;
+};
+MyComponent.propTypes = {
+  foo: PropTypes.string,
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/simple-arrow-function.tsx 1`] = `
+"type TMyComponentProps = {
+  foo?: string;
+};
+
+const MyComponent = ({ foo = 'bar', ...props }: TMyComponentProps) => {
+  return <div>{foo}</div>;
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/simple-classic-function.jsx 1`] = `
+"import * as PropTypes from 'prop-types';
+
+function MyComponent({ foo = 'bar', ...props }) {
+  return <div>{foo}</div>;
+}
+MyComponent.propTypes = {
+  foo: PropTypes.string,
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/simple-classic-function.tsx 1`] = `
+"type TMyComponentProps = {
+  foo?: string;
+};
+
+function MyComponent({ foo = 'bar', ...props }: TMyComponentProps) {
+  return <div>{foo}</div>;
+}"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/with-already-destructured-props.jsx 1`] = `
+"import * as PropTypes from 'prop-types';
+
+const MyComponent = ({ foo = 'bar', baz, ...props }) => {
+  return (
+    <ul>
+      <li>{foo}</li>
+      <li>{props.bar}</li>
+      <li>{baz}</li>
+    </ul>
+  );
+};
+MyComponent.propTypes = {
+  foo: PropTypes.string,
+  bar: PropTypes.string,
+  baz: PropTypes.string,
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/with-already-destructured-props.tsx 1`] = `
+"type TMyComponentProps = {
+  foo?: string;
+  bar: string;
+  baz: string;
+};
+
+const MyComponent = ({ foo = 'bar', baz, ...props }: TMyComponentProps) => {
+  return (
+    <ul>
+      <li>{foo}</li>
+      <li>{props.bar}</li>
+      <li>{baz}</li>
+    </ul>
+  );
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/with-subcomponent.jsx 1`] = `
+"import * as PropTypes from 'prop-types';
+
+function MySubcomponent(props) {
+  return (
+    <ul>
+      <li>{props.foo}</li>
+      <li>{props.bar}</li>
+    </ul>
+  );
+}
+MySubcomponent.propTypes = {
+  foo: PropTypes.string,
+  bar: PropTypes.string,
+};
+
+function MyComponent({ foo = 'bar', ...props }) {
+  return (
+    <div>
+      <MySubcomponent foo={foo} {...props} />
+    </div>
+  );
+}
+MyComponent.propTypes = {
+  foo: PropTypes.string,
+  bar: PropTypes.string,
+};"
+`;
+
+exports[`testing transform "react-default-props-migration" transforms correctly: react-default-props/with-subcomponent.tsx 1`] = `
+"type MySubcomponentProps = {
+  foo: string;
+  bar: string;
+};
+function MySubcomponent(props: MySubcomponentProps) {
+  return (
+    <ul>
+      <li>{props.foo}</li>
+      <li>{props.bar}</li>
+    </ul>
+  );
+}
+
+type TMyComponentProps = {
+  foo?: string;
+  bar: string;
+};
+function MyComponent({ foo = 'bar', ...props }: TMyComponentProps) {
+  return (
+    <div>
+      <MySubcomponent foo={foo} {...props} />
+    </div>
+  );
+}"
+`;
+
+exports[`testing transform "remove-deprecated-modal-level-props" transforms correctly: remove-deprecated-modal-level-props.tsx 1`] = `
 "import {
   InfoModalPage,
   FormModalPage,
@@ -43,9 +178,9 @@ function Modal() {
 export default Modal;"
 `;
 
-exports[`testing transform "rename-js-to-jsx" transforms correctly 1`] = `""`;
+exports[`testing transform "rename-js-to-jsx" transforms correctly: rename-js-to-jsx.js 1`] = `""`;
 
-exports[`testing transform "rename-mod-css-to-module-css" transforms correctly 1`] = `
+exports[`testing transform "rename-mod-css-to-module-css" transforms correctly: rename-mod-css-to-module-css.jsx 1`] = `
 "// eslint-disable-next-line import/extensions, import/no-unresolved, no-unused-vars
 import styles from './styles.module.css';"
 `;
