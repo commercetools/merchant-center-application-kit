@@ -55,6 +55,7 @@ const DialogFooter = ({
           <SecondaryButton
             label={getFormattedLabel(props.labelSecondary, intl)}
             onClick={props.onCancel}
+            // @ts-ignore FIXME upstream
             iconLeft={props.iconLeftSecondaryButton}
             {...filterDataAttributes(dataAttributesSecondaryButton)}
           />

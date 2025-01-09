@@ -55,14 +55,14 @@
     "jest-mock": "29.7.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-intl": "^6.4.7",
+    "react-intl": "^7.1.0",
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4"
   },
   "peerDependencies": {
     "react": "19.x",
     "react-dom": "19.x",
-    "react-intl": "6.x",
+    "react-intl": "7.x",
     "react-redux": "7.x",
     "react-router-dom": "5.x"
   }
