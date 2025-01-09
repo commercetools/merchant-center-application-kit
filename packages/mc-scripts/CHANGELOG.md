@@ -1,5 +1,27 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.38.0
+
+### Minor Changes
+
+- [#3672](https://github.com/commercetools/merchant-center-application-kit/pull/3672) [`5c33a40`](https://github.com/commercetools/merchant-center-application-kit/commit/5c33a40910d1f46d3d28080f666150fe1d002757) Thanks [@ragafus](https://github.com/ragafus)! - Add `babel-plugin-formatjs` to avoid bloating bundles with useless data from `formatjs` messages (`description`, `defaultMessage` props). Opt-in flags:
+
+  - i18nAst: pre-parse defaultMessage into AST for faster runtime perf
+  - i18nRemoveDefaultMessage: remove defaultMessage field in generated js after extraction
+
+### Patch Changes
+
+- [#3684](https://github.com/commercetools/merchant-center-application-kit/pull/3684) [`455cccf`](https://github.com/commercetools/merchant-center-application-kit/commit/455cccfdbac803fd7f821c6127635c1b2e593f27) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
+- Updated dependencies [[`455cccf`](https://github.com/commercetools/merchant-center-application-kit/commit/455cccfdbac803fd7f821c6127635c1b2e593f27), [`9504631`](https://github.com/commercetools/merchant-center-application-kit/commit/9504631da837e78cf66c84286d5e7e98c2009148), [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31), [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31), [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e), [`5c33a40`](https://github.com/commercetools/merchant-center-application-kit/commit/5c33a40910d1f46d3d28080f666150fe1d002757), [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31)]:
+  - @commercetools-frontend/application-config@22.38.0
+  - @commercetools-frontend/application-components@22.38.0
+  - @commercetools-frontend/constants@22.38.0
+  - @commercetools-frontend/mc-html-template@22.38.0
+  - @commercetools-frontend/babel-preset-mc-app@22.38.0
+  - @commercetools-frontend/mc-dev-authentication@22.38.0
+  - @commercetools-frontend/assets@22.38.0
+
 ## 22.37.0
 
 ### Minor Changes
