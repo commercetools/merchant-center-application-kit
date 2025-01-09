@@ -5,7 +5,6 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import PropTypes from 'prop-types';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import {
@@ -385,9 +384,6 @@ function createApplicationProviders<
       </ApolloProviderWrapper>
     </IntlProvider>
   );
-  ApplicationProviders.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
 
   return {
     ApplicationProviders,
@@ -539,9 +535,6 @@ function createReduxProviders<
       </StoreProvider>
     </NotificationProviderForCustomComponent>
   );
-  ReduxProviders.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
 
   return {
     ReduxProviders,
@@ -632,10 +625,8 @@ function renderHook<
     history,
   } = createApplicationProviders(options);
 
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const rendered = rtlHooks.renderHook(callback, {
     ...options,
-    // eslint-disable-next-line react/display-name
     wrapper: ({ children }) => (
       <ApplicationProviders>
         <ReduxProviders>

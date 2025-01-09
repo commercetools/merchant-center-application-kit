@@ -10,7 +10,7 @@ import RouteCatchAll from '../route-catch-all';
 type TApplicationEntryPointProps = {
   environment: TProviderProps<{}>['environment'];
   disableRoutePermissionCheck?: boolean;
-  render?: () => JSX.Element;
+  render?: () => React.JSX.Element;
   children?: ReactNode;
 };
 

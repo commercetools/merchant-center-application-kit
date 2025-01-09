@@ -11,6 +11,7 @@ import { GraphQLError } from 'graphql';
 import { createMemoryHistory } from 'history';
 import { setupServer } from 'msw/node';
 import { encode } from 'qss';
+import { IntlProvider } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -117,7 +118,11 @@ const renderApp = (ui, options = {}) => {
   );
   mocked(getBrowserHistory).mockReturnValue(testHistory);
 
-  const { container } = render(<ApplicationShell {...props} />);
+  const { container } = render(
+    <IntlProvider locale="en" messages={{}}>
+      <ApplicationShell {...props} />
+    </IntlProvider>
+  );
   const findByLeftNavigation = () => screen.findByTestId('left-navigation');
   const queryByLeftNavigation = () => screen.queryByTestId('left-navigation');
   const getByLeftNavigation = () => screen.getByTestId('left-navigation');

@@ -1,4 +1,6 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import EntryPoint from './components/entry-point';
 
-ReactDOM.render(<EntryPoint />, document.getElementById('app'));
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<EntryPoint />);

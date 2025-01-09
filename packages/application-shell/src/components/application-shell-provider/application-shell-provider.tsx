@@ -24,7 +24,7 @@ type TApplicationShellProviderProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   environment: TApplicationContext<{}>['environment'];
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  children: (args: { isAuthenticated: boolean }) => JSX.Element;
+  children: (args: { isAuthenticated: boolean }) => React.JSX.Element;
 };
 
 const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
