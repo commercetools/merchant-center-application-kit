@@ -5,40 +5,37 @@ import htmlScripts from /* preval */ './load-html-scripts';
 import createAssetHash from './utils/create-asset-hash';
 import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 
-type TCspDirectiveValue = string | string[] | undefined;
-type TCspDirective = Record<string, TCspDirectiveValue>;
+type TDirectiveValue = string | string[] | undefined;
+type TDirective = Record<string, TDirectiveValue>;
 
-const toArray = (value: TCspDirectiveValue) =>
+const toArray = (value: TDirectiveValue) =>
   Array.isArray(value) ? value : [value];
 
-const mergeCspDirectives = (...directives: TCspDirective[]) =>
+const mergeDirectives = (...directives: TDirective[]) =>
   directives.reduce(
-    (mergedCsp, csp) =>
+    (mergedDirectives, directive) =>
       Object.assign(
-        mergedCsp,
-        Object.keys(csp).reduce(
-          (acc, directiveKey) =>
-            Object.assign(acc, {
-              [directiveKey]: [
-                ...toArray(
-                  mergedCsp[directiveKey] ? mergedCsp[directiveKey] : []
-                ),
-                ...toArray(csp[directiveKey]),
-              ],
-            }),
-          {}
-        )
+        mergedDirectives,
+        Object.keys(directive).reduce((mergedDirectiveValues, directiveKey) => {
+          const existingDirectiveValue = mergedDirectives[directiveKey];
+          return Object.assign(mergedDirectiveValues, {
+            [directiveKey]: [
+              ...toArray(existingDirectiveValue ?? []),
+              ...toArray(directive[directiveKey]),
+            ],
+          });
+        }, {})
       ),
     {}
   );
-const toHeaderString = (directives: TCspDirective = {}) =>
+const toHeaderString = (directives: TDirective = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
         `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
     )
     .join('; ');
-const toStructuredHeaderString = (directives: TCspDirective = {}) =>
+const toStructuredHeaderString = (directives: TDirective = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
@@ -120,7 +117,7 @@ const processHeaders = (
   );
 
   // Recursively merge the directives
-  const mergedCsp = mergeCspDirectives(
+  const mergedCsp = mergeDirectives(
     cspDirectives,
     applicationConfig.headers?.csp ?? {}
   );
@@ -133,20 +130,14 @@ const processHeaders = (
     // based on the Merchant Center customization config.
     'Content-Security-Policy': toHeaderString(mergedCsp),
 
-    // Allow to extend the `Strict-Transport-Security` header.
-    ...(applicationConfig.headers?.strictTransportSecurity && {
-      'Strict-Transport-Security': [
-        HTTP_SECURITY_HEADERS['Strict-Transport-Security'],
-        ...applicationConfig.headers.strictTransportSecurity,
-      ].join('; '),
-    }),
-
     // Allow to extend the `Permissions-Policy` header.
-    ...(applicationConfig.headers?.permissionsPolicies && {
-      'Permissions-Policy': toStructuredHeaderString(
-        applicationConfig.headers.permissionsPolicies as TCspDirective
-      ),
-    }),
+    ...(applicationConfig.headers?.permissionsPolicies
+      ? {
+          'Permissions-Policy': toStructuredHeaderString(
+            applicationConfig.headers.permissionsPolicies as TDirective
+          ),
+        }
+      : {}),
   };
 };
 

@@ -38,9 +38,8 @@
       "connect-src": ["https://track.avengers.app"]
     },
     "permissionsPolicies": {
-      "microphone": "()"
-    },
-    "strictTransportSecurity": ["includeSubDomains"]
+      "microphone": "*"
+    }
   },
   "icon": "<svg><path fill=\"#000000\" /></svg>",
   "mainMenuLink": {

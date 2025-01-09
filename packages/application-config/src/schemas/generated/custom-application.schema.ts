@@ -5,93 +5,93 @@ export type CspDirective = string[];
 
 export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#name
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#name
    */
   name: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#description
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#description
    */
   description?: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#entrypointuripath
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#entrypointuripath
    */
   entryPointUriPath: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#cloudidentifier
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#cloudidentifier
    */
   cloudIdentifier: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mcapiurl
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mcapiurl
    */
   mcApiUrl?: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopes
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopes
    */
   oAuthScopes: {
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopesview
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopesview
      */
     view: string[];
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopesmanage
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopesmanage
      */
     manage: string[];
   };
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopes
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopes
    */
   additionalOAuthScopes?: {
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesname
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesname
      */
     name: string;
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesview
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesview
      */
     view: string[];
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesmanage
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesmanage
      */
     manage: string[];
   }[];
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#env
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#env
    */
   env: {
     development: {
       /**
-       * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envdevelopmentinitialprojectkey
+       * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envdevelopmentinitialprojectkey
        */
       initialProjectKey: string;
       teamId?: string;
     };
     production: {
       /**
-       * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductionapplicationid
+       * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductionapplicationid
        */
       applicationId: string;
       /**
-       * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductionurl
+       * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductionurl
        */
       url: string;
       /**
-       * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductioncdnurl
+       * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductioncdnurl
        */
       cdnUrl?: string;
     };
   };
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionalenv
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionalenv
    */
   additionalEnv?: {
     [k: string]: unknown;
   };
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headers
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headers
    */
   headers?: {
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headerscsp
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headerscsp
      */
     csp?: {
       'connect-src': CspDirective;
@@ -102,62 +102,62 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       'frame-src'?: CspDirective;
     };
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headerspermissionspolicies
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headerspermissionspolicies
      */
     permissionsPolicies?: {
       [k: string]: unknown;
     };
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headersstricttransportsecurity
+     * @deprecated
      */
     strictTransportSecurity?: ('includeSubDomains' | 'preload')[];
   };
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#icon
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#icon
    */
   icon: string;
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulink
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulink
    */
   mainMenuLink: {
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinkdefaultlabel
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinkdefaultlabel
      */
     defaultLabel: string;
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinklabelalllocales
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinklabelalllocales
      */
     labelAllLocales: {
       locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR';
       value: string;
     }[];
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinkpermissions
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinkpermissions
      */
     permissions: string[];
     [k: string]: unknown;
   };
   /**
-   * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinks
+   * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinks
    */
   submenuLinks: {
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinksuripath
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinksuripath
      */
     uriPath: string;
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinksdefaultlabel
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinksdefaultlabel
      */
     defaultLabel: string;
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinkslabelalllocales
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinkslabelalllocales
      */
     labelAllLocales: {
       locale: 'en' | 'de' | 'es' | 'fr-FR' | 'pt-BR';
       value: string;
     }[];
     /**
-     * See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinkspermissions
+     * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinkspermissions
      */
     permissions: string[];
     [k: string]: unknown;

@@ -304,11 +304,13 @@ export const STORAGE_KEYS = {
 } as const;
 
 export const HTTP_SECURITY_HEADERS = {
+  'Referrer-Policy': 'same-origin',
+  'Permissions-Policy':
+    'microphone=(), camera=(), payment=(), usb=(), geolocation=()',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'X-XSS-Protection': '1; mode=block',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'SAMEORIGIN',
-  'Referrer-Policy': 'same-origin',
 } as const;
 
 // Custom Views events (messages sent between the host application and the custom view)

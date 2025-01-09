@@ -14,27 +14,27 @@
   },
   "properties": {
     "name": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#name",
       "type": "string"
     },
     "description": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#description",
       "type": "string"
     },
     "cloudIdentifier": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#cloudidentifier",
       "type": "string"
     },
     "mcApiUrl": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#mcapiurl",
       "type": "string"
     },
     "oAuthScopes": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#oauthscopes",
       "type": "object",
       "properties": {
         "view": {
-          "description": "See https://docs.commercetools.com/TODO",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#oauthscopesview",
           "type": "array",
           "default": [],
           "items": {
@@ -44,7 +44,7 @@
           "uniqueItems": true
         },
         "manage": {
-          "description": "See https://docs.commercetools.com/TODO",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#oauthscopesmanage",
           "type": "array",
           "default": [],
           "items": {
@@ -58,7 +58,7 @@
       "required": ["view", "manage"]
     },
     "additionalOAuthScopes": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#additionaloauthscopes",
       "type": "array",
       "default": [],
       "uniqueItems": true,
@@ -66,11 +66,11 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "See https://docs.commercetools.com/TODO",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#additionaloauthscopesname",
             "type": "string"
           },
           "view": {
-            "description": "See https://docs.commercetools.com/TODO",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#additionaloauthscopesview",
             "type": "array",
             "default": [],
             "items": {
@@ -80,7 +80,7 @@
             "uniqueItems": true
           },
           "manage": {
-            "description": "See https://docs.commercetools.com/TODO",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#additionaloauthscopesmanage",
             "type": "array",
             "default": [],
             "items": {
@@ -95,21 +95,21 @@
       }
     },
     "env": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#env",
       "type": "object",
       "properties": {
         "development": {
           "type": "object",
           "properties": {
             "initialProjectKey": {
-              "description": "See https://docs.commercetools.com/TODO",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envdevelopmentinitialprojectkey",
               "type": "string"
             },
             "teamId": {
               "type": "string"
             },
             "hostUriPath": {
-              "description": "See https://docs.commercetools.com/TODO",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envdevelopmenthosturipath",
               "type": "string"
             }
           },
@@ -120,15 +120,15 @@
           "type": "object",
           "properties": {
             "customViewId": {
-              "description": "See https://docs.commercetools.com/TODO",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envproductioncustomviewid",
               "type": "string"
             },
             "url": {
-              "description": "See https://docs.commercetools.com/TODO",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envproductionurl",
               "type": "string"
             },
             "cdnUrl": {
-              "description": "See https://docs.commercetools.com/TODO",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envproductioncdnurl",
               "type": "string"
             }
           },
@@ -140,15 +140,15 @@
       "required": ["development", "production"]
     },
     "additionalEnv": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#additionalenv",
       "type": "object"
     },
     "headers": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#headers",
       "type": "object",
       "properties": {
         "csp": {
-          "description": "See https://docs.commercetools.com/TODO",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#headerscsp",
           "type": "object",
           "properties": {
             "connect-src": {
@@ -174,22 +174,22 @@
           "required": ["connect-src"]
         },
         "permissionsPolicies": {
-          "description": "See https://docs.commercetools.com/TODO",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#headerspermissionspolicies",
           "type": "object"
         },
         "strictTransportSecurity": {
-          "description": "See https://docs.commercetools.com/TODO",
           "type": "array",
           "items": {
             "enum": ["includeSubDomains", "preload"]
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "deprecated": true
         }
       },
       "additionalProperties": false
     },
     "labelAllLocales": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#labelalllocales",
       "type": "array",
       "default": [],
       "items": {
@@ -208,23 +208,23 @@
       }
     },
     "type": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#type",
       "type": "string",
       "enum": ["CustomPanel"]
     },
     "typeSettings": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#typesettings",
       "type": "object",
       "properties": {
         "size": {
-          "description": "See https://docs.commercetools.com/TODO",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#typesettingssize",
           "type": "string",
           "enum": ["SMALL", "LARGE"]
         }
       }
     },
     "locators": {
-      "description": "See https://docs.commercetools.com/TODO",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#locators",
       "type": "array",
       "default": [],
       "items": {
