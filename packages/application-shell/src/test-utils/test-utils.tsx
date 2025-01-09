@@ -627,6 +627,7 @@ function renderHook<
 
   const rendered = rtlHooks.renderHook(callback, {
     ...options,
+    // @ts-ignore FIXME
     wrapper: ({ children }) => (
       <ApplicationProviders>
         <ReduxProviders>

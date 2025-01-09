@@ -47,6 +47,7 @@ const FormPrimaryButton = ({
       label={_label}
       onClick={props.onClick}
       isDisabled={isDisabled}
+      // @ts-ignore FIXME upstream
       iconLeft={props.iconLeft}
       {...filterDataAttributes(dataAttributes)}
     />
@@ -72,6 +73,7 @@ const FormSecondaryButton = ({
       label={_label}
       onClick={props.onClick}
       isDisabled={isDisabled}
+      // @ts-ignore FIXME upstream
       iconLeft={props.iconLeft}
       {...filterDataAttributes(dataAttributes)}
     />

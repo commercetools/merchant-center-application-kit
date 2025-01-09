@@ -24,6 +24,7 @@ const RequestsInFlightLoader = () => {
   if (!hasRequestsInFlight) return null;
 
   return ReactDOM.createPortal(
+    // @ts-ignore FIXME upstream
     <LoadingSpinner>
       <FormattedMessage {...messages.labelLoading} />
     </LoadingSpinner>,

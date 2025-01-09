@@ -87,7 +87,7 @@
     "prettier": "2.8.8",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-intl": "^6.4.7",
+    "react-intl": "^7.1.0",
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "redux": "4.2.1",
