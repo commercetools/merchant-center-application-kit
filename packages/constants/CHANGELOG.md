@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.38.0
+
+### Patch Changes
+
+- [#3688](https://github.com/commercetools/merchant-center-application-kit/pull/3688) [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31) Thanks [@emmenko](https://github.com/emmenko)! - Add `Permissions-Policy` to list of security headers
+
 ## 22.37.0
 
 ## 22.36.0

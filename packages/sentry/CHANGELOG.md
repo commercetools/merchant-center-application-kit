@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 22.38.0
+
+### Patch Changes
+
+- [#3671](https://github.com/commercetools/merchant-center-application-kit/pull/3671) [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e) Thanks [@renovate](https://github.com/apps/renovate)! - Update UI Kit dependencies to v19.20.1
+
+- Updated dependencies [[`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31)]:
+  - @commercetools-frontend/constants@22.38.0
+  - @commercetools-frontend/browser-history@22.38.0
+
 ## 22.37.0
 
 ### Patch Changes

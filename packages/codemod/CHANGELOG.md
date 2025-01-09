@@ -1,5 +1,50 @@
 # @commercetools-frontend/codemod
 
+## 22.38.0
+
+### Minor Changes
+
+- [#3681](https://github.com/commercetools/merchant-center-application-kit/pull/3681) [`1e9e84a`](https://github.com/commercetools/merchant-center-application-kit/commit/1e9e84aab2a3c0e7979e78343157182c5fea6020) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Introduces a new codemod which helps migrating away from React's `defaultProps` to `prop` destructuring.
+
+  This is how the change looks like:
+
+  ```ts
+  // BEFORE
+  type TMyComponentProps = {
+    message: string;
+    size: string;
+  }
+
+  function MyComponent(props: TMyComponentProps) {
+   ...
+  }
+
+  MyComponent.defaultProps = {
+    size: 'big'
+  }
+
+
+  // AFTER
+  type TMyComponentProps = {
+    message: string;
+    size?: string; // <--- Note this property is now defined as optional
+  }
+
+  function MyComponent({ size = 'big', ...props }: TMyComponentProps) {
+   ...
+  }
+  ```
+
+  And here is how the new codemod can be run:
+
+  ```
+  $ npx @commercetools-frontend/codemod@latest react-default-props-migration 'src/**/*.{jsx,tsx}'
+  ```
+
+### Patch Changes
+
+- [#3684](https://github.com/commercetools/merchant-center-application-kit/pull/3684) [`455cccf`](https://github.com/commercetools/merchant-center-application-kit/commit/455cccfdbac803fd7f821c6127635c1b2e593f27) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 22.37.0
 
 ## 22.36.0
