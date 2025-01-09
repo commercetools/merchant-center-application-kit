@@ -47,12 +47,7 @@ export function createL10NHook<LoadedData extends {}>(
   loadLocale: LoadLocale<LoadedData>
 ) {
   return (locale: string) => {
-    const [data, dispatch] = useReducer<
-      (
-        prevState: State<LoadedData>,
-        action: Action<LoadedData>
-      ) => State<LoadedData>
-    >(reducer, initialState);
+    const [data, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
       let cleaning = false;
@@ -97,6 +92,7 @@ export function createL10NInjector<LoadedData extends {}>({
       const L10NComponent = (props: Props) => {
         const state = useL10n(mapPropsToLocale(props));
         return (
+          // @ts-ignore Related to https://github.com/emotion-js/emotion/issues/3245
           <WrappedComponent
             {...props}
             {...{ [propLoadingKey]: state.isLoading, [propKey]: state.data }}

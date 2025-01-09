@@ -28,7 +28,7 @@ type TChannelDetailsFormProps = {
   initialValues: TFormValues;
   isReadOnly: boolean;
   dataLocale: string;
-  children: (formProps: FormProps) => JSX.Element;
+  children: (formProps: FormProps) => React.JSX.Element;
 };
 
 const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({

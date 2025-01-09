@@ -25,7 +25,7 @@
     "@commercetools-frontend/notifications": "22.39.0",
     "@commercetools-frontend/sentry": "22.39.0",
     "@types/lodash": "^4.14.198",
-    "@types/react": "^17.0.83",
+    "@types/react": "^19.0.3",
     "@types/react-redux": "^7.1.26",
     "lodash": "4.17.21",
     "redux-thunk": "2.4.2"
@@ -34,12 +34,12 @@
     "@testing-library/react-hooks": "8.0.1",
     "@types/jest": "^29.5.4",
     "jest": "29.7.0",
-    "react": "17.0.2",
+    "react": "19.0.0",
     "react-redux": "7.2.9",
     "redux": "4.2.1"
   },
   "peerDependencies": {
-    "react": "17.x",
+    "react": "19.x",
     "react-redux": "7.x",
     "redux": "4.x"
   }
