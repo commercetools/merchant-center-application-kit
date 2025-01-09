@@ -438,9 +438,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -660,9 +657,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -879,9 +873,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -1101,9 +1092,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -1354,9 +1342,6 @@ importers:
         specifier: 2.4.2
         version: 2.4.2(redux@4.2.1)
     devDependencies:
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -1517,9 +1502,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -1843,9 +1825,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/jest':
         specifier: ^29.5.4
         version: 29.5.4
@@ -2470,9 +2449,6 @@ importers:
         specifier: 15.8.1
         version: 15.8.1
     devDependencies:
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@types/cldr':
         specifier: ^7.1.4
         version: 7.1.4
@@ -6194,7 +6170,7 @@ packages:
       '@commercetools-uikit/design-system': 0.0.0-preview-fec-155-react-19-20250108172010(@types/react@19.0.3)(react-dom@19.0.0)
       '@commercetools-uikit/icons': 0.0.0-preview-fec-155-react-19-20250108172010(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0)
       '@commercetools-uikit/input-utils': 0.0.0-preview-fec-155-react-19-20250108172010(@types/react@19.0.3)(react-dom@19.0.0)(react-intl@7.1.4)(react@19.0.0)(typescript@5.7.2)
-      '@commercetools-uikit/select-utils': 0.0.0-preview-fec-155-react-19-20250108172010(@types/react@19.0.3)(react-dom@19.0.0)(react-intl@7.1.4)(react@19.0.0)(typescript@5.7.2)
+      '@commercetools-uikit/select-utils': 0.0.0-preview-fec-155-react-19-20250108172010(@types/react@19.0.3)(react-dom@19.0.0)(react-intl@7.1.4)(react@19.0.0)(typescript@5.0.4)
       '@commercetools-uikit/utils': 0.0.0-preview-fec-155-react-19-20250108172010(react@19.0.0)
       '@emotion/react': 11.14.0(@types/react@19.0.3)(react@19.0.0)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0)(@types/react@19.0.3)(react@19.0.0)
@@ -13720,28 +13696,6 @@ packages:
       lodash: 4.17.21
       redent: 3.0.0
     dev: false
-
-  /@testing-library/react-hooks@8.0.1(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0):
-    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@types/react': ^19.0.3
-      react: ^16.9.0 || ^17.0.0
-      react-dom: ^16.9.0 || ^17.0.0
-      react-test-renderer: ^16.9.0 || ^17.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react-dom:
-        optional: true
-      react-test-renderer:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.26.0
-      '@types/react': 19.0.3
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-error-boundary: 3.1.4(react@19.0.0)
 
   /@testing-library/react@16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2)(@types/react@19.0.3)(react-dom@19.0.0)(react@19.0.0):
     resolution: {integrity: sha512-Q2ToPvg0KsVL0ohND9A3zLJWcOXXcO8IDu3fj11KhNt0UlCWyFyvnCIBkd12tidB2lkiVRG8VFqdhcqhqnAQtg==}
@@ -25863,15 +25817,6 @@ packages:
     dependencies:
       react: 19.0.0
       scheduler: 0.25.0
-
-  /react-error-boundary@3.1.4(react@19.0.0):
-    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
-    engines: {node: '>=10', npm: '>=6'}
-    peerDependencies:
-      react: '>=16.13.1'
-    dependencies:
-      '@babel/runtime': 7.26.0
-      react: 19.0.0
 
   /react-error-overlay@6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
