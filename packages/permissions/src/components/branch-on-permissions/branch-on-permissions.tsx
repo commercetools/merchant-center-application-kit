@@ -38,33 +38,33 @@ const branchOnPermissions =
       shouldMatchSomePermissions: false,
     }
   ) =>
-  (Component: ComponentType<OwnProps>): ComponentType<OwnProps> => {
-    const WrappedComponent = (props: OwnProps) => (
-      <Authorized
-        shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-        demandedPermissions={demandedPermissions}
-        demandedActionRights={options.actionRights}
-        demandedDataFences={options.dataFences}
-        selectDataFenceData={
-          options.getSelectDataFenceData &&
-          options.getSelectDataFenceData(props)
-        }
-        render={(isAuthorized) => {
-          if (isAuthorized) {
-            // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
-            return <Component {...props} />;
+    (Component: ComponentType<OwnProps>): ComponentType<OwnProps> => {
+      const WrappedComponent = (props: OwnProps) => (
+        <Authorized
+          shouldMatchSomePermissions={options.shouldMatchSomePermissions}
+          demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
+          selectDataFenceData={
+            options.getSelectDataFenceData &&
+            options.getSelectDataFenceData(props)
           }
-          if (FallbackComponent) {
-            return <FallbackComponent />;
-          }
-          return <></>;
-        }}
-      />
-    );
-    WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<OwnProps>(
-      Component
-    )})`;
-    return WrappedComponent;
-  };
+          render={(isAuthorized) => {
+            if (isAuthorized) {
+              // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
+              return <Component {...props} />;
+            }
+            if (FallbackComponent) {
+              return <FallbackComponent />;
+            }
+            return <></>;
+          }}
+        />
+      );
+      WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<OwnProps>(
+        Component
+      )})`;
+      return WrappedComponent;
+    };
 
 export default branchOnPermissions;

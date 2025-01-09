@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, type ReactNode } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import type {
   SingleValueProps,
@@ -15,7 +15,9 @@ import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { WorldIcon, InformationIcon } from '@commercetools-uikit/icons';
-import SelectInput from '@commercetools-uikit/select-input';
+import SelectInput, {
+  type TCustomEvent,
+} from '@commercetools-uikit/select-input';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import messages from './messages';
@@ -81,8 +83,8 @@ const LocaleSwitcher = (props: Props) => {
   const intl = useIntl();
 
   const handleSelection = useCallback(
-    (event) => {
-      setProjectDataLocale(event.target.value);
+    (event: TCustomEvent) => {
+      setProjectDataLocale(event.target.value as string);
     },
     [setProjectDataLocale]
   );
@@ -114,7 +116,7 @@ const LocaleSwitcher = (props: Props) => {
           SingleValue,
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
-          GroupHeading: (groupProps) => (
+          GroupHeading: (groupProps: GroupHeadingProps) => (
             <CustomGroupHeading {...groupProps} setIsOpen={openModal} />
           ),
         }}
@@ -136,7 +138,7 @@ const LocaleSwitcher = (props: Props) => {
           intlMessage={{
             ...messages.dialogLocaleDescription,
             values: {
-              newline: getNewLine,
+              newline: getNewLine as unknown as ReactNode,
             },
           }}
         />

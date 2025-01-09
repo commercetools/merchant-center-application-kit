@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { Provider } from 'react-redux';
 import type { Action } from 'redux';
@@ -17,8 +18,7 @@ const renderUseOnActionError = () => {
     subscribe: () => null,
   };
   const { result } = renderHook(() => useOnActionError(), {
-    // eslint-disable-next-line react/display-name
-    wrapper: ({ children }) => (
+    wrapper: ({ children }: { children: ReactNode }) => (
       // @ts-ignore: partially implemented Redux Store is OK as a mock
       <Provider store={fakeStore}>{children}</Provider>
     ),

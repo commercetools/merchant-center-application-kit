@@ -114,7 +114,9 @@ type PropsLoggerProps = {
 
 const PropsLogger = (props: PropsLoggerProps) => {
   const node = Children.only(props.children);
-  const propEntries = Object.entries<ReactNode>(node.props);
+  const propEntries = Object.entries<ReactNode>(
+    node.props as Record<string, ReactNode>
+  );
   return (
     <PropList>
       {propEntries
@@ -129,32 +131,28 @@ PropsLogger.displayName = 'PropsLogger';
 
 type SpecProps = {
   label: string;
-  size: 'm' | 'l' | 'xl' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
-  contentAlignment: 'default' | 'center';
+  size?: 'm' | 'l' | 'xl' | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 'scale';
+  contentAlignment?: 'default' | 'center';
   children: ReactElement;
-  tone: 'normal' | 'secondary' | 'inverted';
-  omitPropsList: boolean;
-};
-const defaultProps: Pick<
-  SpecProps,
-  'omitPropsList' | 'size' | 'contentAlignment' | 'tone'
-> = {
-  omitPropsList: false,
-  size: 'm',
-  contentAlignment: 'default',
-  tone: 'normal',
+  tone?: 'normal' | 'secondary' | 'inverted';
+  omitPropsList?: boolean;
 };
 
-const Spec = (props: SpecProps) => (
-  <SpecContainer size={props.size}>
+const Spec = ({
+  omitPropsList = false,
+  size = 'm',
+  contentAlignment = 'default',
+  tone = 'normal',
+  ...props
+}: SpecProps) => (
+  <SpecContainer size={size}>
     <Label>{props.label}</Label>
-    {!props.omitPropsList && <PropsLogger>{props.children}</PropsLogger>}
-    <Box tone={props.tone} contentAlignment={props.contentAlignment}>
+    {!omitPropsList && <PropsLogger>{props.children}</PropsLogger>}
+    <Box tone={tone} contentAlignment={contentAlignment}>
       {props.children}
     </Box>
   </SpecContainer>
 );
 Spec.displayName = 'Spec';
-Spec.defaultProps = defaultProps;
 
 export default Spec;

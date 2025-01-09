@@ -39,7 +39,7 @@ type TProjectContainerProps = {
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<{ enableSignUp?: boolean }>['environment'];
   disableRoutePermissionCheck?: boolean;
-  render?: () => JSX.Element;
+  render?: () => React.JSX.Element;
   children?: ReactNode;
 };
 

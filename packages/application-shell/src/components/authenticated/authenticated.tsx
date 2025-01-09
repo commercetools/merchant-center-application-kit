@@ -10,7 +10,7 @@ declare let window: ApplicationWindow;
 
 type RenderFnArgs = { isAuthenticated: boolean };
 export type TAuthenticatedProps = {
-  render: (args: RenderFnArgs) => JSX.Element;
+  render: (args: RenderFnArgs) => React.JSX.Element;
   locale: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;

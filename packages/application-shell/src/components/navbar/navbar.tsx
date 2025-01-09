@@ -9,8 +9,11 @@ import {
 } from 'react';
 import snakeCase from 'lodash/snakeCase';
 import { FormattedMessage } from 'react-intl';
-import { matchPath, useLocation } from 'react-router-dom';
-import type { RouteComponentProps } from 'react-router-dom';
+import {
+  matchPath,
+  useLocation,
+  type RouteComponentProps,
+} from 'react-router-dom';
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedDataFences,
@@ -127,7 +130,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const { width: menuItemWidth, height: menuItemHeight } =
     subRefBoundingClientRect ?? {};
 
-  // /* We want to track the left, top, width, and height of the safe area */
+  /* We want to track the left, top, width, and height of the safe area */
   const submenuSafeAreaRefBoundingClientRect =
     submenuSafeAreaRef.current?.getBoundingClientRect();
   const safeAreaLeftPos = submenuSafeAreaRefBoundingClientRect?.left || 0;
@@ -136,7 +139,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
 
   const calculateSafeAreaStartPositon = useCallback(
-    (e) => {
+    (e: MouseEvent) => {
       const localX = e.clientX - safeAreaLeftPos;
       const localY = e.clientY - safeAreaTopPos;
 
@@ -147,7 +150,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   useEffect(() => {
-    calculateSafeAreaStartPositon((e: MouseEventHandler) => e);
+    // calculateSafeAreaStartPositon((e: MouseEvent) => e); ???????? FIXME: Is this needed???
     window.addEventListener('mousemove', calculateSafeAreaStartPositon);
 
     return () => {

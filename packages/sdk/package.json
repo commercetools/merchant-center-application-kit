@@ -9,17 +9,31 @@
     "directory": "packages/sdk"
   },
   "homepage": "https://docs.commercetools.com/merchant-center-customizations",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./test-utils/index.ts"
+    ]
   },
   "main": "dist/commercetools-frontend-sdk.cjs.js",
   "module": "dist/commercetools-frontend-sdk.esm.js",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
@@ -31,7 +45,7 @@
     "@commercetools/sdk-middleware-http": "7.0.4",
     "@types/node-fetch": "2.6.11",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.83",
+    "@types/react": "^19.0.3",
     "@types/react-redux": "^7.1.26",
     "buffer": "6.0.3",
     "fast-equals": "2.0.4",
@@ -42,18 +56,18 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@testing-library/react": "12.1.5",
+    "@emotion/react": "^11.11.4",
+    "@testing-library/react": "16.1.0",
     "@types/uuid": "^9.0.3",
     "jest-mock": "29.7.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-redux": "7.2.9",
     "redux": "4.2.1",
     "redux-thunk": "2.4.2"
   },
   "peerDependencies": {
-    "react": "17.x",
+    "react": "19.x",
     "react-redux": "7.x",
     "redux": "4.x"
   }

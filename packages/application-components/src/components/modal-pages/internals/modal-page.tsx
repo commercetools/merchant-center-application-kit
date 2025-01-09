@@ -40,8 +40,8 @@ const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : (document.querySelector<HTMLElement>(
-        `#${PORTALS_CONTAINER_ID}`
-      ) as HTMLElement);
+      `#${PORTALS_CONTAINER_ID}`
+    ) as HTMLElement);
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
@@ -87,6 +87,7 @@ const ModalPage = ({
   ...props
 }: Props) => {
   const [forceClose, setForceClose] = useState(false);
+
   const closingTimer = useRef<NodeJS.Timeout | undefined>(undefined);
   const TRANSITION_DURATION = stylesBySize[size].transitionTime;
 
@@ -102,7 +103,7 @@ const ModalPage = ({
   const { onClose } = props;
 
   const handleClose = useCallback(
-    (event) => {
+    (event: SyntheticEvent) => {
       if (shouldDelayOnClose) {
         // In this case we want the closing animation to be shown
         // and therefore we need wait for it to be completed
