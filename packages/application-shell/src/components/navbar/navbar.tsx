@@ -150,7 +150,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   );
 
   useEffect(() => {
-    // calculateSafeAreaStartPositon((e: MouseEvent) => e); ???????? FIXME: Is this needed???
     window.addEventListener('mousemove', calculateSafeAreaStartPositon);
 
     return () => {
