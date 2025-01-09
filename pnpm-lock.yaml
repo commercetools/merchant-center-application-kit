@@ -9493,7 +9493,7 @@ packages:
       history: 4.10.1
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -9869,7 +9869,7 @@ packages:
       '@emotion/react': 11.11.4(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -11191,7 +11191,7 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'

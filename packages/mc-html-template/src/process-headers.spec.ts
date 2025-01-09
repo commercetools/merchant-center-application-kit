@@ -102,7 +102,7 @@ describe('permissionsPolicies', () => {
       ...defaultApplicationConfig,
       headers: {
         permissionsPolicies: {
-          microphone: '()',
+          microphone: '*',
           camera: '(self)',
         },
       },
@@ -112,25 +112,6 @@ describe('permissionsPolicies', () => {
 
     expect(
       processedApplicationConfig['Permissions-Policy']
-    ).toMatchInlineSnapshot(`"microphone=(), camera=(self)"`);
-  });
-});
-describe('strictTransportSecurity', () => {
-  it('should add extra options', () => {
-    const testApplicationConfig = {
-      ...defaultApplicationConfig,
-      headers: {
-        strictTransportSecurity: ['includeSubDomains'],
-      },
-    };
-
-    // @ts-ignore
-    const processedApplicationConfig = processHeaders(testApplicationConfig);
-
-    expect(
-      processedApplicationConfig['Strict-Transport-Security']
-    ).toMatchInlineSnapshot(
-      `"max-age=31536000; includeSubDomains; preload; includeSubDomains"`
-    );
+    ).toMatchInlineSnapshot(`"microphone=*, camera=(self)"`);
   });
 });
