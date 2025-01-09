@@ -21,7 +21,7 @@ describe('creating routes', () => {
   describe('getUrl', () => {
     it('should compute URL path', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as ReturnType<typeof useRoutes>;
 
       expect(routes).toEqual(
         expect.objectContaining({
@@ -51,7 +51,7 @@ describe('creating routes', () => {
     });
     it('throws when required params are missing', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as ReturnType<typeof useRoutes>;
 
       expect(() => routes.heroDetail.getUrl()).toThrow();
     });
@@ -59,7 +59,7 @@ describe('creating routes', () => {
   describe('go', () => {
     it('should redirect to another route', () => {
       const { result, history } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as ReturnType<typeof useRoutes>;
 
       expect(history.location.pathname).toMatchInlineSnapshot(
         `"/test-with-big-data/random-entry-point"`
@@ -81,7 +81,7 @@ describe('creating routes', () => {
     });
     it('throws when required params are missing', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as ReturnType<typeof useRoutes>;
 
       expect(() => routes.heroDetail.go()).toThrow();
     });

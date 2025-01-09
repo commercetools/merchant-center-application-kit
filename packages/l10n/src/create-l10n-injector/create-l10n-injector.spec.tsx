@@ -33,7 +33,10 @@ const errorLoadingLocalesMock = jest.fn(() =>
 describe('loading data', () => {
   it('should load data via hook', async () => {
     const useL10n = createL10NHook<Candies>(loadLocalesMock);
-    const { result } = renderHook<unknown, Result>(() => useL10n('en'));
+    const { result } = renderHook<
+      { isLoading: boolean; data: unknown; error?: unknown },
+      Result
+    >(() => useL10n('en'));
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toEqual({});
     expect(result.current.error).not.toBeDefined();
@@ -48,7 +51,10 @@ describe('loading data', () => {
 describe('error loading data', () => {
   it('should return error and report error to sentry', async () => {
     const useL10n = createL10NHook<Candies>(errorLoadingLocalesMock);
-    const { result } = renderHook<unknown, Result>(() => useL10n('en'));
+    const { result } = renderHook<
+      { isLoading: boolean; data: unknown; error?: unknown },
+      Result
+    >(() => useL10n('en'));
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toEqual({});
     expect(result.current.error).not.toBeDefined();
