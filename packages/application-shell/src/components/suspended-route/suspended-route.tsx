@@ -4,6 +4,7 @@ import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
 const SuspendedRoute = (props: RouteProps) => (
   <Route {...props}>
+    {/* @ts-ignore FIXME upstream */}
     <Suspense fallback={<LoadingSpinner />}>
       {props.children as ReactNode}
     </Suspense>
