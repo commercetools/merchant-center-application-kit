@@ -336,12 +336,12 @@ const getSubmenuLinksDiff = ({
     value.map((link) => link.uriPath).join(', ');
 
   const previousOrder = getOrder(previousValue);
-  const nextOrder = getOrder(nextValue);
+  const newOrder = getOrder(nextValue);
 
-  if (previousOrder !== nextOrder) {
+  if (previousOrder !== newOrder) {
     submenuLinksDiff.push(`${indent(1)}submenu order changed`);
     submenuLinksDiff.push(`${indent(2)}previous order: [${previousOrder}]`);
-    submenuLinksDiff.push(`${indent(2)}new order: [${nextOrder}]`);
+    submenuLinksDiff.push(`${indent(2)}new order: [${newOrder}]`);
   }
 
   nextValue.forEach((newSubmenuLink) => {
