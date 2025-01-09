@@ -14,7 +14,6 @@ import {
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import * as rtl from '@testing-library/react';
-import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
@@ -580,17 +579,14 @@ export type TRenderHookOptions<
   AdditionalEnvironmentProperties extends {} = {},
   StoreState extends {} = {}
 > = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState> &
-  rtlHooks.RenderHookOptions<RenderedHookProps>;
+  rtl.RenderHookOptions<RenderedHookProps>;
 
 export type TRenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue,
   AdditionalEnvironmentProperties extends {} = {},
   StoreState extends {} = {}
-> = rtlHooks.RenderHookResult<
-  RenderHookCallbackProps,
-  RenderHookCallbackValue
-> &
+> = rtl.RenderHookResult<RenderHookCallbackProps, RenderHookCallbackValue> &
   Pick<
     TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>,
     'store' | 'history' | 'user' | 'project' | 'environment'
@@ -625,9 +621,8 @@ function renderHook<
     history,
   } = createApplicationProviders(options);
 
-  const rendered = rtlHooks.renderHook(callback, {
+  const rendered = rtl.renderHook(callback, {
     ...options,
-    // @ts-ignore FIXME
     wrapper: ({ children }) => (
       <ApplicationProviders>
         <ReduxProviders>
@@ -637,6 +632,7 @@ function renderHook<
     ),
   });
 
+  // @ts-ignore FIXME: prop types of rerender
   return {
     ...rendered,
     store: reduxStore,
@@ -652,7 +648,6 @@ export * from '@testing-library/react';
 
 // namespace for hooks related helpers
 const hooks = {
-  ...rtlHooks,
   renderHook,
 };
 

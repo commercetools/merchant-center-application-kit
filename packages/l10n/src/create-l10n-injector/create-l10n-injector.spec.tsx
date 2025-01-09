@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { createL10NHook } from './create-l10n-injector';
 
@@ -33,16 +33,14 @@ const errorLoadingLocalesMock = jest.fn(() =>
 describe('loading data', () => {
   it('should load data via hook', async () => {
     const useL10n = createL10NHook<Candies>(loadLocalesMock);
-    const { result, waitForNextUpdate } = renderHook<unknown, Result>(() =>
-      useL10n('en')
-    );
+    const { result } = renderHook<unknown, Result>(() => useL10n('en'));
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toEqual({});
     expect(result.current.error).not.toBeDefined();
 
-    await waitForNextUpdate();
-
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(false);
+    });
     expect(result.current.data).toEqual(candies.en);
     expect(result.current.error).not.toBeDefined();
   });
@@ -50,16 +48,14 @@ describe('loading data', () => {
 describe('error loading data', () => {
   it('should return error and report error to sentry', async () => {
     const useL10n = createL10NHook<Candies>(errorLoadingLocalesMock);
-    const { result, waitForNextUpdate } = renderHook<unknown, Result>(() =>
-      useL10n('en')
-    );
+    const { result } = renderHook<unknown, Result>(() => useL10n('en'));
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toEqual({});
     expect(result.current.error).not.toBeDefined();
 
-    await waitForNextUpdate();
-
-    expect(result.current.isLoading).toBe(false);
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(false);
+    });
     expect(result.current.data).toEqual({});
     expect(result.current.error).toEqual(
       expect.objectContaining({ message: 'Oops' })
