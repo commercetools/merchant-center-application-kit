@@ -123,6 +123,7 @@
     "@types/mock-fs": "^4.13.1",
     "@types/moment-locales-webpack-plugin": "^1.2.3",
     "@types/node-fetch": "2.6.11",
+    "@types/prettier": "2.7.3",
     "@types/serve-handler": "^6.1.1",
     "memfs": "^4.8.2",
     "mock-fs": "^5.2.0",
