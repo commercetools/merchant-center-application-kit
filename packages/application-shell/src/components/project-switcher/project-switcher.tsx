@@ -189,8 +189,8 @@ const ProjectSwitcher = (props: Props) => {
             mapProjectsToOptions(data.user.projects.results)) ||
           []
         }
-        isOptionDisabled={(option) => {
-          const project = option as OptionType;
+        isOptionDisabled={(option: OptionType) => {
+          const project = option;
           return project.suspension.isActive || project.expiry.isActive;
         }}
         components={{

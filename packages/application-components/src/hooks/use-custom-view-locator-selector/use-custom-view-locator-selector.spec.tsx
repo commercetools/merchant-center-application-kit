@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
@@ -15,7 +16,7 @@ const createMockHistory = (location: string) =>
 
 const render = (location: string) =>
   renderHook(() => useCustomViewLocatorSelector(mockConfig), {
-    wrapper: ({ children }) => (
+    wrapper: ({ children }: { children: ReactNode }) => (
       <Router history={createMockHistory(location)}>{children}</Router>
     ),
   });

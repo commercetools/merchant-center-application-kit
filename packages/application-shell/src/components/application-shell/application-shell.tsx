@@ -47,7 +47,7 @@ type TApplicationShellProps = {
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
   enableReactStrictMode?: boolean;
-  render?: () => JSX.Element;
+  render?: () => React.JSX.Element;
   children?: ReactNode;
 };
 

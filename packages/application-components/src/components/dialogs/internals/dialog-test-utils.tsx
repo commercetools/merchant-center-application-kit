@@ -8,7 +8,7 @@ type DialogControllerProps = {
   children: (renderProps: {
     isOpen: boolean;
     setIsOpen: Dispatch<boolean>;
-  }) => JSX.Element;
+  }) => React.JSX.Element;
 };
 const DialogController = (props: DialogControllerProps) => {
   const [isOpen, setIsOpen] = useState(false);
