@@ -83,7 +83,6 @@
     "@apollo/client": "3.7.14",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "16.1.0",
-    "@testing-library/react-hooks": "8.0.1",
     "@types/jest": "^29.5.4",
     "@types/raf-schd": "^4.0.1",
     "@types/testing-library__jest-dom": "^5.14.9",

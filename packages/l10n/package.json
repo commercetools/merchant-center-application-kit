@@ -42,7 +42,6 @@
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "8.0.1",
     "@types/cldr": "^7.1.4",
     "@types/jest": "^29.5.4",
     "@types/prettier": "2.7.3",
