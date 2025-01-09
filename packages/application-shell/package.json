@@ -9,7 +9,12 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/merchant-center-customizations/api-reference/commercetools-frontend-application-shell",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -17,7 +22,11 @@
   "main": "dist/commercetools-frontend-application-shell.cjs.js",
   "module": "dist/commercetools-frontend-application-shell.esm.js",
   "preconstruct": {
-    "entrypoints": ["./index.ts", "./ssr/index.ts", "./test-utils/index.ts"]
+    "entrypoints": [
+      "./index.ts",
+      "./ssr/index.ts",
+      "./test-utils/index.ts"
+    ]
   },
   "files": [
     "dist",
@@ -45,21 +54,21 @@
     "@commercetools-frontend/sdk": "23.2.0",
     "@commercetools-frontend/sentry": "23.2.0",
     "@commercetools-frontend/url-utils": "23.2.0",
-    "@commercetools-uikit/accessible-hidden": "^19.22.3",
-    "@commercetools-uikit/avatar": "^19.22.3",
-    "@commercetools-uikit/card": "^19.22.3",
-    "@commercetools-uikit/constraints": "^19.22.3",
-    "@commercetools-uikit/design-system": "^19.22.3",
-    "@commercetools-uikit/flat-button": "^19.22.3",
-    "@commercetools-uikit/icon-button": "^19.22.3",
-    "@commercetools-uikit/icons": "^19.22.3",
-    "@commercetools-uikit/loading-spinner": "^19.22.3",
-    "@commercetools-uikit/notifications": "^19.22.3",
-    "@commercetools-uikit/primary-button": "^19.22.3",
-    "@commercetools-uikit/secondary-button": "^19.22.3",
-    "@commercetools-uikit/select-input": "^19.22.3",
-    "@commercetools-uikit/spacings": "^19.22.3",
-    "@commercetools-uikit/text": "^19.22.3",
+    "@commercetools-uikit/accessible-hidden": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/avatar": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/card": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/constraints": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/design-system": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/flat-button": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/icon-button": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/icons": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/loading-spinner": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/notifications": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/primary-button": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/secondary-button": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/select-input": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/spacings": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/text": "^0.0.0-preview-fec-155-react-19-20250108172010",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@flopflip/combine-adapters": "14.0.2",
