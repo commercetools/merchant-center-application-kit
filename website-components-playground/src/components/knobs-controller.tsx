@@ -17,7 +17,7 @@ export type TKnob = {
   }[];
 };
 type TKnobsControllerFunctionOptions = {
-  form: JSX.Element;
+  form: React.JSX.Element;
   values: Record<string, unknown>;
 };
 type TKnobsControllerProps = {

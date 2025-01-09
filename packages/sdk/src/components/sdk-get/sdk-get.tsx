@@ -35,7 +35,7 @@ type OwnProps = {
   ) => boolean;
   onSuccess?: (result: SuccessResult['body']) => void;
   onError?: (error: TSdkError) => void;
-  render: (options: TRenderOptions) => JSX.Element;
+  render: (options: TRenderOptions) => React.JSX.Element;
 };
 export type Props = DispatchProps & OwnProps;
 type StaticErrorHandler = (error: TSdkError) => void;

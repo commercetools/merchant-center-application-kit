@@ -81,30 +81,30 @@ const injectAuthorized =
     options: TInjectAuthorizedOptions<OwnProps> = {},
     propName = 'isAuthorized'
   ) =>
-  (
-    Component: ComponentType<OwnProps>
-  ): ComponentType<OwnProps & InjectedProps> => {
-    const WrappedComponent = (props: OwnProps) => (
-      <Authorized
-        shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-        demandedPermissions={demandedPermissions}
-        demandedActionRights={options.actionRights}
-        demandedDataFences={options.dataFences}
-        selectDataFenceData={
-          options.getSelectDataFenceData &&
-          options.getSelectDataFenceData(props)
-        }
-        render={(isAuthorized) => (
-          // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
-          <Component {...props} {...{ [propName]: isAuthorized }} />
-        )}
-      />
-    );
-    WrappedComponent.displayName = `withUserPermissions(${getDisplayName<OwnProps>(
-      Component
-    )})`;
-    return WrappedComponent;
-  };
+    (
+      Component: ComponentType<OwnProps>
+    ): ComponentType<OwnProps & InjectedProps> => {
+      const WrappedComponent = (props: OwnProps) => (
+        <Authorized
+          shouldMatchSomePermissions={options.shouldMatchSomePermissions}
+          demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
+          selectDataFenceData={
+            options.getSelectDataFenceData &&
+            options.getSelectDataFenceData(props)
+          }
+          render={(isAuthorized) => (
+            // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
+            <Component {...props} {...{ [propName]: isAuthorized }} />
+          )}
+        />
+      );
+      WrappedComponent.displayName = `withUserPermissions(${getDisplayName<OwnProps>(
+        Component
+      )})`;
+      return WrappedComponent;
+    };
 
 export default Authorized;
 export { injectAuthorized };

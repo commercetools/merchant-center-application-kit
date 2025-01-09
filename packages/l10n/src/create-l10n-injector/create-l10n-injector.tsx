@@ -47,12 +47,7 @@ export function createL10NHook<LoadedData extends {}>(
   loadLocale: LoadLocale<LoadedData>
 ) {
   return (locale: string) => {
-    const [data, dispatch] = useReducer<
-      (
-        prevState: State<LoadedData>,
-        action: Action<LoadedData>
-      ) => State<LoadedData>
-    >(reducer, initialState);
+    const [data, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
       let cleaning = false;

@@ -30,8 +30,8 @@
     "history": "4.10.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-intl": "^6.4.7",
     "react-router-dom": "5.3.4",
     "react-select": "5.8.0"
@@ -39,8 +39,8 @@
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",
     "@types/history": "^4.7.11",
-    "@types/react": "^17.0.83",
-    "@types/react-dom": "^17.0.19",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.2",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "4.3.4",
     "vite": "~6.1.0"
