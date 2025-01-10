@@ -1,11 +1,10 @@
 import { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import type { CSSObject } from '@emotion/react';
-import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
-import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
+import type { TCustomViewSelectorProps } from '../../custom-views/custom-views-selector/types';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -42,7 +41,7 @@ type Props = {
   /**
    * These codes are used to configure which Custom Views are available for every tab.
    */
-  customViewLocatorCodes?: Record<string, LocationDescriptor>;
+  customViewLocatorCodes?: TCustomViewSelectorProps['customViewLocatorCodes'];
   onClose?: (event: SyntheticEvent) => void;
   children: ReactNode;
   zIndex?: number;
@@ -67,10 +66,6 @@ type Props = {
 };
 
 const TabularModalPage = ({ hideControls = false, ...props }: Props) => {
-  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
-    props.customViewLocatorCodes
-  );
-
   return (
     <ModalPage
       title={props.title}
@@ -111,7 +106,7 @@ const TabularModalPage = ({ hideControls = false, ...props }: Props) => {
       <CustomViewsSelectorWrapper>
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
-          customViewLocatorCode={currentCustomViewLocatorCode}
+          customViewLocatorCodes={props.customViewLocatorCodes}
         />
       </CustomViewsSelectorWrapper>
       <ModalContentWrapper>{props.children}</ModalContentWrapper>
