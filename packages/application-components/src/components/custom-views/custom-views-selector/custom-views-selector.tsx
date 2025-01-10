@@ -177,15 +177,14 @@ const CustomViewSelectorOrNothing = (props: TCustomViewSelectorProps) => {
     props.customViewLocatorCodes
   );
 
-  if (!currentCustomViewLocatorCode) {
+  const locatorCode =
+    currentCustomViewLocatorCode ?? props.customViewLocatorCode;
+
+  if (!locatorCode) {
     return null;
   }
-  return (
-    <CustomViewSelector
-      {...props}
-      customViewLocatorCode={currentCustomViewLocatorCode}
-    />
-  );
+
+  return <CustomViewSelector {...props} customViewLocatorCode={locatorCode} />;
 };
 
 export default CustomViewSelectorOrNothing;

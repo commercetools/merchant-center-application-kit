@@ -10,6 +10,7 @@ export type TCustomViewLocatorCode =
 
 export type TCustomViewSelectorProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
+  customViewLocatorCode?: string;
   customViewLocatorCodes?: Record<string, TCustomViewLocatorCode>;
   margin?: string;
 };
