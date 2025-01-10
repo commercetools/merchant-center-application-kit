@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import PageHeaderTitle from '../../internals/page-header-title';
 import CustomFormMainPage from '../custom-form-main-page';
 
@@ -61,7 +62,7 @@ type FormMainPageProps = {
   /**
    * The Icon for the secondary button label
    */
-  iconLeftSecondaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
   /**
    * This code is used to configure which Custom Views are available for this page.
    */
