@@ -133,13 +133,19 @@ export type TFetcher<Data> = (
   options: TOptions
 ) => Promise<TFetcherResponse<Data>>;
 
-const defaultUserAgent = createHttpUserAgent({
-  name: 'unknown-http-client',
-  libraryName:
-    typeof window !== 'undefined'
-      ? window.app.applicationName
-      : 'unknown-application-name',
-});
+let _userAgent: string | null;
+const getUserAgent = () => {
+  if (!_userAgent) {
+    _userAgent = createHttpUserAgent({
+      name: 'unknown-http-client',
+      libraryName:
+        typeof window !== 'undefined'
+          ? window.app?.applicationName ?? 'unknown-application-name'
+          : undefined,
+    });
+  }
+  return _userAgent;
+};
 
 const defaultForwardToVersion: TForwardToConfigVersion = 'v2';
 const defaultForwardToAudiencePolicy: TForwardToAudiencePolicy =
@@ -187,7 +193,7 @@ function createHttpClientOptions(config: TConfig = {}): TOptions {
   const sessionToken = oidcStorage.getSessionToken();
   const projectKey = config.projectKey ?? selectProjectKeyFromUrl();
   const userId = selectUserId();
-  const userAgent = config?.userAgent || defaultUserAgent;
+  const userAgent = config?.userAgent || getUserAgent();
 
   return {
     credentials: 'include',
