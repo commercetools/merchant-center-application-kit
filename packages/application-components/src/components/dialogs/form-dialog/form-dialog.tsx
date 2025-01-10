@@ -1,5 +1,6 @@
 import type { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
@@ -30,8 +31,8 @@ export type TFormDialogProps = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
-  iconLeftSecondaryButton?: ReactElement;
-  iconLeftPrimaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
+  iconLeftPrimaryButton?: ReactElement<TIconProps>;
   footerContent?: ReactNode;
 };
 
