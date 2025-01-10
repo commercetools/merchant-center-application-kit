@@ -65,6 +65,30 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
             break;
+          case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY:
+            // Transfer port2 to the iFrame so it can send messages back privately
+            iFrameElementRef.current?.contentWindow?.postMessage(
+              CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
+              window.location.href,
+              [iFrameCommunicationChannel.current.port2]
+            );
+
+            // Send the initialization message to the iFrame
+            iFrameCommunicationChannel.current.port1.postMessage({
+              source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+              destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
+              eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
+              eventData: {
+                context: {
+                  dataLocale,
+                  projectKey,
+                  featureFlags,
+                  customViewConfig: props.customView,
+                  hostUrl: props.hostUrl || window.location.href,
+                },
+              },
+            } as TCustomViewIframeMessage);
+            break;
         }
       }
     },
@@ -89,28 +113,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     iFrameCommunicationChannel.current.port1.onmessage =
       messageFromIFrameHandler;
 
-    // Transfer port2 to the iFrame so it can send messages back privately
-    iFrameElementRef.current?.contentWindow?.postMessage(
-      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
-      window.location.href,
-      [iFrameCommunicationChannel.current.port2]
-    );
-
-    // Send the initialization message to the iFrame
-    iFrameCommunicationChannel.current.port1.postMessage({
-      source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
-      destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
-      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
-      eventData: {
-        context: {
-          dataLocale,
-          projectKey,
-          featureFlags,
-          customViewConfig: props.customView,
-          hostUrl: props.hostUrl || window.location.href,
-        },
-      },
-    } as TCustomViewIframeMessage);
+    window.addEventListener('message', messageFromIFrameHandler);
 
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
