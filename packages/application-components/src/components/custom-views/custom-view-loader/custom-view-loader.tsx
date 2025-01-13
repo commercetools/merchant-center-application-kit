@@ -65,6 +65,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         switch (event.data.eventName) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
+            hasTransferredPort.current = false;
+
             break;
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY:
             // Transfer port2 to the iFrame so it can send messages back privately
@@ -129,6 +131,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     const communicationChannel = iFrameCommunicationChannel.current;
     return () => {
       communicationChannel?.port1.close();
+      window.removeEventListener('message', messageFromIFrameHandler);
     };
   }, []);
 
