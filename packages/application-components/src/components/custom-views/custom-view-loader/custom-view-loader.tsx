@@ -54,9 +54,10 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
   const featureFlags = useAllFeatureToggles();
-  const iFrameCommunicationChannel = useRef(new MessageChannel());
+  const iFrameCommunicationChannel = useRef<MessageChannel>(undefined);
   const showNotification = useShowNotification();
   const intl = useIntl();
+  const hasTransferredPort = useRef(false);
 
   const messageFromIFrameHandler = useCallback(
     (event: MessageEvent) => {
@@ -70,11 +71,14 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
             iFrameElementRef.current?.contentWindow?.postMessage(
               CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
               window.location.href,
-              [iFrameCommunicationChannel.current.port2]
+              !hasTransferredPort.current
+                ? [iFrameCommunicationChannel.current!.port2]
+                : []
             );
+            if (!hasTransferredPort.current) hasTransferredPort.current = true;
 
             // Send the initialization message to the iFrame
-            iFrameCommunicationChannel.current.port1.postMessage({
+            iFrameCommunicationChannel.current!.port1.postMessage({
               source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
               destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
               eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
@@ -110,7 +114,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     }
 
     // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current.port1.onmessage =
+    iFrameCommunicationChannel.current!.port1.onmessage =
       messageFromIFrameHandler;
 
     window.addEventListener('message', messageFromIFrameHandler);
@@ -120,6 +124,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   }, []);
 
   useEffect(() => {
+    iFrameCommunicationChannel.current = new MessageChannel();
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
     return () => {

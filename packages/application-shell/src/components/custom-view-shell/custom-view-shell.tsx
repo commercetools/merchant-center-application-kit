@@ -208,8 +208,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY,
     });
 
-    console.log('iFrame is ready and message sent to parent.');
-
     return () => {
       window.removeEventListener('message', bootstrapMessageHandler);
     };
