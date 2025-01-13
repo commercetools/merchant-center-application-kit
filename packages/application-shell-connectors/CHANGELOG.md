@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.38.1
+
+### Patch Changes
+
+- [#3690](https://github.com/commercetools/merchant-center-application-kit/pull/3690) [`2fec608`](https://github.com/commercetools/merchant-center-application-kit/commit/2fec608c3f47de05c83eb7806f89246b6bdc5ae7) Thanks [@emmenko](https://github.com/emmenko)! - Evaluate `window.app` lazily. This is useful when the package is not being used within the Merchant Center context.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.38.1
+  - @commercetools-frontend/browser-history@22.38.1
+  - @commercetools-frontend/constants@22.38.1
+  - @commercetools-frontend/sentry@22.38.1
+
 ## 22.38.0
 
 ### Patch Changes
