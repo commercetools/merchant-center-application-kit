@@ -1,11 +1,10 @@
 import type { ReactElement, ReactNode, MouseEvent, KeyboardEvent } from 'react';
-import { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
-import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
+import type { TCustomViewSelectorProps } from '../../custom-views/custom-views-selector/types';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -63,7 +62,7 @@ type TTabularDetailPageProps = {
   /**
    * These codes are used to configure which Custom Views are available for every tab.
    */
-  customViewLocatorCodes?: Record<string, LocationDescriptor>;
+  customViewLocatorCodes?: TCustomViewSelectorProps['customViewLocatorCodes'];
 
   // PageTopBar props:
   /**
@@ -82,10 +81,6 @@ const TabularDetailPage = ({
   hideControls = false,
   ...props
 }: TTabularDetailPageProps) => {
-  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
-    props.customViewLocatorCodes
-  );
-
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
     'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
@@ -122,7 +117,7 @@ const TabularDetailPage = ({
       <CustomViewsSelectorWrapper>
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
-          customViewLocatorCode={currentCustomViewLocatorCode}
+          customViewLocatorCodes={props.customViewLocatorCodes}
         />
       </CustomViewsSelectorWrapper>
       <ContentWrapper>{props.children}</ContentWrapper>

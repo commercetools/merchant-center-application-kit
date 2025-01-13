@@ -15,22 +15,18 @@ import { designTokens } from '@commercetools-uikit/design-system';
 import { WindowEyeIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import CustomViewLoader from '../custom-view-loader';
 import messages from './messages';
+import type { TCustomViewSelectorProps } from './types';
 import { useCustomViewsConnector } from './use-custom-views-connector';
 
 const COMPONENT_HEIGHT = '52px';
 
-type TCustomViewSelectorBaseProps = {
-  onCustomViewsResolved?: (customViews: CustomViewData[]) => void;
-};
-type TCustomViewSelectorProps = TCustomViewSelectorBaseProps & {
-  customViewLocatorCode?: string;
-  margin?: string;
-};
-type TCustomViewSelectorWithRequiredProps = TCustomViewSelectorBaseProps & {
+type TCustomViewSelectorWithRequiredProps = {
   customViewLocatorCode: string;
   margin?: string;
+  onCustomViewsResolved?: TCustomViewSelectorProps['onCustomViewsResolved'];
 };
 
 type TWrapperProps = {
@@ -177,15 +173,18 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
 CustomViewSelector.displayName = 'CustomViewSelector';
 
 const CustomViewSelectorOrNothing = (props: TCustomViewSelectorProps) => {
-  if (!props.customViewLocatorCode) {
+  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
+    props.customViewLocatorCodes
+  );
+
+  const locatorCode =
+    currentCustomViewLocatorCode ?? props.customViewLocatorCode;
+
+  if (!locatorCode) {
     return null;
   }
-  return (
-    <CustomViewSelector
-      {...props}
-      customViewLocatorCode={props.customViewLocatorCode}
-    />
-  );
+
+  return <CustomViewSelector {...props} customViewLocatorCode={locatorCode} />;
 };
 
 export default CustomViewSelectorOrNothing;

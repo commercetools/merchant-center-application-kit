@@ -9,6 +9,10 @@ const useCustomViewLocatorSelector = (
 ) => {
   const location = useLocation();
 
+  if (!customViewLocatorCodes) {
+    return { currentCustomViewLocatorCode: undefined };
+  }
+
   const customViewLocator = Object.entries(customViewLocatorCodes).find(
     ([, locator]) => {
       return matchPath(location.pathname, {
