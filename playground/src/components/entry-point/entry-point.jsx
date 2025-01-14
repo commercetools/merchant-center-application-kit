@@ -34,6 +34,7 @@ const EntryPoint = () => (
           environment={window.app}
           applicationMessages={loadMessages}
           apolloClient={apolloClient}
+          enableReactStrictMode
         >
           <AsyncPlaygroundRoutes />
         </ApplicationShell>
