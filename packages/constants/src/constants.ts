@@ -318,6 +318,7 @@ export const CUSTOM_VIEWS_EVENTS_NAMES = {
   CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
   CUSTOM_VIEW_INITIALIZATION: 'custom-view-initialization',
   CUSTOM_VIEW_CLOSE: 'custom-view-close',
+  CUSTOM_VIEW_READY: 'custom-view-ready',
 };
 export const CUSTOM_VIEWS_EVENTS_META = {
   HOST_APPLICATION_CODE: 'mc-host-application',
