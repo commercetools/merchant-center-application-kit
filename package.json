@@ -14,7 +14,7 @@
     "lint": "jest --projects jest.{eslint,stylelint}.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "typecheck:cypress": "pnpm typecheck -p cypress",
     "typecheck:starter:custom-applications": "pnpm typecheck -p application-templates/starter-typescript",
     "typecheck:starter:custom-views": "pnpm typecheck -p custom-views-templates/starter-typescript",

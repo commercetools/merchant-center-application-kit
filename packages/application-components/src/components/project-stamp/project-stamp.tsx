@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { MessageDescriptor, useIntl } from 'react-intl';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import { DotIcon } from '@commercetools-uikit/icons';
 import Stamp, { TTone } from '@commercetools-uikit/stamp';
 import messages from './messages';
@@ -8,7 +9,7 @@ import messages from './messages';
 type TCustomStampProps = {
   tone: TTone;
   label: MessageDescriptor & { values?: Record<string, string | number> };
-  icon?: ReactElement;
+  icon?: ReactElement<TIconProps>;
 };
 function CustomStamp(props: TCustomStampProps) {
   const intl = useIntl();
