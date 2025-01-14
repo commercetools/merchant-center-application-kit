@@ -120,6 +120,7 @@ const Channels = (props: TChannelsProps) => {
             onSortChange={tableSorting.onChange}
             onRowClick={(row) => push(`${match.url}/${row.id}`)}
           />
+          {/* @ts-ignore FIXME upstream */}
           <Pagination
             page={page.value}
             onPageChange={page.onChange}
