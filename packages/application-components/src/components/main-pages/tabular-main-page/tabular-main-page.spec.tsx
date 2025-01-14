@@ -1,4 +1,3 @@
-import { act } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
