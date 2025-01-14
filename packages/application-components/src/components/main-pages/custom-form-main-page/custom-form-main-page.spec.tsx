@@ -26,10 +26,10 @@ const renderCustomFormMainPage = (additionalProps = {}) => {
 };
 
 describe('rendering', () => {
-  it('should render content', () => {
+  it('should render content', async () => {
     renderCustomFormMainPage({ title: 'Test Title' });
 
-    screen.getByText(/Lorem ipsum dolor sit amet/i);
+    await screen.findByText(/Lorem ipsum dolor sit amet/i);
   });
 
   it('should render title and subtitle', () => {
