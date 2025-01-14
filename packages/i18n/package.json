@@ -36,7 +36,7 @@
     "@babel/runtime-corejs3": "^7.22.15",
     "@commercetools-community-kit/i18n": "^0.3.0",
     "@commercetools-frontend/sentry": "22.39.0",
-    "@commercetools-uikit/i18n": "^0.0.0-preview-fec-155-react-19-20250108172010",
+    "@commercetools-uikit/i18n": "^0.0.0-preview-fec-155-react-19-20250113184401",
     "@emotion/react": "^11.11.4",
     "@formatjs/icu-messageformat-parser": "2.7.8",
     "@types/prop-types": "^15.7.5",
@@ -49,10 +49,10 @@
     "@types/jest": "^29.5.4",
     "jest-mock": "29.7.0",
     "react": "19.0.0",
-    "react-intl": "^7.1.0"
+    "react-intl": "^6.4.7"
   },
   "peerDependencies": {
     "react": "19.x",
-    "react-intl": "7.x"
+    "react-intl": "6.x"
   }
 }
