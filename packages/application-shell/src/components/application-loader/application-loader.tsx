@@ -24,7 +24,6 @@ const ApplicationLoader = (props: Props) => (
     `}
     data-testid="application-loader"
   >
-    {/* @ts-ignore FIXME upstream */}
     <LoadingSpinner />
     {props.showLogo === true ? (
       <img alt="commercetools logo" src={CTLogoSVG} />

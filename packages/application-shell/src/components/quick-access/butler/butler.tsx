@@ -668,7 +668,6 @@ const Butler = (props: Props) => {
                 margin-right: ${uiKitDesignTokens.spacingS};
               `}
             >
-              {/* @ts-ignore FIXME upstream */}
               <LoadingSpinner />
             </div>
           )}
