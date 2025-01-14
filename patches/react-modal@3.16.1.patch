@@ -1,0 +1,48 @@
+diff --git a/lib/components/ModalPortal.js b/lib/components/ModalPortal.js
+index 07e27aafea5c094055c101ce79510e9559560fbe..ef81e172d1f602e6c77d1ee5b5b16eab8404ef54 100644
+--- a/lib/components/ModalPortal.js
++++ b/lib/components/ModalPortal.js
+@@ -132,11 +132,11 @@ var ModalPortal = function (_Component) {
+     };
+ 
+     _this.open = function () {
+-      _this.beforeOpen();
+       if (_this.state.afterOpen && _this.state.beforeClose) {
+         clearTimeout(_this.closeTimer);
+         _this.setState({ beforeClose: false });
+       } else {
++        _this.beforeOpen();
+         if (_this.props.shouldFocusAfterRender) {
+           focusManager.setupScopedFocus(_this.node);
+           focusManager.markForFocusLater();
+@@ -171,9 +171,8 @@ var ModalPortal = function (_Component) {
+ 
+     _this.closeWithTimeout = function () {
+       var closesAt = Date.now() + _this.props.closeTimeoutMS;
+-      _this.setState({ beforeClose: true, closesAt: closesAt }, function () {
+-        _this.closeTimer = setTimeout(_this.closeWithoutTimeout, _this.state.closesAt - Date.now());
+-      });
++      _this.setState({ beforeClose: true, closesAt: closesAt });
++      _this.closeTimer = setTimeout(_this.closeWithoutTimeout, _this.props.closeTimeoutMS);
+     };
+ 
+     _this.closeWithoutTimeout = function () {
+@@ -182,7 +181,8 @@ var ModalPortal = function (_Component) {
+         isOpen: false,
+         afterOpen: false,
+         closesAt: null
+-      }, _this.afterClose);
++      });
++      _this.afterClose();
+     };
+ 
+     _this.handleKeyDown = function (event) {
+@@ -313,7 +313,7 @@ var ModalPortal = function (_Component) {
+   }, {
+     key: "componentWillUnmount",
+     value: function componentWillUnmount() {
+-      if (this.state.isOpen) {
++      if (this.props.isOpen) {
+         this.afterClose();
+       }
+       clearTimeout(this.closeTimer);
