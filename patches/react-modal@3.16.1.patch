@@ -1,0 +1,20 @@
+diff --git a/lib/components/Modal.js b/lib/components/Modal.js
+index ae58adad8f9d4bcbeb4c76ee64d655fe838fc03c..ca294575e49fe691fababdb002b67f5326e31421 100644
+--- a/lib/components/Modal.js
++++ b/lib/components/Modal.js
+@@ -156,7 +156,14 @@ var Modal = function (_Component) {
+           this.portal.closeWithTimeout();
+         }
+ 
+-        setTimeout(this.removePortal, closesAt - now);
++        var remainingTime = closesAt - now;
++
++        var intervalStartTime = Date.now();
++        while (Date.now() - intervalStartTime < remainingTime) {
++          // Do nothing
++        }
++
++        this.removePortal();
+       } else {
+         this.removePortal();
+       }

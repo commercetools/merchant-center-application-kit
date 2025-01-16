@@ -184,7 +184,8 @@
     },
     "patchedDependencies": {
       "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
-      "vite-bundle-analyzer@0.12.1": "patches/vite-bundle-analyzer@0.12.1.patch"
+      "vite-bundle-analyzer@0.12.1": "patches/vite-bundle-analyzer@0.12.1.patch",
+      "react-modal@3.16.1": "patches/react-modal@3.16.1.patch"
     }
   },
   "engines": {
