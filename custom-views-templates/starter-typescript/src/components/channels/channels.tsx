@@ -111,9 +111,9 @@ const Channels = () => {
             sortDirection={tableSorting.value.order}
             onSortChange={tableSorting.onChange}
           />
-          {/* @ts-ignore FIXME upstream */}
           <Pagination
             page={page.value}
+            perPageRange="s"
             onPageChange={page.onChange}
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}
