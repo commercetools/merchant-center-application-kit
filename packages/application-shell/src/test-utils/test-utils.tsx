@@ -2,6 +2,7 @@ import {
   JSXElementConstructor,
   createElement,
   Suspense,
+  act,
   type ReactElement,
   type ReactNode,
 } from 'react';
@@ -586,8 +587,15 @@ export type TRenderHookResult<
   RenderHookCallbackValue,
   AdditionalEnvironmentProperties extends {} = {},
   StoreState extends {} = {}
-> = rtl.RenderHookResult<RenderHookCallbackProps, RenderHookCallbackValue> &
-  Pick<
+> = Omit<
+  rtl.RenderHookResult<RenderHookCallbackProps, RenderHookCallbackValue>,
+  'rerender' | 'result'
+> & {
+  result: {
+    current: RenderHookCallbackValue;
+  };
+  rerender: (props?: RenderHookCallbackProps) => void;
+} & Pick<
     TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>,
     'store' | 'history' | 'user' | 'project' | 'environment'
   >;
@@ -632,7 +640,6 @@ function renderHook<
     ),
   });
 
-  // @ts-ignore FIXME: prop types of rerender
   return {
     ...rendered,
     store: reduxStore,
@@ -643,13 +650,28 @@ function renderHook<
   };
 }
 
-// re-export everything
-export * from '@testing-library/react';
-
 // namespace for hooks related helpers
 const hooks = {
   renderHook,
 };
+
+// Custom events for async focus and blur.
+// This helps abstracting the act() call from the tests.
+type TCustomFireEventApi = typeof rtl.fireEvent & {
+  asyncFocus: (element: HTMLElement) => Promise<void>;
+  asyncBlur: (element: HTMLElement) => Promise<void>;
+};
+
+const customFireEvent = rtl.fireEvent as TCustomFireEventApi;
+customFireEvent.asyncFocus = (element) => {
+  return act(async () => element.focus());
+};
+customFireEvent.asyncBlur = (element) => {
+  return act(async () => element.blur());
+};
+
+// re-export everything
+export * from '@testing-library/react';
 
 export {
   renderApp,
@@ -659,4 +681,5 @@ export {
   denormalizePermissions,
   denormalizeActionRights,
   denormalizeDataFences,
+  customFireEvent,
 };
