@@ -87,5 +87,6 @@ export const getBeforeCloseContainerAnimation = (
 `;
 
 export const getBeforeCloseOverlayAnimation = (): SerializedStyles => css`
-  opacity: 0 !important;
+  // FIXME This breaks react modal visibility in React 19
+  // opacity: 0 !important;
 `;

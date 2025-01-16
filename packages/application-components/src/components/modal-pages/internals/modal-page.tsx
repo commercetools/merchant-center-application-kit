@@ -98,6 +98,12 @@ const ModalPage = ({
   const [forceClose, setForceClose] = useState(false);
   const closingTimer = useRef<NodeJS.Timeout>(null);
   useEffect(() => {
+    return () => {
+      document.body.classList.remove('ReactModal__Body--open');
+    };
+  }, []);
+
+  useEffect(() => {
     if (props.isOpen === true) setForceClose(false);
     return () => {
       if (closingTimer.current) {
@@ -157,7 +163,6 @@ const ModalPage = ({
           // Adjust this value if the (beforeClose) animation duration is changed
           closeTimeoutMS={TRANSITION_DURATION}
           style={{
-            // stylelint-disable-next-line selector-type-no-unknown
             overlay: {
               zIndex: props.zIndex,
             },

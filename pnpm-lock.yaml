@@ -16,6 +16,9 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
+  react-modal@3.16.1:
+    hash: 3ghbsmrdpzyslb2wjiyotyllsu
+    path: patches/react-modal@3.16.1.patch
   vite-bundle-analyzer@0.12.1:
     hash: 7ajbjk5hiy45vciwrmysf4hciy
     path: patches/vite-bundle-analyzer@0.12.1.patch
@@ -1470,7 +1473,7 @@ importers:
         version: 19.0.2(@types/react@19.0.3)
       '@types/react-modal':
         specifier: ^3.16.0
-        version: 3.16.0
+        version: 3.16.3
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
@@ -1488,7 +1491,7 @@ importers:
         version: 4.0.3
       react-modal:
         specifier: 3.16.1
-        version: 3.16.1(react-dom@19.0.0)(react@19.0.0)
+        version: 3.16.1(patch_hash=3ghbsmrdpzyslb2wjiyotyllsu)(react-dom@19.0.0)(react@19.0.0)
     devDependencies:
       '@apollo/client':
         specifier: 3.7.14
@@ -5679,7 +5682,7 @@ packages:
       '@react-hook/resize-observer': 1.2.6(react@19.0.0)
       '@types/lodash.kebabcase': 4.1.9
       '@types/mdast': 4.0.3
-      '@types/react-modal': 3.16.0
+      '@types/react-modal': 3.16.3
       '@types/unist': 3.0.0
       lodash.kebabcase: 4.1.1
       lodash.omitby: 4.6.0
@@ -5694,7 +5697,7 @@ packages:
       react-dom: 19.0.0(react@19.0.0)
       react-intl: 6.4.7(react@19.0.0)(typescript@5.0.4)
       react-is: 18.2.0
-      react-modal: 3.16.1(react-dom@19.0.0)(react@19.0.0)
+      react-modal: 3.16.1(patch_hash=3ghbsmrdpzyslb2wjiyotyllsu)(react-dom@19.0.0)(react@19.0.0)
       rehype-react: 7.2.0(@types/react@19.0.3)
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
@@ -6935,7 +6938,7 @@ packages:
       '@emotion/react': 11.14.0(@types/react@19.0.3)(react@19.0.0)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0)(@types/react@19.0.3)(react@19.0.0)
       react: 19.0.0
-      react-intl: 6.3.2(react@19.0.0)(typescript@5.0.4)
+      react-intl: 6.3.2(react@19.0.0)(typescript@5.7.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -13458,8 +13461,8 @@ packages:
       '@types/react': 19.0.3
     dev: false
 
-  /@types/react-modal@3.16.0:
-    resolution: {integrity: sha512-iphdqXAyUfByLbxJn5j6d+yh93dbMgshqGP0IuBeaKbZXx0aO+OXsvEkt6QctRdxjeM9/bR+Gp3h9F9djVWTQQ==}
+  /@types/react-modal@3.16.3:
+    resolution: {integrity: sha512-xXuGavyEGaFQDgBv4UVm8/ZsG+qxeQ7f77yNrW3n+1J6XAstUy5rYHeIHPh1KzsGc6IkCIdu6lQ2xWzu1jBTLg==}
     dependencies:
       '@types/react': 19.0.3
     dev: false
@@ -19933,7 +19936,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.94.0
+      webpack: 5.94.0(uglify-js@3.18.0)
 
   /htmlparser2@6.1.0:
     resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
@@ -25200,7 +25203,7 @@ packages:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: false
 
-  /react-modal@3.16.1(react-dom@19.0.0)(react@19.0.0):
+  /react-modal@3.16.1(patch_hash=3ghbsmrdpzyslb2wjiyotyllsu)(react-dom@19.0.0)(react@19.0.0):
     resolution: {integrity: sha512-VStHgI3BVcGo7OXczvnJN7yT2TWHJPDXZWyI/a0ssFNhGZWsPmB8cF0z33ewDXq4VfYMO1vXgiv/g8Nj9NDyWg==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -25214,6 +25217,7 @@ packages:
       react-lifecycles-compat: 3.0.4
       warning: 4.0.3
     dev: false
+    patched: true
 
   /react-redux@7.2.9(react-dom@19.0.0)(react@19.0.0):
     resolution: {integrity: sha512-Gx4L3uM182jEEayZfRbI/G11ZpYdNAnBs70lFVMNdHJI76XYtR+7m0MN+eAs7UHBPhWXcnFPaS+9owSCJQHNpQ==}
@@ -27185,7 +27189,6 @@ packages:
       terser: 5.29.2
       uglify-js: 3.18.0
       webpack: 5.94.0(uglify-js@3.18.0)
-    dev: true
 
   /terser-webpack-plugin@5.3.10(webpack@5.94.0):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
@@ -28682,7 +28685,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpackbar@5.0.2(webpack@5.94.0):
     resolution: {integrity: sha512-BmFJo7veBDgQzfWXl/wwYXr/VFus0614qZ8i9znqcl9fnEdiVkdbi0TedLQ6xAK92HZHDJ0QmyQ0fmuZPAgCYQ==}
