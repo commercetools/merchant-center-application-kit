@@ -278,8 +278,7 @@ describe('notifications', () => {
     fireEvent.focus(rolesSelect);
     fireEvent.keyDown(rolesSelect, { key: 'ArrowDown' });
     const inventorySupplyOption = await screen.findByText('InventorySupply');
-
-    inventorySupplyOption.click();
+    fireEvent.click(inventorySupplyOption);
     expect(screen.getByDisplayValue(/InventorySupply/i)).toBeInTheDocument();
 
     // updating channel details
