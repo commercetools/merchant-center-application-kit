@@ -120,13 +120,13 @@ const Channels = (props: TChannelsProps) => {
             onSortChange={tableSorting.onChange}
             onRowClick={(row) => push(`${match.url}/${row.id}`)}
           />
-          {/* @ts-ignore FIXME upstream */}
           <Pagination
             page={page.value}
             onPageChange={page.onChange}
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}
             totalItems={channelsPaginatedResult.total}
+            perPageRange="s"
           />
           <Switch>
             <SuspendedRoute path={`${match.url}/:id`}>
