@@ -58,6 +58,8 @@ type TStrictModeEnablementProps = {
 
 const StrictModeEnablement = (props: TStrictModeEnablementProps) => {
   if (props.enableReactStrictMode) {
+    // @ts-ignore
+    window.__REACT_STRICT_MODE__ = true;
     return <StrictMode>{props.children}</StrictMode>;
   } else {
     return <>{props.children}</>;

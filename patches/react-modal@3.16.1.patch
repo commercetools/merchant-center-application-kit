@@ -1,9 +1,55 @@
 diff --git a/lib/components/Modal.js b/lib/components/Modal.js
-index ae58adad8f9d4bcbeb4c76ee64d655fe838fc03c..ca294575e49fe691fababdb002b67f5326e31421 100644
+index ae58adad8f9d4bcbeb4c76ee64d655fe838fc03c..b780d30d758d32efcc5ff811f5a104cfcdfda49e 100644
 --- a/lib/components/Modal.js
 +++ b/lib/components/Modal.js
-@@ -156,7 +156,14 @@ var Modal = function (_Component) {
-           this.portal.closeWithTimeout();
+@@ -62,6 +62,33 @@ function getParentElement(parentSelector) {
+   return parentSelector();
+ }
+ 
++var isStrictDoubleRenderExecuted = false;
++// var ReactStrictMode = 0b00000010;
++var isStrictModeFirstRender = () => {
++  // const rootFiber = (ReactDOM as any)._reactRootContainer._internalRoot.current; // Root FiberNode
++  const renderers = window.__REACT_DEVTOOLS_GLOBAL_HOOK__.renderers;
++  const isStrictMode = window.__REACT_STRICT_MODE__ === true;
++  if (!renderers) {
++    return false;
++  }
++  const mainRenderer = renderers.get(1);
++  if (!mainRenderer || !mainRenderer.getCurrentFiber) {
++    return false;
++  }
++  const currentFiber = mainRenderer.getCurrentFiber();
++  if (!currentFiber) {
++    return false;
++  }
++  console.log('[isStrictModeFirstRender] currentFiber:', { currentFiber });
++  if (!isStrictDoubleRenderExecuted && (currentFiber.mode & isStrictMode)) {
++    isStrictDoubleRenderExecuted = true;
++    return true;
++  } else {
++    return false;
++  }
++  // window.__REACT_DEVTOOLS_GLOBAL_HOOK__.renderers.get(1).getCurrentFiber()
++}
++
+ var Modal = function (_Component) {
+   _inherits(Modal, _Component);
+ 
+@@ -151,12 +178,24 @@ var Modal = function (_Component) {
+       var now = Date.now();
+       var closesAt = state.isOpen && this.props.closeTimeoutMS && (state.closesAt || now + this.props.closeTimeoutMS);
+ 
+-      if (closesAt) {
++     if (closesAt) {
+         if (!state.beforeClose) {
+-          this.portal.closeWithTimeout();
++          if (!isStrictModeFirstRender()) {
++            console.log(`[Modal]: scheduling closeWithTimeout`);
++            this.portal.closeWithTimeout();
++          } else {
++            console.log(`[Modal]: ignoring scheduling closeWithTimeout`);
++          }
          }
  
 -        setTimeout(this.removePortal, closesAt - now);
