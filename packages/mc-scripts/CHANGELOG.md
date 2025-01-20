@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.38.2
+
+### Patch Changes
+
+- [#3696](https://github.com/commercetools/merchant-center-application-kit/pull/3696) [`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499) Thanks [@emmenko](https://github.com/emmenko)! - Ensure security headers are set for Vite dev server
+
+- Updated dependencies [[`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499), [`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499)]:
+  - @commercetools-frontend/mc-html-template@22.38.2
+  - @commercetools-frontend/constants@22.38.2
+  - @commercetools-frontend/application-components@22.38.2
+  - @commercetools-frontend/application-config@22.38.2
+  - @commercetools-frontend/mc-dev-authentication@22.38.2
+  - @commercetools-frontend/assets@22.38.2
+  - @commercetools-frontend/babel-preset-mc-app@22.38.2
+
 ## 22.38.1
 
 ### Patch Changes

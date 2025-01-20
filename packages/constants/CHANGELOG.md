@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 22.38.2
+
+### Patch Changes
+
+- [#3696](https://github.com/commercetools/merchant-center-application-kit/pull/3696) [`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499) Thanks [@emmenko](https://github.com/emmenko)! - Change `Permissions-Policy` default directives to `(self)`.
+
 ## 22.38.1
 
 ## 22.38.0
