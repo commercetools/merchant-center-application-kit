@@ -1,4 +1,5 @@
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import type { THttpSecurityHeaders } from '@commercetools-frontend/constants';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlScripts from /* preval */ './load-html-scripts';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
@@ -7,7 +8,7 @@ import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 
 type TReplaceHtmlPlaceholdersOptions = {
   env: ApplicationRuntimeConfig['env'];
-  headers: Record<string, string | undefined>;
+  headers?: Record<THttpSecurityHeaders, string | undefined>;
 };
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');

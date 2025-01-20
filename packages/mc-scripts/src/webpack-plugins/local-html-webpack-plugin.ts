@@ -28,7 +28,6 @@ class LocalHtmlWebpackPlugin {
 
             data.html = replaceHtmlPlaceholders(data.html, {
               env: enhancedLocalEnv,
-              headers: {},
             });
 
             cb(null, data);

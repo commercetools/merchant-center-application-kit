@@ -103,7 +103,7 @@ describe('permissionsPolicies', () => {
       headers: {
         permissionsPolicies: {
           microphone: '*',
-          camera: '(self)',
+          camera: '()',
         },
       },
     };
@@ -112,6 +112,8 @@ describe('permissionsPolicies', () => {
 
     expect(
       processedApplicationConfig['Permissions-Policy']
-    ).toMatchInlineSnapshot(`"microphone=*, camera=(self)"`);
+    ).toMatchInlineSnapshot(
+      `"microphone=*, camera=(), payment=(self), usb=(self), geolocation=(self)"`
+    );
   });
 });
