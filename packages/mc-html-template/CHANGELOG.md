@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 22.38.2
+
+### Patch Changes
+
+- [#3696](https://github.com/commercetools/merchant-center-application-kit/pull/3696) [`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499) Thanks [@emmenko](https://github.com/emmenko)! - Merge `Permissions-Policy` custom directives with default ones.
+
+- Updated dependencies [[`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499)]:
+  - @commercetools-frontend/constants@22.38.2
+  - @commercetools-frontend/application-config@22.38.2
+
 ## 22.38.1
 
 ### Patch Changes
