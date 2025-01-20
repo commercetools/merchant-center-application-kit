@@ -303,14 +303,25 @@ export const STORAGE_KEYS = {
   LOGIN_STRATEGY: 'loginStrategy',
 } as const;
 
+export const HTTP_SECURITY_HEADER_KEYS = {
+  'Content-Security-Policy': 'Content-Security-Policy',
+  'Referrer-Policy': 'Referrer-Policy',
+  'Permissions-Policy': 'Permissions-Policy',
+  'Strict-Transport-Security': 'Strict-Transport-Security',
+  'X-XSS-Protection': 'X-XSS-Protection',
+  'X-Content-Type-Options': 'X-Content-Type-Options',
+  'X-Frame-Options': 'X-Frame-Options',
+} as const;
+export type THttpSecurityHeaders = keyof typeof HTTP_SECURITY_HEADER_KEYS;
 export const HTTP_SECURITY_HEADERS = {
-  'Referrer-Policy': 'same-origin',
-  'Permissions-Policy':
-    'microphone=(), camera=(), payment=(), usb=(), geolocation=()',
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
-  'X-XSS-Protection': '1; mode=block',
-  'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'SAMEORIGIN',
+  [HTTP_SECURITY_HEADER_KEYS['Referrer-Policy']]: 'same-origin',
+  [HTTP_SECURITY_HEADER_KEYS['Permissions-Policy']]:
+    'microphone=(self), camera=(self), payment=(self), usb=(self), geolocation=(self)',
+  [HTTP_SECURITY_HEADER_KEYS['Strict-Transport-Security']]:
+    'max-age=31536000; includeSubDomains; preload',
+  [HTTP_SECURITY_HEADER_KEYS['X-XSS-Protection']]: '1; mode=block',
+  [HTTP_SECURITY_HEADER_KEYS['X-Content-Type-Options']]: 'nosniff',
+  [HTTP_SECURITY_HEADER_KEYS['X-Frame-Options']]: 'SAMEORIGIN',
 } as const;
 
 // Custom Views events (messages sent between the host application and the custom view)
