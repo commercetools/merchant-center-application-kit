@@ -316,6 +316,8 @@ export type THttpSecurityHeaders = keyof typeof HTTP_SECURITY_HEADER_KEYS;
 export const HTTP_SECURITY_HEADERS = {
   [HTTP_SECURITY_HEADER_KEYS['Referrer-Policy']]: 'same-origin',
   [HTTP_SECURITY_HEADER_KEYS['Permissions-Policy']]:
+    // Note: we need to use `(self)` to ensure that Custom Views (rendered within an `<iframe>`)
+    // can inherit the main application permissions policy and override other directives if needed.
     'microphone=(self), camera=(self), payment=(self), usb=(self), geolocation=(self)',
   [HTTP_SECURITY_HEADER_KEYS['Strict-Transport-Security']]:
     'max-age=31536000; includeSubDomains; preload',
@@ -329,6 +331,7 @@ export const CUSTOM_VIEWS_EVENTS_NAMES = {
   CUSTOM_VIEW_BOOTSTRAP: 'custom-view-bootstrap',
   CUSTOM_VIEW_INITIALIZATION: 'custom-view-initialization',
   CUSTOM_VIEW_CLOSE: 'custom-view-close',
+  CUSTOM_VIEW_READY: 'custom-view-ready',
 };
 export const CUSTOM_VIEWS_EVENTS_META = {
   HOST_APPLICATION_CODE: 'mc-host-application',
