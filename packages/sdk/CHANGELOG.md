@@ -1,5 +1,14 @@
 # @commercetools-frontend/sdk
 
+## 22.38.3
+
+### Patch Changes
+
+- [#3700](https://github.com/commercetools/merchant-center-application-kit/pull/3700) [`45eaca8`](https://github.com/commercetools/merchant-center-application-kit/commit/45eaca8ef3e8796646cc71db51d81c779f4f0189) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression with default props for the `<Sdk.Get>` component.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.38.3
+
 ## 22.38.2
 
 ### Patch Changes
