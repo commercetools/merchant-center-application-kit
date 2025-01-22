@@ -45,6 +45,8 @@ async function run() {
     },
     build: {
       outDir: 'public',
+      // Outputs all build assets directly under the `/public` folder.
+      assetsDir: '',
       rollupOptions: {
         // This is necessary to instruct Vite that the `index.html` (template)
         // is located in the `/public` folder.
