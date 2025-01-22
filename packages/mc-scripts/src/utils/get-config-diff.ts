@@ -332,6 +332,18 @@ const getSubmenuLinksDiff = ({
     {}
   );
 
+  const getOrder = (value: { uriPath: string }[]): string =>
+    value.map((link) => link.uriPath).join(', ');
+
+  const previousOrder = getOrder(previousValue);
+  const newOrder = getOrder(nextValue);
+
+  if (previousOrder !== newOrder) {
+    submenuLinksDiff.push(`${indent(1)}submenu order changed`);
+    submenuLinksDiff.push(`${indent(2)}previous order: [${previousOrder}]`);
+    submenuLinksDiff.push(`${indent(2)}new order: [${newOrder}]`);
+  }
+
   nextValue.forEach((newSubmenuLink) => {
     const oldSubMenuLink = mappedSubmenuLinks[newSubmenuLink.uriPath];
     if (newSubmenuLink.uriPath in mappedSubmenuLinks) {

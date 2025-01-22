@@ -317,6 +317,9 @@ describe('Custom Application Config Diff', () => {
         expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
           .toMatchInlineSnapshot(`
           "submenuLink changed
+            submenu order changed
+              previous order: []
+              new order: [my-test-app/new]
             menu link added: <color-green>my-test-app/new</color-green>"
         `);
       });
@@ -344,6 +347,9 @@ describe('Custom Application Config Diff', () => {
         expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
           .toMatchInlineSnapshot(`
           "submenuLink changed
+            submenu order changed
+              previous order: [my-test-app/new]
+              new order: []
             menu link removed: <color-red>my-test-app/new</color-red>"
         `);
       });
@@ -399,6 +405,70 @@ describe('Custom Application Config Diff', () => {
                 locale "de" changed: <color-red>Neu Avenger</color-red> => <color-green>Avenger hinzufügen</color-green>
                 locale added: <color-green>it</color-green>
                 locale removed: <color-red>en</color-red>"
+        `);
+      });
+
+      it('should display diff when submenu items are reordered', () => {
+        const oldConfig = createTestCustomApplicationConfig({
+          submenuLinks: [
+            {
+              uriPath: 'my-test-app/first',
+              defaultLabel: 'First Item',
+              permissions: ['ManageMyTestApp'],
+              labelAllLocales: [
+                {
+                  locale: 'de',
+                  value: 'Erstes Element',
+                },
+              ],
+            },
+            {
+              uriPath: 'my-test-app/second',
+              defaultLabel: 'Second Item',
+              permissions: ['ManageMyTestApp'],
+              labelAllLocales: [
+                {
+                  locale: 'de',
+                  value: 'Zweites Element',
+                },
+              ],
+            },
+          ],
+        });
+
+        const newConfig = createTestCustomApplicationConfig({
+          submenuLinks: [
+            {
+              uriPath: 'my-test-app/second',
+              defaultLabel: 'Second Item',
+              permissions: ['ManageMyTestApp'],
+              labelAllLocales: [
+                {
+                  locale: 'de',
+                  value: 'Zweites Element',
+                },
+              ],
+            },
+            {
+              uriPath: 'my-test-app/first',
+              defaultLabel: 'First Item',
+              permissions: ['ManageMyTestApp'],
+              labelAllLocales: [
+                {
+                  locale: 'de',
+                  value: 'Erstes Element',
+                },
+              ],
+            },
+          ],
+        });
+
+        expect(getCustomApplicationConfigDiff(oldConfig, newConfig))
+          .toMatchInlineSnapshot(`
+          "submenuLink changed
+            submenu order changed
+              previous order: [my-test-app/first, my-test-app/second]
+              new order: [my-test-app/second, my-test-app/first]"
         `);
       });
     });
