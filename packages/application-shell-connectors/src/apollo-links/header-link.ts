@@ -38,19 +38,27 @@ type QueryVariables = {
   featureFlag?: string;
 };
 
-const userAgent = createHttpUserAgent({
-  name: 'apollo-client',
-  // version: apolloVersion,
-  libraryName: [
-    typeof window !== 'undefined'
-      ? window.app.applicationName
-      : 'unknown-application-name',
-    'application-shell',
-  ].join('/'),
-  libraryVersion: version,
-  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
-  contactEmail: 'support@commercetools.com',
-});
+let _userAgent: string | null;
+const getUserAgent = () => {
+  if (!_userAgent) {
+    _userAgent = createHttpUserAgent({
+      name: 'apollo-client',
+      // version: apolloVersion,
+      libraryName: [
+        typeof window !== 'undefined'
+          ? window.app?.applicationName ?? 'unknown-application-name'
+          : undefined,
+        'application-shell',
+      ]
+        .filter(Boolean)
+        .join('/'),
+      libraryVersion: version,
+      contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
+      contactEmail: 'support@commercetools.com',
+    });
+  }
+  return _userAgent;
+};
 
 const isKnownGraphQlTarget = (target?: TGraphQLTargets) =>
   target ? Object.values(GRAPHQL_TARGETS).includes(target) : false;
@@ -113,7 +121,7 @@ const headerLink = new ApolloLink((operation, forward) => {
 
   operation.setContext(
     createHttpClientOptions({
-      userAgent,
+      userAgent: getUserAgent(),
       headers: omitEmpty<THeaders>({
         // Other headers that are allowed in the CORS rules of the MC API.
         ...apolloContext.headers,

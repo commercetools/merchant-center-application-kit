@@ -28,8 +28,8 @@ type DispatchProps = {
 };
 type OwnProps = {
   actionCreator: (...args: TActionCreatorArgs) => TSdkAction;
-  actionCreatorArgs: TActionCreatorArgs;
-  shouldRefetch: (
+  actionCreatorArgs?: TActionCreatorArgs;
+  shouldRefetch?: (
     prevArgs: TActionCreatorArgs,
     nextArgs: TActionCreatorArgs
   ) => boolean;
@@ -39,6 +39,14 @@ type OwnProps = {
 };
 export type Props = DispatchProps & OwnProps;
 type StaticErrorHandler = (error: TSdkError) => void;
+
+const defaultProps: Required<
+  Pick<Props, 'actionCreatorArgs' | 'shouldRefetch'>
+> = {
+  actionCreatorArgs: [],
+  shouldRefetch: (prevArgs: TActionCreatorArgs, nextArgs: TActionCreatorArgs) =>
+    !deepEqual(prevArgs, nextArgs),
+};
 
 export class SdkGet extends Component<Props, State> {
   static displayName = 'SdkGet';
@@ -54,11 +62,6 @@ export class SdkGet extends Component<Props, State> {
     requestsInFlight: 0,
     result: undefined,
     error: undefined,
-    actionCreatorArgs: [],
-    shouldRefetch: (
-      prevArgs: TActionCreatorArgs,
-      nextArgs: TActionCreatorArgs
-    ) => !deepEqual(prevArgs, nextArgs),
   };
   isComponentMounted = false;
   changeRequestsInFlight = (delta: number) => {
@@ -89,12 +92,14 @@ export class SdkGet extends Component<Props, State> {
     );
   }
   componentDidUpdate(prevProps: Props) {
+    const shouldRefetch =
+      this.props.shouldRefetch ?? defaultProps.shouldRefetch;
     if (
-      this.props.shouldRefetch(
-        prevProps.actionCreatorArgs,
-        this.props.actionCreatorArgs
+      shouldRefetch(
+        prevProps.actionCreatorArgs ?? defaultProps.actionCreatorArgs,
+        this.props.actionCreatorArgs ?? defaultProps.actionCreatorArgs
       )
-    )
+    ) {
       this.fetch({
         dispatch: this.props.dispatch,
         actionCreator: this.props.actionCreator,
@@ -102,6 +107,7 @@ export class SdkGet extends Component<Props, State> {
         onSuccess: this.props.onSuccess,
         onError: this.props.onError,
       });
+    }
   }
   componentWillUnmount() {
     this.isComponentMounted = false;
@@ -117,7 +123,9 @@ export class SdkGet extends Component<Props, State> {
     'dispatch' | 'actionCreator' | 'actionCreatorArgs' | 'onSuccess' | 'onError'
   >) => {
     this.changeRequestsInFlight(1);
-    return dispatch(actionCreator(...actionCreatorArgs)).then(
+    return dispatch(
+      actionCreator(...(actionCreatorArgs ?? defaultProps.actionCreatorArgs))
+    ).then(
       (result) => {
         this.changeRequestsInFlight(-1);
         if (this.isComponentMounted)

@@ -14,31 +14,31 @@
   },
   "properties": {
     "name": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#name",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#name",
       "type": "string"
     },
     "description": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#description",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#description",
       "type": "string"
     },
     "entryPointUriPath": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#entrypointuripath",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#entrypointuripath",
       "type": "string"
     },
     "cloudIdentifier": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#cloudidentifier",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#cloudidentifier",
       "type": "string"
     },
     "mcApiUrl": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mcapiurl",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mcapiurl",
       "type": "string"
     },
     "oAuthScopes": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopes",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopes",
       "type": "object",
       "properties": {
         "view": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopesview",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopesview",
           "type": "array",
           "default": [],
           "items": {
@@ -48,7 +48,7 @@
           "uniqueItems": true
         },
         "manage": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#oauthscopesmanage",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#oauthscopesmanage",
           "type": "array",
           "default": [],
           "items": {
@@ -62,7 +62,7 @@
       "required": ["view", "manage"]
     },
     "additionalOAuthScopes": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopes",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopes",
       "type": "array",
       "default": [],
       "uniqueItems": true,
@@ -70,11 +70,11 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesname",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesname",
             "type": "string"
           },
           "view": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesview",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesview",
             "type": "array",
             "default": [],
             "items": {
@@ -84,7 +84,7 @@
             "uniqueItems": true
           },
           "manage": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionaloauthscopesmanage",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionaloauthscopesmanage",
             "type": "array",
             "default": [],
             "items": {
@@ -99,14 +99,14 @@
       }
     },
     "env": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#env",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#env",
       "type": "object",
       "properties": {
         "development": {
           "type": "object",
           "properties": {
             "initialProjectKey": {
-              "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envdevelopmentinitialprojectkey",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envdevelopmentinitialprojectkey",
               "type": "string"
             },
             "teamId": {
@@ -120,15 +120,15 @@
           "type": "object",
           "properties": {
             "applicationId": {
-              "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductionapplicationid",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductionapplicationid",
               "type": "string"
             },
             "url": {
-              "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductionurl",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductionurl",
               "type": "string"
             },
             "cdnUrl": {
-              "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#envproductioncdnurl",
+              "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#envproductioncdnurl",
               "type": "string"
             }
           },
@@ -140,15 +140,15 @@
       "required": ["development", "production"]
     },
     "additionalEnv": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#additionalenv",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#additionalenv",
       "type": "object"
     },
     "headers": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headers",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headers",
       "type": "object",
       "properties": {
         "csp": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headerscsp",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headerscsp",
           "type": "object",
           "properties": {
             "connect-src": {
@@ -174,34 +174,34 @@
           "required": ["connect-src"]
         },
         "permissionsPolicies": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headerspermissionspolicies",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headerspermissionspolicies",
           "type": "object"
         },
         "strictTransportSecurity": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#headersstricttransportsecurity",
           "type": "array",
           "items": {
             "enum": ["includeSubDomains", "preload"]
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "deprecated": true
         }
       },
       "additionalProperties": false
     },
     "icon": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#icon",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#icon",
       "type": "string"
     },
     "mainMenuLink": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulink",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulink",
       "type": "object",
       "properties": {
         "defaultLabel": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinkdefaultlabel",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinkdefaultlabel",
           "type": "string"
         },
         "labelAllLocales": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinklabelalllocales",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinklabelalllocales",
           "type": "array",
           "default": [],
           "items": {
@@ -220,7 +220,7 @@
           }
         },
         "permissions": {
-          "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#mainmenulinkpermissions",
+          "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#mainmenulinkpermissions",
           "type": "array",
           "default": [],
           "items": {
@@ -232,22 +232,22 @@
       "required": ["defaultLabel", "labelAllLocales", "permissions"]
     },
     "submenuLinks": {
-      "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinks",
+      "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinks",
       "default": [],
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "uriPath": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinksuripath",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinksuripath",
             "type": "string"
           },
           "defaultLabel": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinksdefaultlabel",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinksdefaultlabel",
             "type": "string"
           },
           "labelAllLocales": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinkslabelalllocales",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinkslabelalllocales",
             "type": "array",
             "default": [],
             "items": {
@@ -266,7 +266,7 @@
             }
           },
           "permissions": {
-            "description": "See https://docs.commercetools.com/merchant-center-customizations/api-reference/custom-application-config#submenulinkspermissions",
+            "description": "See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#submenulinkspermissions",
             "type": "array",
             "default": [],
             "items": {

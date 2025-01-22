@@ -1,5 +1,17 @@
 # @commercetools-backend/eslint-config-node
 
+## 22.38.3
+
+## 22.38.2
+
+## 22.38.1
+
+## 22.38.0
+
+### Patch Changes
+
+- [#3684](https://github.com/commercetools/merchant-center-application-kit/pull/3684) [`455cccf`](https://github.com/commercetools/merchant-center-application-kit/commit/455cccfdbac803fd7f821c6127635c1b2e593f27) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies
+
 ## 22.37.0
 
 ## 22.36.0

@@ -1,12 +1,11 @@
 import type { ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import type { LocationDescriptor } from 'history';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { warning } from '@commercetools-uikit/utils';
-import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
 import CustomViewsSelector from '../../custom-views/custom-views-selector';
+import type { TCustomViewSelectorProps } from '../../custom-views/custom-views-selector/types';
 import {
   FormPrimaryButton,
   FormSecondaryButton,
@@ -53,17 +52,13 @@ type TTabularMainPageProps = {
   /**
    * These codes are used to configure which Custom Views are available for every tab.
    */
-  customViewLocatorCodes?: Record<string, LocationDescriptor>;
+  customViewLocatorCodes?: TCustomViewSelectorProps['customViewLocatorCodes'];
 };
 
 const TabularMainPage = ({
   hideControls = false,
   ...props
 }: TTabularMainPageProps) => {
-  const { currentCustomViewLocatorCode } = useCustomViewLocatorSelector(
-    props.customViewLocatorCodes
-  );
-
   warning(
     props.title !== undefined || props.customTitleRow !== undefined,
     'TabularMainPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
@@ -95,7 +90,7 @@ const TabularMainPage = ({
       <CustomViewsSelectorWrapper>
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
-          customViewLocatorCode={currentCustomViewLocatorCode}
+          customViewLocatorCodes={props.customViewLocatorCodes}
         />
       </CustomViewsSelectorWrapper>
       <ContentWrapper

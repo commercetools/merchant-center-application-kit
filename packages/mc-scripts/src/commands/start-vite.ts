@@ -5,7 +5,10 @@ import fs from 'fs-extra';
 import { createServer, type Plugin } from 'vite';
 import { processConfig } from '@commercetools-frontend/application-config';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
-import { generateTemplate } from '@commercetools-frontend/mc-html-template';
+import {
+  generateTemplate,
+  processHeaders,
+} from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
 import pluginMerchantCenterCustomization from '../vite-plugins/vite-plugin-merchant-center-customization';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
@@ -31,6 +34,8 @@ async function run() {
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
 
+  const compiledHeaders = processHeaders(applicationConfig);
+
   const server = await createServer({
     root: paths.appRoot,
     define: {
@@ -39,6 +44,7 @@ async function run() {
     },
     server: {
       port: DEFAULT_PORT,
+      headers: compiledHeaders,
     },
     plugins: [
       pluginGraphql() as Plugin,

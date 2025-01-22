@@ -1,54 +1,64 @@
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
-import { HTTP_SECURITY_HEADERS } from '@commercetools-frontend/constants';
+import {
+  HTTP_SECURITY_HEADER_KEYS,
+  HTTP_SECURITY_HEADERS,
+  type THttpSecurityHeaders,
+} from '@commercetools-frontend/constants';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlScripts from /* preval */ './load-html-scripts';
 import createAssetHash from './utils/create-asset-hash';
 import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 
-type TCspDirectiveValue = string | string[] | undefined;
-type TCspDirective = Record<string, TCspDirectiveValue>;
+type TDirectiveValue = string | string[] | undefined;
+type TDirective = Record<string, TDirectiveValue>;
 
-const toArray = (value: TCspDirectiveValue) =>
+const toArray = (value: TDirectiveValue) =>
   Array.isArray(value) ? value : [value];
 
-const mergeCspDirectives = (...directives: TCspDirective[]) =>
-  directives.reduce(
-    (mergedCsp, csp) =>
+const parseCSPDirectives = (...directives: TDirective[]) => {
+  const mergedDirectives = directives.reduce(
+    (mergedDirectives, directive) =>
       Object.assign(
-        mergedCsp,
-        Object.keys(csp).reduce(
-          (acc, directiveKey) =>
-            Object.assign(acc, {
-              [directiveKey]: [
-                ...toArray(
-                  mergedCsp[directiveKey] ? mergedCsp[directiveKey] : []
-                ),
-                ...toArray(csp[directiveKey]),
-              ],
-            }),
-          {}
-        )
+        mergedDirectives,
+        Object.keys(directive).reduce((mergedDirectiveValues, directiveKey) => {
+          const existingDirectiveValue = mergedDirectives[directiveKey];
+          return Object.assign(mergedDirectiveValues, {
+            [directiveKey]: [
+              ...toArray(existingDirectiveValue ?? []),
+              ...toArray(directive[directiveKey]),
+            ],
+          });
+        }, {})
       ),
     {}
   );
-const toHeaderString = (directives: TCspDirective = {}) =>
-  Object.entries(directives)
+
+  return Object.entries(mergedDirectives)
     .map(
       ([directive, value]) =>
         `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
     )
     .join('; ');
-const toStructuredHeaderString = (directives: TCspDirective = {}) =>
-  Object.entries(directives)
-    .map(
-      ([directive, value]) =>
-        `${directive}=${Array.isArray(value) ? value.join(' ') : value}`
-    )
-    .join(', ');
+};
+
+const parsePermissionsPolicyDirectives = (
+  defaultValue: string,
+  customDirectives: Record<string, unknown>
+): string => {
+  const mergedDirectives = defaultValue.split(',').map((directive) => {
+    const [directiveName, directiveValue] = directive.trim().split('=');
+    const overrideDirectiveValue = customDirectives[directiveName];
+    if (overrideDirectiveValue) {
+      return [directiveName, overrideDirectiveValue].join('=');
+    }
+    return [directiveName, directiveValue].join('=');
+  });
+  return mergedDirectives.join(', ');
+};
 
 const processHeaders = (
   applicationConfig: ApplicationRuntimeConfig
-): Record<string, string | undefined> => {
+): Record<THttpSecurityHeaders, string | undefined> => {
   const isMcDevEnv = applicationConfig.env.env === 'development';
 
   // List hashes for injected inline scripts.
@@ -69,7 +79,7 @@ const processHeaders = (
    * Content Security Policy (CSP)
    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
    */
-  const cspDirectives = Object.assign(
+  const defaultCSPDirectives = Object.assign(
     {
       'default-src': "'none'",
       'script-src': ["'self'"].concat(
@@ -119,34 +129,27 @@ const processHeaders = (
     //  Intercom scripts are apparently not meant for this)
   );
 
-  // Recursively merge the directives
-  const mergedCsp = mergeCspDirectives(
-    cspDirectives,
-    applicationConfig.headers?.csp ?? {}
-  );
-
   return {
     // Default security headers.
     ...HTTP_SECURITY_HEADERS,
 
     // The `Content-Security-Policy` header is always generated
     // based on the Merchant Center customization config.
-    'Content-Security-Policy': toHeaderString(mergedCsp),
-
-    // Allow to extend the `Strict-Transport-Security` header.
-    ...(applicationConfig.headers?.strictTransportSecurity && {
-      'Strict-Transport-Security': [
-        HTTP_SECURITY_HEADERS['Strict-Transport-Security'],
-        ...applicationConfig.headers.strictTransportSecurity,
-      ].join('; '),
-    }),
+    [HTTP_SECURITY_HEADER_KEYS['Content-Security-Policy']]: parseCSPDirectives(
+      defaultCSPDirectives,
+      applicationConfig.headers?.csp ?? {}
+    ),
 
     // Allow to extend the `Permissions-Policy` header.
-    ...(applicationConfig.headers?.permissionsPolicies && {
-      'Permissions-Policy': toStructuredHeaderString(
-        applicationConfig.headers.permissionsPolicies as TCspDirective
-      ),
-    }),
+    ...(applicationConfig.headers?.permissionsPolicies
+      ? {
+          [HTTP_SECURITY_HEADER_KEYS['Permissions-Policy']]:
+            parsePermissionsPolicyDirectives(
+              HTTP_SECURITY_HEADERS['Permissions-Policy'],
+              applicationConfig.headers.permissionsPolicies ?? {}
+            ),
+        }
+      : {}),
   };
 };
 

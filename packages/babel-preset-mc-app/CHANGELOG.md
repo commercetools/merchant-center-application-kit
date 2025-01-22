@@ -1,5 +1,20 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 22.38.3
+
+## 22.38.2
+
+## 22.38.1
+
+## 22.38.0
+
+### Minor Changes
+
+- [#3672](https://github.com/commercetools/merchant-center-application-kit/pull/3672) [`5c33a40`](https://github.com/commercetools/merchant-center-application-kit/commit/5c33a40910d1f46d3d28080f666150fe1d002757) Thanks [@ragafus](https://github.com/ragafus)! - Add `babel-plugin-formatjs` to avoid bloating bundles with useless data from `formatjs` messages (`description`, `defaultMessage` props). Opt-in flags:
+
+  - i18nAst: pre-parse defaultMessage into AST for faster runtime perf
+  - i18nRemoveDefaultMessage: remove defaultMessage field in generated js after extraction
+
 ## 22.37.0
 
 ## 22.36.0

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
@@ -40,6 +40,8 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
+const LoadingFallback = () => <>{'Loading...'}</>;
+
 const customRender = (
   node: ReactNode,
   {
@@ -68,7 +70,9 @@ const customRender = (
               .buildGraphql<TProjectGraphql>()}
           >
             <IntlProvider locale={locale}>
-              <Router history={history}>{node}</Router>
+              <Suspense fallback={<LoadingFallback />}>
+                <Router history={history}>{node}</Router>
+              </Suspense>
             </IntlProvider>
           </ApplicationContextProvider>
         </ApolloProvider>

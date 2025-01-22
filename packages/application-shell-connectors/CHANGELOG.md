@@ -1,5 +1,51 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.38.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.38.3
+  - @commercetools-frontend/browser-history@22.38.3
+  - @commercetools-frontend/constants@22.38.3
+  - @commercetools-frontend/sentry@22.38.3
+
+## 22.38.2
+
+### Patch Changes
+
+- Updated dependencies [[`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499)]:
+  - @commercetools-frontend/constants@22.38.2
+  - @commercetools-frontend/application-config@22.38.2
+  - @commercetools-frontend/sentry@22.38.2
+  - @commercetools-frontend/browser-history@22.38.2
+
+## 22.38.1
+
+### Patch Changes
+
+- [#3690](https://github.com/commercetools/merchant-center-application-kit/pull/3690) [`2fec608`](https://github.com/commercetools/merchant-center-application-kit/commit/2fec608c3f47de05c83eb7806f89246b6bdc5ae7) Thanks [@emmenko](https://github.com/emmenko)! - Evaluate `window.app` lazily. This is useful when the package is not being used within the Merchant Center context.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.38.1
+  - @commercetools-frontend/browser-history@22.38.1
+  - @commercetools-frontend/constants@22.38.1
+  - @commercetools-frontend/sentry@22.38.1
+
+## 22.38.0
+
+### Patch Changes
+
+- [#3679](https://github.com/commercetools/merchant-center-application-kit/pull/3679) [`3bcdba5`](https://github.com/commercetools/merchant-center-application-kit/commit/3bcdba5452b8b7b7940b3e8570dbfd6837e4788b) Thanks [@emmenko](https://github.com/emmenko)! - Append the GraphQL operation name as a query parameter to the `/graphql` endpoint. This is useful for debugging purposes, for example when inspecting the network tab.
+
+- [#3671](https://github.com/commercetools/merchant-center-application-kit/pull/3671) [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e) Thanks [@renovate](https://github.com/apps/renovate)! - Update UI Kit dependencies to v19.20.1
+
+- Updated dependencies [[`455cccf`](https://github.com/commercetools/merchant-center-application-kit/commit/455cccfdbac803fd7f821c6127635c1b2e593f27), [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31), [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e), [`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31)]:
+  - @commercetools-frontend/application-config@22.38.0
+  - @commercetools-frontend/constants@22.38.0
+  - @commercetools-frontend/sentry@22.38.0
+  - @commercetools-frontend/browser-history@22.38.0
+
 ## 22.37.0
 
 ### Patch Changes

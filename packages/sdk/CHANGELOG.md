@@ -1,5 +1,66 @@
 # @commercetools-frontend/sdk
 
+## 22.38.3
+
+### Patch Changes
+
+- [#3700](https://github.com/commercetools/merchant-center-application-kit/pull/3700) [`45eaca8`](https://github.com/commercetools/merchant-center-application-kit/commit/45eaca8ef3e8796646cc71db51d81c779f4f0189) Thanks [@emmenko](https://github.com/emmenko)! - Fix regression with default props for the `<Sdk.Get>` component.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.38.3
+
+## 22.38.2
+
+### Patch Changes
+
+- Updated dependencies [[`f158094`](https://github.com/commercetools/merchant-center-application-kit/commit/f15809419de1cc278484ab07b542eacd99dbf499)]:
+  - @commercetools-frontend/constants@22.38.2
+
+## 22.38.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.38.1
+
+## 22.38.0
+
+### Patch Changes
+
+- [#3676](https://github.com/commercetools/merchant-center-application-kit/pull/3676) [`9504631`](https://github.com/commercetools/merchant-center-application-kit/commit/9504631da837e78cf66c84286d5e7e98c2009148) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - As part of the preparations for the upcoming update to the newest React version, we have updated how we manage components default properties as our current implementation will no longer be supported ([reference](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-proptypes-and-defaultprops)).
+
+  ```ts
+  // BEFORE
+  type TMyComponentProps = {
+    message: string;
+    size: string;
+  }
+
+  function MyComponent(props: TMyComponentProps) {
+   ...
+  }
+
+  MyComponent.defaultProps = {
+    size: 'big'
+  }
+
+
+  // AFTER
+  type TMyComponentProps = {
+    message: string;
+    size?: string; // <--- Note this property is now defined as optional
+  }
+
+  function MyComponent({ size = 'big', ...props }: TMyComponentProps) {
+   ...
+  }
+  ```
+
+- [#3671](https://github.com/commercetools/merchant-center-application-kit/pull/3671) [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e) Thanks [@renovate](https://github.com/apps/renovate)! - Update UI Kit dependencies to v19.20.1
+
+- Updated dependencies [[`9fde2af`](https://github.com/commercetools/merchant-center-application-kit/commit/9fde2afe40616d728cef32d34d39f682a1bf4e31)]:
+  - @commercetools-frontend/constants@22.38.0
+
 ## 22.37.0
 
 ### Patch Changes

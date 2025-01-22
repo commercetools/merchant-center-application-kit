@@ -1,5 +1,68 @@
 # @commercetools-frontend/permissions
 
+## 22.38.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.38.3
+  - @commercetools-frontend/sentry@22.38.3
+
+## 22.38.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@22.38.2
+  - @commercetools-frontend/sentry@22.38.2
+
+## 22.38.1
+
+### Patch Changes
+
+- Updated dependencies [[`2fec608`](https://github.com/commercetools/merchant-center-application-kit/commit/2fec608c3f47de05c83eb7806f89246b6bdc5ae7)]:
+  - @commercetools-frontend/application-shell-connectors@22.38.1
+  - @commercetools-frontend/sentry@22.38.1
+
+## 22.38.0
+
+### Patch Changes
+
+- [#3676](https://github.com/commercetools/merchant-center-application-kit/pull/3676) [`9504631`](https://github.com/commercetools/merchant-center-application-kit/commit/9504631da837e78cf66c84286d5e7e98c2009148) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - As part of the preparations for the upcoming update to the newest React version, we have updated how we manage components default properties as our current implementation will no longer be supported ([reference](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-proptypes-and-defaultprops)).
+
+  ```ts
+  // BEFORE
+  type TMyComponentProps = {
+    message: string;
+    size: string;
+  }
+
+  function MyComponent(props: TMyComponentProps) {
+   ...
+  }
+
+  MyComponent.defaultProps = {
+    size: 'big'
+  }
+
+
+  // AFTER
+  type TMyComponentProps = {
+    message: string;
+    size?: string; // <--- Note this property is now defined as optional
+  }
+
+  function MyComponent({ size = 'big', ...props }: TMyComponentProps) {
+   ...
+  }
+  ```
+
+- [#3671](https://github.com/commercetools/merchant-center-application-kit/pull/3671) [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e) Thanks [@renovate](https://github.com/apps/renovate)! - Update UI Kit dependencies to v19.20.1
+
+- Updated dependencies [[`3bcdba5`](https://github.com/commercetools/merchant-center-application-kit/commit/3bcdba5452b8b7b7940b3e8570dbfd6837e4788b), [`a435e7f`](https://github.com/commercetools/merchant-center-application-kit/commit/a435e7fda60f05557b740b27f8c14d3c5ce1060e)]:
+  - @commercetools-frontend/application-shell-connectors@22.38.0
+  - @commercetools-frontend/sentry@22.38.0
+
 ## 22.37.0
 
 ### Patch Changes

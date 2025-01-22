@@ -389,9 +389,8 @@ describe('processing a full config', () => {
           'style-src': [],
         },
         permissionsPolicies: {
-          microphone: '()',
+          microphone: '*',
         },
-        strictTransportSecurity: ['includeSubDomains'],
       },
     });
   });
@@ -456,9 +455,8 @@ describe('processing a full config', () => {
             'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
           },
           permissionsPolicies: {
-            microphone: '()',
+            microphone: '*',
           },
-          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });
@@ -549,9 +547,8 @@ describe('processing a full config', () => {
             'style-src': [],
           },
           permissionsPolicies: {
-            microphone: '()',
+            microphone: '*',
           },
-          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });
@@ -618,9 +615,8 @@ describe('processing a full config', () => {
             'style-src': ['https://avengers.app/', 'https://cdn.avengers.app/'],
           },
           permissionsPolicies: {
-            microphone: '()',
+            microphone: '*',
           },
-          strictTransportSecurity: ['includeSubDomains'],
         },
       });
     });
