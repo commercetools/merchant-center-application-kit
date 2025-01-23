@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.39.0
+
+### Minor Changes
+
+- [#3689](https://github.com/commercetools/merchant-center-application-kit/pull/3689) [`f6827aa`](https://github.com/commercetools/merchant-center-application-kit/commit/f6827aa49d6849ece358f17f1b0525fe78c4cbcf) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Update the `mc-scripts config:sync` command to synchronize submenu item order from the configuration file to the database.
+
+- [#3705](https://github.com/commercetools/merchant-center-application-kit/pull/3705) [`8678e5e`](https://github.com/commercetools/merchant-center-application-kit/commit/8678e5e340d59e6b2983a5248720467e1669a36f) Thanks [@valoriecarli](https://github.com/valoriecarli)! - Update build-vite script to output build files directly under the public folder
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@22.39.0
+  - @commercetools-frontend/application-config@22.39.0
+  - @commercetools-frontend/assets@22.39.0
+  - @commercetools-frontend/babel-preset-mc-app@22.39.0
+  - @commercetools-frontend/constants@22.39.0
+  - @commercetools-frontend/mc-dev-authentication@22.39.0
+  - @commercetools-frontend/mc-html-template@22.39.0
+
 ## 22.38.3
 
 ### Patch Changes

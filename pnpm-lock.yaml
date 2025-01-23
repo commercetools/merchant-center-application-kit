@@ -1327,16 +1327,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1382,28 +1382,28 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^19.17.1
@@ -1510,7 +1510,7 @@ importers:
     devDependencies:
       '@apollo/client':
         specifier: 3.7.14
-        version: 3.7.14(graphql@16.10.0)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.7.14(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
       '@testing-library/dom':
         specifier: ^9.3.1
         version: 9.3.1
@@ -1563,7 +1563,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@types/dompurify':
         specifier: ^2.4.0
@@ -1585,7 +1585,7 @@ importers:
         version: 9.0.0(typescript@5.7.3)
       cosmiconfig-typescript-loader:
         specifier: 6.1.0
-        version: 6.1.0(@types/node@22.10.7)(cosmiconfig@9.0.0)(typescript@5.7.3)
+        version: 6.1.0(@types/node@18.17.14)(cosmiconfig@9.0.0)(typescript@5.7.3)
       dompurify:
         specifier: ^2.4.7
         version: 2.5.4
@@ -1618,49 +1618,49 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^19.17.1
@@ -1889,16 +1889,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2098,7 +2098,7 @@ importers:
         version: link:../application-components
       '@emotion/react':
         specifier: ^11.11.4
-        version: 11.11.4(react@19.0.0)
+        version: 11.11.4(@types/react@17.0.83)(react@17.0.2)
       '@tsconfig/node16':
         specifier: ^16.1.1
         version: 16.1.1
@@ -2146,7 +2146,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: ^22.38.3
+        specifier: ^22.39.0
         version: link:../application-config
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2186,13 +2186,13 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2223,7 +2223,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)(eslint@8.57.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^22.38.3
+        specifier: ^22.39.0
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.3.3
@@ -2293,7 +2293,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^19.17.1
@@ -2339,7 +2339,7 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2443,7 +2443,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2538,10 +2538,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.2
@@ -2578,25 +2578,25 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-components':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2759,7 +2759,7 @@ importers:
         version: 0.11.0
       vite:
         specifier: ~4.5.3
-        version: 4.5.6(@types/node@22.10.7)
+        version: 4.5.6(@types/node@18.17.14)
       vite-bundle-analyzer:
         specifier: 0.12.1
         version: 0.12.1(patch_hash=7ajbjk5hiy45vciwrmysf4hciy)
@@ -2778,7 +2778,7 @@ importers:
     devDependencies:
       '@commercetools-test-data/custom-view':
         specifier: ^8.0.0
-        version: 8.2.3(@types/node@22.10.7)(typescript@5.7.3)
+        version: 8.2.3(@types/node@18.17.14)(typescript@5.7.3)
       '@tsconfig/node16':
         specifier: ^16.1.1
         version: 16.1.1
@@ -2838,10 +2838,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2893,19 +2893,19 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../application-components
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^19.17.1
@@ -3011,7 +3011,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3099,10 +3099,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../constants
       '@sentry/browser':
         specifier: 7.119.1
@@ -3164,37 +3164,37 @@ importers:
         specifier: 24.2.0
         version: 24.2.0(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 19.22.0
@@ -3258,7 +3258,7 @@ importers:
         version: 14.0.2(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
       apollo-link-rest:
         specifier: ^0.9.0
-        version: 0.9.0(@apollo/client@3.12.7)(graphql@16.8.2)(qs@6.11.2)
+        version: 0.9.0(@apollo/client@3.7.14)(graphql@16.8.2)(qs@6.11.2)
       graphql:
         specifier: 16.8.2
         version: 16.8.2
@@ -3294,13 +3294,13 @@ importers:
         version: 24.2.5(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 22.38.3
+        specifier: 22.39.0
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
         specifier: 8.5.0
@@ -3589,81 +3589,6 @@ packages:
       '@jsdevtools/ono': 7.1.3
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
-    dev: true
-
-  /@apollo/client@3.12.7(@types/react@17.0.83)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-c0LSzS3tmJ06WSyNxsTHlfc4OLLYDnWtN+zkRjMQ80KCcp89sEpNgZP5ZCXdt2pUwUqOAvZFKJW7L8tolDzkrw==}
-    peerDependencies:
-      graphql: ^15.0.0 || ^16.0.0
-      graphql-ws: ^5.5.5
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.2)
-      '@wry/caches': 1.0.1
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.5.0
-      graphql: 16.8.2
-      graphql-tag: 2.12.6(graphql@16.8.2)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.18.1
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      rehackt: 0.1.0(@types/react@17.0.83)(react@17.0.2)
-      response-iterator: 0.2.16
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.8.1
-      zen-observable-ts: 1.2.5
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
-
-  /@apollo/client@3.7.14(graphql@16.10.0)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-BRvdkwq5PAXBkjXjboO12uksDm3nrZEqDi4xF97Fk3Mnaa0zDOEfJa7hoKTY9b9KA1EkeWv9BL3i7hSd4SfGBg==}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-      graphql-ws: ^5.5.5
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
-      '@wry/context': 0.7.3
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.3.2
-      graphql: 16.10.0
-      graphql-tag: 2.12.6(graphql@16.10.0)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.16.2
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      response-iterator: 0.2.6
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.6.2
-      zen-observable-ts: 1.2.5
     dev: true
 
   /@apollo/client@3.7.14(graphql@16.8.1)(react-dom@17.0.2)(react@17.0.2):
@@ -7807,7 +7732,7 @@ packages:
       - typescript
     dev: false
 
-  /@commercetools-frontend/application-config@22.38.3(@types/node@22.10.7)(typescript@5.7.3):
+  /@commercetools-frontend/application-config@22.38.3(@types/node@18.17.14)(typescript@5.7.3):
     resolution: {integrity: sha512-aMk/22GSz4nSPIe/3bCT20MngClOMqnek6ot06tfgcQ+HllO4hzZEVd8qrcpcJ1325eRMj1hFurOqDjwTzfVOg==}
     engines: {node: 16.x || >=18.0.0}
     dependencies:
@@ -7822,7 +7747,7 @@ packages:
       ajv: 8.16.0
       core-js: 3.32.2
       cosmiconfig: 9.0.0(typescript@5.7.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@22.10.7)(cosmiconfig@9.0.0)(typescript@5.7.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@18.17.14)(cosmiconfig@9.0.0)(typescript@5.7.3)
       dompurify: 2.5.8
       jsdom: 21.1.2
       lodash: 4.17.21
@@ -7905,12 +7830,12 @@ packages:
       '@types/lodash': 4.17.4
       lodash: 4.17.21
 
-  /@commercetools-test-data/custom-view@8.2.3(@types/node@22.10.7)(typescript@5.7.3):
+  /@commercetools-test-data/custom-view@8.2.3(@types/node@18.17.14)(typescript@5.7.3):
     resolution: {integrity: sha512-L++qEV3Z46kAhwCfL3EyR90rw6PhlFzIN9dmLH9wXF0kT8FvZxel0nqOjBFWtTseLc1yFmwBCgLCGeLZCvuu9w==}
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-frontend/application-config': 22.38.3(@types/node@22.10.7)(typescript@5.7.3)
+      '@commercetools-frontend/application-config': 22.38.3(@types/node@18.17.14)(typescript@5.7.3)
       '@commercetools-frontend/constants': 22.38.3
       '@commercetools-test-data/commons': 8.2.3
       '@commercetools-test-data/core': 8.2.3
@@ -11849,26 +11774,6 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
 
-  /@emotion/react@11.11.4(react@19.0.0):
-    resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
-    peerDependencies:
-      '@types/react': '*'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@emotion/babel-plugin': 11.11.0
-      '@emotion/cache': 11.11.0
-      '@emotion/serialize': 1.1.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@19.0.0)
-      '@emotion/utils': 1.2.1
-      '@emotion/weak-memoize': 0.3.1
-      hoist-non-react-statics: 3.3.2
-      react: 19.0.0
-    dev: true
-
   /@emotion/serialize@1.1.3:
     resolution: {integrity: sha512-iD4D6QVZFDhcbH0RAG1uVu1CwVLMWUkCvAqqlewO/rxf8+87yIBAlt4+AxMiiKPLs5hFc0owNk/sLLAOROw3cA==}
     dependencies:
@@ -11915,14 +11820,6 @@ packages:
       react: '>=16.8.0'
     dependencies:
       react: 17.0.2
-
-  /@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@19.0.0):
-    resolution: {integrity: sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 19.0.0
-    dev: true
 
   /@emotion/utils@1.2.1:
     resolution: {integrity: sha512-Y2tGf3I+XVnajdItskUCn6LX+VUDmP6lTL4fcqsXAv43dnlbZiuW4MWQW38rW/BVWSE7Q/7+XQocmpnRYILUmg==}
@@ -13596,14 +13493,6 @@ packages:
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: false
-
-  /@graphql-typed-document-node/core@3.2.0(graphql@16.10.0):
-    resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
-    peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-    dependencies:
-      graphql: 16.10.0
-    dev: true
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.8.1):
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
@@ -16265,11 +16154,6 @@ packages:
   /@types/node@20.5.9:
     resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
 
-  /@types/node@22.10.7:
-    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
-    dependencies:
-      undici-types: 6.20.0
-
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
 
@@ -17020,7 +16904,7 @@ packages:
       vite: ^4 || ^5
     dependencies:
       '@swc/core': 1.5.7
-      vite: 4.5.6(@types/node@22.10.7)
+      vite: 4.5.6(@types/node@18.17.14)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: false
@@ -17036,7 +16920,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 4.5.6(@types/node@22.10.7)
+      vite: 4.5.6(@types/node@18.17.14)
     transitivePeerDependencies:
       - supports-color
 
@@ -17197,25 +17081,11 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@wry/caches@1.0.1:
-    resolution: {integrity: sha512-bXuaUNLVVkD20wcGBWRyo7j9N3TxePEWFZj2Y+r9OoUzfqmavM84+mFykRicNsBqatba5JLay1t48wxaXaWnlA==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.8.1
-    dev: false
-
   /@wry/context@0.7.3:
     resolution: {integrity: sha512-Nl8WTesHp89RF803Se9X3IiHjdmLBrIvPMaJkl+rKVJAYyPsz1TEUbu89943HpvujtSJgDUx9W4vZw3K1Mr3sA==}
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.6.2
-
-  /@wry/context@0.7.4:
-    resolution: {integrity: sha512-jmT7Sb4ZQWI5iyu3lobQxICu2nC/vbUhP0vIdd6tHC9PTfenmRmuIFqktc6GH9cgi+ZHnsLWPvfSvc4DrYmKiQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.8.1
-    dev: false
 
   /@wry/equality@0.1.11:
     resolution: {integrity: sha512-mwEVBDUVODlsQQ5dfuLUS5/Tf7jqUKyhKYHmVi4fPB6bDMOfWvUPJmKgS1Z7Za/sOI3vzWt4+O7yCiL/70MogA==}
@@ -17234,13 +17104,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.6.2
-
-  /@wry/trie@0.5.0:
-    resolution: {integrity: sha512-FNoYzHawTMk/6KMQoEG5O4PuioX19UbwdQKF44yw0nLfOypfQdjtfZzo/UIJWAJ23sNIFbD1Ug9lbaDGMwbqQA==}
-    engines: {node: '>=8'}
-    dependencies:
-      tslib: 2.8.1
-    dev: false
 
   /@xmldom/xmldom@0.8.7:
     resolution: {integrity: sha512-sI1Ly2cODlWStkINzqGrZ8K6n+MTSbAeQnAipGyL+KZCXuHaRlj2gyyy8B/9MvsFFqN7XHryQnB2QwhzvJXovg==}
@@ -17486,14 +17349,14 @@ packages:
       '@apollo/client': 3.7.14(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
     dev: false
 
-  /apollo-link-rest@0.9.0(@apollo/client@3.12.7)(graphql@16.8.2)(qs@6.11.2):
+  /apollo-link-rest@0.9.0(@apollo/client@3.7.14)(graphql@16.8.2)(qs@6.11.2):
     resolution: {integrity: sha512-kuXjR56Y12w0TZcqwVaONKlipB6g3Ya1dAy4NMCaylPpNXq6tO+qzQFPUyDJC7B0JoJPIFjxPV2rAet4uGM4UQ==}
     peerDependencies:
       '@apollo/client': '>=3'
       graphql: '>=0.11'
       qs: '>=6'
     dependencies:
-      '@apollo/client': 3.12.7(@types/react@17.0.83)(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
+      '@apollo/client': 3.7.14(graphql@16.8.2)(react-dom@17.0.2)(react@17.0.2)
       graphql: 16.8.2
       qs: 6.11.2
     dev: false
@@ -19173,7 +19036,7 @@ packages:
       typescript: 5.7.2
     dev: false
 
-  /cosmiconfig-typescript-loader@6.1.0(@types/node@22.10.7)(cosmiconfig@9.0.0)(typescript@5.7.3):
+  /cosmiconfig-typescript-loader@6.1.0(@types/node@18.17.14)(cosmiconfig@9.0.0)(typescript@5.7.3):
     resolution: {integrity: sha512-tJ1w35ZRUiM5FeTzT7DtYWAFFv37ZLqSRkGi2oeCK1gPhvaWjkAtfXvLmvE1pRfxxp9aQo6ba/Pvg1dKj05D4g==}
     engines: {node: '>=v18'}
     peerDependencies:
@@ -19181,7 +19044,7 @@ packages:
       cosmiconfig: '>=9'
       typescript: '>=5'
     dependencies:
-      '@types/node': 22.10.7
+      '@types/node': 18.17.14
       cosmiconfig: 9.0.0(typescript@5.7.3)
       jiti: 2.4.1
       typescript: 5.7.3
@@ -22630,16 +22493,6 @@ packages:
       - encoding
     dev: false
 
-  /graphql-tag@2.12.6(graphql@16.10.0):
-    resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-    dependencies:
-      graphql: 16.10.0
-      tslib: 2.6.2
-    dev: true
-
   /graphql-tag@2.12.6(graphql@16.8.1):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
@@ -22685,11 +22538,6 @@ packages:
     dependencies:
       graphql: 16.8.2
     dev: false
-
-  /graphql@16.10.0:
-    resolution: {integrity: sha512-AjqGKbDGUFRKIRCP9tCKiIGHyriz2oHEbPIbEtcSLSs4YjReZOIPQQWek4+6hjw62H9QShXHyaGivGiYVLeYFQ==}
-    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
-    dev: true
 
   /graphql@16.8.1:
     resolution: {integrity: sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==}
@@ -26248,11 +26096,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /nanoid@3.3.8:
-    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
     dev: false
@@ -26685,15 +26528,6 @@ packages:
     dependencies:
       '@wry/context': 0.7.3
       '@wry/trie': 0.3.2
-
-  /optimism@0.18.1:
-    resolution: {integrity: sha512-mLXNwWPa9dgFyDqkNi54sjDyNJ9/fTI6WGBLgnXku1vdKY/jovHfZT5r+aiVeFFLOz+foPNOm5YJ4mqgld2GBQ==}
-    dependencies:
-      '@wry/caches': 1.0.1
-      '@wry/context': 0.7.4
-      '@wry/trie': 0.5.0
-      tslib: 2.8.1
-    dev: false
 
   /optionator@0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
@@ -27606,14 +27440,6 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.2.0
 
-  /postcss@8.5.1:
-    resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.8
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   /preferred-pm@3.0.3:
     resolution: {integrity: sha512-+wZgbxNES/KlJs9q40F/1sfOd/j7f1O9JaHcW5Dsn3aUUOZg3L2bjpVUcKV2jvtElYfoTuQiNeMfQJ4kwUAhCQ==}
     engines: {node: '>=10'}
@@ -28331,11 +28157,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
 
-  /react@19.0.0:
-    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -28542,21 +28363,6 @@ packages:
       jsesc: 0.5.0
     dev: false
 
-  /rehackt@0.1.0(@types/react@17.0.83)(react@17.0.2):
-    resolution: {integrity: sha512-7kRDOuLHB87D/JESKxQoRwv4DzbIdwkAGQ7p6QKGdVlY1IZheUnVhlk/4UZlNUVxdAXpyxikE3URsG067ybVzw==}
-    peerDependencies:
-      '@types/react': ^17.0.56
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 17.0.83
-      react: 17.0.2
-    dev: false
-
   /rehype-react@7.2.0(@types/react@17.0.83):
     resolution: {integrity: sha512-MHYyCHka+3TtzBMKtcuvVOBAbI1HrfoYA+XH9m7/rlrQQATCPwtJnPdkxKKcIGF8vc9mxqQja9r9f+FHItQeWg==}
     peerDependencies:
@@ -28756,13 +28562,6 @@ packages:
       is-core-module: 2.13.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: false
-
-  /response-iterator@0.2.16:
-    resolution: {integrity: sha512-QmLnoE4cJXjCoYjEtYu5zmBMs/1ytHU1RhbBm9/DUKTR641k46qCinzPiOzJJk9r71rxYbuMwM+dExPxlFTrzA==}
-    engines: {node: '>=0.8'}
-    dependencies:
-      readable-stream: 2.3.8
     dev: false
 
   /response-iterator@0.2.6:
@@ -29402,10 +29201,6 @@ packages:
 
   /source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
-    engines: {node: '>=0.10.0'}
-
-  /source-map-js@1.2.1:
-    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   /source-map-support@0.5.13:
@@ -30648,10 +30443,6 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tslib@2.8.1:
-    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
-    dev: false
-
   /tsutils@3.21.0(typescript@5.4.5):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -30864,9 +30655,6 @@ packages:
     resolution: {integrity: sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg==}
     engines: {node: '>=0.10.0'}
     dev: false
-
-  /undici-types@6.20.0:
-    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
   /unfetch@4.2.0:
     resolution: {integrity: sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==}
@@ -31411,41 +31199,6 @@ packages:
         optional: true
     dependencies:
       '@types/node': 18.17.14
-      esbuild: 0.18.20
-      postcss: 8.5.1
-      rollup: 3.29.5
-    optionalDependencies:
-      fsevents: 2.3.3
-
-  /vite@4.5.6(@types/node@22.10.7):
-    resolution: {integrity: sha512-ElBNuVvJKslxcfY2gMmae5IjaKGqCYGicCNZ+8R56sAznobeE3pI9ctzI17cBS/6OJh5YuQNMSN4BP4dRjugBg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 22.10.7
       esbuild: 0.18.20
       postcss: 8.4.38
       rollup: 3.29.5
