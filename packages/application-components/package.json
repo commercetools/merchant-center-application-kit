@@ -90,7 +90,7 @@
     "msw": "0.49.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-intl": "^6.4.7",
+    "react-intl": "^7.1.4",
     "react-router-dom": "5.3.4"
   },
   "peerDependencies": {

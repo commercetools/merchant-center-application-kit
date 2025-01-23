@@ -43,7 +43,7 @@
     "jest-each": "29.7.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-intl": "^6.4.7",
+    "react-intl": "^7.1.4",
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "uuid": "9.0.1",
