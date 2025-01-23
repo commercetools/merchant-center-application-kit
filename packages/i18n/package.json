@@ -49,10 +49,10 @@
     "@types/jest": "^29.5.4",
     "jest-mock": "29.7.0",
     "react": "19.0.0",
-    "react-intl": "^6.4.7"
+    "react-intl": "^7.1.4"
   },
   "peerDependencies": {
     "react": "19.x",
-    "react-intl": "6.x"
+    "react-intl": "7.x"
   }
 }
