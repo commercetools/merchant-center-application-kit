@@ -1,24 +1,22 @@
 import {
-  type ReactNode,
-  type SyntheticEvent,
-  useCallback,
   useEffect,
   useRef,
+  useCallback,
+  type ReactNode,
+  type SyntheticEvent,
   useState,
 } from 'react';
-import { ClassNames, type CSSObject } from '@emotion/react';
-import Modal, { type Props as ModalProps } from 'react-modal';
+import type { CSSObject } from '@emotion/react';
+import {
+  Root as DialogRoot,
+  Portal as DialogPortal,
+  Title as DialogTitle,
+  type DialogProps,
+} from '@radix-ui/react-dialog';
+import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { ModalPageTopBar } from '../utils';
-import {
-  getOverlayStyles,
-  getContainerStyles,
-  getAfterOpenOverlayAnimation,
-  getAfterOpenContainerAnimation,
-  getBeforeCloseOverlayAnimation,
-  getBeforeCloseContainerAnimation,
-  stylesBySize,
-} from './modal-page.styles';
+import { stylesBySize, ModalContent, ModalOverlay } from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -40,17 +38,6 @@ const getDefaultParentSelector = () =>
         `#${PORTALS_CONTAINER_ID}`
       ) as HTMLElement);
 
-const getOverlayElement: ModalProps['overlayElement'] = (
-  props,
-  contentElement
-) => (
-  // Assign the `data-role` to the overlay container, which is used as
-  // the CSS selector in the `<PortalsContainer>`.
-  <div {...props} data-role="modal-overlay">
-    {contentElement}
-  </div>
-);
-
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin
 // does not recognize the object shape.
@@ -60,7 +47,6 @@ type MessageDescriptor = {
   defaultMessage?: string;
 };
 type Label = string | MessageDescriptor;
-
 export type TModalPageSize = 10 | 20 | 30 | 'scale';
 
 type Props = {
@@ -96,12 +82,8 @@ const ModalPage = ({
   ...props
 }: Props) => {
   const [forceClose, setForceClose] = useState(false);
-  const closingTimer = useRef<NodeJS.Timeout>(null);
-  useEffect(() => {
-    return () => {
-      document.body.classList.remove('ReactModal__Body--open');
-    };
-  }, []);
+  const closingTimer = useRef<NodeJS.Timeout>(undefined);
+  const TRANSITION_DURATION = stylesBySize[size].transitionTime;
 
   useEffect(() => {
     if (props.isOpen === true) setForceClose(false);
@@ -111,9 +93,8 @@ const ModalPage = ({
       }
     };
   }, [props.isOpen]);
-  const { onClose } = props;
 
-  const TRANSITION_DURATION = stylesBySize[size].transitionTime;
+  const { onClose } = props;
 
   const handleClose = useCallback(
     (event: SyntheticEvent) => {
@@ -131,56 +112,65 @@ const ModalPage = ({
     },
     [onClose, shouldDelayOnClose, TRANSITION_DURATION]
   );
+
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
+    null
+  );
+
+  useEffect(() => {
+    const container = getParentSelector();
+    if (container) {
+      setPortalContainer(container);
+    }
+  }, []);
+
   return (
-    <ClassNames>
-      {({ css: makeClassName }) => (
-        <Modal
-          isOpen={forceClose === true ? false : props.isOpen}
-          onRequestClose={handleClose}
-          shouldCloseOnOverlayClick={Boolean(props.onClose)}
-          shouldCloseOnEsc={Boolean(props.onClose)}
-          overlayElement={getOverlayElement}
-          overlayClassName={{
-            base: makeClassName(getOverlayStyles({ size, ...props })),
-            afterOpen: makeClassName(getAfterOpenOverlayAnimation()),
-            beforeClose: makeClassName(getBeforeCloseOverlayAnimation()),
-          }}
-          className={{
-            base: makeClassName(getContainerStyles({ size, ...props })),
-            afterOpen:
-              typeof props.afterOpenStyles === 'string'
-                ? props.afterOpenStyles
-                : makeClassName(
-                    props.afterOpenStyles ?? getAfterOpenContainerAnimation()
-                  ),
-            beforeClose: makeClassName(
-              getBeforeCloseContainerAnimation({ size, ...props })
-            ),
-          }}
-          contentLabel={props.title}
-          parentSelector={getParentSelector}
-          ariaHideApp={false}
-          // Adjust this value if the (beforeClose) animation duration is changed
-          closeTimeoutMS={TRANSITION_DURATION}
-          style={{
-            overlay: {
-              zIndex: props.zIndex,
-            },
-          }}
+    <DialogRoot
+      open={props.isOpen && !forceClose}
+      onOpenChange={handleClose as unknown as DialogProps['onOpenChange']}
+      modal={false} // `true` would apply aria-hidden to all other elements when the modal is open
+    >
+      <DialogPortal container={portalContainer}>
+        <div
+          // Assign the `data-role` to the overlay container, which is used as
+          // the CSS selector in the `<PortalsContainer>`.
+          data-role="modal-overlay"
         >
-          {!props.hideTopBar && (
-            <ModalPageTopBar
-              color={props.topBarColor}
-              onClose={handleClose}
-              currentPathLabel={props.currentPathLabel}
-              previousPathLabel={props.previousPathLabel}
-              hidePathLabel={props.hidePathLabel}
-            />
-          )}
-          {props.children}
-        </Modal>
-      )}
-    </ClassNames>
+          <ModalOverlay
+            size={size}
+            data-role="modal-overlay-clickable"
+            onClick={handleClose}
+          />
+          <ModalContent
+            size={size}
+            aria-describedby={undefined}
+            onInteractOutside={(e) => {
+              // Prevent only the modal from closing, handle all other events
+              const overlay = document.querySelector(
+                '[data-role="modal-overlay-clickable"]'
+              );
+              if (!overlay?.contains(e.target as Node)) {
+                e.preventDefault();
+              }
+            }}
+          >
+            <VisuallyHidden asChild>
+              <DialogTitle>{props.title}</DialogTitle>
+            </VisuallyHidden>
+            {!props.hideTopBar && (
+              <ModalPageTopBar
+                color={props.topBarColor}
+                onClose={handleClose}
+                currentPathLabel={props.currentPathLabel}
+                previousPathLabel={props.previousPathLabel}
+                hidePathLabel={props.hidePathLabel}
+              />
+            )}
+            {props.children}
+          </ModalContent>
+        </div>
+      </DialogPortal>
+    </DialogRoot>
   );
 };
 ModalPage.displayName = 'ModalPage';

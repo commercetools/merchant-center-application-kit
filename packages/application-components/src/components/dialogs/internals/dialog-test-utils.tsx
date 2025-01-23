@@ -89,7 +89,7 @@ export const createDialogValidator =
     expect(screen.queryByText(expectedTitle)).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByLabelText(/Open Info Dialog/));
-    await screen.findByText(expectedTitle);
+    await screen.findByRole('heading', { name: expectedTitle, level: 3 });
     expect(screen.getByText(/Hello/)).toBeInTheDocument();
 
     if (expectedAriaTitle) {

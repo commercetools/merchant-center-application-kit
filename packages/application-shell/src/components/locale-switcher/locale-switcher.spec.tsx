@@ -40,7 +40,10 @@ describe('LocaleSwitcher', () => {
     fireEvent.click(iconButton);
 
     // expect to see the dialog opens after clicking the icon button
-    const dialogText = await screen.findByText('Selecting a data locale');
+    const dialogText = await screen.findByRole('heading', {
+      name: 'Selecting a data locale',
+      level: 3,
+    });
     expect(dialogText).toBeInTheDocument();
 
     // close the dialog

@@ -1,4 +1,4 @@
-import { SyntheticEvent, ReactNode } from 'react';
+import type { ReactNode, SyntheticEvent } from 'react';
 import DialogContainer from '../internals/dialog-container';
 import DialogContent from '../internals/dialog-content';
 import DialogHeader, { TextTitle } from '../internals/dialog-header';
