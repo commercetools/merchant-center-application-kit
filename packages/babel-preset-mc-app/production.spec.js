@@ -14,6 +14,10 @@ describe('babel-plugin-formatjs', () => {
     });
   `;
 
+  beforeEach(() => {
+    process.env.ENABLE_BABEL_PLUGIN_FORMATJS = 'true';
+  });
+
   it('should remove description by default', () => {
     const config = getBabePresetConfigForMcAppForProduction(null);
 
