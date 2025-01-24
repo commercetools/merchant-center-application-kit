@@ -9,6 +9,7 @@ import { packageLocation as applicationStaticAssetsPath } from '@commercetools-f
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { getViteCacheGroups } from '../config/optimizations';
 import paths from '../config/paths';
+import nonNullable from '../utils/non-nullable';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
@@ -84,20 +85,22 @@ async function run() {
           plugins: [
             '@emotion/babel-plugin',
             '@babel/plugin-proposal-do-expressions',
-            [
-              'babel-plugin-formatjs',
-              {
-                removeDefaultMessage:
-                  // Remove default `formatjs` messages from bundles.
-                  // TODO: make it a CLI option when Vite support becomes stable.
-                  process.env.ENABLE_I18N_REMOVE_DEFAULT_MESSAGE === 'true',
-                ast:
-                  // Enable pre-parse default `formatjs` messages into AST.
-                  // TODO: make it a CLI option when Vite support becomes stable.
-                  process.env.ENABLE_I18N_AST === 'true',
-              },
-            ],
-          ],
+            process.env.ENABLE_BABEL_PLUGIN_FORMATJS === 'true'
+              ? [
+                  'babel-plugin-formatjs',
+                  {
+                    removeDefaultMessage:
+                      // Remove default `formatjs` messages from bundles.
+                      // TODO: make it a CLI option when Vite support becomes stable.
+                      process.env.ENABLE_I18N_REMOVE_DEFAULT_MESSAGE === 'true',
+                    ast:
+                      // Enable pre-parse default `formatjs` messages into AST.
+                      // TODO: make it a CLI option when Vite support becomes stable.
+                      process.env.ENABLE_I18N_AST === 'true',
+                  },
+                ]
+              : undefined,
+          ].filter(nonNullable),
         },
       }),
       pluginSvgr(),
