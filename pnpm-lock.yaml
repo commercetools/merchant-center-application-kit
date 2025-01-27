@@ -1327,16 +1327,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1382,28 +1382,28 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^19.17.1
@@ -1563,7 +1563,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@types/dompurify':
         specifier: ^2.4.0
@@ -1618,49 +1618,49 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^19.17.1
@@ -1889,16 +1889,16 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2146,7 +2146,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: ^22.39.0
+        specifier: ^22.39.1
         version: link:../application-config
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2186,13 +2186,13 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2223,7 +2223,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)(eslint@8.57.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^22.39.0
+        specifier: ^22.39.1
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.3.3
@@ -2293,7 +2293,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^19.17.1
@@ -2339,7 +2339,7 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2443,7 +2443,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2538,10 +2538,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.2
@@ -2581,25 +2581,25 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-components':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2847,10 +2847,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.11.4
@@ -2902,19 +2902,19 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/actions-global':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../application-components
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^19.17.1
@@ -3020,7 +3020,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3108,10 +3108,10 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15
       '@commercetools-frontend/browser-history':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../constants
       '@sentry/browser':
         specifier: 7.119.1
@@ -3173,37 +3173,37 @@ importers:
         specifier: 24.2.0
         version: 24.2.0(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 19.22.0
@@ -3303,13 +3303,13 @@ importers:
         version: 24.2.5(react-dom@17.0.2)(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 22.39.0
+        specifier: 22.39.1
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
         specifier: 8.5.0
@@ -5639,7 +5639,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
     dev: false
 
   /@babel/plugin-transform-destructuring@7.24.8(@babel/core@7.25.2):
@@ -5756,7 +5756,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.0)
     dev: false
 
@@ -5923,7 +5923,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.23.0)
     dev: false
 
@@ -6382,7 +6382,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.23.0)
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6395,7 +6395,7 @@ packages:
     dependencies:
       '@babel/core': 7.24.0
       '@babel/helper-create-class-features-plugin': 7.22.15(@babel/core@7.24.0)
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6630,7 +6630,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.0
-      '@babel/helper-plugin-utils': 7.25.9
+      '@babel/helper-plugin-utils': 7.22.5
       regenerator-transform: 0.15.2
     dev: false
 
@@ -7874,7 +7874,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/accessible-button@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -7896,7 +7895,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/accessible-button@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -7918,7 +7916,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/accessible-hidden@19.17.1(@types/react@17.0.83)(react@17.0.2):
@@ -7933,7 +7930,6 @@ packages:
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /@commercetools-uikit/accessible-hidden@19.22.0(@types/react@17.0.83)(react@17.0.2):
@@ -7948,7 +7944,6 @@ packages:
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /@commercetools-uikit/async-select-input@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
@@ -7978,7 +7973,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -8009,7 +8003,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -8040,7 +8033,6 @@ packages:
       react-select: 5.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -8061,7 +8053,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/calendar-time-utils@19.22.0(moment-timezone@0.5.40)(react@17.0.2):
@@ -8108,7 +8099,6 @@ packages:
       react-select: 5.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -8132,7 +8122,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/card@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
@@ -8155,7 +8144,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/card@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2):
@@ -8178,7 +8166,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/checkbox-input@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
@@ -8201,7 +8188,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8225,7 +8211,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8249,7 +8234,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8270,7 +8254,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/collapsible-motion@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -8290,7 +8273,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/constraints@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -8309,7 +8291,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/constraints@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -8328,7 +8309,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/constraints@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -8347,7 +8327,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/data-table-manager@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
@@ -8396,7 +8375,6 @@ packages:
       - '@types/react'
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8446,7 +8424,6 @@ packages:
       - '@types/react'
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8496,7 +8473,6 @@ packages:
       - '@types/react'
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8525,7 +8501,6 @@ packages:
       - react-dom
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8554,7 +8529,6 @@ packages:
       - react-dom
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8583,7 +8557,6 @@ packages:
       - react-dom
       - react-native
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8622,7 +8595,6 @@ packages:
       - '@types/react'
       - moment-timezone
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8639,7 +8611,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/design-system@19.17.1(@types/react@17.0.83)(react-dom@17.0.2):
@@ -8655,7 +8626,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/design-system@19.22.0(@types/react@17.0.83)(react-dom@17.0.2):
@@ -8671,7 +8641,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/dropdown-menu@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
@@ -8698,7 +8667,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8726,7 +8694,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8754,7 +8721,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-router-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8775,7 +8741,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8796,7 +8761,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8817,7 +8781,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8846,7 +8809,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8875,7 +8837,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8904,7 +8865,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8933,7 +8893,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8954,7 +8913,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8975,7 +8933,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -8996,7 +8953,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9021,7 +8977,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9046,7 +9001,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9071,7 +9025,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9096,7 +9049,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9121,7 +9073,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9138,7 +9089,6 @@ packages:
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /@commercetools-uikit/grid@19.22.0(@types/react@17.0.83)(react@17.0.2):
@@ -9154,7 +9104,6 @@ packages:
       react: 17.0.2
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /@commercetools-uikit/hooks@18.4.0(react-dom@17.0.2)(react@17.0.2):
@@ -9233,7 +9182,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9258,7 +9206,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9283,7 +9230,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9308,7 +9254,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9331,7 +9276,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/icons@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -9353,7 +9297,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/icons@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -9375,7 +9318,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/input-utils@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
@@ -9398,7 +9340,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9422,7 +9363,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9446,7 +9386,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9470,7 +9409,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9493,7 +9431,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/label@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
@@ -9515,7 +9452,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/link@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
@@ -9543,7 +9479,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/link@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
@@ -9571,7 +9506,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/loading-spinner@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
@@ -9592,7 +9526,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9614,7 +9547,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9636,7 +9568,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9658,7 +9589,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9685,7 +9615,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9712,7 +9641,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9744,7 +9672,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9776,7 +9703,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9808,7 +9734,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9829,7 +9754,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9850,7 +9774,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9877,7 +9800,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9910,7 +9832,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -9933,7 +9854,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/notifications@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
@@ -9955,7 +9875,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/number-input@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2)(typescript@5.0.4):
@@ -9977,7 +9896,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10000,7 +9918,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10023,7 +9940,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10055,7 +9971,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10087,7 +10002,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10119,7 +10033,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10144,7 +10057,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10169,7 +10081,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10194,7 +10105,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10219,7 +10129,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10247,7 +10156,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10275,7 +10183,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10303,7 +10210,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -10331,7 +10237,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/secondary-button@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
@@ -10358,7 +10263,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/secondary-button@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react-router-dom@5.3.4)(react@17.0.2):
@@ -10385,7 +10289,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/secondary-icon-button@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
@@ -10409,7 +10312,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10434,7 +10336,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10459,7 +10360,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10484,7 +10384,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10509,7 +10408,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10536,7 +10434,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10563,7 +10460,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -10592,7 +10488,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10621,7 +10516,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10650,7 +10544,6 @@ packages:
       react-select: 5.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10680,7 +10573,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10710,7 +10602,6 @@ packages:
       react-select: 5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10740,7 +10631,6 @@ packages:
       react-select: 5.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
       - typescript
     dev: false
 
@@ -10759,7 +10649,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inline@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10777,7 +10666,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inline@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10795,7 +10683,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset-squish@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10813,7 +10700,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset-squish@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10831,7 +10717,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset-squish@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10849,7 +10734,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10867,7 +10751,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10885,7 +10768,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-inset@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10903,7 +10785,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-stack@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10921,7 +10802,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-stack@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10939,7 +10819,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings-stack@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10957,7 +10836,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10975,7 +10853,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -10993,7 +10870,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/spacings@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -11011,7 +10887,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/stamp@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
@@ -11032,7 +10907,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
     dev: false
 
   /@commercetools-uikit/tag@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-router-dom@5.3.4)(react@17.0.2)(typescript@5.0.4):
@@ -11059,7 +10933,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11087,7 +10960,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11115,7 +10987,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11143,7 +11014,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11171,7 +11041,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11199,7 +11068,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
       - typescript
     dev: false
 
@@ -11222,7 +11090,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -11245,7 +11112,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -11268,7 +11134,6 @@ packages:
       - '@types/react'
       - react-dom
       - react-intl
-      - supports-color
       - typescript
     dev: false
 
@@ -11291,7 +11156,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/text@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
@@ -11313,7 +11177,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/text@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react-intl@6.4.7)(react@17.0.2):
@@ -11335,7 +11198,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/tooltip@18.4.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -11359,7 +11221,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/tooltip@19.17.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -11383,7 +11244,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/tooltip@19.22.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -11407,7 +11267,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - supports-color
     dev: false
 
   /@commercetools-uikit/utils@18.4.0(react@17.0.2):
@@ -11897,8 +11756,6 @@ packages:
       '@types/react': 17.0.83
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   /@emotion/serialize@1.1.3:
     resolution: {integrity: sha512-iD4D6QVZFDhcbH0RAG1uVu1CwVLMWUkCvAqqlewO/rxf8+87yIBAlt4+AxMiiKPLs5hFc0owNk/sLLAOROw3cA==}
@@ -11935,8 +11792,6 @@ packages:
       '@emotion/utils': 1.4.2
       '@types/react': 17.0.83
       react: 17.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@emotion/unitless@0.8.1:
@@ -28197,7 +28052,6 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.83)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /react-select@5.8.1(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -28219,7 +28073,6 @@ packages:
       use-isomorphic-layout-effect: 1.1.2(@types/react@17.0.83)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /react-select@5.9.0(@types/react@17.0.83)(react-dom@17.0.2)(react@17.0.2):
@@ -28241,7 +28094,6 @@ packages:
       use-isomorphic-layout-effect: 1.2.0(@types/react@17.0.83)(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
-      - supports-color
     dev: false
 
   /react-textarea-autosize@8.4.0(@types/react@17.0.83)(react@17.0.2):
