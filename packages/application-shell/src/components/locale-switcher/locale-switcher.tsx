@@ -79,7 +79,7 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 const LocaleSwitcher = (props: Props) => {
   const { isModalOpen, openModal, closeModal } = useModalState();
   const { setProjectDataLocale } = props;
-  const getNewLine = () => <br />;
+  const getNewLine = () => <br key="new-line" />;
   const intl = useIntl();
 
   const handleSelection = useCallback(

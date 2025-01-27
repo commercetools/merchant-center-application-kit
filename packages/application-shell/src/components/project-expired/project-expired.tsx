@@ -11,9 +11,7 @@ type Props = {
 const salesEmail = 'sales@commercetools.com';
 
 const EmailLink = (props: Props) => (
-  <a key="email" href={`mailto:${props.email}`}>
-    {props.email}
-  </a>
+  <a href={`mailto:${props.email}`}>{props.email}</a>
 );
 EmailLink.displayName = 'EmailLink';
 
@@ -28,7 +26,7 @@ const ProjectExpired = () => {
       paragraph1={
         <FormattedMessage
           {...messages.paragraph1}
-          values={{ mailto: <EmailLink email={salesEmail} /> }}
+          values={{ mailto: <EmailLink key="email" email={salesEmail} /> }}
         />
       }
       bodyContent={<ServicePageProjectSwitcher />}
