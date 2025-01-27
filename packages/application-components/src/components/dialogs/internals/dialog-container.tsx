@@ -9,14 +9,11 @@ import styled from '@emotion/styled';
 import {
   Root as DialogRoot,
   Portal as DialogPortal,
-  Title as DialogTitle,
   type DialogContentProps,
 } from '@radix-ui/react-dialog';
-import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import { useWarning } from '@commercetools-uikit/utils';
 import {
   DialogOverlay,
   DialogContent,
@@ -67,12 +64,6 @@ const DialogContainer = ({
   getParentSelector = getDefaultParentSelector,
   ...props
 }: Props) => {
-  useWarning(
-    typeof props.title === 'string' ||
-      (typeof props.title !== 'string' && Boolean(props['aria-label'])),
-    'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
-  );
-
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
     null
   );
@@ -99,13 +90,6 @@ const DialogContainer = ({
               }
               aria-describedby={undefined}
             >
-              <VisuallyHidden asChild>
-                <DialogTitle>
-                  {typeof props.title === 'string'
-                    ? props.title
-                    : props['aria-label']}
-                </DialogTitle>
-              </VisuallyHidden>
               <GridArea name="top" />
               <GridArea name="left" />
               <GridArea name="right" />
