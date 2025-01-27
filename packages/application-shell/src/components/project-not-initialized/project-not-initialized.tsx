@@ -11,7 +11,9 @@ type Props = {
 const supportEmail = 'support@commercetools.com';
 
 const EmailLink = (props: Props) => (
-  <a href={`mailto:${props.email}`}>{props.email}</a>
+  <a key="email" href={`mailto:${props.email}`}>
+    {props.email}
+  </a>
 );
 EmailLink.displayName = 'EmailLink';
 

@@ -6,7 +6,12 @@ import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
 const getLink = (msg: string) => (
-  <a href={SUPPORT_PORTAL_URL} target="_blank" rel="noopener noreferrer">
+  <a
+    key="support-portal-url"
+    href={SUPPORT_PORTAL_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     {msg}
   </a>
 );
