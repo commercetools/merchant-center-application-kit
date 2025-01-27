@@ -6,6 +6,7 @@ import {
   waitFor,
   fireEvent,
   within,
+  act,
 } from '@testing-library/react';
 import { GraphQLError } from 'graphql';
 import { createMemoryHistory } from 'history';
@@ -309,7 +310,9 @@ describe.each`
             disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
-          history.push('/account');
+          await act(async () => {
+            history.push('/account');
+          });
           await waitFor(() => {
             expect(location.reload).toHaveBeenCalled();
           });
@@ -321,7 +324,9 @@ describe.each`
             disableRoutePermissionCheck: true,
           });
           await screen.findByText('OK');
-          history.push('/account');
+          await act(async () => {
+            history.push('/account');
+          });
           await screen.findByText('OK');
           expect(location.reload).not.toHaveBeenCalled();
         });
@@ -336,7 +341,9 @@ describe('when route does not contain a project key (e.g. /account)', () => {
       disableRoutePermissionCheck: true,
     });
     await screen.findByText('OK');
-    history.push('/account');
+    await act(async () => {
+      history.push('/account');
+    });
     await waitFor(() => {
       expect(history.location.pathname).toBe('/account');
     });
