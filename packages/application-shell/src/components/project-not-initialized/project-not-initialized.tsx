@@ -11,9 +11,7 @@ type Props = {
 const supportEmail = 'support@commercetools.com';
 
 const EmailLink = (props: Props) => (
-  <a key="email" href={`mailto:${props.email}`}>
-    {props.email}
-  </a>
+  <a href={`mailto:${props.email}`}>{props.email}</a>
 );
 EmailLink.displayName = 'EmailLink';
 
@@ -28,7 +26,7 @@ const ProjectNotInitialized = () => {
       paragraph1={
         <FormattedMessage
           {...messages.paragraph1}
-          values={{ mailto: <EmailLink email={supportEmail} /> }}
+          values={{ mailto: <EmailLink key="email" email={supportEmail} /> }}
         />
       }
       bodyContent={<ServicePageProjectSwitcher />}

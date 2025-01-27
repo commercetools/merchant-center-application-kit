@@ -1,4 +1,4 @@
-import { hooks } from '../../test-utils';
+import { hooks, act } from '../../test-utils';
 import useRoutesCreator from './use-routes-creator';
 
 const entryPointUriPath = 'avengers';
@@ -59,7 +59,7 @@ describe('creating routes', () => {
     });
   });
   describe('go', () => {
-    it('should redirect to another route', () => {
+    it('should redirect to another route', async () => {
       const { result, history } = hooks.renderHook(() => useRoutes());
       const routes = result.current as TRoutes;
 
@@ -67,14 +67,18 @@ describe('creating routes', () => {
         `"/test-with-big-data/random-entry-point"`
       );
 
-      routes.heros.go();
+      await act(async () => {
+        routes.heros.go();
+      });
 
       expect(history.location.pathname).toMatchInlineSnapshot(
         `"/test-with-big-data/avengers/heros"`
       );
 
-      routes.heroDetail.go({
-        id: '123',
+      await act(async () => {
+        routes.heroDetail.go({
+          id: '123',
+        });
       });
 
       expect(history.location.pathname).toMatchInlineSnapshot(
