@@ -39,6 +39,7 @@ const Title = (props: TitleProps) => {
       ```
        */
       <>
+        <TextTitle title={props.title} />
         <VisuallyHidden
           css={css`
             display: none;
@@ -46,16 +47,15 @@ const Title = (props: TitleProps) => {
         >
           <DialogTitle>{props.title}</DialogTitle>
         </VisuallyHidden>
-        <TextTitle title={props.title} />
       </>
     );
   }
   return (
     <>
+      {props.title}
       <VisuallyHidden>
         <DialogTitle>{props['aria-label']}</DialogTitle>
       </VisuallyHidden>
-      {props.title}
     </>
   );
 };
