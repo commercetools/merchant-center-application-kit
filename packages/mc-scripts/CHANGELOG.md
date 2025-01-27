@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 22.39.1
+
+### Patch Changes
+
+- [#3707](https://github.com/commercetools/merchant-center-application-kit/pull/3707) [`09a4e2a`](https://github.com/commercetools/merchant-center-application-kit/commit/09a4e2a461dbe08c042394d4ca006b188d889f2d) Thanks [@emmenko](https://github.com/emmenko)! - Make `babel-plugin-formatjs` opt-in via environment variable `ENABLE_BABEL_PLUGIN_FORMATJS`.
+
+- Updated dependencies [[`09a4e2a`](https://github.com/commercetools/merchant-center-application-kit/commit/09a4e2a461dbe08c042394d4ca006b188d889f2d)]:
+  - @commercetools-frontend/babel-preset-mc-app@22.39.1
+  - @commercetools-frontend/application-components@22.39.1
+  - @commercetools-frontend/application-config@22.39.1
+  - @commercetools-frontend/assets@22.39.1
+  - @commercetools-frontend/constants@22.39.1
+  - @commercetools-frontend/mc-dev-authentication@22.39.1
+  - @commercetools-frontend/mc-html-template@22.39.1
+
 ## 22.39.0
 
 ### Minor Changes
