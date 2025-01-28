@@ -58,7 +58,6 @@
     "@emotion/styled": "^11.11.0",
     "@flopflip/react-broadcast": "14.0.2",
     "@radix-ui/react-dialog": "1.1.4",
-    "@radix-ui/react-visually-hidden": "1.1.1",
     "@react-hook/latest": "1.0.3",
     "@react-hook/resize-observer": "1.2.6",
     "@types/history": "^4.7.11",

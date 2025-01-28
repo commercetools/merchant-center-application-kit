@@ -13,10 +13,15 @@ import {
   Title as DialogTitle,
   type DialogProps,
 } from '@radix-ui/react-dialog';
-import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { ModalPageTopBar } from '../utils';
 import { stylesBySize, ModalContent, ModalOverlay } from './modal-page.styles';
+
+const HiddenEmptyDialogTitle = () => (
+  <div aria-hidden={true} style={{ display: 'none' }}>
+    <DialogTitle />
+  </div>
+);
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -153,10 +158,10 @@ const ModalPage = ({
                 e.preventDefault();
               }
             }}
+            aria-labelledby={props.title}
+            aria-label={props.title}
           >
-            <VisuallyHidden asChild>
-              <DialogTitle>{props.title}</DialogTitle>
-            </VisuallyHidden>
+            <HiddenEmptyDialogTitle />
             {!props.hideTopBar && (
               <ModalPageTopBar
                 color={props.topBarColor}
