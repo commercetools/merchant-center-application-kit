@@ -14,6 +14,7 @@ import {
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import { useWarning } from '@commercetools-uikit/utils';
 import {
   DialogOverlay,
   DialogContent,
@@ -64,6 +65,11 @@ const DialogContainer = ({
   getParentSelector = getDefaultParentSelector,
   ...props
 }: Props) => {
+  useWarning(
+    typeof props.title === 'string' ||
+      (typeof props.title !== 'string' && Boolean(props['aria-label'])),
+    'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
+  );
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
     null
   );
@@ -74,6 +80,9 @@ const DialogContainer = ({
       setPortalContainer(container);
     }
   }, []);
+
+  const dialogAccessibleLabel =
+    typeof props.title === 'string' ? props.title : props['aria-label'];
 
   return (
     <DialogRoot open={props.isOpen} modal={false}>
@@ -89,6 +98,8 @@ const DialogContainer = ({
                 props.onClose as DialogContentProps['onPointerDownOutside']
               }
               aria-describedby={undefined}
+              aria-labelledby={dialogAccessibleLabel}
+              aria-label={dialogAccessibleLabel}
             >
               <GridArea name="top" />
               <GridArea name="left" />

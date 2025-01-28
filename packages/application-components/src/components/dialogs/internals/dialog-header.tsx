@@ -1,17 +1,14 @@
 import type { ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
 import { Title as DialogTitle } from '@radix-ui/react-dialog';
-import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { useWarning } from '@commercetools-uikit/utils';
 
 type Props = {
   title: ReactNode;
-  'aria-label'?: string;
   onClose?: (event: SyntheticEvent) => void;
   children?: never;
 };
@@ -25,12 +22,22 @@ export const TextTitle = (props: TTextTitleProps) => (
   </Text.Headline>
 );
 
-type TitleProps = Pick<Props, 'title' | 'aria-label'>;
+const HiddenEmptyDialogTitle = () => (
+  <div aria-hidden={true} style={{ display: 'none' }}>
+    <DialogTitle />
+  </div>
+);
+
+type TitleProps = Pick<Props, 'title'>;
 const Title = (props: TitleProps) => {
-  if (typeof props.title === 'string') {
-    return (
-      /* 
-      FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986#issuecomment-2455201034
+  return (
+    <>
+      {typeof props.title === 'string' ? (
+        <TextTitle title={props.title} />
+      ) : (
+        props.title
+      )}
+      {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986#issuecomment-2455201034
       Radix UI's DialogContent requires rendering a DialogTitle.
       To meet this requirement and avoid rendering two heading elements with the title in the DOM, we are hiding the DialogTitle.
       The intended JSX structure should be but cannot be used until the regression in Radix UI is fixed:
@@ -38,59 +45,39 @@ const Title = (props: TitleProps) => {
       <DialogTitle asChild>
         <TextTitle title={props.title} />
       </DialogTitle>
-      ```
-       */
-      <>
-        <TextTitle title={props.title} />
-        <div aria-hidden={true} style={{ display: 'none' }}>
-          <DialogTitle />
-        </div>
-      </>
-    );
-  }
-  return (
-    <>
-      {props.title}
-      <VisuallyHidden>
-        <DialogTitle>{props['aria-label']}</DialogTitle>
-      </VisuallyHidden>
+      ``` */}
+      <HiddenEmptyDialogTitle />
     </>
   );
 };
 
-const DialogHeader = (props: Props) => {
-  useWarning(
-    typeof props.title === 'string' ||
-      (typeof props.title !== 'string' && Boolean(props['aria-label'])),
-    'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
-  );
-  return (
-    <div
-      css={css`
-        flex: 0 1 auto;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: ${uiKitDesignTokens.spacing30};
-      `}
+const DialogHeader = (props: Props) => (
+  <div
+    css={css`
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: ${uiKitDesignTokens.spacing30};
+    `}
+  >
+    <Spacings.Inline
+      scale="m"
+      alignItems="center"
+      justifyContent="space-between"
     >
-      <Spacings.Inline
-        scale="m"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Title title={props.title} aria-label={props['aria-label']} />
-        {props.onClose && (
-          <SecondaryIconButton
-            label="Close dialog"
-            onClick={props.onClose}
-            icon={<CloseIcon />}
-            size="30"
-          />
-        )}
-      </Spacings.Inline>
-    </div>
-  );
-};
+      <Title title={props.title} />
+      {props.onClose && (
+        <SecondaryIconButton
+          label="Close dialog"
+          onClick={props.onClose}
+          icon={<CloseIcon />}
+          size="30"
+        />
+      )}
+    </Spacings.Inline>
+  </div>
+);
+
 DialogHeader.displayName = 'DialogHeader';
 
 export default DialogHeader;

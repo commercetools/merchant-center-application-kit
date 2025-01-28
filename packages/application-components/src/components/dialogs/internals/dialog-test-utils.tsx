@@ -94,7 +94,7 @@ export const createDialogValidator =
 
     if (expectedAriaTitle) {
       expect(
-        screen.getByRole('heading', { name: expectedAriaTitle })
+        screen.getByRole('dialog', { name: expectedAriaTitle })
       ).toBeInTheDocument();
     }
 

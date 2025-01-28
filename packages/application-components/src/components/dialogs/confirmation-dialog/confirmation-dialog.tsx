@@ -46,11 +46,7 @@ const ConfirmationDialog = ({
     aria-label={props['aria-label']}
     getParentSelector={props.getParentSelector}
   >
-    <DialogHeader
-      title={props.title}
-      onClose={props.onClose}
-      aria-label={props['aria-label']}
-    />
+    <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
     <DialogFooter
       labelSecondary={labelSecondary}
