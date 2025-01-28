@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 22.39.1
+
+### Patch Changes
+
+- [#3709](https://github.com/commercetools/merchant-center-application-kit/pull/3709) [`c8ee91a`](https://github.com/commercetools/merchant-center-application-kit/commit/c8ee91a31600a76455912479cad6d448984fd7f3) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Remove the operation name query parameter we had introduced in the `/graphql` endpoint as it was forcing consumers to update part of their codebases.
+
+  As an alternative we recommend using any browser extension that provides customized information for GraphQL requests ([here](https://chromewebstore.google.com/detail/graphql-network-inspector/ndlbedplllcgconngcnfmkadhokfaaln)'s an example for Chromium based browsers).
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.39.1
+  - @commercetools-frontend/browser-history@22.39.1
+  - @commercetools-frontend/constants@22.39.1
+  - @commercetools-frontend/sentry@22.39.1
+
 ## 22.39.0
 
 ### Patch Changes
