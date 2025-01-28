@@ -30,7 +30,9 @@ const Title = (props: TitleProps) => {
   if (typeof props.title === 'string') {
     return (
       /* 
-      FIXME: This is a temporary workaround for the issue detailed in https://github.com/radix-ui/primitives/issues/2986#issuecomment-2455201034
+      FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986#issuecomment-2455201034
+      Radix UI's DialogContent requires a DialogTitle, but we cannot pass TextTitle and use the asChild prop.
+      To meet this requirement and avoid rendering two heading elements with the title in the DOM, we are hiding the DialogTitle.
       The intended JSX structure should be:
       ```
       <DialogTitle asChild>
@@ -40,13 +42,13 @@ const Title = (props: TitleProps) => {
        */
       <>
         <TextTitle title={props.title} />
-        <VisuallyHidden
+        <div
           css={css`
             display: none;
           `}
         >
           <DialogTitle>{props.title}</DialogTitle>
-        </VisuallyHidden>
+        </div>
       </>
     );
   }
