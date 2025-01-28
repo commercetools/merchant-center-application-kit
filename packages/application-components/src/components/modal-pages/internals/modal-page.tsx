@@ -82,7 +82,7 @@ const ModalPage = ({
   ...props
 }: Props) => {
   const [forceClose, setForceClose] = useState(false);
-  const closingTimer = useRef<NodeJS.Timeout>(undefined);
+  const closingTimer = useRef<NodeJS.Timeout | undefined>(undefined);
   const TRANSITION_DURATION = stylesBySize[size].transitionTime;
 
   useEffect(() => {
