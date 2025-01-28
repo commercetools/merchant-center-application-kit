@@ -46,7 +46,7 @@ export const ModalOverlay = styled.div<{
   background-color: hsla(195, 35%, 20%, 0.05);
   z-index: ${({ zIndex }) =>
     // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
-    typeof zIndex === 'number' ? `${zIndex} !important` : 'auto'};
+    typeof zIndex === 'number' ? `${zIndex} !important` : 'inherit'};
   opacity: 0;
 
   ${({ size }) => {
@@ -103,6 +103,7 @@ export const ModalContent = styled(Content, {
   background-color: ${designTokens.colorSurface};
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
+  z-index: inherit;
 
   &[data-state='open'] {
     animation: ${({ size }) => getContentShowAnimation(size)} 300ms ease
