@@ -161,6 +161,10 @@ const ModalPage = ({
             aria-labelledby={props.title}
             aria-label={props.title}
           >
+            {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986
+              Radix UI's DialogContent requires rendering a DialogTitle, which renders as <h2>.
+              To meet this requirement and avoid rendering two heading elements with the title in the DOM (<TextTitle> renders as <h3>), we are hiding the DialogTitle.
+            */}
             <HiddenEmptyDialogTitle />
             {!props.hideTopBar && (
               <ModalPageTopBar
