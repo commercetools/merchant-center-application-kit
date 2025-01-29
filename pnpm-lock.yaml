@@ -301,7 +301,7 @@ importers:
         specifier: 3.1.4
         version: 3.1.4
       workspace-tools:
-        specifier: ^0.38.1
+        specifier: 0.38.1
         version: 0.38.1
 
   application-templates/starter:
