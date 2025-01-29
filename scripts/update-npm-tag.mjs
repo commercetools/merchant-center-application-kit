@@ -40,8 +40,8 @@ async function run() {
 
   // Update the dist-tag of all the public packages to the latest release
   for (const packageName of packagesNames) {
-    // exec(`npm dist-tag add ${packageName}@${latestVersion} ${distTag}`);
-    const result = shell.exec(`sleep 1 && echo "Updating NPM dist: ${packageName}@${latestVersion} ${distTag}"`);
+    // const result = shell.exec(`sleep 1 && echo "Updating NPM dist: ${packageName}@${latestVersion} ${distTag}"`);
+    const result = shell.exec(`npm dist-tag add ${packageName}@${latestVersion} ${distTag}`);
     if (result.code !== 0) {
       throw new Error(`Error updating NPM dist-tag "${distTag}" for ${packageName} with version "${latestVersion}"`);
     }
