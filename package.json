@@ -172,7 +172,8 @@
     "stylelint-value-no-unknown-custom-properties": "4.0.0",
     "tsc-files": "1.1.4",
     "typescript": "5.0.4",
-    "vfile-message": "3.1.4"
+    "vfile-message": "3.1.4",
+    "workspace-tools": "0.38.1"
   },
   "pnpm": {
     "overrides": {
