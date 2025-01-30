@@ -1,6 +1,5 @@
 import type { ReactNode, SyntheticEvent } from 'react';
 import { css } from '@emotion/react';
-import { Title as DialogTitle } from '@radix-ui/react-dialog';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
@@ -22,28 +21,13 @@ export const TextTitle = (props: TTextTitleProps) => (
   </Text.Headline>
 );
 
-const HiddenEmptyDialogTitle = () => (
-  <div aria-hidden={true} style={{ display: 'none' }}>
-    <DialogTitle />
-  </div>
-);
-
 type TitleProps = Pick<Props, 'title'>;
 const Title = (props: TitleProps) => {
-  return (
-    <>
-      {typeof props.title === 'string' ? (
-        <TextTitle title={props.title} />
-      ) : (
-        props.title
-      )}
-      {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986
-        Radix UI's DialogContent requires rendering a DialogTitle, which renders as <h2>.
-        To meet this requirement and avoid rendering two heading elements with the title in the DOM (<TextTitle> renders as <h3>), we are hiding the DialogTitle.
-      */}
-      <HiddenEmptyDialogTitle />
-    </>
-  );
+  if (typeof props.title === 'string') {
+    return <TextTitle title={props.title} />;
+  } else {
+    return <>{props.title}</>;
+  }
 };
 
 const DialogHeader = (props: Props) => (
