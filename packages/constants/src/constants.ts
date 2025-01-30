@@ -344,4 +344,4 @@ export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';
 
-export const FOO = 'bar';
+export const FOO = 'bar-v2';
