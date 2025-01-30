@@ -343,3 +343,5 @@ export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';
+
+export const FOO = 'bar';
