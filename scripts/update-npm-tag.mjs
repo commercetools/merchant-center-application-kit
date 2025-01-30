@@ -35,11 +35,12 @@ async function run() {
   // Resolve the public packages of the repository
   const packagesNames = getPublicPackagesNames();
 
-  // Fetch the latest release of the received dist-tag
-  const latestVersion = await getLatestReleaseCandidate(packagesNames[0], distTag);
-
   // Update the dist-tag of all the public packages to the latest release
   for (const packageName of packagesNames) {
+    // Fetch the latest release of the received dist-tag for this package
+    const latestVersion = await getLatestReleaseCandidate(packageName, distTag);
+
+    // Update the dist-tag of all the public packages to the latest release
     const result = shell.exec(`npm dist-tag add ${packageName}@${latestVersion} ${distTag}`);
     if (result.code !== 0) {
       throw new Error(`Error updating NPM dist-tag "${distTag}" for ${packageName} with version "${latestVersion}"`);
