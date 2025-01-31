@@ -1,12 +1,25 @@
-import type { ReactNode, SyntheticEvent } from 'react';
-import { css, ClassNames } from '@emotion/react';
+import {
+  useState,
+  useEffect,
+  type ReactNode,
+  type SyntheticEvent,
+} from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Modal, { type Props as ModalProps } from 'react-modal';
+import {
+  Root as DialogRoot,
+  Portal as DialogPortal,
+  type DialogContentProps,
+} from '@radix-ui/react-dialog';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import Card from '@commercetools-uikit/card';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { useWarning } from '@commercetools-uikit/utils';
-import { getOverlayStyles, getModalContentStyles } from './dialog.styles';
+import {
+  DialogOverlay,
+  DialogContent,
+  ClickableDialogContent,
+} from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -28,17 +41,6 @@ const getDefaultParentSelector = () =>
         `#${PORTALS_CONTAINER_ID}`
       ) as HTMLElement);
 
-const getOverlayElement: ModalProps['overlayElement'] = (
-  props,
-  contentElement
-) => (
-  // Assign the `data-role` to the overlay container, which is used as
-  // the CSS selector in the `<PortalsContainer>`.
-  <div {...props} data-role="dialog-overlay">
-    {contentElement}
-  </div>
-);
-
 type Props = {
   isOpen: boolean;
   onClose?: (event: SyntheticEvent) => void;
@@ -53,6 +55,7 @@ type Props = {
 type GridAreaProps = {
   name: string;
 };
+
 const GridArea = styled.div<GridAreaProps>`
   grid-area: ${(props) => props.name};
 `;
@@ -67,74 +70,90 @@ const DialogContainer = ({
       (typeof props.title !== 'string' && Boolean(props['aria-label'])),
     'app-kit/DialogHeader: "aria-label" prop is required when the "title" prop is not a string.'
   );
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
+    null
+  );
+
+  useEffect(() => {
+    const container = getParentSelector();
+    if (container) {
+      setPortalContainer(container);
+    }
+  }, []);
+
+  const dialogAccessibleLabel =
+    typeof props.title === 'string' ? props.title : props['aria-label'];
 
   return (
-    <ClassNames>
-      {({ css: makeClassName }) => (
-        <Modal
-          isOpen={props.isOpen}
-          onRequestClose={props.onClose}
-          shouldCloseOnOverlayClick={Boolean(props.onClose)}
-          shouldCloseOnEsc={Boolean(props.onClose)}
-          overlayElement={getOverlayElement}
-          overlayClassName={makeClassName(getOverlayStyles({ size, ...props }))}
-          className={makeClassName(getModalContentStyles({ size, ...props }))}
-          contentLabel={
-            typeof props.title === 'string' ? props.title : props['aria-label']
-          }
-          parentSelector={getParentSelector}
-          ariaHideApp={false}
-        >
-          <GridArea name="top" />
-          <GridArea name="left" />
-          <GridArea name="right" />
-          <GridArea name="bottom" />
-          <GridArea
-            name="main"
-            css={css`
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              height: 100%;
-              overflow: hidden;
-            `}
-          >
-            <Card
-              // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
-              // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
-              css={css`
-                min-height: 0;
-                padding: ${uiKitDesignTokens.spacing20}
-                  ${uiKitDesignTokens.spacing30};
-
-                > div {
-                  display: flex;
-                  flex-direction: column;
-                  height: 100%;
-                  pointer-events: auto;
-                  min-height: 0;
-                }
-              `}
+    <DialogRoot open={props.isOpen} modal={false}>
+      <DialogPortal container={portalContainer}>
+        <DialogOverlay data-role="dialog-overlay" zIndex={props.zIndex}>
+          <DialogContent>
+            <ClickableDialogContent
+              size={size}
+              onEscapeKeyDown={
+                props.onClose as DialogContentProps['onEscapeKeyDown']
+              }
+              onPointerDownOutside={
+                props.onClose as DialogContentProps['onPointerDownOutside']
+              }
+              aria-describedby={undefined}
+              aria-labelledby=""
+              aria-label={dialogAccessibleLabel}
             >
-              <div
+              <GridArea name="top" />
+              <GridArea name="left" />
+              <GridArea name="right" />
+              <GridArea name="bottom" />
+              <GridArea
+                name="main"
                 css={css`
                   display: flex;
                   flex-direction: column;
-                  align-items: stretch;
+                  align-items: center;
+                  justify-content: center;
                   height: 100%;
-                  min-height: 0;
+                  overflow: hidden;
                 `}
               >
-                {props.children}
-              </div>
-            </Card>
-          </GridArea>
-        </Modal>
-      )}
-    </ClassNames>
+                <Card
+                  // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
+                  // 2. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
+                  css={css`
+                    min-height: 0;
+                    padding: ${uiKitDesignTokens.spacing20}
+                      ${uiKitDesignTokens.spacing30};
+
+                    > div {
+                      display: flex;
+                      flex-direction: column;
+                      height: 100%;
+                      pointer-events: auto;
+                      min-height: 0;
+                    }
+                  `}
+                >
+                  <div
+                    css={css`
+                      display: flex;
+                      flex-direction: column;
+                      align-items: stretch;
+                      height: 100%;
+                      min-height: 0;
+                    `}
+                  >
+                    {props.children}
+                  </div>
+                </Card>
+              </GridArea>
+            </ClickableDialogContent>
+          </DialogContent>
+        </DialogOverlay>
+      </DialogPortal>
+    </DialogRoot>
   );
 };
+
 DialogContainer.displayName = 'DialogContainer';
 
 export default DialogContainer;

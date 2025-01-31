@@ -1,9 +1,7 @@
 import { useLayoutEffect, useState, type ReactNode } from 'react';
-import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
-import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
@@ -20,9 +18,9 @@ type TPlaygroundControllerProps = {
 };
 
 const PlaygroundContainer = styled.div`
-  background-color: ${customProperties.colorNeutral95};
-  border: 16px solid ${customProperties.colorNeutral95};
-  border-radius: ${customProperties.borderRadius6};
+  background-color: ${designTokens.colorNeutral95};
+  border: 16px solid ${designTokens.colorNeutral95};
+  border-radius: ${designTokens.borderRadius6};
 `;
 type TPreviewContainerProps = {
   height: string;
@@ -32,10 +30,9 @@ const PreviewContainer = styled.div<TPreviewContainerProps>`
   width: 100%;
   overflow: hidden;
   height: ${(props) => props.height};
-  background-color: ${customProperties.colorSurface};
-  border-radius: ${customProperties.borderRadius4}
-    ${customProperties.borderRadius4} 0 0;
-  border-bottom: 1px solid ${customProperties.colorNeutral90};
+  background-color: ${designTokens.colorSurface};
+  border-radius: ${designTokens.borderRadius4} ${designTokens.borderRadius4} 0 0;
+  border-bottom: 1px solid ${designTokens.colorNeutral90};
 `;
 
 const PlaygroundController = (props: TPlaygroundControllerProps) => {
@@ -55,18 +52,6 @@ const PlaygroundController = (props: TPlaygroundControllerProps) => {
               <Spacings.Stack scale="s">
                 <PreviewContainer height="400px">
                   <PortalsContainer />
-                  <Global
-                    // Overwrite styles to restrict the modal container to be within the
-                    // preview container instead of full screen.
-                    // This is only needed for the playground previews, therefore we
-                    // override the styles here.
-                    styles={css`
-                      .ReactModal__Body--open #${PORTALS_CONTAINER_ID} {
-                        position: absolute;
-                        overflow: auto;
-                      }
-                    `}
-                  />
                   {props.children({ values })}
                 </PreviewContainer>
                 <Spacings.Inline alignItems="center">
