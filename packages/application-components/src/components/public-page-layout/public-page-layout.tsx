@@ -73,7 +73,9 @@ const PublicPageLayout: FC<TProps> = ({
           </ContainerColumn>
         )}
         <Spacings.Stack scale="xl">
-          <PublicPageLayoutContent {...props} />
+          <PublicPageLayoutContent contentScale={contentScale}>
+            {props.children}
+          </PublicPageLayoutContent>
           <PublicPageLayoutContent contentScale={contentScale}>
             <Spacings.Stack
               scale="xs"
