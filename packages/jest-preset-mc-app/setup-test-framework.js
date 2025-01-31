@@ -29,7 +29,7 @@ const jestConfig = loadConfig();
 
 configureRtl(jestConfig.rtlConfig);
 
-let additionalSilencedWarnings = [/`DialogContent` requires a `DialogTitle`/];
+let additionalSilencedWarnings = [];
 let additionalNonThrowingWarnings = [];
 
 function hasMatchingRegexForMessage(messages, msgRegExps) {

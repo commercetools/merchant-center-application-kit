@@ -10,11 +10,18 @@ import type { CSSObject } from '@emotion/react';
 import {
   Root as DialogRoot,
   Portal as DialogPortal,
+  Title as DialogTitle,
   type DialogProps,
 } from '@radix-ui/react-dialog';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { ModalPageTopBar } from '../utils';
 import { stylesBySize, ModalContent, ModalOverlay } from './modal-page.styles';
+
+const HiddenEmptyDialogTitle = () => (
+  <div aria-hidden={true} style={{ display: 'none' }}>
+    <DialogTitle />
+  </div>
+);
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -154,6 +161,11 @@ const ModalPage = ({
             aria-labelledby={props.title}
             aria-label={props.title}
           >
+            {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986
+              Radix UI's DialogContent requires rendering a DialogTitle, which renders as <h2>.
+              To meet this requirement and avoid rendering two heading elements with the title in the DOM (<TextTitle> renders as <h3>), we are hiding the DialogTitle.
+            */}
+            <HiddenEmptyDialogTitle />
             {!props.hideTopBar && (
               <ModalPageTopBar
                 color={props.topBarColor}
