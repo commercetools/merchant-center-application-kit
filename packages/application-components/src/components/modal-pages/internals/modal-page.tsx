@@ -158,7 +158,7 @@ const ModalPage = ({
                 e.preventDefault();
               }
             }}
-            aria-labelledby={props.title}
+            aria-labelledby=""
             aria-label={props.title}
           >
             {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986
