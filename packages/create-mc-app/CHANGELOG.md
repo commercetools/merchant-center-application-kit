@@ -1,5 +1,12 @@
 # @commercetools-frontend/create-mc-app
 
+## 22.40.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@22.40.0
+
 ## 22.39.1
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.40.0
+
+### Minor Changes
+
+- [#3711](https://github.com/commercetools/merchant-center-application-kit/pull/3711) [`14e7ba3`](https://github.com/commercetools/merchant-center-application-kit/commit/14e7ba3cf3ddd088e4caea54b4a7fb015bd01f24) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Fix `PublicPageLayoutContent` component usage to ensure proper prop forwarding
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.40.0
+  - @commercetools-frontend/application-config@22.40.0
+  - @commercetools-frontend/application-shell-connectors@22.40.0
+  - @commercetools-frontend/assets@22.40.0
+  - @commercetools-frontend/constants@22.40.0
+  - @commercetools-frontend/i18n@22.40.0
+  - @commercetools-frontend/l10n@22.40.0
+  - @commercetools-frontend/sentry@22.40.0
+
 ## 22.39.1
 
 ### Patch Changes
