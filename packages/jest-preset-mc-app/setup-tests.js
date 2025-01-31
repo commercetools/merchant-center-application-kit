@@ -1,5 +1,6 @@
 const util = require('util');
 const MutationObserver = require('@sheerun/mutationobserver-shim');
+const uuid = require('uuid');
 
 global.window.app = {
   applicationName: 'my-app',
@@ -10,6 +11,8 @@ window.MutationObserver = MutationObserver;
 global.Headers = global.Headers || require('node-fetch').Headers;
 global.Request = global.Request || require('node-fetch').Request;
 global.Response = global.Response || require('node-fetch').Response;
+
+global.crypto.randomUUID = () => uuid.v4();
 
 // Fix missing globals when `jsdom` is used in a test environment.
 // See https://github.com/jsdom/jsdom/issues/2524#issuecomment-1108991178.
