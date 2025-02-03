@@ -1,4 +1,4 @@
-import { hooks } from '../../test-utils';
+import { hooks, act } from '../../test-utils';
 import useRoutesCreator from './use-routes-creator';
 
 const entryPointUriPath = 'avengers';
@@ -17,11 +17,13 @@ const useRoutes = () => {
   return routes;
 };
 
+type TRoutes = ReturnType<typeof useRoutes>;
+
 describe('creating routes', () => {
   describe('getUrl', () => {
     it('should compute URL path', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as TRoutes;
 
       expect(routes).toEqual(
         expect.objectContaining({
@@ -51,28 +53,32 @@ describe('creating routes', () => {
     });
     it('throws when required params are missing', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as TRoutes;
 
       expect(() => routes.heroDetail.getUrl()).toThrow();
     });
   });
   describe('go', () => {
-    it('should redirect to another route', () => {
+    it('should redirect to another route', async () => {
       const { result, history } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as TRoutes;
 
       expect(history.location.pathname).toMatchInlineSnapshot(
         `"/test-with-big-data/random-entry-point"`
       );
 
-      routes.heros.go();
+      await act(async () => {
+        routes.heros.go();
+      });
 
       expect(history.location.pathname).toMatchInlineSnapshot(
         `"/test-with-big-data/avengers/heros"`
       );
 
-      routes.heroDetail.go({
-        id: '123',
+      await act(async () => {
+        routes.heroDetail.go({
+          id: '123',
+        });
       });
 
       expect(history.location.pathname).toMatchInlineSnapshot(
@@ -81,7 +87,7 @@ describe('creating routes', () => {
     });
     it('throws when required params are missing', () => {
       const { result } = hooks.renderHook(() => useRoutes());
-      const routes = result.current;
+      const routes = result.current as TRoutes;
 
       expect(() => routes.heroDetail.go()).toThrow();
     });

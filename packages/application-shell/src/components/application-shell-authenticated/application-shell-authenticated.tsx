@@ -50,7 +50,7 @@ type TApplicationShellAuthenticationProps = {
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
-  render?: () => JSX.Element;
+  render?: () => React.JSX.Element;
   children?: ReactNode;
 };
 
@@ -119,8 +119,8 @@ export const ApplicationShellAuthenticated = (
   const notificationsGlobalRef = useRef<HTMLDivElement>(null);
   const notificationsPageRef = useRef<HTMLDivElement>(null);
   const layoutRefs = useRef<{
-    notificationsGlobalRef: RefObject<HTMLDivElement>;
-    notificationsPageRef: RefObject<HTMLDivElement>;
+    notificationsGlobalRef: RefObject<HTMLDivElement | null>;
+    notificationsPageRef: RefObject<HTMLDivElement | null>;
   }>({
     notificationsGlobalRef,
     notificationsPageRef,

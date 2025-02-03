@@ -250,6 +250,7 @@ function withApplicationContext<
           const mappedProps = mapApplicationContextToProps
             ? mapApplicationContextToProps(applicationContext)
             : { applicationContext };
+          // @ts-ignore Related to https://github.com/emotion-js/emotion/issues/3245
           return <Component {...props} {...mappedProps} />;
         }}
       />

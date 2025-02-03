@@ -95,6 +95,7 @@ const injectAuthorized =
           options.getSelectDataFenceData(props)
         }
         render={(isAuthorized) => (
+          // @ts-ignore Related to https://github.com/emotion-js/emotion/issues/3245
           <Component {...props} {...{ [propName]: isAuthorized }} />
         )}
       />

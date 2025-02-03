@@ -51,6 +51,7 @@ const branchOnPermissions =
         }
         render={(isAuthorized) => {
           if (isAuthorized) {
+            // @ts-ignore Related to https://github.com/emotion-js/emotion/issues/3245
             return <Component {...props} />;
           }
           if (FallbackComponent) {

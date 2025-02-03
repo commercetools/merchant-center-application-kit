@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import coerceValuesJson from './fixtures/coerce-values.json';
 import useCoercedEnvironmentValues from './use-coerced-environment-values';
 

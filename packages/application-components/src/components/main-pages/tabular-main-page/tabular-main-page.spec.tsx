@@ -51,10 +51,12 @@ const renderTabularMainPage = (additionalProps = {}) =>
   );
 
 describe('rendering', () => {
-  it('should render "tab one" as active by default and the content that it leads to', () => {
+  it('should render "tab one" as active by default and the content that it leads to', async () => {
     renderTabularMainPage({ title: 'Test page' });
 
-    screen.getByText(/curabitur nec turpis in risus elementum fringilla/i);
+    await screen.findByText(
+      /curabitur nec turpis in risus elementum fringilla/i
+    );
   });
   it('should render custom title row', () => {
     const customTitleRow = <div>Custom</div>;

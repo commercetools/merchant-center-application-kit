@@ -37,7 +37,9 @@ export const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
       }
     `}
   >
-    {cloneElement(props.children, { size: props.size })}
+    {cloneElement(props.children as ReactElement<TLargeIconWrapperProps>, {
+      size: props.size,
+    })}
   </span>
 );
 

@@ -96,7 +96,13 @@ const ModalPage = ({
   ...props
 }: Props) => {
   const [forceClose, setForceClose] = useState(false);
-  const closingTimer = useRef<NodeJS.Timeout>();
+  const closingTimer = useRef<NodeJS.Timeout>(null);
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('ReactModal__Body--open');
+    };
+  }, []);
+
   useEffect(() => {
     if (props.isOpen === true) setForceClose(false);
     return () => {
@@ -110,7 +116,7 @@ const ModalPage = ({
   const TRANSITION_DURATION = stylesBySize[size].transitionTime;
 
   const handleClose = useCallback(
-    (event) => {
+    (event: SyntheticEvent) => {
       if (shouldDelayOnClose) {
         // In this case we want the closing animation to be shown
         // and therefore we need wait for it to be completed
@@ -157,7 +163,6 @@ const ModalPage = ({
           // Adjust this value if the (beforeClose) animation duration is changed
           closeTimeoutMS={TRANSITION_DURATION}
           style={{
-            // stylelint-disable-next-line selector-type-no-unknown
             overlay: {
               zIndex: props.zIndex,
             },

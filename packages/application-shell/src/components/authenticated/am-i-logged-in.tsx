@@ -11,7 +11,7 @@ import AmILoggedInQuery from './authenticated.mc.graphql';
 
 type RenderFnArgs = { isAuthenticated: boolean };
 type Props = {
-  render: (args: RenderFnArgs) => JSX.Element;
+  render: (args: RenderFnArgs) => React.JSX.Element;
   children?: never;
 };
 
