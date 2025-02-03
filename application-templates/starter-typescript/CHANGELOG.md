@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter-typescript
 
+## 22.40.1
+
+### Patch Changes
+
+- Updated dependencies [[`aca9b2f`](https://github.com/commercetools/merchant-center-application-kit/commit/aca9b2fea8957b0de7b06d791416a0d3cde1ef02)]:
+  - @commercetools-frontend/jest-preset-mc-app@22.40.1
+  - @commercetools-frontend/actions-global@22.40.1
+  - @commercetools-frontend/application-components@22.40.1
+  - @commercetools-frontend/application-config@22.40.1
+  - @commercetools-frontend/application-shell@22.40.1
+  - @commercetools-frontend/application-shell-connectors@22.40.1
+  - @commercetools-frontend/assets@22.40.1
+  - @commercetools-frontend/babel-preset-mc-app@22.40.1
+  - @commercetools-frontend/constants@22.40.1
+  - @commercetools-frontend/eslint-config-mc-app@22.40.1
+  - @commercetools-frontend/i18n@22.40.1
+  - @commercetools-frontend/l10n@22.40.1
+  - @commercetools-frontend/mc-dev-authentication@22.40.1
+  - @commercetools-frontend/mc-scripts@22.40.1
+  - @commercetools-frontend/permissions@22.40.1
+
 ## 22.40.0
 
 ### Patch Changes
