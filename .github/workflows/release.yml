@@ -36,7 +36,14 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Setting up authorization to NPM registry (.npmrc)
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            provenance=true
+            email=npmjs@commercetools.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Storing release version for changeset
         id: release_version
