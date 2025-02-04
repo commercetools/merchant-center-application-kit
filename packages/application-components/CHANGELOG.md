@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 22.41.0
+
+### Minor Changes
+
+- [#3710](https://github.com/commercetools/merchant-center-application-kit/pull/3710) [`fa5488a`](https://github.com/commercetools/merchant-center-application-kit/commit/fa5488ab8f187c85690db122858a3f55e8f355ba) Thanks [@kark](https://github.com/kark)! - Replace the usage of the `react-modal` library with `@radix-ui/react-dialog` for managing modals and dialogs.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.41.0
+  - @commercetools-frontend/application-config@22.41.0
+  - @commercetools-frontend/application-shell-connectors@22.41.0
+  - @commercetools-frontend/assets@22.41.0
+  - @commercetools-frontend/constants@22.41.0
+  - @commercetools-frontend/i18n@22.41.0
+  - @commercetools-frontend/l10n@22.41.0
+  - @commercetools-frontend/sentry@22.41.0
+
 ## 22.40.0
 
 ### Minor Changes
