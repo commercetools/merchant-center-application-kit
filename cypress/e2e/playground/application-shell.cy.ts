@@ -65,8 +65,6 @@ describe('navigation menu', () => {
   it('should show submenu on hover', () => {
     cy.findAllByText('Initial').should('exist');
     cy.showNavigationSubmenuItems('State Machines');
-    cy.findByRole('link', { name: 'Echo Server', timeout: 1000 }).should(
-      'be.visible'
-    );
+    cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
   });
 });
