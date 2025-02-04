@@ -49,7 +49,7 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Setting up authorization to NPM registry (.npmrc)
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
