@@ -97,8 +97,6 @@ export function createL10NInjector<LoadedData extends {}>({
       const L10NComponent = (props: Props) => {
         const state = useL10n(mapPropsToLocale(props));
         return (
-          // @ts-ignore FIXME: this is an issue with HOC typing while using Emotion's JSX namespace
-          // See: https://github.com/emotion-js/emotion/issues/3245, https://github.com/emotion-js/emotion/issues/3261
           <WrappedComponent
             {...props}
             {...{ [propLoadingKey]: state.isLoading, [propKey]: state.data }}

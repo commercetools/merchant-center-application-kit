@@ -85,21 +85,12 @@ describe('rendering', () => {
     screen.getByText(/custom/i);
   });
   it('should warn if no title nor custom title row are provided', () => {
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
     renderTabularDetailPage();
 
     expect(warning).toHaveBeenCalledWith(
       false,
       'TabularDetailPage: one of either `title` or `customTitleRow` is required but both their values are `undefined`'
     );
-
-    expect(warnSpy).toHaveBeenCalledWith(
-      expect.stringContaining(
-        "Warning: Invalid prop 'title' supplied to 'TextHeadline'. Expected it to be nonempty string, but it was empty."
-      )
-    );
-
-    warnSpy.mockRestore();
   });
 });
 describe('navigation', () => {

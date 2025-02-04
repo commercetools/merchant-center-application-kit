@@ -250,8 +250,6 @@ function withApplicationContext<
           const mappedProps = mapApplicationContextToProps
             ? mapApplicationContextToProps(applicationContext)
             : { applicationContext };
-          // @ts-ignore FIXME: this is an issue with HOC typing while using Emotion's JSX namespace
-          // See: https://github.com/emotion-js/emotion/issues/3245, https://github.com/emotion-js/emotion/issues/3261
           return <Component {...props} {...mappedProps} />;
         }}
       />
