@@ -1,5 +1,7 @@
 # @commercetools-backend/loggers
 
+## 22.41.0
+
 ## 22.40.0
 
 ## 22.39.1

@@ -1,5 +1,14 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 22.41.0
+
+### Patch Changes
+
+- [#3715](https://github.com/commercetools/merchant-center-application-kit/pull/3715) [`aca9b2f`](https://github.com/commercetools/merchant-center-application-kit/commit/aca9b2fea8957b0de7b06d791416a0d3cde1ef02) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Mock `crypto.randomUUID` function in `jest` environment.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@22.41.0
+
 ## 22.40.0
 
 ### Patch Changes
