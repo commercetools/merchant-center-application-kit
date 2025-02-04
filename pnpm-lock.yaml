@@ -16,9 +16,6 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
-  vite-bundle-analyzer@0.15.2:
-    hash: i77bs7angtrizseperdq6hjlca
-    path: patches/vite-bundle-analyzer@0.15.2.patch
 
 importers:
 
@@ -154,7 +151,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/node':
-        specifier: ^22.10.1
+        specifier: ^22.13.1
         version: 22.13.1
       '@types/prettier':
         specifier: 2.7.3
@@ -1250,7 +1247,7 @@ importers:
         specifier: ^4.17.17
         version: 4.17.17
       '@types/node':
-        specifier: ^22.10.1
+        specifier: ^22.13.1
         version: 22.13.1
       express:
         specifier: 4.20.0
@@ -2617,11 +2614,11 @@ importers:
         specifier: 0.5.15
         version: 0.5.15(react-refresh@0.14.2)(type-fest@3.13.1)(webpack-dev-server@4.15.2(webpack@5.94.0(@swc/core@1.10.14)))(webpack@5.94.0(@swc/core@1.10.14))
       '@rollup/plugin-graphql':
-        specifier: 2.0.4
-        version: 2.0.4(graphql@16.8.2)(rollup@4.34.2)
+        specifier: 2.0.5
+        version: 2.0.5(graphql@16.8.2)(rollup@4.34.2)
       '@rollup/pluginutils':
-        specifier: 5.1.0
-        version: 5.1.0(rollup@4.34.2)
+        specifier: 5.1.4
+        version: 5.1.4(rollup@4.34.2)
       '@svgr/babel-preset':
         specifier: ^6.5.1
         version: 6.5.1(@babel/core@7.22.17)
@@ -2746,7 +2743,7 @@ importers:
         specifier: 0.14.2
         version: 0.14.2
       rollup-plugin-visualizer:
-        specifier: ^5.12.0
+        specifier: ^5.14.0
         version: 5.14.0(rollup@4.34.2)
       serve-handler:
         specifier: 6.1.5
@@ -2770,11 +2767,11 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       vite:
-        specifier: ~6.0.3
+        specifier: ~6.0.11
         version: 6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2)
       vite-bundle-analyzer:
-        specifier: 0.15.2
-        version: 0.15.2(patch_hash=i77bs7angtrizseperdq6hjlca)
+        specifier: 0.16.2
+        version: 0.16.2
       webpack:
         specifier: 5.94.0
         version: 5.94.0(@swc/core@1.10.14)
@@ -3324,7 +3321,7 @@ importers:
         specifier: ^29.5.4
         version: 29.5.4
       '@types/node':
-        specifier: ^22.10.1
+        specifier: ^22.13.1
         version: 22.13.1
       '@types/testing-library__jest-dom':
         specifier: ^5.14.9
@@ -3420,8 +3417,8 @@ importers:
         specifier: 14.0.2
         version: 14.0.2(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
       '@rollup/plugin-graphql':
-        specifier: 2.0.4
-        version: 2.0.4(graphql@16.8.1)(rollup@4.34.2)
+        specifier: 2.0.5
+        version: 2.0.5(graphql@16.8.1)(rollup@4.34.2)
       '@types/react':
         specifier: ^17.0.56
         version: 17.0.83
@@ -3468,7 +3465,7 @@ importers:
         specifier: 9.0.1
         version: 9.0.1
       vite:
-        specifier: ~6.0.3
+        specifier: ~6.0.11
         version: 6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2)
 
   website-components-playground:
@@ -3574,7 +3571,7 @@ importers:
         specifier: 4.3.4
         version: 4.3.4(vite@6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2))
       vite:
-        specifier: ~6.0.3
+        specifier: ~6.0.11
         version: 6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2)
 
 packages:
@@ -6908,8 +6905,8 @@ packages:
     peerDependencies:
       rollup: ^2.22.0
 
-  '@rollup/plugin-graphql@2.0.4':
-    resolution: {integrity: sha512-TfaqbbK71VHodCDCoRbPnv2+Tsnlvad2OsGEviURHFl+ZBUyf5wfXgXc9RqZ+xKxSl87Z3YbPhD0z6eWYjuByw==}
+  '@rollup/plugin-graphql@2.0.5':
+    resolution: {integrity: sha512-NMx9uVIheYMOQHV9Aann0sk/2+henT8T5JUbHneOvbD3iUrVUC7AaZ1B1ELJ/1vhqUe2OQIkRtGHzOQwBLoCvg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       graphql: '>=0.9.0'
@@ -6940,8 +6937,8 @@ packages:
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
 
-  '@rollup/pluginutils@5.1.0':
-    resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
+  '@rollup/pluginutils@5.1.4':
+    resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
@@ -15616,8 +15613,8 @@ packages:
   vfile@5.3.7:
     resolution: {integrity: sha512-r7qlzkgErKjobAmyNIkkSpizsFPYiUPuJb5pNW1RB4JcYVZhs4lIbVqk8XPk033CV/1z8ss5pkax8SuhGpcG8g==}
 
-  vite-bundle-analyzer@0.15.2:
-    resolution: {integrity: sha512-AwFOewhvf7EkTACa9c/inbxMrJOWwyVF4nUMITwN26lM5TAYkcnJC4KFgZXym3sYRAWe1Qgvk8X4OFTw4HPaJw==}
+  vite-bundle-analyzer@0.16.2:
+    resolution: {integrity: sha512-PoeF4Bm4ad21W/T7ZVP+vi+juR1GdBSUXUaAsE6Lyux76MoWKKRTKNsV6DGKSGUDwlIYIhlt6T5LI7e+UlxrhA==}
     hasBin: true
 
   vite@6.0.11:
@@ -23724,17 +23721,17 @@ snapshots:
       resolve: 1.22.8
       rollup: 2.79.1
 
-  '@rollup/plugin-graphql@2.0.4(graphql@16.8.1)(rollup@4.34.2)':
+  '@rollup/plugin-graphql@2.0.5(graphql@16.8.1)(rollup@4.34.2)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.34.2)
+      '@rollup/pluginutils': 5.1.4(rollup@4.34.2)
       graphql: 16.8.1
       graphql-tag: 2.12.6(graphql@16.8.1)
     optionalDependencies:
       rollup: 4.34.2
 
-  '@rollup/plugin-graphql@2.0.4(graphql@16.8.2)(rollup@4.34.2)':
+  '@rollup/plugin-graphql@2.0.5(graphql@16.8.2)(rollup@4.34.2)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.34.2)
+      '@rollup/pluginutils': 5.1.4(rollup@4.34.2)
       graphql: 16.8.2
       graphql-tag: 2.12.6(graphql@16.8.2)
     optionalDependencies:
@@ -23768,11 +23765,11 @@ snapshots:
       picomatch: 2.3.1
       rollup: 2.79.1
 
-  '@rollup/pluginutils@5.1.0(rollup@4.34.2)':
+  '@rollup/pluginutils@5.1.4(rollup@4.34.2)':
     dependencies:
       '@types/estree': 1.0.6
       estree-walker: 2.0.2
-      picomatch: 2.3.1
+      picomatch: 4.0.2
     optionalDependencies:
       rollup: 4.34.2
 
@@ -34787,7 +34784,7 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite-bundle-analyzer@0.15.2(patch_hash=i77bs7angtrizseperdq6hjlca): {}
+  vite-bundle-analyzer@0.16.2: {}
 
   vite@6.0.11(@types/node@22.13.1)(jiti@2.4.1)(terser@5.29.2)(yaml@2.4.2):
     dependencies:

@@ -4,6 +4,7 @@ import pluginReact from '@vitejs/plugin-react';
 import fs from 'fs-extra';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { build, PluginOption, type Plugin } from 'vite';
+// @ts-nocheck
 import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';

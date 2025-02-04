@@ -124,7 +124,7 @@
     "@tsconfig/cypress": "^1.0.1",
     "@types/eslint": "^8.44.2",
     "@types/jest": "^29.5.4",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.13.1",
     "@types/prettier": "2.7.3",
     "@types/rosie": "^0.0.45",
     "@types/testing-library__jest-dom": "^5.14.9",
@@ -184,8 +184,7 @@
       "@typescript-eslint/parser": "^5.52.0"
     },
     "patchedDependencies": {
-      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
-      "vite-bundle-analyzer@0.15.2": "patches/vite-bundle-analyzer@0.15.2.patch"
+      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch"
     }
   },
   "engines": {
