@@ -46,11 +46,19 @@ describe('navigation', () => {
 });
 describe('warnings', () => {
   it('should warn when neither "label" nor "intlMessage" is passed', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
     renderComponent(<TabHeader to="tab-one" />);
 
     expect(warning).toHaveBeenCalledWith(
       false,
       'TabHeader: one of either `label` or `intlMessage` is required but their values are `undefined`'
     );
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'Failed prop type: The prop `intlMessage` is marked as required in `TextHeadline` but its value is `undefined`'
+      )
+    );
+
+    warnSpy.mockRestore();
   });
 });

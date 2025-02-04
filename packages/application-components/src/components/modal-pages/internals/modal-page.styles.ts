@@ -1,12 +1,9 @@
-import { css, type SerializedStyles } from '@emotion/react';
+import { keyframes, css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Content } from '@radix-ui/react-dialog';
 import { PORTALS_CONTAINER_INDENTATION_SIZE } from '@commercetools-frontend/constants';
-import { customProperties } from '@commercetools-uikit/design-system';
+import { designTokens } from '@commercetools-uikit/design-system';
 import type { TModalPageSize } from './modal-page';
-
-type StyleProps = {
-  zIndex?: number;
-  size: TModalPageSize;
-};
 
 export const stylesBySize = {
   '10': {
@@ -27,65 +24,94 @@ export const stylesBySize = {
   },
 };
 
-export const getContainerStyles = (props: StyleProps): SerializedStyles => css`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: ${props.size !== 'scale'
-    ? // In case we're using a specific size, we want it to be used until there's no space left.
-      // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
-      `min(${
-        stylesBySize[props.size].width
-      }, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE})) !important`
-    : stylesBySize.scale.width};
-  display: flex;
-  flex-direction: column;
-  background-color: ${customProperties.colorSurface};
-  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
-  outline: 0;
-  transform: translate3d(
-    ${props.size !== 'scale' ? stylesBySize[props.size].width : '30px'},
-    0,
-    0
-  );
-  transition: transform ${stylesBySize[props.size].transitionTime}ms ease;
+const overlayShow = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 `;
 
-export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
+// we can't use Overlay from Radix-ui because it doesn't appear in DOM when Dialog.Root is rendered with `modal={false}`
+export const ModalOverlay = styled.div<{
+  size: TModalPageSize;
+  zIndex?: number;
+}>`
   position: absolute;
-  z-index: ${typeof props.zIndex === 'number'
-    ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
-      `${props.zIndex} !important`
-    : 'auto'};
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: hsla(195, 35%, 20%, 0.05);
+  z-index: ${({ zIndex }) =>
+    // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+    typeof zIndex === 'number' ? `${zIndex} !important` : 'inherit'};
   opacity: 0;
-  transition: transform ${stylesBySize[props.size].transitionTime}ms ease;
+
+  ${({ size }) => {
+    const transitionDuration = stylesBySize[size].transitionTime;
+    return css`
+      animation: ${overlayShow} ${transitionDuration}ms ease-out forwards;
+    `;
+  }}
 `;
 
-export const getAfterOpenContainerAnimation = (): SerializedStyles => css`
-  transform: translate3d(0, 0, 0) !important;
-`;
+const getContentShowAnimation = (size: TModalPageSize) =>
+  keyframes({
+    '0%': {
+      opacity: 0,
+      transform: `translate3d(${
+        size !== 'scale' ? stylesBySize[size].width : '30px'
+      }, 0, 0)`,
+    },
+    '100%': {
+      opacity: 1,
+      transform: `translate3d(0, 0, 0)`,
+    },
+  });
 
-export const getAfterOpenOverlayAnimation = (): SerializedStyles => css`
-  opacity: 1 !important;
-`;
+const getContentHideAnimation = (size: TModalPageSize) =>
+  keyframes({
+    '0%': {
+      opacity: 1,
+      transform: `translate3d(0, 0, 0)`,
+    },
+    '100%': {
+      opacity: 0,
+      transform: `translate3d(${
+        size !== 'scale' ? stylesBySize[size].width : '30px'
+      }, 0, 0)`,
+    },
+  });
 
-export const getBeforeCloseContainerAnimation = (
-  props: StyleProps
-): SerializedStyles => css`
-  transform: translate3d(
-    ${props.size !== 'scale' ? stylesBySize[props.size].width : '30px'},
-    ,
-    0,
-    0
-  ) !important;
-`;
+export const ModalContent = styled(Content, {
+  shouldForwardProp: (prop) => prop !== 'size',
+})<{ size: TModalPageSize }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: ${({ size }) =>
+    size !== 'scale'
+      ? // In case we're using a specific size, we want it to be used until there's no space left.
+        // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
+        `min(${stylesBySize[size].width}, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE}))`
+      : stylesBySize.scale.width};
+  display: flex;
+  flex-direction: column;
+  background-color: ${designTokens.colorSurface};
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+  outline: 0;
+  z-index: inherit;
 
-export const getBeforeCloseOverlayAnimation = (): SerializedStyles => css`
-  opacity: 0 !important;
+  &[data-state='open'] {
+    animation: ${({ size }) => getContentShowAnimation(size)} 300ms ease
+      forwards;
+  }
+
+  &[data-state='closed'] {
+    animation: ${({ size }) => getContentHideAnimation(size)} 300ms ease
+      forwards;
+  }
 `;
