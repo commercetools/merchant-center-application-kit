@@ -96,7 +96,7 @@ export const ModalContent = styled(Content, {
     size !== 'scale'
       ? // In case we're using a specific size, we want it to be used until there's no space left.
         // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
-        `min(${stylesBySize[size].width}, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE}))`
+        `min(${stylesBySize[size].width}, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE})) !important`
       : stylesBySize.scale.width};
   display: flex;
   flex-direction: column;
