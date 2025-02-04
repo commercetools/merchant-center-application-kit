@@ -1,4 +1,6 @@
 import { css, type SerializedStyles } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Content } from '@radix-ui/react-dialog';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 
 type StyleProps = {
@@ -75,23 +77,40 @@ export const getModalContentStyles = (props: StyleProps): SerializedStyles => {
     height: 100%;
     width: 100%;
     outline: none;
+    position: relative;
     pointer-events: none;
+    z-index: ${typeof props.zIndex === 'number'
+      ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+        // We're assigning value 1 unit higher than the overlay to ensure the content is on top.
+        // It's safe to do that since the modal is topmost in the stacking layer.
+        `${props.zIndex + 1} !important`
+      : 'auto'};
 
     ${gridStyle};
   `;
   return baseStyles;
 };
 
-export const getOverlayStyles = (props: StyleProps): SerializedStyles => css`
+export const ClickableDialogContent = styled(Content)<StyleProps>`
+  ${(props) => getModalContentStyles(props)}
+`;
+
+export const DialogOverlay = styled.div<Pick<StyleProps, 'zIndex'>>`
   display: flex;
   position: absolute;
-  z-index: ${typeof props.zIndex === 'number'
-    ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
-      `${props.zIndex} !important`
-    : 'auto'};
+  z-index: ${({ zIndex }) =>
+    // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+    typeof zIndex === 'number' ? `${zIndex} !important` : 'auto'};
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(32, 62, 72, 0.5);
   opacity: 1;
+`;
+
+export const DialogContent = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
 `;
