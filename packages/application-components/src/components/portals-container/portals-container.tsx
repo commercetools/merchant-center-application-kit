@@ -143,11 +143,8 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
             const stackingLevel = index + 1;
             node.dataset.level = String(stackingLevel);
 
-            const overlayNode = node.firstChild;
-            if (overlayNode instanceof HTMLElement) {
-              if (overlayNode.dataset.role === 'modal-overlay') {
-                indentationLevel += 1;
-              }
+            if (node.dataset.role === 'modal-overlay') {
+              indentationLevel += 1;
             }
 
             nextStackingLevels.push({ stackingLevel, indentationLevel });
@@ -162,41 +159,42 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
       }
     );
 
+    const isModalOpen = stackingLayers.length > 0;
+
     return (
       <>
         <Global
-          // Apply some global styles, based on the `.ReactModal__Body--open` class.
           styles={[
-            css`
-              .ReactModal__Body--open
+            isModalOpen &&
+              css`
                 ${containerSelectorToPreventScrollingOnOpen} {
-                overflow: hidden;
-              }
+                  overflow: hidden !important;
+                }
 
-              .ReactModal__Body--open #${PORTALS_CONTAINER_ID} {
-                position: fixed;
-                height: calc(
-                  100% - ${offsetTop} -
-                    ${globalNotificationsElementDimensions.height}px -
-                    ${pageNotificationsElementDimensions.height}px
-                );
-                width: calc(100% - ${offsetLeft});
-                top: calc(
-                  ${offsetTop} +
-                    ${globalNotificationsElementDimensions.height}px +
-                    ${pageNotificationsElementDimensions.height}px
-                );
-                right: 0;
-                bottom: 0;
-                z-index: ${zIndex};
-                transition: ${modalWidthTransition};
-              }
+                #${PORTALS_CONTAINER_ID} {
+                  position: fixed;
+                  height: calc(
+                    100% - ${offsetTop} -
+                      ${globalNotificationsElementDimensions.height}px -
+                      ${pageNotificationsElementDimensions.height}px
+                  );
+                  width: calc(100% - ${offsetLeft});
+                  top: calc(
+                    ${offsetTop} +
+                      ${globalNotificationsElementDimensions.height}px +
+                      ${pageNotificationsElementDimensions.height}px
+                  );
+                  right: 0;
+                  bottom: 0;
+                  z-index: ${zIndex};
+                  transition: ${modalWidthTransition};
+                }
 
-              .ReactModal__Body--open.body__menu-open #${PORTALS_CONTAINER_ID} {
-                width: calc(100% - ${offsetLeftOnExpandedMenu});
-                transition: ${modalWidthTransition};
-              }
-            `,
+                .body__menu-open #${PORTALS_CONTAINER_ID} {
+                  width: calc(100% - ${offsetLeftOnExpandedMenu});
+                  transition: ${modalWidthTransition};
+                }
+              `,
             // Apply styles for stacking layers.
             ...stackingLayers.map(
               /**
@@ -206,15 +204,13 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
                */
               (stackingLayer) => css`
                 #${PORTALS_CONTAINER_ID}
-                  .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
-                  [data-role$='overlay'] {
+                  [data-level='${stackingLayer.stackingLevel}'][data-role$='overlay'] {
                   z-index: calc(
                     ${baseModalZIndex} + ${stackingLayer.stackingLevel}
                   );
                 }
                 #${PORTALS_CONTAINER_ID}
-                  .ReactModalPortal[data-level='${stackingLayer.stackingLevel}']
-                  [data-role='modal-overlay']
+                  [data-level='${stackingLayer.stackingLevel}'][data-role='modal-overlay']
                   [role='dialog'] {
                   width: calc(
                     100% -

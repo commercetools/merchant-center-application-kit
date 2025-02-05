@@ -133,7 +133,9 @@ describe('CustomViewLoader', () => {
       <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
     );
 
-    const overlay = baseElement.querySelector('[data-role="modal-overlay"]');
+    const overlay = baseElement.querySelector(
+      '[data-role="modal-overlay-clickable"]'
+    );
     fireEvent.click(overlay!);
 
     await waitFor(() => expect(onCloseMock).toHaveBeenCalled());

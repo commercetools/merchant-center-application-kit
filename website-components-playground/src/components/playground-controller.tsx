@@ -1,8 +1,6 @@
 import { useLayoutEffect, useState, type ReactNode } from 'react';
-import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
-import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
@@ -54,18 +52,6 @@ const PlaygroundController = (props: TPlaygroundControllerProps) => {
               <Spacings.Stack scale="s">
                 <PreviewContainer height="400px">
                   <PortalsContainer />
-                  <Global
-                    // Overwrite styles to restrict the modal container to be within the
-                    // preview container instead of full screen.
-                    // This is only needed for the playground previews, therefore we
-                    // override the styles here.
-                    styles={css`
-                      .ReactModal__Body--open #${PORTALS_CONTAINER_ID} {
-                        position: absolute;
-                        overflow: auto;
-                      }
-                    `}
-                  />
                   {props.children({ values })}
                 </PreviewContainer>
                 <Spacings.Inline alignItems="center">

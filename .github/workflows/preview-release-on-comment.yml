@@ -48,7 +48,7 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Creating .npmrc
+      - name: Setting up authorization to NPM registry (.npmrc)
         run: |
           cat << EOF > "$HOME/.npmrc"
             provenance=true
