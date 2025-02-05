@@ -97,6 +97,7 @@ export function createL10NInjector<LoadedData extends {}>({
       const L10NComponent = (props: Props) => {
         const state = useL10n(mapPropsToLocale(props));
         return (
+          // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
           <WrappedComponent
             {...props}
             {...{ [propLoadingKey]: state.isLoading, [propKey]: state.data }}
