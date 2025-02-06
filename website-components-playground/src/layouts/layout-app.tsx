@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { Fragment, useEffect, type ReactNode } from 'react';
 import useWindowHeight from '../hooks/use-window-height';
 
 type TLayoutAppProps = {
@@ -10,7 +10,7 @@ const LayoutApp = (props: TLayoutAppProps) => {
   useEffect(() => {
     window.parent.postMessage(['playground-height', height], '*');
   }, [height]);
-  return <>{props.children}</>;
+  return <Fragment>{props.children}</Fragment>;
 };
 
 export default LayoutApp;
