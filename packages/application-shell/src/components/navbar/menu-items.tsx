@@ -148,7 +148,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
     <Expander key="expander" isVisible={props.isVisible}>
       <ExpanderIcon
         onClick={props.onClick}
-        onKeyDown={(e) => {
+        onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
           if (e.key === 'Enter') {
             props.onClick(e);
           }

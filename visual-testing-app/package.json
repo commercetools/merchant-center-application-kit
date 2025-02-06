@@ -28,7 +28,7 @@
     "@commercetools-uikit/text": "fec-155-react-19",
     "@commercetools-uikit/text-field": "fec-155-react-19",
     "@commercetools-uikit/text-input": "fec-155-react-19",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",
     "@flopflip/react-broadcast": "14.0.2",
     "@rollup/plugin-graphql": "2.0.4",

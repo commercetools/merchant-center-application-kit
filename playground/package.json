@@ -45,7 +45,7 @@
     "@commercetools-uikit/secondary-button": "fec-155-react-19",
     "@commercetools-uikit/spacings": "fec-155-react-19",
     "@commercetools-uikit/text": "fec-155-react-19",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.14.0",
     "@flopflip/react-broadcast": "14.0.2",
     "apollo-link-rest": "^0.9.0",
     "graphql": "16.8.2",

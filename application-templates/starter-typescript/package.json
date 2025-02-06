@@ -58,7 +58,7 @@
     "@commercetools-uikit/text-field": "fec-155-react-19",
     "@commercetools-uikit/text-input": "fec-155-react-19",
     "@commercetools/sync-actions": "^5.14.0",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.14.0",
     "@formatjs/cli": "6.2.12",
     "@jest/types": "29.6.3",
     "@manypkg/cli": "0.21.4",
@@ -93,7 +93,7 @@
     "typescript": "5.0.4"
   },
   "resolutions": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",
     "@types/eslint": "<9",
     "@types/react-router": "<6",

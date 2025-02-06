@@ -60,7 +60,7 @@
     "@commercetools-uikit/select-input": "fec-155-react-19",
     "@commercetools-uikit/spacings": "fec-155-react-19",
     "@commercetools-uikit/text": "fec-155-react-19",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",
     "@flopflip/combine-adapters": "14.0.2",
     "@flopflip/http-adapter": "14.0.2",
