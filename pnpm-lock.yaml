@@ -16,9 +16,6 @@ patchedDependencies:
   babel-plugin-typescript-to-proptypes@1.4.2:
     hash: lqszx5kvqxa52t7l2zddujkdkq
     path: patches/babel-plugin-typescript-to-proptypes@1.4.2.patch
-  react-modal@3.16.1:
-    hash: 3ghbsmrdpzyslb2wjiyotyllsu
-    path: patches/react-modal@3.16.1.patch
   vite-bundle-analyzer@0.12.1:
     hash: 7ajbjk5hiy45vciwrmysf4hciy
     path: patches/vite-bundle-analyzer@0.12.1.patch
@@ -464,7 +461,7 @@ importers:
         version: 4.1.0
       eslint-plugin-graphql:
         specifier: ^4.0.0
-        version: 4.0.0(@types/node@20.5.9)(graphql@16.8.1)(typescript@5.7.3)
+        version: 4.0.0(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.7.3)
       formik:
         specifier: 2.4.6
         version: 2.4.6(react@19.0.0)
@@ -476,13 +473,13 @@ importers:
         version: 2.12.6(graphql@16.8.1)
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.7.3))
+        version: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
       jest-runner-eslint:
         specifier: 2.2.0
-        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.7.3)))
+        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)))
       jest-watch-typeahead:
         specifier: 2.2.2
-        version: 2.2.2(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.7.3)))
+        version: 2.2.2(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)))
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -683,7 +680,7 @@ importers:
         version: 4.1.0
       eslint-plugin-graphql:
         specifier: ^4.0.0
-        version: 4.0.0(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.0.4)
+        version: 4.0.0(@types/node@20.5.9)(graphql@16.8.1)(typescript@5.0.4)
       formik:
         specifier: 2.4.6
         version: 2.4.6(react@19.0.0)
@@ -695,13 +692,13 @@ importers:
         version: 2.12.6(graphql@16.8.1)
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4))
+        version: 29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.0.4))
       jest-runner-eslint:
         specifier: 2.2.0
-        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4)))
+        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.0.4)))
       jest-watch-typeahead:
         specifier: 2.2.2
-        version: 2.2.2(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4)))
+        version: 2.2.2(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.0.4)))
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -1474,9 +1471,6 @@ importers:
       '@types/react-dom':
         specifier: 19.0.2
         version: 19.0.2(@types/react@19.0.8)
-      '@types/react-modal':
-        specifier: ^3.16.0
-        version: 3.16.0
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
@@ -18399,7 +18393,7 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
       react-intl: 6.4.7(react@19.0.0)(typescript@5.0.4)
       react-is: 18.2.0
-      react-modal: 3.16.1(patch_hash=3ghbsmrdpzyslb2wjiyotyllsu)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-modal: 3.16.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       rehype-react: 7.2.0(@types/react@19.0.8)
       remark-frontmatter: 4.0.1
       remark-parse: 10.0.2
@@ -22237,6 +22231,41 @@ snapshots:
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
       jest-config: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4))
+      jest-haste-map: 29.7.0
+      jest-message-util: 29.7.0
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-resolve-dependencies: 29.7.0
+      jest-runner: 29.7.0
+      jest-runtime: 29.7.0
+      jest-snapshot: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      jest-watcher: 29.7.0
+      micromatch: 4.0.8
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-ansi: 6.0.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))':
+    dependencies:
+      '@jest/console': 29.7.0
+      '@jest/reporters': 29.7.0
+      '@jest/test-result': 29.7.0
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      '@types/node': 18.17.14
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 3.8.0
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 29.7.0
+      jest-config: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -26272,6 +26301,21 @@ snapshots:
       - supports-color
       - ts-node
 
+  create-jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)):
+    dependencies:
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-config: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      jest-util: 29.7.0
+      prompts: 2.4.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   create-jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@4.9.5)):
     dependencies:
       '@jest/types': 29.6.3
@@ -27316,11 +27360,11 @@ snapshots:
       eslint: 8.57.0
       eslint-compat-utils: 0.5.0(eslint@8.57.0)
 
-  eslint-plugin-graphql@4.0.0(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.0.4):
+  eslint-plugin-graphql@4.0.0(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.7.3):
     dependencies:
       '@babel/runtime': 7.22.15
       graphql: 16.8.1
-      graphql-config: 3.4.1(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.0.4)
+      graphql-config: 3.4.1(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.7.3)
       lodash.flatten: 4.4.0
       lodash.without: 4.4.0
     transitivePeerDependencies:
@@ -28415,9 +28459,9 @@ snapshots:
       ts-invariant: 0.3.3
       tslib: 2.5.0
 
-  graphql-config@3.4.1(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.0.4):
+  graphql-config@3.4.1(@types/node@18.17.14)(graphql@16.8.1)(typescript@5.7.3):
     dependencies:
-      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@5.0.4)
+      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@5.7.3)
       '@graphql-tools/graphql-file-loader': 6.2.7(graphql@16.8.1)
       '@graphql-tools/json-file-loader': 6.2.6(graphql@16.8.1)
       '@graphql-tools/load': 6.2.8(graphql@16.8.1)
@@ -29339,6 +29383,25 @@ snapshots:
       - supports-color
       - ts-node
 
+  jest-cli@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      exit: 0.1.2
+      import-local: 3.1.0
+      jest-config: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.1
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   jest-cli@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@4.9.5)):
     dependencies:
       '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@4.9.5))
@@ -29525,6 +29588,37 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.17.14
       ts-node: 10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)):
+    dependencies:
+      '@babel/core': 7.25.2
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.25.2)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 18.17.14
+      ts-node: 10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -30041,6 +30135,18 @@ snapshots:
       - '@jest/test-result'
       - jest-runner
 
+  jest-runner-eslint@2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))):
+    dependencies:
+      chalk: 4.1.2
+      cosmiconfig: 7.1.0
+      create-jest-runner: 0.11.2
+      dot-prop: 6.0.1
+      eslint: 8.57.0
+      jest: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+    transitivePeerDependencies:
+      - '@jest/test-result'
+      - jest-runner
+
   jest-runner-eslint@2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.0.4))):
     dependencies:
       chalk: 4.1.2
@@ -30210,6 +30316,17 @@ snapshots:
       string-length: 5.0.1
       strip-ansi: 7.0.1
 
+  jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))):
+    dependencies:
+      ansi-escapes: 6.2.0
+      chalk: 5.2.0
+      jest: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      jest-regex-util: 29.4.3
+      jest-watcher: 29.5.0
+      slash: 5.1.0
+      string-length: 5.0.1
+      strip-ansi: 7.0.1
+
   jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@20.5.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.9)(typescript@5.0.4))):
     dependencies:
       ansi-escapes: 6.2.0
@@ -30309,6 +30426,18 @@ snapshots:
       '@jest/types': 29.6.3
       import-local: 3.1.0
       jest-cli: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.0.4))
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  jest@29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
+      '@jest/types': 29.6.3
+      import-local: 3.1.0
+      jest-cli: 29.7.0(@types/node@18.17.14)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -32637,7 +32766,7 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-modal@3.16.1(patch_hash=3ghbsmrdpzyslb2wjiyotyllsu)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-modal@3.16.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       exenv: 1.2.2
       prop-types: 15.8.1
@@ -34176,6 +34305,27 @@ snapshots:
       yn: 3.1.1
     optionalDependencies:
       '@swc/core': 1.5.7
+
+  ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.17.14)(typescript@5.7.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 18.17.14
+      acorn: 8.8.2
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.7.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.5.7
+    optional: true
 
   ts-node@10.9.1(@swc/core@1.5.7)(@types/node@20.5.1)(typescript@5.7.2):
     dependencies:
