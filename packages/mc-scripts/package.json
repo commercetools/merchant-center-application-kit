@@ -57,7 +57,7 @@
     "@commercetools-frontend/mc-dev-authentication": "22.41.0",
     "@commercetools-frontend/mc-html-template": "22.41.0",
     "@commercetools/http-user-agent": "3.0.0",
-    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/babel-plugin": "^11.13.5",
     "@formatjs/cli-lib": "^6.3.8",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.15",
     "@rollup/plugin-graphql": "2.0.4",
