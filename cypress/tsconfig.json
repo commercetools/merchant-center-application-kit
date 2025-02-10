@@ -5,7 +5,7 @@
     "target": "ES2022",
     "lib": ["ESNext", "DOM"],
     "noEmit": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "Node",
     "types": [
       "cypress",
       "@commercetools-frontend/cypress/add-commands",
