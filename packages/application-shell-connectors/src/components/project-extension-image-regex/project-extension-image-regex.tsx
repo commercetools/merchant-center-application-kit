@@ -99,7 +99,7 @@ function withProjectExtensionImageRegex<Props extends {}>(
       return (
         <GetProjectExtensionImageRegex
           render={() => (
-            // @ts-ignore Related to https://github.com/emotion-js/emotion/issues/3245
+            // @ts-ignore: relates to https://github.com/emotion-js/emotion/issues/3245
             <Component {...props} {...{ [propKey]: imageregexContext }} />
           )}
         />
