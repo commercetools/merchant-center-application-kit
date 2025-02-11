@@ -5,7 +5,7 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
-const getLink = (msg: string) => (
+const getLink = (msg: ReactNode) => (
   <a
     key="support-portal-url"
     href={SUPPORT_PORTAL_URL}
@@ -27,7 +27,7 @@ const PageNotFound = () => {
         <FormattedMessage
           {...messages.paragraph1}
           values={{
-            a: getLink as unknown as ReactNode,
+            a: getLink,
           }}
         />
       }
