@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import { Formik } from 'formik';
 import MultilineTextField from '@commercetools-uikit/multiline-text-field';
 import SelectField from '@commercetools-uikit/select-field';
@@ -17,7 +17,7 @@ export type TKnob = {
   }[];
 };
 type TKnobsControllerFunctionOptions = {
-  form: React.JSX.Element;
+  form: JSX.Element;
   values: Record<string, unknown>;
 };
 type TKnobsControllerProps = {

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, JSX } from 'react';
 import type { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
 import { deepEqual } from 'fast-equals';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ type OwnProps = {
   ) => boolean;
   onSuccess?: (result: SuccessResult['body']) => void;
   onError?: (error: TSdkError) => void;
-  render: (options: TRenderOptions) => React.JSX.Element;
+  render: (options: TRenderOptions) => JSX.Element;
 };
 export type Props = DispatchProps & OwnProps;
 type StaticErrorHandler = (error: TSdkError) => void;

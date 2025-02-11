@@ -1,4 +1,5 @@
 import {
+  JSX,
   type ReactNode,
   type RefObject,
   type SyntheticEvent,
@@ -50,7 +51,7 @@ type TApplicationShellAuthenticationProps = {
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
-  render?: () => React.JSX.Element;
+  render?: () => JSX.Element;
   children?: ReactNode;
 };
 

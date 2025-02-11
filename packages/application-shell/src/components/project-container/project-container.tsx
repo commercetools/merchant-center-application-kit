@@ -1,4 +1,4 @@
-import { ReactNode, Suspense, useEffect, useState } from 'react';
+import { JSX, ReactNode, Suspense, useEffect, useState } from 'react';
 import isNil from 'lodash/isNil';
 import ReactDOM from 'react-dom';
 import { useIntl } from 'react-intl';
@@ -39,7 +39,7 @@ type TProjectContainerProps = {
   user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<{ enableSignUp?: boolean }>['environment'];
   disableRoutePermissionCheck?: boolean;
-  render?: () => React.JSX.Element;
+  render?: () => JSX.Element;
   children?: ReactNode;
 };
 

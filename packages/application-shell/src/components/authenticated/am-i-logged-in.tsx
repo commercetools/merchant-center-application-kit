@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
@@ -11,7 +12,7 @@ import AmILoggedInQuery from './authenticated.mc.graphql';
 
 type RenderFnArgs = { isAuthenticated: boolean };
 type Props = {
-  render: (args: RenderFnArgs) => React.JSX.Element;
+  render: (args: RenderFnArgs) => JSX.Element;
   children?: never;
 };
 

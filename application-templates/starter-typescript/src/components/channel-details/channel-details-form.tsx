@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import type { JSX, ReactElement } from 'react';
 import { useFormik, type FormikHelpers } from 'formik';
 import { useIntl } from 'react-intl';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
@@ -28,7 +28,7 @@ type TChannelDetailsFormProps = {
   initialValues: TFormValues;
   isReadOnly: boolean;
   dataLocale: string;
-  children: (formProps: FormProps) => React.JSX.Element;
+  children: (formProps: FormProps) => JSX.Element;
 };
 
 const getRoleOptions = Object.keys(CHANNEL_ROLES).map((key) => ({

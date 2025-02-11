@@ -1,4 +1,4 @@
-import { Children, ReactNode } from 'react';
+import { Children, JSX, ReactNode } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
@@ -10,7 +10,7 @@ import RouteCatchAll from '../route-catch-all';
 type TApplicationEntryPointProps = {
   environment: TProviderProps<{}>['environment'];
   disableRoutePermissionCheck?: boolean;
-  render?: () => React.JSX.Element;
+  render?: () => JSX.Element;
   children?: ReactNode;
 };
 

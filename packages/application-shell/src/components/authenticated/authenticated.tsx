@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -10,7 +11,7 @@ declare let window: ApplicationWindow;
 
 type RenderFnArgs = { isAuthenticated: boolean };
 export type TAuthenticatedProps = {
-  render: (args: RenderFnArgs) => React.JSX.Element;
+  render: (args: RenderFnArgs) => JSX.Element;
   locale: string;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children?: never;

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo } from 'react';
+import { JSX, Suspense, useEffect, useMemo } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -24,7 +24,7 @@ type TApplicationShellProviderProps = {
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   environment: TApplicationContext<{}>['environment'];
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  children: (args: { isAuthenticated: boolean }) => React.JSX.Element;
+  children: (args: { isAuthenticated: boolean }) => JSX.Element;
 };
 
 const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
