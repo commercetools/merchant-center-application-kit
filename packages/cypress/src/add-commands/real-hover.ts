@@ -124,7 +124,7 @@ function scrollIntoView(
 
 // for cross origin domains .frameElement returns null so query using parentWindow
 // but when running using --disable-web-security it will return the frame element
-function getFrameElement(currentWindow: Window): HTMLElement {
+function getFrameElement(currentWindow: Window): HTMLElement | undefined {
   if (currentWindow.frameElement) {
     // accessible for same-origin iframes
     // or when running with --disable-web-security
@@ -132,10 +132,11 @@ function getFrameElement(currentWindow: Window): HTMLElement {
   }
 
   // fallback to querying using the parent window, mainly to grab the AUT iframe
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return [...currentWindow.parent.document.querySelectorAll('iframe')].find(
-    (iframe) => iframe.contentWindow === currentWindow
-  )!;
+  const iframeElements =
+    currentWindow.parent.document.querySelectorAll('iframe');
+  return Array.from(iframeElements.entries())
+    .map(([, element]) => element)
+    .find((element) => element.contentWindow === currentWindow);
 }
 
 function getIframesPositionShift(element: HTMLElement) {
@@ -154,7 +155,10 @@ function getIframesPositionShift(element: HTMLElement) {
   const iframes = [];
 
   while (currentWindow !== window.top) {
-    iframes.push(getFrameElement(currentWindow));
+    const element = getFrameElement(currentWindow);
+    if (element) {
+      iframes.push(element);
+    }
     currentWindow = currentWindow.parent;
   }
 

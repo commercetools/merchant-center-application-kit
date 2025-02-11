@@ -1,0 +1,13 @@
+diff --git a/globals.d.ts b/globals.d.ts
+index 7414561dabbfcf60784f92e003fb468aa58d4c4b..d94ed8b682e31ff39214986268ae95925a38defb 100755
+--- a/globals.d.ts
++++ b/globals.d.ts
+@@ -30,7 +30,7 @@ declare var console: Console;
+ declare var __filename: string;
+ declare var __dirname: string;
+ 
+-declare var require: NodeRequire;
++declare var require: NodeJS.Require;
+ declare var module: NodeModule;
+ 
+ // Same as module.exports

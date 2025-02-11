@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "22.41.0",
+  "version": "22.42.0",
   "private": true,
   "scripts": {
     "start": "vite --port 8001",
@@ -24,8 +24,8 @@
     "@commercetools-uikit/text": "fec-155-react-19",
     "@commercetools-uikit/text-field": "fec-155-react-19",
     "@commercetools-uikit/text-input": "fec-155-react-19",
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "formik": "2.4.6",
     "history": "4.10.1",
     "moment": "^2.29.4",

@@ -1,5 +1,19 @@
 # @commercetools-frontend/sdk
 
+## 22.42.0
+
+### Minor Changes
+
+- [#3722](https://github.com/commercetools/merchant-center-application-kit/pull/3722) [`f4607a3`](https://github.com/commercetools/merchant-center-application-kit/commit/f4607a38465855904d59f4ef5c03796b78c3a669) Thanks [@emmenko](https://github.com/emmenko)! - Packages are built using the `bundler` option for TypeScript's `moduleResolution`.
+  This is the recommended option for libraries to have more optimized bundles and have better compatibility.
+
+  This also helps solving a compatibility issue with Emotion's version `11.14.0`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@22.42.0
+
 ## 22.41.0
 
 ### Patch Changes

@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 import type { XastElement, PluginInfo } from 'svgo';
 import webpack, { type Configuration } from 'webpack';
+// @ts-expect-error: we don't care about the missing types.
 import WebpackBar from 'webpackbar';
 import type {
   TWebpackConfigToggleFlagsForDevelopment,

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "22.41.0",
+  "version": "22.42.0",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -60,8 +60,8 @@
     "@commercetools-uikit/select-input": "fec-155-react-19",
     "@commercetools-uikit/spacings": "fec-155-react-19",
     "@commercetools-uikit/text": "fec-155-react-19",
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@flopflip/combine-adapters": "14.0.2",
     "@flopflip/http-adapter": "14.0.2",
     "@flopflip/launchdarkly-adapter": "14.0.2",

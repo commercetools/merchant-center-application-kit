@@ -10,5 +10,15 @@
     "packages-backend",
     "visual-testing-app",
     "website-components-playground"
-  ]
+  ],
+  // Old "moduleResolution": "Node" option required for Cypress
+  // https://github.com/cypress-io/cypress/issues/26308#issuecomment-1663592648
+  //
+  // TODO: Remove when upgrading Cypress to > v12.
+  "ts-node": {
+    "compilerOptions": {
+      "module": "ESNext",
+      "moduleResolution": "nodenext"
+    }
+  }
 }
