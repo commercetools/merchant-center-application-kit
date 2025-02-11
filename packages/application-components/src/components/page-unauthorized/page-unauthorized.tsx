@@ -5,7 +5,7 @@ import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
-const getSupportUrlLink = (msg: string) => (
+const getSupportUrlLink = (msg: ReactNode) => (
   <a
     key="support-portal-url"
     href={SUPPORT_PORTAL_URL}
@@ -29,7 +29,7 @@ export const PageUnauthorized = () => {
         <FormattedMessage
           {...messages.paragraph2}
           values={{
-            a: getSupportUrlLink as unknown as ReactNode,
+            a: getSupportUrlLink,
           }}
         />
       }
