@@ -3,6 +3,7 @@ import {
   type SyntheticEvent,
   useEffect,
   StrictMode,
+  JSX,
 } from 'react';
 import type { NormalizedCacheObject } from '@apollo/client';
 import { ApolloClient } from '@apollo/client';
@@ -47,7 +48,7 @@ type TApplicationShellProps = {
   onMenuItemClick?: (event: SyntheticEvent<HTMLAnchorElement>) => void;
   disableRoutePermissionCheck?: boolean;
   enableReactStrictMode?: boolean;
-  render?: () => React.JSX.Element;
+  render?: () => JSX.Element;
   children?: ReactNode;
 };
 

@@ -1,6 +1,8 @@
+import { JSX } from 'react';
+
 type RenderFnArgs = { isAuthenticated: boolean };
 type Props = {
-  render: (args: RenderFnArgs) => React.JSX.Element;
+  render: (args: RenderFnArgs) => JSX.Element;
   children?: never;
 };
 
