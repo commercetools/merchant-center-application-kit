@@ -1,4 +1,4 @@
-import { useCallback, type ReactNode } from 'react';
+import { useCallback } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import type {
   SingleValueProps,
@@ -138,7 +138,7 @@ const LocaleSwitcher = (props: Props) => {
           intlMessage={{
             ...messages.dialogLocaleDescription,
             values: {
-              newline: getNewLine as unknown as ReactNode,
+              newline: getNewLine,
             },
           }}
         />
