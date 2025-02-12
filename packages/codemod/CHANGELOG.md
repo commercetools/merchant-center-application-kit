@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 22.42.1
+
 ## 22.42.0
 
 ### Minor Changes
