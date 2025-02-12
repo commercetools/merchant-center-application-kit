@@ -158,8 +158,9 @@ const ModalPage = ({
                 e.preventDefault();
               }
             }}
-            aria-labelledby=""
+            aria-labelledby={undefined}
             aria-label={props.title}
+            id={undefined}
           >
             {/* FIXME: Temporary workaround for https://github.com/radix-ui/primitives/issues/2986
               Radix UI's DialogContent requires rendering a DialogTitle, which renders as <h2>.
