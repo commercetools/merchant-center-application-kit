@@ -10,6 +10,7 @@ overrides:
   '@types/react': ^17.0.56
   '@types/react-dom': 17.0.25
   '@types/react-router': 5.1.20
+  '@types/webpack-env': ^1.18.8
   '@typescript-eslint/eslint-plugin': ^5.52.0
   '@typescript-eslint/parser': ^5.52.0
 
@@ -170,8 +171,8 @@ importers:
         specifier: ^9.0.3
         version: 9.0.3
       '@types/webpack-env':
-        specifier: 1.18.5
-        version: 1.18.5
+        specifier: ^1.18.8
+        version: 1.18.8
       autoprefixer:
         specifier: ^10.4.15
         version: 10.4.15(postcss@8.4.38)
@@ -7772,8 +7773,8 @@ packages:
   '@types/webpack-bundle-analyzer@4.6.0':
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
 
-  '@types/webpack-env@1.18.5':
-    resolution: {integrity: sha512-wz7kjjRRj8/Lty4B+Kr0LN6Ypc/3SymeCCGSbaXp2leH0ZVg/PriNiOwNj4bD4uphI7A8NXS4b6Gl373sfO5mA==}
+  '@types/webpack-env@1.18.8':
+    resolution: {integrity: sha512-G9eAoJRMLjcvN4I08wB5I7YofOb/kaJNd5uoCMX+LbKXTPCF+ZIHuqTnFaK9Jz1rgs035f9JUPUhNFtqgucy/A==}
 
   '@types/websocket@1.0.2':
     resolution: {integrity: sha512-B5m9aq7cbbD/5/jThEr33nUY8WEfVi6A2YKCTOvw5Ldy7mtsOkqRvGjnzy6g7iMMDsgu7xREuCzqATLDLQVKcQ==}
@@ -24709,7 +24710,7 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@types/webpack-env@1.18.5': {}
+  '@types/webpack-env@1.18.8': {}
 
   '@types/websocket@1.0.2':
     dependencies:
