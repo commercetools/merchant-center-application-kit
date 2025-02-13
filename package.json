@@ -184,7 +184,8 @@
       "@typescript-eslint/parser": "^5.52.0"
     },
     "patchedDependencies": {
-      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch"
+      "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
+      "vite-bundle-analyzer@0.17.0": "patches/vite-bundle-analyzer@0.17.0.patch"
     }
   },
   "engines": {
