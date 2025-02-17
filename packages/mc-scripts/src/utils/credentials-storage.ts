@@ -1,22 +1,22 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import type { TMcCliAuthToken, TMcCliCredentialsStorage } from '../types';
 import doesFileExist from '../utils/does-file-exist';
 
-const homedir = os.homedir();
-const credentialsFolderPath = path.join(homedir, `.commercetools`);
-const credentialsFilePath = path.join(
-  credentialsFolderPath,
-  'mc-credentials.json'
-);
-
 class CredentialsStorage {
-  static location = credentialsFilePath;
+  private credentialsFilePath: string;
 
   constructor() {
+    const homedir = os.homedir();
+    const credentialsFolderPath = path.join(homedir, `.commercetools`);
+    this.credentialsFilePath = path.join(
+      credentialsFolderPath,
+      'mc-credentials.json'
+    );
+
     // Ensure the credentials file is present
-    if (!doesFileExist(credentialsFilePath)) {
+    if (!doesFileExist(this.credentialsFilePath)) {
       fs.mkdirSync(credentialsFolderPath, { recursive: true });
       // Initialize with an empty object
       this._writeCredentials();
@@ -25,14 +25,16 @@ class CredentialsStorage {
 
   _writeCredentials(credentials?: TMcCliCredentialsStorage) {
     fs.writeFileSync(
-      credentialsFilePath,
+      this.credentialsFilePath,
       JSON.stringify(credentials || {}, null, 2),
       { encoding: 'utf8' }
     );
   }
 
   _loadCredentials(): TMcCliCredentialsStorage {
-    const data = fs.readFileSync(credentialsFilePath, { encoding: 'utf8' });
+    const data = fs.readFileSync(this.credentialsFilePath, {
+      encoding: 'utf8',
+    });
     return JSON.parse(data);
   }
 

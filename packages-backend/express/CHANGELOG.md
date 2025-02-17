@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 22.42.1
+
 ## 22.42.0
 
 ### Minor Changes

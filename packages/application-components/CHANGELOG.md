@@ -1,5 +1,21 @@
 # @commercetools-frontend/application-components
 
+## 22.42.1
+
+### Patch Changes
+
+- [#3726](https://github.com/commercetools/merchant-center-application-kit/pull/3726) [`adc828f`](https://github.com/commercetools/merchant-center-application-kit/commit/adc828f6459387590de415f00fd43b053d8d9e94) Thanks [@kark](https://github.com/kark)! - Remove default html attributes added by `radix-ui` to modals and dialogs
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@22.42.1
+  - @commercetools-frontend/application-config@22.42.1
+  - @commercetools-frontend/application-shell-connectors@22.42.1
+  - @commercetools-frontend/assets@22.42.1
+  - @commercetools-frontend/constants@22.42.1
+  - @commercetools-frontend/i18n@22.42.1
+  - @commercetools-frontend/l10n@22.42.1
+  - @commercetools-frontend/sentry@22.42.1
+
 ## 22.42.0
 
 ### Minor Changes

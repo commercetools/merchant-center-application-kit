@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-backend/loggers",
-  "version": "22.42.0",
+  "version": "22.42.1",
   "description": "Opinionated JSON loggers for HTTP server applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,7 +37,7 @@
     "winston": "3.13.0"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node22": "^22.0.0",
     "@types/express": "^4.17.17",
     "express": "4.20.0"
   }

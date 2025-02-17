@@ -98,8 +98,9 @@ const DialogContainer = ({
                 props.onClose as DialogContentProps['onPointerDownOutside']
               }
               aria-describedby={undefined}
-              aria-labelledby=""
+              aria-labelledby={undefined}
               aria-label={dialogAccessibleLabel}
+              id={undefined}
             >
               <GridArea name="top" />
               <GridArea name="left" />
