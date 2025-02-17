@@ -29,11 +29,11 @@
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node22": "^22.0.0",
     "@types/connect": "^3.4.36",
     "connect": "^3.7.0"
   },
   "engines": {
-    "node": "16.x || >=18.0.0"
+    "node": "18.x || 20.x || >=22.0.0"
   }
 }

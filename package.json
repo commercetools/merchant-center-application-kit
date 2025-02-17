@@ -124,12 +124,12 @@
     "@tsconfig/cypress": "^1.0.1",
     "@types/eslint": "^8.44.2",
     "@types/jest": "^29.5.4",
-    "@types/node": "^18.17.14",
+    "@types/node": "^22.13.2",
     "@types/prettier": "2.7.3",
     "@types/rosie": "^0.0.45",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@types/uuid": "^9.0.3",
-    "@types/webpack-env": "1.18.5",
+    "@types/webpack-env": "^1.18.8",
     "autoprefixer": "^10.4.15",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
@@ -177,21 +177,21 @@
   "pnpm": {
     "overrides": {
       "@types/eslint": "^8.2.2",
+      "@types/node": "^22.13.2",
       "@types/react": "^17.0.56",
       "@types/react-dom": "17.0.25",
       "@types/react-router": "5.1.20",
+      "@types/webpack-env": "^1.18.8",
       "@typescript-eslint/eslint-plugin": "^5.52.0",
       "@typescript-eslint/parser": "^5.52.0"
     },
     "patchedDependencies": {
       "babel-plugin-typescript-to-proptypes@1.4.2": "patches/babel-plugin-typescript-to-proptypes@1.4.2.patch",
-      "vite-bundle-analyzer@0.12.1": "patches/vite-bundle-analyzer@0.12.1.patch",
-      "@types/webpack-env@1.18.5": "patches/@types__webpack-env@1.18.5.patch",
-      "@types/node@18.17.14": "patches/@types__node@18.17.14.patch"
+      "vite-bundle-analyzer@0.17.0": "patches/vite-bundle-analyzer@0.17.0.patch"
     }
   },
   "engines": {
-    "node": "18.x",
+    "node": ">=22",
     "npm": ">=6",
     "pnpm": ">=8"
   },

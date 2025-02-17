@@ -31,10 +31,10 @@
     "semver": "7.6.2"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node22": "^22.0.0",
     "@types/prettier": "2.7.3"
   },
   "engines": {
-    "node": "16.x || >=18.0.0"
+    "node": "18.x || 20.x || >=22.0.0"
   }
 }
