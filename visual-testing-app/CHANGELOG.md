@@ -1,5 +1,22 @@
 # @commercetools-local/visual-testing-app
 
+## 23.0.0
+
+### Major Changes
+
+- [#3530](https://github.com/commercetools/merchant-center-application-kit/pull/3530) [`18ace8a`](https://github.com/commercetools/merchant-center-application-kit/commit/18ace8a93b90efe4c47ac18c6cc9b424372f6d65) Thanks [@emmenko](https://github.com/emmenko)! - Migrate to Vite `v6`. If you have Vite enabled via `ENABLE_EXPERIMENTAL_VITE_BUNDLER` and you are using `vite` as a dependency, make sure you upgrade to `v6` (see [Migration from v4](https://v5.vite.dev/guide/migration.html) and [Migration from v5](https://vite.dev/guide/migration.html)).
+
+### Patch Changes
+
+- Updated dependencies [[`18ace8a`](https://github.com/commercetools/merchant-center-application-kit/commit/18ace8a93b90efe4c47ac18c6cc9b424372f6d65), [`18ace8a`](https://github.com/commercetools/merchant-center-application-kit/commit/18ace8a93b90efe4c47ac18c6cc9b424372f6d65)]:
+  - @commercetools-frontend/application-shell-connectors@23.0.0
+  - @commercetools-frontend/application-config@23.0.0
+  - @commercetools-frontend/application-shell@23.0.0
+  - @commercetools-frontend/application-components@23.0.0
+  - @commercetools-frontend/react-notifications@23.0.0
+  - @commercetools-frontend/assets@23.0.0
+  - @commercetools-frontend/constants@23.0.0
+
 ## 22.42.1
 
 ### Patch Changes
