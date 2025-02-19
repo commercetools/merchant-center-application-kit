@@ -1,5 +1,7 @@
 # @commercetools-frontend/browser-history
 
+## 23.0.0
+
 ## 22.42.1
 
 ## 22.42.0
