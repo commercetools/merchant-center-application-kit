@@ -61,7 +61,7 @@ const NotificationsTriggers = () => {
   );
 };
 
-const NotificationsPlayground = (props) => {
+const NotificationsPlayground = ({ level = 1 }) => {
   const dialogState = useModalState();
   const dialogStateInDrawer = useModalState();
   const drawerState = useModalState();
@@ -73,35 +73,35 @@ const NotificationsPlayground = (props) => {
       <Spacings.Stack>
         <NotificationsTriggers />
         <FlatButton
-          label={`Open modal ${props.level}`}
+          label={`Open modal ${level}`}
           onClick={() => {
-            history.push(`${route.url}/${props.level}`);
+            history.push(`${route.url}/${level}`);
           }}
         />
         <FlatButton
-          label={`Open dialog ${props.level}`}
+          label={`Open dialog ${level}`}
           onClick={dialogState.openModal}
         />
         <FlatButton
-          label={`Open drawer ${props.level}`}
+          label={`Open drawer ${level}`}
           onClick={drawerState.openModal}
         />
 
-        <Route path={`${route.path}/${props.level}`}>
+        <Route path={`${route.path}/${level}`}>
           <InfoModalPage
             isOpen
-            title={`Modal page ${props.level}`}
+            title={`Modal page ${level}`}
             customViewLocatorCode="products.product_details.general"
             onClose={() => {
               history.push(route.url);
             }}
           >
-            <NotificationsPlayground level={props.level + 1} />
+            <NotificationsPlayground level={level + 1} />
           </InfoModalPage>
         </Route>
         <InfoDialog
           isOpen={dialogState.isModalOpen}
-          title={`Dialog ${props.level}`}
+          title={`Dialog ${level}`}
           onClose={dialogState.closeModal}
         >
           Hello
@@ -109,17 +109,17 @@ const NotificationsPlayground = (props) => {
 
         <Drawer
           isOpen={drawerState.isModalOpen}
-          title={`Drawer ${props.level}`}
+          title={`Drawer ${level}`}
           onClose={drawerState.closeModal}
         >
           <p>Drawer content here</p>
           <FlatButton
-            label={`Open dialog ${props.level}`}
+            label={`Open dialog ${level}`}
             onClick={dialogStateInDrawer.openModal}
           />
           <InfoDialog
             isOpen={dialogStateInDrawer.isModalOpen}
-            title={`Dialog ${props.level}`}
+            title={`Dialog ${level}`}
             onClose={dialogStateInDrawer.closeModal}
           >
             Hello
@@ -130,10 +130,7 @@ const NotificationsPlayground = (props) => {
   );
 };
 NotificationsPlayground.propTypes = {
-  level: PropTypes.number.isRequired,
-};
-NotificationsPlayground.defaultProps = {
-  level: 1,
+  level: PropTypes.number,
 };
 
 export default NotificationsPlayground;

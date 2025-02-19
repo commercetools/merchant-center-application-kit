@@ -26,7 +26,7 @@ const ProjectExpired = () => {
       paragraph1={
         <FormattedMessage
           {...messages.paragraph1}
-          values={{ mailto: <EmailLink email={salesEmail} /> }}
+          values={{ mailto: <EmailLink key="email" email={salesEmail} /> }}
         />
       }
       bodyContent={<ServicePageProjectSwitcher />}
