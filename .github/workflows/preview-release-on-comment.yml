@@ -27,7 +27,7 @@ jobs:
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
       - name: Get branch of PR
-        uses: xt0rted/pull-request-comment-branch@v1
+        uses: xt0rted/pull-request-comment-branch@v3
         id: comment-branch
 
       - name: Validate branch name
