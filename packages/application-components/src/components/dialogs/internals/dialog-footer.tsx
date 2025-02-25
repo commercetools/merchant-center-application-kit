@@ -26,6 +26,7 @@ type Props = {
   dataAttributesSecondaryButton?: { [key: string]: string };
   children?: never;
   iconLeftSecondaryButton?: ReactElement;
+  iconLeftPrimaryButton?: ReactElement;
   footerContent?: ReactNode;
 };
 
@@ -60,6 +61,7 @@ const DialogFooter = ({
           />
           <PrimaryButton
             label={getFormattedLabel(props.labelPrimary, intl)}
+            iconLeft={props.iconLeftPrimaryButton}
             onClick={props.onConfirm}
             isDisabled={isPrimaryButtonDisabled}
             {...filterDataAttributes(dataAttributesPrimaryButton)}

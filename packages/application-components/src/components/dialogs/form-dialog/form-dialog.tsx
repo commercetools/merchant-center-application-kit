@@ -31,6 +31,7 @@ export type TFormDialogProps = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   getParentSelector?: () => HTMLElement;
   iconLeftSecondaryButton?: ReactElement;
+  iconLeftPrimaryButton?: ReactElement;
   footerContent?: ReactNode;
 };
 
@@ -59,6 +60,7 @@ const FormDialog = ({
       dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
       dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
       iconLeftSecondaryButton={props.iconLeftSecondaryButton}
+      iconLeftPrimaryButton={props.iconLeftPrimaryButton}
       footerContent={props.footerContent}
     />
   </DialogContainer>
