@@ -1,5 +1,23 @@
 # @commercetools-frontend/application-components
 
+## 23.1.0
+
+### Minor Changes
+
+- [#3730](https://github.com/commercetools/merchant-center-application-kit/pull/3730) [`b05672c`](https://github.com/commercetools/merchant-center-application-kit/commit/b05672c4990768d70a94b315ac27d27d80ef2844) Thanks [@ddouglasz](https://github.com/ddouglasz)! - Pass a new prop `iconLeftPrimaryButton`, to provide an icon to the left in the primary button of the form dialog.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@23.1.0
+  - @commercetools-frontend/application-config@23.1.0
+  - @commercetools-frontend/application-shell-connectors@23.1.0
+  - @commercetools-frontend/assets@23.1.0
+  - @commercetools-frontend/constants@23.1.0
+  - @commercetools-frontend/i18n@23.1.0
+  - @commercetools-frontend/l10n@23.1.0
+  - @commercetools-frontend/sentry@23.1.0
+
 ## 23.0.0
 
 ### Patch Changes
