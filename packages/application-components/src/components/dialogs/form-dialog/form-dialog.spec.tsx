@@ -54,6 +54,17 @@ describe('rendering', () => {
       },
     }));
 
+  it('should show primaryButton Icon', () =>
+    validateComponent({
+      title: 'Lorem ipsus',
+      extraProps: {
+        iconLeftPrimaryButton: <div>button icon</div>,
+      },
+      extraChecks: () => {
+        screen.getByText('button icon');
+      },
+    }));
+
   it('should show additional content in footer', () =>
     validateComponent({
       title: 'Lorem ipsus',
