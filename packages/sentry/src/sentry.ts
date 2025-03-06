@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react';
 // eslint-disable-next-line import/order
-import { BrowserTracing } from '@sentry/browser'; // Must import after `@sentry/react`
+import { globalHandlersIntegration } from '@sentry/browser'; // Must import after `@sentry/react`
 import type { Extra, Extras, Event } from '@sentry/types';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
@@ -89,12 +89,12 @@ export const boot = () => {
         /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i,
       ],
       integrations: [
-        new Sentry.Integrations.GlobalHandlers({
+        globalHandlersIntegration({
           onunhandledrejection: false,
           onerror: false,
         }),
-        new BrowserTracing({
-          routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
+        Sentry.reactRouterV5BrowserTracingIntegration({
+          history,
         }),
       ],
       // Sending 5% of transactions. We can adjust that as we see a need to.
@@ -107,9 +107,9 @@ export const boot = () => {
         return redactUnsafeEventFields(event);
       },
     });
-    Sentry.configureScope((scope) => {
-      scope.setTag('role', 'frontend');
-    });
+    const sentryScope = Sentry.getCurrentScope();
+    sentryScope.setTag('role', 'frontend');
+    sentryScope.setTag('applicationName', window.app.applicationName);
   }
 };
 
