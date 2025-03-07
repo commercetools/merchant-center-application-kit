@@ -4,9 +4,3 @@ import type { ApplicationRuntimeConfig } from '@commercetools-frontend/applicati
 export type TCustomApplicationRuntimeConfig = ApplicationRuntimeConfig<{
   disableAuthRoutesOfDevServer?: boolean;
 }>;
-
-export type TCompiledHtml = {
-  env: TCustomApplicationRuntimeConfig['env'];
-  headers: Record<string, string>;
-  indexHtmlContent: string;
-};

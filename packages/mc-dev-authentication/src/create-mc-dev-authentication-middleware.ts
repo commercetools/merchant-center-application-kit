@@ -1,8 +1,5 @@
 import type { ServerResponse } from 'node:http';
 import type { IncomingMessage, NextFunction } from 'connect';
-// https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
-import pages from /* preval */ './pages';
-import { logout } from './routes';
 import type { TCustomApplicationRuntimeConfig } from './types';
 
 const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
@@ -10,12 +7,6 @@ const trimTrailingSlash = (value: string) => value.replace(/\/$/, '');
 function createMcDevAuthenticationMiddleware(
   applicationConfig: TCustomApplicationRuntimeConfig
 ) {
-  const htmlLogin = pages.loginPage.replace(
-    new RegExp('__MC_API_URL__', 'g'),
-    trimTrailingSlash(applicationConfig.env.mcApiUrl)
-  );
-  const htmlLogout = pages.logoutPage;
-
   const isDevAuthenticationMiddlewareDisabled =
     String(applicationConfig.env.disableAuthRoutesOfDevServer) === 'true' ||
     applicationConfig.env.servedByProxy;
@@ -39,37 +30,21 @@ function createMcDevAuthenticationMiddleware(
     if (applicationConfig.env.__DEVELOPMENT__?.oidc?.authorizeUrl) {
       // Handle login page for OIDC workflow when developing against a local MC API.
       if (
-        applicationConfig.env.__DEVELOPMENT__?.oidc?.authorizeUrl.startsWith(
+        applicationConfig.env.__DEVELOPMENT__.oidc.authorizeUrl.startsWith(
           'http://localhost'
         )
       ) {
         if (request.originalUrl?.startsWith('/login/authorize')) {
-          if (isDevAuthenticationMiddlewareDisabled) {
-            next();
-          } else {
-            response.end(htmlLogin);
+          if (!isDevAuthenticationMiddlewareDisabled) {
+            // Redirect to the MC API to initiate the authorize flow.
+            const redirectTo = new URL(
+              request.originalUrl,
+              trimTrailingSlash(applicationConfig.env.mcApiUrl)
+            );
+            response.writeHead(301, { Location: redirectTo.toString() }).end();
+            return;
           }
-          return;
         }
-      }
-    } else {
-      if (request.originalUrl === '/login') {
-        if (isDevAuthenticationMiddlewareDisabled) {
-          next();
-        } else {
-          response.end(htmlLogin);
-        }
-        return;
-      }
-      if (request.originalUrl === '/logout') {
-        logout(response);
-
-        if (isDevAuthenticationMiddlewareDisabled) {
-          next();
-        } else {
-          response.end(htmlLogout);
-        }
-        return;
       }
     }
 
