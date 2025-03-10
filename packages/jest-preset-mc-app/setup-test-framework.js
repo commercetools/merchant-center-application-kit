@@ -1,6 +1,6 @@
 require('setimmediate');
 require('unfetch/polyfill');
-require('@testing-library/jest-dom/extend-expect');
+require('@testing-library/jest-dom');
 // Intl polyfills: https://formatjs.io/docs/polyfills
 require('@formatjs/intl-getcanonicallocales');
 require('@formatjs/intl-listformat');
