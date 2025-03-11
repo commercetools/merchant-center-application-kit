@@ -63,8 +63,8 @@ importers:
         specifier: workspace:*
         version: link:packages/mc-scripts
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-uikit/design-system':
         specifier: ^19.22.3
         version: 19.22.3(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
@@ -357,14 +357,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-uikit/constraints':
         specifier: ^19.22.3
         version: 19.22.3(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -579,14 +579,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-uikit/constraints':
         specifier: ^19.22.3
         version: 19.22.3(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -798,14 +798,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-uikit/constraints':
         specifier: ^19.22.3
         version: 19.22.3(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -1020,14 +1020,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/permissions
       '@commercetools-test-data/channel':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-test-data/core':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@commercetools-uikit/constraints':
         specifier: ^19.22.3
         version: 19.22.3(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -2788,8 +2788,8 @@ importers:
         version: 5.0.2(webpack@5.94.0(@swc/core@1.10.16))
     devDependencies:
       '@commercetools-test-data/custom-view':
-        specifier: ^8.0.0
-        version: 8.2.3(@types/node@22.13.2)(typescript@5.0.4)
+        specifier: ^10.0.0
+        version: 10.14.0(@types/node@22.13.2)(typescript@5.0.4)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.0
@@ -3317,8 +3317,8 @@ importers:
         specifier: 23.1.0
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 10.14.0
+        version: 10.14.0
       '@formatjs/cli':
         specifier: 6.2.12
         version: 6.2.12
@@ -4861,32 +4861,35 @@ packages:
   '@commercetools-frontend/constants@22.40.0':
     resolution: {integrity: sha512-9fF9uMl3uSVctJfI0KcwwD/37ecAN1GVQkeIYxq9U5XMw3WZVCuQRJMLHbvQI2vPrbvOY9ahKi9jgXfwyDKhTg==}
 
-  '@commercetools-test-data/channel@8.5.0':
-    resolution: {integrity: sha512-FnWkxU5mTyR2AmI4ErE5Jz8M99avFJ0wKZXS9UTcuF+bjnrpuNtIpCHnV1VUirl1c/hfaaoU/8KgLehDarilUw==}
+  '@commercetools-test-data/category@10.14.0':
+    resolution: {integrity: sha512-flFs6VTZfTYXbLpIOENK4S8PsXRsWOMhYCxAvf2h0ziMGx7DnXASu1rVXxJ96B1FiymcOO2EBHnmJ+UwnSor/w==}
 
-  '@commercetools-test-data/commons@8.2.3':
-    resolution: {integrity: sha512-hOeU8Z+tXdoqDJ9B7oHK4W2PNKUO2h6hHEP0W0vOYt2gmINczQ6Aq27TZ8Ga/i5YQpRF5CGSxH23mShodMY5Kg==}
+  '@commercetools-test-data/channel@10.14.0':
+    resolution: {integrity: sha512-kaDFmvcBMAW2Ed9d80NVd5xOJneSa3S8nNP5JAsWE6CVjMZHO0FvAANXDjSCKc8+Zow4qbaaAc/2Ougd7msHyg==}
 
-  '@commercetools-test-data/commons@8.5.0':
-    resolution: {integrity: sha512-VnO7pWyrN7Nx1hD7+13bsLXiZu8Tqp4pN7oIPQtH5Cy43NGrlJ5jlkP7BKM8UuEjCJtAvR2fWPW5GZ3rAaeaIA==}
+  '@commercetools-test-data/commons@10.14.0':
+    resolution: {integrity: sha512-/nDmO8cxzPs/J3YUKtiar7wkDNANNBn2X/xh2RiF8hzLoJDC80lpYkl6nSrv269cPtVdeW07bfEw+lKrI3070Q==}
 
-  '@commercetools-test-data/core@8.2.3':
-    resolution: {integrity: sha512-Of0mGrhw1uTCmcnlC4RUaxBltHbAoZKKgDRdP1fxIcr/ltCC0DopIhupa7rCusdK4xOWV6njzDPPO7guM0a23A==}
+  '@commercetools-test-data/core@10.14.0':
+    resolution: {integrity: sha512-xRnqCba3rwUv/5MSvZTq3NGFlyqR8QarmQ/ncD/Xo2RA2BerukqTf2+hixbgKsB1LqHrkn4gMLLJgWhaFtzN0A==}
 
-  '@commercetools-test-data/core@8.5.0':
-    resolution: {integrity: sha512-S+PaEHX9iOtcoBzwx5exh77Y4+aGxoT15cG6ptADwFrMUdpGbI1x5XA/siBOu00Uy3Ge8FZrXA/hHPvuzxRLvw==}
+  '@commercetools-test-data/custom-view@10.14.0':
+    resolution: {integrity: sha512-VprNH1UzQ8y8gA8BDAHMDTH3E7MCbTHRCoix0vhVbKjCrloyY+7wEZSNj6x1SeiF6J1gBa5NiBDnOgpWZXOUMA==}
 
-  '@commercetools-test-data/custom-view@8.2.3':
-    resolution: {integrity: sha512-L++qEV3Z46kAhwCfL3EyR90rw6PhlFzIN9dmLH9wXF0kT8FvZxel0nqOjBFWtTseLc1yFmwBCgLCGeLZCvuu9w==}
+  '@commercetools-test-data/graphql-types@10.14.0':
+    resolution: {integrity: sha512-EnuKL/FiJsjy0QUAic+0bzIapU/+RGb7LPECt/Np2M6DOXGdKzytwT0lk0YQSTA5DOKH/ijh4a3wQ7FtjuAcBg==}
 
-  '@commercetools-test-data/graphql-types@8.2.3':
-    resolution: {integrity: sha512-fFkNMKCytxAFbCA/qu3v3xv+5eGo/BRIHKEy0IWJ920R7ic0dRNrN5Hlm96iZLSQ11SeTAJPUrq0mld+wr8LAw==}
+  '@commercetools-test-data/product-discount@10.14.0':
+    resolution: {integrity: sha512-a48bLAcZAonSt6XVIMvO74xN9j219a29b3Biw6ZCpOY31/5qVHh66PX3qmQ7sTHM1NHm5FroDPDsgrn6RYSsag==}
 
-  '@commercetools-test-data/utils@8.2.3':
-    resolution: {integrity: sha512-SHgtDgU3ZqK6jRIQStX6jBo1boHu1Wzq7/C0rxGHhJl9zbLKV7ic59piWnDxCG7AMSN+Dy0PDsF8iW1UV3Z24g==}
+  '@commercetools-test-data/product-type@10.14.0':
+    resolution: {integrity: sha512-QNHS5sYcMO45PsXuvoajMomJllItFwV95RcwK3M6d06dFBWYF1xnMtTUUDVXOvvtpQh+fgDiiFVjspFJFIbs1w==}
 
-  '@commercetools-test-data/utils@8.5.0':
-    resolution: {integrity: sha512-gcEyLYkV8MhwH2t5szhvQuMpnQNqZGwrT9drSDDZmwWO7gQT3zKQ8NVCt+JUYTV/rffP7RLKJ2I4oRNOG6OaEA==}
+  '@commercetools-test-data/type@10.14.0':
+    resolution: {integrity: sha512-EGBXLxL06G+U/YN/exG8msoPzzbgYiqkVllJUC//NA6CVeJZy9izwPZVM8Miu8z4JCOxYMeDhmZaGJQqpOIU9w==}
+
+  '@commercetools-test-data/utils@10.14.0':
+    resolution: {integrity: sha512-8KFOIa0FgkvV0Xl3uBG8FLQu4PQZA3Ak1+36Flta9Ujsey/Td4EknJ2j8uXl5CgDW0zBVxl1yMOCP5YjPhrq0Q==}
 
   '@commercetools-uikit/accessible-button@18.4.0':
     resolution: {integrity: sha512-CmSHDUnG3bNxhXHe4S1JWfEg6+ZlkKuvzugB2m+vukDtyuk/vMoWEV8bWXrh94K30QMJNpxJP7JE7wG7dF5HxA==}
@@ -5304,12 +5307,12 @@ packages:
     resolution: {integrity: sha512-kHlVST/Ax8GFpG9vpcUR5wKBGBoY2tZDA87kSC3nxhgk2+szZfv7MMMaAt0EIz2thpyO7oJv9NyPY/3XrrNIXQ==}
     engines: {node: '>=14'}
 
-  '@commercetools/platform-sdk@7.1.0':
-    resolution: {integrity: sha512-V0ZgxuAORWS76ocvvha+9pY9p6MOHmvxWCe+7n1JyHo5VrOIgB1mbrUNQwZOvKsr1nH9s4liAWnbAlv8jAEApg==}
+  '@commercetools/platform-sdk@7.25.1':
+    resolution: {integrity: sha512-GIfq3FN1JijElR4y3JZxLqu1S98IJ16UtWbAfwUqDnbBOREXpH52fdd5fHBMKpqXSxaYkzcmHLH+qrwlqWHQ7A==}
     engines: {node: '>=14'}
 
-  '@commercetools/sdk-client-v2@2.3.0':
-    resolution: {integrity: sha512-+vS6qRoKBbkunZCpdozung+7te97nFxaidLPqOTlz/9TmJaRfMMcYC/KUZCTS8S5a/4BFfY6DYujddolaU7e6Q==}
+  '@commercetools/sdk-client-v2@2.5.0':
+    resolution: {integrity: sha512-v1y++O6yllG+IRTYm9jPE8s667+GapnysyGIf8NJDZbVwhvcanixZL4d20imXjCpOr4u1iZrgRftc90mgYqblw==}
     engines: {node: '>=14'}
 
   '@commercetools/sdk-client@3.0.0':
@@ -5334,6 +5337,10 @@ packages:
 
   '@commercetools/sync-actions@5.14.0':
     resolution: {integrity: sha512-c81boDz9tmGWkNOQb95ZvYY/5H0IFbklAyD+d/0l5ooaEaCMelJxNqNzYW+txZZeMvH9B+n3x4vuqcpVHkWwCQ==}
+    engines: {node: '>=14'}
+
+  '@commercetools/ts-client@2.1.8':
+    resolution: {integrity: sha512-ESA4dPB7MlitDnERLhbALXamukyZcqSA/gPgK11dJ/36OjkEPZyaS+5mEGXP9DnvneOYGf7Q94mmtVXcEpm7qg==}
     engines: {node: '>=14'}
 
   '@commitlint/cli@17.8.1':
@@ -5737,6 +5744,10 @@ packages:
   '@faker-js/faker@8.4.1':
     resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+
+  '@faker-js/faker@9.5.1':
+    resolution: {integrity: sha512-0fzMEDxkExR2cn731kpDaCCnBGBUOIXEi2S1N5l8Hltp6aPf4soTMJ+g4k8r2sI5oB+rpwIW8Uy/6jkwGpnWPg==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@floating-ui/core@1.6.8':
     resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
@@ -7595,9 +7606,6 @@ packages:
 
   '@types/lodash@4.17.14':
     resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
-
-  '@types/lodash@4.17.4':
-    resolution: {integrity: sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==}
 
   '@types/mdast@3.0.11':
     resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==}
@@ -18373,9 +18381,9 @@ snapshots:
       pirates: 4.0.5
       source-map-support: 0.5.21
 
-  '@babel/register@7.22.15(@babel/core@7.25.2)':
+  '@babel/register@7.22.15(@babel/core@7.26.7)':
     dependencies:
-      '@babel/core': 7.25.2
+      '@babel/core': 7.26.7
       clone-deep: 4.0.1
       find-cache-dir: 2.1.0
       make-dir: 2.1.0
@@ -18746,8 +18754,8 @@ snapshots:
 
   '@commercetools-frontend/application-config@22.40.0(@types/node@22.13.2)(typescript@5.0.4)':
     dependencies:
-      '@babel/core': 7.25.2
-      '@babel/register': 7.22.15(@babel/core@7.25.2)
+      '@babel/core': 7.26.7
+      '@babel/register': 7.22.15(@babel/core@7.26.7)
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-frontend/constants': 22.40.0
@@ -18775,72 +18783,68 @@ snapshots:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
 
-  '@commercetools-test-data/channel@8.5.0':
+  '@commercetools-test-data/category@10.14.0':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/commons': 8.5.0
-      '@commercetools-test-data/core': 8.5.0
-      '@commercetools-test-data/utils': 8.5.0
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.4.1
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/type': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
     transitivePeerDependencies:
       - encoding
 
-  '@commercetools-test-data/commons@8.2.3':
+  '@commercetools-test-data/channel@10.14.0':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 8.2.3
-      '@commercetools-test-data/utils': 8.2.3
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.4.1
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/graphql-types': 10.14.0
+      '@commercetools-test-data/type': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@commercetools-test-data/commons@10.14.0':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/graphql-types': 10.14.0
+      '@commercetools-test-data/product-discount': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
       '@types/lodash': 4.17.14
       lodash: 4.17.21
     transitivePeerDependencies:
       - encoding
 
-  '@commercetools-test-data/commons@8.5.0':
+  '@commercetools-test-data/core@10.14.0':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@commercetools-test-data/core': 8.5.0
-      '@commercetools-test-data/utils': 8.5.0
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.4.1
-      '@types/lodash': 4.17.4
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - encoding
-
-  '@commercetools-test-data/core@8.2.3':
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
+      '@faker-js/faker': 9.5.1
       '@types/lodash': 4.17.14
       lodash: 4.17.21
 
-  '@commercetools-test-data/core@8.5.0':
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
-      '@types/lodash': 4.17.4
-      lodash: 4.17.21
-
-  '@commercetools-test-data/custom-view@8.2.3(@types/node@22.13.2)(typescript@5.0.4)':
+  '@commercetools-test-data/custom-view@10.14.0(@types/node@22.13.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
       '@commercetools-frontend/application-config': 22.40.0(@types/node@22.13.2)(typescript@5.0.4)
       '@commercetools-frontend/constants': 22.40.0
-      '@commercetools-test-data/commons': 8.2.3
-      '@commercetools-test-data/core': 8.2.3
-      '@commercetools-test-data/graphql-types': 8.2.3
-      '@commercetools-test-data/utils': 8.2.3
-      '@commercetools/platform-sdk': 7.1.0
-      '@faker-js/faker': 8.4.1
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/graphql-types': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
       '@types/lodash': 4.17.14
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -18852,19 +18856,53 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@commercetools-test-data/graphql-types@8.2.3': {}
+  '@commercetools-test-data/graphql-types@10.14.0': {}
 
-  '@commercetools-test-data/utils@8.2.3':
+  '@commercetools-test-data/product-discount@10.14.0':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
+      '@commercetools-test-data/category': 10.14.0
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/graphql-types': 10.14.0
+      '@commercetools-test-data/product-type': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
+    transitivePeerDependencies:
+      - encoding
 
-  '@commercetools-test-data/utils@8.5.0':
+  '@commercetools-test-data/product-type@10.14.0':
     dependencies:
       '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.22.15
-      '@faker-js/faker': 8.4.1
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/type': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@commercetools-test-data/type@10.14.0':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@commercetools-test-data/commons': 10.14.0
+      '@commercetools-test-data/core': 10.14.0
+      '@commercetools-test-data/utils': 10.14.0
+      '@commercetools/platform-sdk': 7.25.1
+      '@faker-js/faker': 9.5.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@commercetools-test-data/utils@10.14.0':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.22.15
+      '@faker-js/faker': 9.5.1
 
   '@commercetools-uikit/accessible-button@18.4.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
     dependencies:
@@ -20959,16 +20997,17 @@ snapshots:
 
   '@commercetools/http-user-agent@3.0.0': {}
 
-  '@commercetools/platform-sdk@7.1.0':
+  '@commercetools/platform-sdk@7.25.1':
     dependencies:
-      '@commercetools/sdk-client-v2': 2.3.0
+      '@commercetools/sdk-client-v2': 2.5.0
       '@commercetools/sdk-middleware-auth': 7.0.1
       '@commercetools/sdk-middleware-http': 7.0.4
       '@commercetools/sdk-middleware-logger': 3.0.0
+      '@commercetools/ts-client': 2.1.8
     transitivePeerDependencies:
       - encoding
 
-  '@commercetools/sdk-client-v2@2.3.0':
+  '@commercetools/sdk-client-v2@2.5.0':
     dependencies:
       buffer: 6.0.3
       node-fetch: 2.7.0
@@ -21000,6 +21039,14 @@ snapshots:
       lodash.shuffle: 4.2.0
       lodash.sortby: 4.7.0
       lodash.uniqwith: 4.5.0
+
+  '@commercetools/ts-client@2.1.8':
+    dependencies:
+      abort-controller: 3.0.0
+      buffer: 6.0.3
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
 
   '@commitlint/cli@17.8.1(@swc/core@1.10.16)':
     dependencies:
@@ -21451,6 +21498,8 @@ snapshots:
   '@eslint/js@8.57.0': {}
 
   '@faker-js/faker@8.4.1': {}
+
+  '@faker-js/faker@9.5.1': {}
 
   '@floating-ui/core@1.6.8':
     dependencies:
@@ -24509,8 +24558,6 @@ snapshots:
   '@types/lodash@4.14.198': {}
 
   '@types/lodash@4.17.14': {}
-
-  '@types/lodash@4.17.4': {}
 
   '@types/mdast@3.0.11':
     dependencies:
