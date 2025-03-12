@@ -1,5 +1,5 @@
 import path from 'path';
-import cac from 'cac';
+import { program } from 'commander';
 import glob from 'glob';
 // @ts-ignore internal module
 import Runner from 'jscodeshift/src/Runner';
@@ -10,7 +10,15 @@ import type {
   TCliTransformName,
 } from './types';
 
-const cli = cac('mc-codemod');
+program
+  .name('mc-codemod')
+  .description('Codemods for updating Merchant Center customizations.')
+  .version(pkgJson.version)
+  .option(
+    '--dry-run',
+    `(optional) Executes the command but does not send any mutation request.`,
+    false
+  );
 
 const transforms: { name: TCliTransformName; description: string }[] = [
   {
@@ -85,34 +93,19 @@ const executeCodemod = async (
 };
 
 export const run = () => {
-  cli.option(
-    '--dry-run',
-    `(optional) Executes the command but does not send any mutation request.`,
-    { default: false }
-  );
-
-  // Default command
-  cli
-    .command('')
-    .usage('\n\n  Codemods for updating Custom Applications.')
-    .action(() => {
-      cli.outputHelp();
-    });
-
   // Transform commands
   transforms.forEach((transform) => {
-    cli
-      .command(`${transform.name} <glob-pattern>`, transform.description)
-      .usage(`${transform.name} <glob-pattern>\n\n  ${transform.description}`)
-      .action((globPattern: string, globalOptions: TCliGlobalOptions) =>
-        executeCodemod(transform.name, globPattern, globalOptions)
-      );
+    program
+      .command(transform.name)
+      .argument('<glob-pattern>')
+      .description(transform.description)
+      .action((globPattern: string) => {
+        const globalOptions = program.opts<TCliGlobalOptions>();
+        executeCodemod(transform.name, globPattern, globalOptions);
+      });
   });
 
-  cli.help();
-  cli.version(pkgJson.version);
-
-  cli.parse();
+  program.parse();
 };
 
 export default run;

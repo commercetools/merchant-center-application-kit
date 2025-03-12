@@ -185,9 +185,6 @@ importers:
       babel-plugin-typescript-to-proptypes:
         specifier: 1.4.2
         version: 1.4.2(patch_hash=lqszx5kvqxa52t7l2zddujkdkq)(@babel/core@7.22.17)(typescript@5.0.4)
-      cac:
-        specifier: 6.7.14
-        version: 6.7.14
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -2079,9 +2076,9 @@ importers:
       '@babel/preset-env':
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)
-      cac:
-        specifier: 6.7.14
-        version: 6.7.14
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
       glob:
         specifier: 8.1.0
         version: 8.1.0
@@ -2153,9 +2150,9 @@ importers:
       '@types/semver':
         specifier: ^7.5.1
         version: 7.5.1
-      cac:
-        specifier: 6.7.14
-        version: 6.7.14
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
       execa:
         specifier: 5.1.1
         version: 5.1.1
@@ -2657,12 +2654,12 @@ importers:
       browserslist:
         specifier: ^4.21.10
         version: 4.21.10
-      cac:
-        specifier: 6.7.14
-        version: 6.7.14
       chalk:
         specifier: 4.1.2
         version: 4.1.2
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
       core-js:
         specifier: ^3.32.2
         version: 3.32.2
@@ -8652,10 +8649,6 @@ packages:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
 
-  cac@6.7.14:
-    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
-    engines: {node: '>=8'}
-
   cacheable-lookup@7.0.0:
     resolution: {integrity: sha512-+qJyx4xiKra8mZrcwhjMRMUhD5NR1R8esPkzIYxX96JiecFoxAXFuz/GpR3+ev4PE1WamHip78wV0vcmPQtp8w==}
     engines: {node: '>=14.16'}
@@ -8929,6 +8922,10 @@ packages:
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
+
+  commander@13.1.0:
+    resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
+    engines: {node: '>=18'}
 
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -26016,8 +26013,6 @@ snapshots:
 
   bytes@3.1.2: {}
 
-  cac@6.7.14: {}
-
   cacheable-lookup@7.0.0: {}
 
   cacheable-request@10.2.9:
@@ -26334,6 +26329,8 @@ snapshots:
       delayed-stream: 1.0.0
 
   comma-separated-tokens@2.0.3: {}
+
+  commander@13.1.0: {}
 
   commander@2.20.3: {}
 
