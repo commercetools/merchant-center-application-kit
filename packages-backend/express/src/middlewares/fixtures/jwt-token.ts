@@ -93,17 +93,3 @@ async function createTestTokens(options: {
 }
 
 export { createTestTokens, getTokens, clearTokens };
-
-// const createToken = (options: { issuer: string; audience: string }) =>
-//   JWT.sign(
-//     {
-//       sub: 'user-id',
-//       iss: options.issuer,
-//       aud: options.audience,
-//       [`${options.issuer}/claims/project_key`]: 'project-key',
-//     },
-//     keyRS256,
-//     { algorithm: 'RS256' }
-//   );
-
-// export { jwksStore, createToken };
