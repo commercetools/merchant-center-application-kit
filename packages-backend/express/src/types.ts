@@ -1,5 +1,3 @@
-import type { ExpressJwtOptions } from 'jwks-rsa';
-
 import { CLOUD_IDENTIFIERS } from './constants';
 
 export type TAudience = string;
@@ -43,8 +41,10 @@ export type TSessionMiddlewareOptions<Request extends TBaseRequest> = {
   inferIssuer?: boolean;
   /**
    * Options for the `jwksRsa.expressJwtSecret`
+   *
+   * @deprecated
    */
-  jwks?: Omit<ExpressJwtOptions, 'jwksUri'>;
+  jwks?: unknown;
   /**
    * By default we assume that the `request` is a Node.js-like object having either
    * an `originalUrl` or `url` properties.

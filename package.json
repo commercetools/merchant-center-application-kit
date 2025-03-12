@@ -29,6 +29,7 @@
     "changeset": "changeset",
     "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json' && pnpm install --lockfile-only",
     "test": "jest --config jest.test.config.js",
+    "test:node": "jest --config jest.test-node.config.ts",
     "test:watch": "jest --config jest.test.config.js --watch",
     "test:visual": "jest --config jest.visual.config.js --runInBand --testTimeout 10000",
     "test:jest-preview": "jest-preview",

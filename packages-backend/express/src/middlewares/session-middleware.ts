@@ -7,9 +7,9 @@ function createSessionMiddleware<Request extends TBaseRequest>(
 ) {
   const sessionAuthVerifier = createSessionAuthVerifier<Request>(options);
 
-  return async (request: Request, response: Response, next: NextFunction) => {
+  return async (request: Request, _response: Response, next: NextFunction) => {
     try {
-      await sessionAuthVerifier(request, response);
+      await sessionAuthVerifier(request);
       next();
     } catch (error) {
       next(error);
