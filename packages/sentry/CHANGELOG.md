@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 23.2.0
+
+### Patch Changes
+
+- [#3732](https://github.com/commercetools/merchant-center-application-kit/pull/3732) [`ff395bd`](https://github.com/commercetools/merchant-center-application-kit/commit/ff395bd74fea80a4216469190f341705d4166ddc) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We are adding a new tag to the Sentry context named `applicationName` that can help when filtering logs in a multi-application context.
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@23.2.0
+  - @commercetools-frontend/constants@23.2.0
+
 ## 23.1.0
 
 ### Patch Changes
