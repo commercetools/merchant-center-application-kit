@@ -3,8 +3,8 @@ import type { Handler } from 'express';
 import { setupServer } from 'msw/node';
 import { createSessionAuthVerifier } from '../auth';
 import { CLOUD_IDENTIFIERS } from '../constants';
-import { TBaseRequest } from '../types';
-import * as fixtureJWTToken from './fixtures/jwt-token';
+import type { TBaseRequest } from '../types';
+import { clearTokens, getTokens, TestTokens } from './fixtures/jwt-token';
 import createSessionMiddleware from './session-middleware';
 
 interface TMockAWSLambdaRequestV2 extends TBaseRequest {
@@ -28,15 +28,21 @@ function waitForSessionMiddleware(
   });
 }
 
-afterEach(() => {
-  mockServer.resetHandlers();
-});
-beforeAll(() =>
+const audience = 'http://test-server/foo/bar';
+const issuer = 'http://mc-api.ct-test.com';
+
+beforeAll(async () => {
   mockServer.listen({
     onUnhandledRequest: 'error',
-  })
-);
-afterAll(() => mockServer.close());
+  });
+});
+afterAll(() => {
+  mockServer.close();
+});
+afterEach(() => {
+  mockServer.resetHandlers();
+  clearTokens();
+});
 
 describe.each`
   cloudIdentifier                 | issuer
@@ -49,10 +55,13 @@ describe.each`
 `(
   'when the middleware uses as "issuer": "$cloudIdentifier"',
   ({ cloudIdentifier, issuer }) => {
-    beforeEach(() => {
+    let tokens: TestTokens;
+    beforeEach(async () => {
+      tokens = await getTokens({ audience, issuer });
+      const jwks = await tokens.toJWKS();
       mockServer.use(
         rest.get(`${issuer}/.well-known/jwks.json`, (_req, res, ctx) =>
-          res(ctx.json(fixtureJWTToken.jwksStore.toJWKS()))
+          res(ctx.json(jwks))
         )
       );
     });
@@ -69,10 +78,7 @@ describe.each`
       const fakeRequest = {
         method: 'GET',
         headers: {
-          authorization: `Bearer ${fixtureJWTToken.createToken({
-            issuer,
-            audience: 'http://test-server/foo/bar',
-          })}`,
+          authorization: `Bearer ${tokens.tokenRS256}`,
           // The following headers are validated as they are expected to be present
           // in the incoming request.
           // To ensure we can correctly read the header values no matter if the
@@ -220,13 +226,11 @@ describe('when issuer is not a valid URL', () => {
 });
 describe('when "X-MC-API-Cloud-Identifier" is missing', () => {
   it('should throw a validation error', async () => {
+    const tokens = await getTokens({ audience, issuer });
     const fakeRequest = {
       method: 'GET',
       headers: {
-        authorization: `Bearer ${fixtureJWTToken.createToken({
-          issuer: CLOUD_IDENTIFIERS.GCP_EU,
-          audience: 'http://test-server/foo/bar',
-        })}`,
+        authorization: `Bearer ${tokens.tokenRS256}`,
         'x-mc-api-forward-to-version': 'v2',
       },
       originalUrl: '/foo/bar',
@@ -248,13 +252,11 @@ describe('when "X-MC-API-Cloud-Identifier" is missing', () => {
 });
 describe('when "X-MC-API-Forward-To-Version" is missing', () => {
   it('should throw a validation error', async () => {
+    const tokens = await getTokens({ audience, issuer });
     const fakeRequest = {
       method: 'GET',
       headers: {
-        authorization: `Bearer ${fixtureJWTToken.createToken({
-          issuer: CLOUD_IDENTIFIERS.GCP_EU,
-          audience: 'http://test-server/foo/bar',
-        })}`,
+        authorization: `Bearer ${tokens.tokenRS256}`,
         'x-mc-api-cloud-identifier': CLOUD_IDENTIFIERS.GCP_EU,
       },
       originalUrl: '/foo/bar',
