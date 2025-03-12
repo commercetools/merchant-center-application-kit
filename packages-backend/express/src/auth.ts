@@ -1,8 +1,4 @@
-import {
-  expressjwt as expressJwtMiddleware,
-  type GetVerificationKey,
-} from 'express-jwt';
-import jwksRsa from 'jwks-rsa';
+import { createRemoteJWKSet, jwtVerify } from 'jose';
 import {
   CLOUD_IDENTIFIERS,
   MC_API_URLS,
@@ -15,36 +11,29 @@ import type {
 } from './types';
 import { getFirstHeaderValueOrThrow } from './utils';
 
-type TDecodedJWT = {
+export type TDecodedJWT = {
   sub: string;
   iss: string;
   [property: string]: string | string[];
 };
 
-const decodedTokenKey = 'decoded_token';
 // Assign a session object to the request object.
 const writeSessionContext = <Request extends TBaseRequest>(
-  request: Request & { decoded_token?: TDecodedJWT; session?: TSession }
+  request: Request & { session?: TSession },
+  verifiedToken: TDecodedJWT
 ) => {
-  const decodedToken = request[decodedTokenKey];
+  const publicClaimForProjectKey = `${verifiedToken.iss}/claims/project_key`;
+  const publicClaimForUserPermissionsKey = `${verifiedToken.iss}/claims/user_permissions`;
 
-  if (decodedToken) {
-    const publicClaimForProjectKey = `${decodedToken.iss}/claims/project_key`;
-    const publicClaimForUserPermissionsKey = `${decodedToken.iss}/claims/user_permissions`;
+  request.session = {
+    userId: verifiedToken.sub,
+    projectKey: verifiedToken[publicClaimForProjectKey] as string,
+  };
 
-    request.session = {
-      userId: decodedToken.sub,
-      projectKey: decodedToken[publicClaimForProjectKey] as string,
-    };
-
-    const userPermissions = decodedToken[publicClaimForUserPermissionsKey];
-    if (Boolean(userPermissions?.length)) {
-      request.session.userPermissions = userPermissions as string[];
-    }
+  const userPermissions = verifiedToken[publicClaimForUserPermissionsKey];
+  if (Boolean(userPermissions?.length)) {
+    request.session.userPermissions = userPermissions as string[];
   }
-
-  // Remove the field used by the JWT middleware.
-  delete request.decoded_token;
 };
 
 // Given a cloud identifier, try to map it to one of the supported
@@ -139,6 +128,21 @@ export const getConfiguredAudience = <Request extends TBaseRequest>(
   }
 };
 
+type TJwksClient = ReturnType<typeof createRemoteJWKSet>;
+const jwksClientByIssuer = new Map<string, TJwksClient>();
+
+function getJwksClientByIssuer(issuer: string) {
+  const client = jwksClientByIssuer.get(issuer);
+  if (client) {
+    return client;
+  }
+  const newClient = createRemoteJWKSet(
+    new URL(`/.well-known/jwks.json`, issuer)
+  );
+  jwksClientByIssuer.set(issuer, newClient);
+  return newClient;
+}
+
 function createSessionAuthVerifier<Request extends TBaseRequest>(
   options: TSessionMiddlewareOptions<Request>
 ) {
@@ -147,7 +151,7 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
   const configuredDefaultIssuer = getConfiguredDefaultIssuer<Request>(options);
 
   // Returns an async HTTP handler.
-  return async (request: Request, response?: unknown) => {
+  return async (request: Request) => {
     // Get the cloud identifier header, forwarded by the `/proxy/forward-to` endpoint.
     const cloudIdentifierHeader = getFirstHeaderValueOrThrow(
       request.headers,
@@ -185,37 +189,25 @@ function createSessionAuthVerifier<Request extends TBaseRequest>(
 
     const audience = getConfiguredAudience<Request>(options, requestUrlPath);
 
-    return new Promise<void>((resolve, reject) => {
-      expressJwtMiddleware({
-        // Dynamically provide a signing key based on the kid in the header
-        // and the singing keys provided by the JWKS endpoint
-        secret: jwksRsa.expressJwtSecret({
-          // Default options
-          cache: true,
-          rateLimit: true,
-          jwksRequestsPerMinute: 5,
-          // Pass custom options
-          ...(options.jwks || {}),
-          // This should be set by the middleware, no matter what.
-          jwksUri: `${issuer}/.well-known/jwks.json`,
-        }) as GetVerificationKey,
-        requestProperty: decodedTokenKey,
-        // Validate the audience and the issuer.
+    const authorizationHeader = request.headers['authorization'];
+    if (typeof authorizationHeader !== 'string') {
+      throw new Error(`Missing "authorization" header`);
+    }
+
+    const exchangeToken = authorizationHeader.replace(/^Bearer (.*)$/, '$1');
+    const jwksClient = getJwksClientByIssuer(issuer);
+    const verifiedToken = await jwtVerify<TDecodedJWT>(
+      exchangeToken,
+      jwksClient,
+      {
+        algorithms: ['RS256'],
         audience,
         issuer,
-        algorithms: ['RS256'],
-        // @ts-ignore: the middleware expects an Express.js Request/Response objects
-      })(request, response ?? {}, (error) => {
-        if (error) {
-          reject(error);
-        } else {
-          // @ts-ignore: the Request object does not know about some additional fields
-          // like `decoded_token` and `session`
-          writeSessionContext<Request>(request);
-          resolve();
-        }
-      });
-    });
+      }
+    );
+
+    writeSessionContext<Request>(request, verifiedToken.payload);
+    return;
   };
 }
 
