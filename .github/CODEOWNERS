@@ -1,1 +1,22 @@
+# Shield (default)
 * @commercetools/shield-team-fe
+
+# First Contact
+/packages/application-components/src/components/detail-pages/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/dialogs/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/drawer/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/internals/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/main-pages/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/maintenance-page-layout/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/modal-pages/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/page-content-containers/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/portals-container/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/project-stamp/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/public-page-layout/ @commercetools/first-contact-team-fe
+/packages/application-components/src/components/tab-header/ @commercetools/first-contact-team-fe
+/visual-testing-app/ @commercetools/first-contact-team-fe
+/website/ @commercetools/first-contact-team-fe
+/packages/react-notifications/ @commercetools/first-contact-team-fe
+
+# Hooks
+/packages/application-components/src/hooks/ @commercetools/shield-team-fe @commercetools/first-contact-team-fe
