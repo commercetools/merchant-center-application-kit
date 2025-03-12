@@ -1,5 +1,4 @@
 export type TCliGlobalOptions = {
-  '--'?: string[];
   env?: string[];
 };
 

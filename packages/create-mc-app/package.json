@@ -24,7 +24,7 @@
     "@commercetools-frontend/application-config": "^23.1.0",
     "@types/babel__core": "^7.20.1",
     "@types/semver": "^7.5.1",
-    "cac": "6.7.14",
+    "commander": "^13.1.0",
     "execa": "5.1.1",
     "listr2": "5.0.8",
     "prettier": "2.8.8",
