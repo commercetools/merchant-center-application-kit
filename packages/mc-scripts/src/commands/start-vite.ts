@@ -43,6 +43,7 @@ async function run() {
       'process.env.NODE_ENV': JSON.stringify('development'),
     },
     server: {
+      open: true,
       port: DEFAULT_PORT,
       headers: compiledHeaders,
     },
