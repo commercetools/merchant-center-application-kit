@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 23.2.0
+
+### Patch Changes
+
+- [#3728](https://github.com/commercetools/merchant-center-application-kit/pull/3728) [`55bf796`](https://github.com/commercetools/merchant-center-application-kit/commit/55bf7965c817f43f3536cb87724d5600fda3fccf) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrade `dompurify` to v3
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@23.2.0
+
 ## 23.1.0
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 23.2.0
+
+### Patch Changes
+
+- [#3734](https://github.com/commercetools/merchant-center-application-kit/pull/3734) [`e3c226a`](https://github.com/commercetools/merchant-center-application-kit/commit/e3c226ad1e0fb42c4f0e4df4ab5df5b06073f8f7) Thanks [@emmenko](https://github.com/emmenko)! - Adjust auth routes for local dev
+
 ## 23.1.0
 
 ## 23.0.0

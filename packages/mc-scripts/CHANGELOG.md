@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 23.2.0
+
+### Patch Changes
+
+- [#3734](https://github.com/commercetools/merchant-center-application-kit/pull/3734) [`e3c226a`](https://github.com/commercetools/merchant-center-application-kit/commit/e3c226ad1e0fb42c4f0e4df4ab5df5b06073f8f7) Thanks [@emmenko](https://github.com/emmenko)! - Adjust auth routes for local dev
+
+- [#3741](https://github.com/commercetools/merchant-center-application-kit/pull/3741) [`20362f8`](https://github.com/commercetools/merchant-center-application-kit/commit/20362f877dc616da9ce0dd84dda55ef0e4995673) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - `Vite` configuration has been updated to automatically open a browser with the application when running it locally to match the behaviour we currently have when using `webpack`.
+
+- Updated dependencies [[`55bf796`](https://github.com/commercetools/merchant-center-application-kit/commit/55bf7965c817f43f3536cb87724d5600fda3fccf), [`e3c226a`](https://github.com/commercetools/merchant-center-application-kit/commit/e3c226ad1e0fb42c4f0e4df4ab5df5b06073f8f7)]:
+  - @commercetools-frontend/application-config@23.2.0
+  - @commercetools-frontend/mc-dev-authentication@23.2.0
+  - @commercetools-frontend/application-components@23.2.0
+  - @commercetools-frontend/mc-html-template@23.2.0
+  - @commercetools-frontend/assets@23.2.0
+  - @commercetools-frontend/babel-preset-mc-app@23.2.0
+  - @commercetools-frontend/constants@23.2.0
+
 ## 23.1.0
 
 ### Patch Changes

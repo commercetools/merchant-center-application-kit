@@ -1,5 +1,18 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 23.2.0
+
+### Minor Changes
+
+- [#3738](https://github.com/commercetools/merchant-center-application-kit/pull/3738) [`53d1e33`](https://github.com/commercetools/merchant-center-application-kit/commit/53d1e3305a0c53f672b8d6666abb7f7a175719d6) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We've updated how `console` messages are handled in local environments: previously, `console.warn` and `console.error` messages did not make tests to fail locally but they did in CI; this behaviour led to several cases where we did not realize about an issue until some code reached CI whereas it could be detected locally.
+
+  With this change we expect some errors to be caught earlier in the development lifecycle and thus shorten the time to fix them.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@23.2.0
+
 ## 23.1.0
 
 ### Patch Changes
