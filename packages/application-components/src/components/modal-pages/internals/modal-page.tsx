@@ -40,8 +40,8 @@ const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : (document.querySelector<HTMLElement>(
-      `#${PORTALS_CONTAINER_ID}`
-    ) as HTMLElement);
+        `#${PORTALS_CONTAINER_ID}`
+      ) as HTMLElement);
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
 // However, we need to explicitly define this otherwise the prop-types babel plugin

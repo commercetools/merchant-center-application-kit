@@ -61,8 +61,9 @@ const getContentShowAnimation = (size: TModalPageSize) =>
   keyframes({
     '0%': {
       opacity: 0,
-      transform: `translate3d(${size !== 'scale' ? stylesBySize[size].width : '30px'
-        }, 0, 0)`,
+      transform: `translate3d(${
+        size !== 'scale' ? stylesBySize[size].width : '30px'
+      }, 0, 0)`,
     },
     '100%': {
       opacity: 1,
@@ -78,14 +79,15 @@ const getContentHideAnimation = (size: TModalPageSize) =>
     },
     '100%': {
       opacity: 0,
-      transform: `translate3d(${size !== 'scale' ? stylesBySize[size].width : '30px'
-        }, 0, 0)`,
+      transform: `translate3d(${
+        size !== 'scale' ? stylesBySize[size].width : '30px'
+      }, 0, 0)`,
     },
   });
 
 export const ModalContent = styled(Content, {
   shouldForwardProp: (prop) => prop !== 'size',
-}) <{ size: TModalPageSize }>`
+})<{ size: TModalPageSize }>`
   position: absolute;
   top: 0;
   right: 0;
@@ -93,8 +95,8 @@ export const ModalContent = styled(Content, {
   width: ${({ size }) =>
     size !== 'scale'
       ? // In case we're using a specific size, we want it to be used until there's no space left.
-      // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
-      `min(${stylesBySize[size].width}, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE})) !important`
+        // In such scenario, we want the modal to be as wide as possible, but using the shared indentation width size.
+        `min(${stylesBySize[size].width}, calc(100% - ${PORTALS_CONTAINER_INDENTATION_SIZE})) !important`
       : stylesBySize.scale.width};
   display: flex;
   flex-direction: column;
