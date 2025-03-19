@@ -1,6 +1,6 @@
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { screen, renderComponent } from '../../../test-utils';
+import { screen, renderComponent, fireEvent } from '../../../test-utils';
 import FormMainPage from './form-main-page';
 
 const Content = () => (
@@ -24,7 +24,7 @@ const renderFormMainPage = (additionalProps = {}) => {
 };
 
 describe('rendering', () => {
-  it('should show form controls and handle button clicks', () => {
+  it('should show form controls and handle button clicks', async () => {
     const mockPrimaryOnClick = jest.fn();
     const mockSecondaryOnClick = jest.fn();
 
@@ -36,10 +36,11 @@ describe('rendering', () => {
       onSecondaryButtonClick: mockSecondaryOnClick,
     });
 
-    screen.getByText('Test Primary Button').click();
+    const primaryButton = await screen.findByText('Test Primary Button');
+    fireEvent.click(primaryButton);
     expect(mockPrimaryOnClick).toHaveBeenCalled();
-
-    screen.getByText('Test Secondary Button').click();
+    const secondaryButton = screen.getByText('Test Secondary Button');
+    fireEvent.click(secondaryButton);
     expect(mockSecondaryOnClick).toHaveBeenCalled();
   });
 
