@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
+import { useApolloClient } from '@apollo/client';
 import { useAllFeatureToggles } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
@@ -57,18 +58,24 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
+  const client = useApolloClient();
 
   const messageFromIFrameHandler = useCallback(
-    (event: MessageEvent) => {
+    async (event: MessageEvent) => {
       if (event.data.origin === window.location.origin) {
         switch (event.data.eventName) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
+            try {
+              await client.refetchQueries({ include: 'active' });
+            } catch (error) {
+              console.error('Error refetching queries:', error);
+            }
             break;
         }
       }
     },
-    [props]
+    [client, props]
   );
 
   // onLoad handler is called from the iFrame even where the URL is not valid

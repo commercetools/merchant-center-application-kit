@@ -23,6 +23,16 @@ type TApolloClientOptions = {
   restLink?: ApolloLink;
 };
 
+const skipIntrospectionOnRefetch = new ApolloLink((operation, forward) => {
+  if (
+    operation.operationName === 'IntrospectionQuery' &&
+    operation.getContext().skipIntrospection
+  ) {
+    return null;
+  }
+  return forward(operation);
+});
+
 const createApolloLink = (options: TApolloClientOptions = {}) => {
   const httpLink = createHttpLink({
     uri: `${getMcApiUrl()}/graphql`,
@@ -35,6 +45,7 @@ const createApolloLink = (options: TApolloClientOptions = {}) => {
   // The `httpLink` is terminating so it must be last, while `tokenRetryLink` and `errorLink`
   // wrap the links the their right.
   return from([
+    skipIntrospectionOnRefetch,
     headerLink,
     // See https://www.apollographql.com/docs/react/api/link/apollo-link-rest/#link-order
     // State & context links should happen before (to the left of) `restLink`.
