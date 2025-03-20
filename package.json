@@ -134,7 +134,6 @@
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "babel-plugin-typescript-to-proptypes": "1.4.2",
-    "cac": "6.7.14",
     "cross-env": "7.0.3",
     "cypress": "12.17.4",
     "dotenv": "16.4.5",
