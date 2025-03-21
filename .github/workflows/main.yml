@@ -39,11 +39,21 @@ jobs:
       - name: Running static type checking (Starter Template)
         run: pnpm typecheck:starters
 
-      - name: Running linters and tests
-        run: pnpm jest --projects jest.{eslint,stylelint,test}.config.js --reporters jest-silent-reporter
+      - name: Running linters
+        run: pnpm jest --projects jest.{eslint,stylelint}.config.js --reporters jest-silent-reporter
+        env:
+          CI: true
+
+      - name: Running tests for frontend packages
+        run: pnpm run test --reporters jest-silent-reporter
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
+
+      - name: Running tests for node packages
+        run: pnpm run test:node
+        env:
+          CI: true
 
   test_visual:
     runs-on: ubuntu-latest
