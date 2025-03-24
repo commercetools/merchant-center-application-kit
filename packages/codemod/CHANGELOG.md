@@ -1,5 +1,11 @@
 # @commercetools-frontend/codemod
 
+## 23.2.1
+
+### Patch Changes
+
+- [#3739](https://github.com/commercetools/merchant-center-application-kit/pull/3739) [`9dba306`](https://github.com/commercetools/merchant-center-application-kit/commit/9dba306fd920a53a027e1a4ded112c1a09eaefc3) Thanks [@emmenko](https://github.com/emmenko)! - Migrate CLI program to `commander`.
+
 ## 23.2.0
 
 ## 23.1.0
