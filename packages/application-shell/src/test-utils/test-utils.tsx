@@ -348,7 +348,10 @@ function createApplicationProviders<
   const memoryHistory =
     history ??
     createEnhancedHistory(
-      createMemoryHistory({ initialEntries: [initialRoute || '/'] })
+      createMemoryHistory({
+        initialEntries: [initialRoute || '/'],
+        getUserConfirmation: (_message, callback) => callback(true),
+      })
     );
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
