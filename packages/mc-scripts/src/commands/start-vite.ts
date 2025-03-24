@@ -1,4 +1,5 @@
 import path from 'path';
+import globalStyle from '@originjs/vite-plugin-global-style';
 import pluginGraphql from '@rollup/plugin-graphql';
 import pluginReact from '@vitejs/plugin-react-swc';
 import fs from 'fs-extra';
@@ -53,6 +54,7 @@ async function run() {
         jsxImportSource: '@emotion/react',
       }),
       pluginSvgr(),
+      globalStyle(),
       pluginMerchantCenterCustomization(applicationConfig),
     ],
   });

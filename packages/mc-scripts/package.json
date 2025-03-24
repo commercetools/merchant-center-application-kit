@@ -59,6 +59,7 @@
     "@commercetools/http-user-agent": "3.0.0",
     "@emotion/babel-plugin": "^11.13.5",
     "@formatjs/cli-lib": "^6.3.8",
+    "@originjs/vite-plugin-global-style": "^1.0.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.15",
     "@rollup/plugin-graphql": "2.0.5",
     "@rollup/pluginutils": "5.1.4",
