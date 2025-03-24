@@ -1,5 +1,13 @@
 # @commercetools-backend/express
 
+## 23.2.1
+
+### Patch Changes
+
+- [#3740](https://github.com/commercetools/merchant-center-application-kit/pull/3740) [`810893e`](https://github.com/commercetools/merchant-center-application-kit/commit/810893e7b0ba6a03c90c2235986884500d2c4b95) Thanks [@emmenko](https://github.com/emmenko)! - Define `engines.node` version requirement.
+
+  Additionally, simplify the JWT token validation using `jose`. As a result, the option `jwks` of `createSessionMiddleware` is no longer needed and is marked as deprecated.
+
 ## 23.2.0
 
 ## 23.1.0
