@@ -1,5 +1,14 @@
 # @commercetools-frontend/create-mc-app
 
+## 23.2.2
+
+### Patch Changes
+
+- [#3749](https://github.com/commercetools/merchant-center-application-kit/pull/3749) [`e9cd323`](https://github.com/commercetools/merchant-center-application-kit/commit/e9cd3235c235304809bf3cfe336c3e3e3ab85468) Thanks [@emmenko](https://github.com/emmenko)! - Fix parsing of CLI arguments
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@23.2.2
+
 ## 23.2.1
 
 ### Patch Changes
