@@ -1323,16 +1323,16 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/browser-history':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1378,28 +1378,28 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/actions-global':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^19.22.3
@@ -1559,7 +1559,7 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@types/lodash':
         specifier: ^4.14.198
@@ -1611,49 +1611,49 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/actions-global':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^19.22.3
@@ -1882,16 +1882,16 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2139,7 +2139,7 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-config':
-        specifier: ^23.2.1
+        specifier: ^23.2.2
         version: link:../application-config
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2179,13 +2179,13 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2216,7 +2216,7 @@ importers:
         specifier: ^7.22.15
         version: 7.22.15(@babel/core@7.22.17)(eslint@8.57.0)
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^23.2.1
+        specifier: ^23.2.2
         version: link:../babel-preset-mc-app
       '@rushstack/eslint-patch':
         specifier: ^1.3.3
@@ -2286,7 +2286,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^19.22.3
@@ -2332,7 +2332,7 @@ importers:
         specifier: ^7.22.17
         version: 7.22.17
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2439,7 +2439,7 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.14.0
@@ -2534,10 +2534,10 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       serialize-javascript:
         specifier: 6.0.2
@@ -2577,25 +2577,25 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-components':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2846,10 +2846,10 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.14.0
@@ -2901,19 +2901,19 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/actions-global':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../application-components
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^19.22.3
@@ -3019,7 +3019,7 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3107,10 +3107,10 @@ importers:
         specifier: ^7.22.15
         version: 7.26.10
       '@commercetools-frontend/browser-history':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../constants
       '@sentry/browser':
         specifier: 7.119.1
@@ -3172,37 +3172,37 @@ importers:
         specifier: 24.2.0
         version: 24.2.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.0.4)
       '@commercetools-frontend/actions-global':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: 19.22.7
@@ -3302,13 +3302,13 @@ importers:
         version: 24.2.5(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 23.2.1
+        specifier: 23.2.2
         version: link:../packages/mc-scripts
       '@commercetools-test-data/commons':
         specifier: 8.5.0
