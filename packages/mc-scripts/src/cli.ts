@@ -18,7 +18,7 @@ program
   .description('CLI to develop and build Merchant Center customizations.')
   .version(pkgJson.version)
   .option(
-    '--env [path]',
+    '--env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
   );
 
@@ -112,7 +112,7 @@ async function run() {
       'Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. The security headers are also compiled and injected into the "index.html".'
     )
     .option(
-      '--transformer [path]',
+      '--transformer <path>',
       '(optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Vercel, Netlify).'
     )
     .option(
@@ -206,11 +206,11 @@ async function run() {
       'Creates or updates a deployment preview for the Custom Application.'
     )
     .option(
-      '--alias [deployment-preview-alias]',
+      '--alias <deployment-preview-alias>',
       "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the command will prompt you for it."
     )
     .option(
-      '--url [deployment-preview-url]',
+      '--url <deployment-preview-url>',
       "(optional) URL to be used for the deployment preview. If you don't provide a URL, the command will prompt you for it."
     )
     .option(

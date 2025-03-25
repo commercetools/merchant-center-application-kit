@@ -40,17 +40,17 @@ const run = () => {
   program
     .argument('<project-directory>')
     .option(
-      '--application-type [type]',
+      '--application-type <type>',
       '(optional) The type of the application to create: custom-application (default) or custom-view.',
       applicationTypes['custom-application']
     )
     .option(
-      '--template [name]',
+      '--template <name>',
       '(optional) The name of the template to install.',
       availableTemplates.starter
     )
     .option(
-      '--template-version [version]',
+      '--template-version <version>',
       '(optional) The version of the template to install (either a git tag or a git branch of the "commercetools/merchant-center-application-kit" repository).',
       'main'
     )
@@ -65,19 +65,19 @@ const run = () => {
       false
     )
     .option(
-      '--entry-point-uri-path [value]',
+      '--entry-point-uri-path <value>',
       '(optional) The version of the template to install. (default: starter-<hash>)'
     )
     .option(
-      '--initial-project-key [value]',
+      '--initial-project-key <value>',
       '(optional) A commercetools project key used for the initial login in development. By default, the value is prompted in the terminal.'
     )
     .option(
-      '--cloud-identifier [value]',
+      '--cloud-identifier <value>',
       '(optional) Cloud region identifier. By default, the value is prompted in the terminal'
     )
     .option(
-      '--package-manager [value]',
+      '--package-manager <value>',
       '(optional) The preferred package manager to use: npm, yarn, pnpm.'
     )
     .action(async (projectDirectory: string, options: TCliCommandOptions) => {
