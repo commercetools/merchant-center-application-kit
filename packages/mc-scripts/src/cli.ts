@@ -18,7 +18,7 @@ program
   .description('CLI to develop and build Merchant Center customizations.')
   .version(pkgJson.version)
   .option(
-    '--env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
+    '-e, --env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
   );
 
@@ -42,6 +42,7 @@ async function run() {
     )
     .action(async () => {
       const globalOptions = program.opts<TCliGlobalOptions>();
+      console.log(globalOptions);
 
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
