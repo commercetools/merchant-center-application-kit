@@ -1,5 +1,3 @@
-/// <reference path="../../../../@types-extensions/graphql-core/index.d.ts" />
-/// <reference path="../../../../@types-extensions/graphql-settings/index.d.ts" />
 import chalk from 'chalk';
 import { type DocumentNode, print } from 'graphql';
 import { ClientError, GraphQLClient, type Variables } from 'graphql-request';
