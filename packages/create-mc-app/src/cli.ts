@@ -1,4 +1,4 @@
-import { cac } from 'cac';
+import { program } from 'commander';
 import { Listr, type ListrTask } from 'listr2';
 import pkgJson from '../package.json';
 import { applicationTypes, availableTemplates } from './constants';
@@ -12,7 +12,12 @@ import { throwIfNodeVersionIsNotSupported } from './validations';
 
 throwIfNodeVersionIsNotSupported(process.versions.node, pkgJson.engines.node);
 
-const cli = cac('create-mc-app');
+program
+  .name('create-mc-app')
+  .description(
+    'CLI to create a new Merchant Center customizations project based on the pre-defined templates.'
+  )
+  .version(pkgJson.version);
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -32,35 +37,32 @@ const messagesByApplicationType = {
 
 const run = () => {
   // Default command
-  cli
-    .command('[project-directory]')
-    .usage(
-      '[project-directory]\n\n  Bootstraps a new project using one of the predefined templates.'
-    )
+  program
+    .argument('<project-directory>')
     .option(
       '--application-type <type>',
       '(optional) The type of the application to create: custom-application (default) or custom-view.',
-      { default: applicationTypes['custom-application'] }
+      applicationTypes['custom-application']
     )
     .option(
       '--template <name>',
       '(optional) The name of the template to install.',
-      { default: availableTemplates.starter }
+      availableTemplates.starter
     )
     .option(
       '--template-version <version>',
       '(optional) The version of the template to install (either a git tag or a git branch of the "commercetools/merchant-center-application-kit" repository).',
-      { default: 'main' }
+      'main'
     )
     .option(
       '--skip-install',
       '(optional) Skip installing the dependencies after cloning the template.',
-      { default: false }
+      false
     )
     .option(
       '--yes',
       '(optional) If set, the prompt options with default values will be skipped.',
-      { default: false }
+      false
     )
     .option(
       '--entry-point-uri-path <value>',
@@ -72,18 +74,13 @@ const run = () => {
     )
     .option(
       '--cloud-identifier <value>',
-      '(optional) Cloud region identifier. (default: gcp-eu)'
+      '(optional) Cloud region identifier. By default, the value is prompted in the terminal'
     )
     .option(
       '--package-manager <value>',
       '(optional) The preferred package manager to use: npm, yarn, pnpm.'
     )
-    .action(async (projectDirectory, options: TCliCommandOptions) => {
-      if (!projectDirectory) {
-        cli.outputHelp();
-        return;
-      }
-
+    .action(async (projectDirectory: string, options: TCliCommandOptions) => {
       const releaseVersion = await getLatestReleaseVersion();
 
       hintOutdatedVersion(pkgJson.version, releaseVersion);
@@ -132,10 +129,7 @@ const run = () => {
       );
     });
 
-  cli.help();
-  cli.version(pkgJson.version);
-
-  cli.parse();
+  program.parse();
 };
 
 export default run;

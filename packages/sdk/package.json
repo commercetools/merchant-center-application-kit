@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "23.2.0",
+  "version": "23.2.2",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,35 +9,21 @@
     "directory": "packages/sdk"
   },
   "homepage": "https://docs.commercetools.com/merchant-center-customizations",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "preconstruct": {
-    "entrypoints": [
-      "./index.ts",
-      "./test-utils/index.ts"
-    ]
+    "entrypoints": ["./index.ts", "./test-utils/index.ts"]
   },
   "main": "dist/commercetools-frontend-sdk.cjs.js",
   "module": "dist/commercetools-frontend-sdk.esm.js",
-  "files": [
-    "dist",
-    "test-utils",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/constants": "23.2.0",
+    "@commercetools-frontend/constants": "23.2.2",
     "@commercetools/api-request-builder": "6.0.0",
     "@commercetools/http-user-agent": "3.0.0",
     "@commercetools/sdk-client": "3.0.0",
@@ -56,7 +42,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.5",
+    "@emotion/react": "^11.14.0",
     "@testing-library/react": "16.1.0",
     "@types/uuid": "^9.0.3",
     "jest-mock": "29.7.0",

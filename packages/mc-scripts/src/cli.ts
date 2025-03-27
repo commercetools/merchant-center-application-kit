@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { cac } from 'cac';
+import { program } from 'commander';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 import pkgJson from '../package.json';
@@ -13,7 +13,14 @@ import type {
 } from './types';
 import doesFileExist from './utils/does-file-exist';
 
-const cli = cac('mc-scripts');
+program
+  .name('mc-scripts')
+  .description('CLI to develop and build Merchant Center customizations.')
+  .version(pkgJson.version)
+  .option(
+    '--env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
+    `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
+  );
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -26,30 +33,19 @@ process.on('unhandledRejection', (err) => {
 const applicationDirectory = fs.realpathSync(process.cwd());
 
 async function run() {
-  cli.option(
-    '--env <path>',
-    `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
-  );
-
-  // Default command
-  cli
-    .command('')
-    .usage('\n\n  Develop and build Custom Applications.')
-    .action(() => {
-      cli.outputHelp();
-    });
-
   // Command: start
-  const usageStart =
-    'Starts the application in development mode using Webpack Dev Server.';
-  cli
-    .command('start', usageStart)
-    .usage(`\n\n  ${usageStart}`)
+  program
+    .command('start')
     .alias('dev')
-    .action(async (options: TCliGlobalOptions) => {
+    .description(
+      'Starts the application in development mode using Webpack Dev Server.'
+    )
+    .action(async () => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
+
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-      loadDotEnvFiles(options);
+      loadDotEnvFiles(globalOptions);
 
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.BABEL_ENV = 'development';
@@ -69,20 +65,21 @@ async function run() {
     });
 
   // Command: build
-  const usageBuild =
-    'Bundles the application in production mode. Outputs a "public" folder.';
-  cli
-    .command('build', usageBuild)
-    .usage(`\n\n  ${usageBuild}`)
+  program
+    .command('build')
+    .description(
+      'Bundles the application in production mode. Outputs a "public" folder.'
+    )
     .option(
       '--build-only',
       '(optional) If defined, the command only creates the production bundles without compiling the "index.html".',
-      { default: false }
+      false
     )
-    .action(async (options: TCliCommandBuildOptions & TCliGlobalOptions) => {
+    .action(async (options: TCliCommandBuildOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-      loadDotEnvFiles(options);
+      loadDotEnvFiles(globalOptions);
 
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.BABEL_ENV = 'production';
@@ -109,11 +106,11 @@ async function run() {
     });
 
   // Command: compile-html
-  const usageCompileHtml =
-    'Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. The security headers are also compiled and injected into the "index.html".';
-  cli
-    .command('compile-html', usageCompileHtml)
-    .usage(`\n\n  ${usageCompileHtml}`)
+  program
+    .command('compile-html')
+    .description(
+      'Compiles "index.html.template" file into a "index.html" with all the required runtime configuration. The security headers are also compiled and injected into the "index.html".'
+    )
     .option(
       '--transformer <path>',
       '(optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Vercel, Netlify).'
@@ -121,32 +118,34 @@ async function run() {
     .option(
       '--print-security-headers',
       '(optional) If defined, the compiled security headers are printed to stdout.',
-      { default: false }
+      false
     )
-    .action(
-      async (options: TCliCommandCompileHtmlOptions & TCliGlobalOptions) => {
-        // Load dotenv files into the process environment.
-        // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-        loadDotEnvFiles(options);
+    .action(async (options: TCliCommandCompileHtmlOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
 
-        // Do this as the first thing so that any code reading it knows the right env.
-        process.env.NODE_ENV = 'production';
-
-        const compileHtmlCommand = await import('./commands/compile-html');
-        await compileHtmlCommand.default(options);
-      }
-    );
-
-  // Command: serve
-  const usageServe =
-    'Serves previously built and compiled application from the "public" folder.';
-  cli
-    .command('serve', usageServe)
-    .usage(`\n\n  ${usageServe}`)
-    .action(async (options: TCliGlobalOptions) => {
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-      loadDotEnvFiles(options);
+      loadDotEnvFiles(globalOptions);
+
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
+
+      const compileHtmlCommand = await import('./commands/compile-html');
+      await compileHtmlCommand.default(options);
+    });
+
+  // Command: serve
+  program
+    .command('serve')
+    .description(
+      'Serves previously built and compiled application from the "public" folder.'
+    )
+    .action(async () => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
+
+      // Load dotenv files into the process environment.
+      // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+      loadDotEnvFiles(globalOptions);
 
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.NODE_ENV = 'production';
@@ -156,15 +155,17 @@ async function run() {
     });
 
   // Command: login
-  const usageLogin =
-    'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Merchant Center customization config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.';
-  cli
-    .command('login', usageLogin)
-    .usage(`\n\n  ${usageLogin}`)
-    .action(async (options: TCliGlobalOptions) => {
+  program
+    .command('login')
+    .description(
+      'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Merchant Center customization config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.'
+    )
+    .action(async () => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
+
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-      loadDotEnvFiles(options);
+      loadDotEnvFiles(globalOptions);
 
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.NODE_ENV = 'production';
@@ -174,36 +175,36 @@ async function run() {
     });
 
   // Command: config:sync
-  const usageConfigSync =
-    'Synchronizes the local Merchant Center customization config with the Merchant Center. A new Merchant Center customization will be created if none existed, otherwise it will be updated.';
-  cli
-    .command('config:sync', usageConfigSync)
-    .usage(`\n\n  ${usageConfigSync}`)
+  program
+    .command('config:sync')
+    .description(
+      'Synchronizes the local Merchant Center customization config with the Merchant Center. A new Merchant Center customization will be created if none existed, otherwise it will be updated.'
+    )
     .option(
       '--dry-run',
       '(optional) Executes the command but does not send any mutation request.',
-      { default: false }
+      false
     )
-    .action(
-      async (options: TCliCommandConfigSyncOptions & TCliGlobalOptions) => {
-        // Load dotenv files into the process environment.
-        // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-        loadDotEnvFiles(options);
+    .action(async (options: TCliCommandConfigSyncOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
 
-        // Do this as the first thing so that any code reading it knows the right env.
-        process.env.NODE_ENV = 'production';
+      // Load dotenv files into the process environment.
+      // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+      loadDotEnvFiles(globalOptions);
 
-        const configSyncCommand = await import('./commands/config-sync');
-        await configSyncCommand.default(options);
-      }
-    );
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
+
+      const configSyncCommand = await import('./commands/config-sync');
+      await configSyncCommand.default(options);
+    });
 
   // Command: deployment-previews:set
-  const usageDeploymentPreviewsSet =
-    'Creates or updates a deployment preview for the Custom Application.';
-  cli
-    .command('deployment-previews:set', usageDeploymentPreviewsSet)
-    .usage(`\n\n  ${usageDeploymentPreviewsSet}`)
+  program
+    .command('deployment-previews:set')
+    .description(
+      'Creates or updates a deployment preview for the Custom Application.'
+    )
     .option(
       '--alias <deployment-preview-alias>',
       "(optional) Alias to be used for the deployment preview. If you don't provide an alias, the command will prompt you for it."
@@ -215,31 +216,25 @@ async function run() {
     .option(
       '--dry-run',
       '(optional) Executes the command but does not send any mutation request.',
-      { default: false }
+      false
     )
-    .action(
-      async (
-        options: TCliCommandSetDeploymentPreviewOptions & TCliGlobalOptions
-      ) => {
-        // Load dotenv files into the process environment.
-        // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
-        loadDotEnvFiles(options);
+    .action(async (options: TCliCommandSetDeploymentPreviewOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
 
-        // Do this as the first thing so that any code reading it knows the right env.
-        process.env.NODE_ENV = 'production';
+      // Load dotenv files into the process environment.
+      // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
+      loadDotEnvFiles(globalOptions);
 
-        const deploymentsSetCommand = await import(
-          './commands/deployment-previews-set'
-        );
-        await deploymentsSetCommand.default(options);
-      }
-    );
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
 
-  cli.help();
-  cli.version(pkgJson.version);
+      const deploymentsSetCommand = await import(
+        './commands/deployment-previews-set'
+      );
+      await deploymentsSetCommand.default(options);
+    });
 
-  cli.parse(process.argv, { run: false });
-  await cli.runMatchedCommand();
+  program.parse();
 }
 
 // Load dotenv files into the process environment.

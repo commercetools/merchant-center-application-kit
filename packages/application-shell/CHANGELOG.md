@@ -1,5 +1,49 @@
 # @commercetools-frontend/application-shell
 
+## 23.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@23.2.2
+  - @commercetools-frontend/application-components@23.2.2
+  - @commercetools-frontend/application-config@23.2.2
+  - @commercetools-frontend/application-shell-connectors@23.2.2
+  - @commercetools-frontend/assets@23.2.2
+  - @commercetools-frontend/browser-history@23.2.2
+  - @commercetools-frontend/constants@23.2.2
+  - @commercetools-frontend/i18n@23.2.2
+  - @commercetools-frontend/l10n@23.2.2
+  - @commercetools-frontend/notifications@23.2.2
+  - @commercetools-frontend/permissions@23.2.2
+  - @commercetools-frontend/react-notifications@23.2.2
+  - @commercetools-frontend/sdk@23.2.2
+  - @commercetools-frontend/sentry@23.2.2
+  - @commercetools-frontend/url-utils@23.2.2
+
+## 23.2.1
+
+### Patch Changes
+
+- [#3747](https://github.com/commercetools/merchant-center-application-kit/pull/3747) [`02298bc`](https://github.com/commercetools/merchant-center-application-kit/commit/02298bc6f6585b9ee4bede20a1e543ac8e30f2de) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - The `test-utils` package used for rendering apps in the test environment creates an _in-memory_ router by default. We're adding a new property to it ([getUserConfirmation](https://v5.reactrouter.com/web/api/MemoryRouter/getuserconfirmation-func)) to cover for cases when logic wants to be used before a navigation is executed (eg: "warn on leave").
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@23.2.1
+  - @commercetools-frontend/application-components@23.2.1
+  - @commercetools-frontend/application-config@23.2.1
+  - @commercetools-frontend/application-shell-connectors@23.2.1
+  - @commercetools-frontend/assets@23.2.1
+  - @commercetools-frontend/browser-history@23.2.1
+  - @commercetools-frontend/constants@23.2.1
+  - @commercetools-frontend/i18n@23.2.1
+  - @commercetools-frontend/l10n@23.2.1
+  - @commercetools-frontend/notifications@23.2.1
+  - @commercetools-frontend/permissions@23.2.1
+  - @commercetools-frontend/react-notifications@23.2.1
+  - @commercetools-frontend/sdk@23.2.1
+  - @commercetools-frontend/sentry@23.2.1
+  - @commercetools-frontend/url-utils@23.2.1
+
 ## 23.2.0
 
 ### Patch Changes

@@ -49,7 +49,9 @@ async function run() {
     },
     plugins: [
       pluginGraphql() as Plugin,
-      pluginReact(),
+      pluginReact({
+        jsxImportSource: '@emotion/react',
+      }),
       pluginSvgr(),
       pluginMerchantCenterCustomization(applicationConfig),
     ],

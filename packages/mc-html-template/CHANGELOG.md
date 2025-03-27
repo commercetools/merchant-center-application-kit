@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-html-template
 
+## 23.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@23.2.2
+  - @commercetools-frontend/constants@23.2.2
+
+## 23.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@23.2.1
+  - @commercetools-frontend/constants@23.2.1
+
 ## 23.2.0
 
 ### Patch Changes
