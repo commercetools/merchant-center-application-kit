@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import type { Server } from 'node:http';
+import process from 'node:process';
 import chalk from 'chalk';
 import prompts from 'prompts';
 import { processConfig } from '@commercetools-frontend/application-config';
@@ -10,7 +11,7 @@ import CredentialsStorage from '../utils/credentials-storage';
 
 const credentialsStorage = new CredentialsStorage();
 const port = 3001;
-const clientId = `__local:${pkgJson.name}@${pkgJson.version}`;
+const clientIdentifier = `mc-scripts-${pkgJson.version}`;
 
 const startServer = (server: Server) =>
   new Promise((resolve, reject) => {
@@ -20,6 +21,9 @@ const startServer = (server: Server) =>
       .on('error', (error) => {
         console.error('Problem starting server', error);
         return reject(error);
+      })
+      .on('close', () => {
+        process.exit();
       });
   });
 
@@ -49,8 +53,8 @@ async function run() {
 
     const authUrl = new URL('/login/authorize', mcApiUrl);
     authUrl.searchParams.set('response_type', 'id_token');
-    authUrl.searchParams.set('response_mode', 'form_post');
-    authUrl.searchParams.set('client_id', clientId);
+    authUrl.searchParams.set('response_mode', 'query');
+    authUrl.searchParams.set('client_id', `__local:${clientIdentifier}`);
     authUrl.searchParams.set(
       'scope',
       [
@@ -62,11 +66,13 @@ async function run() {
     authUrl.searchParams.set('nonce', nonce);
 
     const server = createAuthCallbackServer({
+      clientIdentifier,
       state,
       nonce,
       onSuccess: (tokenContext) => {
         credentialsStorage.setToken(mcApiUrl, tokenContext);
 
+        console.log();
         console.log(chalk.green(`Login successful.`));
         console.log();
       },
