@@ -1,7 +1,10 @@
 import chalk from 'chalk';
 import { type DocumentNode, print } from 'graphql';
 import { ClientError, GraphQLClient, type Variables } from 'graphql-request';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  SUPPORTED_HEADERS,
+} from '@commercetools-frontend/constants';
 import type {
   TFetchMyOrganizationsFromCliQuery,
   TFetchMyOrganizationsFromCliQueryVariables,
@@ -112,18 +115,26 @@ async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
   requestOptions: {
     variables?: QueryVariables;
     mcApiUrl: string;
-    headers: HeadersInit;
+    headers: Record<string, string>;
   },
   retryCount: number = 0
 ): Promise<Data> {
+  const shouldUseExperimentalIdentityAuthFlow =
+    process.env.ENABLE_EXPERIMENTAL_IDENTITY_AUTH_FLOW === 'true';
+
   const token = credentialsStorage.getToken(requestOptions.mcApiUrl);
+
+  const tokenHeader: Record<string, string | null> =
+    shouldUseExperimentalIdentityAuthFlow
+      ? { [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${token}` }
+      : { 'x-mc-cli-access-token': token };
 
   const client = new GraphQLClient(`${requestOptions.mcApiUrl}/graphql`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'x-user-agent': userAgent,
-      ...(token ? { 'x-mc-cli-access-token': token } : {}),
+      ...(token ? tokenHeader : {}),
       ...requestOptions.headers,
     },
   });
