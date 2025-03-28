@@ -42,7 +42,6 @@ async function run() {
     )
     .action(async () => {
       const globalOptions = program.opts<TCliGlobalOptions>();
-      console.log(globalOptions);
 
       // Load dotenv files into the process environment.
       // This is essentially what `dotenv-cli` does, but it's now built into this CLI.
