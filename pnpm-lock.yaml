@@ -2735,9 +2735,6 @@ importers:
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
-      qss:
-        specifier: 2.0.3
-        version: 2.0.3
       querystring-es3:
         specifier: ^0.2.1
         version: 0.2.1
