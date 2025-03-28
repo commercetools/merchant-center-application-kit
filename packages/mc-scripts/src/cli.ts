@@ -18,7 +18,7 @@ program
   .description('CLI to develop and build Merchant Center customizations.')
   .version(pkgJson.version)
   .option(
-    '--env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
+    '-e, --env <path...>', // Variadic option. It allows multiple `--env` options to be provided.
     `(optional) Parses the file path as a dotenv file and adds the variables to the environment. Multiple flags are allowed.`
   );
 
