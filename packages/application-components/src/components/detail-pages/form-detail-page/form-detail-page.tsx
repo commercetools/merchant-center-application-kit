@@ -6,6 +6,7 @@ import type {
   SyntheticEvent,
 } from 'react';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import PageHeaderTitle from '../../internals/page-header-title';
 import CustomFormDetailPage from '../custom-form-detail-page';
 
@@ -91,7 +92,7 @@ type FormDetailPageProps = {
   /**
    * The Icon for the secondary button label
    */
-  iconLeftSecondaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
 };
 
 const FormDetailPage = ({
