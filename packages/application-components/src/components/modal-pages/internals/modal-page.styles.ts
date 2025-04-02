@@ -49,7 +49,7 @@ export const ModalOverlay = styled.div<{
     typeof zIndex === 'number' ? `${zIndex} !important` : 'inherit'};
   opacity: 0;
 
-  ${({ size }) => {
+  ${({ size }: { size: TModalPageSize; zIndex?: number }) => {
     const transitionDuration = stylesBySize[size].transitionTime;
     return css`
       animation: ${overlayShow} ${transitionDuration}ms ease-out forwards;

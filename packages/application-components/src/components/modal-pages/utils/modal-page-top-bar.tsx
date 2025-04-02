@@ -16,7 +16,7 @@ import Text from '@commercetools-uikit/text';
 import messages from '../../internals/messages';
 
 type TLargeIconWrapperProps = {
-  children: ReactElement;
+  children: ReactElement<TLargeIconWrapperProps>;
   size?: TSecondaryButtonIconProps['size'];
 };
 
@@ -37,7 +37,9 @@ export const LargeIconWrapper = (props: TLargeIconWrapperProps) => (
       }
     `}
   >
-    {cloneElement(props.children, { size: props.size })}
+    {cloneElement(props.children, {
+      size: props.size,
+    })}
   </span>
 );
 
