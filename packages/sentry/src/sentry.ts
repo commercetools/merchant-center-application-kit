@@ -110,6 +110,10 @@ export const boot = () => {
     const sentryScope = Sentry.getCurrentScope();
     sentryScope.setTag('role', 'frontend');
     sentryScope.setTag('applicationName', window.app.applicationName);
+    sentryScope.setTag(
+      'service',
+      `merchant-center-frontend-${window.app.applicationName}`
+    );
   }
 };
 
