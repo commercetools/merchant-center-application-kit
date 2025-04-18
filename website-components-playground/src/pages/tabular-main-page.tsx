@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import {
   TabularMainPage,
@@ -150,10 +151,10 @@ const TabularMainPageExample = () => {
           >
             <Switch>
               <Route path={`${match.path}/tabular-main-page/tab-one`}>
-                <Text.Body>{values['tab-one-content']}</Text.Body>
+                <Text.Body>{values['tab-one-content'] as ReactNode}</Text.Body>
               </Route>
               <Route path={`${match.path}/tabular-main-page/tab-two`}>
-                <Text.Body>{values['tab-two-content']}</Text.Body>
+                <Text.Body>{values['tab-two-content'] as ReactNode}</Text.Body>
               </Route>
               <Route
                 render={() => (

@@ -29,14 +29,17 @@ const QuickAccessTrigger = (props: TQuickAccessProps) => {
   //
   // We don't need to update this information when the project key changes,
   // as changing a project always results in a full page reload anyways.
-  const [pimIndexerState, setPimIndexerState] = useState(
-    pimIndexerStates.UNCHECKED
+  const [pimIndexerState, setPimIndexerState] = useState<
+    keyof typeof pimIndexerStates
+  >(pimIndexerStates.UNCHECKED);
+  const handlePimIndexerStateChange = useCallback(
+    (nextPimIndexerState: keyof typeof pimIndexerStates) => {
+      setPimIndexerState(nextPimIndexerState);
+    },
+    []
   );
-  const handlePimIndexerStateChange = useCallback((nextPimIndexerState) => {
-    setPimIndexerState(nextPimIndexerState);
-  }, []);
   const keyHandler = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       const hotKey = 'f';
       // avoid interfering with any key combinations using modifier keys
       if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey)
@@ -45,7 +48,7 @@ const QuickAccessTrigger = (props: TQuickAccessProps) => {
       // Let users close QuickAccess by pressing Escape
       if (
         event.key === 'Escape' &&
-        event.target.id === 'quick-access-search-input'
+        (event.target as HTMLElement).id === 'quick-access-search-input'
       ) {
         close();
         return;
@@ -61,9 +64,9 @@ const QuickAccessTrigger = (props: TQuickAccessProps) => {
         // react-modal uses it for example. We want to treat those elements
         // similar to document.body.
         // See https://stackoverflow.com/a/32912224
-        event.target.getAttribute('tabindex') !== '-1' &&
+        (event.target as HTMLElement).getAttribute('tabindex') !== '-1' &&
         // Do not prevent Quick Access from opening when a link has focus
-        event.target.nodeName !== 'A'
+        (event.target as HTMLElement).nodeName !== 'A'
       )
         return;
 

@@ -2,10 +2,10 @@ import {
   JSXElementConstructor,
   createElement,
   Suspense,
+  act,
   type ReactElement,
   type ReactNode,
 } from 'react';
-import PropTypes from 'prop-types';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import {
@@ -15,7 +15,6 @@ import {
 import { TestProviderFlopFlip } from '@flopflip/react-broadcast';
 import type { TFlags } from '@flopflip/types';
 import * as rtl from '@testing-library/react';
-import * as rtlHooks from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
@@ -388,9 +387,6 @@ function createApplicationProviders<
       </ApolloProviderWrapper>
     </IntlProvider>
   );
-  ApplicationProviders.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
 
   return {
     ApplicationProviders,
@@ -542,9 +538,6 @@ function createReduxProviders<
       </StoreProvider>
     </NotificationProviderForCustomComponent>
   );
-  ReduxProviders.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
 
   return {
     ReduxProviders,
@@ -590,18 +583,22 @@ export type TRenderHookOptions<
   AdditionalEnvironmentProperties extends {} = {},
   StoreState extends {} = {}
 > = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState> &
-  rtlHooks.RenderHookOptions<RenderedHookProps>;
+  rtl.RenderHookOptions<RenderedHookProps>;
 
 export type TRenderHookResult<
   RenderHookCallbackProps,
   RenderHookCallbackValue,
   AdditionalEnvironmentProperties extends {} = {},
   StoreState extends {} = {}
-> = rtlHooks.RenderHookResult<
-  RenderHookCallbackProps,
-  RenderHookCallbackValue
-> &
-  Pick<
+> = Omit<
+  rtl.RenderHookResult<RenderHookCallbackProps, RenderHookCallbackValue>,
+  'rerender' | 'result'
+> & {
+  result: {
+    current: RenderHookCallbackValue;
+  };
+  rerender: (props?: RenderHookCallbackProps) => void;
+} & Pick<
     TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>,
     'store' | 'history' | 'user' | 'project' | 'environment'
   >;
@@ -635,10 +632,8 @@ function renderHook<
     history,
   } = createApplicationProviders(options);
 
-  // eslint-disable-next-line testing-library/render-result-naming-convention
-  const rendered = rtlHooks.renderHook(callback, {
+  const rendered = rtl.renderHook(callback, {
     ...options,
-    // eslint-disable-next-line react/display-name
     wrapper: ({ children }) => (
       <ApplicationProviders>
         <ReduxProviders>
@@ -658,14 +653,28 @@ function renderHook<
   };
 }
 
-// re-export everything
-export * from '@testing-library/react';
-
 // namespace for hooks related helpers
 const hooks = {
-  ...rtlHooks,
   renderHook,
 };
+
+// Custom events for async focus and blur.
+// This helps abstracting the act() call from the tests.
+type TCustomFireEventApi = typeof rtl.fireEvent & {
+  asyncFocus: (element: HTMLElement) => Promise<void>;
+  asyncBlur: (element: HTMLElement) => Promise<void>;
+};
+
+const customFireEvent = rtl.fireEvent as TCustomFireEventApi;
+customFireEvent.asyncFocus = (element) => {
+  return act(async () => element.focus());
+};
+customFireEvent.asyncBlur = (element) => {
+  return act(async () => element.blur());
+};
+
+// re-export everything
+export * from '@testing-library/react';
 
 export {
   renderApp,
@@ -675,4 +684,5 @@ export {
   denormalizePermissions,
   denormalizeActionRights,
   denormalizeDataFences,
+  customFireEvent,
 };

@@ -2,19 +2,15 @@ import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
 type Props = {
-  locale: string;
+  locale?: string;
   children: ReactNode;
 };
-const defaultProps: Pick<Props, 'locale'> = {
-  locale: 'en',
-};
 
-const Suite = (props: Props) => (
-  <IntlProvider locale={props.locale}>
-    <div>{props.children}</div>
+const Suite = ({ locale = 'en', children }: Props) => (
+  <IntlProvider locale={locale}>
+    <div>{children}</div>
   </IntlProvider>
 );
 Suite.displayName = 'Suite';
-Suite.defaultProps = defaultProps;
 
 export default Suite;
