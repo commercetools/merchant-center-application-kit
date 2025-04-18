@@ -2,9 +2,10 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
 
 const name = 'AppKit Playground Application';
 
-const productionUrl = process.env.VERCEL_ENV !== 'production' && Boolean(process.env.VERCEL_URL) ?
-  `https://${process.env.VERCEL_URL}` :
-  process.env.APP_URL;
+const productionUrl =
+  process.env.VERCEL_ENV !== 'production' && Boolean(process.env.VERCEL_URL)
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.APP_URL;
 
 /**
  * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
@@ -32,6 +33,7 @@ const config = {
       'https://327619347ab84c8e9702a1dc16460198@o32365.ingest.sentry.io/1549825',
     echoServerApiUrl: '${env:ECHO_SERVER_URL}',
     ldClientSideId: '${env:LD_CLIENT_ID_STAGING}',
+    disableSsoMigrationNotification: true,
   },
   headers: {
     csp: {
