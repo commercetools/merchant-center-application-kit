@@ -279,6 +279,11 @@ function loginByOidc(
               STORAGE_KEYS.SESSION_SCOPE,
               sessionScope
             );
+            // Disable sso migration notification for tests
+            win.localStorage.setItem(
+              'isSsoMigrationNotificationClosed',
+              'true'
+            );
             if (commandOptions.onBeforeLoad) {
               commandOptions.onBeforeLoad(win);
             }
