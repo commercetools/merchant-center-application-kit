@@ -42,6 +42,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import RouteCatchAll from '../route-catch-all';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import SsoMigrationNotification from '../sso-migration-notification';
 import ThemeSwitcher from '../theme-switcher';
 
 type TApplicationShellAuthenticationProps = {
@@ -202,6 +203,7 @@ export const ApplicationShellAuthenticated = (
                   >
                     <>
                       <ThemeSwitcher />
+                      <SsoMigrationNotification />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
