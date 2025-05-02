@@ -244,7 +244,7 @@
     "string": "Your trial has expired"
   },
   "ProjectNotFound.paragraph1": {
-    "string": "The Project you are looking for either does not exists or you are not authorized to view it. Select another Project to view."
+    "string": "The Project you are looking for either does not exist or you are not authorized to view it. Select another Project to view."
   },
   "ProjectNotFound.paragraph2": {
     "string": "Please contact your system administrator if you have any further questions."
