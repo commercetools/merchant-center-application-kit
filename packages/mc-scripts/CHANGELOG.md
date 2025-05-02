@@ -1,5 +1,38 @@
 # @commercetools-frontend/mc-scripts
 
+## 23.2.3
+
+### Patch Changes
+
+- [#3754](https://github.com/commercetools/merchant-center-application-kit/pull/3754) [`9888b5e`](https://github.com/commercetools/merchant-center-application-kit/commit/9888b5e485fad03416cd346261baa4bb19fa4a39) Thanks [@emmenko](https://github.com/emmenko)! - Use `moduleResolution: bundler` to be compatible with ESM packages.
+
+- [#3751](https://github.com/commercetools/merchant-center-application-kit/pull/3751) [`6e1fb48`](https://github.com/commercetools/merchant-center-application-kit/commit/6e1fb48d22eb84463cc0698b76b4ec7a9e1a59a8) Thanks [@emmenko](https://github.com/emmenko)! - Add option `-e` as short flag for `--env`.
+
+  Note that when using the global option `--env` (one or multiple times) before a command, you need to declare it as following:
+
+  - Separating the global options from the command with `--`, otherwise the command is considered an option of `--env`:
+
+  ```
+  mc-scripts --env .env.local -- start
+  ```
+
+  - Using the `=` separator for each `--env` option:
+
+  ```
+  mc-scripts --env=.env.local --env=.env.defaults start
+  ```
+
+- [#3753](https://github.com/commercetools/merchant-center-application-kit/pull/3753) [`122126a`](https://github.com/commercetools/merchant-center-application-kit/commit/122126a294187519027961e02631afe9e736e81a) Thanks [@emmenko](https://github.com/emmenko)! - Support experimental auth flow with identity for `login` command.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@23.2.3
+  - @commercetools-frontend/application-config@23.2.3
+  - @commercetools-frontend/assets@23.2.3
+  - @commercetools-frontend/babel-preset-mc-app@23.2.3
+  - @commercetools-frontend/constants@23.2.3
+  - @commercetools-frontend/mc-dev-authentication@23.2.3
+  - @commercetools-frontend/mc-html-template@23.2.3
+
 ## 23.2.2
 
 ### Patch Changes
