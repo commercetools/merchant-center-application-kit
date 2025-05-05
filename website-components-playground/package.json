@@ -34,7 +34,7 @@
     "react-dom": "19.0.0",
     "react-intl": "^7.1.4",
     "react-router-dom": "5.3.4",
-    "react-select": "5.8.0"
+    "react-select": "5.10.1"
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:*",

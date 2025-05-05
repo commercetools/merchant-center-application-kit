@@ -16,6 +16,7 @@ import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { WorldIcon, InformationIcon } from '@commercetools-uikit/icons';
 import SelectInput, {
+  type TOption,
   type TCustomEvent,
 } from '@commercetools-uikit/select-input';
 import Spacings from '@commercetools-uikit/spacings';
@@ -30,7 +31,7 @@ type Props = {
 
 const LOCALE_SWITCHER_LABEL_ID = 'locale-switcher-label';
 
-export const SingleValue = (props: SingleValueProps) => {
+export const SingleValue = (props: SingleValueProps<TOption>) => {
   return (
     <Spacings.Inline scale="xs" alignItems="center">
       <WorldIcon size="big" />
@@ -40,7 +41,7 @@ export const SingleValue = (props: SingleValueProps) => {
 };
 SingleValue.displayName = 'SingleValue';
 
-const PatchedValueContainer = (props: ValueContainerProps) => (
+const PatchedValueContainer = (props: ValueContainerProps<TOption>) => (
   <SelectInput.ValueContainer
     {...props}
     innerProps={{
@@ -50,12 +51,12 @@ const PatchedValueContainer = (props: ValueContainerProps) => (
 );
 PatchedValueContainer.displayName = 'PatchedValueContainer';
 
-const CustomMenuList = (props: MenuListProps) => {
+const CustomMenuList = (props: MenuListProps<TOption>) => {
   return <components.MenuList {...props}>{props.children}</components.MenuList>;
 };
 
 const CustomGroupHeading = (
-  props: GroupHeadingProps & { setIsOpen: (value: boolean) => void }
+  props: GroupHeadingProps<TOption> & { setIsOpen: (value: boolean) => void }
 ) => {
   const { setIsOpen, ...groupProps } = props;
   return (
@@ -116,7 +117,7 @@ const LocaleSwitcher = (props: Props) => {
           SingleValue,
           ValueContainer: PatchedValueContainer,
           MenuList: CustomMenuList,
-          GroupHeading: (groupProps: GroupHeadingProps) => (
+          GroupHeading: (groupProps: GroupHeadingProps<TOption>) => (
             <CustomGroupHeading {...groupProps} setIsOpen={openModal} />
           ),
         }}

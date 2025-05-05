@@ -1788,8 +1788,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       react-select:
-        specifier: 5.8.0
-        version: 5.8.0(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 5.10.1
+        version: 5.10.1(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       redux-logger:
         specifier: 3.0.6
         version: 3.0.6
@@ -3524,8 +3524,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4(react@19.0.0)
       react-select:
-        specifier: 5.8.0
-        version: 5.8.0(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 5.10.1
+        version: 5.10.1(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@commercetools-frontend/application-config':
         specifier: workspace:*
@@ -13417,12 +13417,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  react-select@5.8.0:
-    resolution: {integrity: sha512-TfjLDo58XrhP6VG5M/Mi56Us0Yt8X7xD6cDybC7yoRMUNm7BGO7qk8J0TLQOua/prb8vUOtsfnXZwfm30HGsAA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   react-style-singleton@2.2.3:
     resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
@@ -29785,23 +29779,6 @@ snapshots:
       react: 19.0.0
 
   react-select@5.10.1(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      '@babel/runtime': 7.27.0
-      '@emotion/cache': 11.14.0
-      '@emotion/react': 11.14.0(@types/react@19.1.2)(react@19.0.0)
-      '@floating-ui/dom': 1.6.13
-      '@types/react-transition-group': 4.4.12(@types/react@19.1.2)
-      memoize-one: 6.0.0
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-transition-group: 4.4.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      use-isomorphic-layout-effect: 1.2.0(@types/react@19.1.2)(react@19.0.0)
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
-
-  react-select@5.8.0(@types/react@19.1.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@emotion/cache': 11.14.0
