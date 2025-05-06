@@ -18,7 +18,7 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
-import SelectInput from '@commercetools-uikit/select-input';
+import SelectInput, { TOption } from '@commercetools-uikit/select-input';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import type {
@@ -38,16 +38,15 @@ type Props = {
 type OptionType = Pick<
   TProject,
   'key' | 'name' | 'suspension' | 'expiry' | 'isProductionProject'
-> & {
-  label: string;
-};
+> &
+  TOption;
 
 const PROJECT_SWITCHER_LABEL_ID = 'project-switcher-label';
 
 export const ValueContainer = ({
   children,
   ...restProps
-}: ValueContainerProps) => {
+}: ValueContainerProps<TOption>) => {
   return (
     <Text.Body fontWeight="medium" as="span">
       <SelectInput.ValueContainer {...restProps}>
@@ -74,7 +73,7 @@ const ProjectStampsList = (props: TProjectStampsListProps) => (
   </Spacings.Stack>
 );
 
-export const ProjectSwitcherOption = (props: OptionProps) => {
+export const ProjectSwitcherOption = (props: OptionProps<TOption>) => {
   const project = props.data as OptionType;
 
   return (
@@ -124,7 +123,7 @@ const mapProjectsToOptions = memoize((projects) => {
   ];
 });
 
-const CustomMenuList = (props: MenuListProps) => {
+const CustomMenuList = (props: MenuListProps<TOption>) => {
   return (
     <div>
       <components.MenuList {...props}>{props.children}</components.MenuList>
@@ -132,7 +131,7 @@ const CustomMenuList = (props: MenuListProps) => {
   );
 };
 
-const Control = (props: ControlProps) => (
+const Control = (props: ControlProps<TOption>) => (
   <components.Control
     {...props}
     css={css`
