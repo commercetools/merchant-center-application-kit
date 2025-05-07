@@ -11,14 +11,14 @@ describe('Custom View: Notifications inside iframe', () => {
     });
   });
 
-  it('should open the Product stats Custom View and display a success notification triggered from within the iframe', () => {
-    cy.findByRole('button', { name: /Product stats/i })
+  it('should open the Demo Custom View and display a success notification triggered from within the iframe', () => {
+    cy.findByRole('button', { name: /Demo Custom View/i })
       .should('be.visible')
       .click();
 
-    cy.get('iframe[title="Custom View: Product stats"]').should('exist');
+    cy.get('iframe[title="Custom View: Demo Custom View"]').should('exist');
 
-    cy.get('iframe[title="Custom View: Product stats"]')
+    cy.get('iframe[title="Custom View: Demo Custom View"]')
       .its('0.contentDocument.body')
       .should('not.be.empty')
       .then(cy.wrap)
