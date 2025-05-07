@@ -22,6 +22,18 @@ function vitePluginSvgr(): Plugin {
             icon: false,
             svgoConfig: {
               plugins: [
+                // plugin defined inline
+                // {
+                //   name: 'customPlugin',
+                //   type: 'perItem',
+                //   fn: (ast, params, info) => {
+                //     console.log(JSON.stringify(ast.name));
+                //     if (ast.name === 'image') {
+                //       console.log('image found', ast);
+                //     }
+                //     return ast;
+                //   },
+                // },
                 {
                   // https://github.com/svg/svgo#default-preset
                   name: 'preset-default',

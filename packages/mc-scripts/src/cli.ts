@@ -90,6 +90,7 @@ async function run() {
       if (shouldUseExperimentalBundler) {
         console.log('Experimental Vite bundler enabled! 🚀');
         console.log('');
+        console.log('super special edition');
       }
 
       const buildCommand = shouldUseExperimentalBundler
