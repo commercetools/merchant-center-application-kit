@@ -9,6 +9,7 @@ import Text from '@commercetools-uikit/text';
 import messages from './messages';
 import styles from './welcome.module.css';
 import WebDeveloperSvg from './web-developer.svg';
+import AssociateRoleSvg from './associate-role-customer-business-unit-illustration.react.svg';
 
 const WrapWith = (props) =>
   props.condition ? props.wrapper(props.children) : props.children;
@@ -78,6 +79,7 @@ const Welcome = () => {
               width="100%"
               height="100%"
             />
+            <AssociateRoleSvg />
           </div>
         </div>
 
