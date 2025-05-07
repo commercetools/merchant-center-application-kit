@@ -7,12 +7,14 @@ import {
 } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useApolloClient } from '@apollo/client';
 import type { CustomViewData } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleButton from '@commercetools-uikit/accessible-button';
 import Constraints from '@commercetools-uikit/constraints';
 import { designTokens } from '@commercetools-uikit/design-system';
-import { WindowEyeIcon } from '@commercetools-uikit/icons';
+import FlatButton from '@commercetools-uikit/flat-button';
+import { RefreshIcon, WindowEyeIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import useCustomViewLocatorSelector from '../../../hooks/use-custom-view-locator-selector';
@@ -106,6 +108,8 @@ const Separator = styled.span`
 `;
 
 function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
+  const client = useApolloClient();
+
   const [selectedCustomView, setSelectedCustomView] =
     useState<CustomViewData | null>(null);
   const { customViews, error, loading } = useCustomViewsConnector({
@@ -127,36 +131,65 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
     return null;
   }
 
+  const handleRefresh = async () => {
+    await client.refetchQueries({
+      include: 'active',
+      onQueryUpdated: (observableQuery) => {
+        const ignoredQueries = [
+          'FetchProject',
+          'FetchLoggedInUser',
+          'FetchCustomViewsByLocator',
+          'FetchUserProjects',
+          'FetchApplicationsMenu',
+        ];
+        return observableQuery.queryName
+          ? !ignoredQueries.includes(observableQuery.queryName)
+          : true;
+      },
+    });
+  };
+
   return (
     <Wrapper shouldRender={customViews.length > 0} margin={props.margin || '0'}>
       <Container>
         <Constraints.Horizontal max="scale">
           <Spacings.Inline
             scale="s"
-            justifyContent="flex-start"
+            justifyContent="space-between"
             alignItems="center"
           >
-            <SelectorLabel>
-              <WindowEyeIcon size="medium" color="neutral60" />
-              <Text.Detail tone="secondary" intlMessage={messages.title} />
-            </SelectorLabel>
-            {customViews.map((customView, index) => {
-              const isNotLastItem = index !== customViews.length - 1;
-              return (
-                <Fragment key={customView.id}>
-                  <CustomViewSelectorItem
-                    selected={selectedCustomView?.id === customView.id}
-                    onClick={() => {
-                      setSelectedCustomView(customView);
-                    }}
-                    label={customView.defaultLabel}
-                  />
-                  {isNotLastItem && <Separator />}
-                </Fragment>
-              );
-            })}
+            <Spacings.Inline
+              scale="s"
+              justifyContent="flex-start"
+              alignItems="center"
+            >
+              <SelectorLabel>
+                <WindowEyeIcon size="medium" color="neutral60" />
+                <Text.Detail tone="secondary" intlMessage={messages.title} />
+              </SelectorLabel>
+              {customViews.map((customView, index) => {
+                const isNotLastItem = index !== customViews.length - 1;
+                return (
+                  <Fragment key={customView.id}>
+                    <CustomViewSelectorItem
+                      selected={selectedCustomView?.id === customView.id}
+                      onClick={() => {
+                        setSelectedCustomView(customView);
+                      }}
+                      label={customView.defaultLabel}
+                    />
+                    {isNotLastItem && <Separator />}
+                  </Fragment>
+                );
+              })}
+            </Spacings.Inline>
+            <FlatButton
+              tone="primary"
+              label="Refresh"
+              icon={<RefreshIcon size="medium" color="primary" />}
+              onClick={handleRefresh}
+            />
           </Spacings.Inline>
-
           {selectedCustomView && (
             <CustomViewLoader
               customView={selectedCustomView}
