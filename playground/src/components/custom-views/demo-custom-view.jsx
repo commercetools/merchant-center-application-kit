@@ -16,7 +16,6 @@ import DataTable from '@commercetools-uikit/data-table';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import PrimaryButton from '@commercetools-uikit/primary-button';
-import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 
@@ -58,14 +57,6 @@ function ChannelsCustomView() {
     });
   };
 
-  const handleErrorNotification = () => {
-    showNotification({
-      kind: NOTIFICATION_KINDS_SIDE.error,
-      domain: DOMAINS.SIDE,
-      text: 'An error occurred! Please try again.',
-    });
-  };
-
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -94,10 +85,6 @@ function ChannelsCustomView() {
           <PrimaryButton
             label="Show Success Notification"
             onClick={handleSuccessNotification}
-          />
-          <SecondaryButton
-            label="Show Error Notification"
-            onClick={handleErrorNotification}
           />
         </Spacings.Inline>
       </Spacings.Stack>
