@@ -329,10 +329,13 @@ function loginByOidc(
 
 function fillLoginForm(userCredentials: LoginCredentials) {
   function attemptLogin(attemptsLeft = 3) {
-    cy.log(`Attempts left: ${attemptsLeft}`);
+    if (attemptsLeft <= 0) {
+      throw new Error(
+        `All login attempts exhausted. Please check your credentials.`
+      );
+    }
 
-    // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
-    cy.intercept('POST', '**/tokens').as('loginRequest');
+    cy.log(`Attempts left: ${attemptsLeft}`);
 
     // eslint-disable-next-line cypress/unsafe-to-chain-command
     cy.get('input[name=email]').clear().type(userCredentials.email);
@@ -341,21 +344,24 @@ function fillLoginForm(userCredentials: LoginCredentials) {
       log: false,
     });
     cy.get('button').contains('Sign in').click();
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cy.wait('@loginRequest').then((interception: any) => {
-      const { statusCode } = interception.response;
-      cy.log('Login request status code:', statusCode);
-
-      if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
-        // We wait for something between 1 and 2 seconds before retrying
-        cy.wait(1000 + Math.random() * 100);
-        attemptLogin(attemptsLeft - 1);
-      } else {
-        cy.log('Login successful');
-      }
-    });
   }
+
+  // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
+  cy.intercept('POST', '**/tokens').as('loginRequest');
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  cy.wait('@loginRequest').then((interception: any) => {
+    const { statusCode } = interception.response;
+    cy.log('Login request status code:', statusCode);
+
+    if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
+      // We wait for something between 1 and 2 seconds before retrying
+      cy.wait(1000 + Math.random() * 100);
+      attemptLogin(attemptsLeft - 1);
+    } else {
+      cy.log('Login successful');
+    }
+  });
 
   attemptLogin(Cypress.config('maxLoginAttempts'));
 }
