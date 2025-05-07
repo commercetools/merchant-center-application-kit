@@ -334,8 +334,10 @@ function fillLoginForm(userCredentials: LoginCredentials) {
     // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
     cy.intercept('POST', '**/tokens').as('loginRequest');
 
-    cy.get('input[name=email]').type(userCredentials.email);
-    cy.get('input[name=password]').type(userCredentials.password, {
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    cy.get('input[name=email]').clear().type(userCredentials.email);
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    cy.get('input[name=password]').clear().type(userCredentials.password, {
       log: false,
     });
     cy.get('button').contains('Sign in').click();
