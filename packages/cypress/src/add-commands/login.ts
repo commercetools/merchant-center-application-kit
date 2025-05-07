@@ -5,7 +5,11 @@ import {
   type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
+import {
+  STORAGE_KEYS,
+  OIDC_RESPONSE_TYPES,
+  HTTP_STATUS_CODES,
+} from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;
@@ -324,11 +328,34 @@ function loginByOidc(
 /* Utilities */
 
 function fillLoginForm(userCredentials: LoginCredentials) {
-  cy.get('input[name=email]').type(userCredentials.email);
-  cy.get('input[name=password]').type(userCredentials.password, {
-    log: false,
-  });
-  cy.get('button').contains('Sign in').click();
+  function attemptLogin(attemptsLeft = 3) {
+    cy.log(`Attempts left: ${attemptsLeft}`);
+
+    // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
+    cy.intercept('POST', '**/tokens').as('loginRequest');
+
+    cy.get('input[name=email]').type(userCredentials.email);
+    cy.get('input[name=password]').type(userCredentials.password, {
+      log: false,
+    });
+    cy.get('button').contains('Sign in').click();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.wait('@loginRequest').then((interception: any) => {
+      const { statusCode } = interception.response;
+      cy.log('Login request status code:', statusCode);
+
+      if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
+        // We wait for something between 1 and 2 seconds before retrying
+        cy.wait(1000 + Math.random() * 100);
+        attemptLogin(attemptsLeft - 1);
+      } else {
+        cy.log('Login successful');
+      }
+    });
+  }
+
+  attemptLogin(Cypress.config('maxLoginAttempts'));
 }
 
 function isLocalhost() {
