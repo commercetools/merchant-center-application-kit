@@ -328,6 +328,9 @@ function loginByOidc(
 /* Utilities */
 
 function fillLoginForm(userCredentials: LoginCredentials) {
+  // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
+  cy.intercept('POST', '**/tokens').as('loginRequest');
+
   function attemptLogin(attemptsLeft = 3) {
     if (attemptsLeft <= 0) {
       throw new Error(
@@ -344,24 +347,21 @@ function fillLoginForm(userCredentials: LoginCredentials) {
       log: false,
     });
     cy.get('button').contains('Sign in').click();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.wait('@loginRequest').then((interception: any) => {
+      const { statusCode } = interception.response;
+      cy.log('Login request status code:', statusCode);
+
+      if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
+        // We wait for something between 1 and 2 seconds before retrying
+        cy.wait(1000 + Math.random() * 100);
+        attemptLogin(attemptsLeft - 1);
+      } else {
+        cy.log('Login successful');
+      }
+    });
   }
-
-  // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
-  cy.intercept('POST', '**/tokens').as('loginRequest');
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  cy.wait('@loginRequest').then((interception: any) => {
-    const { statusCode } = interception.response;
-    cy.log('Login request status code:', statusCode);
-
-    if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
-      // We wait for something between 1 and 2 seconds before retrying
-      cy.wait(1000 + Math.random() * 100);
-      attemptLogin(attemptsLeft - 1);
-    } else {
-      cy.log('Login successful');
-    }
-  });
 
   attemptLogin(Cypress.config('maxLoginAttempts'));
 }
