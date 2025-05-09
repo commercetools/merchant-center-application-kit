@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useApolloClient } from '@apollo/client';
-import type { QueryFunctionOptions } from '@apollo/client/react';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   useApplicationContext,
@@ -26,9 +25,6 @@ export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
   : never;
 export type Config = {
   environment: TApplicationContext<{}>['environment'];
-  queryOptions?: {
-    onError?: QueryFunctionOptions['onError'];
-  };
 };
 type TAdditionalEnvironmentProperties = {
   mcProxyApiUrl?: string;
@@ -171,7 +167,6 @@ function useApplicationsMenu<Key extends MenuKey>(
         false
       : // Development environment
         !hasWrittenToCache,
-    onError: config.queryOptions?.onError,
     fetchPolicy: config.environment.servedByProxy
       ? 'cache-first'
       : 'cache-only',

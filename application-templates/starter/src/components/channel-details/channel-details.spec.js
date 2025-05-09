@@ -228,6 +228,7 @@ describe('rendering', () => {
     });
   });
   it('should display a key field validation message if the submitted key value is duplicated', async () => {
+    jest.spyOn(console, 'error').mockImplementation();
     useMockServerHandlers(
       fetchChannelDetailsQueryHandler,
       updateChannelDetailsHandlerWithDuplicateFieldError
@@ -279,6 +280,7 @@ describe('notifications', () => {
     within(notification).getByText(/channel .+ updated/i);
   });
   it('should render an error notification if fetching channel details resulted in an error', async () => {
+    jest.spyOn(console, 'error').mockImplementation();
     useMockServerHandlers(fetchChannelDetailsQueryHandlerWithError);
     renderApp();
     await screen.findByText(
