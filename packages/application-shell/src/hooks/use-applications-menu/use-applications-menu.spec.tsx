@@ -1,4 +1,3 @@
-import { mocked } from 'jest-mock';
 import upperFirst from 'lodash/upperFirst';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type {
@@ -6,12 +5,7 @@ import type {
   ApplicationMenuLinksForDevelopmentConfig,
 } from '@commercetools-frontend/constants';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
-import {
-  screen,
-  renderApp,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '../../test-utils';
+import { screen, renderApp, waitForElementToBeRemoved } from '../../test-utils';
 import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import type { Config, MenuLoaderResult } from './use-applications-menu';
