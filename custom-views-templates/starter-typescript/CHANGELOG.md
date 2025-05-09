@@ -1,5 +1,28 @@
 # @commercetools-applications/merchant-center-custom-view-template-starter-typescript
 
+## 23.3.0
+
+### Patch Changes
+
+- [#3765](https://github.com/commercetools/merchant-center-application-kit/pull/3765) [`6aedb11`](https://github.com/commercetools/merchant-center-application-kit/commit/6aedb11f59232070c5709a0d126895c7a32bb847) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade UI Kit versions to `^19.24.0`
+
+- Updated dependencies [[`16afb7a`](https://github.com/commercetools/merchant-center-application-kit/commit/16afb7a1aae90cd264126cf0d8f85dfe74509926), [`6aedb11`](https://github.com/commercetools/merchant-center-application-kit/commit/6aedb11f59232070c5709a0d126895c7a32bb847)]:
+  - @commercetools-frontend/i18n@23.3.0
+  - @commercetools-frontend/application-components@23.3.0
+  - @commercetools-frontend/application-shell@23.3.0
+  - @commercetools-frontend/mc-scripts@23.3.0
+  - @commercetools-frontend/actions-global@23.3.0
+  - @commercetools-frontend/application-config@23.3.0
+  - @commercetools-frontend/application-shell-connectors@23.3.0
+  - @commercetools-frontend/assets@23.3.0
+  - @commercetools-frontend/babel-preset-mc-app@23.3.0
+  - @commercetools-frontend/constants@23.3.0
+  - @commercetools-frontend/eslint-config-mc-app@23.3.0
+  - @commercetools-frontend/jest-preset-mc-app@23.3.0
+  - @commercetools-frontend/l10n@23.3.0
+  - @commercetools-frontend/mc-dev-authentication@23.3.0
+  - @commercetools-frontend/permissions@23.3.0
+
 ## 23.2.3
 
 ### Patch Changes

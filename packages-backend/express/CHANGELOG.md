@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 23.3.0
+
 ## 23.2.3
 
 ## 23.2.2
