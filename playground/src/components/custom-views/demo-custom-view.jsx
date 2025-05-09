@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   CustomViewShell,
   useMcQuery,
@@ -7,13 +8,17 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import {
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
   GRAPHQL_TARGETS,
+  DOMAINS,
+  NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 import Constraints from '@commercetools-uikit/constraints';
 import DataTable from '@commercetools-uikit/data-table';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { ContentNotification } from '@commercetools-uikit/notifications';
+import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
+
 import { CUSTOM_VIEW_ID, DEMO_CUSTOM_VIEW } from './constants';
 import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 
@@ -31,6 +36,7 @@ const channelsColumns = [
 function ChannelsCustomView() {
   const projectName = useApplicationContext((context) => context.project.name);
   const dataLocale = useApplicationContext((context) => context.dataLocale);
+  const showNotification = useShowNotification();
 
   const { data, error, loading } = useMcQuery(FetchChannelsQuery, {
     variables: {
@@ -42,6 +48,14 @@ function ChannelsCustomView() {
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   });
+
+  const handleSuccessNotification = () => {
+    showNotification({
+      kind: NOTIFICATION_KINDS_SIDE.success,
+      domain: DOMAINS.SIDE,
+      text: 'Operation completed successfully!',
+    });
+  };
 
   if (loading) {
     return <LoadingSpinner />;
@@ -66,6 +80,13 @@ function ChannelsCustomView() {
           rows={data.channels.results}
           itemRenderer={(item, column) => item[column.key] ?? ''}
         />
+
+        <Spacings.Inline>
+          <PrimaryButton
+            label="Show Success Notification"
+            onClick={handleSuccessNotification}
+          />
+        </Spacings.Inline>
       </Spacings.Stack>
     </Constraints.Horizontal>
   );
