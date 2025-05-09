@@ -5,3 +5,7 @@ export const STORAGE_KEYS = {
 } as const;
 
 export const OIDC_RESPONSE_TYPES = { ID_TOKEN: 'id_token' };
+
+export const HTTP_STATUS_CODES = {
+  TOO_MANY_REQUESTS: 429,
+} as const;
