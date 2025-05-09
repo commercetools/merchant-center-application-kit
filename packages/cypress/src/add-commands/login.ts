@@ -327,11 +327,12 @@ function loginByOidc(
 
 /* Utilities */
 
+const maxLoginAttempts = Cypress.config('maxLoginAttempts') ?? 3;
 function fillLoginForm(userCredentials: LoginCredentials) {
   // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
   cy.intercept('POST', '**/tokens').as('loginRequest');
 
-  function attemptLogin(attemptsLeft = 3) {
+  function attemptLogin(attemptsLeft: number) {
     if (attemptsLeft <= 0) {
       throw new Error(
         `All login attempts exhausted. Please check your credentials.`
@@ -363,7 +364,7 @@ function fillLoginForm(userCredentials: LoginCredentials) {
     });
   }
 
-  attemptLogin(Cypress.config('maxLoginAttempts'));
+  attemptLogin(maxLoginAttempts);
 }
 
 function isLocalhost() {
