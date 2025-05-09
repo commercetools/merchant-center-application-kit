@@ -4,6 +4,7 @@ import {
   STATUS_CODES,
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TApolloContext } from '../utils/apollo-context';
 import {
   forwardTokenRetryHeader,
@@ -57,6 +58,25 @@ const errorLink = onError(
           // retry the request, returning the new observable
           return forward(operation);
         }
+      }
+    }
+
+    // Report unhandled errors to Sentry
+    if (networkError) {
+      reportErrorToSentry(networkError, {
+        extra: {
+          operationName: operation.operationName,
+        },
+      });
+    }
+
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        reportErrorToSentry(err, {
+          extra: {
+            operationName: operation.operationName,
+          },
+        });
       }
     }
 

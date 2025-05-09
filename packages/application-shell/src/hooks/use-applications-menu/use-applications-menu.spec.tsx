@@ -222,25 +222,17 @@ describe('for production usage', () => {
       console.error = jest.fn();
       mocked(reportErrorToSentry).mockClear();
       const error = new Error('Oops');
-      renderApp(
-        <AppBarTest
-          environment={environment}
-          queryOptions={{
-            onError: reportErrorToSentry,
-          }}
-        />,
-        {
-          disableRoutePermissionCheck: true,
-          mocks: [
-            {
-              request: {
-                query: FetchApplicationsMenu,
-              },
-              error,
+      renderApp(<AppBarTest environment={environment} />, {
+        disableRoutePermissionCheck: true,
+        mocks: [
+          {
+            request: {
+              query: FetchApplicationsMenu,
             },
-          ],
-        }
-      );
+            error,
+          },
+        ],
+      });
       await screen.findByText('loading');
       await waitFor(() => {
         expect(reportErrorToSentry).toHaveBeenCalled();

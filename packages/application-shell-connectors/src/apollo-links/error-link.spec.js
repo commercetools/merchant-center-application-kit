@@ -5,9 +5,13 @@ import {
   LOGOUT_REASONS,
   GRAPHQL_TARGETS,
 } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import errorLink from './error-link';
 
 jest.mock('@commercetools-frontend/browser-history');
+jest.mock('@commercetools-frontend/sentry', () => ({
+  reportErrorToSentry: jest.fn(),
+}));
 
 const query = gql`
   {
@@ -216,7 +220,8 @@ describe('with unhandled error', () => {
     await waitFor(execute(link, { query }));
   });
 
-  it('should do nothing', () => {
+  it('should report the error to Sentry', () => {
     expect(history.push).not.toHaveBeenCalled();
+    expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });

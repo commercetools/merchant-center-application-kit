@@ -15,7 +15,6 @@ import {
 } from '@commercetools-frontend/application-shell-connectors';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import { designTokens } from '@commercetools-uikit/design-system';
 import SelectInput, { TOption } from '@commercetools-uikit/select-input';
@@ -150,7 +149,6 @@ const ProjectSwitcher = (props: Props) => {
     TFetchUserProjectsQuery,
     TFetchUserProjectsQueryVariables
   >(ProjectsQuery, {
-    onError: reportErrorToSentry,
     context: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
     },

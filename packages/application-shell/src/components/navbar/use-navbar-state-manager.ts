@@ -15,7 +15,6 @@ import {
   GRAPHQL_TARGETS,
   STORAGE_KEYS,
 } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { WINDOW_SIZES } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
@@ -99,9 +98,6 @@ const useNavbarStateManager = (props: HookProps) => {
   const applicationsNavBarMenuGroups = useApplicationsMenu<'navBarGroups'>(
     'navBarGroups',
     {
-      queryOptions: {
-        onError: reportErrorToSentry,
-      },
       environment: props.environment,
     }
   );
@@ -114,7 +110,6 @@ const useNavbarStateManager = (props: HookProps) => {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
     },
     fetchPolicy: 'cache-and-network',
-    onError: reportErrorToSentry,
   });
 
   const allCustomApplicationsNavbarMenu =

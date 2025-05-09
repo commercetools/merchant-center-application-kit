@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TFetchProjectQuery,
   TFetchProjectQueryVariables,
@@ -25,7 +24,6 @@ const FetchProject = (props: TFetchProjectProps) => {
     TFetchProjectQuery,
     TFetchProjectQueryVariables
   >(ProjectQuery, {
-    onError: reportErrorToSentry,
     variables: {
       projectKey: props.projectKey,
     },
