@@ -332,6 +332,13 @@ function fillLoginForm(userCredentials: LoginCredentials) {
   // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
   cy.intercept('POST', '**/tokens').as('loginRequest');
 
+  function getRandomDelayInSeconds() {
+    const minSeconds = 0.5;
+    const maxSeconds = 1.5;
+
+    return (Math.random() * (maxSeconds - minSeconds) + minSeconds) * 1000;
+  }
+
   function attemptLogin(attemptsLeft: number) {
     if (attemptsLeft <= 0) {
       throw new Error(
@@ -355,8 +362,8 @@ function fillLoginForm(userCredentials: LoginCredentials) {
       cy.log('Login request status code:', statusCode);
 
       if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
-        // We wait for something between 1 and 2 seconds before retrying
-        cy.wait(1000 + Math.random() * 100);
+        // We wait for something between 0.5 and 1.5 seconds before retrying
+        cy.wait(getRandomDelayInSeconds());
         attemptLogin(attemptsLeft - 1);
       } else {
         cy.log('Login successful');
