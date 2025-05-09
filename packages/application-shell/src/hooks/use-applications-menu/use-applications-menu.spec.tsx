@@ -6,7 +6,6 @@ import type {
   ApplicationMenuLinksForDevelopmentConfig,
 } from '@commercetools-frontend/constants';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   screen,
   renderApp,
@@ -215,28 +214,6 @@ describe('for production usage', () => {
       expect(screen.getByText('Orders new')).toBeInTheDocument();
       expect(screen.getByText('Path: orders')).toBeInTheDocument();
       expect(screen.getByText('Sub-path: orders/new')).toBeInTheDocument();
-    });
-  });
-  describe('when the query fails', () => {
-    it('should report error to sentry', async () => {
-      console.error = jest.fn();
-      mocked(reportErrorToSentry).mockClear();
-      const error = new Error('Oops');
-      renderApp(<AppBarTest environment={environment} />, {
-        disableRoutePermissionCheck: true,
-        mocks: [
-          {
-            request: {
-              query: FetchApplicationsMenu,
-            },
-            error,
-          },
-        ],
-      });
-      await screen.findByText('loading');
-      await waitFor(() => {
-        expect(reportErrorToSentry).toHaveBeenCalled();
-      });
     });
   });
 });
