@@ -5,7 +5,11 @@ import {
   type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
 } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS, OIDC_RESPONSE_TYPES } from '../constants';
+import {
+  STORAGE_KEYS,
+  OIDC_RESPONSE_TYPES,
+  HTTP_STATUS_CODES,
+} from '../constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Cypress: any;
@@ -323,12 +327,51 @@ function loginByOidc(
 
 /* Utilities */
 
+const maxLoginAttempts = Cypress.config('maxLoginAttempts') ?? 3;
 function fillLoginForm(userCredentials: LoginCredentials) {
-  cy.get('input[name=email]').type(userCredentials.email);
-  cy.get('input[name=password]').type(userCredentials.password, {
-    log: false,
-  });
-  cy.get('button').contains('Sign in').click();
+  // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
+  cy.intercept('POST', '**/tokens').as('loginRequest');
+
+  function getRandomDelayInSeconds() {
+    const minSeconds = 0.5;
+    const maxSeconds = 1.5;
+
+    return (Math.random() * (maxSeconds - minSeconds) + minSeconds) * 1000;
+  }
+
+  function attemptLogin(attemptsLeft: number) {
+    if (attemptsLeft <= 0) {
+      throw new Error(
+        `All login attempts exhausted. Please check your credentials.`
+      );
+    }
+
+    cy.log(`Attempts left: ${attemptsLeft}`);
+
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    cy.get('input[name=email]').clear().type(userCredentials.email);
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    cy.get('input[name=password]').clear().type(userCredentials.password, {
+      log: false,
+    });
+    cy.get('button').contains('Sign in').click();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.wait('@loginRequest').then((interception: any) => {
+      const { statusCode } = interception.response;
+      cy.log('Login request status code:', statusCode);
+
+      if (statusCode === HTTP_STATUS_CODES.TOO_MANY_REQUESTS) {
+        // We wait for something between 0.5 and 1.5 seconds before retrying
+        cy.wait(getRandomDelayInSeconds());
+        attemptLogin(attemptsLeft - 1);
+      } else {
+        cy.log('Login successful');
+      }
+    });
+  }
+
+  attemptLogin(maxLoginAttempts);
 }
 
 function isLocalhost() {

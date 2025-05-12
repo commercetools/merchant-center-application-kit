@@ -14,7 +14,6 @@ import {
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
 import Avatar from '@commercetools-uikit/avatar';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
@@ -185,9 +184,6 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
   const environment = useApplicationContext((context) => context.environment);
 
   const applicationsAppBarMenu = useApplicationsMenu<'appBar'>('appBar', {
-    queryOptions: {
-      onError: reportErrorToSentry,
-    },
     environment,
   });
   const accountMenuItems = applicationsAppBarMenu ?? [];

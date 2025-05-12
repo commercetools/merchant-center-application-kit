@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TFetchLoggedInUserQuery,
   TFetchLoggedInUserQueryVariables,
@@ -23,7 +22,6 @@ const FetchUser = (props: TFetchUserProps) => {
     TFetchLoggedInUserQuery,
     TFetchLoggedInUserQueryVariables
   >(LoggedInUserQuery, {
-    onError: reportErrorToSentry,
     context: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
   });
   return (

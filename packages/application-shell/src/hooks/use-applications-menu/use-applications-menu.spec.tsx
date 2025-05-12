@@ -1,4 +1,3 @@
-import { mocked } from 'jest-mock';
 import upperFirst from 'lodash/upperFirst';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type {
@@ -6,13 +5,7 @@ import type {
   ApplicationMenuLinksForDevelopmentConfig,
 } from '@commercetools-frontend/constants';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import {
-  screen,
-  renderApp,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '../../test-utils';
+import { screen, renderApp, waitForElementToBeRemoved } from '../../test-utils';
 import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import type { Config, MenuLoaderResult } from './use-applications-menu';
@@ -215,36 +208,6 @@ describe('for production usage', () => {
       expect(screen.getByText('Orders new')).toBeInTheDocument();
       expect(screen.getByText('Path: orders')).toBeInTheDocument();
       expect(screen.getByText('Sub-path: orders/new')).toBeInTheDocument();
-    });
-  });
-  describe('when the query fails', () => {
-    it('should report error to sentry', async () => {
-      console.error = jest.fn();
-      mocked(reportErrorToSentry).mockClear();
-      const error = new Error('Oops');
-      renderApp(
-        <AppBarTest
-          environment={environment}
-          queryOptions={{
-            onError: reportErrorToSentry,
-          }}
-        />,
-        {
-          disableRoutePermissionCheck: true,
-          mocks: [
-            {
-              request: {
-                query: FetchApplicationsMenu,
-              },
-              error,
-            },
-          ],
-        }
-      );
-      await screen.findByText('loading');
-      await waitFor(() => {
-        expect(reportErrorToSentry).toHaveBeenCalled();
-      });
     });
   });
 });
