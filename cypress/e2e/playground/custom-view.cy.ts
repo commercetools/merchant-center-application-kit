@@ -26,5 +26,7 @@ describe('Custom View: Notifications inside iframe', () => {
         cy.findByRole('button', { name: /Show Success Notification/i }).click();
         cy.findByText(/Operation completed successfully!/i).should('exist');
       });
+
+    cy.percySnapshot();
   });
 });
