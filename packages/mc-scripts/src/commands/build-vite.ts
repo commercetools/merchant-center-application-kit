@@ -79,6 +79,7 @@ async function run() {
     },
     clearScreen: false,
     plugins: [
+      pluginSvgr(),
       pluginGraphql() as Plugin,
       pluginReact({
         jsxImportSource: '@emotion/react',
@@ -104,7 +105,6 @@ async function run() {
           ].filter(nonNullable),
         },
       }),
-      pluginSvgr(),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
       process.env.ANALYZE_BUNDLE === 'true' &&
