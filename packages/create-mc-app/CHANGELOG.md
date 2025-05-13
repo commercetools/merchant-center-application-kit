@@ -1,5 +1,21 @@
 # @commercetools-frontend/create-mc-app
 
+## 23.3.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@23.3.0
+
+## 23.2.3
+
+### Patch Changes
+
+- [#3754](https://github.com/commercetools/merchant-center-application-kit/pull/3754) [`9888b5e`](https://github.com/commercetools/merchant-center-application-kit/commit/9888b5e485fad03416cd346261baa4bb19fa4a39) Thanks [@emmenko](https://github.com/emmenko)! - Use `moduleResolution: bundler` to be compatible with ESM packages.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@23.2.3
+
 ## 23.2.2
 
 ### Patch Changes

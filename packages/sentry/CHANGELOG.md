@@ -1,5 +1,23 @@
 # @commercetools-frontend/sentry
 
+## 23.3.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@23.3.0
+  - @commercetools-frontend/constants@23.3.0
+
+## 23.2.3
+
+### Patch Changes
+
+- [#3759](https://github.com/commercetools/merchant-center-application-kit/pull/3759) [`b6ea280`](https://github.com/commercetools/merchant-center-application-kit/commit/b6ea2802d38f2cc0c83b44c98f010d4c00fc3d83) Thanks [@tdeekens](https://github.com/tdeekens)! - Add service tag to be sent to sentry.
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@23.2.3
+  - @commercetools-frontend/constants@23.2.3
+
 ## 23.2.2
 
 ### Patch Changes

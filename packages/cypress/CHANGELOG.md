@@ -1,5 +1,29 @@
 # @commercetools-frontend/cypress
 
+## 23.3.0
+
+### Minor Changes
+
+- [#3766](https://github.com/commercetools/merchant-center-application-kit/pull/3766) [`f5e8807`](https://github.com/commercetools/merchant-center-application-kit/commit/f5e880712a905fca467c924bd71b22c6773edf68) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Adds ability retry logins when using the `loginByForm` command. Retrying takes place automatically when using a login fails and the login response from the `/tokens` endpoint returns a 429. Another login attempt is scheduled 1 second after the prior plus a random offset value after the prior failed and the maximum number of attempts is not exceeded.
+
+  The number of login attempts is limited to `3`. This value can be adjusted using the `maxLoginAttempts` Cypress configuration option. To disable login retries altogether set this value to `1`.
+
+### Patch Changes
+
+- Updated dependencies [[`6aedb11`](https://github.com/commercetools/merchant-center-application-kit/commit/6aedb11f59232070c5709a0d126895c7a32bb847)]:
+  - @commercetools-frontend/application-shell@23.3.0
+  - @commercetools-frontend/application-config@23.3.0
+  - @commercetools-frontend/constants@23.3.0
+
+## 23.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell@23.2.3
+  - @commercetools-frontend/application-config@23.2.3
+  - @commercetools-frontend/constants@23.2.3
+
 ## 23.2.2
 
 ### Patch Changes

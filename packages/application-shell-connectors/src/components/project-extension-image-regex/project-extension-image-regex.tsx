@@ -8,7 +8,6 @@ import {
 import { useQuery } from '@apollo/client/react';
 import warning from 'tiny-warning';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type {
   TFetchProjectExtensionImageRegexQuery,
   TFetchProjectExtensionImageRegexQueryVariables,
@@ -53,7 +52,6 @@ const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
     TFetchProjectExtensionImageRegexQueryVariables
   >(FetchProjectExtensionImageRegex, {
     skip: props.skip,
-    onError: reportErrorToSentry,
     context: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
   });
 
