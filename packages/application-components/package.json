@@ -57,7 +57,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@flopflip/react-broadcast": "14.0.2",
-    "@radix-ui/react-dialog": "1.1.4",
+    "@radix-ui/react-dialog": "1.1.13",
     "@react-hook/latest": "1.0.3",
     "@react-hook/resize-observer": "1.2.6",
     "@types/history": "^4.7.11",
@@ -73,7 +73,7 @@
     "raf-schd": "^4.0.3"
   },
   "devDependencies": {
-    "@apollo/client": "3.7.14",
+    "@apollo/client": "3.13.8",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.1",
