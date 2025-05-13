@@ -22,18 +22,44 @@ function vitePluginSvgr(): Plugin {
             icon: false,
             svgoConfig: {
               plugins: [
-                // plugin defined inline
-                // {
-                //   name: 'customPlugin',
-                //   type: 'perItem',
-                //   fn: (ast, params, info) => {
-                //     console.log(JSON.stringify(ast.name));
-                //     if (ast.name === 'image') {
-                //       console.log('image found', ast);
-                //     }
-                //     return ast;
-                //   },
-                // },
+                // inline plugin to compress embedded pngs
+                {
+                  name: 'sharp-png-compression',
+                  type: 'perItem',
+                  fn: async (ast, _, info) => {
+                    if (ast.name === 'image') {
+                      if (ast.attributes.hasOwnProperty('xlink:href')) {
+                        const valueString = String(
+                          ast.attributes['xlink:href']
+                        );
+                        // potentially large string embedded in the SVG
+                        const originalPngString = valueString.split(',')[1];
+                        const pngBuffer = Buffer.from(
+                          originalPngString,
+                          'base64'
+                        );
+                        // https://www.npmjs.com/package/sharp
+                        const sharp = (await import('sharp')).default;
+
+                        const optimizedBuffer = await sharp(pngBuffer)
+                          .png({
+                            quality: 70, // Adjust quality (0-100)
+                            compressionLevel: 9, // Adjust compression (0-9, 9 is best)
+                          })
+                          .toBuffer();
+
+                        const optimizedPngString =
+                          optimizedBuffer.toString('base64');
+
+                        delete ast.attributes['xlink:href'];
+                        ast.attributes['xlink:href'] =
+                          'data:image/png;base64, ' + optimizedPngString;
+                      }
+                      // TODO: understand why the build includes the original png
+                    }
+                    return ast;
+                  },
+                },
                 {
                   // https://github.com/svg/svgo#default-preset
                   name: 'preset-default',
