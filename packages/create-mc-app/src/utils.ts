@@ -26,6 +26,30 @@ const shouldUseYarn = () => {
   }
 };
 
+const getYarnVersion = () => {
+  try {
+    const result = execa.commandSync('yarn --version', { encoding: 'utf-8' });
+    return result.stdout.trim();
+  } catch (error) {
+    return null;
+  }
+};
+
+const configureYarn = async (projectDirectoryPath: string) => {
+  const yarnVersion = getYarnVersion();
+  if (!yarnVersion) return;
+
+  // Check if Yarn version is 3 or higher
+  const majorVersion = parseInt(yarnVersion.split('.')[0], 10);
+  if (majorVersion >= 3) {
+    // Create or update .yarnrc.yml to use node_modules
+    const yarnrcPath = `${projectDirectoryPath}/.yarnrc.yml`;
+    const yarnrcContent = 'nodeLinker: "node-modules"\n';
+
+    fs.writeFileSync(yarnrcPath, yarnrcContent);
+  }
+};
+
 const getPreferredPackageManager = (
   options: TCliTaskOptions
 ): TPackageManager => {
@@ -76,6 +100,8 @@ const isCustomView = (applicationType: TApplicationType) =>
 export {
   isSemVer,
   shouldUseYarn,
+  getYarnVersion,
+  configureYarn,
   slugify,
   wordify,
   upperFirst,

@@ -1,12 +1,23 @@
 import execa from 'execa';
 import type { ListrTask } from 'listr2';
 import type { TCliTaskOptions } from '../types';
-import { getInstallCommand } from '../utils';
+import {
+  getInstallCommand,
+  configureYarn,
+  getPreferredPackageManager,
+} from '../utils';
 
 function installDependencies(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Installing dependencies (this might take a while)',
-    task: () => {
+    task: async () => {
+      const packageManager = getPreferredPackageManager(options);
+
+      // Only configure Yarn if it's the selected package manager
+      if (packageManager === 'yarn') {
+        await configureYarn(options.projectDirectoryPath);
+      }
+
       const installCommand = getInstallCommand(options);
 
       // TODO: we could check for min yarn/npm versions
