@@ -1,4 +1,4 @@
-import type { TBuilder } from '@commercetools-test-data/core';
+import type { TBuilder } from '@commercetools/composable-commerce-test-data/core';
 
 export type TCreateOrganizationBuilder = () => TBuilder<TOrganization>;
 

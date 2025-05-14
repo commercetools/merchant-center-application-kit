@@ -6,10 +6,12 @@ import {
   mapResourceAccessToAppliedPermissions,
   type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools-test-data/core';
-import type { TChannel } from '@commercetools-test-data/channel';
-import * as Channel from '@commercetools-test-data/channel';
-import { LocalizedString } from '@commercetools-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
+import {
+  ChannelGraphql,
+  type TChannelGraphql,
+} from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
 import { renderApplicationWithRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
@@ -51,10 +53,10 @@ it('should render channels and paginate to second page', async () => {
 
       return res(
         ctx.data({
-          channels: buildGraphqlList<TChannel>(
+          channels: buildGraphqlList<TChannelGraphql>(
             Array.from({ length: itemsPerPage }).map((_, index) =>
-              Channel.random()
-                .name(LocalizedString.random())
+              ChannelGraphql.random()
+                .nameAllLocales(LocalizedString.random())
                 .key(`channel-key-${offset === 0 ? index : 20 + index}`)
             ),
             {

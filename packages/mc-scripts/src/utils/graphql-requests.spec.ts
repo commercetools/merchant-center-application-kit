@@ -3,7 +3,7 @@ import {
   CustomView,
   CustomViewPermission,
   type TCustomViewGraphql,
-} from '@commercetools-test-data/custom-view';
+} from '@commercetools/composable-commerce-test-data/custom-view';
 import { setupServer } from 'msw/node';
 import type { TCustomViewDraftDataInput } from '../generated/settings';
 import {
