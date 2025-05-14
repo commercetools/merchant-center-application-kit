@@ -1,5 +1,5 @@
 import { graphql } from 'msw';
-import { buildGraphqlList } from '@commercetools-test-data/core';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
 import { setupServer } from 'msw/node';
 import {
   screen,

@@ -1,4 +1,8 @@
-import { fake, sequence, Generator } from '@commercetools-test-data/core';
+import {
+  fake,
+  sequence,
+  Generator,
+} from '@commercetools/composable-commerce-test-data/core';
 import { faker } from '@faker-js/faker';
 import type { TProject } from './types';
 

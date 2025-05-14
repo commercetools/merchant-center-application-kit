@@ -1,7 +1,7 @@
 import {
   Transformer,
   toGraphqlPaginatedQueryResult,
-} from '@commercetools-test-data/core';
+} from '@commercetools/composable-commerce-test-data/core';
 import * as ProjectMock from '../project';
 import type { TUser, TUserGraphql } from './types';
 

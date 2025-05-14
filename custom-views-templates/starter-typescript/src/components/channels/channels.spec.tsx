@@ -5,10 +5,12 @@ import {
   fireEvent,
   screen,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools-test-data/core';
-import type { TChannel } from '@commercetools-test-data/channel';
-import * as Channel from '@commercetools-test-data/channel';
-import { LocalizedString } from '@commercetools-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
+import {
+  ChannelGraphql,
+  type TChannelGraphql,
+} from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
 import ApplicationRoutes from '../../routes';
 
 const mockServer = setupServer();
@@ -34,11 +36,11 @@ it('should render channels and paginate to second page', async () => {
 
       return res(
         ctx.data({
-          channels: buildGraphqlList<TChannel>(
+          channels: buildGraphqlList<TChannelGraphql>(
             Array.from({ length: itemsPerPage }).map((_, index) => {
               const channelNumber = offset === 0 ? index : 20 + index;
-              return Channel.random()
-                .name(
+              return ChannelGraphql.random()
+                .nameAllLocales(
                   LocalizedString.presets
                     .empty()
                     .en(`Channel no. ${channelNumber}`)
