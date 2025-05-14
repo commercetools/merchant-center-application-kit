@@ -13,119 +13,66 @@ function vitePluginSvgr(): Plugin {
     name: 'vite-plugin-svgr',
     async transform(_code, id) {
       if (filter(id)) {
-        console.log(`Transforming ${id}...`);
         const { transform } = await import('@svgr/core');
         const svgCode = await fs.promises.readFile(id, 'utf8');
 
         const optimizeEmbeddedPngs = async (code: string) => {
           const pngRegex =
             /xlink:href="data:image\/png;base64,([a-zA-Z0-9+/]+=*)"/gs;
-          let modifiedCode = code; // Create a mutable copy of the code
-
+          let modifiedCode = code;
           const matchesIterator = code.matchAll(pngRegex);
 
           for (const match of matchesIterator) {
-            const originalBase64 = match[1]; // Access the captured Base64 string (group 1)
+            const originalBase64 = match[1];
 
             if (originalBase64) {
-              try {
-                console.log(
-                  'originalPngString length: ',
-                  originalBase64.length
+              // This length would indicate that the match is greater than ~1mb
+              if (originalBase64.length > 1000000) {
+                console.warn(
+                  '\n🚨 You have a large embedded png in your svg - consider using an image tag instead 🚨'
                 );
-
-                const pngBuffer = Buffer.from(originalBase64, 'base64');
-                const sharp = (await import('sharp')).default;
-
-                const optimizedBuffer = await sharp(pngBuffer)
-                  .png({
-                    quality: 80,
-                    compressionLevel: 9,
-                  })
-                  .toBuffer();
-                const optimizedPngBase64 = optimizedBuffer.toString('base64');
-                console.log(
-                  'optimizedPngString length: ',
-                  optimizedPngBase64.length
-                );
-
-                // Construct the new xlink:href value
-                const originalMatch = match[0];
-                const optimizedXlinkHref = originalMatch.replace(
-                  originalBase64,
-                  optimizedPngBase64
-                );
-
-                // Replace the original xlink:href with the optimized one
-                modifiedCode = modifiedCode.replace(
-                  originalMatch,
-                  optimizedXlinkHref
-                );
-              } catch (error) {
-                console.error(
-                  'Error processing embedded PNG:',
-                  error,
-                  'Original Base64:',
-                  originalBase64
-                );
+                try {
+                  const pngBuffer = Buffer.from(originalBase64, 'base64');
+                  const sharp = (await import('sharp')).default;
+                  const optimizedBuffer = await sharp(pngBuffer)
+                    .png({
+                      quality: 10,
+                      compressionLevel: 9,
+                    })
+                    .toBuffer();
+                  const optimizedPngBase64 = optimizedBuffer.toString('base64');
+                  // Construct the new xlink:href value
+                  const originalMatch = match[0];
+                  const optimizedXlinkHref = originalMatch.replace(
+                    originalBase64,
+                    optimizedPngBase64
+                  );
+                  // Replace the original xlink:href with the optimized one
+                  modifiedCode = modifiedCode.replace(
+                    originalMatch,
+                    optimizedXlinkHref
+                  );
+                } catch (error) {
+                  console.error(
+                    'Error processing embedded PNG:',
+                    error,
+                    'Original Base64:',
+                    originalBase64
+                  );
+                }
               }
             }
-            console.log('------');
-            console.log('code length: ', code.length);
-            console.log('modifiedCode length: ', modifiedCode.length);
-            console.log('------');
           }
-          return modifiedCode; // Return the modified code
+          return modifiedCode;
         };
 
         const optimizedSVGCode = await optimizeEmbeddedPngs(svgCode);
-        // console.log('optimizedSVGCode: ', optimizedSVGCode);
-        console.log('optimizedSVGCode length: ', optimizedSVGCode.length);
         const componentCode = await transform(
           optimizedSVGCode,
           {
             icon: false,
             svgoConfig: {
               plugins: [
-                // inline plugin to compress embedded pngs
-                {
-                  name: 'sharp-png-compression',
-                  type: 'perItem',
-                  fn: async (ast, _, info) => {
-                    if (ast.name === 'image') {
-                      if (ast.attributes.hasOwnProperty('xlink:href')) {
-                        const valueString = String(
-                          ast.attributes['xlink:href']
-                        );
-                        // potentially large string embedded in the SVG
-                        const originalPngString = valueString.split(',')[1];
-                        // delete the original embedded image
-                        delete ast.attributes['xlink:href'];
-                        const pngBuffer = Buffer.from(
-                          originalPngString,
-                          'base64'
-                        );
-                        // https://www.npmjs.com/package/sharp
-                        const sharp = (await import('sharp')).default;
-
-                        const optimizedBuffer = await sharp(pngBuffer)
-                          .png({
-                            quality: 80, // Adjust quality (0-100)
-                            compressionLevel: 9, // Adjust compression (0-9, 9 is best)
-                          })
-                          .toBuffer();
-
-                        const optimizedPngString =
-                          optimizedBuffer.toString('base64');
-
-                        ast.attributes['xlink:href'] =
-                          'data:image/png;base64,' + optimizedPngString;
-                      }
-                      // TODO: understand why the build includes the original png
-                    }
-                    return ast;
-                  },
-                },
                 {
                   // https://github.com/svg/svgo#default-preset
                   name: 'preset-default',
@@ -170,6 +117,47 @@ function vitePluginSvgr(): Plugin {
                         .digest('hex')}`,
                   },
                 },
+                // inline plugin to compress embedded pngs
+                // {
+                //   name: 'sharp-png-compression',
+                //   type: 'perItem',
+                //   fn: async (ast, _, info) => {
+                //     if (ast.name === 'image') {
+                //       if (ast.attributes.hasOwnProperty('xlink:href')) {
+                //         const valueString = String(
+                //           ast.attributes['xlink:href']
+                //         );
+                //         // potentially large string embedded in the SVG
+                //         const originalPngString = valueString.split(',')[1];
+                //         // delete the original embedded image
+                //         delete ast.attributes['xlink:href'];
+                //         const pngBuffer = Buffer.from(
+                //           originalPngString,
+                //           'base64'
+                //         );
+                //         // https://www.npmjs.com/package/sharp
+                //         const sharp = (await import('sharp')).default;
+
+                //         const optimizedBuffer = await sharp(pngBuffer)
+                //           .png({
+                //             quality: 80, // Adjust quality (0-100)
+                //             compressionLevel: 9, // Adjust compression (0-9, 9 is best)
+                //           })
+                //           .toBuffer();
+
+                //         const optimizedPngString =
+                //           optimizedBuffer.toString('base64');
+
+                //         ast.attributes['xlink:href'] =
+                //           'data:image/png;base64,' + optimizedPngString;
+                //       }
+                //       console.log('\n\n ast attributes', ast.attributes);
+
+                //       // TODO: understand why the build includes the original png
+                //     }
+                //     return ast;
+                //   },
+                // },
               ],
             },
           },
@@ -180,7 +168,6 @@ function vitePluginSvgr(): Plugin {
             },
           }
         );
-        console.log('componentCode length: ', componentCode.length);
 
         const res = await transformWithEsbuild(componentCode, id, {
           loader: 'jsx',
