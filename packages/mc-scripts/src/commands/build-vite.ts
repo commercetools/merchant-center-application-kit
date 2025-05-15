@@ -78,7 +78,6 @@ async function run() {
         return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` };
       },
     },
-    clearScreen: false,
     plugins: [
       pluginSvgr(),
       pluginGraphql() as Plugin,
