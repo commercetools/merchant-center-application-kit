@@ -1,4 +1,4 @@
-import { Generator } from '@commercetools-test-data/core';
+import { Generator } from '@commercetools/composable-commerce-test-data/core';
 import type { TStoreDataFences } from './types';
 
 const generator = Generator<TStoreDataFences>({

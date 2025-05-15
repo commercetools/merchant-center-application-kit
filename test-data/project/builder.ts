@@ -1,4 +1,4 @@
-import { Builder } from '@commercetools-test-data/core';
+import { Builder } from '@commercetools/composable-commerce-test-data/core';
 import * as OrganizationMock from '../organization';
 import * as ExpiryMock from './fields/expiry';
 import * as SuspensionMock from './fields/suspension';

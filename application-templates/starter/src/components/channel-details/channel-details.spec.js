@@ -7,9 +7,9 @@ import {
   within,
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools-test-data/core';
-import * as Channel from '@commercetools-test-data/channel';
-import { LocalizedString } from '@commercetools-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
+import { ChannelGraphql } from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
 import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 
@@ -53,10 +53,10 @@ const fetchChannelDetailsQueryHandler = graphql.query(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        channel: Channel.random()
-          .name(LocalizedString.random())
+        channel: ChannelGraphql.random()
+          .nameAllLocales(LocalizedString.random())
           .key(key)
-          .buildGraphql(),
+          .build(),
       })
     );
   }
@@ -88,10 +88,10 @@ const updateChannelDetailsHandler = graphql.mutation(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        updateChannel: Channel.random()
-          .name(LocalizedString.random())
+        updateChannel: ChannelGraphql.random()
+          .nameAllLocales(LocalizedString.random())
           .key(key)
-          .buildGraphql(),
+          .build(),
       })
     );
   }
@@ -144,8 +144,8 @@ const useMockServerHandlers = (
           ctx.data({
             channels: buildGraphqlList(
               Array.from({ length: totalItems }).map((_, index) =>
-                Channel.random()
-                  .name(LocalizedString.random())
+                ChannelGraphql.random()
+                  .nameAllLocales(LocalizedString.random())
                   .key(`channel-key-${index}`)
               ),
               {

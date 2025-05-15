@@ -1,4 +1,7 @@
-import { fake, Generator } from '@commercetools-test-data/core';
+import {
+  fake,
+  Generator,
+} from '@commercetools/composable-commerce-test-data/core';
 import type { TProjectSuspension } from './types';
 
 const generator = Generator<TProjectSuspension>({

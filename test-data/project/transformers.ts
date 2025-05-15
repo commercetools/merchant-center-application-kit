@@ -1,4 +1,4 @@
-import { Transformer } from '@commercetools-test-data/core';
+import { Transformer } from '@commercetools/composable-commerce-test-data/core';
 import * as AppliedActionRightMock from './fields/applied-action-right';
 import * as AppliedMenuVisibilitiesMock from './fields/applied-menu-visibilities';
 import * as AppliedPermissionMock from './fields/applied-permission';

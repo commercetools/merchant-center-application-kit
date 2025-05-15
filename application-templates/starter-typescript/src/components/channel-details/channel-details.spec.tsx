@@ -8,10 +8,12 @@ import {
   mapResourceAccessToAppliedPermissions,
   type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools-test-data/core';
-import type { TChannel } from '@commercetools-test-data/channel';
-import * as Channel from '@commercetools-test-data/channel';
-import { LocalizedString } from '@commercetools-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
+import {
+  ChannelGraphql,
+  type TChannelGraphql,
+} from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
 import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 
@@ -59,10 +61,10 @@ const fetchChannelDetailsQueryHandler = graphql.query(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        channel: Channel.random()
-          .name(LocalizedString.random())
+        channel: ChannelGraphql.random()
+          .nameAllLocales(LocalizedString.random())
           .key(TEST_CHANNEL_KEY)
-          .buildGraphql(),
+          .build(),
       })
     );
   }
@@ -94,10 +96,10 @@ const updateChannelDetailsHandler = graphql.mutation(
   (_req, res, ctx) => {
     return res(
       ctx.data({
-        updateChannel: Channel.random()
-          .name(LocalizedString.random())
+        updateChannel: ChannelGraphql.random()
+          .nameAllLocales(LocalizedString.random())
           .key(TEST_CHANNEL_KEY)
-          .buildGraphql(),
+          .build(),
       })
     );
   }
@@ -144,10 +146,10 @@ const useMockServerHandlers = (handlers: GraphQLHandler[]) => {
 
       return res(
         ctx.data({
-          channels: buildGraphqlList<TChannel>(
+          channels: buildGraphqlList<TChannelGraphql>(
             Array.from({ length: totalItems }).map((_, index) =>
-              Channel.random()
-                .name(LocalizedString.random())
+              ChannelGraphql.random()
+                .nameAllLocales(LocalizedString.random())
                 .key(`channel-key-${index}`)
             ),
             {
