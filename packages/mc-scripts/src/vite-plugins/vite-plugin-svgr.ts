@@ -41,13 +41,13 @@ function vitePluginSvgr(): Plugin {
                     })
                     .toBuffer();
                   const optimizedPngBase64 = optimizedBuffer.toString('base64');
-                  // Construct the new xlink:href value
+                  // Construct the new href value
                   const originalMatch = match[0];
                   const optimizedXlinkHref = originalMatch.replace(
                     originalBase64,
                     optimizedPngBase64
                   );
-                  // Replace the original xlink:href with the optimized one
+                  // Replace the original href with the optimized one
                   modifiedCode = modifiedCode.replace(
                     originalMatch,
                     optimizedXlinkHref
