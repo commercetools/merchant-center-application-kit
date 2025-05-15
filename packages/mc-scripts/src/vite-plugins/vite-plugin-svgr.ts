@@ -17,8 +17,7 @@ function vitePluginSvgr(): Plugin {
         const svgCode = await fs.promises.readFile(id, 'utf8');
 
         const optimizeEmbeddedPngs = async (code: string) => {
-          const pngRegex =
-            /xlink:href="data:image\/png;base64,([a-zA-Z0-9+/]+=*)"/gs;
+          const pngRegex = /href="data:image\/png;base64,([a-zA-Z0-9+/]+=*)"/gs;
           let modifiedCode = code;
           const matchesIterator = code.matchAll(pngRegex);
 
@@ -28,8 +27,9 @@ function vitePluginSvgr(): Plugin {
             if (originalBase64) {
               // This length would indicate  that the match is greater than ~1mb
               if (originalBase64.length > 1000000) {
+                const fileName = id.split('/').pop();
                 console.warn(
-                  '\n🚨 You have a large embedded png in your svg - consider using an image tag instead 🚨'
+                  `\n🚨 You have a large png embedded in ${fileName} - consider using an image tag instead 🚨`
                 );
                 try {
                   const pngBuffer = Buffer.from(originalBase64, 'base64');
