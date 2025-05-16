@@ -124,7 +124,7 @@ importers:
         version: 3.1.3(cypress@12.17.4)
       '@percy/puppeteer':
         specifier: 2.0.2
-        version: 2.0.2(puppeteer@20.9.0(typescript@5.0.4))
+        version: 2.0.2(puppeteer@24.8.2(typescript@5.0.4))
       '@preconstruct/cli':
         specifier: 2.6.2
         version: 2.6.2
@@ -226,7 +226,7 @@ importers:
         version: 0.3.1(postcss@8.4.38)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.0.4))
       jest-puppeteer:
         specifier: 8.0.6
-        version: 8.0.6(puppeteer@20.9.0(typescript@5.0.4))
+        version: 8.0.6(puppeteer@24.8.2(typescript@5.0.4))
       jest-runner-eslint:
         specifier: 2.2.0
         version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.0.4)))
@@ -252,8 +252,8 @@ importers:
         specifier: 2.8.8
         version: 2.8.8
       puppeteer:
-        specifier: 20.9.0
-        version: 20.9.0(typescript@5.0.4)
+        specifier: 24.8.2
+        version: 24.8.2(typescript@5.0.4)
       qss:
         specifier: 2.0.3
         version: 2.0.3
@@ -358,10 +358,10 @@ importers:
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/data-table':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/flat-button':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/grid':
         specifier: ^19.24.0
         version: 19.24.0(@types/react@17.0.83)(react@17.0.2)
@@ -373,37 +373,37 @@ importers:
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/loading-spinner':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/localized-text-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/localized-text-input':
         specifier: ^19.24.0
-        version: 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/notifications':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
       '@commercetools-uikit/pagination':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/select-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings':
         specifier: ^19.24.0
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/text':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
       '@commercetools-uikit/text-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/text-input':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.14.0
@@ -457,7 +457,7 @@ importers:
         version: 4.1.0
       eslint-plugin-graphql:
         specifier: ^4.0.0
-        version: 4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.7.3)
+        version: 4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@4.9.5)
       formik:
         specifier: 2.4.6
         version: 2.4.6(react@17.0.2)
@@ -469,19 +469,19 @@ importers:
         version: 2.12.6(graphql@16.8.1)
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3))
+        version: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))
       jest-runner-eslint:
         specifier: 2.2.0
-        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3)))
+        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5)))
       jest-watch-typeahead:
         specifier: 2.2.2
-        version: 2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3)))
+        version: 2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5)))
       moment:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
         specifier: 0.49.3
-        version: 0.49.3(typescript@5.7.3)
+        version: 0.49.3(typescript@4.9.5)
       omit-empty-es:
         specifier: 1.2.0
         version: 1.2.0
@@ -499,7 +499,7 @@ importers:
         version: 17.0.2(react@17.0.2)
       react-intl:
         specifier: ^6.4.7
-        version: 6.4.7(react@17.0.2)(typescript@5.7.3)
+        version: 6.4.7(react@17.0.2)(typescript@4.9.5)
       react-redux:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -784,10 +784,10 @@ importers:
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/data-table':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/flat-button':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/grid':
         specifier: ^19.24.0
         version: 19.24.0(@types/react@17.0.83)(react@17.0.2)
@@ -799,37 +799,37 @@ importers:
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/link':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/loading-spinner':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/localized-text-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/localized-text-input':
         specifier: ^19.24.0
-        version: 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/notifications':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
       '@commercetools-uikit/pagination':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/select-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings':
         specifier: ^19.24.0
         version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/text':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
       '@commercetools-uikit/text-field':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/text-input':
         specifier: ^19.24.0
-        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+        version: 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.14.0
@@ -883,7 +883,7 @@ importers:
         version: 4.1.0
       eslint-plugin-graphql:
         specifier: ^4.0.0
-        version: 4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.7.3)
+        version: 4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@4.9.5)
       formik:
         specifier: 2.4.6
         version: 2.4.6(react@17.0.2)
@@ -895,19 +895,19 @@ importers:
         version: 2.12.6(graphql@16.8.1)
       jest:
         specifier: 29.7.0
-        version: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3))
+        version: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))
       jest-runner-eslint:
         specifier: 2.2.0
-        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3)))
+        version: 2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5)))
       jest-watch-typeahead:
         specifier: 2.2.2
-        version: 2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3)))
+        version: 2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5)))
       moment:
         specifier: ^2.29.4
         version: 2.29.4
       msw:
         specifier: 0.49.3
-        version: 0.49.3(typescript@5.7.3)
+        version: 0.49.3(typescript@4.9.5)
       omit-empty-es:
         specifier: 1.2.0
         version: 1.2.0
@@ -925,7 +925,7 @@ importers:
         version: 17.0.2(react@17.0.2)
       react-intl:
         specifier: ^6.4.7
-        version: 6.4.7(react@17.0.2)(typescript@5.7.3)
+        version: 6.4.7(react@17.0.2)(typescript@4.9.5)
       react-redux:
         specifier: 7.2.9
         version: 7.2.9(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -3955,6 +3955,7 @@ packages:
   '@babel/plugin-proposal-class-properties@7.18.6':
     resolution: {integrity: sha512-cumfXOF0+nzZrrN8Rf0t7M+tF6sZc7vhQwYQck9q1/5w2OExlD+b4v4RpMJFaV1Z7WcDRgO6FqvxqxGlwo+RHQ==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -3973,6 +3974,7 @@ packages:
   '@babel/plugin-proposal-object-rest-spread@7.20.7':
     resolution: {integrity: sha512-d2S98yCiLxDVmBmE8UjGcfPvNEUbA1U5q5WxaWFUGRzJSVAZqm5W6MbPct0jxnegUZ0niLeNX+IOzEs7wYg9Dg==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -6155,6 +6157,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -6162,6 +6165,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.2':
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    deprecated: Use @eslint/object-schema instead
 
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
@@ -6751,15 +6755,10 @@ packages:
   '@preconstruct/hook@0.4.0':
     resolution: {integrity: sha512-a7mrlPTM3tAFJyz43qb4pPVpUx8j8TzZBFsNFqcKcE/sEakNXRlQAuCT4RGZRf9dQiiUnBahzSIWawU4rENl+Q==}
 
-  '@puppeteer/browsers@1.4.6':
-    resolution: {integrity: sha512-x4BEjr2SjOPowNeiguzjozQbsc6h437ovD/wu+JpaenxVLm3jkgzHY2xOslMTp50HoTvQreMjiexiGQw1sqZlQ==}
-    engines: {node: '>=16.3.0'}
+  '@puppeteer/browsers@2.10.4':
+    resolution: {integrity: sha512-9DxbZx+XGMNdjBynIs4BRSz+M3iRDeB7qRcAr6UORFLphCIM2x3DXgOucvADiifcqCE4XePFUKcnaAMyGbrDlQ==}
+    engines: {node: '>=18'}
     hasBin: true
-    peerDependencies:
-      typescript: '>= 4.7.4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   '@radix-ui/primitive@1.1.1':
     resolution: {integrity: sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==}
@@ -8093,6 +8092,7 @@ packages:
   '@xmldom/xmldom@0.8.7':
     resolution: {integrity: sha512-sI1Ly2cODlWStkINzqGrZ8K6n+MTSbAeQnAipGyL+KZCXuHaRlj2gyyy8B/9MvsFFqN7XHryQnB2QwhzvJXovg==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -8109,6 +8109,7 @@ packages:
 
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -8155,10 +8156,6 @@ packages:
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
-
-  agent-base@7.1.0:
-    resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
-    engines: {node: '>= 14'}
 
   agent-base@7.1.3:
     resolution: {integrity: sha512-jRR5wdylq8CkOe6hei19GGZnxM6rBGwFl3Bg0YItGDimvjGtAvdZk4Pu6Cl4u4Igsws4a1fd1Vq3ezrhn4KmFw==}
@@ -8281,10 +8278,12 @@ packages:
 
   are-we-there-yet@1.1.7:
     resolution: {integrity: sha512-nxwy40TuMiUGqMyRHgCSWZ9FM4VAoRP4xUYSTv5ImRog+h9yISPbVH7H8fASCIzYn9wlEv4zvFL7uKDMCFQm3g==}
+    deprecated: This package is no longer supported.
 
   are-we-there-yet@2.0.0:
     resolution: {integrity: sha512-Ci/qENmwHnsYo9xKIcUJN5LeDKdJ6R1Z1j9V/J5wyq8nh/mYPEpIKJbBZXtZjG04HiK7zV/p6Vs9952MrMeUIw==}
     engines: {node: '>=10'}
+    deprecated: This package is no longer supported.
 
   arg@4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
@@ -8561,6 +8560,36 @@ packages:
 
   balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
+
+  bare-events@2.5.4:
+    resolution: {integrity: sha512-+gFfDkR8pj4/TrWCGUGWmJIkBwuxPS5F+a5yWjOHQt2hHvNZd5YLzadjmDUtFmMM4y429bnKLa8bYBMHcYdnQA==}
+
+  bare-fs@4.1.5:
+    resolution: {integrity: sha512-1zccWBMypln0jEE05LzZt+V/8y8AQsQQqxtklqaIyg5nu6OAYFhZxPXinJTSG+kU5qyNmeLgcn9AW7eHiCHVLA==}
+    engines: {bare: '>=1.16.0'}
+    peerDependencies:
+      bare-buffer: '*'
+    peerDependenciesMeta:
+      bare-buffer:
+        optional: true
+
+  bare-os@3.6.1:
+    resolution: {integrity: sha512-uaIjxokhFidJP+bmmvKSgiMzj2sV5GPHaZVAIktcxcpCyBFFWO+YlikVAdhmUo2vYFvFhOXIAlldqV29L8126g==}
+    engines: {bare: '>=1.14.0'}
+
+  bare-path@3.0.0:
+    resolution: {integrity: sha512-tyfW2cQcB5NN8Saijrhqn0Zh7AnFNsnczRcuWODH0eYAXBsJ5gVxAUuNr7tsHSC6IZ77cA0SitzT+s47kot8Mw==}
+
+  bare-stream@2.6.5:
+    resolution: {integrity: sha512-jSmxKJNJmHySi6hC42zlZnq00rga4jjxcgNZjY9N5WlOe/iOoGRtdwGsHzQv2RlH2KOYMwGUXhf2zXd32BA9RA==}
+    peerDependencies:
+      bare-buffer: '*'
+      bare-events: '*'
+    peerDependenciesMeta:
+      bare-buffer:
+        optional: true
+      bare-events:
+        optional: true
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -8850,8 +8879,8 @@ packages:
     resolution: {integrity: sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg==}
     engines: {node: '>=6.0'}
 
-  chromium-bidi@0.4.16:
-    resolution: {integrity: sha512-7ZbXdWERxRxSwo3txsBjjmc/NLxqb1Bk30mRb0BMS4YIaiV6zvKZqL/UAH+DdqcDYayDWk2n/y8klkBDODrPvA==}
+  chromium-bidi@5.1.0:
+    resolution: {integrity: sha512-9MSRhWRVoRPDG0TgzkHrshFSJJNZzfY5UFqUMuksg7zL1yoZIZ3jLB0YAgHclbiAxPI86pBnwDX1tbzoiV8aFw==}
     peerDependencies:
       devtools-protocol: '*'
 
@@ -9254,9 +9283,6 @@ packages:
   cross-fetch@3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
 
-  cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
-
   cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
 
@@ -9498,6 +9524,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.1:
+    resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   decamelize-keys@1.1.1:
     resolution: {integrity: sha512-WiPxgEirIV0/eIOMcnFBA3/IJZAZqKnwAwWyvvdi4lsr1WCN22nhdf/3db3DoZcUjTV2SqfzIwNyp6y2xs3nmg==}
     engines: {node: '>=0.10.0'}
@@ -9668,8 +9703,8 @@ packages:
     engines: {node: '>= 4.2.1'}
     hasBin: true
 
-  devtools-protocol@0.0.1147663:
-    resolution: {integrity: sha512-hyWmRrexdhbZ1tcJUGpO95ivbRhWXz++F4Ko+n21AY5PNln2ovoJw+8ZMNDTtip+CNFQfrtLVh/w4009dXO/eQ==}
+  devtools-protocol@0.0.1439962:
+    resolution: {integrity: sha512-jJF48UdryzKiWhJ1bLKr7BFWUQCEIT5uCNbDLqkQJBtkFxYzILJH44WN0PDKMIlGDN7Utb8vyUY85C3w4R/t2g==}
 
   dicer@0.3.0:
     resolution: {integrity: sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==}
@@ -9727,6 +9762,7 @@ packages:
   domexception@4.0.0:
     resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
     engines: {node: '>=12'}
+    deprecated: Use your platform's native DOMException instead
 
   domhandler@4.3.1:
     resolution: {integrity: sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==}
@@ -10240,6 +10276,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -10412,6 +10449,9 @@ packages:
 
   fast-fifo@1.3.0:
     resolution: {integrity: sha512-IgfweLvEpwyA4WgiQe9Nx6VV2QkML2NkvZnk1oKnIzXgXdWxuhF7zw4DvLTPZJn6PIUneiAXPF24QmoEqHTjyw==}
+
+  fast-fifo@1.3.2:
+    resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
 
   fast-glob@3.2.12:
     resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
@@ -10718,10 +10758,12 @@ packages:
 
   gauge@2.7.4:
     resolution: {integrity: sha512-14x4kjc6lkD3ltw589k0NrPD6cCNTD6CWoVUNpB85+DrtONoZn+Rug6xZU5RvSC4+TZPxA5AnBibQYAvZn41Hg==}
+    deprecated: This package is no longer supported.
 
   gauge@3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
     engines: {node: '>=10'}
+    deprecated: This package is no longer supported.
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -10827,10 +10869,12 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   global-dirs@0.1.1:
     resolution: {integrity: sha512-NknMLn7F2J7aflwFOlGdNIuCDpN3VGoSoB+aap3KABFWbHVn1TCgFC+np23J8W2BiZbjfEw3BFBycSMv1AFblg==}
@@ -11177,10 +11221,6 @@ packages:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
 
-  https-proxy-agent@7.0.4:
-    resolution: {integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==}
-    engines: {node: '>= 14'}
-
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
     engines: {node: '>= 14'}
@@ -11283,6 +11323,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.3:
     resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
@@ -12089,7 +12130,6 @@ packages:
     resolution: {integrity: sha512-t0etAxTUk1w5MYdNOkZBZ8rvYYN5iL+2dHCCx/DpkFm/bW28M6y5nUS83D4XdZiHy35Fpaw6LBb+F88fHZnVCw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
-    bundledDependencies: []
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
@@ -12274,9 +12314,11 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 
   lodash.isfunction@3.0.9:
     resolution: {integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==}
@@ -12363,6 +12405,7 @@ packages:
   lord-icon-element@4.1.1:
     resolution: {integrity: sha512-cfydpCwB/23GSffD5ewBANr1P8ZBe8tPoJH19kncWcpJBV/VHqqzkml/bgZuoTvsU9DUA50Whk9wUlPmJ4wn6g==}
     engines: {node: '>=16.0.0'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   lottie-web@5.12.2:
     resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
@@ -12731,18 +12774,12 @@ packages:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
     engines: {node: '>= 8'}
 
-  mitt@3.0.0:
-    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
-
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
   mixme@0.5.9:
     resolution: {integrity: sha512-VC5fg6ySUscaWUpI4gxCBTQMH2RdUpNrk+MsbpCYtIvf9SBJdiUey4qE7BXviJsJR4nDQxCZ+3yaYNW3guz/Pw==}
     engines: {node: '>= 8.0.0'}
-
-  mkdirp-classic@0.5.3:
-    resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
 
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
@@ -12904,6 +12941,7 @@ packages:
 
   node-pre-gyp@0.13.0:
     resolution: {integrity: sha512-Md1D3xnEne8b/HGVQkZZwV27WUi1ZRuZBij24TNaZwUPU3ZAFtvT6xxJGaUVillfmMKnn5oD1HoGsp2Ftik7SQ==}
+    deprecated: 'Please upgrade to @mapbox/node-pre-gyp: the non-scoped node-pre-gyp package is deprecated and only the @mapbox scoped package will recieve updates in the future'
     hasBin: true
 
   node-releases@2.0.13:
@@ -12982,9 +13020,11 @@ packages:
 
   npmlog@4.1.2:
     resolution: {integrity: sha512-2uUqazuKlTaSI/dC8AzicUck7+IrEaOnN/e0jd3Xtt1KcGpwx30v50mL7oPyr/h9bL3E4aZccVwpwP+5W9Vjkg==}
+    deprecated: This package is no longer supported.
 
   npmlog@5.0.1:
     resolution: {integrity: sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw==}
+    deprecated: This package is no longer supported.
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -13116,6 +13156,7 @@ packages:
 
   osenv@0.1.5:
     resolution: {integrity: sha512-0CWcCECdMVc2Rw3U5w9ZjqX6ga6ubk1xDVKxtBQPK7wis/0F2r9T6k4ydGYhecl7YUBxBVxhL5oisPsNxAPe2g==}
+    deprecated: This package is no longer supported.
 
   ospath@1.2.2:
     resolution: {integrity: sha512-o6E5qJV5zkAbIDNhGSIlyOhScKXgQrSRMilfph0clDfM0nEnBOlKlH4sWDmG95BW/CvwNz0vmm7dJVtU2KlMiA==}
@@ -13177,10 +13218,6 @@ packages:
   p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
-
-  pac-proxy-agent@7.0.1:
-    resolution: {integrity: sha512-ASV8yU4LLKBAjqIPMbrgtaKIvxQri/yh2OpI+S6hVa9JRkUI3Y3NPFbfngDtY7oFtSMD3w31Xns89mDa3Feo5A==}
-    engines: {node: '>= 14'}
 
   pac-proxy-agent@7.1.0:
     resolution: {integrity: sha512-Z5FnLVVZSnX7WjBg0mhDtydeRZ1xMcATZThjySQUHqr+0ksP8kqaw23fNKkaaN/Z8gwLUs/W7xdl0I75eP2Xyw==}
@@ -13384,6 +13421,7 @@ packages:
 
   popper.js@1.15.0:
     resolution: {integrity: sha512-w010cY1oCUmI+9KwwlWki+r5jxKfTFDVoadl7MSrIujHU5MJ5OR6HTDj6Xo8aoR/QsA56x8jKjA59qGH4ELtrA==}
+    deprecated: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
 
   postcss-calc@8.2.4:
     resolution: {integrity: sha512-SmWMSJmB8MRnnULldx0lQIyhSNvuDl9HfrZkaqqE/WHAhToYsAvDq+yAsA/kIyINDszOp3Rh0GFoNuH5Ypsm3Q==}
@@ -13746,8 +13784,8 @@ packages:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
 
-  proxy-agent@6.3.0:
-    resolution: {integrity: sha512-0LdR757eTj/JfuU7TL2YCuAZnxWXu3tkJbg4Oq3geW/qFNT/32T0sp2HnZ9O0lMR4q3vwAt0+xCA8SR0WAD0og==}
+  proxy-agent@6.5.0:
+    resolution: {integrity: sha512-TmatMXdr2KlRiA2CyDu8GqR8EjahTG3aY3nXjdzFyoZbmB8hrBsTyMezhULIXKnC0jpfjlmiZ3+EaCzoInSu/A==}
     engines: {node: '>= 14'}
 
   proxy-from-env@1.0.0:
@@ -13784,18 +13822,14 @@ packages:
     resolution: {integrity: sha512-l1jNAspIBSFqbT+y+5FosojNpVpF94nlI+wDUpqP9enwOTfHx9f0gh5nB96vl+6yTpsJsypeNrwfzPrKuHB41A==}
     engines: {node: '>=8'}
 
-  puppeteer-core@20.9.0:
-    resolution: {integrity: sha512-H9fYZQzMTRrkboEfPmf7m3CLDN6JvbxXA3qTtS+dFt27tR+CsFHzPsT6pzp6lYL6bJbAPaR0HaPO6uSi+F94Pg==}
-    engines: {node: '>=16.3.0'}
-    peerDependencies:
-      typescript: '>= 4.7.4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
+  puppeteer-core@24.8.2:
+    resolution: {integrity: sha512-wNw5cRZOHiFibWc0vdYCYO92QuKTbJ8frXiUfOq/UGJWMqhPoBThTKkV+dJ99YyWfzJ2CfQQ4T1nhhR0h8FlVw==}
+    engines: {node: '>=18'}
 
-  puppeteer@20.9.0:
-    resolution: {integrity: sha512-kAglT4VZ9fWEGg3oLc4/de+JcONuEJhlh3J6f5R1TLkrY/EHHIHxWXDOzXvaxQCtedmyVXBwg8M+P8YCO/wZjw==}
-    engines: {node: '>=16.3.0'}
+  puppeteer@24.8.2:
+    resolution: {integrity: sha512-Sn6SBPwJ6ASFvQ7knQkR+yG7pcmr4LfXzmoVp3NR0xXyBbPhJa8a8ybtb6fnw1g/DD/2t34//yirubVczko37w==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   pure-rand@6.0.2:
     resolution: {integrity: sha512-6Yg0ekpKICSjPswYOuC5sku/TSWaRYlA0qsXqJgM/d/4pLPHPuTxK7Nbf7jFKzAeedUhR8C7K9Uv63FBsSo8xQ==}
@@ -13834,6 +13868,7 @@ packages:
   querystring@0.2.0:
     resolution: {integrity: sha512-X/xY82scca2tau62i9mDyU9K+I+djTMUsvwf7xnUX5GLvVzgJybOJf4Y6o9Zx3oJK/LSXg5tTZBjwzqVPaPO2g==}
     engines: {node: '>=0.4.x'}
+    deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
 
   querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
@@ -13882,6 +13917,7 @@ packages:
 
   react-beautiful-dnd@13.1.1:
     resolution: {integrity: sha512-0Lvs4tq2VcrEjEgDXHjT98r+63drkKEgqyxdA7qD3mvKwga6a5SscbdLPO2IExotU1jW8L0Ksdl0Cj2AF67nPQ==}
+    deprecated: 'react-beautiful-dnd is now deprecated. Context and options: https://github.com/atlassian/react-beautiful-dnd/issues/2672'
     peerDependencies:
       react: ^16.8.5 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.5 || ^17.0.0 || ^18.0.0
@@ -14291,10 +14327,12 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@5.0.7:
@@ -14622,17 +14660,9 @@ packages:
   sockjs@0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
 
-  socks-proxy-agent@8.0.2:
-    resolution: {integrity: sha512-8zuqoLv1aP/66PHF5TqwJ7Czm3Yv32urJQHrVyhD7mmA6d61Zv8cIXQYPTWwmg6qlupnPvs/QKDmfa4P/qct2g==}
-    engines: {node: '>= 14'}
-
   socks-proxy-agent@8.0.5:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
     engines: {node: '>= 14'}
-
-  socks@2.8.1:
-    resolution: {integrity: sha512-B6w7tkwNid7ToxjZ08rQMT8M9BJAf8DKx8Ft4NivzH0zBUfd6jldGcisJn/RLgxcX3FPNDdNQCUEMMT79b+oCQ==}
-    engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
 
   socks@2.8.4:
     resolution: {integrity: sha512-D3YaD0aRxR3mEcqnidIs7ReYJFVzWdd6fXJYUM8ixcQcJRGTka/b3saV0KflYhyVJXKhb947GndU35SxYNResQ==}
@@ -14666,6 +14696,7 @@ packages:
 
   sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
@@ -14718,6 +14749,7 @@ packages:
 
   stable@0.1.8:
     resolution: {integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==}
+    deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
 
   stack-trace@0.0.10:
     resolution: {integrity: sha512-KGzahc7puUKkzyMt+IqAep+TVNbKP+k2Lmwhub39m1AsTSkaDutx56aDCo+HLDzf/D26BIHTJWNiTG1KAJiQCg==}
@@ -14765,6 +14797,9 @@ packages:
 
   streamx@2.15.1:
     resolution: {integrity: sha512-fQMzy2O/Q47rgwErk/eGeLu/roaFWV0jVsogDmrszM9uIw8L5OA+t+V93MgYlufNptfjmYR1tOMWhei/Eh7TQA==}
+
+  streamx@2.22.0:
+    resolution: {integrity: sha512-sLh1evHOzBy/iWRiR6d1zRcLao4gGZr3C1kzNz4fopCOKJb6xD9ub8Mpi9Mr1R6id5o43S+d93fI48UC5uM9aw==}
 
   strict-event-emitter@0.2.8:
     resolution: {integrity: sha512-KDf/ujU8Zud3YaLtMCcTI4xkZlZVIYxTLr+XIULexP+77EEVWixeXroLUXQXiVtH4XH2W7jr/3PT1v3zBuvc3A==}
@@ -14925,6 +14960,7 @@ packages:
 
   subscriptions-transport-ws@0.9.19:
     resolution: {integrity: sha512-dxdemxFFB0ppCLg10FTtRqH/31FNRL1y1BQv8209MK5I4CwALb7iihQg+7p65lFcIl8MHatINWBLOqpgU4Kyyw==}
+    deprecated: The `subscriptions-transport-ws` package is no longer maintained. We recommend you use `graphql-ws` instead. For help migrating Apollo software to `graphql-ws`, see https://www.apollographql.com/docs/apollo-server/data/subscriptions/#switching-from-subscriptions-transport-ws    For general help using `graphql-ws`, see https://github.com/enisdenjo/graphql-ws/blob/master/README.md
     peerDependencies:
       graphql: '>=0.10.0'
 
@@ -15010,8 +15046,8 @@ packages:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
 
-  tar-fs@3.0.4:
-    resolution: {integrity: sha512-5AFQU8b9qLfZCX9zp2duONhPmZv0hGYiBPJsyUdqMjzq/mqVpy/rEUSeHk1+YitmxugaptgBh5oDGU3VsAJq4w==}
+  tar-fs@3.0.8:
+    resolution: {integrity: sha512-ZoROL70jptorGAlgAYiLoBLItEKw/fUxg9BSYK/dF/GAGYFJOJJJMvjPAKDJraCXFwadD456FCuvLWgfhMsPwg==}
 
   tar-stream@3.1.6:
     resolution: {integrity: sha512-B/UyjYwPpMBv+PaFSWAmtYjwdrlEaZQEhMIBFNC5oEG8lpiW8XjcSdmEaClj28ArfKScKHs2nshz3k2le6crsg==}
@@ -15056,6 +15092,9 @@ packages:
   test-exclude@6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
     engines: {node: '>=8'}
+
+  text-decoder@1.2.3:
+    resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
 
   text-extensions@1.9.0:
     resolution: {integrity: sha512-wiBrwC1EhBelW12Zy26JeOUkQ5mRu+5o8rpsJk5+2t+Y5vE7e842qtZDQ2g1NpX/29HdyFeJ4nSIhI47ENSxlQ==}
@@ -15373,6 +15412,9 @@ packages:
   typed-array-length@1.0.4:
     resolution: {integrity: sha512-KjZypGq+I/H7HI5HlOoGHkWUUGq+Q0TPhQurLbyrVrvnKTBgzLhIJ7j6J/XTQOi0d1RjyZ0wdas8bKs2p0x3Ng==}
 
+  typed-query-selector@2.12.0:
+    resolution: {integrity: sha512-SbklCd1F0EiZOyPiW192rrHZzZ5sBijB6xM+cpmrwDqObvdtunOHHIk9fCGsoK5JVIYXoyEp4iEdE3upFH3PAg==}
+
   typedarray-to-buffer@3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
 
@@ -15421,9 +15463,6 @@ packages:
 
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
-
-  unbzip2-stream@1.4.3:
-    resolution: {integrity: sha512-mlExGW4w71ebDJviH16lQLtZS32VKqsSfk80GCfUlwT/4/hNRFsoscrF/c++9xinkMzECL1uL9DDwXqFWkruPg==}
 
   unc-path-regex@0.1.2:
     resolution: {integrity: sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg==}
@@ -16039,6 +16078,18 @@ packages:
       utf-8-validate:
         optional: true
 
+  ws@8.18.2:
+    resolution: {integrity: sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   xdg-basedir@4.0.0:
     resolution: {integrity: sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==}
     engines: {node: '>=8'}
@@ -16102,6 +16153,10 @@ packages:
     resolution: {integrity: sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==}
     engines: {node: '>=12'}
 
+  yargs@17.7.2:
+    resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
+    engines: {node: '>=12'}
+
   yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
 
@@ -16118,6 +16173,9 @@ packages:
 
   zen-observable@0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
+
+  zod@3.24.4:
+    resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -19119,6 +19177,31 @@ snapshots:
       - '@types/react'
       - supports-color
 
+  '@commercetools-uikit/async-select-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/loading-spinner': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/select-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/async-select-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -19138,31 +19221,6 @@ snapshots:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
-      - typescript
-
-  '@commercetools-uikit/async-select-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.26.10
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/loading-spinner': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/select-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      lodash: 4.17.21
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
       react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -19257,6 +19315,26 @@ snapshots:
       - '@types/react'
       - react-dom
       - supports-color
+
+  '@commercetools-uikit/checkbox-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/select-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
 
   '@commercetools-uikit/checkbox-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
@@ -19359,6 +19437,50 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@commercetools-uikit/data-table-manager@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/accessible-hidden': 19.24.0(@types/react@17.0.83)(react@17.0.2)
+      '@commercetools-uikit/async-select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/card': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/collapsible-motion': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/dropdown-menu': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/grid': 19.24.0(@types/react@17.0.83)(react@17.0.2)
+      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/primary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/radio-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/secondary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/tag': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/tooltip': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      '@types/debounce-promise': 3.1.9
+      '@types/react-beautiful-dnd': 13.1.8
+      debounce-promise: 3.1.2
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-beautiful-dnd: 13.1.1(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      react-dom: 17.0.2(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-native
+      - react-router-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/data-table-manager@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -19403,45 +19525,26 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/data-table-manager@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/data-table@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
-      '@babel/runtime': 7.26.10
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/accessible-hidden': 19.24.0(@types/react@17.0.83)(react@17.0.2)
-      '@commercetools-uikit/async-select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/card': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/collapsible-motion': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/data-table-manager': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/dropdown-menu': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/grid': 19.24.0(@types/react@17.0.83)(react@17.0.2)
       '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
       '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/primary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/radio-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/secondary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/tag': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/tooltip': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      '@types/debounce-promise': 3.1.9
-      '@types/react-beautiful-dnd': 13.1.8
-      debounce-promise: 3.1.2
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
-      react-beautiful-dnd: 13.1.1(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      react-dom: 17.0.2(react@17.0.2)
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
+      - react-dom
       - react-native
       - react-router-dom
       - supports-color
@@ -19464,31 +19567,6 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - react-native
-      - react-router-dom
-      - supports-color
-      - typescript
-
-  '@commercetools-uikit/data-table@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/data-table-manager': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      lodash: 4.17.21
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -19572,6 +19650,30 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@commercetools-uikit/dropdown-menu@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/secondary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - react-router-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/dropdown-menu@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -19596,27 +19698,19 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/dropdown-menu@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/field-errors@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/secondary-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@commercetools-uikit/messages': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - react-router-dom
       - supports-color
       - typescript
 
@@ -19646,6 +19740,31 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
+  '@commercetools-uikit/field-label@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -19696,6 +19815,22 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
+  '@commercetools-uikit/field-warnings@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/messages': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -19755,6 +19890,27 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/flat-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/flat-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -19797,6 +19953,27 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/flat-button@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings-inline': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/flat-button@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -19812,27 +19989,6 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-      - typescript
-
-  '@commercetools-uikit/flat-button@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.26.10
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/accessible-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/spacings-inline': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      lodash: 4.17.21
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -19888,6 +20044,27 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
+
+  '@commercetools-uikit/icon-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
 
   '@commercetools-uikit/icon-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
@@ -19985,6 +20162,25 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@commercetools-uikit/input-utils@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/flat-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-textarea-autosize: 8.4.0(@types/react@17.0.83)(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/input-utils@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20023,6 +20219,25 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/input-utils@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/flat-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/icons': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-textarea-autosize: 8.4.0(@types/react@17.0.83)(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/input-utils@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20042,24 +20257,22 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/input-utils@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/label@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/flat-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/icons': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
-      react-textarea-autosize: 8.4.0(@types/react@17.0.83)(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
       - supports-color
-      - typescript
 
   '@commercetools-uikit/label@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)':
     dependencies:
@@ -20090,6 +20303,28 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@commercetools-uikit/link@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      '@types/history': 4.7.11
+      '@types/react-router-dom': 5.3.3
+      history: 4.10.1
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20157,6 +20392,24 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/loading-spinner@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/loading-spinner@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20193,6 +20446,29 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/localized-text-field@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/field-errors': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-warnings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/localized-text-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/localized-text-field@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20216,23 +20492,27 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/localized-text-field@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/localized-text-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/field-errors': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/field-warnings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/localized-text-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/flat-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/localized-utils': 19.24.0(react@17.0.2)
+      '@commercetools-uikit/messages': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/text-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20266,27 +20546,27 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/localized-text-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/localized-text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/flat-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/hooks': 19.24.0(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/localized-utils': 19.24.0(react@17.0.2)
-      '@commercetools-uikit/messages': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/text-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/flat-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/hooks': 19.25.1(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/icons': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/localized-utils': 19.25.1(react@17.0.2)
+      '@commercetools-uikit/messages': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings-stack': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/text-input': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20320,33 +20600,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/localized-text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.26.10
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/constraints': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/flat-button': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/hooks': 19.25.1(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/icons': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/localized-utils': 19.25.1(react@17.0.2)
-      '@commercetools-uikit/messages': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings-stack': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/text-input': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-      - typescript
-
   '@commercetools-uikit/localized-utils@19.24.0(react@17.0.2)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20364,6 +20617,23 @@ snapshots:
       lodash: 4.17.21
     transitivePeerDependencies:
       - react
+
+  '@commercetools-uikit/messages@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
 
   '@commercetools-uikit/messages@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
@@ -20399,6 +20669,23 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/messages@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/messages@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20410,23 +20697,6 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-      - typescript
-
-  '@commercetools-uikit/messages@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.26.10
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/text': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20484,6 +20754,23 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/notifications@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
   '@commercetools-uikit/notifications@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20518,6 +20805,25 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@commercetools-uikit/number-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - react-intl
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/number-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20537,22 +20843,30 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/number-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/pagination@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
-      '@babel/runtime': 7.26.10
+      '@babel/runtime': 7.24.5
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/number-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
       '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      formik: 2.4.6(react@17.0.2)
+      lodash: 4.17.21
       prop-types: 15.8.1
       react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
-      - react-intl
       - supports-color
       - typescript
 
@@ -20583,33 +20897,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/pagination@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
-    dependencies:
-      '@babel/runtime': 7.24.5
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/number-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/secondary-icon-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
-      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
-      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
-      formik: 2.4.6(react@17.0.2)
-      lodash: 4.17.21
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-      - typescript
-
   '@commercetools-uikit/primary-button@18.4.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20625,6 +20912,27 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
+  '@commercetools-uikit/primary-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20673,14 +20981,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/radio-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
+  '@commercetools-uikit/radio-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
       '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/spacings-inset': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -20697,14 +21005,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/radio-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/radio-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
       '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/spacings-inset': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -20736,6 +21044,27 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      react-router-dom: 5.3.4(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@commercetools-uikit/secondary-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings-inline': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
       react-router-dom: 5.3.4(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -20805,6 +21134,27 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/secondary-icon-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/secondary-icon-button@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20841,6 +21191,29 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
+  '@commercetools-uikit/select-field@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/field-errors': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-warnings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/select-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -20893,6 +21266,29 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/select-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/select-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/is-prop-valid': 1.3.1
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/select-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -20933,6 +21329,30 @@ snapshots:
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
       react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
+      react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+      - typescript
+
+  '@commercetools-uikit/select-utils@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/checkbox-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
       react-select: 5.10.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
     transitivePeerDependencies:
       - '@types/react'
@@ -21172,6 +21592,29 @@ snapshots:
       - react-intl
       - supports-color
 
+  '@commercetools-uikit/tag@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      react-router-dom: 5.3.4(react@17.0.2)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/tag@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -21195,23 +21638,24 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/tag@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-router-dom@5.3.4(react@17.0.2))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/text-field@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/accessible-button': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/icons': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/spacings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      '@commercetools-uikit/text': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)
+      '@commercetools-uikit/field-errors': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-label': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/field-warnings': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/messages': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/spacings-stack': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/text-input': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
       prop-types: 15.8.1
       react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
-      react-router-dom: 5.3.4(react@17.0.2)
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
@@ -21266,6 +21710,25 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools-uikit/text-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/constraints': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/input-utils': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
+      prop-types: 15.8.1
+      react: 17.0.2
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - react-intl
+      - supports-color
+      - typescript
+
   '@commercetools-uikit/text-input@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.24.5
@@ -21304,13 +21767,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
+  '@commercetools-uikit/text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)
+      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)(typescript@4.9.5)
       '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
@@ -21323,13 +21786,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@commercetools-uikit/text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)':
+  '@commercetools-uikit/text-input@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)':
     dependencies:
       '@babel/runtime': 7.26.10
       '@babel/runtime-corejs3': 7.26.10
       '@commercetools-uikit/constraints': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)(typescript@5.7.3)
+      '@commercetools-uikit/input-utils': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)(typescript@5.0.4)
       '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
       '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@17.0.83)(react@17.0.2))(@types/react@17.0.83)(react@17.0.2)
@@ -21353,6 +21816,23 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
+      warning: 4.0.3
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@commercetools-uikit/text@19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.24.0(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/utils': 19.24.0(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -21393,6 +21873,23 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@commercetools-uikit/text@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@4.9.5))(react@17.0.2)':
+    dependencies:
+      '@babel/runtime': 7.26.10
+      '@babel/runtime-corejs3': 7.26.10
+      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
+      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
+      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-intl: 6.4.7(react@17.0.2)(typescript@4.9.5)
+      warning: 4.0.3
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
   '@commercetools-uikit/text@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.0.4))(react@17.0.2)':
     dependencies:
       '@babel/runtime': 7.26.10
@@ -21404,23 +21901,6 @@ snapshots:
       prop-types: 15.8.1
       react: 17.0.2
       react-intl: 6.4.7(react@17.0.2)(typescript@5.0.4)
-      warning: 4.0.3
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
-
-  '@commercetools-uikit/text@19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))(react-intl@6.4.7(react@17.0.2)(typescript@5.7.3))(react@17.0.2)':
-    dependencies:
-      '@babel/runtime': 7.26.10
-      '@babel/runtime-corejs3': 7.26.10
-      '@commercetools-uikit/design-system': 19.25.1(@types/react@17.0.83)(react-dom@17.0.2(react@17.0.2))
-      '@commercetools-uikit/utils': 19.25.1(react@17.0.2)
-      '@emotion/react': 11.14.0(@types/react@17.0.83)(react@17.0.2)
-      lodash: 4.17.21
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-intl: 6.4.7(react@17.0.2)(typescript@5.7.3)
       warning: 4.0.3
     transitivePeerDependencies:
       - '@types/react'
@@ -21878,6 +22358,16 @@ snapshots:
 
   '@emotion/weak-memoize@0.4.0': {}
 
+  '@endemolshinegroup/cosmiconfig-typescript-loader@3.0.2(cosmiconfig@7.0.0)(typescript@4.9.5)':
+    dependencies:
+      cosmiconfig: 7.0.0
+      lodash.get: 4.4.2
+      make-error: 1.3.6
+      ts-node: 9.1.1(typescript@4.9.5)
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - typescript
+
   '@endemolshinegroup/cosmiconfig-typescript-loader@3.0.2(cosmiconfig@7.0.0)(typescript@5.0.4)':
   '@endemolshinegroup/cosmiconfig-typescript-loader@3.0.2(cosmiconfig@7.0.0)(typescript@5.0.4)':
     dependencies:
@@ -21885,16 +22375,6 @@ snapshots:
       lodash.get: 4.4.2
       make-error: 1.3.6
       ts-node: 9.1.1(typescript@5.0.4)
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - typescript
-
-  '@endemolshinegroup/cosmiconfig-typescript-loader@3.0.2(cosmiconfig@7.0.0)(typescript@5.7.3)':
-    dependencies:
-      cosmiconfig: 7.0.0
-      lodash.get: 4.4.2
-      make-error: 1.3.6
-      ts-node: 9.1.1(typescript@5.7.3)
       tslib: 2.6.2
     transitivePeerDependencies:
       - typescript
@@ -22333,6 +22813,18 @@ snapshots:
       '@formatjs/ecma402-abstract': 1.17.1
       '@formatjs/intl-localematcher': 0.4.1
       tslib: 2.5.0
+
+  '@formatjs/intl@2.9.3(typescript@4.9.5)':
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.2
+      '@formatjs/fast-memoize': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.6.2
+      '@formatjs/intl-displaynames': 6.5.2
+      '@formatjs/intl-listformat': 7.4.2
+      intl-messageformat: 10.5.3
+      tslib: 2.6.2
+    optionalDependencies:
+      typescript: 4.9.5
 
   '@formatjs/intl@2.9.3(typescript@5.0.4)':
     dependencies:
@@ -23988,10 +24480,10 @@ snapshots:
       '@percy/sdk-utils': 1.30.7
       systeminformation: 5.25.11
 
-  '@percy/puppeteer@2.0.2(puppeteer@20.9.0(typescript@5.0.4))':
+  '@percy/puppeteer@2.0.2(puppeteer@24.8.2(typescript@5.0.4))':
     dependencies:
       '@percy/sdk-utils': 1.23.0
-      puppeteer: 20.9.0(typescript@5.0.4)
+      puppeteer: 24.8.2(typescript@5.0.4)
 
   '@percy/sdk-utils@1.23.0': {}
 
@@ -24087,18 +24579,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@puppeteer/browsers@1.4.6(typescript@5.0.4)':
+  '@puppeteer/browsers@2.10.4':
     dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.4.1
       extract-zip: 2.0.1(supports-color@8.1.1)
       progress: 2.0.3
-      proxy-agent: 6.3.0
-      tar-fs: 3.0.4
-      unbzip2-stream: 1.4.3
-      yargs: 17.7.1
-    optionalDependencies:
-      typescript: 5.0.4
+      proxy-agent: 6.5.0
+      semver: 7.7.1
+      tar-fs: 3.0.8
+      yargs: 17.7.2
     transitivePeerDependencies:
+      - bare-buffer
       - supports-color
 
   '@radix-ui/primitive@1.1.1': {}
@@ -25869,12 +26360,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  agent-base@7.1.0:
-    dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
-
   agent-base@7.1.3: {}
 
   aggregate-error@3.1.0:
@@ -26433,6 +26918,31 @@ snapshots:
 
   balanced-match@2.0.0: {}
 
+  bare-events@2.5.4:
+    optional: true
+
+  bare-fs@4.1.5:
+    dependencies:
+      bare-events: 2.5.4
+      bare-path: 3.0.0
+      bare-stream: 2.6.5(bare-events@2.5.4)
+    optional: true
+
+  bare-os@3.6.1:
+    optional: true
+
+  bare-path@3.0.0:
+    dependencies:
+      bare-os: 3.6.1
+    optional: true
+
+  bare-stream@2.6.5(bare-events@2.5.4):
+    dependencies:
+      streamx: 2.22.0
+    optionalDependencies:
+      bare-events: 2.5.4
+    optional: true
+
   base64-js@1.5.1: {}
 
   basic-ftp@5.0.5: {}
@@ -26818,10 +27328,11 @@ snapshots:
 
   chrome-trace-event@1.0.3: {}
 
-  chromium-bidi@0.4.16(devtools-protocol@0.0.1147663):
+  chromium-bidi@5.1.0(devtools-protocol@0.0.1439962):
     dependencies:
-      devtools-protocol: 0.0.1147663
-      mitt: 3.0.0
+      devtools-protocol: 0.0.1439962
+      mitt: 3.0.1
+      zod: 3.24.4
 
   ci-info@2.0.0: {}
 
@@ -27307,12 +27818,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  cross-fetch@4.0.0:
-    dependencies:
-      node-fetch: 2.7.0
-    transitivePeerDependencies:
-      - encoding
-
   cross-spawn@5.1.0:
     dependencies:
       lru-cache: 4.1.5
@@ -27591,6 +28096,10 @@ snapshots:
     optionalDependencies:
       supports-color: 8.1.1
 
+  debug@4.4.1:
+    dependencies:
+      ms: 2.1.3
+
   decamelize-keys@1.1.1:
     dependencies:
       decamelize: 1.2.0
@@ -27741,7 +28250,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  devtools-protocol@0.0.1147663: {}
+  devtools-protocol@0.0.1439962: {}
 
   dicer@0.3.0:
     dependencies:
@@ -28279,11 +28788,11 @@ snapshots:
       eslint: 8.57.0
       eslint-compat-utils: 0.5.0(eslint@8.57.0)
 
-  eslint-plugin-graphql@4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4):
+  eslint-plugin-graphql@4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@4.9.5):
     dependencies:
       '@babel/runtime': 7.22.15
       graphql: 16.8.1
-      graphql-config: 3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4)
+      graphql-config: 3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@4.9.5)
       lodash.flatten: 4.4.0
       lodash.without: 4.4.0
     transitivePeerDependencies:
@@ -28293,11 +28802,11 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  eslint-plugin-graphql@4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.7.3):
+  eslint-plugin-graphql@4.0.0(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4):
     dependencies:
       '@babel/runtime': 7.22.15
       graphql: 16.8.1
-      graphql-config: 3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.7.3)
+      graphql-config: 3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4)
       lodash.flatten: 4.4.0
       lodash.without: 4.4.0
     transitivePeerDependencies:
@@ -28774,6 +29283,9 @@ snapshots:
   fast-equals@2.0.4: {}
 
   fast-fifo@1.3.0: {}
+
+  fast-fifo@1.3.2:
+    optional: true
 
   fast-glob@3.2.12:
     dependencies:
@@ -29417,9 +29929,9 @@ snapshots:
       ts-invariant: 0.3.3
       tslib: 2.5.0
 
-  graphql-config@3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4):
+  graphql-config@3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@4.9.5):
     dependencies:
-      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@5.0.4)
+      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@4.9.5)
       '@graphql-tools/graphql-file-loader': 6.2.7(graphql@16.8.1)
       '@graphql-tools/json-file-loader': 6.2.6(graphql@16.8.1)
       '@graphql-tools/load': 6.2.8(graphql@16.8.1)
@@ -29438,9 +29950,9 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  graphql-config@3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.7.3):
+  graphql-config@3.4.1(@types/node@22.13.2)(graphql@16.8.1)(typescript@5.0.4):
     dependencies:
-      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@5.7.3)
+      '@endemolshinegroup/cosmiconfig-typescript-loader': 3.0.2(cosmiconfig@7.0.0)(typescript@5.0.4)
       '@graphql-tools/graphql-file-loader': 6.2.7(graphql@16.8.1)
       '@graphql-tools/json-file-loader': 6.2.6(graphql@16.8.1)
       '@graphql-tools/load': 6.2.8(graphql@16.8.1)
@@ -29772,13 +30284,6 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.7(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
-
-  https-proxy-agent@7.0.4:
-    dependencies:
-      agent-base: 7.1.0
       debug: 4.3.7(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
@@ -30718,11 +31223,11 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-puppeteer@8.0.6(puppeteer@20.9.0(typescript@5.0.4)):
+  jest-puppeteer@8.0.6(puppeteer@24.8.2(typescript@5.0.4)):
     dependencies:
       expect-puppeteer: 8.0.5
       jest-environment-puppeteer: 8.0.6
-      puppeteer: 20.9.0(typescript@5.0.4)
+      puppeteer: 24.8.2(typescript@5.0.4)
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -30750,6 +31255,18 @@ snapshots:
       resolve.exports: 2.0.2
       slash: 3.0.0
 
+  jest-runner-eslint@2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))):
+    dependencies:
+      chalk: 4.1.2
+      cosmiconfig: 7.1.0
+      create-jest-runner: 0.11.2
+      dot-prop: 6.0.1
+      eslint: 8.57.0
+      jest: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))
+    transitivePeerDependencies:
+      - '@jest/test-result'
+      - jest-runner
+
   jest-runner-eslint@2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.0.4))):
     dependencies:
       chalk: 4.1.2
@@ -30758,18 +31275,6 @@ snapshots:
       dot-prop: 6.0.1
       eslint: 8.57.0
       jest: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.0.4))
-    transitivePeerDependencies:
-      - '@jest/test-result'
-      - jest-runner
-
-  jest-runner-eslint@2.2.0(eslint@8.57.0)(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3))):
-    dependencies:
-      chalk: 4.1.2
-      cosmiconfig: 7.1.0
-      create-jest-runner: 0.11.2
-      dot-prop: 6.0.1
-      eslint: 8.57.0
-      jest: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.7.3))
     transitivePeerDependencies:
       - '@jest/test-result'
       - jest-runner
@@ -30898,6 +31403,17 @@ snapshots:
       jest-get-type: 29.6.3
       leven: 3.1.0
       pretty-format: 29.7.0
+
+  jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))):
+    dependencies:
+      ansi-escapes: 6.2.0
+      chalk: 5.2.0
+      jest: 29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@4.9.5))
+      jest-regex-util: 29.4.3
+      jest-watcher: 29.5.0
+      slash: 5.1.0
+      string-length: 5.0.1
+      strip-ansi: 7.0.1
 
   jest-watch-typeahead@2.2.2(jest@29.7.0(@types/node@22.13.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.1(@swc/core@1.10.16)(@types/node@22.13.2)(typescript@5.0.4))):
     dependencies:
@@ -32000,13 +32516,9 @@ snapshots:
       minipass: 3.3.6
       yallist: 4.0.0
 
-  mitt@3.0.0: {}
-
   mitt@3.0.1: {}
 
   mixme@0.5.9: {}
-
-  mkdirp-classic@0.5.3: {}
 
   mkdirp@0.5.6:
     dependencies:
@@ -32495,19 +33007,6 @@ snapshots:
       retry: 0.13.1
 
   p-try@2.2.0: {}
-
-  pac-proxy-agent@7.0.1:
-    dependencies:
-      '@tootallnate/quickjs-emscripten': 0.23.0
-      agent-base: 7.1.0
-      debug: 4.3.7(supports-color@8.1.1)
-      get-uri: 6.0.3
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.4
-      pac-resolver: 7.0.1
-      socks-proxy-agent: 8.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   pac-proxy-agent@7.1.0:
     dependencies:
@@ -33034,16 +33533,16 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  proxy-agent@6.3.0:
+  proxy-agent@6.5.0:
     dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.7(supports-color@8.1.1)
+      agent-base: 7.1.3
+      debug: 4.4.1
       http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.4
+      https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
-      pac-proxy-agent: 7.0.1
+      pac-proxy-agent: 7.1.0
       proxy-from-env: 1.1.0
-      socks-proxy-agent: 8.0.2
+      socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color
 
@@ -33074,30 +33573,31 @@ snapshots:
     dependencies:
       escape-goat: 2.1.1
 
-  puppeteer-core@20.9.0(typescript@5.0.4):
+  puppeteer-core@24.8.2:
     dependencies:
-      '@puppeteer/browsers': 1.4.6(typescript@5.0.4)
-      chromium-bidi: 0.4.16(devtools-protocol@0.0.1147663)
-      cross-fetch: 4.0.0
-      debug: 4.3.4(supports-color@8.1.1)
-      devtools-protocol: 0.0.1147663
-      ws: 8.13.0
-    optionalDependencies:
-      typescript: 5.0.4
+      '@puppeteer/browsers': 2.10.4
+      chromium-bidi: 5.1.0(devtools-protocol@0.0.1439962)
+      debug: 4.4.1
+      devtools-protocol: 0.0.1439962
+      typed-query-selector: 2.12.0
+      ws: 8.18.2
     transitivePeerDependencies:
+      - bare-buffer
       - bufferutil
-      - encoding
       - supports-color
       - utf-8-validate
 
-  puppeteer@20.9.0(typescript@5.0.4):
+  puppeteer@24.8.2(typescript@5.0.4):
     dependencies:
-      '@puppeteer/browsers': 1.4.6(typescript@5.0.4)
-      cosmiconfig: 8.2.0
-      puppeteer-core: 20.9.0(typescript@5.0.4)
+      '@puppeteer/browsers': 2.10.4
+      chromium-bidi: 5.1.0(devtools-protocol@0.0.1439962)
+      cosmiconfig: 9.0.0(typescript@5.0.4)
+      devtools-protocol: 0.0.1439962
+      puppeteer-core: 24.8.2
+      typed-query-selector: 2.12.0
     transitivePeerDependencies:
+      - bare-buffer
       - bufferutil
-      - encoding
       - supports-color
       - typescript
       - utf-8-validate
@@ -33241,6 +33741,22 @@ snapshots:
   react-from-dom@0.6.2(react@17.0.2):
     dependencies:
       react: 17.0.2
+
+  react-intl@6.4.7(react@17.0.2)(typescript@4.9.5):
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.2
+      '@formatjs/icu-messageformat-parser': 2.6.2
+      '@formatjs/intl': 2.9.3(typescript@4.9.5)
+      '@formatjs/intl-displaynames': 6.5.2
+      '@formatjs/intl-listformat': 7.4.2
+      '@types/hoist-non-react-statics': 3.3.1
+      '@types/react': 17.0.83
+      hoist-non-react-statics: 3.3.2
+      intl-messageformat: 10.5.3
+      react: 17.0.2
+      tslib: 2.6.2
+    optionalDependencies:
+      typescript: 4.9.5
 
   react-intl@6.4.7(react@17.0.2)(typescript@5.0.4):
     dependencies:
@@ -34136,14 +34652,6 @@ snapshots:
       uuid: 8.3.2
       websocket-driver: 0.7.4
 
-  socks-proxy-agent@8.0.2:
-    dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.7(supports-color@8.1.1)
-      socks: 2.8.1
-    transitivePeerDependencies:
-      - supports-color
-
   socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.3
@@ -34151,11 +34659,6 @@ snapshots:
       socks: 2.8.4
     transitivePeerDependencies:
       - supports-color
-
-  socks@2.8.1:
-    dependencies:
-      ip-address: 9.0.5
-      smart-buffer: 4.2.0
 
   socks@2.8.4:
     dependencies:
@@ -34308,6 +34811,14 @@ snapshots:
     dependencies:
       fast-fifo: 1.3.0
       queue-tick: 1.0.1
+
+  streamx@2.22.0:
+    dependencies:
+      fast-fifo: 1.3.2
+      text-decoder: 1.2.3
+    optionalDependencies:
+      bare-events: 2.5.4
+    optional: true
 
   strict-event-emitter@0.2.8:
     dependencies:
@@ -34614,11 +35125,15 @@ snapshots:
 
   tapable@2.2.1: {}
 
-  tar-fs@3.0.4:
+  tar-fs@3.0.8:
     dependencies:
-      mkdirp-classic: 0.5.3
       pump: 3.0.0
       tar-stream: 3.1.6
+    optionalDependencies:
+      bare-fs: 4.1.5
+      bare-path: 3.0.0
+    transitivePeerDependencies:
+      - bare-buffer
 
   tar-stream@3.1.6:
     dependencies:
@@ -34686,6 +35201,11 @@ snapshots:
       '@istanbuljs/schema': 0.1.3
       glob: 7.2.3
       minimatch: 3.1.2
+
+  text-decoder@1.2.3:
+    dependencies:
+      b4a: 1.6.4
+    optional: true
 
   text-extensions@1.9.0: {}
 
@@ -34947,6 +35467,16 @@ snapshots:
       typescript: 4.3.4
       yn: 3.1.1
 
+  ts-node@9.1.1(typescript@4.9.5):
+    dependencies:
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      source-map-support: 0.5.21
+      typescript: 4.9.5
+      yn: 3.1.1
+
   ts-node@9.1.1(typescript@5.0.4):
   ts-node@9.1.1(typescript@5.0.4):
     dependencies:
@@ -34956,16 +35486,6 @@ snapshots:
       make-error: 1.3.6
       source-map-support: 0.5.21
       typescript: 5.0.4
-      yn: 3.1.1
-
-  ts-node@9.1.1(typescript@5.7.3):
-    dependencies:
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      source-map-support: 0.5.21
-      typescript: 5.7.3
       yn: 3.1.1
 
   ts-toolbelt@6.15.5: {}
@@ -35079,6 +35599,8 @@ snapshots:
       for-each: 0.3.3
       is-typed-array: 1.1.12
 
+  typed-query-selector@2.12.0: {}
+
   typedarray-to-buffer@3.1.5:
     dependencies:
       is-typedarray: 1.0.0
@@ -35107,11 +35629,6 @@ snapshots:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
-
-  unbzip2-stream@1.4.3:
-    dependencies:
-      buffer: 5.7.1
-      through: 2.3.8
 
   unc-path-regex@0.1.2: {}
 
@@ -35848,6 +36365,8 @@ snapshots:
 
   ws@8.18.0: {}
 
+  ws@8.18.2: {}
+
   xdg-basedir@4.0.0: {}
 
   xml-name-validator@4.0.0: {}
@@ -35905,6 +36424,16 @@ snapshots:
       y18n: 5.0.8
       yargs-parser: 21.1.1
 
+  yargs@17.7.2:
+    dependencies:
+      cliui: 8.0.1
+      escalade: 3.2.0
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 21.1.1
+
   yauzl@2.10.0:
     dependencies:
       buffer-crc32: 0.2.13
@@ -35919,5 +36448,7 @@ snapshots:
       zen-observable: 0.8.15
 
   zen-observable@0.8.15: {}
+
+  zod@3.24.4: {}
 
   zwitch@2.0.4: {}
