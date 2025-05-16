@@ -10,12 +10,12 @@ import {
 function installDependencies(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Installing dependencies (this might take a while)',
-    task: async () => {
+    task: () => {
       const packageManager = getPreferredPackageManager(options);
 
       // Only configure Yarn if it's the selected package manager
       if (packageManager === 'yarn') {
-        await configureYarn(options.projectDirectoryPath);
+        configureYarn(options.projectDirectoryPath);
       }
 
       const installCommand = getInstallCommand(options);

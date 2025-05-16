@@ -36,7 +36,7 @@ const getYarnVersion = () => {
   }
 };
 
-const configureYarn = async (projectDirectoryPath: string) => {
+const configureYarn = (projectDirectoryPath: string) => {
   const yarnVersion = getYarnVersion();
   if (!yarnVersion) return;
 
