@@ -48,7 +48,7 @@ const configureYarn = (projectDirectoryPath: string) => {
 
     // Create .yarnrc.yml to use node_modules
     const yarnrcPath = path.join(normalizedProjectPath, '.yarnrc.yml');
-    const yarnrcContent = 'nodeLinker: "node-modules"\n';
+    const yarnrcContent = 'nodeLinker: "node-modules"';
 
     fs.writeFileSync(yarnrcPath, yarnrcContent);
   }
