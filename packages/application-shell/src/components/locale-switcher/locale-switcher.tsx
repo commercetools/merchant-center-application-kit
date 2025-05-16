@@ -16,8 +16,8 @@ import { designTokens } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { WorldIcon, InformationIcon } from '@commercetools-uikit/icons';
 import SelectInput, {
-  TCustomEvent,
   type TOption,
+  type TCustomEvent,
 } from '@commercetools-uikit/select-input';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -80,7 +80,7 @@ CustomGroupHeading.displayName = 'CustomGroupHeading';
 const LocaleSwitcher = (props: Props) => {
   const { isModalOpen, openModal, closeModal } = useModalState();
   const { setProjectDataLocale } = props;
-  const getNewLine = () => <br />;
+  const getNewLine = () => <br key="new-line" />;
   const intl = useIntl();
 
   const handleSelection = useCallback(

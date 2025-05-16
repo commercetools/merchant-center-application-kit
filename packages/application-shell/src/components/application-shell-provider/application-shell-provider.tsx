@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo } from 'react';
+import { JSX, Suspense, useEffect, useMemo } from 'react';
 import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
