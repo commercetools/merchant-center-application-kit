@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import execa from 'execa';
 import type {
   TApplicationType,
@@ -39,11 +40,14 @@ const configureYarn = async (projectDirectoryPath: string) => {
   const yarnVersion = getYarnVersion();
   if (!yarnVersion) return;
 
-  // Check if Yarn version is 3 or higher
+  // Check if Yarn version is 2 or higher. Plug'n'Play was introduced in Yarn v2
   const majorVersion = parseInt(yarnVersion.split('.')[0], 10);
-  if (majorVersion >= 3) {
-    // Create or update .yarnrc.yml to use node_modules
-    const yarnrcPath = `${projectDirectoryPath}/.yarnrc.yml`;
+  if (majorVersion >= 2) {
+    // Sanitize and resolve the path
+    const normalizedProjectPath = path.resolve(projectDirectoryPath);
+
+    // Create .yarnrc.yml to use node_modules
+    const yarnrcPath = path.join(normalizedProjectPath, '.yarnrc.yml');
     const yarnrcContent = 'nodeLinker: "node-modules"\n';
 
     fs.writeFileSync(yarnrcPath, yarnrcContent);
