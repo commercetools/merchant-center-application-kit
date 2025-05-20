@@ -73,7 +73,9 @@ jobs:
       # Explicitly install the Chrome binary in case it's not available yet.
       # This workaround is based on the suggestions from https://github.com/puppeteer/puppeteer/issues/9533.
       - name: Installing Chrome via Puppeteer
-        run: node ./node_modules/puppeteer/install.js
+        run: pnpm -C node_modules/puppeteer run postinstall
+        env:
+          PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
 
       - name: Running Visual Regression Tests for UI components
         run: pnpm vrt:components
