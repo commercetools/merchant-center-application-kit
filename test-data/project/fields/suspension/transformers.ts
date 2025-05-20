@@ -1,4 +1,4 @@
-import { Transformer } from '@commercetools-test-data/core';
+import { Transformer } from '@commercetools/composable-commerce-test-data/core';
 import type { TProjectSuspension, TProjectSuspensionGraphql } from './types';
 
 const transformers = {

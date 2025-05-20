@@ -1,8 +1,11 @@
 import { graphql } from 'msw';
 import {
   CustomView,
+  CustomViewDraft,
   CustomViewPermission,
-} from '@commercetools-test-data/custom-view';
+  TCustomViewDraftGraphql,
+  type TCustomViewGraphql,
+} from '@commercetools/composable-commerce-test-data/custom-view';
 import { setupServer } from 'msw/node';
 import type { TCustomViewDraftDataInput } from '../generated/settings';
 import {
@@ -233,7 +236,7 @@ describe('Custom Views', () => {
     .id(customViewId)
     .defaultLabel('Avengers')
     .permissions([CustomViewPermission.presets.ViewOnlyPermissions()])
-    .buildGraphql<TCustomViewDraftDataInput>();
+    .buildGraphql<TCustomViewGraphql>();
   describe('fetch custom view data', () => {
     beforeEach(() => {
       mockServer.use(
@@ -277,10 +280,12 @@ describe('Custom Views', () => {
       );
     });
     it('should match returned data', async () => {
+      const newCustomView =
+        CustomViewDraft.random().buildGraphql<TCustomViewDraftGraphql>();
       const createdCustomViewData = await createCustomView({
         mcApiUrl,
         organizationId: 'organization-id',
-        data: customView,
+        data: newCustomView as unknown as TCustomViewDraftDataInput,
         applicationIdentifier,
       });
       expect(createdCustomViewData?.id).toEqual(customViewId);
@@ -306,7 +311,7 @@ describe('Custom Views', () => {
         mcApiUrl,
         organizationId: 'organization-id',
         customViewId,
-        data: customView,
+        data: customView as unknown as TCustomViewDraftDataInput,
         applicationIdentifier,
       });
       expect(updatedCustomAppsData?.id).toEqual(customViewId);

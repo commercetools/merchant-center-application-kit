@@ -12,6 +12,7 @@ export type TApolloContext = {
   projectKey?: string;
   teamId?: string;
   featureFlag?: string;
+  enableSentryErrorReporting?: boolean;
 };
 
 const createApolloContextForProxyForwardTo = (

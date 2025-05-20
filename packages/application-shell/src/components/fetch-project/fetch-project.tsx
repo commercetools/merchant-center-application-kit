@@ -29,6 +29,7 @@ const FetchProject = (props: TFetchProjectProps) => {
     },
     context: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      enableSentryErrorReporting: true,
     },
     skip: props.skip === true,
   });

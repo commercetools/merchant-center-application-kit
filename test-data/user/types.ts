@@ -1,4 +1,4 @@
-import type { TBuilder } from '@commercetools-test-data/core';
+import type { TBuilder } from '@commercetools/composable-commerce-test-data/core';
 import type { TProject, TProjectGraphql } from '../project';
 
 export type TCreateUserBuilder = () => TBuilder<TUser>;

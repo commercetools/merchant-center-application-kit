@@ -64,7 +64,7 @@
     "@commercetools-backend/express": "23.3.0",
     "@commercetools-frontend/mc-dev-authentication": "23.3.0",
     "@commercetools-frontend/mc-scripts": "23.3.0",
-    "@commercetools-test-data/commons": "8.5.0",
+    "@commercetools/composable-commerce-test-data": "11.0.0",
     "@formatjs/cli": "6.2.12",
     "@types/jest": "^29.5.4",
     "@types/node": "^22.13.2",
