@@ -37,10 +37,10 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "eslint": "8.x"
+    "eslint": "9.x"
   },
   "devDependencies": {
-    "eslint": "8.57.0"
+    "eslint": "9.27.0"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"
