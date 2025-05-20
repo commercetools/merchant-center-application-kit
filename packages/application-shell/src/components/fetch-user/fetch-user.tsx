@@ -22,7 +22,10 @@ const FetchUser = (props: TFetchUserProps) => {
     TFetchLoggedInUserQuery,
     TFetchLoggedInUserQueryVariables
   >(LoggedInUserQuery, {
-    context: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+    context: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      enableSentryErrorReporting: true,
+    },
   });
   return (
     <>
