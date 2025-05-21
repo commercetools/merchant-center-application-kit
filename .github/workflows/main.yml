@@ -75,7 +75,7 @@ jobs:
       - name: Installing Chrome via Puppeteer
         run: pnpm -C node_modules/puppeteer run postinstall
         env:
-          PUPPETEER_DOWNLOAD_HOST: https://storage.googleapis.com/chrome-for-testing-public
+          PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
 
       - name: Running Visual Regression Tests for UI components
         run: pnpm vrt:components
