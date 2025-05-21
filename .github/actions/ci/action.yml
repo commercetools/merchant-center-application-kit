@@ -23,6 +23,8 @@ runs:
         # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L14-L18
         # https://github.com/marketplace/actions/cypress-io#custom-install
         CYPRESS_INSTALL_BINARY: '0'
+        # This workaround is based on the suggestions from https://github.com/puppeteer/puppeteer/issues/9533.
+        PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
       shell: bash
 
     - name: Building packages
