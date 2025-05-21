@@ -2,7 +2,10 @@ import type { ReactElement, ReactNode, SyntheticEvent } from 'react';
 import styled, { type CSSObject } from '@emotion/styled';
 import { useIntl } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import {
+  designTokens as uiKitDesignTokens,
+  type TIconProps,
+} from '@commercetools-uikit/design-system';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Spacings from '@commercetools-uikit/spacings';
@@ -52,7 +55,7 @@ type TDrawerProps = {
   labelSecondaryButton?: Label;
   onPrimaryButtonClick?: (event: SyntheticEvent) => void;
   onSecondaryButtonClick?: (event: SyntheticEvent) => void;
-  iconLeftSecondaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
 };
 
 const ContentWrapper = styled.div`

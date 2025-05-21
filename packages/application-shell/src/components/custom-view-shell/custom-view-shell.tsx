@@ -74,8 +74,8 @@ type TCustomViewShellProps = {
 const browserLocale = getBrowserLocale(window);
 
 type TNotificationsContainerProps = {
-  notificationsGlobalRef: RefObject<HTMLDivElement>;
-  notificationsPageRef: RefObject<HTMLDivElement>;
+  notificationsGlobalRef: RefObject<HTMLDivElement | null>;
+  notificationsPageRef: RefObject<HTMLDivElement | null>;
 };
 function NotificationsContainer(props: TNotificationsContainerProps) {
   return (
@@ -141,12 +141,12 @@ const isLocalProdMode =
 
 function CustomViewShell(props: TCustomViewShellProps) {
   const [hostContext, setHostContext] = useState<THostContext>();
-  const iFrameCommunicationPort = useRef<MessagePort>();
+  const iFrameCommunicationPort = useRef<MessagePort | undefined>(null);
   const notificationsGlobalRef = useRef<HTMLDivElement>(null);
   const notificationsPageRef = useRef<HTMLDivElement>(null);
   const layoutRefs = useRef<{
-    notificationsGlobalRef: RefObject<HTMLDivElement>;
-    notificationsPageRef: RefObject<HTMLDivElement>;
+    notificationsGlobalRef: RefObject<HTMLDivElement | null>;
+    notificationsPageRef: RefObject<HTMLDivElement | null>;
   }>({
     notificationsGlobalRef,
     notificationsPageRef,
@@ -201,6 +201,13 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
 
     window.addEventListener('message', bootstrapMessageHandler);
+
+    // Notify the custom view loader that the iframe is ready
+    window.parent.postMessage({
+      origin: window.location.origin,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY,
+    });
+
     return () => {
       window.removeEventListener('message', bootstrapMessageHandler);
     };
