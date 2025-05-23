@@ -172,6 +172,8 @@ export const GRAPHQL_TARGETS = {
   ORDER_INDEXER: 'order-indexer',
   SETTINGS_SERVICE: 'settings',
   ADMINISTRATION_SERVICE: 'administration',
+  STANDALONE_PRICES_INDEXER: 'standalone-prices-indexer',
+  PLATFORM_INSIGHTS: 'platform-insights',
 } as const;
 export type TGraphQLTargets =
   (typeof GRAPHQL_TARGETS)[keyof typeof GRAPHQL_TARGETS];
@@ -183,6 +185,7 @@ export const MC_API_PROXY_TARGETS = {
   ORDER_SEARCH: 'order-search',
   IMPORT: 'import',
   EXPORT: 'export',
+  STANDALONE_PRICES_SEARCH: 'standalone-prices-search',
 } as const;
 export type TMcApiProxyTargets =
   (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];

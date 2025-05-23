@@ -1,4 +1,7 @@
-import { Transformer, buildField } from '@commercetools-test-data/core';
+import {
+  Transformer,
+  buildField,
+} from '@commercetools/composable-commerce-test-data/core';
 
 const transformers = {
   default: Transformer('default', {

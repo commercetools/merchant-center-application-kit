@@ -1,4 +1,4 @@
-import type { TBuilder } from '@commercetools-test-data/core';
+import type { TBuilder } from '@commercetools/composable-commerce-test-data/core';
 import type { TNavbarMenuGroup as TMcProxyNavbarMenuGroup } from '../../../packages/application-shell/src/types/generated/proxy';
 
 export type TNavbarMenuGroupGraphql = TMcProxyNavbarMenuGroup;

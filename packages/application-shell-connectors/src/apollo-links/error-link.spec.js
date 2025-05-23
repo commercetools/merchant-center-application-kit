@@ -209,18 +209,25 @@ describe('with unhandled error', () => {
   let terminatingLinkStub;
   let link;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     history.push.mockClear();
     terminatingLinkStub = jest.fn(
       () => new Observable((o) => o.error(badRequestError))
     );
 
     link = ApolloLink.from([errorLink, terminatingLinkStub]);
-
-    await waitFor(execute(link, { query }));
   });
 
-  it('should report the error to Sentry', () => {
+  it('should not report the error to Sentry by default', async () => {
+    await waitFor(execute(link, { query }));
+    expect(history.push).not.toHaveBeenCalled();
+    expect(reportErrorToSentry).not.toHaveBeenCalled();
+  });
+
+  it('should report the error to Sentry when when enabling it in the context', async () => {
+    await waitFor(
+      execute(link, { query, context: { enableSentryErrorReporting: true } })
+    );
     expect(history.push).not.toHaveBeenCalled();
     expect(reportErrorToSentry).toHaveBeenCalled();
   });

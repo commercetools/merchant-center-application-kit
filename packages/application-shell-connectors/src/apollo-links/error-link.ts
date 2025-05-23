@@ -32,9 +32,8 @@ const errorLink = onError(
     // https://www.apollographql.com/docs/link/links/error/#retrying-failed-requests
     // We need to do this as the `token-retry-link` only works for network errors.
     // https://www.apollographql.com/docs/link/links/retry/
+    const context = operation.getContext() as TApolloContext;
     if (graphQLErrors && isGraphQLError(graphQLErrors)) {
-      const context = operation.getContext() as TApolloContext;
-
       for (const err of graphQLErrors) {
         const isNonAuthenticatedViaExtensionCode =
           err?.extensions?.code === 'UNAUTHENTICATED';
@@ -62,7 +61,7 @@ const errorLink = onError(
     }
 
     // Report unhandled errors to Sentry
-    if (networkError) {
+    if (context.enableSentryErrorReporting && networkError) {
       reportErrorToSentry(networkError, {
         extra: {
           operationName: operation.operationName,
@@ -70,7 +69,7 @@ const errorLink = onError(
       });
     }
 
-    if (graphQLErrors) {
+    if (context.enableSentryErrorReporting && graphQLErrors) {
       for (const err of graphQLErrors) {
         reportErrorToSentry(err, {
           extra: {
