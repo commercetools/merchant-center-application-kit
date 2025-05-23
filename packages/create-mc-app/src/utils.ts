@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import execa from 'execa';
+import semver from 'semver';
 import type {
   TApplicationType,
   TCliTaskOptions,
@@ -41,8 +42,7 @@ const configureYarn = (projectDirectoryPath: string) => {
   if (!yarnVersion) return;
 
   // Check if Yarn version is 2 or higher. Plug'n'Play was introduced in Yarn v2
-  const majorVersion = parseInt(yarnVersion.split('.')[0], 10);
-  if (majorVersion >= 2) {
+  if (semver.gte(yarnVersion, '2.0.0')) {
     // Sanitize and resolve the path
     const normalizedProjectPath = path.resolve(projectDirectoryPath);
 
