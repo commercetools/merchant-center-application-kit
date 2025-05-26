@@ -203,16 +203,10 @@ function CustomViewShell(props: TCustomViewShellProps) {
     window.addEventListener('message', bootstrapMessageHandler);
 
     // Notify the custom view loader that the iframe is ready
-    window.parent.postMessage(
-      {
-        origin: window.location.origin,
-        source: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${window.app.customViewId}`,
-        destination: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
-        eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY,
-        eventData: {},
-      },
-      window.location.origin
-    );
+    window.parent.postMessage({
+      origin: window.location.origin,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY,
+    });
 
     return () => {
       window.removeEventListener('message', bootstrapMessageHandler);
