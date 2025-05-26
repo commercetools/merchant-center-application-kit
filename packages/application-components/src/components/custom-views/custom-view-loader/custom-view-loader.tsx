@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { useAllFeatureToggles } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
@@ -58,6 +58,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const showNotification = useShowNotification();
   const intl = useIntl();
   const hasTransferredPort = useRef(false);
+  const hasInitializedChannel = useRef(false);
+  const [isIframeLoaded, setIsIframeLoaded] = useState(false);
 
   const messageFromIFrameHandler = useCallback(
     (event: MessageEvent) => {
@@ -66,40 +68,58 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
             hasTransferredPort.current = false;
-
             break;
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY:
-            // Transfer port2 to the iFrame so it can send messages back privately
-            iFrameElementRef.current?.contentWindow?.postMessage(
-              CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
-              window.location.href,
-              !hasTransferredPort.current
-                ? [iFrameCommunicationChannel.current!.port2]
-                : []
-            );
-            if (!hasTransferredPort.current) hasTransferredPort.current = true;
+            // Only initialize the channel once, even in strict mode
+            if (!hasInitializedChannel.current) {
+              iFrameCommunicationChannel.current = new MessageChannel();
+              iFrameCommunicationChannel.current.port1.onmessage =
+                messageFromIFrameHandler;
+              hasInitializedChannel.current = true;
+            }
 
-            // Send the initialization message to the iFrame
-            iFrameCommunicationChannel.current!.port1.postMessage({
-              source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
-              destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
-              eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
-              eventData: {
-                context: {
-                  dataLocale,
-                  projectKey,
-                  featureFlags,
-                  customViewConfig: props.customView,
-                  hostUrl: props.hostUrl || window.location.href,
+            // Transfer port2 to the iFrame so it can send messages back privately
+            if (
+              !hasTransferredPort.current &&
+              iFrameCommunicationChannel.current
+            ) {
+              iFrameElementRef.current?.contentWindow?.postMessage(
+                CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
+                window.location.href,
+                [iFrameCommunicationChannel.current.port2]
+              );
+              hasTransferredPort.current = true;
+
+              // Send the initialization message to the iFrame
+              iFrameCommunicationChannel.current.port1.postMessage({
+                source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+                destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
+                eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
+                eventData: {
+                  context: {
+                    dataLocale,
+                    projectKey,
+                    featureFlags,
+                    customViewConfig: props.customView,
+                    hostUrl: props.hostUrl || window.location.href,
+                  },
                 },
-              },
-            } as TCustomViewIframeMessage);
+              } as TCustomViewIframeMessage);
+            }
             break;
         }
       }
     },
-    [props]
+    [props, dataLocale, projectKey, featureFlags, isIframeLoaded]
   );
+
+  // Set up message event listener immediately
+  useEffect(() => {
+    window.addEventListener('message', messageFromIFrameHandler);
+    return () => {
+      window.removeEventListener('message', messageFromIFrameHandler);
+    };
+  }, [messageFromIFrameHandler]);
 
   // onLoad handler is called from the iFrame even where the URL is not valid
   // (blocked by CORS, 404, etc.) so we need to make sure the iFrame is ready
@@ -115,23 +135,19 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       return;
     }
 
-    // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current!.port1.onmessage =
-      messageFromIFrameHandler;
-
-    window.addEventListener('message', messageFromIFrameHandler);
-
-    // We want the effect to run only once so we don't need the dependencies array.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setIsIframeLoaded(true);
+  }, [showNotification, intl, isIframeLoaded]);
 
   useEffect(() => {
-    iFrameCommunicationChannel.current = new MessageChannel();
     // Close the channel when the component unmounts
-    const communicationChannel = iFrameCommunicationChannel.current;
     return () => {
-      communicationChannel?.port1.close();
-      window.removeEventListener('message', messageFromIFrameHandler);
+      if (iFrameCommunicationChannel.current) {
+        iFrameCommunicationChannel.current.port1.close();
+        iFrameCommunicationChannel.current = undefined;
+      }
+      hasInitializedChannel.current = false;
+      hasTransferredPort.current = false;
+      setIsIframeLoaded(false);
     };
   }, []);
 
