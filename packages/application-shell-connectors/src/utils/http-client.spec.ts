@@ -22,7 +22,7 @@ afterAll(() => {
 });
 
 const throwIfMissingHeader = (
-  headers: Headers,
+  headers: Pick<Headers, 'get'>,
   expectedHeaderName: string,
   expectedHeaderValue: string
 ) => {

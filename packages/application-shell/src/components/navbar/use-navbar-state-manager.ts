@@ -4,6 +4,7 @@ import {
   useLayoutEffect,
   useReducer,
   useRef,
+  type MouseEvent,
 } from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
@@ -163,9 +164,10 @@ const useNavbarStateManager = (props: HookProps) => {
     );
   }
 
-  const [state, dispatch] = useReducer<
-    (prevState: State, action: Action) => State
-  >(reducer, getInitialState(isForcedMenuOpen));
+  const [state, dispatch] = useReducer(
+    reducer,
+    getInitialState(isForcedMenuOpen)
+  );
 
   const checkSize = useCallback(
     throttle(() => {
@@ -262,7 +264,7 @@ const useNavbarStateManager = (props: HookProps) => {
   );
 
   const getMousePosition = useCallback(
-    (e, itemIndex) => {
+    (e: MouseEvent<HTMLLIElement>, itemIndex: string) => {
       if (state.activeItemIndex === itemIndex) {
         dispatch({
           type: 'getMousePosition',

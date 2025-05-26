@@ -1,4 +1,4 @@
-import { Children, ReactNode } from 'react';
+import { Children, JSX, ReactNode } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';

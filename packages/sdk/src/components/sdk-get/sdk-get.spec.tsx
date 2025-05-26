@@ -23,6 +23,7 @@ describe('rendering', () => {
         dispatch={() => Promise.resolve({ status: 'ok' })}
         render={({ isLoading, result, error }) => {
           if (isLoading) return <div>Loading ...</div>;
+          /* @ts-ignore */
           if (error) return <div>Error: {error}</div>;
           return <div>{JSON.stringify(result)}</div>;
         }}
@@ -58,6 +59,7 @@ describe('rendering and refetching', () => {
         dispatch={() => Promise.resolve({ count })}
         render={({ isLoading, result, error, refresh }) => {
           if (isLoading) return <div>Loading ...</div>;
+          /* @ts-ignore */
           if (error) return <div>Error: {error}</div>;
           return (
             <div>
