@@ -54,10 +54,9 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
   const featureFlags = useAllFeatureToggles();
-  const iFrameCommunicationChannel = useRef<MessageChannel>(undefined);
+  const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
-  const hasTransferredPort = useRef(false);
 
   const messageFromIFrameHandler = useCallback(
     (event: MessageEvent) => {
@@ -65,35 +64,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         switch (event.data.eventName) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
-            hasTransferredPort.current = false;
-
-            break;
-          case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY:
-            // Transfer port2 to the iFrame so it can send messages back privately
-            iFrameElementRef.current?.contentWindow?.postMessage(
-              CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
-              window.location.href,
-              !hasTransferredPort.current
-                ? [iFrameCommunicationChannel.current!.port2]
-                : []
-            );
-            if (!hasTransferredPort.current) hasTransferredPort.current = true;
-
-            // Send the initialization message to the iFrame
-            iFrameCommunicationChannel.current!.port1.postMessage({
-              source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
-              destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
-              eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
-              eventData: {
-                context: {
-                  dataLocale,
-                  projectKey,
-                  featureFlags,
-                  customViewConfig: props.customView,
-                  hostUrl: props.hostUrl || window.location.href,
-                },
-              },
-            } as TCustomViewIframeMessage);
             break;
         }
       }
@@ -115,25 +85,44 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       return;
     }
 
+    // Listen for messages from the iFrame
+    iFrameCommunicationChannel.current.port1.onmessage =
+      messageFromIFrameHandler;
+
+    // Transfer port2 to the iFrame so it can send messages back privately
+    iFrameElementRef.current?.contentWindow?.postMessage(
+      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
+      window.location.href,
+      [iFrameCommunicationChannel.current.port2]
+    );
+
+    // Send the initialization message to the iFrame
+    iFrameCommunicationChannel.current.port1.postMessage({
+      source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
+      eventData: {
+        context: {
+          dataLocale,
+          projectKey,
+          featureFlags,
+          customViewConfig: props.customView,
+          hostUrl: props.hostUrl || window.location.href,
+        },
+      },
+    } as TCustomViewIframeMessage);
+
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    iFrameCommunicationChannel.current = new MessageChannel();
-
-    // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current!.port1.onmessage =
-      messageFromIFrameHandler;
-    window.addEventListener('message', messageFromIFrameHandler);
-
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
     return () => {
       communicationChannel?.port1.close();
-      window.removeEventListener('message', messageFromIFrameHandler);
     };
-  }, [messageFromIFrameHandler]);
+  }, []);
 
   // Currently we only support custom panels
   if (props.customView.type !== 'CustomPanel') {
