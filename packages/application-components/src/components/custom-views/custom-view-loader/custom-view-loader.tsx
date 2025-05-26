@@ -115,25 +115,25 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       return;
     }
 
-    // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current!.port1.onmessage =
-      messageFromIFrameHandler;
-
-    window.addEventListener('message', messageFromIFrameHandler);
-
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     iFrameCommunicationChannel.current = new MessageChannel();
+
+    // Listen for messages from the iFrame
+    iFrameCommunicationChannel.current!.port1.onmessage =
+      messageFromIFrameHandler;
+    window.addEventListener('message', messageFromIFrameHandler);
+
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
     return () => {
       communicationChannel?.port1.close();
       window.removeEventListener('message', messageFromIFrameHandler);
     };
-  }, []);
+  }, [messageFromIFrameHandler]);
 
   // Currently we only support custom panels
   if (props.customView.type !== 'CustomPanel') {
