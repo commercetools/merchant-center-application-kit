@@ -18,7 +18,7 @@ function vitePluginSvgr(): Plugin {
         const svgCode = await fs.promises.readFile(id, 'utf8');
 
         let transformableSVGCode;
-        if (process.env.ENABLE_EXPERIMENTAL_SVG_PNG_OPTIMIZATION) {
+        if (process.env.ENABLE_EXPERIMENTAL_SVG_PNG_OPTIMIZATION === 'true') {
           // This is a temporary fix for the issue with large embedded PNGs
           // in SVGs. It will be removed once we have a better solution.
           transformableSVGCode = await optimizeEmbeddedPngs(svgCode, id);
