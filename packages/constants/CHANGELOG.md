@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 23.4.0
+
+### Patch Changes
+
+- [#3774](https://github.com/commercetools/merchant-center-application-kit/pull/3774) [`96c7db1`](https://github.com/commercetools/merchant-center-application-kit/commit/96c7db1c8bf57adc1042efc7aacc696dfb102d0d) Thanks [@tdeekens](https://github.com/tdeekens)! - Add new MC API and GrapHQL targets
+
 ## 23.3.0
 
 ## 23.2.3
