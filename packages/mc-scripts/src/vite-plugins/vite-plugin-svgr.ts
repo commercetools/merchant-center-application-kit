@@ -6,6 +6,7 @@ import fs from 'fs';
 import { createFilter } from '@rollup/pluginutils';
 import type { XastElement, PluginInfo } from 'svgo';
 import { transformWithEsbuild, type Plugin } from 'vite';
+import optimizeEmbeddedPngs from '../utils/optimize-embedded-pngs';
 
 function vitePluginSvgr(): Plugin {
   const filter = createFilter('**/*.react.svg');
@@ -16,8 +17,17 @@ function vitePluginSvgr(): Plugin {
         const { transform } = await import('@svgr/core');
         const svgCode = await fs.promises.readFile(id, 'utf8');
 
+        let transformableSVGCode;
+        if (process.env.ENABLE_EXPERIMENTAL_SVG_PNG_OPTIMIZATION === 'true') {
+          // This is a temporary fix for the issue with large embedded PNGs
+          // in SVGs. It will be removed once we have a better solution.
+          transformableSVGCode = await optimizeEmbeddedPngs(svgCode, id);
+        } else {
+          transformableSVGCode = svgCode;
+        }
+
         const componentCode = await transform(
-          svgCode,
+          transformableSVGCode,
           {
             icon: false,
             svgoConfig: {

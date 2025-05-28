@@ -15,6 +15,7 @@ import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-messa
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
+  const CleanBuild = (await import('vite-plugin-clean-build')).default;
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
   // Ensure the `/public` folder exists.
@@ -78,6 +79,7 @@ async function run() {
       },
     },
     plugins: [
+      pluginSvgr(),
       pluginGraphql() as Plugin,
       pluginReact({
         jsxImportSource: '@emotion/react',
@@ -103,7 +105,13 @@ async function run() {
           ].filter(nonNullable),
         },
       }),
-      pluginSvgr(),
+      // cleanbuild is needed to remove large svg assets
+      // that are not used after the build.
+      CleanBuild({
+        outputDir: paths.appBuild,
+        patterns: ['*.react-*.svg'],
+        verbose: true, // logs the files that are removed
+      }),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
       process.env.ANALYZE_BUNDLE === 'true' &&
