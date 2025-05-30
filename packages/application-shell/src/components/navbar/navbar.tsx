@@ -138,27 +138,49 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
   const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
 
+  const hasSubmenu =
+    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
+
+  const menuItemIdentifier = snakeCase(props.menu.key);
+
   const calculateSafeAreaStartPositon = useCallback(
     (e: MouseEvent) => {
       const localX = e.clientX - safeAreaLeftPos;
       const localY = e.clientY - safeAreaTopPos;
 
+      let safeAreaRect = submenuSafeAreaRef.current?.getBoundingClientRect();
+      let menuItemRect = document
+        .querySelector(`[data-menuitem="${menuItemIdentifier}"]`)
+        ?.getBoundingClientRect();
+
+      let minXPercent = 0;
+      if (safeAreaRect && menuItemRect) {
+        const minX = Math.max(menuItemRect.left - safeAreaRect.left, 0);
+        minXPercent = (minX / safeAreaRect.width) * 100;
+      }
+
       let nextX = (localX / safeAreaWidth) * 100;
       let nextY = (localY / safeAreaHeight) * 100;
 
-      // Guard against division by zero or invalid measurements that would result in Infinity or NaN.
-      // This ensures we never set invalid CSS values like 'Infinity %' or 'NaN %' for the safe area.
-      if (!Number.isFinite(nextX) || safeAreaWidth <= 0) nextX = 0;
-      if (!Number.isFinite(nextY) || safeAreaHeight <= 0) nextY = 0;
+      // Clamp X to menu item's left border
+      if (!Number.isFinite(nextX) || safeAreaWidth <= 0) nextX = minXPercent;
+      nextX = Math.max(nextX, minXPercent);
+      nextX = Math.min(nextX, 100);
 
-      // Clamp values between 0 and 100 to ensure valid percentages
-      nextX = Math.min(Math.max(nextX, 0), 100);
+      // Clamp Y to safe area bounds
+      if (!Number.isFinite(nextY) || safeAreaHeight <= 0) nextY = 0;
       nextY = Math.min(Math.max(nextY, 0), 100);
 
       setPercentageX(nextX);
       setPercentageY(nextY);
     },
-    [safeAreaHeight, safeAreaLeftPos, safeAreaTopPos, safeAreaWidth]
+    [
+      safeAreaHeight,
+      safeAreaLeftPos,
+      safeAreaTopPos,
+      safeAreaWidth,
+      menuItemIdentifier,
+    ]
   );
 
   useEffect(() => {
@@ -180,20 +202,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   useLayoutEffect(() => {
     if (!submenuRef.current) return;
 
-    // Always ensure we have valid percentage values
     const safeX = Number.isFinite(percentageX) ? percentageX : 0;
-    const safeY = Number.isFinite(percentageY) ? percentageY : 0;
+    const safeY = Number.isFinite(percentageY) ? percentageY : 100; // fallback to bottom
 
-    submenuRef.current.style.setProperty(
-      '--safe-start',
-      `${safeX}% ${safeY + 1}%`
-    );
+    submenuRef.current.style.setProperty('--safe-start', `${safeX}% ${safeY}%`);
   }, [percentageX, percentageY]);
-
-  const hasSubmenu =
-    Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
-
-  const menuItemIdentifier = snakeCase(props.menu.key);
 
   const callbackFn: IntersectionObserverCallback = useCallback(
     (entries) => {
