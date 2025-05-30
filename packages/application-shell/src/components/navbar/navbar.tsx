@@ -148,8 +148,12 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
       // Guard against division by zero or invalid measurements that would result in Infinity or NaN.
       // This ensures we never set invalid CSS values like 'Infinity %' or 'NaN %' for the safe area.
-      if (!Number.isFinite(nextX)) nextX = 0;
-      if (!Number.isFinite(nextY)) nextY = 0;
+      if (!Number.isFinite(nextX) || safeAreaWidth <= 0) nextX = 0;
+      if (!Number.isFinite(nextY) || safeAreaHeight <= 0) nextY = 0;
+
+      // Clamp values between 0 and 100 to ensure valid percentages
+      nextX = Math.min(Math.max(nextX, 0), 100);
+      nextY = Math.min(Math.max(nextY, 0), 100);
 
       setPercentageX(nextX);
       setPercentageY(nextY);
@@ -174,17 +178,17 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   ]);
 
   useLayoutEffect(() => {
-    // Only set --safe-start if both values are finite, otherwise fall back to '0% 0%'.
-    // This prevents the safe area from being rendered as a rectangle or ignored due to invalid values.
-    if (Number.isFinite(percentageX) && Number.isFinite(percentageY)) {
-      submenuRef.current?.style.setProperty(
-        '--safe-start',
-        `${percentageX}% ${percentageY + 1}%`
-      );
-    } else {
-      submenuRef.current?.style.setProperty('--safe-start', '0% 0%');
-    }
-  }, [calculateSafeAreaStartPositon, percentageX, percentageY]);
+    if (!submenuRef.current) return;
+
+    // Always ensure we have valid percentage values
+    const safeX = Number.isFinite(percentageX) ? percentageX : 0;
+    const safeY = Number.isFinite(percentageY) ? percentageY : 0;
+
+    submenuRef.current.style.setProperty(
+      '--safe-start',
+      `${safeX}% ${safeY + 1}%`
+    );
+  }, [percentageX, percentageY]);
 
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
