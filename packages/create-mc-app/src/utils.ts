@@ -1,5 +1,7 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import execa from 'execa';
+import semver from 'semver';
 import type {
   TApplicationType,
   TCliTaskOptions,
@@ -23,6 +25,32 @@ const shouldUseYarn = () => {
     return !result.failed;
   } catch (error) {
     return false;
+  }
+};
+
+const getYarnVersion = () => {
+  try {
+    const result = execa.commandSync('yarn --version', { encoding: 'utf-8' });
+    return result.stdout.trim();
+  } catch (error) {
+    return null;
+  }
+};
+
+const configureYarn = (projectDirectoryPath: string) => {
+  const yarnVersion = getYarnVersion();
+  if (!yarnVersion) return;
+
+  // Check if Yarn version is 2 or higher. Plug'n'Play was introduced in Yarn v2
+  if (semver.gte(yarnVersion, '2.0.0')) {
+    // Sanitize and resolve the path
+    const normalizedProjectPath = path.resolve(projectDirectoryPath);
+
+    // Create .yarnrc.yml to use node_modules
+    const yarnrcPath = path.join(normalizedProjectPath, '.yarnrc.yml');
+    const yarnrcContent = 'nodeLinker: "node-modules"';
+
+    fs.writeFileSync(yarnrcPath, yarnrcContent);
   }
 };
 
@@ -76,6 +104,8 @@ const isCustomView = (applicationType: TApplicationType) =>
 export {
   isSemVer,
   shouldUseYarn,
+  getYarnVersion,
+  configureYarn,
   slugify,
   wordify,
   upperFirst,
