@@ -9,7 +9,13 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  SuspendedRoute,
+} from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
@@ -437,7 +443,10 @@ export const ApplicationShellAuthenticated = (
                                     );
                                   })()}
                                 </Route>
-                                <Route exact={false} path="/:projectKey">
+                                <SuspendedRoute
+                                  exact={false}
+                                  path="/:projectKey"
+                                >
                                   <ProjectContainer
                                     user={user}
                                     environment={applicationEnvironment}
@@ -451,7 +460,7 @@ export const ApplicationShellAuthenticated = (
                                   >
                                     {props.children}
                                   </ProjectContainer>
-                                </Route>
+                                </SuspendedRoute>
                               </Switch>
                             </div>
                           </MainContainer>
