@@ -9,13 +9,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
-import {
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-  SuspendedRoute,
-} from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
@@ -49,6 +43,7 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import RouteCatchAll from '../route-catch-all';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import SuspendedRoute from '../suspended-route';
 import ThemeSwitcher from '../theme-switcher';
 
 type TApplicationShellAuthenticationProps = {
