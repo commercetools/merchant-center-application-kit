@@ -3,7 +3,6 @@ import {
   useEffect,
   useRef,
   useState,
-  Suspense,
   StrictMode,
   type ReactNode,
   RefObject,
