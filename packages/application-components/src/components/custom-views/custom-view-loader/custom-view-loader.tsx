@@ -50,6 +50,7 @@ const CustomPanelIframe = styled.iframe`
 `;
 
 function CustomViewLoader(props: TCustomViewLoaderProps) {
+  console.log('[CustomViewLoader] CustomViewLoader render');
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
@@ -111,6 +112,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       });
       return;
     }
+    console.log('[CustomViewLoader] iFrame is ready');
 
     // Listen for messages from the iFrame
     iFrameCommunicationChannel.current.port1.onmessage =
@@ -120,13 +122,9 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     // the iFrame. The CustomViewShell gets rendered, but the effect to start listening
     // for messages is triggered after the iFrame is ready.
     // This is a temporary fix to avoid the situation when running locally.
-    if (process.env.NODE_ENV === 'production') {
+    setTimeout(() => {
       sendInitializationMessages();
-    } else {
-      setTimeout(() => {
-        sendInitializationMessages();
-      }, 500);
-    }
+    }, 500);
 
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
