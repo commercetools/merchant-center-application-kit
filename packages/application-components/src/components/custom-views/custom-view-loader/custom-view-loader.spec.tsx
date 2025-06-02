@@ -18,6 +18,7 @@ jest.mock('@commercetools-frontend/sentry');
 jest.mock('@commercetools-frontend/actions-global', () => ({
   useShowNotification: () => mockShowNotification,
 }));
+jest.spyOn(console, 'log').mockImplementation(() => {});
 
 // TODO: We must add this entity to the test data repository
 const TEST_CUSTOM_VIEW: CustomViewData = {
