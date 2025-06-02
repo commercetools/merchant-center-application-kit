@@ -120,7 +120,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     // the iFrame. The CustomViewShell gets rendered, but the effect to start listening
     // for messages is triggered after the iFrame is ready.
     // This is a temporary fix to avoid the situation when running locally.
-    if (Number(process.env.NODE_ENV) === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       sendInitializationMessages();
     } else {
       setTimeout(() => {
