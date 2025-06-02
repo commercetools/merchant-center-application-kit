@@ -53,7 +53,7 @@ function useIFrameInitializationEffect({
   iFrameRef,
   onInitialized,
   maxAttempts = 10,
-  pollInterval = 500,
+  pollInterval = 100,
 }: {
   iFrameRef: React.RefObject<HTMLIFrameElement | null>;
   onInitialized: () => void;
@@ -103,7 +103,7 @@ function useIFrameInitializationEffect({
         console.log(
           '[CustomViewLoader] app-loader found, sending initialization messages.'
         );
-        onInitialized();
+        setTimeout(onInitialized, pollInterval * 5);
         stopPolling();
         return;
       }
