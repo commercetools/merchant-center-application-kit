@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { useAllFeatureToggles } from '@flopflip/react-broadcast';
 import { useIntl } from 'react-intl';
@@ -49,6 +49,85 @@ const CustomPanelIframe = styled.iframe`
   border: none;
 `;
 
+function useIFrameInitializationEffect({
+  iFrameRef,
+  onInitialized,
+  maxAttempts = 10,
+  pollInterval = 100,
+}: {
+  iFrameRef: React.RefObject<HTMLIFrameElement | null>;
+  onInitialized: () => void;
+  maxAttempts?: number;
+  pollInterval?: number;
+}) {
+  const [shouldStartPolling, setShouldStartPolling] = useState(false);
+  const attemptsRef = useRef(0);
+
+  const startPolling = useCallback(() => {
+    setShouldStartPolling(true);
+  }, []);
+
+  const stopPolling = useCallback(() => {
+    setShouldStartPolling(false);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldStartPolling) return;
+
+    attemptsRef.current = 0;
+    let timeoutId: NodeJS.Timeout;
+
+    const pollForAppLoader = () => {
+      const iFrameDocument = iFrameRef.current?.contentWindow?.document;
+      const appLoaderElement = iFrameDocument?.getElementById('app-loader');
+
+      attemptsRef.current++;
+
+      if (attemptsRef.current > maxAttempts) {
+        console.log('[CustomViewLoader] max polling attempts reached.');
+        stopPolling();
+        return;
+      }
+
+      if (!appLoaderElement) {
+        console.log(
+          '[CustomViewLoader] no app-loader yet, not sending initialization messages.'
+        );
+
+        return;
+      }
+
+      if (appLoaderElement) {
+        console.log(
+          '[CustomViewLoader] app-loader found, sending initialization messages.'
+        );
+        onInitialized();
+        stopPolling();
+        return;
+      }
+
+      timeoutId = setTimeout(pollForAppLoader, pollInterval);
+    };
+
+    pollForAppLoader();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [
+    shouldStartPolling,
+    iFrameRef,
+    onInitialized,
+    stopPolling,
+    maxAttempts,
+    pollInterval,
+  ]);
+
+  return { startPolling, stopPolling };
+}
+
 function CustomViewLoader(props: TCustomViewLoaderProps) {
   console.log('[CustomViewLoader] CustomViewLoader render');
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
@@ -86,6 +165,15 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     console.log('[CustomViewLoader] sent initialization message to iFrame');
   }, [dataLocale, featureFlags, props.customView, props.hostUrl, projectKey]);
 
+  // Use the custom hook for iframe initialization polling
+  const {
+    startPolling: startPollingForIFrameInitialization,
+    stopPolling: stopPollingForIFrameInitialization,
+  } = useIFrameInitializationEffect({
+    iFrameRef: iFrameElementRef,
+    onInitialized: sendInitializationMessages,
+  });
+
   const messageFromIFrameHandler = useCallback(
     (event: MessageEvent) => {
       if (event.data.origin === window.location.origin) {
@@ -118,13 +206,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     iFrameCommunicationChannel.current.port1.onmessage =
       messageFromIFrameHandler;
 
-    // TODO: Locally (starter templates) we're seeing a little delay while rendering
-    // the iFrame. The CustomViewShell gets rendered, but the effect to start listening
-    // for messages is triggered after the iFrame is ready.
-    // This is a temporary fix to avoid the situation when running locally.
-    setTimeout(() => {
-      sendInitializationMessages();
-    }, 500);
+    startPollingForIFrameInitialization();
 
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -134,9 +216,10 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
     return () => {
+      stopPollingForIFrameInitialization();
       communicationChannel?.port1.close();
     };
-  }, []);
+  }, [stopPollingForIFrameInitialization]);
 
   // Currently we only support custom panels
   if (props.customView.type !== 'CustomPanel') {
