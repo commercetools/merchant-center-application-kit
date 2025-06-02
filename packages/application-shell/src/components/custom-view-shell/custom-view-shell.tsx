@@ -4,7 +4,6 @@ import {
   useRef,
   useState,
   Suspense,
-  StrictMode,
   type ReactNode,
   RefObject,
 } from 'react';
@@ -104,18 +103,6 @@ const ContentWrapper = styled.div`
   height: 100%;
   padding: ${designTokens.spacing40} 40px;
 `;
-
-type TStrictModeEnablementProps = {
-  enableReactStrictMode?: boolean;
-  children?: ReactNode;
-};
-function StrictModeEnablement(props: TStrictModeEnablementProps) {
-  if (props.enableReactStrictMode) {
-    return <StrictMode>{props.children}</StrictMode>;
-  } else {
-    return <>{props.children}</>;
-  }
-}
 
 function CustomViewThemeProvider() {
   const theme = 'default';
