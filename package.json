@@ -94,7 +94,7 @@
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*",
     "@commercetools-frontend/jest-stylelint-runner": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",
-    "@commercetools-uikit/design-system": "fec-155-react-19",
+    "@commercetools-uikit/design-system": "20.0.0",
     "@commercetools/composable-commerce-test-data": "11.0.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.8.1",
