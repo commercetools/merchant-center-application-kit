@@ -53,7 +53,7 @@ function useIFrameInitializationEffect({
   iFrameRef,
   onInitialized,
   maxAttempts = 10,
-  pollInterval = 100,
+  pollInterval = 500,
 }: {
   iFrameRef: React.RefObject<HTMLIFrameElement | null>;
   onInitialized: () => void;
@@ -84,7 +84,9 @@ function useIFrameInitializationEffect({
       attemptsRef.current++;
 
       if (attemptsRef.current > maxAttempts) {
-        console.log('[CustomViewLoader] max polling attempts reached.');
+        console.log(
+          '[CustomViewLoader] max polling attempts reached. Failed to initialize iFrame.'
+        );
         stopPolling();
         return;
       }
