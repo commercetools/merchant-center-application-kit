@@ -3,6 +3,7 @@ import {
   useEffect,
   useRef,
   useState,
+  Suspense,
   StrictMode,
   type ReactNode,
   RefObject,
@@ -290,26 +291,27 @@ const CustomViewShellWrapper = (props: TCustomViewShellProps) => {
     !props.disableDevHost
   ) {
     return (
-      <CustomViewDevHost applicationMessages={props.applicationMessages}>
-        <CustomViewShell
-          apolloClient={props.apolloClient}
-          applicationMessages={props.applicationMessages}
-          enableReactStrictMode={props.enableReactStrictMode}
-        >
-          {props.children}
-        </CustomViewShell>
-      </CustomViewDevHost>
+      <Suspense fallback={<ApplicationLoader />}>
+        <CustomViewDevHost applicationMessages={props.applicationMessages}>
+          <CustomViewShell
+            apolloClient={props.apolloClient}
+            applicationMessages={props.applicationMessages}
+            enableReactStrictMode={props.enableReactStrictMode}
+          >
+            {props.children}
+          </CustomViewShell>
+        </CustomViewDevHost>
+      </Suspense>
     );
   }
   return (
-    <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
-      <CustomViewShell
-        apolloClient={props.apolloClient}
-        applicationMessages={props.applicationMessages}
-      >
-        {props.children}
-      </CustomViewShell>
-    </StrictModeEnablement>
+    <CustomViewShell
+      apolloClient={props.apolloClient}
+      applicationMessages={props.applicationMessages}
+      enableReactStrictMode={props.enableReactStrictMode}
+    >
+      {props.children}
+    </CustomViewShell>
   );
 };
 
