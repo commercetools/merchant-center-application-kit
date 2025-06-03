@@ -1,5 +1,18 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 24.0.0
+
+### Major Changes
+
+- [#3687](https://github.com/commercetools/merchant-center-application-kit/pull/3687) [`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae) Thanks [@kark](https://github.com/kark)! - Upgrade UI Kit to React 19.
+
+  From this version onwards, this is the minimum version an application using this library should be depending on.
+
+### Patch Changes
+
+- Updated dependencies [[`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae)]:
+  - @commercetools-frontend/babel-preset-mc-app@24.0.0
+
 ## 23.4.0
 
 ### Patch Changes
