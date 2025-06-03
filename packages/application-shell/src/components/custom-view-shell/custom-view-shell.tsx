@@ -140,7 +140,6 @@ const isLocalProdMode =
   process.env.NODE_ENV === 'production' && window.app.env === 'development';
 
 function CustomViewShell(props: TCustomViewShellProps) {
-  console.log('[CustomViewShell] CustomViewShell render');
   const [hostContext, setHostContext] = useState<THostContext>();
   const iFrameCommunicationPort = useRef<MessagePort | undefined>(null);
   const notificationsGlobalRef = useRef<HTMLDivElement>(null);
@@ -155,7 +154,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
 
   const hostMessageHandler = useCallback(
     (event: MessageEvent<THostEventData>) => {
-      console.log('[CustomViewShell] hostMessageHandler', { event });
       if (
         event.data.eventName ===
         CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION
@@ -194,9 +192,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
         // Once bootstraped, we don't want to listen for global messages anymore.
         // We will only listen to messages coming through the MessageChannel port.
         window.removeEventListener('message', bootstrapMessageHandler);
-        console.log(
-          '[CustomViewShell] Not listening for global messages anymore'
-        );
       } else {
         console.warn(
           'CustomViewShell: Received an event that is not allowed.',
@@ -206,7 +201,6 @@ function CustomViewShell(props: TCustomViewShellProps) {
     };
 
     window.addEventListener('message', bootstrapMessageHandler);
-    console.log('[CustomViewShell] Now listening for bootstrap message');
     return () => {
       window.removeEventListener('message', bootstrapMessageHandler);
     };

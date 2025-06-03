@@ -50,7 +50,6 @@ const CustomPanelIframe = styled.iframe`
 `;
 
 function CustomViewLoader(props: TCustomViewLoaderProps) {
-  console.log('[CustomViewLoader] CustomViewLoader render');
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
@@ -66,7 +65,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       window.location.href,
       [iFrameCommunicationChannel.current.port2]
     );
-    console.log('[CustomViewLoader] sent bootstrap message to iFrame');
 
     // Send the initialization message to the iFrame
     iFrameCommunicationChannel.current.port1.postMessage({
@@ -83,7 +81,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         },
       },
     } as TCustomViewIframeMessage);
-    console.log('[CustomViewLoader] sent initialization message to iFrame');
   }, [dataLocale, featureFlags, props.customView, props.hostUrl, projectKey]);
 
   const messageFromIFrameHandler = useCallback(
@@ -112,7 +109,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       });
       return;
     }
-    console.log('[CustomViewLoader] iFrame is ready');
 
     // Listen for messages from the iFrame
     iFrameCommunicationChannel.current.port1.onmessage =
