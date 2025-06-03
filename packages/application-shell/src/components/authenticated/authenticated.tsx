@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';

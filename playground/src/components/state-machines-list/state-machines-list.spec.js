@@ -6,6 +6,7 @@ import {
   waitFor,
   fireEvent,
   within,
+  act,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { entryPointUriPath } from '../../constants';
 import ApplicationPlaygroundRoutes from '../../routes';
@@ -120,8 +121,9 @@ describe('details view', () => {
 
       const dialog = await screen.findByRole('dialog');
       await within(dialog).findByText(/state-key-1/i);
-
-      history.push(`/my-project/${entryPointUriPath}/2`);
+      await act(async () => {
+        history.push(`/my-project/${entryPointUriPath}/2`);
+      });
       await within(dialog).findByText(/state-key-2/i);
     });
   });

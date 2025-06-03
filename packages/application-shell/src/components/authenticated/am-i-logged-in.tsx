@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,

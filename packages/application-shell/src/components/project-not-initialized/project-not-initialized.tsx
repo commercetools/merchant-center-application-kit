@@ -26,7 +26,7 @@ const ProjectNotInitialized = () => {
       paragraph1={
         <FormattedMessage
           {...messages.paragraph1}
-          values={{ mailto: <EmailLink email={supportEmail} /> }}
+          values={{ mailto: <EmailLink key="email" email={supportEmail} /> }}
         />
       }
       bodyContent={<ServicePageProjectSwitcher />}

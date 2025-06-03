@@ -3,6 +3,7 @@ import {
   type SyntheticEvent,
   useEffect,
   StrictMode,
+  JSX,
 } from 'react';
 import type { NormalizedCacheObject } from '@apollo/client';
 import { ApolloClient } from '@apollo/client';
