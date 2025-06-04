@@ -139,22 +139,22 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         .querySelector(`[data-menuitem="${menuItemIdentifier}"]`)
         ?.getBoundingClientRect();
 
-      const currentSafeLeft = currentSafeAreaRect?.left || 0;
-      const currentSafeTop = currentSafeAreaRect?.top || 0;
-      const currentSafeWidth = currentSafeAreaRect?.width || 0;
-      const currentSafeHeight = currentSafeAreaRect?.height || 0;
+      const currentSafeAreaLeft = currentSafeAreaRect?.left || 0;
+      const currentSafeAreaTop = currentSafeAreaRect?.top || 0;
+      const currentSafeAreaWidth = currentSafeAreaRect?.width || 0;
+      const currentSafeAreaHeight = currentSafeAreaRect?.height || 0;
 
-      const localX = e.clientX - currentSafeLeft;
-      const localY = e.clientY - currentSafeTop;
+      const localX = e.clientX - currentSafeAreaLeft;
+      const localY = e.clientY - currentSafeAreaTop;
 
       let minXPercent = 0;
-      if (menuItemRect && currentSafeAreaRect && currentSafeWidth > 0) {
+      if (menuItemRect && currentSafeAreaRect && currentSafeAreaWidth > 0) {
         const minX = Math.max(menuItemRect.left - currentSafeAreaRect.left, 0);
-        minXPercent = (minX / currentSafeWidth) * 100;
+        minXPercent = (minX / currentSafeAreaWidth) * 100;
       } else if (
         menuItemRect &&
         currentSafeAreaRect &&
-        currentSafeWidth === 0
+        currentSafeAreaWidth === 0
       ) {
         // If safe area has no width but menu item exists, consider minXPercent to be 0
         minXPercent = 0;
@@ -162,14 +162,14 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
       // Calculate nextX, ensuring not to divide by zero
       let nextX = minXPercent;
-      if (currentSafeWidth > 0) {
-        nextX = (localX / currentSafeWidth) * 100;
+      if (currentSafeAreaWidth > 0) {
+        nextX = (localX / currentSafeAreaWidth) * 100;
       }
 
       // Calculate nextY, ensuring not to divide by zero
       let nextY = 0;
-      if (currentSafeHeight > 0) {
-        nextY = (localY / currentSafeHeight) * 100;
+      if (currentSafeAreaHeight > 0) {
+        nextY = (localY / currentSafeAreaHeight) * 100;
       }
 
       // Clamp X to menu item's left border (minXPercent) and safe area bounds (100%)
