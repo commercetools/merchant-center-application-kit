@@ -137,10 +137,6 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       return;
     }
 
-    // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current.port1.onmessage =
-      messageFromIFrameHandler;
-
     // This is for backwards compatibility with custom view shell older than v24.0.0
     // where the custom-view-shell does not send the CUSTOM_VIEW_READY message yet.
     setTimeout(() => {
@@ -154,7 +150,14 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   useEffect(() => {
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
+
+    // Listen for messages from the iFrame
+    iFrameCommunicationChannel.current!.port1.onmessage =
+      messageFromIFrameHandler;
+    window.addEventListener('message', messageFromIFrameHandler);
+
     return () => {
+      window.removeEventListener('message', messageFromIFrameHandler);
       communicationChannel?.port1.close();
     };
   }, []);
