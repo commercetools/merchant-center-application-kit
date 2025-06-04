@@ -90,10 +90,16 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
             break;
+          // This message will only be sent by custom view shell older than v24.x
+          // For backwards compatibility we will send the initialization messages
+          // after 500ms if this message was not received by then.
+          case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY: {
+            sendInitializationMessages();
+          }
         }
       }
     },
-    [props]
+    [props, sendInitializationMessages]
   );
 
   // onLoad handler is called from the iFrame even where the URL is not valid
