@@ -49,12 +49,23 @@ const CustomPanelIframe = styled.iframe`
   border: none;
 `;
 
+/**
+ * Provides a singleton MessageChannel instance for communication between Custom View iFrame and the host application.
+ */
+let messageChannelInstance: MessageChannel | null = null;
+function getMessageChannel(): MessageChannel {
+  if (!messageChannelInstance) {
+    messageChannelInstance = new MessageChannel();
+  }
+
+  return messageChannelInstance;
+}
 function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameElementRef = useRef<HTMLIFrameElement>(null);
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
   const featureFlags = useAllFeatureToggles();
-  const iFrameCommunicationChannel = useRef(new MessageChannel());
+  const iFrameCommunicationChannel = useRef(getMessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
 
