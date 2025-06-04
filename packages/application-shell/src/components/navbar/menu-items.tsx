@@ -8,6 +8,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
   type SyntheticEvent,
+  Suspense,
 } from 'react';
 import { Global } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
@@ -461,7 +462,9 @@ const ItemContainer = (props: ItemContainerProps) => {
     <ItemIconText>
       <IconWrapper>
         <Icon className="icon">
-          <IconSwitcher icon={props.icon} size="scale" />
+          <Suspense fallback={null}>
+            <IconSwitcher icon={props.icon} size="scale" />
+          </Suspense>
         </Icon>
       </IconWrapper>
       {props.isMenuOpen ? (
