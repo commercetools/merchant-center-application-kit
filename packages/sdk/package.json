@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "23.3.0",
+  "version": "24.0.0",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/constants": "23.3.0",
+    "@commercetools-frontend/constants": "24.0.0",
     "@commercetools/api-request-builder": "6.0.0",
     "@commercetools/http-user-agent": "3.0.0",
     "@commercetools/sdk-client": "3.0.0",
@@ -31,7 +31,7 @@
     "@commercetools/sdk-middleware-http": "7.0.4",
     "@types/node-fetch": "2.6.11",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^17.0.83",
+    "@types/react": "^19.0.3",
     "@types/react-redux": "^7.1.26",
     "buffer": "6.0.3",
     "fast-equals": "2.0.4",
@@ -43,17 +43,17 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.14.0",
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "16.1.0",
     "@types/uuid": "^9.0.3",
     "jest-mock": "29.7.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-redux": "7.2.9",
     "redux": "4.2.1",
     "redux-thunk": "2.4.2"
   },
   "peerDependencies": {
-    "react": "17.x",
+    "react": "19.x",
     "react-redux": "7.x",
     "redux": "4.x"
   }

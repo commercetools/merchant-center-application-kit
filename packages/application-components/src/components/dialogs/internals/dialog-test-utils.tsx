@@ -1,4 +1,4 @@
-import { Dispatch, ElementType, ReactNode, useState } from 'react';
+import { Dispatch, ElementType, JSX, ReactNode, useState } from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';

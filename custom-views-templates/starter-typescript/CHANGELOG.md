@@ -1,5 +1,83 @@
 # @commercetools-applications/merchant-center-custom-view-template-starter-typescript
 
+## 24.0.0
+
+### Major Changes
+
+- [#3687](https://github.com/commercetools/merchant-center-application-kit/pull/3687) [`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae) Thanks [@kark](https://github.com/kark)! - Upgrade UI Kit to React 19.
+
+  From this version onwards, this is the minimum version an application using this library should be depending on.
+
+### Patch Changes
+
+- Updated dependencies [[`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae)]:
+  - @commercetools-frontend/application-shell-connectors@24.0.0
+  - @commercetools-frontend/application-components@24.0.0
+  - @commercetools-frontend/application-config@24.0.0
+  - @commercetools-frontend/jest-preset-mc-app@24.0.0
+  - @commercetools-frontend/application-shell@24.0.0
+  - @commercetools-frontend/actions-global@24.0.0
+  - @commercetools-frontend/permissions@24.0.0
+  - @commercetools-frontend/i18n@24.0.0
+  - @commercetools-frontend/l10n@24.0.0
+  - @commercetools-frontend/assets@24.0.0
+  - @commercetools-frontend/babel-preset-mc-app@24.0.0
+  - @commercetools-frontend/constants@24.0.0
+  - @commercetools-frontend/eslint-config-mc-app@24.0.0
+  - @commercetools-frontend/mc-dev-authentication@24.0.0
+  - @commercetools-frontend/mc-scripts@24.0.0
+
+## 23.4.0
+
+### Minor Changes
+
+- [#3772](https://github.com/commercetools/merchant-center-application-kit/pull/3772) [`e5401d8`](https://github.com/commercetools/merchant-center-application-kit/commit/e5401d82ce6d20828dbd99f1156b54538d4ab86f) Thanks [@emmenko](https://github.com/emmenko)! - Updates to the starter templates: migrate test data packages `@commercetools-test-data/*` to new standalone package `@commercetools/composable-commerce-test-data`.
+
+  The packages `@commercetools-test-data/*` are considered deprecated and won't be published anymore.
+  We now have a single package `@commercetools/composable-commerce-test-data` that contains all the test data models.
+
+  The package is configured to be consumed using named entry points to be compatible with the previous individual packages and to help keeping the bundle size for consumers to a minimum.
+
+  For example:
+
+  ```ts
+  // Before
+  import { ChannelGraphql } from '@commercetools-test-data/channel';
+
+  // After
+  import { ChannelGraphql } from '@commercetools/composable-commerce-test-data/channel';
+  ```
+
+  To facilitate the migration, we provide a codemod script [transform-imports.mjs](https://github.com/commercetools/test-data/blob/main/scripts/transform-imports.mjs) to be executed in your repository that you need to migrate.
+
+  You can use the following command:
+
+  ```
+  curl -sSL https://raw.githubusercontent.com/commercetools/test-data/main/scripts/transform-imports.mjs | node -
+  ```
+
+  Alternatively, copy the script content and create a new script file in your repository. Then execute the script with `node`.
+  See JSDoc inside the script for more information.
+
+### Patch Changes
+
+- Updated dependencies [[`c5ef4aa`](https://github.com/commercetools/merchant-center-application-kit/commit/c5ef4aa09143e45b5499afcd1a1863e18ace5619), [`96c7db1`](https://github.com/commercetools/merchant-center-application-kit/commit/96c7db1c8bf57adc1042efc7aacc696dfb102d0d), [`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4), [`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4), [`7991432`](https://github.com/commercetools/merchant-center-application-kit/commit/79914322945d3af16d48bffcd65f3d68ef6d5686), [`e5401d8`](https://github.com/commercetools/merchant-center-application-kit/commit/e5401d82ce6d20828dbd99f1156b54538d4ab86f)]:
+  - @commercetools-frontend/mc-scripts@23.4.0
+  - @commercetools-frontend/constants@23.4.0
+  - @commercetools-frontend/application-shell-connectors@23.4.0
+  - @commercetools-frontend/application-shell@23.4.0
+  - @commercetools-frontend/actions-global@23.4.0
+  - @commercetools-frontend/application-components@23.4.0
+  - @commercetools-frontend/application-config@23.4.0
+  - @commercetools-frontend/permissions@23.4.0
+  - @commercetools-frontend/mc-dev-authentication@23.4.0
+  - @commercetools-frontend/i18n@23.4.0
+  - @commercetools-frontend/l10n@23.4.0
+  - @commercetools-frontend/assets@23.4.0
+  - @commercetools-frontend/babel-preset-mc-app@23.4.0
+  - @commercetools-frontend/eslint-config-mc-app@23.4.0
+  - @commercetools-frontend/jest-preset-mc-app@23.4.0
+
 ## 23.3.0
 
 ### Patch Changes

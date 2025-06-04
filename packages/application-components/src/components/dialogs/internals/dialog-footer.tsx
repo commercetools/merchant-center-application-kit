@@ -2,6 +2,7 @@ import type { ReactElement, SyntheticEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useIntl, type IntlShape } from 'react-intl';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
@@ -25,8 +26,8 @@ type Props = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   dataAttributesSecondaryButton?: { [key: string]: string };
   children?: never;
-  iconLeftSecondaryButton?: ReactElement;
-  iconLeftPrimaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
+  iconLeftPrimaryButton?: ReactElement<TIconProps>;
   footerContent?: ReactNode;
 };
 

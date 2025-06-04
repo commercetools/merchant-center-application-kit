@@ -129,7 +129,7 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
     // removed from the portals container.
     // The stacking layers are then re-calculated.
     useMutationObserver(
-      portalsContainerRef,
+      portalsContainerRef as RefObject<HTMLDivElement>,
       (mutationList) => {
         // We expect only a single element in the mutation list as we configured the
         // observer to only listen to `childList` changes.

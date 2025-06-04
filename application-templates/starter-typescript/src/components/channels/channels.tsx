@@ -126,6 +126,7 @@ const Channels = (props: TChannelsProps) => {
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}
             totalItems={channelsPaginatedResult.total}
+            perPageRange="s"
           />
           <Switch>
             <SuspendedRoute path={`${match.url}/:id`}>

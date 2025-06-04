@@ -1,5 +1,27 @@
 # @commercetools-frontend/permissions
 
+## 24.0.0
+
+### Major Changes
+
+- [#3687](https://github.com/commercetools/merchant-center-application-kit/pull/3687) [`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae) Thanks [@kark](https://github.com/kark)! - Upgrade UI Kit to React 19.
+
+  From this version onwards, this is the minimum version an application using this library should be depending on.
+
+### Patch Changes
+
+- Updated dependencies [[`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae)]:
+  - @commercetools-frontend/application-shell-connectors@24.0.0
+  - @commercetools-frontend/sentry@24.0.0
+
+## 23.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4), [`7991432`](https://github.com/commercetools/merchant-center-application-kit/commit/79914322945d3af16d48bffcd65f3d68ef6d5686)]:
+  - @commercetools-frontend/application-shell-connectors@23.4.0
+  - @commercetools-frontend/sentry@23.4.0
+
 ## 23.3.0
 
 ### Patch Changes

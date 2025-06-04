@@ -25,7 +25,9 @@ describe('selectUserId', () => {
     });
     it('should return `null`', () => {
       expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining(`Missing field 'id'`)
+        expect.stringContaining(
+          'An error occurred! For more details, see the full error text at https://go.apollo.dev/c/err'
+        )
       );
       expect(selectUserId()).toBeNull();
     });

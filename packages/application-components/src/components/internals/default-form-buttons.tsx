@@ -1,6 +1,7 @@
 import type { ReactElement, SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import IconButton from '@commercetools-uikit/icon-button';
 import { BinLinearIcon } from '@commercetools-uikit/icons';
 import PrimaryButton from '@commercetools-uikit/primary-button';
@@ -31,7 +32,7 @@ const useFormattedLabel = (label: Label) => {
 };
 
 type PrimaryButtonProps = {
-  iconLeft?: ReactElement;
+  iconLeft?: ReactElement<TIconProps>;
 } & Props;
 
 const FormPrimaryButton = ({
@@ -56,7 +57,7 @@ const FormPrimaryButton = ({
 FormPrimaryButton.displayName = 'FormPrimaryButton';
 
 type SecondaryButtonProps = {
-  iconLeft?: ReactElement;
+  iconLeft?: ReactElement<TIconProps>;
 } & Props;
 
 const FormSecondaryButton = ({

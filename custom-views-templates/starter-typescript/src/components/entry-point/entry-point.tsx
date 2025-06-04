@@ -17,7 +17,7 @@ const AsyncApplicationRoutes = lazy(
 setupGlobalErrorListener();
 
 const EntryPoint = () => (
-  <CustomViewShell enableReactStrictMode applicationMessages={loadMessages}>
+  <CustomViewShell applicationMessages={loadMessages}>
     <AsyncApplicationRoutes />
   </CustomViewShell>
 );

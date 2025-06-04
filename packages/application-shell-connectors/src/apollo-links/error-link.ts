@@ -71,7 +71,7 @@ const errorLink = onError(
 
     if (context.enableSentryErrorReporting && graphQLErrors) {
       for (const err of graphQLErrors) {
-        reportErrorToSentry(err, {
+        reportErrorToSentry(err as Error, {
           extra: {
             operationName: operation.operationName,
           },

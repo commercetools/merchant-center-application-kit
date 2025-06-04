@@ -1,5 +1,54 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 24.0.0
+
+### Major Changes
+
+- [#3687](https://github.com/commercetools/merchant-center-application-kit/pull/3687) [`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae) Thanks [@kark](https://github.com/kark)! - Upgrade UI Kit to React 19.
+
+  From this version onwards, this is the minimum version an application using this library should be depending on.
+
+### Patch Changes
+
+- Updated dependencies [[`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae)]:
+  - @commercetools-frontend/application-config@24.0.0
+  - @commercetools-frontend/sentry@24.0.0
+  - @commercetools-frontend/browser-history@24.0.0
+  - @commercetools-frontend/constants@24.0.0
+
+## 23.4.0
+
+### Minor Changes
+
+- [#3775](https://github.com/commercetools/merchant-center-application-kit/pull/3775) [`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - We're updating the way the Apollo error link reports unhandled GraphQL errors to Sentry.
+  In a previous version we configured it so every unhandled error would be reported but now we're changing that implementation so no errors will be reported unless the query includes the (_boolean_) `enableSentryErrorReporting` parameter in the query context.
+  Example:
+
+  ```ts
+  const { loading, data, error } = useMcQuery<
+    TFetchLoggedInUserQuery,
+    TFetchLoggedInUserQueryVariables
+  >(LoggedInUserQuery, {
+    context: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      enableSentryErrorReporting: true,
+    },
+  });
+  ```
+
+  This allows for a more granular control of the errors reported to Sentry which is more close to what we had before with the usage of the (now deprecated) `onError` callback of the `useQuery` hook.
+
+- [#3768](https://github.com/commercetools/merchant-center-application-kit/pull/3768) [`7991432`](https://github.com/commercetools/merchant-center-application-kit/commit/79914322945d3af16d48bffcd65f3d68ef6d5686) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update the Apollo client `error` link to report unhandled errors to Sentry.
+  The error is only sent to Sentry if it is enabled for the application the the `ApplicationShell` component is used for.
+
+### Patch Changes
+
+- Updated dependencies [[`96c7db1`](https://github.com/commercetools/merchant-center-application-kit/commit/96c7db1c8bf57adc1042efc7aacc696dfb102d0d)]:
+  - @commercetools-frontend/constants@23.4.0
+  - @commercetools-frontend/application-config@23.4.0
+  - @commercetools-frontend/sentry@23.4.0
+  - @commercetools-frontend/browser-history@23.4.0
+
 ## 23.3.0
 
 ### Patch Changes

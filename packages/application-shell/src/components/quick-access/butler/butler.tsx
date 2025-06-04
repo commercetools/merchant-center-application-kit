@@ -219,9 +219,7 @@ type Props = {
 };
 const Butler = (props: Props) => {
   const intl = useIntl();
-  const [state, dispatch] = useReducer<
-    (prevState: State, action: Action) => State
-  >(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const shouldSelectFieldText = useRef(false);
   const isNewWindowCombo = useRef(false);
@@ -264,7 +262,7 @@ const Butler = (props: Props) => {
   }, [props.classNameShakeAnimation]);
 
   const execute = useCallback(
-    (command, meta) => {
+    (command: Command, meta: { openInNewTab: boolean }) => {
       // Only main entries get added to history, so when a subcommand is executed,
       // we add the main command of it to the history (the top-level command).
       //

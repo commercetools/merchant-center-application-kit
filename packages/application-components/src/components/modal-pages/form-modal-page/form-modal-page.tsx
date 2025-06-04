@@ -1,7 +1,7 @@
 import { SyntheticEvent, ReactNode, ReactElement } from 'react';
 import type { CSSObject } from '@emotion/react';
-
 import { sharedMessages } from '@commercetools-frontend/i18n';
+import type { TIconProps } from '@commercetools-uikit/design-system';
 import CustomFormModalPage from '../custom-form-modal-page';
 
 // NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
@@ -50,7 +50,7 @@ type Props = {
   onPrimaryButtonClick: (event: SyntheticEvent) => void;
   onSecondaryButtonClick: (event: SyntheticEvent) => void;
   hideControls?: boolean;
-  iconLeftSecondaryButton?: ReactElement;
+  iconLeftSecondaryButton?: ReactElement<TIconProps>;
 };
 
 const FormModalPage = ({ hideControls = false, ...props }: Props) => (

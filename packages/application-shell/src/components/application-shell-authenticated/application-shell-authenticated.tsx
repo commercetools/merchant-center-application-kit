@@ -1,4 +1,5 @@
 import {
+  JSX,
   type ReactNode,
   type RefObject,
   type SyntheticEvent,
@@ -119,8 +120,8 @@ export const ApplicationShellAuthenticated = (
   const notificationsGlobalRef = useRef<HTMLDivElement>(null);
   const notificationsPageRef = useRef<HTMLDivElement>(null);
   const layoutRefs = useRef<{
-    notificationsGlobalRef: RefObject<HTMLDivElement>;
-    notificationsPageRef: RefObject<HTMLDivElement>;
+    notificationsGlobalRef: RefObject<HTMLDivElement | null>;
+    notificationsPageRef: RefObject<HTMLDivElement | null>;
   }>({
     notificationsGlobalRef,
     notificationsPageRef,

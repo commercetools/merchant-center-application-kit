@@ -1,5 +1,61 @@
 # @commercetools-frontend/application-shell
 
+## 24.0.0
+
+### Major Changes
+
+- [#3687](https://github.com/commercetools/merchant-center-application-kit/pull/3687) [`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae) Thanks [@kark](https://github.com/kark)! - Upgrade UI Kit to React 19.
+
+  From this version onwards, this is the minimum version an application using this library should be depending on.
+
+### Patch Changes
+
+- Updated dependencies [[`552de5e`](https://github.com/commercetools/merchant-center-application-kit/commit/552de5e6d40bd9d7f1b5d51ea4892ad1a2a448ae)]:
+  - @commercetools-frontend/application-shell-connectors@24.0.0
+  - @commercetools-frontend/application-components@24.0.0
+  - @commercetools-frontend/react-notifications@24.0.0
+  - @commercetools-frontend/application-config@24.0.0
+  - @commercetools-frontend/actions-global@24.0.0
+  - @commercetools-frontend/permissions@24.0.0
+  - @commercetools-frontend/sentry@24.0.0
+  - @commercetools-frontend/i18n@24.0.0
+  - @commercetools-frontend/l10n@24.0.0
+  - @commercetools-frontend/sdk@24.0.0
+  - @commercetools-frontend/assets@24.0.0
+  - @commercetools-frontend/browser-history@24.0.0
+  - @commercetools-frontend/constants@24.0.0
+  - @commercetools-frontend/notifications@24.0.0
+  - @commercetools-frontend/url-utils@24.0.0
+
+## 23.4.0
+
+### Minor Changes
+
+- [#3775](https://github.com/commercetools/merchant-center-application-kit/pull/3775) [`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Adjust the queries for fetching current user and project to report to Sentry in case of a GraphQL error.
+  This is related to the change introduced in the `@commercetools-frontend/application-shell-connectors` package.
+
+- [#3768](https://github.com/commercetools/merchant-center-application-kit/pull/3768) [`7991432`](https://github.com/commercetools/merchant-center-application-kit/commit/79914322945d3af16d48bffcd65f3d68ef6d5686) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Update the Apollo client `error` link to report unhandled errors to Sentry.
+  The error is only sent to Sentry if it is enabled for the application the the `ApplicationShell` component is used for.
+
+### Patch Changes
+
+- Updated dependencies [[`96c7db1`](https://github.com/commercetools/merchant-center-application-kit/commit/96c7db1c8bf57adc1042efc7aacc696dfb102d0d), [`57ba68c`](https://github.com/commercetools/merchant-center-application-kit/commit/57ba68c0f7a63b40f11ad41023d1fc207072a1f4), [`7991432`](https://github.com/commercetools/merchant-center-application-kit/commit/79914322945d3af16d48bffcd65f3d68ef6d5686)]:
+  - @commercetools-frontend/constants@23.4.0
+  - @commercetools-frontend/application-shell-connectors@23.4.0
+  - @commercetools-frontend/actions-global@23.4.0
+  - @commercetools-frontend/application-components@23.4.0
+  - @commercetools-frontend/application-config@23.4.0
+  - @commercetools-frontend/react-notifications@23.4.0
+  - @commercetools-frontend/sdk@23.4.0
+  - @commercetools-frontend/sentry@23.4.0
+  - @commercetools-frontend/permissions@23.4.0
+  - @commercetools-frontend/i18n@23.4.0
+  - @commercetools-frontend/l10n@23.4.0
+  - @commercetools-frontend/assets@23.4.0
+  - @commercetools-frontend/browser-history@23.4.0
+  - @commercetools-frontend/notifications@23.4.0
+  - @commercetools-frontend/url-utils@23.4.0
+
 ## 23.3.0
 
 ### Patch Changes

@@ -58,6 +58,31 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const showNotification = useShowNotification();
   const intl = useIntl();
 
+  const sendInitializationMessages = useCallback(() => {
+    // Transfer port2 to the iFrame so it can send messages back privately
+    iFrameElementRef.current?.contentWindow?.postMessage(
+      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
+      window.location.href,
+      [iFrameCommunicationChannel.current.port2]
+    );
+
+    // Send the initialization message to the iFrame
+    iFrameCommunicationChannel.current.port1.postMessage({
+      source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
+      destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
+      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
+      eventData: {
+        context: {
+          dataLocale,
+          projectKey,
+          featureFlags,
+          customViewConfig: props.customView,
+          hostUrl: props.hostUrl || window.location.href,
+        },
+      },
+    } as TCustomViewIframeMessage);
+  }, [dataLocale, featureFlags, props.customView, props.hostUrl, projectKey]);
+
   const messageFromIFrameHandler = useCallback(
     (event: MessageEvent) => {
       if (event.data.origin === window.location.origin) {
@@ -89,28 +114,13 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
     iFrameCommunicationChannel.current.port1.onmessage =
       messageFromIFrameHandler;
 
-    // Transfer port2 to the iFrame so it can send messages back privately
-    iFrameElementRef.current?.contentWindow?.postMessage(
-      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
-      window.location.href,
-      [iFrameCommunicationChannel.current.port2]
-    );
-
-    // Send the initialization message to the iFrame
-    iFrameCommunicationChannel.current.port1.postMessage({
-      source: CUSTOM_VIEWS_EVENTS_META.HOST_APPLICATION_CODE,
-      destination: `${CUSTOM_VIEWS_EVENTS_META.CUSTOM_VIEW_KEY_PREFIX}${props.customView.id}`,
-      eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_INITIALIZATION,
-      eventData: {
-        context: {
-          dataLocale,
-          projectKey,
-          featureFlags,
-          customViewConfig: props.customView,
-          hostUrl: props.hostUrl || window.location.href,
-        },
-      },
-    } as TCustomViewIframeMessage);
+    // TODO: Locally (starter templates) we're seeing a little delay while rendering
+    // the iFrame. The CustomViewShell gets rendered, but the effect to start listening
+    // for messages is triggered after the iFrame is ready.
+    // This is a temporary fix to avoid the situation when running locally.
+    setTimeout(() => {
+      sendInitializationMessages();
+    }, 500);
 
     // We want the effect to run only once so we don't need the dependencies array.
     // eslint-disable-next-line react-hooks/exhaustive-deps

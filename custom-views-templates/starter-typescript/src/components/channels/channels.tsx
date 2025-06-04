@@ -113,6 +113,7 @@ const Channels = () => {
           />
           <Pagination
             page={page.value}
+            perPageRange="s"
             onPageChange={page.onChange}
             perPage={perPage.value}
             onPerPageChange={perPage.onChange}

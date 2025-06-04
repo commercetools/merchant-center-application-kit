@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/jest-preset-mc-app",
-  "version": "23.3.0",
+  "version": "24.0.0",
   "description": "Jest preset used by a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -18,14 +18,14 @@
   "module": "./jest-preset.js",
   "dependencies": {
     "@babel/core": "^7.22.17",
-    "@commercetools-frontend/babel-preset-mc-app": "23.3.0",
+    "@commercetools-frontend/babel-preset-mc-app": "24.0.0",
     "@formatjs/intl-getcanonicallocales": "^2.2.1",
     "@formatjs/intl-listformat": "^7.4.1",
     "@formatjs/intl-locale": "^3.3.3",
     "@formatjs/intl-numberformat": "^8.7.1",
     "@formatjs/intl-pluralrules": "^5.2.5",
     "@sheerun/mutationobserver-shim": "0.3.3",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "babel-jest": "29.7.0",
     "babel-preset-jest": "29.6.3",
     "colors": "1.4.0",
@@ -45,7 +45,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "16.1.0",
     "jest": "29.7.0"
   },
   "peerDependencies": {

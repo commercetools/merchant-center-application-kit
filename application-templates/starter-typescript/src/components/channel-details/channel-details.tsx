@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
+import type { FormikHelpers } from 'formik';
 import {
   PageNotFound,
   FormModalPage,
@@ -19,6 +20,7 @@ import {
   type TApiErrorNotificationOptions,
 } from '@commercetools-frontend/actions-global';
 import { PERMISSIONS } from '../../constants';
+import type { TFormValues } from '../../types';
 import {
   useChannelDetailsUpdater,
   useChannelDetailsFetcher,
@@ -48,7 +50,10 @@ const ChannelDetails = (props: TChannelDetailsProps) => {
   const showApiErrorNotification = useShowApiErrorNotification();
   const channelDetailsUpdater = useChannelDetailsUpdater();
   const handleSubmit = useCallback(
-    async (formikValues, formikHelpers) => {
+    async (
+      formikValues: TFormValues,
+      formikHelpers: FormikHelpers<TFormValues>
+    ) => {
       const data = formValuesToDoc(formikValues);
       try {
         await channelDetailsUpdater.execute({

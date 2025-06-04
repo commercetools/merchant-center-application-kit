@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, JSX } from 'react';
 import type { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
 import { deepEqual } from 'fast-equals';
 import { connect } from 'react-redux';
