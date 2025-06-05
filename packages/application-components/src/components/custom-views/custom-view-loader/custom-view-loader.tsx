@@ -54,7 +54,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const dataLocale = useApplicationContext((context) => context.dataLocale);
   const projectKey = useApplicationContext((context) => context.project?.key);
   const featureFlags = useAllFeatureToggles();
-  const iFrameCommunicationChannel = useRef<MessageChannel>(new MessageChannel());
+  const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
   const hasSentInitializationMessages = useRef(false);
