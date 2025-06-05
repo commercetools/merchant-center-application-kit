@@ -1,4 +1,4 @@
-import { JSX, ReactNode, Suspense, useEffect, useState } from 'react';
+import { JSX, ReactNode, useEffect, useState } from 'react';
 import isNil from 'lodash/isNil';
 import ReactDOM from 'react-dom';
 import { useIntl } from 'react-intl';
@@ -118,85 +118,83 @@ const ProjectContainer = (props: TProjectContainerProps) => {
 
   return (
     <ErrorBoundary pathname={location.pathname}>
-      <Suspense fallback={<ApplicationLoader />}>
-        <FetchProject
-          skip={!props.user || !props.user.defaultProjectKey}
-          projectKey={projectKey}
-        >
-          {({ isLoading: isProjectLoading, project }) => {
-            // TODO: do something if there is an `error`?
-            if (isProjectLoading) return <ApplicationLoader />;
-            if (!project) return <ProjectNotFound />;
-            if (project.suspension && project.suspension.isActive)
-              return (
-                <ProjectSuspended
-                  isTemporary={
-                    project.suspension.reason ===
-                    SUSPENSION_REASONS.TEMPORARY_MAINTENANCE
-                  }
-                />
-              );
-            if (project.expiry && project.expiry.isActive)
-              return <ProjectExpired />;
-            if (project.initialized === false) return <ProjectNotInitialized />;
-
+      <FetchProject
+        skip={!props.user || !props.user.defaultProjectKey}
+        projectKey={projectKey}
+      >
+        {({ isLoading: isProjectLoading, project }) => {
+          // TODO: do something if there is an `error`?
+          if (isProjectLoading) return <ApplicationLoader />;
+          if (!project) return <ProjectNotFound />;
+          if (project.suspension && project.suspension.isActive)
             return (
-              <ProjectDataLocale locales={project.languages}>
-                {({ locale, setProjectDataLocale }) => (
-                  <ApplicationContextProvider
-                    user={props.user}
-                    project={project}
-                    projectDataLocale={locale}
-                    environment={props.environment}
-                  >
-                    <>
-                      {shouldShowNotificationForTrialExpired(
-                        project.expiry.daysLeft ?? undefined
-                      ) && (
-                        <Notifier
-                          kind="warning"
-                          domain={DOMAINS.GLOBAL}
-                          text={intl.formatMessage(messages.trialDaysLeft, {
-                            daysLeft: project.expiry.daysLeft || 0,
-                          })}
-                        />
-                      )}
-                      {/* Render <LocaleSwitcher> using a portal */}
-                      {localeSwitcherNode &&
-                        // Render the `<LocaleSwitcher>` only if the project has more
-                        // than one language.
-                        project.languages.length > 1 &&
-                        ReactDOM.createPortal(
-                          <LocaleSwitcher
-                            // Be explicit on listing the props so that we can better assert it.
-                            projectDataLocale={locale}
-                            setProjectDataLocale={setProjectDataLocale}
-                            availableLocales={project.languages}
-                          />,
-                          localeSwitcherNode
-                        )}
-                      {/**
-                       * NOTE: we don't need to explicitly pass the `locale`,
-                       * it's enough to trigger a re-render.
-                       * The `locale` can then be read from the localStorage.
-                       */}
-                      <ApplicationEntryPoint
-                        environment={props.environment}
-                        disableRoutePermissionCheck={
-                          props.disableRoutePermissionCheck
-                        }
-                        render={props.render}
-                      >
-                        {props.children}
-                      </ApplicationEntryPoint>
-                    </>
-                  </ApplicationContextProvider>
-                )}
-              </ProjectDataLocale>
+              <ProjectSuspended
+                isTemporary={
+                  project.suspension.reason ===
+                  SUSPENSION_REASONS.TEMPORARY_MAINTENANCE
+                }
+              />
             );
-          }}
-        </FetchProject>
-      </Suspense>
+          if (project.expiry && project.expiry.isActive)
+            return <ProjectExpired />;
+          if (project.initialized === false) return <ProjectNotInitialized />;
+
+          return (
+            <ProjectDataLocale locales={project.languages}>
+              {({ locale, setProjectDataLocale }) => (
+                <ApplicationContextProvider
+                  user={props.user}
+                  project={project}
+                  projectDataLocale={locale}
+                  environment={props.environment}
+                >
+                  <>
+                    {shouldShowNotificationForTrialExpired(
+                      project.expiry.daysLeft ?? undefined
+                    ) && (
+                      <Notifier
+                        kind="warning"
+                        domain={DOMAINS.GLOBAL}
+                        text={intl.formatMessage(messages.trialDaysLeft, {
+                          daysLeft: project.expiry.daysLeft || 0,
+                        })}
+                      />
+                    )}
+                    {/* Render <LocaleSwitcher> using a portal */}
+                    {localeSwitcherNode &&
+                      // Render the `<LocaleSwitcher>` only if the project has more
+                      // than one language.
+                      project.languages.length > 1 &&
+                      ReactDOM.createPortal(
+                        <LocaleSwitcher
+                          // Be explicit on listing the props so that we can better assert it.
+                          projectDataLocale={locale}
+                          setProjectDataLocale={setProjectDataLocale}
+                          availableLocales={project.languages}
+                        />,
+                        localeSwitcherNode
+                      )}
+                    {/**
+                     * NOTE: we don't need to explicitly pass the `locale`,
+                     * it's enough to trigger a re-render.
+                     * The `locale` can then be read from the localStorage.
+                     */}
+                    <ApplicationEntryPoint
+                      environment={props.environment}
+                      disableRoutePermissionCheck={
+                        props.disableRoutePermissionCheck
+                      }
+                      render={props.render}
+                    >
+                      {props.children}
+                    </ApplicationEntryPoint>
+                  </>
+                </ApplicationContextProvider>
+              )}
+            </ProjectDataLocale>
+          );
+        }}
+      </FetchProject>
     </ErrorBoundary>
   );
 };
