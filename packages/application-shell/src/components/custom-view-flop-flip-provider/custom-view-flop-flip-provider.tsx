@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from 'react';
-import memoryAdapter from '@flopflip/memory-adapter';
+import { adapter as memoryAdapter } from '@flopflip/memory-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { TFlags } from '@flopflip/types';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';

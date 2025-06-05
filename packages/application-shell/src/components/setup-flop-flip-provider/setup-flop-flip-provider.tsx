@@ -1,16 +1,16 @@
 import { ReactNode, useMemo } from 'react';
 import { useApolloClient } from '@apollo/client/react';
-import combineAdapters from '@flopflip/combine-adapters';
-import httpAdapter from '@flopflip/http-adapter';
-import ldAdapter from '@flopflip/launchdarkly-adapter';
+import { adapter as combineAdapters } from '@flopflip/combine-adapters';
+import { adapter as httpAdapter } from '@flopflip/http-adapter';
+import { adapter as ldAdapter } from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import {
   type TAdapterIdentifiers,
+  type TFlags,
   cacheIdentifiers,
   cacheModes,
   adapterIdentifiers,
 } from '@flopflip/types';
-import type { TFlags } from '@flopflip/types';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   GRAPHQL_TARGETS,
