@@ -30,7 +30,7 @@
     "@commercetools-uikit/text-input": "20.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@flopflip/react-broadcast": "15.1.1",
+    "@flopflip/react-broadcast": "15.1.2",
     "@rollup/plugin-graphql": "2.0.5",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
