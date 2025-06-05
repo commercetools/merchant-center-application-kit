@@ -1,5 +1,16 @@
 # @commercetools-frontend/create-mc-app
 
+## 24.1.0
+
+### Minor Changes
+
+- [#3771](https://github.com/commercetools/merchant-center-application-kit/pull/3771) [`23e0e7d`](https://github.com/commercetools/merchant-center-application-kit/commit/23e0e7d3d89aef129203b9c8539ff3b1d06e6f7c) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Fix compatibility issues with Yarn 3 and Yarn 4 in starter templates by configuring nodeLinker to use node-modules.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@24.1.0
+
 ## 24.0.0
 
 ### Major Changes

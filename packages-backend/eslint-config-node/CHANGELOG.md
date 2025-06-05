@@ -1,5 +1,7 @@
 # @commercetools-backend/eslint-config-node
 
+## 24.1.0
+
 ## 24.0.0
 
 ### Major Changes
