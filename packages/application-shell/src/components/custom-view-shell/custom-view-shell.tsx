@@ -203,7 +203,7 @@ function CustomViewShell(props: TCustomViewShellProps) {
     window.addEventListener('message', bootstrapMessageHandler);
 
     // This notifies the custom view loader that the iframe is ready.
-    // This is only supported by custom view loader in the host application older than v24.x
+    // This is only supported by custom view loader in the host application from v24.x onwards
     window.parent.postMessage({
       origin: window.location.origin,
       eventName: CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY,
