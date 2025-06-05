@@ -125,58 +125,87 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
   const submenuRef = useRef<HTMLUListElement>(null);
   const submenuSafeAreaRef = useRef<HTMLElement>(null);
 
-  /* Getting the width and height of the menu*/
-  const subRefBoundingClientRect = submenuRef.current?.getBoundingClientRect();
-  const { width: menuItemWidth, height: menuItemHeight } =
-    subRefBoundingClientRect ?? {};
-
-  /* We want to track the left, top, width, and height of the safe area */
-  const submenuSafeAreaRefBoundingClientRect =
-    submenuSafeAreaRef.current?.getBoundingClientRect();
-  const safeAreaLeftPos = submenuSafeAreaRefBoundingClientRect?.left || 0;
-  const safeAreaTopPos = submenuSafeAreaRefBoundingClientRect?.top || 0;
-  const safeAreaWidth = submenuSafeAreaRefBoundingClientRect?.width || 0;
-  const safeAreaHeight = submenuSafeAreaRefBoundingClientRect?.height || 0;
-
-  const calculateSafeAreaStartPositon = useCallback(
-    (e: MouseEvent) => {
-      const localX = e.clientX - safeAreaLeftPos;
-      const localY = e.clientY - safeAreaTopPos;
-
-      setPercentageX((localX / safeAreaWidth) * 100);
-      setPercentageY((localY / safeAreaHeight) * 100);
-    },
-    [safeAreaHeight, safeAreaLeftPos, safeAreaTopPos, safeAreaWidth]
-  );
-
-  useEffect(() => {
-    window.addEventListener('mousemove', calculateSafeAreaStartPositon);
-
-    return () => {
-      window.removeEventListener('mousemove', calculateSafeAreaStartPositon);
-    };
-  }, [
-    calculateSafeAreaStartPositon,
-    menuItemHeight,
-    menuItemWidth,
-    safeAreaHeight,
-    safeAreaLeftPos,
-    safeAreaTopPos,
-    safeAreaWidth,
-  ]);
-
-  useLayoutEffect(() => {
-    submenuRef.current?.style.setProperty(
-      '--safe-start',
-      // Adding the +1 to slightly keep the cursor inside the safe area while moving
-      `${percentageX}% ${percentageY + 1}%`
-    );
-  }, [calculateSafeAreaStartPositon, percentageX, percentageY]);
-
   const hasSubmenu =
     Array.isArray(props.menu.submenu) && props.menu.submenu.length > 0;
 
   const menuItemIdentifier = snakeCase(props.menu.key);
+
+  const calculateSafeAreaStartPositon = useCallback(
+    (e: MouseEvent) => {
+      const currentSafeAreaRect =
+        submenuSafeAreaRef.current?.getBoundingClientRect();
+
+      const menuItemRect = document
+        .querySelector(`[data-menuitem="${menuItemIdentifier}"]`)
+        ?.getBoundingClientRect();
+
+      const currentSafeAreaLeft = currentSafeAreaRect?.left || 0;
+      const currentSafeAreaTop = currentSafeAreaRect?.top || 0;
+      const currentSafeAreaWidth = currentSafeAreaRect?.width || 0;
+      const currentSafeAreaHeight = currentSafeAreaRect?.height || 0;
+
+      const localX = e.clientX - currentSafeAreaLeft;
+      const localY = e.clientY - currentSafeAreaTop;
+
+      let minXPercent = 0;
+      if (menuItemRect && currentSafeAreaRect && currentSafeAreaWidth > 0) {
+        const minX = Math.max(menuItemRect.left - currentSafeAreaRect.left, 0);
+        minXPercent = (minX / currentSafeAreaWidth) * 100;
+      } else if (
+        menuItemRect &&
+        currentSafeAreaRect &&
+        currentSafeAreaWidth === 0
+      ) {
+        // If safe area has no width but menu item exists, consider minXPercent to be 0
+        minXPercent = 0;
+      }
+
+      // Calculate nextX, ensuring not to divide by zero
+      let nextX = minXPercent;
+      if (currentSafeAreaWidth > 0) {
+        nextX = (localX / currentSafeAreaWidth) * 100;
+      }
+
+      // Calculate nextY, ensuring not to divide by zero
+      let nextY = 0;
+      if (currentSafeAreaHeight > 0) {
+        nextY = (localY / currentSafeAreaHeight) * 100;
+      }
+
+      // Clamp X to menu item's left border (minXPercent) and safe area bounds (100%)
+      nextX = Math.max(nextX, minXPercent);
+      nextX = Math.min(nextX, 100);
+      if (!Number.isFinite(nextX)) {
+        nextX = minXPercent;
+      }
+
+      // Clamp Y to safe area bounds (0% to 100%)
+      nextY = Math.min(Math.max(nextY, 0), 100);
+      if (!Number.isFinite(nextY)) {
+        nextY = 0;
+      }
+
+      setPercentageX(nextX);
+      setPercentageY(nextY);
+    },
+    [menuItemIdentifier, setPercentageX, setPercentageY]
+  );
+
+  useEffect(() => {
+    window.addEventListener('mousemove', calculateSafeAreaStartPositon);
+    return () => {
+      window.removeEventListener('mousemove', calculateSafeAreaStartPositon);
+    };
+  }, [calculateSafeAreaStartPositon]);
+
+  useLayoutEffect(() => {
+    if (!submenuRef.current) return;
+
+    const safeX = Number.isFinite(percentageX) ? percentageX : 0;
+    const safeY = Number.isFinite(percentageY) ? percentageY : 100;
+
+    submenuRef.current.style.setProperty('--safe-start', `${safeX}% ${safeY}%`);
+  }, [percentageX, percentageY]);
 
   const callbackFn: IntersectionObserverCallback = useCallback(
     (entries) => {
