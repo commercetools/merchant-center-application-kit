@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 24.1.0
+
+### Patch Changes
+
+- [#3781](https://github.com/commercetools/merchant-center-application-kit/pull/3781) [`1d2f3b8`](https://github.com/commercetools/merchant-center-application-kit/commit/1d2f3b827784e12806aba40d974314eedf33d644) Thanks [@kark](https://github.com/kark)! - Fix safe area calculations in the navbar
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@24.1.0
+  - @commercetools-frontend/application-components@24.1.0
+  - @commercetools-frontend/application-config@24.1.0
+  - @commercetools-frontend/application-shell-connectors@24.1.0
+  - @commercetools-frontend/assets@24.1.0
+  - @commercetools-frontend/browser-history@24.1.0
+  - @commercetools-frontend/constants@24.1.0
+  - @commercetools-frontend/i18n@24.1.0
+  - @commercetools-frontend/l10n@24.1.0
+  - @commercetools-frontend/notifications@24.1.0
+  - @commercetools-frontend/permissions@24.1.0
+  - @commercetools-frontend/react-notifications@24.1.0
+  - @commercetools-frontend/sdk@24.1.0
+  - @commercetools-frontend/sentry@24.1.0
+  - @commercetools-frontend/url-utils@24.1.0
+
 ## 24.0.0
 
 ### Major Changes
