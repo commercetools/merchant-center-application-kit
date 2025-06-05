@@ -57,8 +57,16 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   const iFrameCommunicationChannel = useRef(new MessageChannel());
   const showNotification = useShowNotification();
   const intl = useIntl();
+  const hasSentInitializationMessages = useRef(false);
 
   const sendInitializationMessages = useCallback(() => {
+    // If we have already sent the initialization messages, do not send them again.
+    // The message can be sent either as a response to the CUSTOM_VIEW_READY message
+    // or as a result of a setTimeout after 500ms. In any case, this message should be sent only once.
+    if (hasSentInitializationMessages.current) {
+      return;
+    }
+
     // Transfer port2 to the iFrame so it can send messages back privately
     iFrameElementRef.current?.contentWindow?.postMessage(
       CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_BOOTSTRAP,
@@ -81,6 +89,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         },
       },
     } as TCustomViewIframeMessage);
+
+    hasSentInitializationMessages.current = true;
   }, [dataLocale, featureFlags, props.customView, props.hostUrl, projectKey]);
 
   const messageFromIFrameHandler = useCallback(
@@ -90,10 +100,16 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
             break;
+          // This message will only be sent by custom view shell older than v24.x
+          // For backwards compatibility we will send the initialization messages
+          // after 500ms if this message was not received by then.
+          case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_READY: {
+            sendInitializationMessages();
+          }
         }
       }
     },
-    [props]
+    [props, sendInitializationMessages]
   );
 
   // onLoad handler is called from the iFrame even where the URL is not valid
@@ -110,14 +126,8 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
       return;
     }
 
-    // Listen for messages from the iFrame
-    iFrameCommunicationChannel.current.port1.onmessage =
-      messageFromIFrameHandler;
-
-    // TODO: Locally (starter templates) we're seeing a little delay while rendering
-    // the iFrame. The CustomViewShell gets rendered, but the effect to start listening
-    // for messages is triggered after the iFrame is ready.
-    // This is a temporary fix to avoid the situation when running locally.
+    // This is for backwards compatibility with custom view shell older than v24.0.0
+    // where the custom-view-shell does not send the CUSTOM_VIEW_READY message yet.
     setTimeout(() => {
       sendInitializationMessages();
     }, 500);
@@ -129,7 +139,14 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
   useEffect(() => {
     // Close the channel when the component unmounts
     const communicationChannel = iFrameCommunicationChannel.current;
+
+    // Listen for messages from the iFrame
+    iFrameCommunicationChannel.current!.port1.onmessage =
+      messageFromIFrameHandler;
+    window.addEventListener('message', messageFromIFrameHandler);
+
     return () => {
+      window.removeEventListener('message', messageFromIFrameHandler);
       communicationChannel?.port1.close();
     };
   }, []);
