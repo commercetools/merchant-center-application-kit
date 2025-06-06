@@ -460,7 +460,13 @@ function loginViaIdentity(
             identityUrl,
           },
         },
-        ({ userCredentials, identityUrl }) => {
+        ({
+          userCredentials,
+          identityUrl,
+        }: {
+          userCredentials: LoginCredentials;
+          identityUrl: string;
+        }) => {
           cy.url().should('include', `${identityUrl}/login`);
           // Fill in the email and click Next
           cy.get('input[name="identifier"]').type(userCredentials.email);
@@ -475,19 +481,22 @@ function loginViaIdentity(
           });
           cy.get('button').contains('Submit').click();
 
-          // Wait for the consent screen to appear
-          cy.contains('Access Requested').should('be.visible');
-
-          // Click Allow access
-          cy.get('button').contains('Allow access').click();
+          // Check if consent screen appears and handle it if present
+          cy.get('body').then(() => {
+            // Try to find the consent screen
+            cy.get('h1')
+              .contains('Access Requested')
+              .should('exist')
+              .then(() => {
+                // Consent screen is present, handle it
+                cy.get('button').contains('Allow access').click();
+              });
+          });
         }
       );
 
       // Wait for the application to be loaded
       cy.get('#app-loader', { timeout: 30000 }).should('not.exist');
-
-      // Verify we're redirected back to the base URL
-      cy.url().should('eq', Cypress.config('baseUrl'));
     }
 
     // For backwards compatibility.

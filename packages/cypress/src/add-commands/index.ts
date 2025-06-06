@@ -50,7 +50,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'loginToMerchantCenterViaIdentity',
-  (commandOptions: TLoginToMerchantCenterForCustomViewCommandLoginOptions) => {
+  (commandOptions: CommandLoginOptions) => {
     Cypress.log({ name: 'loginToMerchantCenterViaIdentity' });
 
     loginViaIdentity(commandOptions);
