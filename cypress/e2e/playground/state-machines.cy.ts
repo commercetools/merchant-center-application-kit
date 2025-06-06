@@ -6,7 +6,7 @@ import {
 
 describe('State machines', () => {
   beforeEach(() => {
-    cy.loginToMerchantCenter({
+    cy.loginToMerchantCenterViaIdentity({
       entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
       initialRoute: URL_APP_KIT_PLAYGROUND,
     });
