@@ -1,5 +1,15 @@
 # @commercetools-frontend/actions-global
 
+## 24.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@24.1.1
+  - @commercetools-frontend/constants@24.1.1
+  - @commercetools-frontend/notifications@24.1.1
+  - @commercetools-frontend/sentry@24.1.1
+
 ## 24.1.0
 
 ### Patch Changes
