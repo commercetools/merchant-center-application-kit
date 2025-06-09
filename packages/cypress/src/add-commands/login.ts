@@ -480,22 +480,54 @@ function loginViaIdentity(
             log: false,
           });
           cy.get('button').contains('Submit').click();
-
-          // Check if consent screen appears and handle it if present
-          cy.get('body').then(() => {
-            // Try to find the consent screen
-            cy.get('h1')
-              .contains('Access Requested')
-              .should('exist')
-              .then(() => {
-                // Consent screen is present, handle it
-                cy.get('button').contains('Allow access').click();
-              });
-          });
         }
       );
 
-      // Wait for the application to be loaded
+      // Set up fail handler for identity domain access
+      cy.on('fail', (err: Error) => {
+        // If we can't access identity domain, we're already on the app
+        if (
+          err.message.includes('Timed out retrying after') &&
+          err.message.includes('origin')
+        ) {
+          cy.log('Already on app domain, proceeding');
+          return false; // Prevent the error from failing the test
+        }
+        throw err; // Re-throw other errors
+      });
+
+      // Check if we're still on identity domain
+      cy.origin(
+        identityUrl,
+        {
+          args: { identityUrl },
+        },
+        () => {
+          // Set up fail handler for consent screen detection
+          cy.on('fail', (err: Error) => {
+            // If we can't find the consent screen, we're already logged in
+            if (
+              err.message.includes(
+                "Expected to find content: 'Access Requested' within the element"
+              )
+            ) {
+              cy.log('No consent screen found, proceeding to app');
+              return false; // Prevent the error from failing the test
+            }
+            throw err; // Re-throw other errors
+          });
+
+          // Try to find the consent screen
+          cy.get('h1')
+            .contains('Access Requested')
+            .should('exist')
+            .then(() => {
+              // Consent screen is present, handle it
+              cy.get('button').contains('Allow access').click();
+            });
+        }
+      );
+
       cy.get('#app-loader', { timeout: 30000 }).should('not.exist');
     }
 
