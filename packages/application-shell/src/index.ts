@@ -14,7 +14,11 @@ export { default as RedirectToLogout } from './components/redirect-to-logout';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as ConfigureIntlProvider } from './components/configure-intl-provider';
-export { default as SuspendedRoute } from './components/suspended-route';
+export {
+  SuspendedRoute,
+  ProtectedRoute,
+  SuspendedProtectedRoute,
+} from './components/suspended-route';
 export { default as getPreviousProjectKey } from './utils/get-previous-project-key';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';
