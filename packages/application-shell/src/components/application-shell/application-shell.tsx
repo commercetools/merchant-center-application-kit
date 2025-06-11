@@ -18,7 +18,7 @@ import ApplicationShellAuthenticated from '../application-shell-authenticated/ap
 import ApplicationShellProvider from '../application-shell-provider';
 import RedirectToLogin from '../redirect-to-login';
 import RedirectToLogout from '../redirect-to-logout';
-import SuspendedRoute from '../suspended-route';
+import { SuspendedRoute } from '../suspended-route';
 import GlobalStyles from './global-styles';
 
 type TApplicationShellProps = {

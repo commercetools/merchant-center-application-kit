@@ -14,4 +14,4 @@ const SuspendedRoute = (props: TSuspendedRouteProps) => (
 
 SuspendedRoute.displayName = 'SuspendedRoute';
 
-export default SuspendedRoute;
+export { SuspendedRoute };
