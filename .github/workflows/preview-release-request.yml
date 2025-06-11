@@ -32,7 +32,9 @@ jobs:
         run: |
           mkdir -p pr/
           echo "${{ github.event.issue.number }}" > pr/PR_NUMBER
-          echo "${{ steps.comment-branch.outputs.head_ref }}" > pr/BRANCH_NAME
+          echo "$BRANCH_NAME" > pr/BRANCH_NAME
+        env:
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Upload metadata artifact
         uses: actions/upload-artifact@v4
