@@ -1,17 +1,18 @@
-name: Preview Release Build
+name: Preview Release Request
 
 permissions:
-  contents: read
-
+  issues: read
+  pull-requests: read
+  actions: write
+  
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  build:
+  validate_preview_request:
     if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
       - name: Get branch of PR
@@ -27,24 +28,14 @@ jobs:
         env:
           BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
 
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
-
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
-
-      - name: Save PR metadata
-        env:
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+      - name: Save metadata for next workflow
         run: |
-          mkdir -p ./pr-metadata
-          echo ${{ github.event.issue.number }} > ./pr-metadata/PR_NUMBER
-          echo "$BRANCH_NAME" > ./pr-metadata/BRANCH_NAME
+          mkdir -p pr/
+          echo "${{ github.event.issue.number }}" > pr/PR_NUMBER
+          echo "${{ steps.comment-branch.outputs.head_ref }}" > pr/BRANCH_NAME
 
-      - name: Upload PR metadata
+      - name: Upload metadata artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pr-metadata
-          path: pr-metadata/ 
+          name: preview-release-metadata
+          path: pr/

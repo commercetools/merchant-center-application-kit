@@ -8,17 +8,34 @@ permissions:
 
 on:
   workflow_run:
-    workflows: ["Preview Release Build"]
+    workflows: ["Preview Release Request"]
     types:
       - completed
 
 jobs:
-  publish:
-    if: github.event.workflow_run.conclusion == 'success'
+  release:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'issue_comment'
+
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      # Get GitHub token via the CT Changesets App
+      - name: Download metadata artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-release-metadata
+          path: ./tmp
+
+      - name: Read metadata
+        id: read-meta
+        run: |
+          PR_NUMBER=$(cat ./tmp/PR_NUMBER)
+          BRANCH_NAME=$(cat ./tmp/BRANCH_NAME)
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
         uses: tibdex/github-app-token@v2.1.0
@@ -26,22 +43,14 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      - name: Download PR metadata
-        uses: actions/download-artifact@v4
-        with:
-          name: pr-metadata
-          path: ./pr-metadata
-
-      - name: Extract PR metadata
-        run: |
-          echo "PR_NUMBER=$(cat ./pr-metadata/PR_NUMBER)" >> $GITHUB_ENV
-          echo "BRANCH_NAME=$(cat ./pr-metadata/BRANCH_NAME)" >> $GITHUB_ENV
-
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ env.BRANCH_NAME }}
+          ref: ${{ steps.read-meta.outputs.branch_name }}
           token: ${{ steps.generate_github_token.outputs.token }}
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
 
       - name: Setting up authorization to NPM registry (.npmrc)
         run: |
@@ -55,18 +64,17 @@ jobs:
 
       - name: Publishing preview releases to npm registry
         run: |
-          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
+          PREVIEW_TAG=$(echo "${{ steps.read-meta.outputs.branch_name }}" | sed -e 's/^preview\///')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           pnpm changeset publish --tag ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-          BRANCH_NAME: ${{ env.BRANCH_NAME }}
 
       - name: Post workflow result on PR as a comment
         if: always()
         run: |
-          gh issue comment ${{ env.PR_NUMBER }} \
+          gh issue comment ${{ steps.read-meta.outputs.pr_number }} \
             --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
