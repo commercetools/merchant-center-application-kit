@@ -1,5 +1,68 @@
 # @commercetools-frontend/application-shell
 
+## 24.2.0
+
+### Minor Changes
+
+- [#3795](https://github.com/commercetools/merchant-center-application-kit/pull/3795) [`b860435`](https://github.com/commercetools/merchant-center-application-kit/commit/b860435b2a1a0c91fe9b2c0360ef00df652e8613) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds two components in `SuspendedProtectedRoute` and `ProtectedRoute`.
+
+  These components add to the already existing `SuspendedRoute` why easing working with conditional routing such as permission based routes.
+
+  Using them you can more convienently built use cases such as:
+
+  ```jsx
+  <SuspendedProtectedRoute path="/my-route/" condition={canViewDiscountGroups}>
+    <LazilyLoadedComponent />
+  </SuspendedProtectedRoute>
+  ```
+
+  or just:
+
+  ```jsx
+  <ProtectedRoute path="/my-route/" condition={canViewDiscountGroups}>
+    <Component />
+  </ProtectedRoute>
+  ```
+
+  instead of:
+
+  ```jsx
+  {
+    condition && (
+      <Route path="/my-route/">
+        <Suspense fallback={<LoadingSpinner />}>
+          <LazilyLoadedComponent />
+        </Suspense>
+      </Route>
+    );
+  }
+  ```
+
+### Patch Changes
+
+- [#3789](https://github.com/commercetools/merchant-center-application-kit/pull/3789) [`8e81d6c`](https://github.com/commercetools/merchant-center-application-kit/commit/8e81d6cf007dafb9538f4264203d44b1814837dd) Thanks [@tdeekens](https://github.com/tdeekens)! - Add backwards compatible bidirectional initialization of Custom Views
+
+  This improves the stability of the initialization of Custom Views but requires old Custom View to be updated to this version so they communicate about their ready state with the host. It's recommended to update to this version if possible specifically if you encounter initialization issues with Custom Views.
+
+- [#3792](https://github.com/commercetools/merchant-center-application-kit/pull/3792) [`dabb5fe`](https://github.com/commercetools/merchant-center-application-kit/commit/dabb5febfb445425d146d646a59c83a360294362) Thanks [@tdeekens](https://github.com/tdeekens)! - Update `flopflip` to `v15` which supports only React `>=18` which are now fully supported.
+
+- Updated dependencies [[`8e81d6c`](https://github.com/commercetools/merchant-center-application-kit/commit/8e81d6cf007dafb9538f4264203d44b1814837dd), [`dabb5fe`](https://github.com/commercetools/merchant-center-application-kit/commit/dabb5febfb445425d146d646a59c83a360294362)]:
+  - @commercetools-frontend/application-components@24.2.0
+  - @commercetools-frontend/react-notifications@24.2.0
+  - @commercetools-frontend/actions-global@24.2.0
+  - @commercetools-frontend/application-config@24.2.0
+  - @commercetools-frontend/application-shell-connectors@24.2.0
+  - @commercetools-frontend/assets@24.2.0
+  - @commercetools-frontend/browser-history@24.2.0
+  - @commercetools-frontend/constants@24.2.0
+  - @commercetools-frontend/i18n@24.2.0
+  - @commercetools-frontend/l10n@24.2.0
+  - @commercetools-frontend/notifications@24.2.0
+  - @commercetools-frontend/permissions@24.2.0
+  - @commercetools-frontend/sdk@24.2.0
+  - @commercetools-frontend/sentry@24.2.0
+  - @commercetools-frontend/url-utils@24.2.0
+
 ## 24.1.0
 
 ### Patch Changes
