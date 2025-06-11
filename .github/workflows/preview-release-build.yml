@@ -1,0 +1,45 @@
+name: Preview Release Build
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Get branch of PR
+        uses: xt0rted/pull-request-comment-branch@v3
+        id: comment-branch
+
+      - name: Validate branch name
+        run: |
+          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
+            echo "Ignoring PR because of the branch name. Exiting workflow."
+            exit 1
+          fi
+        env:
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      - name: Save PR metadata
+        run: |
+          mkdir -p ./pr-metadata
+          echo ${{ github.event.issue.number }} > ./pr-metadata/PR_NUMBER
+          echo ${{ steps.comment-branch.outputs.head_ref }} > ./pr-metadata/BRANCH_NAME
+
+      - name: Upload PR metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-metadata
+          path: pr-metadata/ 

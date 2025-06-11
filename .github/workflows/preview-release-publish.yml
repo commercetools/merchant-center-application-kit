@@ -1,4 +1,4 @@
-name: Preview Release on Comment
+name: Preview Release Publish
 
 permissions:
   id-token: write
@@ -7,15 +7,15 @@ permissions:
   issues: write
 
 on:
-  issue_comment:
-    types: [created]
+  workflow_run:
+    workflows: ["Preview Release Build"]
+    types:
+      - completed
 
 jobs:
-  release:
-    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+  publish:
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-
-    timeout-minutes: 15
 
     steps:
       # Get GitHub token via the CT Changesets App
@@ -26,27 +26,22 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      - name: Get branch of PR
-        uses: xt0rted/pull-request-comment-branch@v3
-        id: comment-branch
+      - name: Download PR metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-metadata
+          path: ./pr-metadata
 
-      - name: Validate branch name
+      - name: Extract PR metadata
         run: |
-          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
-            echo "Ignoring PR because of the branch name. Exiting workflow."
-            exit 1
-          fi
-        env:
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+          echo "PR_NUMBER=$(cat ./pr-metadata/PR_NUMBER)" >> $GITHUB_ENV
+          echo "BRANCH_NAME=$(cat ./pr-metadata/BRANCH_NAME)" >> $GITHUB_ENV
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ env.BRANCH_NAME }}
           token: ${{ steps.generate_github_token.outputs.token }}
-
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
 
       - name: Setting up authorization to NPM registry (.npmrc)
         run: |
@@ -66,12 +61,12 @@ jobs:
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
 
       - name: Post workflow result on PR as a comment
         if: always()
         run: |
-          gh issue comment ${{ github.event.issue.number }} \
+          gh issue comment ${{ env.PR_NUMBER }} \
             --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
