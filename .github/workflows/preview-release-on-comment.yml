@@ -1,4 +1,4 @@
-name: Preview Release Publish
+name: Preview Release on Comment
 
 permissions:
   id-token: write
@@ -7,35 +7,22 @@ permissions:
   issues: write
 
 on:
-  workflow_run:
-    workflows: ["Preview Release Request"]
-    types:
-      - completed
+  issue_comment:
+    types: [created]
 
 jobs:
   release:
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.event == 'issue_comment'
-
+    if: |
+      github.event.issue.pull_request && 
+      startsWith(github.event.comment.body, '[preview_deployment]') &&
+      contains(github.event.issue.pull_request.labels.*.name, 'preview-release-approved') &&
+      github.event.issue.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+
     timeout-minutes: 15
 
     steps:
-      - name: Download metadata artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: preview-release-metadata
-          path: ./tmp
-
-      - name: Read metadata
-        id: read-meta
-        run: |
-          PR_NUMBER=$(cat ./tmp/PR_NUMBER)
-          BRANCH_NAME=$(cat ./tmp/BRANCH_NAME)
-          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-
+      # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
         uses: tibdex/github-app-token@v2.1.0
@@ -43,10 +30,23 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
+      - name: Get branch of PR
+        uses: xt0rted/pull-request-comment-branch@v3
+        id: comment-branch
+
+      - name: Validate branch name
+        run: |
+          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
+            echo "Ignoring PR because of the branch name. Exiting workflow."
+            exit 1
+          fi
+        env:
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.read-meta.outputs.branch_name }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Installing dependencies and building packages
@@ -64,17 +64,18 @@ jobs:
 
       - name: Publishing preview releases to npm registry
         run: |
-          PREVIEW_TAG=$(echo "${{ steps.read-meta.outputs.branch_name }}" | sed -e 's/^preview\///')
+          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           pnpm changeset publish --tag ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
 
       - name: Post workflow result on PR as a comment
         if: always()
         run: |
-          gh issue comment ${{ steps.read-meta.outputs.pr_number }} \
+          gh issue comment ${{ github.event.issue.number }} \
             --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
