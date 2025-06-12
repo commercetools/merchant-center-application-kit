@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-config
 
+## 24.2.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@24.2.0
+
 ## 24.1.0
 
 ### Patch Changes
