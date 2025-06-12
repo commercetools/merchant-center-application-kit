@@ -33,6 +33,7 @@ export default defineConfig({
           LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
           PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
           PACKAGE_NAME: process.env.CYPRESS_PACKAGE_NAME,
+          IDENTITY_URL: process.env.CYPRESS_IDENTITY_URL,
         }),
       });
     },
