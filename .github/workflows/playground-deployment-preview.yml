@@ -5,6 +5,9 @@ on:
   repository_dispatch:
     types: [vercel_deployment]
 
+permissions:
+  contents: read
+
 jobs:
   playground-deployment-preview:
     runs-on: ubuntu-latest
