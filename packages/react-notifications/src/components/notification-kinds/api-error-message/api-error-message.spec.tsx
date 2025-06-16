@@ -268,7 +268,7 @@ describe('render', () => {
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
       screen.getByText(
-        'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel and valid dates is unique per price.'
+        'A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel, valid dates and recurrence policy is unique per price.'
       )
     ).toBeInTheDocument();
   });
@@ -280,7 +280,7 @@ describe('render', () => {
     renderMessage(<ApiErrorMessage error={error} />);
     expect(
       screen.getByText(
-        'A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel and validity date must be unique for each price per SKU.'
+        'A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel, validity date and recurrence policy must be unique for each price per SKU.'
       )
     ).toBeInTheDocument();
   });
