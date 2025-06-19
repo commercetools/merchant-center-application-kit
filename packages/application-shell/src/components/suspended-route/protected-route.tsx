@@ -1,5 +1,5 @@
-import { Route, RouteProps } from "react-router-dom";
-import { PageUnauthorized } from "@commercetools-frontend/application-components";
+import { Route, RouteProps } from 'react-router-dom';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
 
 type TProtectedRouteProps = {
   condition: boolean;
