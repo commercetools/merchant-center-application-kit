@@ -1,5 +1,5 @@
-import { Route, RouteProps } from 'react-router-dom';
-import { PageUnauthorized } from '@commercetools-frontend/application-components';
+import { Route, RouteProps } from "react-router-dom";
+import { PageUnauthorized } from "@commercetools-frontend/application-components";
 
 type TProtectedRouteProps = {
   condition: boolean;
@@ -12,7 +12,11 @@ const ProtectedRoute: React.FC<TProtectedRouteProps> = ({
   children,
   ...routeProps
 }) => {
-  return condition ? <Route {...routeProps}>{children}</Route> : <>{fallback}</>;
+  return condition ? (
+    <Route {...routeProps}>{children}</Route>
+  ) : (
+    <>{fallback}</>
+  );
 };
 
 export { ProtectedRoute, type TProtectedRouteProps };
