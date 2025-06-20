@@ -12,7 +12,11 @@ const ProtectedRoute: React.FC<TProtectedRouteProps> = ({
   children,
   ...routeProps
 }) => {
-  return condition ? <Route {...routeProps}>{children}</Route> : <>fallback</>;
+  return condition ? (
+    <Route {...routeProps}>{children}</Route>
+  ) : (
+    <>{fallback}</>
+  );
 };
 
 export { ProtectedRoute, type TProtectedRouteProps };
