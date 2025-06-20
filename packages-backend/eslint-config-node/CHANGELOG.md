@@ -1,5 +1,7 @@
 # @commercetools-backend/eslint-config-node
 
+## 24.2.1
+
 ## 24.2.0
 
 ## 24.1.0
