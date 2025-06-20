@@ -1,5 +1,18 @@
 # @commercetools-frontend/react-notifications
 
+## 24.2.1
+
+### Patch Changes
+
+- [#3797](https://github.com/commercetools/merchant-center-application-kit/pull/3797) [`0692aee`](https://github.com/commercetools/merchant-center-application-kit/commit/0692aeea2a34263e1878f369ae3489d2125b7fe7) Thanks [@nima-ct](https://github.com/nima-ct)! - Update error messages to include 'recurrence policy' on duplicate prices scope
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@24.2.1
+  - @commercetools-frontend/actions-global@24.2.1
+  - @commercetools-frontend/constants@24.2.1
+  - @commercetools-frontend/notifications@24.2.1
+  - @commercetools-frontend/sentry@24.2.1
+
 ## 24.2.0
 
 ### Patch Changes

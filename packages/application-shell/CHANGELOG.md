@@ -1,5 +1,45 @@
 # @commercetools-frontend/application-shell
 
+## 24.2.1
+
+### Patch Changes
+
+- [#3800](https://github.com/commercetools/merchant-center-application-kit/pull/3800) [`ef412d3`](https://github.com/commercetools/merchant-center-application-kit/commit/ef412d32566babaf33450eed2064cc21af75fc0d) Thanks [@tdeekens](https://github.com/tdeekens)! - You can now specify a `fallback` component on `ProtectedRoute` which defaults to `<PageUnauthorized />`.
+
+  ```tsx
+  <ProtectedRoute
+    condition={canManageProjectSettings}
+    fallback={<MyOwnComponent />}
+  />
+  ```
+
+  **⚠️ Change in `ProtectedSuspendedRoute`'s `fallback` prop**
+
+  There is change to `ProtectedSuspendedRoute` if you used the `fallback` property as it is now renamed to `loader`.
+
+  If you specified a custom `fallback` component on `ProtectedSuspendedRoute` then rename this property to `loader`.
+
+  This allows the `ProtectedSuspendedRoute` to have both a `fallback` (similar to `ProtectedRoute`) and `loader` property.
+
+- [#3801](https://github.com/commercetools/merchant-center-application-kit/pull/3801) [`3441474`](https://github.com/commercetools/merchant-center-application-kit/commit/34414749f50e82cf70cf68b6e00552e57c4a8094) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix rendering fallback as string in the `ProtectedRoute` and `SuspendedProtectedRoute` components.
+
+- Updated dependencies [[`0692aee`](https://github.com/commercetools/merchant-center-application-kit/commit/0692aeea2a34263e1878f369ae3489d2125b7fe7), [`ac88e0d`](https://github.com/commercetools/merchant-center-application-kit/commit/ac88e0d161356443986a5d39708f8c9a546cd3ad)]:
+  - @commercetools-frontend/react-notifications@24.2.1
+  - @commercetools-frontend/i18n@24.2.1
+  - @commercetools-frontend/application-components@24.2.1
+  - @commercetools-frontend/actions-global@24.2.1
+  - @commercetools-frontend/application-config@24.2.1
+  - @commercetools-frontend/application-shell-connectors@24.2.1
+  - @commercetools-frontend/assets@24.2.1
+  - @commercetools-frontend/browser-history@24.2.1
+  - @commercetools-frontend/constants@24.2.1
+  - @commercetools-frontend/l10n@24.2.1
+  - @commercetools-frontend/notifications@24.2.1
+  - @commercetools-frontend/permissions@24.2.1
+  - @commercetools-frontend/sdk@24.2.1
+  - @commercetools-frontend/sentry@24.2.1
+  - @commercetools-frontend/url-utils@24.2.1
+
 ## 24.2.0
 
 ### Minor Changes
