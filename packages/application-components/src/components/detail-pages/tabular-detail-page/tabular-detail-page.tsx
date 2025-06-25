@@ -63,6 +63,10 @@ type TTabularDetailPageProps = {
    * These codes are used to configure which Custom Views are available for every tab.
    */
   customViewLocatorCodes?: TCustomViewSelectorProps['customViewLocatorCodes'];
+  /**
+   * Optional function called when a Custom View closes.
+   */
+  onCustomViewClose?: () => void;
 
   // PageTopBar props:
   /**
@@ -118,6 +122,7 @@ const TabularDetailPage = ({
         <CustomViewsSelector
           margin={`${uiKitDesignTokens.spacing30} 0 0 0`}
           customViewLocatorCodes={props.customViewLocatorCodes}
+          onCustomViewClose={props.onCustomViewClose}
         />
       </CustomViewsSelectorWrapper>
       <ContentWrapper>{props.children}</ContentWrapper>
