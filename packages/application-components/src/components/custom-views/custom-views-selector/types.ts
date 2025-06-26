@@ -13,4 +13,5 @@ export type TCustomViewSelectorProps = {
   customViewLocatorCode?: string;
   customViewLocatorCodes?: Record<string, TCustomViewLocatorCode>;
   margin?: string;
+  onCustomViewClose?: () => void;
 };
