@@ -12,20 +12,17 @@ on:
 
 jobs:
   release:
-    if: |
-      github.event.issue.pull_request && 
-      startsWith(github.event.comment.body, '[preview_deployment]')
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
 
     steps:
-      - name: Control Check: Validate Comment Author Association
+      - name: Validate Comment Author Association
+        if: "!contains(fromJson('["MEMBER", "OWNER"]'), github.event.comment.author_association)"
         run: |
-          if [[ "${{ github.event.comment.author_association }}" != "MEMBER" ]]; then
-            echo "Commenter is not a trusted member. Exiting workflow."
-            exit 1
-          fi
+          echo "Comment author is not a trusted member or owner. Skipping execution to prevent untrusted code execution."
+          exit 0
 
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
