@@ -12,15 +12,18 @@ on:
 
 jobs:
   release:
-    if: |
-      github.event.issue.pull_request && 
-      startsWith(github.event.comment.body, '[preview_deployment]') &&
-      github.event.comment.author_association == 'MEMBER'
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
 
     steps:
+      - name: Validate Comment Author Association
+        if: "!contains(fromJson('["MEMBER", "OWNER"]'), github.event.comment.author_association)"
+        run: |
+          echo "Comment author is not a trusted member or owner. Skipping execution to prevent untrusted code execution."
+          exit 0
+
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
@@ -45,7 +48,7 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Installing dependencies and building packages
