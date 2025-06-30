@@ -316,7 +316,10 @@ export const HTTP_SECURITY_HEADER_KEYS = {
   // @deprecated: this header is not supported by the browser anymore. Use `Content-Security-Policy` instead.
   'X-XSS-Protection': 'X-XSS-Protection',
 } as const;
-export type THttpSecurityHeaders = keyof typeof HTTP_SECURITY_HEADER_KEYS;
+export type THttpSecurityHeaders = Exclude<
+  keyof typeof HTTP_SECURITY_HEADER_KEYS,
+  'X-XSS-Protection'
+>;
 export const HTTP_SECURITY_HEADERS = {
   [HTTP_SECURITY_HEADER_KEYS['Referrer-Policy']]: 'same-origin',
   [HTTP_SECURITY_HEADER_KEYS['Permissions-Policy']]:
