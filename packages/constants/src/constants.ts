@@ -308,14 +308,18 @@ export const STORAGE_KEYS = {
 
 export const HTTP_SECURITY_HEADER_KEYS = {
   'Content-Security-Policy': 'Content-Security-Policy',
-  'Referrer-Policy': 'Referrer-Policy',
   'Permissions-Policy': 'Permissions-Policy',
+  'Referrer-Policy': 'Referrer-Policy',
   'Strict-Transport-Security': 'Strict-Transport-Security',
-  'X-XSS-Protection': 'X-XSS-Protection',
   'X-Content-Type-Options': 'X-Content-Type-Options',
   'X-Frame-Options': 'X-Frame-Options',
+  // @deprecated: this header is not supported by the browser anymore. Use `Content-Security-Policy` instead.
+  'X-XSS-Protection': 'X-XSS-Protection',
 } as const;
-export type THttpSecurityHeaders = keyof typeof HTTP_SECURITY_HEADER_KEYS;
+export type THttpSecurityHeaders = Exclude<
+  keyof typeof HTTP_SECURITY_HEADER_KEYS,
+  'X-XSS-Protection'
+>;
 export const HTTP_SECURITY_HEADERS = {
   [HTTP_SECURITY_HEADER_KEYS['Referrer-Policy']]: 'same-origin',
   [HTTP_SECURITY_HEADER_KEYS['Permissions-Policy']]:
@@ -324,7 +328,6 @@ export const HTTP_SECURITY_HEADERS = {
     'microphone=(self), camera=(self), payment=(self), usb=(self), geolocation=(self)',
   [HTTP_SECURITY_HEADER_KEYS['Strict-Transport-Security']]:
     'max-age=31536000; includeSubDomains; preload',
-  [HTTP_SECURITY_HEADER_KEYS['X-XSS-Protection']]: '1; mode=block',
   [HTTP_SECURITY_HEADER_KEYS['X-Content-Type-Options']]: 'nosniff',
   [HTTP_SECURITY_HEADER_KEYS['X-Frame-Options']]: 'SAMEORIGIN',
 } as const;
