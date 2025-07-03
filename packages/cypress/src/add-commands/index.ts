@@ -3,6 +3,7 @@ import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/c
 import {
   loginByForm,
   loginByOidc,
+  loginViaIdentity,
   isLocalhost,
   type CommandLoginOptions as TCommandLoginOptions,
   type LoginToMerchantCenterForCustomViewCommandLoginOptions as TLoginToMerchantCenterForCustomViewCommandLoginOptions,
@@ -44,6 +45,15 @@ Cypress.Commands.add(
       entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
       initialRoute: `/${projectKey}/${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}`,
     });
+  }
+);
+
+Cypress.Commands.add(
+  'loginToMerchantCenterViaIdentity',
+  (commandOptions: CommandLoginOptions) => {
+    Cypress.log({ name: 'loginToMerchantCenterViaIdentity' });
+
+    loginViaIdentity(commandOptions);
   }
 );
 
