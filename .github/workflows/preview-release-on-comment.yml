@@ -18,12 +18,6 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - name: Validate Comment Author Association
-        if: "!contains(fromJson('["MEMBER", "OWNER"]'), github.event.comment.author_association)"
-        run: |
-          echo "Comment author is not a trusted member or owner. Skipping execution to prevent untrusted code execution."
-          exit 0
-
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
