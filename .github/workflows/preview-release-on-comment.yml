@@ -12,10 +12,7 @@ on:
 
 jobs:
   release:
-    if: |
-      github.event.issue.pull_request && 
-      startsWith(github.event.comment.body, '[preview_deployment]') &&
-      github.event.comment.author_association == 'MEMBER'
+    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -45,7 +42,7 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Installing dependencies and building packages
