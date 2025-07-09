@@ -38,6 +38,17 @@ declare namespace Cypress {
     ): Chainable<Subject>;
 
     /**
+     * Log into the Custom Application using the Identity workflow.
+     * The command only works for testing an application running on localhost.
+     *
+     * @example
+     *    cy.loginToMerchantCenterViaIdentity({ entryPointUriPath: 'template-starter' })
+     */
+    loginToMerchantCenterViaIdentity(
+      options?: import('./dist/commercetools-frontend-cypress-add-commands.cjs').CommandLoginOptions
+    ): Chainable<Subject>;
+
+    /**
      * Triggers a `hover` (real) event on the subject.
      *
      * @example
