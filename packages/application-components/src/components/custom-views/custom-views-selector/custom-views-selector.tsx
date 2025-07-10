@@ -27,6 +27,7 @@ type TCustomViewSelectorWithRequiredProps = {
   customViewLocatorCode: string;
   margin?: string;
   onCustomViewsResolved?: TCustomViewSelectorProps['onCustomViewsResolved'];
+  onCustomViewClose?: TCustomViewSelectorProps['onCustomViewClose'];
 };
 
 type TWrapperProps = {
@@ -162,6 +163,9 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
               customView={selectedCustomView}
               onClose={() => {
                 setSelectedCustomView(null);
+                if (props.onCustomViewClose) {
+                  props.onCustomViewClose();
+                }
               }}
             />
           )}
