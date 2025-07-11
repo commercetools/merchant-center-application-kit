@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { InfoMainPage } from '@commercetools-frontend/application-components';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  useApplicationContext,
+  useCustomViewIntegration,
+} from '@commercetools-frontend/application-shell-connectors';
 import {
   MC_API_PROXY_TARGETS,
   NO_VALUE_FALLBACK,
@@ -88,6 +91,13 @@ const StateMachinesList = (props) => {
   const hasNoResults = Boolean(
     !loading && data?.states.results && data?.states.total === 0
   );
+
+  useCustomViewIntegration({
+    locators: ['products.product_details.general'],
+    onRefreshDataRequested: (context) => {
+      console.log('[StateMachinesList] onRefreshDataRequested', context);
+    },
+  });
 
   return (
     <InfoMainPage
