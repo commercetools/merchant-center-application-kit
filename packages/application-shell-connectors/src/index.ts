@@ -18,6 +18,8 @@ export {
   useCustomViewContext,
 } from './components/custom-view-context';
 
+export { useCustomViewIntegration } from './hooks/custom-views/use-custom-view-integration';
+
 export {
   GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
