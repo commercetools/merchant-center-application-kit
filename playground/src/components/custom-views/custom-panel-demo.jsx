@@ -4,6 +4,7 @@ import {
   InfoMainPage,
   useModalState,
 } from '@commercetools-frontend/application-components';
+import { useCustomViewIntegration } from '@commercetools-frontend/application-shell-connectors';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import { DEMO_CUSTOM_VIEW } from './constants';
@@ -20,6 +21,13 @@ function CustomPanelDemo() {
     }),
     [panelSize]
   );
+
+  useCustomViewIntegration({
+    locators: ['products.product_variant_details.images'],
+    onRefreshDataRequested: (context) => {
+      console.log('[CustomPanelDemo] onRefreshDataRequested', context);
+    },
+  });
 
   return (
     <InfoMainPage

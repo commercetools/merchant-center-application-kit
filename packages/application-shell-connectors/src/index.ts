@@ -13,6 +13,8 @@ export {
   normalizeAllAppliedPermissions,
 } from './components/application-context';
 
+export { useCustomViewIntegration } from './hooks/custom-views/use-custom-view-integration';
+
 export {
   CustomViewContextProvider,
   useCustomViewContext,

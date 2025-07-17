@@ -99,6 +99,13 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         switch (event.data.eventName) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
+            window.dispatchEvent(
+              new CustomEvent('custom-view-closed', {
+                detail: {
+                  locators: props.customView.locators,
+                },
+              })
+            );
             break;
           // This message will only be sent by custom view shell older than v24.x
           // For backwards compatibility we will send the initialization messages
