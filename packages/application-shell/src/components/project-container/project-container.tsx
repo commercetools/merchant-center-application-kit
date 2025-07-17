@@ -2,13 +2,8 @@ import { JSX, ReactNode, Suspense, useEffect, useState } from 'react';
 import isNil from 'lodash/isNil';
 import ReactDOM from 'react-dom';
 import { useIntl } from 'react-intl';
-import {
-  Route,
-  Switch,
-  Redirect,
-  useLocation,
-  useRouteMatch,
-} from 'react-router-dom';
+import { Switch, Redirect, useLocation, useRouteMatch } from 'react-router-dom';
+import { CompatRoute as Route } from 'react-router-dom-v5-compat';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {

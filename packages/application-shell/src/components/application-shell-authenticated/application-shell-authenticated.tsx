@@ -9,7 +9,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Switch, useLocation } from 'react-router-dom';
+import { CompatRoute as Route } from 'react-router-dom-v5-compat';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,

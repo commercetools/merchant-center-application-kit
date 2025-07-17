@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
+import { CompatRouter } from 'react-router-dom-v5-compat';
 import { waitFor } from '../../test-utils';
 import ApplicationPageTitle from './application-page-title';
 
@@ -62,7 +63,9 @@ describe.each`
           '/my-project-key/products/product-id/variants/variant-id'
         )}
       >
-        <ApplicationPageTitle additionalParts={content} />
+        <CompatRouter>
+          <ApplicationPageTitle additionalParts={content} />
+        </CompatRouter>
       </Router>
     );
     await waitFor(() => {
