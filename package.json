@@ -194,5 +194,8 @@
     "npm": ">=6",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@9.15.4+sha256.9bee59c7313a216722c079c1e22160dea7f88df4e0c3450b1d7b01b882336c6a"
+  "packageManager": "pnpm@9.15.4+sha256.9bee59c7313a216722c079c1e22160dea7f88df4e0c3450b1d7b01b882336c6a",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.14.5"
+  }
 }
