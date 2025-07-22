@@ -24,6 +24,7 @@ type TCustomViewIframeMessage = {
 
 type TCustomViewLoaderProps = {
   customView: CustomViewData;
+  locatorCode: string;
   hostUrl?: string;
   onClose: () => void;
 };
@@ -102,7 +103,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
             window.dispatchEvent(
               new CustomEvent('custom-view-closed', {
                 detail: {
-                  locators: props.customView.locators,
+                  originLocatorCode: props.locatorCode,
                 },
               })
             );

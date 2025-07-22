@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react';
-import intersection from 'lodash/intersection';
 
 export type TCustomViewIntegrationParams = {
   locators: string[];
@@ -10,9 +9,9 @@ export const useCustomViewIntegration = (
   params: TCustomViewIntegrationParams
 ) => {
   const onCustomViewEventHandler = useCallback(
-    (event: CustomEvent<{ locators: string[] }>) => {
-      const { locators } = event.detail;
-      if (intersection(params.locators, locators).length > 0) {
+    (event: CustomEvent<{ originLocatorCode: string }>) => {
+      const { originLocatorCode } = event.detail;
+      if (params.locators.includes(originLocatorCode)) {
         params.onRefreshDataRequested(event.detail);
       }
     },
