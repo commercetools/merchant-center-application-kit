@@ -3258,6 +3258,9 @@ importers:
       react-router-dom:
         specifier: 5.3.4
         version: 5.3.4(react@19.0.0)
+      react-router-dom-v5-compat:
+        specifier: 6.30.0
+        version: 6.30.0(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       vercel:
         specifier: 24.2.5
         version: 24.2.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
