@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { Switch } from 'react-router-dom';
 import {
-  CompatRoute as Route,
+  Route,
+  Routes,
   useMatch,
   useNavigate,
 } from 'react-router-dom-v5-compat';
@@ -28,31 +28,30 @@ const ApplicationRoutes = () => {
   );
 
   return (
-    <Switch>
-      <Route path={`${basePath}/echo-server`}>
-        <EchoServer />
+    <Routes>
+      <Route path={`${basePath}/echo-server`} element={<EchoServer />} />
+      <Route
+        path={`${basePath}/notifications`}
+        element={<NotificationsPlayground />}
+      />
+      <Route path={`${basePath}/formatters`} element={<FormattersDemo />} />
+      <Route path={`${basePath}/custom-panel`} element={<CustomPanelDemo />} />
+      <Route
+        path={`${basePath}`}
+        element={
+          <StateMachinesList goToStateMachineDetail={goToStateMachineDetail} />
+        }
+      >
+        <Route
+          path={`:id`}
+          element={
+            <StateMachinesDetails
+              goToStateMachinesList={goToStateMachinesList}
+            />
+          }
+        />
       </Route>
-      <Route path={`${basePath}/notifications`}>
-        <NotificationsPlayground />
-      </Route>
-      <Route path={`${basePath}/formatters`}>
-        <FormattersDemo />
-      </Route>
-      <Route path={`${basePath}/custom-panel`}>
-        <CustomPanelDemo />
-      </Route>
-      <Route path={`${basePath}`}>
-        <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
-          <Switch>
-            <Route path={`/:id`}>
-              <StateMachinesDetails
-                goToStateMachinesList={goToStateMachinesList}
-              />
-            </Route>
-          </Switch>
-        </StateMachinesList>
-      </Route>
-    </Switch>
+    </Routes>
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';

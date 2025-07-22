@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { Outlet } from 'react-router-dom-v5-compat';
 import { InfoMainPage } from '@commercetools-frontend/application-components';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
@@ -130,7 +131,7 @@ const StateMachinesList = (props) => {
             />
           </Spacings.Stack>
         )}
-        {props.children}
+        <Outlet />
       </Spacings.Stack>
     </InfoMainPage>
   );
@@ -138,7 +139,6 @@ const StateMachinesList = (props) => {
 StateMachinesList.displayName = 'StateMachinesList';
 StateMachinesList.propTypes = {
   goToStateMachineDetail: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default StateMachinesList;
