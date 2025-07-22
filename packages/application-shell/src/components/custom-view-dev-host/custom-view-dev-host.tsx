@@ -1,5 +1,6 @@
 import { type ReactNode, useState } from 'react';
-import { Route, Router, Switch, useRouteMatch } from 'react-router-dom';
+import { Router, Switch, useRouteMatch } from 'react-router-dom';
+import { CompatRouter, CompatRoute as Route } from 'react-router-dom-v5-compat';
 import { CustomViewLoader } from '@commercetools-frontend/application-components';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
@@ -108,23 +109,25 @@ const SimulatedIframeRoute = (props: Pick<TCustomViewDevHost, 'children'>) => {
 const CustomViewDevHost = (props: TCustomViewDevHost) => {
   return (
     <Router history={history}>
-      <Switch>
-        {/* Simulate the rendering of the Custom View as if it would be served
+      <CompatRouter>
+        <Switch>
+          {/* Simulate the rendering of the Custom View as if it would be served
         from a different host via an iframe. */}
-        <Route path="/custom-views/:customViewId/projects/:projectKey">
-          <SimulatedIframeRoute>{props.children}</SimulatedIframeRoute>
-        </Route>
+          <Route path="/custom-views/:customViewId/projects/:projectKey">
+            <SimulatedIframeRoute>{props.children}</SimulatedIframeRoute>
+          </Route>
 
-        <Route>
-          <ApplicationShell
-            environment={window.app}
-            applicationMessages={props.applicationMessages}
-            disableRoutePermissionCheck
-          >
-            <LocalCustomViewLauncher environment={window.app} />
-          </ApplicationShell>
-        </Route>
-      </Switch>
+          <Route>
+            <ApplicationShell
+              environment={window.app}
+              applicationMessages={props.applicationMessages}
+              disableRoutePermissionCheck
+            >
+              <LocalCustomViewLauncher environment={window.app} />
+            </ApplicationShell>
+          </Route>
+        </Switch>
+      </CompatRouter>
     </Router>
   );
 };

@@ -22,24 +22,33 @@ setupGlobalErrorListener();
 
 const apolloClient = configureApolloClient();
 
-const EntryPoint = () => (
-  <Router history={history}>
-    <Switch>
-      <Route path="/custom-views/:customViewId/projects/:projectKey">
-        <DemoCustomView />
-      </Route>
+// const EntryPoint = () => (
+//   <Router history={history}>
+//     <Switch>
+//       <Route path="/custom-views/:customViewId/projects/:projectKey">
+//         <DemoCustomView />
+//       </Route>
 
-      <Route>
-        <ApplicationShell
-          environment={window.app}
-          applicationMessages={loadMessages}
-          apolloClient={apolloClient}
-        >
-          <AsyncPlaygroundRoutes />
-        </ApplicationShell>
-      </Route>
-    </Switch>
-  </Router>
+//       <Route>
+//         <ApplicationShell
+//           environment={window.app}
+//           applicationMessages={loadMessages}
+//           apolloClient={apolloClient}
+//         >
+//           <AsyncPlaygroundRoutes />
+//         </ApplicationShell>
+//       </Route>
+//     </Switch>
+//   </Router>
+// );
+const EntryPoint = () => (
+  <ApplicationShell
+    environment={window.app}
+    applicationMessages={loadMessages}
+    apolloClient={apolloClient}
+  >
+    <AsyncPlaygroundRoutes />
+  </ApplicationShell>
 );
 EntryPoint.displayName = 'EntryPoint';
 

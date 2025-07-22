@@ -118,6 +118,7 @@
     "react-intl": "^7.1.4",
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
+    "react-router-dom-v5-compat": "6.30.0",
     "redux": "4.2.1"
   },
   "peerDependencies": {
@@ -128,6 +129,7 @@
     "react-intl": "7.x",
     "react-redux": "7.x",
     "react-router-dom": "5.x",
+    "react-router-dom-v5-compat": "6.x",
     "redux": "4.x"
   },
   "engines": {

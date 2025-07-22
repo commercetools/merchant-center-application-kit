@@ -1,5 +1,6 @@
 import { JSX } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { CompatRoute as Route } from 'react-router-dom-v5-compat';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { SuspendedRoute } from '../suspended-route';

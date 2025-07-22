@@ -75,6 +75,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
 
   return (
     <StrictModeEnablement enableReactStrictMode={props.enableReactStrictMode}>
+      <h1>_Application Shell_</h1>
       <GlobalStyles />
       <ApplicationShellProvider
         apolloClient={props.apolloClient}
@@ -88,7 +89,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
                 <SuspendedRoute path="/logout">
                   <RedirectToLogout />
                 </SuspendedRoute>
-                <SuspendedRoute>
+                <SuspendedRoute exact path="/">
                   <ApplicationShellAuthenticated
                     defaultFeatureFlags={props.defaultFeatureFlags}
                     featureFlags={props.featureFlags}

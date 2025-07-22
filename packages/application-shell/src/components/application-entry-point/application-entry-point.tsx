@@ -1,5 +1,7 @@
 import { Children, JSX, ReactNode } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
+import { CompatRoute as Route } from 'react-router-dom-v5-compat';
+
 import invariant from 'tiny-invariant';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
@@ -54,6 +56,7 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
             <Route
               exact={true}
               path="/:projectKey"
+              /* @ts-expect-error - Compat Route is not typed */
               render={({ match }) => {
                 const projectKey = match.params.projectKey;
                 return <Redirect to={`/${projectKey}/${entryPointUriPath}`} />;

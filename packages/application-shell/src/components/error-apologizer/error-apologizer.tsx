@@ -3,15 +3,26 @@ import { MaintenancePageLayout } from '@commercetools-frontend/application-compo
 import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/unexpected-error.svg';
 import messages from './messages';
 
-const ErrorApologizer = () => {
-  const intl = useIntl();
+// const ErrorApologizer = () => {
+//   const intl = useIntl();
 
+//   return (
+//     <MaintenancePageLayout
+//       imageSrc={UnexpectedErrorSVG}
+//       title={<FormattedMessage {...messages.title} />}
+//       label={intl.formatMessage(messages.title)}
+//       paragraph1={<FormattedMessage {...messages.notifiedTeam} />}
+//     />
+//   );
+// };
+
+const ErrorApologizer = () => {
   return (
     <MaintenancePageLayout
       imageSrc={UnexpectedErrorSVG}
-      title={<FormattedMessage {...messages.title} />}
-      label={intl.formatMessage(messages.title)}
-      paragraph1={<FormattedMessage {...messages.notifiedTeam} />}
+      title={messages.title.defaultMessage}
+      label={messages.title.defaultMessage}
+      paragraph1={messages.notifiedTeam.defaultMessage}
     />
   );
 };
