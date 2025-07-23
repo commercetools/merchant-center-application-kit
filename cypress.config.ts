@@ -36,11 +36,6 @@ export default defineConfig({
           PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
           PACKAGE_NAME: process.env.CYPRESS_PACKAGE_NAME,
         }),
-        // Configure coverage output directory
-        coverage: {
-          exclude: ['cypress/**/*'],
-          reportDir: './coverage/cypress',
-        },
       });
     },
     baseUrl: 'http://localhost:3001',

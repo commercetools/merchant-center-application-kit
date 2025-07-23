@@ -64,6 +64,16 @@ jobs:
           pnpm cypress:coverage
         continue-on-error: true
 
+      - name: Move Cypress coverage files
+        run: |
+          mkdir -p ./coverage/cypress
+          mv ./coverage/lcov.info ./coverage/cypress/lcov.info
+          mv ./coverage/coverage-final.json ./coverage/cypress/coverage-final.json
+          mv ./coverage/coverage-summary.json ./coverage/cypress/coverage-summary.json
+          mv ./coverage/clover.xml ./coverage/cypress/clover.xml
+          mv ./coverage/lcov-report ./coverage/cypress/lcov-report
+        continue-on-error: true
+
       - name: Upload Cypress coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
