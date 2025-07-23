@@ -27,14 +27,14 @@ jobs:
         run: pnpm install
 
       - name: Run Jest tests with coverage
-        run: npx jest --coverage
+        run: npx jest --coverage --coverageDirectory=./coverage/jest
         continue-on-error: true
 
       - name: Upload Jest coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/lcov.info
+          file: ./coverage/jest/lcov.info
           flags: jest
           name: jest-coverage
         if: always()
@@ -68,7 +68,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/lcov.info
+          file: ./coverage/cypress/lcov.info
           flags: cypress
           name: cypress-coverage
         if: always()
