@@ -37,6 +37,7 @@
     "test:e2e:playground": "cypress run --spec 'cypress/e2e/playground/**/*.cy.ts'",
     "test:e2e:template-custom-application-starter": "cypress run --spec 'cypress/e2e/custom-application-template-starter/**/*.cy.ts'",
     "test:e2e:template-custom-view-starter": "cypress run --spec 'cypress/e2e/custom-view-template-starter/**/*.cy.ts'",
+    "cypress:coverage": "CYPRESS_COVERAGE=true cypress run",
     "vrt:components": "percy exec -- pnpm test:visual",
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
@@ -194,5 +195,10 @@
     "npm": ">=6",
     "pnpm": ">=8"
   },
-  "packageManager": "pnpm@9.15.4+sha256.9bee59c7313a216722c079c1e22160dea7f88df4e0c3450b1d7b01b882336c6a"
+  "packageManager": "pnpm@9.15.4+sha256.9bee59c7313a216722c079c1e22160dea7f88df4e0c3450b1d7b01b882336c6a",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.14.5",
+    "babel-plugin-istanbul": "^7.0.0",
+    "nyc": "^17.1.0"
+  }
 }
