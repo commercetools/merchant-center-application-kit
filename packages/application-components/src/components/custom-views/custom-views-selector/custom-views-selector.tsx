@@ -159,6 +159,7 @@ function CustomViewSelector(props: TCustomViewSelectorWithRequiredProps) {
 
           {selectedCustomView && (
             <CustomViewLoader
+              locatorCode={props.customViewLocatorCode}
               customView={selectedCustomView}
               onClose={() => {
                 setSelectedCustomView(null);

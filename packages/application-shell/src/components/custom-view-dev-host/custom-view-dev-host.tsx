@@ -81,6 +81,7 @@ const LocalCustomViewLauncher = (props: TLocalCustomViewLauncherProps) => {
           {shouldRenderCustomView && (
             <CustomViewLoader
               customView={customViewConfig}
+              locatorCode={''}
               hostUrl={props.environment.__DEVELOPMENT__?.customViewHostUrl}
               onClose={() => setShouldRenderCustomView(false)}
             />

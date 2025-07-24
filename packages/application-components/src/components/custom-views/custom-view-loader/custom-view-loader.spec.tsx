@@ -66,7 +66,11 @@ describe('CustomViewLoader', () => {
   it('should render a custom view', async () => {
     const projectKey = 'test-with-big-data';
     renderComponent(
-      <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={jest.fn()} />,
+      <CustomViewLoader
+        customView={TEST_CUSTOM_VIEW}
+        onClose={jest.fn()}
+        locatorCode="test-products.product_details.general"
+      />,
       { projectKey }
     );
 
@@ -88,7 +92,11 @@ describe('CustomViewLoader', () => {
     };
 
     renderComponent(
-      <CustomViewLoader customView={customView} onClose={jest.fn()} />
+      <CustomViewLoader
+        customView={customView}
+        onClose={jest.fn()}
+        locatorCode="test-products.product_details.general"
+      />
     );
 
     fireEvent.load(
@@ -113,6 +121,7 @@ describe('CustomViewLoader', () => {
         // @ts-expect-error: we are testing an unknown type
         customView={customView}
         onClose={jest.fn()}
+        locatorCode="test-products.product_details.general"
       />
     );
 
@@ -130,7 +139,11 @@ describe('CustomViewLoader', () => {
     const onCloseMock = jest.fn();
 
     const { baseElement } = renderComponent(
-      <CustomViewLoader customView={TEST_CUSTOM_VIEW} onClose={onCloseMock} />
+      <CustomViewLoader
+        customView={TEST_CUSTOM_VIEW}
+        onClose={onCloseMock}
+        locatorCode="test-products.product_details.general"
+      />
     );
 
     const overlay = baseElement.querySelector(
