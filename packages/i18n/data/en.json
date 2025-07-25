@@ -312,34 +312,34 @@
     "string": "Offline"
   },
   "QuickAccess.openAddApiClient": {
-    "string": "Open Add API Client"
+    "string": "Open add API client"
   },
   "QuickAccess.openAddCartDiscount": {
     "string": "Open Add Cart Discount"
   },
   "QuickAccess.openAddCategory": {
-    "string": "Open Add Category"
+    "string": "Open add category"
   },
   "QuickAccess.openAddCustomer": {
-    "string": "Open Add Customer"
+    "string": "Open add customer"
   },
   "QuickAccess.openAddCustomerGroup": {
-    "string": "Open Add Customer Group"
+    "string": "Open add customer group"
   },
   "QuickAccess.openAddDiscount": {
-    "string": "Open Add Discount"
+    "string": "Open add discount"
   },
   "QuickAccess.openAddDiscountCode": {
-    "string": "Open Add Discount Code"
+    "string": "Open add discount code"
   },
   "QuickAccess.openAddOrder": {
-    "string": "Open Add Order"
+    "string": "Open add order"
   },
   "QuickAccess.openAddProductDiscount": {
-    "string": "Open Add Product Discount"
+    "string": "Open add product discount"
   },
   "QuickAccess.openAddProducts": {
-    "string": "Open Add Products"
+    "string": "Open add products"
   },
   "QuickAccess.openApiClientsList": {
     "string": "Open API Clients"
