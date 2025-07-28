@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Route, useRouteMatch, useHistory } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom-v5-compat';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import {
   InfoModalPage,
@@ -65,8 +65,7 @@ const NotificationsPlayground = ({ level = 1 }) => {
   const dialogState = useModalState();
   const dialogStateInDrawer = useModalState();
   const drawerState = useModalState();
-  const route = useRouteMatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Spacings.Inset>
@@ -75,7 +74,7 @@ const NotificationsPlayground = ({ level = 1 }) => {
         <FlatButton
           label={`Open modal ${level}`}
           onClick={() => {
-            history.push(`${route.url}/${level}`);
+            navigate(`${level}`, { relative: 'path' });
           }}
         />
         <FlatButton
@@ -87,18 +86,6 @@ const NotificationsPlayground = ({ level = 1 }) => {
           onClick={drawerState.openModal}
         />
 
-        <Route path={`${route.path}/${level}`}>
-          <InfoModalPage
-            isOpen
-            title={`Modal page ${level}`}
-            customViewLocatorCode="products.product_details.general"
-            onClose={() => {
-              history.push(route.url);
-            }}
-          >
-            <NotificationsPlayground level={level + 1} />
-          </InfoModalPage>
-        </Route>
         <InfoDialog
           isOpen={dialogState.isModalOpen}
           title={`Dialog ${level}`}
@@ -125,6 +112,24 @@ const NotificationsPlayground = ({ level = 1 }) => {
             Hello
           </InfoDialog>
         </Drawer>
+
+        <Routes>
+          <Route
+            path={`:level/*`}
+            element={
+              <InfoModalPage
+                isOpen
+                title={`Modal page ${level}`}
+                customViewLocatorCode="products.product_details.general"
+                onClose={() => {
+                  navigate(-1);
+                }}
+              >
+                <NotificationsPlayground level={level + 1} />
+              </InfoModalPage>
+            }
+          />
+        </Routes>
       </Spacings.Stack>
     </Spacings.Inset>
   );

@@ -31,7 +31,7 @@ const ApplicationRoutes = () => {
     <Routes>
       <Route path={`${basePath}/echo-server`} element={<EchoServer />} />
       <Route
-        path={`${basePath}/notifications`}
+        path={`${basePath}/notifications/*`}
         element={<NotificationsPlayground />}
       />
       <Route path={`${basePath}/formatters`} element={<FormattersDemo />} />
