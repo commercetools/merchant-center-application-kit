@@ -1458,6 +1458,9 @@ importers:
       raf-schd:
         specifier: ^4.0.3
         version: 4.0.3
+      react-router-dom-v5-compat:
+        specifier: 6.30.0
+        version: 6.30.0(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@apollo/client':
         specifier: 3.12.4
@@ -12084,7 +12087,6 @@ packages:
     resolution: {integrity: sha512-t0etAxTUk1w5MYdNOkZBZ8rvYYN5iL+2dHCCx/DpkFm/bW28M6y5nUS83D4XdZiHy35Fpaw6LBb+F88fHZnVCw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
-    bundledDependencies: []
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}

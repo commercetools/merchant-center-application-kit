@@ -1,4 +1,5 @@
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom-v5-compat';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import { warning } from '@commercetools-uikit/utils';
@@ -52,7 +53,7 @@ const renderTabularDetailPage = (additionalProps = {}) =>
   );
 
 const TabularDetailPageWithHistory = (additionalProps = {}) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <TabularDetailPage
       title="Test page"
@@ -64,7 +65,7 @@ const TabularDetailPageWithHistory = (additionalProps = {}) => {
           <TabHeader to="/tab-three" label="Disabled tab" isDisabled />
         </>
       }
-      onPreviousPathClick={() => history.push('/start')}
+      onPreviousPathClick={() => navigate('/start')}
       {...additionalProps}
     >
       <Content />
