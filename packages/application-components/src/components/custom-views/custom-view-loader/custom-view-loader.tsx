@@ -24,6 +24,7 @@ type TCustomViewIframeMessage = {
 
 type TCustomViewLoaderProps = {
   customView: CustomViewData;
+  locatorCode: string;
   hostUrl?: string;
   onClose: () => void;
   locatorCode: string;
