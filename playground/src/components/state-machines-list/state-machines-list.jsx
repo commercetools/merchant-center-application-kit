@@ -4,7 +4,7 @@ import { InfoMainPage } from '@commercetools-frontend/application-components';
 import { useMcQuery } from '@commercetools-frontend/application-shell';
 import {
   useApplicationContext,
-  useCustomViewIntegration,
+  useCustomViewParentDataRefresher,
 } from '@commercetools-frontend/application-shell-connectors';
 import {
   MC_API_PROXY_TARGETS,
@@ -92,7 +92,7 @@ const StateMachinesList = (props) => {
     !loading && data?.states.results && data?.states.total === 0
   );
 
-  useCustomViewIntegration({
+  useCustomViewParentDataRefresher({
     locators: ['products.product_details.general'],
     onRefreshDataRequested: (context) => {
       console.log('[StateMachinesList] onRefreshDataRequested', context);

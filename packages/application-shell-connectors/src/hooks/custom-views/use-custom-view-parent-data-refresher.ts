@@ -1,12 +1,13 @@
 import { useCallback, useEffect } from 'react';
+import { CUSTOM_VIEWS_EVENTS_NAMES } from '@commercetools-frontend/constants';
 
-export type TCustomViewIntegrationParams = {
+export type TCustomViewParentDataRefresherParams = {
   locators: string[];
   onRefreshDataRequested: (context: Record<string, unknown>) => void;
 };
 
-export const useCustomViewIntegration = (
-  params: TCustomViewIntegrationParams
+export const useCustomViewParentDataRefresher = (
+  params: TCustomViewParentDataRefresherParams
 ) => {
   const onCustomViewEventHandler = useCallback(
     (event: CustomEvent<{ originLocatorCode: string }>) => {
@@ -19,10 +20,13 @@ export const useCustomViewIntegration = (
   ) as EventListener;
 
   useEffect(() => {
-    window.addEventListener('custom-view-closed', onCustomViewEventHandler);
+    window.addEventListener(
+      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_NOTIFY_HOST,
+      onCustomViewEventHandler
+    );
     return () => {
       window.removeEventListener(
-        'custom-view-closed',
+        CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_NOTIFY_HOST,
         onCustomViewEventHandler
       );
     };
