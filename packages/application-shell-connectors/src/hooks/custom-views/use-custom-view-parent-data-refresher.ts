@@ -21,12 +21,12 @@ export const useCustomViewParentDataRefresher = (
 
   useEffect(() => {
     window.addEventListener(
-      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_NOTIFY_HOST,
+      CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_ON_CLOSE_AFTER,
       onCustomViewEventHandler
     );
     return () => {
       window.removeEventListener(
-        CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_NOTIFY_HOST,
+        CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_ON_CLOSE_AFTER,
         onCustomViewEventHandler
       );
     };

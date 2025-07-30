@@ -103,7 +103,7 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
             if (props.locatorCode) {
               window.dispatchEvent(
                 new CustomEvent(
-                  CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_NOTIFY_HOST,
+                  CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_ON_CLOSE_AFTER,
                   {
                     detail: {
                       originLocatorCode: props.locatorCode,
