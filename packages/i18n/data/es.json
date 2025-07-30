@@ -21,7 +21,7 @@
   },
   "ApiError.DuplicatePriceScope": {
     "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
-    "string": "Para esta variante de producto ya existe un precio con el mismo ámbito. Asegúrate de que la combinación de moneda, país, grupo de clientes, canal, fechas válidas y política de recurrencia sean únicas por precio."
+    "string": "A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel, valid dates and recurrence policy is unique per price."
   },
   "ApiError.DuplicateSlug": {
     "developer_comment": "User tries to create a resource with an already existing slug",
@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "Para esta variante de producto ya existe un precio con el mismo ámbito. La combinación de moneda, país, grupo de clientes, canal, fecha de validación y política de recurrencia deben ser únicas para cada producto por SKU."
+    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel, validity date and recurrence policy must be unique for each price per SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
