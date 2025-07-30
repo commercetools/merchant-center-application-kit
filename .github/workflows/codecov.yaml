@@ -1,0 +1,84 @@
+name: Run tests and upload coverage
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run tests and collect coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Jest tests with coverage
+        run: npx jest --coverage --coverageDirectory=./coverage/jest
+        continue-on-error: true
+
+      - name: Upload Jest coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/jest/lcov.info
+          flags: jest
+          name: jest-coverage
+        if: always()
+
+      - name: Build workspace packages
+        run: |
+          export CYPRESS_COVERAGE=true
+          pnpm build
+        continue-on-error: true
+
+      - name: Build playground with coverage
+        run: |
+          export CYPRESS_COVERAGE=true
+          pnpm playground:build
+        continue-on-error: true
+
+      - name: Start playground server
+        run: |
+          export CYPRESS_COVERAGE=true
+          pnpm playground:start &
+          sleep 45  # Wait for server to start
+        continue-on-error: true
+
+      - name: Run Cypress tests with coverage
+        run: |
+          export CYPRESS_COVERAGE=true
+          pnpm cypress:coverage
+        continue-on-error: true
+
+      - name: Move Cypress coverage files
+        run: |
+          mkdir -p ./coverage/cypress
+          mv ./coverage/lcov.info ./coverage/cypress/lcov.info
+          mv ./coverage/coverage-final.json ./coverage/cypress/coverage-final.json
+          mv ./coverage/coverage-summary.json ./coverage/cypress/coverage-summary.json
+          mv ./coverage/clover.xml ./coverage/cypress/clover.xml
+          mv ./coverage/lcov-report ./coverage/cypress/lcov-report
+        continue-on-error: true
+
+      - name: Upload Cypress coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/cypress/lcov.info
+          flags: cypress
+          name: cypress-coverage
+        if: always()

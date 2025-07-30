@@ -12,6 +12,8 @@ export default defineConfig({
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     async setupNodeEvents(on, cypressConfig) {
+      // Add coverage task
+      require('@cypress/code-coverage/task')(on, cypressConfig);
       // Load the config
       if (!process.env.CI) {
         const envPath = path.join(__dirname, 'cypress/.env');
