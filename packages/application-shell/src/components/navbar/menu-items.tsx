@@ -145,7 +145,7 @@ const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
 
 const MenuExpander = (props: MenuExpanderProps) => {
   return (
-    <Expander key="expander" isVisible={props.isVisible}>
+    <Expander key="expander" isVisible={props.isVisible} role="menuitem">
       <ExpanderIcon
         onClick={props.onClick}
         onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
@@ -155,6 +155,7 @@ const MenuExpander = (props: MenuExpanderProps) => {
         }}
         tabIndex={0}
         data-testid="menu-expander"
+        aria-label={props.isMenuOpen ? 'Collapse menu' : 'Expand menu'}
       >
         {getIcon(props)}
       </ExpanderIcon>
@@ -197,10 +198,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
-      aria-expanded={
-        isSublistActiveWhileIsMenuExpanded ||
-        isSublistActiveWhileIsMenuCollapsed
-      }
       onKeyDown={props.handleKeyDown}
       className={classnames(
         {
@@ -253,11 +250,13 @@ type MenuItemProps = {
   identifier?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
   onMouseMove?: MouseEventHandler<HTMLLIElement>;
+  ariaLabel?: string;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
     <MenuListItem
       role="menuitem"
+      aria-label={props.ariaLabel}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
@@ -288,6 +287,7 @@ export type MenuItemLinkProps = {
   useFullRedirectsForLinks?: boolean;
   isSubmenuLink?: boolean;
   isSubmenuFocused?: boolean;
+  ariaLabel?: string;
 };
 
 const NavLinkWrapper = (props: MenuItemLinkProps) => {
@@ -312,6 +312,7 @@ const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
+          aria-label={props.ariaLabel}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();
