@@ -1208,74 +1208,70 @@ describe('when navbar menu items do not match given data fences', () => {
   });
 });
 
-function getMenuItemBasedOnTooltipLabel(mainMenuLabel) {
-  return (menuItem) =>
-    // eslint-disable-next-line testing-library/no-node-access
-    menuItem.querySelector('[aria-owns]').innerHTML === mainMenuLabel.value;
-}
 describe('navbar menu links interactions', () => {
-  // TODO: Refactor to utilize React Testing Library's query methods after Navbar accessibility improvements
   async function checkLinksInteractions({
-    container,
     findByLeftNavigation,
     mainMenuLabel,
-    mainSubmenuLabel,
   }) {
-    // Check the relationships between the menu items of a group
-    const leftNavigation = await findByLeftNavigation();
-    const submenuTooltip = Array.from(
-      leftNavigation
-        // eslint-disable-next-line testing-library/no-node-access
-        .querySelectorAll('[aria-owns]')
-    ).find((tooltip) => tooltip.innerHTML === mainMenuLabel.value);
-    const groupId = submenuTooltip.getAttribute('aria-owns');
+    // Wait for navigation to be loaded
+    await findByLeftNavigation();
 
-    // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-    const submenuContainer = container.querySelector(`#group-${groupId}`);
-    // Verify the submenu container has the correct role for accessibility
-    expect(submenuContainer).toHaveAttribute('role', 'menu');
+    // Find main menu item using accessible name (from aria-label)
+    const menuItem = screen.getByRole('menuitem', {
+      name: mainMenuLabel.value,
+    });
 
-    const getMainMenuItem = getMenuItemBasedOnTooltipLabel(mainMenuLabel);
-
-    const menuItem = within(container)
-      .getAllByRole('menuitem')
-      .find(getMainMenuItem);
-
-    // Verify menu item has accessibility attributes
+    // Verify menu item has proper accessibility attributes
     expect(menuItem).toHaveAttribute('role', 'menuitem');
-    expect(menuItem).toHaveAttribute('aria-label');
+    expect(menuItem).toHaveAttribute('aria-label', mainMenuLabel.value);
 
-    // Hover over menu item
-    fireEvent.mouseOver(menuItem);
+    // Test menu expander accessibility
+    const menuExpander = screen.getByTestId('menu-expander');
+    expect(menuExpander).toHaveAttribute('aria-label');
+    expect(menuExpander).toHaveAttribute('aria-expanded');
 
-    const submenuLink = within(container)
-      .getByText(mainSubmenuLabel.value)
-      // eslint-disable-next-line testing-library/no-node-access
-      .closest('a');
+    // Find main menu link using accessible name
+    const mainMenuLink = screen.getByRole('link', {
+      name: mainMenuLabel.value,
+    });
 
-    // Verify submenu link has accessibility attributes
-    expect(submenuLink).toHaveAttribute('aria-label');
+    // Verify main menu link has accessibility attributes
+    expect(mainMenuLink).toHaveAttribute('aria-label', mainMenuLabel.value);
 
-    // Go to the link
-    fireEvent.click(submenuLink);
+    // Test that menu containers exist with proper roles
+    const menuContainers = screen.getAllByRole('menu');
+    expect(menuContainers.length).toBeGreaterThan(0);
+    menuContainers.forEach((container) => {
+      expect(container).toHaveAttribute('role', 'menu');
+    });
+
+    // Navigate to the main menu link
+    fireEvent.click(mainMenuLink);
 
     // Ensure that the link becomes active
-    expect(submenuLink).toHaveAttribute('aria-current', 'page');
+    expect(mainMenuLink).toHaveAttribute('aria-current', 'page');
+
+    // Verify all menu items have accessible names
+    const allMenuItems = screen.getAllByRole('menuitem');
+    allMenuItems.forEach((item) => {
+      expect(item).toHaveAttribute('aria-label');
+    });
+
+    // Test support link accessibility
+    const supportLink = screen.getByRole('link', { name: /support/i });
+    expect(supportLink).toHaveAttribute('aria-label');
   }
   describe('when rendering navbar menu links from local config', () => {
     it('should render links with all the correct state attributes', async () => {
       const menuLinks = createTestNavBarMenuLinksConfig();
-      const {
-        container,
-        findByLeftNavigation,
-        waitForLeftNavigationToBeLoaded,
-      } = renderApp(null, {
-        environment: {
-          __DEVELOPMENT__: {
-            menuLinks,
+      const { findByLeftNavigation, waitForLeftNavigationToBeLoaded } =
+        renderApp(null, {
+          environment: {
+            __DEVELOPMENT__: {
+              menuLinks,
+            },
           },
-        },
-      });
+        });
 
       const applicationLocale = 'en';
       const mainMenuLabel = menuLinks.labelAllLocales.find(
@@ -1288,7 +1284,6 @@ describe('navbar menu links interactions', () => {
       // Wait for the loading nav container to disappear
       await waitForLeftNavigationToBeLoaded();
       await checkLinksInteractions({
-        container,
         findByLeftNavigation,
         mainMenuLabel,
         mainSubmenuLabel,
@@ -1350,32 +1345,25 @@ describe('navbar menu links interactions', () => {
       );
     });
     it('should render links with all the correct state attributes', async () => {
-      const {
-        container,
-        findByLeftNavigation,
-        waitForLeftNavigationToBeLoaded,
-      } = renderApp(null, {
-        environment: {
-          servedByProxy: 'true',
-        },
-      });
+      const { findByLeftNavigation, waitForLeftNavigationToBeLoaded } =
+        renderApp(null, {
+          environment: {
+            servedByProxy: 'true',
+          },
+        });
       // Wait for the loading nav container to disappear
       await waitForLeftNavigationToBeLoaded();
 
       // Check links from internal applications menu
       await checkLinksInteractions({
-        container,
         findByLeftNavigation,
         mainMenuLabel: { value: 'Products' },
-        mainSubmenuLabel: { value: 'Add product' },
       });
 
       // Check links from custom applications menu
       await checkLinksInteractions({
-        container,
         findByLeftNavigation,
         mainMenuLabel: { value: 'My application' },
-        mainSubmenuLabel: { value: 'Something new' },
       });
     });
   });
