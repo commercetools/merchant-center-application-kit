@@ -164,7 +164,6 @@ const MenuExpander = (props: MenuExpanderProps) => {
             ? formatMessage(messages['NavBar.MenuExpander.collapseMenu'])
             : formatMessage(messages['NavBar.MenuExpander.expandMenu'])
         }
-        aria-expanded={props.isMenuOpen}
       >
         {getIcon(props)}
       </ExpanderIcon>
