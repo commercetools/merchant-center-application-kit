@@ -26,6 +26,7 @@ type TCustomViewLoaderProps = {
   customView: CustomViewData;
   hostUrl?: string;
   onClose: () => void;
+  locatorCode?: string;
 };
 
 const isIframeReady = (iFrameElementRef: HTMLIFrameElement) => {
@@ -99,6 +100,18 @@ function CustomViewLoader(props: TCustomViewLoaderProps) {
         switch (event.data.eventName) {
           case CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_CLOSE:
             props.onClose();
+            if (props.locatorCode) {
+              window.dispatchEvent(
+                new CustomEvent(
+                  CUSTOM_VIEWS_EVENTS_NAMES.CUSTOM_VIEW_ON_CLOSE_AFTER,
+                  {
+                    detail: {
+                      originLocatorCode: props.locatorCode,
+                    },
+                  }
+                )
+              );
+            }
             break;
           // This message will only be sent by custom view shell older than v24.x
           // For backwards compatibility we will send the initialization messages
