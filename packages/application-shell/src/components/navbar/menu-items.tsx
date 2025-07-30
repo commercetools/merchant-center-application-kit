@@ -13,6 +13,7 @@ import { Global } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
+import { useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import type {
   TNormalizedMenuVisibilities,
@@ -49,6 +50,7 @@ import {
   TextLinkSublistWrapper,
   NavlinkClickableContent,
 } from './menu-items.styles';
+import messages from './messages';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 
 type TProjectPermissions = {
@@ -144,6 +146,8 @@ const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
 };
 
 const MenuExpander = (props: MenuExpanderProps) => {
+  const { formatMessage } = useIntl();
+
   return (
     <Expander key="expander" isVisible={props.isVisible} role="menuitem">
       <ExpanderIcon
@@ -155,7 +159,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
         }}
         tabIndex={0}
         data-testid="menu-expander"
-        aria-label={props.isMenuOpen ? 'Collapse menu' : 'Expand menu'}
+        aria-label={
+          props.isMenuOpen
+            ? formatMessage(messages['NavBar.MenuExpander.collapseMenu'])
+            : formatMessage(messages['NavBar.MenuExpander.expandMenu'])
+        }
       >
         {getIcon(props)}
       </ExpanderIcon>
