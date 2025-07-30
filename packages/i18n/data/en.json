@@ -312,34 +312,34 @@
     "string": "Offline"
   },
   "QuickAccess.openAddApiClient": {
-    "string": "Open add API client"
+    "string": "Open Add API Client"
   },
   "QuickAccess.openAddCartDiscount": {
     "string": "Open Add Cart Discount"
   },
   "QuickAccess.openAddCategory": {
-    "string": "Open add category"
+    "string": "Open Add Category"
   },
   "QuickAccess.openAddCustomer": {
-    "string": "Open add customer"
+    "string": "Open Add Customer"
   },
   "QuickAccess.openAddCustomerGroup": {
-    "string": "Open add customer group"
+    "string": "Open Add Customer Group"
   },
   "QuickAccess.openAddDiscount": {
-    "string": "Open add discount"
+    "string": "Open Add Discount"
   },
   "QuickAccess.openAddDiscountCode": {
-    "string": "Open add discount code"
+    "string": "Open Add Discount Code"
   },
   "QuickAccess.openAddOrder": {
-    "string": "Open add order"
+    "string": "Open Add Order"
   },
   "QuickAccess.openAddProductDiscount": {
-    "string": "Open add product discount"
+    "string": "Open Add Product Discount"
   },
   "QuickAccess.openAddProducts": {
-    "string": "Open add products"
+    "string": "Open Add Products"
   },
   "QuickAccess.openApiClientsList": {
     "string": "Open API Clients"
@@ -348,13 +348,13 @@
     "string": "Open Cart discount list"
   },
   "QuickAccess.openCategories": {
-    "string": "Open categories"
+    "string": "Open Categories"
   },
   "QuickAccess.openCategoriesList": {
     "string": "Open Category list"
   },
   "QuickAccess.openCategoriesSearch": {
-    "string": "Open Categories search"
+    "string": "Open Categories Search"
   },
   "QuickAccess.openCustomApplicationsSettings": {
     "string": "Open Custom Applications Settings"
@@ -393,7 +393,7 @@
     "string": "Open My Profile"
   },
   "QuickAccess.openOrders": {
-    "string": "Open orders"
+    "string": "Open Orders"
   },
   "QuickAccess.openOrdersList": {
     "string": "Open Order list"
