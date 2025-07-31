@@ -105,11 +105,11 @@
   },
   "ApiError.SemanticError": {
     "developer_comment": "User enters a predicate query that throws a system semantic error",
-    "string": "Semantic error: the given Predicate is not valid. Please read the documentation to define a correct predicate."
+    "string": "Semantic error: the given predicate is not valid. Please read the documentation to define a correct predicate."
   },
   "ApiError.SyntaxError": {
     "developer_comment": "User enters a predicate query that throws a system syntax error",
-    "string": "Syntax error: the given Predicate is not valid. Please read the documentation to define a correct predicate."
+    "string": "Syntax error: the given predicate is not valid. Please read the documentation to define a correct predicate."
   },
   "ApiError.TaxCategoryDuplicateCountry": {
     "developer_comment": "User inputs duplicate country and/or state into tax category form",
@@ -183,7 +183,7 @@
     "string": "Close Modal Page"
   },
   "CustomViewLoader.error.load": {
-    "string": "We could not load the Custom View. Please contact your administrator to check its configuration."
+    "string": "We could not load the custom view. Please contact your administrator to check its configuration."
   },
   "CustomViewsSelector.title": {
     "string": "Custom Views:"
@@ -244,7 +244,7 @@
     "string": "Your trial has expired"
   },
   "ProjectNotFound.paragraph1": {
-    "string": "The Project you are looking for either does not exist or you are not authorized to view it. Select another Project to view."
+    "string": "The project you are looking for either does not exist or you are not authorized to view it. Select another project to view."
   },
   "ProjectNotFound.paragraph2": {
     "string": "Please contact your system administrator if you have any further questions."
@@ -274,7 +274,7 @@
     "string": "Your Project has been suspended"
   },
   "ProjectSuspended.paragraph1": {
-    "string": "Please contact your system administrator if you have any further questions or select another Project to view."
+    "string": "Please contact your system administrator if you have any further questions or select another project to view."
   },
   "ProjectSuspended.temporaryMaintenanceSuspensionMessage": {
     "string": "Your Project is temporarily suspended due to maintenance."
