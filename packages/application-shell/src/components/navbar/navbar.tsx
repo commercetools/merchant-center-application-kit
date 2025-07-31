@@ -8,7 +8,7 @@ import {
   useRef,
 } from 'react';
 import snakeCase from 'lodash/snakeCase';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import {
   matchPath,
   useLocation,
@@ -28,11 +28,15 @@ import type {
   TNormalizedDataFences,
 } from '@commercetools-frontend/application-shell-connectors';
 import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
-import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
+import {
+  SUPPORT_PORTAL_URL,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import type { TFetchProjectQuery } from '../../types/generated/mc';
 import type { TNavbarMenu, TBaseMenu } from '../../types/generated/proxy';
+import type { TLocalizedField } from '../../types/generated/proxy';
 import {
   FixedMenu,
   HeaderTitle,
@@ -78,6 +82,20 @@ type TMenuWithDefaultLabel = TNavbarMenu & {
 type TSubmenuWithDefaultLabel = TBaseMenu & {
   // derives from `projectExtensionsQuery.installedApplications.application.mainMenuLink`
   defaultLabel?: string;
+};
+
+// Helper function to extract accessible label from menu objects
+const getMenuAccessibleLabel = (
+  labelAllLocales: TLocalizedField[],
+  defaultLabel: string | undefined,
+  applicationLocale: string
+): string => {
+  const localizedLabel = labelAllLocales.find((loc) =>
+    applicationLocale.startsWith(loc.locale)
+  );
+  if (localizedLabel) return localizedLabel.value;
+  if (defaultLabel) return defaultLabel;
+  return NO_VALUE_FALLBACK;
 };
 
 type ApplicationMenuProps = {
@@ -326,11 +344,21 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         onMouseLeave={props.shouldCloseMenuFly}
         onMouseMove={props.onMouseMove}
         identifier={menuItemIdentifier}
+        ariaLabel={getMenuAccessibleLabel(
+          props.menu.labelAllLocales,
+          props.menu.defaultLabel,
+          props.applicationLocale
+        )}
       >
         <MenuItemLink
           linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
           useFullRedirectsForLinks={props.useFullRedirectsForLinks}
           onClick={props.onMenuItemClick}
+          ariaLabel={getMenuAccessibleLabel(
+            props.menu.labelAllLocales,
+            props.menu.defaultLabel,
+            props.applicationLocale
+          )}
         >
           <ItemContainer
             labelAllLocales={props.menu.labelAllLocales}
@@ -393,6 +421,11 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                         onClick={props.onMenuItemClick}
                         isSubmenuLink
                         isSubmenuFocused={isSubmenuFocused}
+                        ariaLabel={getMenuAccessibleLabel(
+                          submenu.labelAllLocales,
+                          submenu.defaultLabel,
+                          props.applicationLocale
+                        )}
                       >
                         <MenuLabel
                           labelAllLocales={submenu.labelAllLocales}
@@ -443,6 +476,7 @@ const NavBar = (props: TNavbarProps) => {
     props.environment.useFullRedirectsForLinks
   );
   const location = useLocation();
+  const { formatMessage } = useIntl();
 
   const projectPermissions: TProjectPermissions = useMemo(
     () => ({
@@ -532,6 +566,7 @@ const NavBar = (props: TNavbarProps) => {
                 isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
               }
               onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
+              ariaLabel={formatMessage(messages['NavBar.MCSupport.title'])}
             >
               {!isMenuOpen && (
                 <SupportMenuTooltipContainer>
@@ -544,6 +579,7 @@ const NavBar = (props: TNavbarProps) => {
                 href={SUPPORT_PORTAL_URL}
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label={formatMessage(messages['NavBar.MCSupport.title'])}
               >
                 <ItemIconText>
                   <IconWrapper>

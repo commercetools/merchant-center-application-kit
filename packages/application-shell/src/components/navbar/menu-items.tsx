@@ -13,6 +13,7 @@ import { Global } from '@emotion/react';
 import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
+import { useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import type {
   TNormalizedMenuVisibilities,
@@ -49,6 +50,7 @@ import {
   TextLinkSublistWrapper,
   NavlinkClickableContent,
 } from './menu-items.styles';
+import messages from './messages';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 
 type TProjectPermissions = {
@@ -144,8 +146,10 @@ const getIcon = ({ isMenuOpen }: MenuExpanderProps) => {
 };
 
 const MenuExpander = (props: MenuExpanderProps) => {
+  const { formatMessage } = useIntl();
+
   return (
-    <Expander key="expander" isVisible={props.isVisible}>
+    <Expander key="expander" isVisible={props.isVisible} role="menuitem">
       <ExpanderIcon
         onClick={props.onClick}
         onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
@@ -155,6 +159,11 @@ const MenuExpander = (props: MenuExpanderProps) => {
         }}
         tabIndex={0}
         data-testid="menu-expander"
+        aria-label={
+          props.isMenuOpen
+            ? formatMessage(messages['NavBar.MenuExpander.collapseMenu'])
+            : formatMessage(messages['NavBar.MenuExpander.expandMenu'])
+        }
       >
         {getIcon(props)}
       </ExpanderIcon>
@@ -197,10 +206,6 @@ const MenuGroup = forwardRef<HTMLUListElement, MenuGroupProps>((props, ref) => {
       id={`group-${props.id}`}
       data-testid={`group-${props.id}`}
       role="menu"
-      aria-expanded={
-        isSublistActiveWhileIsMenuExpanded ||
-        isSublistActiveWhileIsMenuCollapsed
-      }
       onKeyDown={props.handleKeyDown}
       className={classnames(
         {
@@ -253,11 +258,13 @@ type MenuItemProps = {
   identifier?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;
   onMouseMove?: MouseEventHandler<HTMLLIElement>;
+  ariaLabel?: string;
 };
 const MenuItem = (props: MenuItemProps) => {
   return (
     <MenuListItem
       role="menuitem"
+      aria-label={props.ariaLabel}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter as MouseEventHandler<HTMLElement>}
       onMouseLeave={props.onMouseLeave as MouseEventHandler<HTMLElement>}
@@ -288,6 +295,7 @@ export type MenuItemLinkProps = {
   useFullRedirectsForLinks?: boolean;
   isSubmenuLink?: boolean;
   isSubmenuFocused?: boolean;
+  ariaLabel?: string;
 };
 
 const NavLinkWrapper = (props: MenuItemLinkProps) => {
@@ -312,6 +320,7 @@ const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
+          aria-label={props.ariaLabel}
           onClick={(event) => {
             if (props.linkTo && props.useFullRedirectsForLinks) {
               event.preventDefault();
