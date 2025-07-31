@@ -217,6 +217,10 @@ const getMenuItemLinkStyles = (isSubmenuLink: boolean) => [
       padding: ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing25}
         ${uiKitDesignTokens.spacing25} ${uiKitDesignTokens.spacing30};
       transition: padding 150ms ease-out;
+      &.active {
+        color: ${uiKitDesignTokens.colorSurface};
+        font-weight: ${uiKitDesignTokens.fontWeight600};
+      }
     `,
   !isSubmenuLink &&
     css`

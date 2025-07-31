@@ -3,6 +3,7 @@ import { ApolloClient, type NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router } from 'react-router-dom';
+import { CompatRouter } from 'react-router-dom-v5-compat';
 import {
   createApolloClient,
   ApplicationContextProvider,
@@ -46,31 +47,33 @@ const ApplicationShellProvider = (props: TApplicationShellProviderProps) => {
           <ReduxProvider store={internalReduxStore}>
             <ApolloProvider client={apolloClient}>
               <Router history={getBrowserHistory()}>
-                <ApplicationPageTitle />
-                <Authenticated
-                  locale={browserLocale}
-                  applicationMessages={props.applicationMessages}
-                  render={({ isAuthenticated }) => {
-                    if (isAuthenticated)
-                      return props.children({ isAuthenticated });
+                <CompatRouter>
+                  <ApplicationPageTitle />
+                  <Authenticated
+                    locale={browserLocale}
+                    applicationMessages={props.applicationMessages}
+                    render={({ isAuthenticated }) => {
+                      if (isAuthenticated)
+                        return props.children({ isAuthenticated });
 
-                    return (
-                      <AsyncLocaleData
-                        locale={browserLocale}
-                        applicationMessages={props.applicationMessages}
-                      >
-                        {({ locale, messages }) => (
-                          <ConfigureIntlProvider
-                            locale={locale}
-                            messages={messages}
-                          >
-                            {props.children({ isAuthenticated })}
-                          </ConfigureIntlProvider>
-                        )}
-                      </AsyncLocaleData>
-                    );
-                  }}
-                />
+                      return (
+                        <AsyncLocaleData
+                          locale={browserLocale}
+                          applicationMessages={props.applicationMessages}
+                        >
+                          {({ locale, messages }) => (
+                            <ConfigureIntlProvider
+                              locale={locale}
+                              messages={messages}
+                            >
+                              {props.children({ isAuthenticated })}
+                            </ConfigureIntlProvider>
+                          )}
+                        </AsyncLocaleData>
+                      );
+                    }}
+                  />
+                </CompatRouter>
               </Router>
             </ApolloProvider>
           </ReduxProvider>

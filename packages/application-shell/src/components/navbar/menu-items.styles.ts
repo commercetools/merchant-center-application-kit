@@ -177,12 +177,6 @@ const MenuList = styled.ul<
         }
       `,
   ]}
-
-  & .highlighted,
-  & .highlighted ${Title} {
-    color: ${uiKitDesignTokens.colorSurface} !important;
-    font-weight: ${uiKitDesignTokens.fontWeight600};
-  }
 `;
 
 const SublistItem = styled.li<{ isActive: boolean }>`
