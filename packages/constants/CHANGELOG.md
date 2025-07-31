@@ -1,5 +1,17 @@
 # @commercetools-frontend/constants
 
+## 24.3.0
+
+### Minor Changes
+
+- [#3810](https://github.com/commercetools/merchant-center-application-kit/pull/3810) [`81e9331`](https://github.com/commercetools/merchant-center-application-kit/commit/81e93311e89d898d881ceb82726d850faae931e9) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Implement `useCustomViewParentDataRefresher` hook to enable flexible and extensible data refresh for host applications when Custom Views close.
+
+### Patch Changes
+
+- [#3806](https://github.com/commercetools/merchant-center-application-kit/pull/3806) [`77f85fc`](https://github.com/commercetools/merchant-center-application-kit/commit/77f85fced3ef6f7c95d505fa84f98d3f10a41b0e) Thanks [@emmenko](https://github.com/emmenko)! - Deprecate `X-XSS-Protection` security header, do not include it in the default security headers.
+
+  The header is not supported anymore by the browsers and is de-facto replaced by the Content Security Policy (CSP) header.
+
 ## 24.2.1
 
 ## 24.2.0
