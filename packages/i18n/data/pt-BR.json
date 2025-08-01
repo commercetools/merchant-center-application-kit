@@ -21,7 +21,7 @@
   },
   "ApiError.DuplicatePriceScope": {
     "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
-    "string": "A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel, valid dates and recurrence policy is unique per price."
+    "string": "Já existe um preço com o mesmo escopo para esta variante de produto. Certifique-se de que a combinação de moeda, país, grupo de clientes, canal, datas de validade e política de recorrência seja única por preço."
   },
   "ApiError.DuplicateSlug": {
     "developer_comment": "User tries to create a resource with an already existing slug",
@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel, validity date and recurrence policy must be unique for each price per SKU."
+    "string": "Já existe um preço com o mesmo escopo para esta variante de produto. A combinação de moeda, país, grupo de clientes, canal, data de validade e política de recorrência deve ser única para cada preço por SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -214,6 +214,12 @@
   },
   "NavBar.MCSupport.title": {
     "string": "Suporte"
+  },
+  "NavBar.MenuExpander.collapseMenu": {
+    "string": "Collapse menu"
+  },
+  "NavBar.MenuExpander.expandMenu": {
+    "string": "Expand menu"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
