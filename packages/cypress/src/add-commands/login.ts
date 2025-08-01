@@ -374,10 +374,156 @@ function fillLoginForm(userCredentials: LoginCredentials) {
   attemptLogin(maxLoginAttempts);
 }
 
+function loginViaIdentity(
+  commandOptions: CommandLoginOptions &
+    LoginToMerchantCenterForCustomViewCommandLoginOptions
+) {
+  const isCustomViewConfigCommand = isCustomView(commandOptions);
+  if (!isLocalhost()) {
+    throw new Error(
+      `The "loginViaIdentity" command only works when testing a Custom ${
+        isCustomViewConfigCommand ? 'View' : 'Application'
+      } running on localhost.`
+    );
+  }
+
+  let projectKey: string | undefined = undefined;
+  if (commandOptions.entryPointUriPath !== 'account') {
+    projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
+  }
+
+  const customEntityConfigCommand = isCustomViewConfigCommand
+    ? 'customViewConfig'
+    : 'customApplicationConfig';
+
+  const packageName = commandOptions.packageName ?? Cypress.env('PACKAGE_NAME');
+
+  if (isCustomViewConfigCommand && !packageName) {
+    throw new Error(
+      `Missing required option "packageName" when using the "loginToMerchantCenterForCustomView" command.`
+    );
+  }
+
+  cy.task(
+    customEntityConfigCommand,
+    {
+      entryPointUriPath: commandOptions.entryPointUriPath,
+      dotfiles: commandOptions.dotfiles,
+      ...(isCustomViewConfigCommand ? { packageName } : {}),
+    },
+    // Do not show log, as it may contain sensible information.
+    { log: false }
+  ).then((appConfig: ApplicationRuntimeEnvironment) => {
+    // Log loaded application config for debugging purposes.
+    Cypress.log({
+      displayName: 'task',
+      name: customEntityConfigCommand,
+      message: appConfig,
+    });
+
+    const userCredentials = commandOptions.login ?? {
+      email: Cypress.env('LOGIN_EMAIL') || Cypress.env('LOGIN_USER'),
+      password: Cypress.env('LOGIN_PASSWORD'),
+    };
+
+    const sessionKey = [
+      'loginViaIdentity',
+      userCredentials.email,
+      commandOptions.entryPointUriPath,
+    ];
+
+    function authCallback() {
+      // Visit the base URL which will redirect to the identity login page
+      cy.visit(Cypress.config('baseUrl'), {
+        onBeforeLoad(win: Window) {
+          if (projectKey) {
+            win.localStorage.setItem(
+              STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+              projectKey
+            );
+          }
+          if (commandOptions.onBeforeLoad) {
+            commandOptions.onBeforeLoad(win);
+          }
+        },
+      });
+
+      const identityUrl =
+        Cypress.env('IDENTITY_URL') || 'identity.commercetools.com';
+
+      // Use cy.origin to handle the identity domain
+      cy.origin(
+        identityUrl,
+        {
+          args: {
+            userCredentials,
+            identityUrl,
+          },
+        },
+        ({
+          userCredentials,
+          identityUrl,
+        }: {
+          userCredentials: LoginCredentials;
+          identityUrl: string;
+        }) => {
+          cy.url().should('include', `${identityUrl}/login`);
+          // Fill in the email and click Next
+          cy.get('input[name="identifier"]').type(userCredentials.email);
+          cy.get('button').contains('Next').click();
+
+          // Wait for the password form to appear
+          cy.get('input[name="password"]').should('be.visible');
+
+          // Fill in the password and submit
+          cy.get('input[name="password"]').type(userCredentials.password, {
+            log: false,
+          });
+          cy.get('button').contains('Submit').click();
+        }
+      );
+
+      // We omit asserting the consent screen as it should be disabled for the OAuth client
+
+      cy.get('#app-loader', { timeout: 30000 }).should('not.exist');
+    }
+
+    // For backwards compatibility.
+    if (
+      isFeatureSupported('12.0.0') ||
+      Cypress.config('experimentalSessionAndOrigin')
+    ) {
+      // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
+      cy.session(
+        sessionKey,
+        authCallback,
+        isFeatureSupported('10.9.0')
+          ? {
+              cacheAcrossSpecs:
+                typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
+                  ? !commandOptions.disableCacheAcrossSpecs
+                  : true,
+            }
+          : undefined
+      );
+    } else {
+      cy.log(
+        `We recommend to use "cy.session" to reduce the time to log in between tests. Make sure to have at least Cypress v12 or enable it via "experimentalSessionAndOrigin" for older Cypress versions.`
+      );
+      authCallback();
+    }
+
+    if (commandOptions.initialRoute) {
+      cy.visit(`${Cypress.config('baseUrl')}${commandOptions.initialRoute}`);
+      cy.url().should('include', commandOptions.initialRoute);
+    }
+  });
+}
+
 function isLocalhost() {
   const baseUrl = new URL(Cypress.config('baseUrl'));
 
   return baseUrl.hostname === 'localhost';
 }
 
-export { loginByForm, loginByOidc, isLocalhost };
+export { loginByForm, loginByOidc, loginViaIdentity, isLocalhost };
