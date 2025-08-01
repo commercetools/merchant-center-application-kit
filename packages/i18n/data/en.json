@@ -215,6 +215,12 @@
   "NavBar.MCSupport.title": {
     "string": "Support"
   },
+  "NavBar.MenuExpander.collapseMenu": {
+    "string": "Collapse menu"
+  },
+  "NavBar.MenuExpander.expandMenu": {
+    "string": "Expand menu"
+  },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
     "string": "Hide notification"
