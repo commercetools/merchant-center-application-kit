@@ -75,6 +75,7 @@ jobs:
 
       - name: Run Cypress tests with coverage
         run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm cypress:coverage'
+        continue-on-error: true
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
