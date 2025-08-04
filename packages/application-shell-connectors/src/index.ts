@@ -13,6 +13,8 @@ export {
   normalizeAllAppliedPermissions,
 } from './components/application-context';
 
+export { useCustomViewParentDataRefresher } from './hooks/custom-views/use-custom-view-parent-data-refresher';
+
 export {
   CustomViewContextProvider,
   useCustomViewContext,
