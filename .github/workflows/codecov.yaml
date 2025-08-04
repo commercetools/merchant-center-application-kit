@@ -48,21 +48,16 @@ jobs:
           name: jest-coverage
         if: always()
 
-      # - name: Build workspace packages
-      #   run: |
-      #     export CYPRESS_COVERAGE=true
-      #     pnpm build
-      #   continue-on-error: true
       - name: Build playground with coverage
         run: pnpm playground:build
         env:
           NODE_ENV: production
+          CYPRESS_COVERAGE: 'true'
           NODE_OPTIONS: '--max-old-space-size=6144'
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
-        # continue-on-error: true
 
       # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
       # https://github.com/marketplace/actions/cypress-io#custom-install
@@ -78,8 +73,8 @@ jobs:
       - name: Installing Cypress binary
         run: pnpm cypress install && pnpm cypress cache list
 
-      - name: Running End-to-End tests for Playground application
-        run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
+      - name: Run Cypress tests with coverage
+        run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm cypress:coverage'
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
@@ -100,11 +95,11 @@ jobs:
       #     sleep 45  # Wait for server to start
       #   continue-on-error: true
 
-      - name: Run Cypress tests with coverage
-        run: |
-          export CYPRESS_COVERAGE=true
-          pnpm cypress:coverage
-        continue-on-error: true
+      # - name: Run Cypress tests with coverage
+      #   run: |
+      #     export CYPRESS_COVERAGE=true
+      #     pnpm cypress:coverage
+      #   continue-on-error: true
 
       - name: Move Cypress coverage files
         run: |
@@ -114,7 +109,6 @@ jobs:
           mv ./coverage/coverage-summary.json ./coverage/cypress/coverage-summary.json
           mv ./coverage/clover.xml ./coverage/cypress/clover.xml
           mv ./coverage/lcov-report ./coverage/cypress/lcov-report
-        # continue-on-error: true
 
       - name: Upload Cypress coverage to Codecov
         uses: codecov/codecov-action@v5
