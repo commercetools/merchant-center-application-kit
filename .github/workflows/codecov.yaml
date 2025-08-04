@@ -89,19 +89,6 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      # - name: Start playground server
-      #   run: |
-      #     export CYPRESS_COVERAGE=true
-      #     pnpm playground:start &
-      #     sleep 45  # Wait for server to start
-      #   continue-on-error: true
-
-      # - name: Run Cypress tests with coverage
-      #   run: |
-      #     export CYPRESS_COVERAGE=true
-      #     pnpm cypress:coverage
-      #   continue-on-error: true
-
       - name: Move Cypress coverage files
         run: |
           mkdir -p ./coverage/cypress
