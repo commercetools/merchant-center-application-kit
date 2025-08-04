@@ -73,7 +73,7 @@ jobs:
         run: pnpm cypress install && pnpm cypress cache list
 
       - name: Running End-to-End tests for Playground application
-        run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:playground'
+        run: pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
