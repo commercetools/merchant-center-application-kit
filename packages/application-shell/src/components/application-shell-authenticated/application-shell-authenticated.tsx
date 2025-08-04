@@ -72,6 +72,24 @@ const getHasUserBeenDeletedError = (
       gqlError.message.includes('was not found.')
   );
 
+const PreviewMarker = () => {
+  return (
+    <div
+      css={css`
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 6px 10px;
+        background-color: red;
+        font-style: bold;
+        color: #fff;
+      `}
+    >
+      <span>React Router preview</span>
+    </div>
+  );
+};
+
 export const MainContainer = styled.main`
   grid-column: 2/3;
   grid-row: 3/4;
@@ -346,6 +364,7 @@ export const ApplicationShellAuthenticated = (
                           </MainContainer>
                         ) : (
                           <MainContainer role="main">
+                            <PreviewMarker />
                             <div ref={notificationsPageRef}>
                               <NotificationsList domain={DOMAINS.PAGE} />
                             </div>
