@@ -1,5 +1,6 @@
 import { Suspense, type ReactNode } from 'react';
-import { Route, type RouteProps } from 'react-router-dom';
+import type { RouteProps } from 'react-router-dom';
+import { CompatRoute as Route } from 'react-router-dom-v5-compat';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
 type TSuspendedRouteProps = Omit<RouteProps, 'children'> & {
@@ -7,9 +8,12 @@ type TSuspendedRouteProps = Omit<RouteProps, 'children'> & {
 };
 
 const SuspendedRoute = (props: TSuspendedRouteProps) => (
-  <Route {...props}>
-    <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
-  </Route>
+  <Route
+    {...props}
+    element={
+      <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
+    }
+  />
 );
 
 SuspendedRoute.displayName = 'SuspendedRoute';
