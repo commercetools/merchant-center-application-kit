@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Building packages
+        run: pnpm build
+
       - name: Run Jest tests with coverage
         run: npx jest --coverage --coverageDirectory=./coverage/jest
         continue-on-error: true
