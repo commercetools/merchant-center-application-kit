@@ -104,11 +104,16 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     ? 'customViewConfig'
     : 'customApplicationConfig';
 
+  const packageName =
+    (commandOptions as LoginToMerchantCenterForCustomViewCommandLoginOptions)
+      .packageName ?? Cypress.env('PACKAGE_NAME');
+
   cy.task(
     customEntityConfigCommand,
     {
       entryPointUriPath: commandOptions.entryPointUriPath,
       dotfiles: commandOptions.dotfiles,
+      ...(isCustomViewConfigCommand ? { packageName } : {}),
     },
     // Do not show log, as it may contain sensible information.
     { log: false }
