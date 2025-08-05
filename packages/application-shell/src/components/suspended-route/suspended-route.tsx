@@ -1,32 +1,30 @@
 import { Suspense, type ReactNode } from 'react';
-import { Route as LegacyRoute, type RouteProps } from 'react-router-dom';
-import { CompatRoute as Route } from 'react-router-dom-v5-compat';
+import { Route, type RouteProps } from 'react-router-dom';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 
 type TSuspendedRouteProps = Omit<RouteProps, 'children'> & {
   children: ReactNode;
-  compat?: boolean;
 };
 
-const SuspendedRoute = (props: TSuspendedRouteProps) => {
-  if (props.compat) {
-    return (
-      <Route
-        {...props}
-        element={
-          <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
-        }
-      />
-    );
-  } else {
-    return (
-      <LegacyRoute {...props}>
-        <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
-      </LegacyRoute>
-    );
-  }
-};
+const SuspendedRoute = (props: TSuspendedRouteProps) => (
+  <Route {...props}>
+    <Suspense fallback={<LoadingSpinner />}>{props.children}</Suspense>
+  </Route>
+);
 
 SuspendedRoute.displayName = 'SuspendedRoute';
 
-export { SuspendedRoute };
+export { SuspendedRoute, type TSuspendedRouteProps };
+
+type TSuspendedProps = {
+  children: ReactNode;
+  fallback?: ReactNode;
+};
+
+export function Suspended(props: TSuspendedProps) {
+  return (
+    <Suspense fallback={props.fallback || <LoadingSpinner />}>
+      {props.children}
+    </Suspense>
+  );
+}

@@ -1,27 +1,37 @@
-import { Route as LegacyRoute, RouteProps } from 'react-router-dom';
-import { CompatRoute as Route } from 'react-router-dom-v5-compat';
+import { ReactNode } from 'react';
+import { Route, RouteProps } from 'react-router-dom';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 
 type TProtectedRouteProps = {
   condition: boolean;
   fallback?: React.ReactNode;
-  element?: React.ReactNode;
-  compat?: boolean;
 } & RouteProps;
 
 const ProtectedRoute: React.FC<TProtectedRouteProps> = ({
   condition,
   fallback = <PageUnauthorized />,
   children,
-  compat = false,
   ...routeProps
 }) => {
-  const RouteComponent = compat ? Route : LegacyRoute;
   return condition ? (
-    <RouteComponent {...routeProps}>{children}</RouteComponent>
+    <Route {...routeProps}>{children}</Route>
   ) : (
     <>{fallback}</>
   );
 };
 
 export { ProtectedRoute, type TProtectedRouteProps };
+
+export type TProtectedProps = {
+  condition: boolean;
+  children: ReactNode;
+  fallback?: ReactNode;
+};
+
+export function Protected(props: TProtectedProps) {
+  return props.condition ? (
+    <>{props.children}</>
+  ) : (
+    <>{props.fallback || <PageUnauthorized />}</>
+  );
+}
