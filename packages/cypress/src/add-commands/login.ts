@@ -81,10 +81,22 @@ function isFeatureSupported(expectedVersion: string) {
   return semver.gte(Cypress.version, expectedVersion);
 }
 
+function isRunningOnLocalhost() {
+  const baseUrl = new URL(Cypress.config('baseUrl'));
+
+  return baseUrl.hostname === 'localhost';
+}
+
 const isCustomView = (commandOptions: CommandLoginOptions) =>
   commandOptions.entryPointUriPath === CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH;
 
 function loginByForm(commandOptions: CommandLoginOptions) {
+  const isLocalhost = isRunningOnLocalhost();
+  Cypress.log({
+    name: 'isLocalhost',
+    message: isLocalhost,
+  });
+
   const projectKey = commandOptions.projectKey ?? Cypress.env('PROJECT_KEY');
 
   const isCustomViewConfigCommand = isCustomView(commandOptions);
@@ -204,7 +216,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
           } else {
             // If Identity is not enabled, we need to login using the Merchant Center login.
             // When running locally, it redirects to the Merchant Center login page.
-            if (isLocalhost()) {
+            if (isLocalhost) {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
               // eslint-disable-next-line cypress/no-unnecessary-waiting
               cy.wait(1000);
@@ -246,7 +258,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             }
           }
 
-          if (isLocalhost()) {
+          if (isLocalhost) {
             // Wait for the session token to be set.
             cy.window()
               .then((window: Window) => {
@@ -346,10 +358,4 @@ function fillLegacyLoginFormWithRetry(userCredentials: LoginCredentials) {
   attemptLogin(legacyMaxLoginAttempts);
 }
 
-function isLocalhost() {
-  const baseUrl = new URL(Cypress.config('baseUrl'));
-
-  return baseUrl.hostname === 'localhost';
-}
-
-export { loginByForm, isLocalhost };
+export { loginByForm };
