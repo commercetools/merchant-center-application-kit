@@ -116,7 +116,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step only runs if there's a failure
         with:
-          name: cypress-screenshots
+          name: cypress-screenshots-custom-application-starter-js-template
           path: cypress/screenshots
 
       # Upload videos
@@ -124,7 +124,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step always runs
         with:
-          name: cypress-videos
+          name: cypress-videos-custom-application-starter-js-template
           path: cypress/videos
 
   test_custom_app_starter_js_template_installation:
@@ -234,7 +234,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step only runs if there's a failure
         with:
-          name: cypress-screenshots
+          name: cypress-screenshots-custom-view-starter-js-template
           path: cypress/screenshots
 
       # Upload videos
@@ -242,7 +242,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step always runs
         with:
-          name: cypress-videos
+          name: cypress-videos-custom-view-starter-js-template
           path: cypress/videos
 
   test_custom_view_starter_js_template_installation:
@@ -379,7 +379,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step only runs if there's a failure
         with:
-          name: cypress-screenshots
+          name: cypress-screenshots-playground
           path: cypress/screenshots
 
       # Upload videos
@@ -387,5 +387,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()  # This step always runs
         with:
-          name: cypress-videos
+          name: cypress-videos-playground
           path: cypress/videos
