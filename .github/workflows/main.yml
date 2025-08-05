@@ -111,6 +111,22 @@ jobs:
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
+      # Upload screenshots on failure
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step only runs if there's a failure
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      # Upload videos
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step always runs
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
   test_custom_app_starter_js_template_installation:
     runs-on: ubuntu-latest
 
@@ -212,6 +228,22 @@ jobs:
           cypress-login-password: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           cypress-project-key: ${{ secrets.CYPRESS_PROJECT_KEY }}
           cypress-package-name: '@commercetools-applications/merchant-center-custom-view-template-starter'
+
+      # Upload screenshots on failure
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step only runs if there's a failure
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      # Upload videos
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step always runs
+        with:
+          name: cypress-videos
+          path: cypress/videos
 
   test_custom_view_starter_js_template_installation:
     runs-on: ubuntu-latest
