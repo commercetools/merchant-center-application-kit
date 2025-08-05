@@ -46,6 +46,7 @@ jobs:
           file: ./coverage/jest/lcov.info
           flags: jest
           name: jest-coverage
+          exclude: '**/node_modules/**,**/coverage/**,**/dist/**,**/build/**,**/*.test.js,**/*.test.ts,**/*.spec.js,**/*.spec.ts,**/packages-backend/**,**/test-data/**,**/playground/**,**/examples/**,**/website/**,**/scripts/**,**/patches/**,**/.changeset/**,**/.husky/**,**/.yarn/**,**/schemas/**'
         if: always()
 
       - name: Build playground with coverage
@@ -105,4 +106,5 @@ jobs:
           file: ./coverage/cypress/lcov.info
           flags: cypress
           name: cypress-coverage
+          exclude: '**/node_modules/**,**/coverage/**,**/dist/**,**/build/**,**/cypress/videos/**,**/cypress/screenshots/**,**/packages-backend/**,**/test-data/**,**/playground/**,**/examples/**,**/website/**,**/scripts/**,**/patches/**,**/.changeset/**,**/.husky/**,**/.yarn/**,**/schemas/**'
         if: always()
