@@ -11,6 +11,10 @@ type Props = {
    * This code is used to configure which Custom Views are available for this page.
    */
   customViewLocatorCode?: string;
+  /**
+   * Replaces the title/subtitle row with a custom one (for special use cases)
+   */
+  customTitleRow?: ReactNode;
   children?: ReactNode;
 };
 
@@ -33,12 +37,14 @@ const PageHeader = (props: Props) => {
           }
         `}
       >
-        <PageHeaderTitle
-          title={props.title}
-          titleSize="big"
-          subtitle={props.subtitle}
-          truncate
-        />
+        {props.customTitleRow || (
+          <PageHeaderTitle
+            title={props.title}
+            titleSize="big"
+            subtitle={props.subtitle}
+            truncate
+          />
+        )}
         {props.children}
       </div>
       <CustomViewsSelector
