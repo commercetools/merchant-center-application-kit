@@ -22,9 +22,42 @@ parsers:
       conditional: yes
 
 comment:
-  layout: "reach,diff,flags,files,footer"
+  layout: "reach,diff,flags,components,footer"
   behavior: default
   require_changes: no
+
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: auto
+        branches:
+          - "!main"
+  individual_components:
+    - component_id: application_components
+      name: Application Components
+      paths:
+        - "packages/application-components/**"
+      statuses:
+        - type: project
+          target: auto
+        - type: patch
+    - component_id: application_shell
+      name: Application Shell
+      paths:
+        - "packages/application-shell/**"
+      statuses:
+        - type: project
+          target: auto
+        - type: patch
+    - component_id: application_shell_connectors
+      name: Application Shell Connectors
+      paths:
+        - "packages/application-shell-connectors/**"
+      statuses:
+        - type: project
+          target: auto
+        - type: patch
 
 ignore:
   - "node_modules/**"
