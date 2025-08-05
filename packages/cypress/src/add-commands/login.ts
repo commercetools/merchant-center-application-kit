@@ -239,15 +239,16 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=email]')
-                    .clear()
-                    .type(userCredentials.email);
+                    .clear({ force: true })
+                    .type(userCredentials.email, { force: true });
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=password]')
-                    .clear()
+                    .clear({ force: true })
                     .type(userCredentials.password, {
                       log: false,
+                      force: true,
                     });
-                  cy.get('button').contains('Sign in').click();
+                  cy.get('button').contains('Sign in').click({ force: true });
                 }
               );
               // eslint-disable-next-line cypress/no-unnecessary-waiting
@@ -333,12 +334,17 @@ function fillLegacyLoginFormWithRetry(userCredentials: LoginCredentials) {
     cy.log(`Attempts left: ${attemptsLeft}`);
 
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=email]').clear().type(userCredentials.email);
+    cy.get('input[name=email]')
+      .clear({ force: true })
+      .type(userCredentials.email, { force: true });
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=password]').clear().type(userCredentials.password, {
-      log: false,
-    });
-    cy.get('button').contains('Sign in').click();
+    cy.get('input[name=password]')
+      .clear({ force: true })
+      .type(userCredentials.password, {
+        log: false,
+        force: true,
+      });
+    cy.get('button').contains('Sign in').click({ force: true });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.wait('@loginRequest').then((interception: any) => {
