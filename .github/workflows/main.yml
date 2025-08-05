@@ -341,3 +341,19 @@ jobs:
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+      # Upload screenshots on failure
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step only runs if there's a failure
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      # Upload videos
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: failure()  # This step always runs
+        with:
+          name: cypress-videos
+          path: cypress/videos
