@@ -7,7 +7,8 @@ import {
 
 export default defineConfig({
   retries: 1,
-  video: false,
+  screenshotOnRunFailure: true,
+  video: true,
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
