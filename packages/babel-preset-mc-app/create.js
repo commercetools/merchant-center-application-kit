@@ -49,6 +49,8 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
 
   const isFormatJsPluginEnabled =
     process.env.ENABLE_BABEL_PLUGIN_FORMATJS === 'true';
+  const isIstanbulPluginEnabled =
+    process.env.ENABLE_BABEL_PLUGIN_ISTANBUL === 'true';
 
   return {
     presets: [
@@ -198,7 +200,7 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
         require('@emotion/babel-plugin').default,
       // Cherry-pick Lodash modules
       require('babel-plugin-lodash').default,
-      require('babel-plugin-istanbul').default,
+      isIstanbulPluginEnabled && require('babel-plugin-istanbul').default,
       isFormatJsPluginEnabled && [
         require('babel-plugin-formatjs').default,
         {
