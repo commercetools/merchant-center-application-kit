@@ -29,12 +29,12 @@
     "commander": "^13.1.0",
     "glob": "8.1.0",
     "jscodeshift": "0.15.2",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "@tsconfig/node20": "^20.1.0"
   },
   "devDependencies": {
     "@commercetools-frontend/application-components": "workspace:*",
     "@emotion/react": "^11.14.0",
-    "@tsconfig/node22": "^22.0.0",
     "@types/glob": "8.1.0",
     "@types/jscodeshift": "0.11.11",
     "@types/prettier": "2.7.3",
