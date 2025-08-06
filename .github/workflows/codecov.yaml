@@ -44,7 +44,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/jest/lcov.info
-          flags: jest
           name: jest-coverage
         if: always()
 
@@ -103,6 +102,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/cypress/lcov.info
-          flags: cypress
           name: cypress-coverage
         if: always()
