@@ -1,5 +1,2 @@
 # Craft (default)
 * @commercetools/craft-team-fe
-
-# Hooks
-/packages/application-components/src/hooks/ @commercetools/bots-team-engineers @commercetools/craft-team-fe
