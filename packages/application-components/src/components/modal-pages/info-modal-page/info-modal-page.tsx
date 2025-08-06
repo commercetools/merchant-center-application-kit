@@ -39,6 +39,10 @@ type Props = {
   topBarPreviousPathLabel?: Label;
   // Header Props
   subtitle?: string | ReactElement;
+  /**
+   * Replaces the title/subtitle row with a custom one (for special use cases)
+   */
+  customTitleRow?: ReactNode;
 };
 
 const InfoModalPage = (props: Props) => (
@@ -56,6 +60,7 @@ const InfoModalPage = (props: Props) => (
     <PageHeader
       title={props.title}
       subtitle={props.subtitle}
+      customTitleRow={props.customTitleRow}
       customViewLocatorCode={props.customViewLocatorCode}
     />
     <ModalContentWrapper>{props.children}</ModalContentWrapper>
