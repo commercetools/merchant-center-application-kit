@@ -31,8 +31,6 @@ component_management:
     statuses:
       - type: project
         target: auto
-        branches:
-          - "!main"
   individual_components:
     - component_id: application_components
       name: Application Components
