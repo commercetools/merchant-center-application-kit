@@ -171,57 +171,98 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             (feature) => feature.name === 'enableGlobalIdentity'
           );
           const isGlobalIdentityEnabled = Boolean(enableIdentity?.value);
+          Cypress.log({
+            name: 'isGlobalIdentityEnabled',
+            message: isGlobalIdentityEnabled,
+          });
+          const identityUrl =
+            Cypress.env('IDENTITY_URL') || 'https://identity.commercetools.com';
 
           // Visit the application URL, which triggers then the login flow.
-          cy.visit(url, { onBeforeLoad: commandOptions.onBeforeLoad });
+          cy.visit(url, {
+            onBeforeLoad: commandOptions.onBeforeLoad,
+          });
 
-          // If Identity is enabled, we need to login using the Identity API.
-          if (isGlobalIdentityEnabled) {
-            const identityUrl =
-              Cypress.env('IDENTITY_URL') ||
-              'https://identity.commercetools.com';
+          /**
+           * There are different scenarios and variations on the flow depending
+           * on the environment (localhost, production) and if Identity is enabled.
+           *
+           * # When the application runs on localhost:3001.
+           *
+           * ## When Identity is enabled
+           * - The test visits the application at localhost:3001.
+           * - Cypress registers the default origin being localhost:3001.
+           * - The application is redirected to the Identity URL.
+           * - Cypress interacts with the Identity URL via `cy.origin`.
+           * - At the end of the flow, the test interacts with the application at localhost:3001.
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(1000);
+           * ## When Identity is disabled
+           * - The test visits the application at localhost:3001.
+           * - Cypress registers the default origin being localhost:3001.
+           * - The application is redirected to the Merchant Center login page.
+           * - Cypress interacts with the Merchant Center login page via `cy.origin`.
+           * - At the end of the flow, the test interacts with the application at localhost:3001.
+           *
+           * # When the application runs on a production URL.
+           *
+           * ## When Identity is enabled
+           * - The test visits the application at the production URL.
+           * - The MC Proxy performs a server-side redirect to the Identity URL.
+           * - Cypress registers the default origin being the Identity URL.
+           * - Cypress interacts with the Identity URL.
+           * - At the end of the flow, the test interacts with the application at the production URL via `cy.origin`.
+           *
+           * ## When Identity is disabled
+           * - The test visits the application at the production URL.
+           * - The MC Proxy renders the Merchant Center login page.
+           * - Cypress registers the default origin being the Merchant Center URL.
+           * - Cypress interacts with the Merchant Center login page.
+           * - At the end of the flow, the test interacts with the application at the production URL.
+           */
 
-            // Use cy.origin to handle the identity domain
-            cy.origin(
-              identityUrl,
-              {
-                args: {
+          if (isLocalhost) {
+            if (isGlobalIdentityEnabled) {
+              // eslint-disable-next-line cypress/no-unnecessary-waiting
+              cy.wait(1000);
+
+              // Use cy.origin to handle the identity domain
+              cy.origin(
+                identityUrl,
+                {
+                  args: {
+                    userCredentials,
+                    identityUrl,
+                  },
+                },
+                ({
                   userCredentials,
                   identityUrl,
-                },
-              },
-              ({
-                userCredentials,
-                identityUrl,
-              }: {
-                userCredentials: LoginCredentials;
-                identityUrl: string;
-              }) => {
-                cy.url().should('include', `${identityUrl}/login`);
-                // Fill in the email and click Next
-                cy.get('input[name="identifier"]').type(userCredentials.email);
-                cy.get('button').contains('Next').click();
+                }: {
+                  userCredentials: LoginCredentials;
+                  identityUrl: string;
+                }) => {
+                  cy.url().should('include', `${identityUrl}/login`);
+                  // Fill in the email and click Next
+                  cy.get('input[name="identifier"]').type(
+                    userCredentials.email
+                  );
+                  cy.get('button').contains('Next').click();
 
-                // Wait for the password form to appear
-                cy.get('input[name="password"]').should('be.visible');
-                // Fill in the password and submit
-                cy.get('input[name="password"]').type(
-                  userCredentials.password,
-                  { log: false }
-                );
-                cy.get('button').contains('Submit').click();
-              }
-            );
+                  // Wait for the password form to appear
+                  cy.get('input[name="password"]').should('be.visible');
+                  // Fill in the password and submit
+                  cy.get('input[name="password"]').type(
+                    userCredentials.password,
+                    { log: false }
+                  );
+                  cy.get('button').contains('Submit').click();
+                }
+              );
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(1000);
-          } else {
-            // If Identity is not enabled, we need to login using the Merchant Center login.
-            // When running locally, it redirects to the Merchant Center login page.
-            if (isLocalhost) {
+              // Wait for the flow to redirect back to the application.
+              cy.get('[role="main"]').should('exist');
+              cy.url().should('include', url);
+            } else {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
               // eslint-disable-next-line cypress/no-unnecessary-waiting
               cy.wait(1000);
@@ -242,6 +283,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                 }) => {
                   cy.url().should('include', `${mcUrl}/login`);
 
+                  // Same as `fillLegacyLoginFormWithRetry`.
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=email]')
                     .clear({ force: true })
@@ -258,15 +300,48 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               );
               // eslint-disable-next-line cypress/no-unnecessary-waiting
               cy.wait(1000);
+
+              // Wait for the flow to redirect back to the application.
+              cy.get('[role="main"]').should('exist');
+              cy.url().should('include', url);
+            }
+          } else {
+            if (isGlobalIdentityEnabled) {
+              cy.url().should('include', `${identityUrl}/login`);
+              // Fill in the email and click Next
+              cy.get('input[name="identifier"]').type(userCredentials.email);
+              cy.get('button').contains('Next').click();
+
+              // Wait for the password form to appear
+              cy.get('input[name="password"]').should('be.visible');
+              // Fill in the password and submit
+              cy.get('input[name="password"]').type(userCredentials.password, {
+                log: false,
+              });
+              cy.get('button').contains('Submit').click();
+
+              // Wait for the flow to redirect back to the application.
+              cy.origin(
+                Cypress.config('baseUrl'),
+                {
+                  args: {
+                    url,
+                  },
+                },
+                ({ url }: { url: string }) => {
+                  cy.get('[role="main"]').should('exist');
+                  cy.url().should('include', url);
+                }
+              );
             } else {
               // Legacy login flow.
               fillLegacyLoginFormWithRetry(userCredentials);
+
+              // Wait for the flow to redirect back to the application.
+              cy.get('[role="main"]').should('exist');
+              cy.url().should('include', url);
             }
           }
-
-          // Wait for the flow to redirect back to the application.
-          cy.get('[role="main"]').should('exist');
-          cy.url().should('include', url);
         }
       );
     }
