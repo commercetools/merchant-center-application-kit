@@ -37,7 +37,7 @@ type QueryParams = {
 };
 type TProjectContainerProps = {
   user: TFetchLoggedInUserQuery['user'];
-  environment: TProviderProps<{ enableSignUp?: boolean }>['environment'];
+  environment: TProviderProps<{}>['environment'];
   disableRoutePermissionCheck?: boolean;
   render?: () => JSX.Element;
   children?: ReactNode;
@@ -88,25 +88,8 @@ const ProjectContainer = (props: TProjectContainerProps) => {
     }
   }, [projectKey]);
 
-  const hasNoProjects = props.user && props.user.projects.total === 0;
-  /**
-   * Given the user does not have any projects and account creation (sign up) is not yet
-   * enabled the user will be logged out.
-   *
-   * Given the user does not have project (and as a result is not part of an organization)
-   * the account application gets control over render. If any other application
-   * is requested to render a full page redirect (to have the proxy serve the request) occurs
-   * given the application is served by the proxy.
-   *    Given the application is not served by the proxy we do not perform a redirect as
-   *    otherwise a redirect loop can occur as no application is able to handle the route.
-   */
-  if (
-    hasNoProjects &&
-    props.environment.enableSignUp !== true &&
-    props.environment.servedByProxy
-  )
-    return <Redirect to={`/logout?reason=${LOGOUT_REASONS.NO_PROJECTS}`} />;
-  if (hasNoProjects && props.environment.enableSignUp)
+  const hasNoProjects = props.user && props.user.projects.results.length === 0;
+  if (hasNoProjects) {
     return (
       <Switch>
         <Route path="/account">{props.render?.()}</Route>
@@ -115,6 +98,7 @@ const ProjectContainer = (props: TProjectContainerProps) => {
         </Route>
       </Switch>
     );
+  }
 
   return (
     <ErrorBoundary pathname={location.pathname}>
@@ -125,9 +109,13 @@ const ProjectContainer = (props: TProjectContainerProps) => {
         >
           {({ isLoading: isProjectLoading, project }) => {
             // TODO: do something if there is an `error`?
-            if (isProjectLoading) return <ApplicationLoader />;
-            if (!project) return <ProjectNotFound />;
-            if (project.suspension && project.suspension.isActive)
+            if (isProjectLoading) {
+              return <ApplicationLoader />;
+            }
+            if (!project) {
+              return <ProjectNotFound />;
+            }
+            if (project.suspension && project.suspension.isActive) {
               return (
                 <ProjectSuspended
                   isTemporary={
@@ -136,9 +124,13 @@ const ProjectContainer = (props: TProjectContainerProps) => {
                   }
                 />
               );
-            if (project.expiry && project.expiry.isActive)
+            }
+            if (project.expiry && project.expiry.isActive) {
               return <ProjectExpired />;
-            if (project.initialized === false) return <ProjectNotInitialized />;
+            }
+            if (project.initialized === false) {
+              return <ProjectNotInitialized />;
+            }
 
             return (
               <ProjectDataLocale locales={project.languages}>
