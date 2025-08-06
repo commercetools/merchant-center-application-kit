@@ -264,19 +264,8 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             }
           }
 
-          if (isLocalhost) {
-            // Wait for the session token to be set.
-            cy.window()
-              .then((window: Window) => {
-                const sessionToken =
-                  window.sessionStorage.getItem('sessionToken');
-                console.log('sessionToken', sessionToken);
-                return sessionToken;
-              })
-              .should('exist');
-          }
-
-          // Wait for the route to be loaded so that the session can be saved.
+          // Wait for the flow to redirect back to the application.
+          cy.get('[role="main"]').should('exist');
           cy.url().should('include', url);
         }
       );
