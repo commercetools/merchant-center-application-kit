@@ -1,5 +1,25 @@
 # @commercetools-frontend/application-components
 
+## 24.3.0
+
+### Minor Changes
+
+- [#3810](https://github.com/commercetools/merchant-center-application-kit/pull/3810) [`81e9331`](https://github.com/commercetools/merchant-center-application-kit/commit/81e93311e89d898d881ceb82726d850faae931e9) Thanks [@mustafaasif2](https://github.com/mustafaasif2)! - Implement `useCustomViewParentDataRefresher` hook to enable flexible and extensible data refresh for host applications when Custom Views close.
+
+### Patch Changes
+
+- [#3823](https://github.com/commercetools/merchant-center-application-kit/pull/3823) [`81978c4`](https://github.com/commercetools/merchant-center-application-kit/commit/81978c43382bfa016166f0b53559aff0edc17b86) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Add `customTitleRow` prop to `InfoModalPage` component to allow setting a custom component as the title instead of the `PageHeaderTitle` component
+
+- Updated dependencies [[`81e9331`](https://github.com/commercetools/merchant-center-application-kit/commit/81e93311e89d898d881ceb82726d850faae931e9), [`bfafe16`](https://github.com/commercetools/merchant-center-application-kit/commit/bfafe1627b2faf24d274699a978e4f7ac2224b9b), [`77f85fc`](https://github.com/commercetools/merchant-center-application-kit/commit/77f85fced3ef6f7c95d505fa84f98d3f10a41b0e)]:
+  - @commercetools-frontend/application-shell-connectors@24.3.0
+  - @commercetools-frontend/constants@24.3.0
+  - @commercetools-frontend/i18n@24.3.0
+  - @commercetools-frontend/actions-global@24.3.0
+  - @commercetools-frontend/application-config@24.3.0
+  - @commercetools-frontend/sentry@24.3.0
+  - @commercetools-frontend/l10n@24.3.0
+  - @commercetools-frontend/assets@24.3.0
+
 ## 24.2.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @commercetools-frontend/permissions
 
+## 24.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`81e9331`](https://github.com/commercetools/merchant-center-application-kit/commit/81e93311e89d898d881ceb82726d850faae931e9)]:
+  - @commercetools-frontend/application-shell-connectors@24.3.0
+  - @commercetools-frontend/sentry@24.3.0
+
 ## 24.2.1
 
 ### Patch Changes
