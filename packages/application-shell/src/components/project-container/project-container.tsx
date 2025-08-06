@@ -1,21 +1,11 @@
-import { JSX, ReactNode, Suspense, useEffect, useState } from 'react';
+import { type JSX, type ReactNode, Suspense, useEffect, useState } from 'react';
 import isNil from 'lodash/isNil';
 import ReactDOM from 'react-dom';
 import { useIntl } from 'react-intl';
-import {
-  Route,
-  Switch,
-  Redirect,
-  useLocation,
-  useRouteMatch,
-} from 'react-router-dom';
+import { Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import {
-  DOMAINS,
-  LOGOUT_REASONS,
-  STORAGE_KEYS,
-} from '@commercetools-frontend/constants';
+import { DOMAINS, STORAGE_KEYS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { CONTAINERS, SUSPENSION_REASONS } from '../../constants';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
