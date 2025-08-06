@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 24.3.0
+
+### Patch Changes
+
+- [#3816](https://github.com/commercetools/merchant-center-application-kit/pull/3816) [`bfafe16`](https://github.com/commercetools/merchant-center-application-kit/commit/bfafe1627b2faf24d274699a978e4f7ac2224b9b) Thanks [@jaikamat](https://github.com/jaikamat)! - Improve Navbar component accessibility
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@24.3.0
+
 ## 24.2.1
 
 ### Patch Changes
