@@ -1,22 +1,5 @@
-# BOTS (default)
-* @commercetools/bots-team-engineers
-
-# First Contact
-/packages/application-components/src/components/detail-pages/ @commercetools/craft-team-fe
-/packages/application-components/src/components/dialogs/ @commercetools/craft-team-fe
-/packages/application-components/src/components/drawer/ @commercetools/craft-team-fe
-/packages/application-components/src/components/internals/ @commercetools/craft-team-fe
-/packages/application-components/src/components/main-pages/ @commercetools/craft-team-fe
-/packages/application-components/src/components/maintenance-page-layout/ @commercetools/craft-team-fe
-/packages/application-components/src/components/modal-pages/ @commercetools/craft-team-fe
-/packages/application-components/src/components/page-content-containers/ @commercetools/craft-team-fe
-/packages/application-components/src/components/portals-container/ @commercetools/craft-team-fe
-/packages/application-components/src/components/project-stamp/ @commercetools/craft-team-fe
-/packages/application-components/src/components/public-page-layout/ @commercetools/craft-team-fe
-/packages/application-components/src/components/tab-header/ @commercetools/craft-team-fe
-/visual-testing-app/ @commercetools/craft-team-fe
-/website/ @commercetools/craft-team-fe
-/packages/react-notifications/ @commercetools/craft-team-fe
+# Craft (default)
+* @commercetools/craft-team-fe
 
 # Hooks
 /packages/application-components/src/hooks/ @commercetools/bots-team-engineers @commercetools/craft-team-fe
