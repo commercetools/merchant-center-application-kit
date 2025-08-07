@@ -48,11 +48,9 @@ jobs:
 
       - name: Running tests for frontend packages and generating coverage files
         run: pnpm run test --reporters jest-silent-reporter --coverage --coverageDirectory=./coverage/jest
-        continue-on-error: true
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
-        if: always()
 
       - name: Upload Jest coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -60,7 +58,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/jest/lcov.info
           name: jest-coverage
-        if: always()
 
       - name: Running tests for node packages
         run: pnpm run test:node
@@ -347,7 +344,6 @@ jobs:
       - name: Running End-to-End tests for Playground application
         run: |
           pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground -- pnpm cypress:coverage'
-        continue-on-error: true
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
@@ -376,4 +372,3 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/cypress/lcov.info
           name: cypress-coverage
-        if: always()
