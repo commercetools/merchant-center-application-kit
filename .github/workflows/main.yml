@@ -49,19 +49,19 @@ jobs:
       - name: Running tests for frontend packages with coverage
         run: |
           pnpm run test --reporters jest-silent-reporter
-          npx jest --coverage --coverageDirectory=./coverage/jest
-        continue-on-error: true
+        #   npx jest --coverage --coverageDirectory=./coverage/jest
+        # continue-on-error: true
         env:
           CI: true
           RTL_ASYNC_UTIL_TIMEOUT: 5000
 
-      - name: Upload Jest coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/jest/lcov.info
-          name: jest-coverage
-        if: always()
+      # - name: Upload Jest coverage to Codecov
+      #   uses: codecov/codecov-action@v5
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     file: ./coverage/jest/lcov.info
+      #     name: jest-coverage
+      #   if: always()
 
       - name: Running tests for node packages
         run: pnpm run test:node
@@ -324,7 +324,7 @@ jobs:
         run: pnpm playground:build
         env:
           NODE_ENV: test
-          CYPRESS_COVERAGE: 'true'
+          # CYPRESS_COVERAGE: 'true'
           NODE_OPTIONS: '--max-old-space-size=6144'
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
@@ -348,11 +348,11 @@ jobs:
       - name: Running End-to-End tests for Playground application
         run: |
           pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
-          pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm cypress:coverage'
-        continue-on-error: true
+        #   pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm cypress:coverage'
+        # continue-on-error: true
         env:
           NODE_ENV: test
-          CYPRESS_COVERAGE: 'true'
+          # CYPRESS_COVERAGE: 'true'
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
           CYPRESS_CI: 'true'
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
@@ -363,19 +363,19 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      - name: Move Cypress coverage files
-        run: |
-          mkdir -p ./coverage/cypress
-          mv ./coverage/lcov.info ./coverage/cypress/lcov.info
-          mv ./coverage/coverage-final.json ./coverage/cypress/coverage-final.json
-          mv ./coverage/coverage-summary.json ./coverage/cypress/coverage-summary.json
-          mv ./coverage/clover.xml ./coverage/cypress/clover.xml
-          mv ./coverage/lcov-report ./coverage/cypress/lcov-report
+      # - name: Move Cypress coverage files
+      #   run: |
+      #     mkdir -p ./coverage/cypress
+      #     mv ./coverage/lcov.info ./coverage/cypress/lcov.info
+      #     mv ./coverage/coverage-final.json ./coverage/cypress/coverage-final.json
+      #     mv ./coverage/coverage-summary.json ./coverage/cypress/coverage-summary.json
+      #     mv ./coverage/clover.xml ./coverage/cypress/clover.xml
+      #     mv ./coverage/lcov-report ./coverage/cypress/lcov-report
 
-      - name: Upload Cypress coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/cypress/lcov.info
-          name: cypress-coverage
-        if: always()
+      # - name: Upload Cypress coverage to Codecov
+      #   uses: codecov/codecov-action@v5
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     file: ./coverage/cypress/lcov.info
+      #     name: cypress-coverage
+      #   if: always()
