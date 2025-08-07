@@ -145,7 +145,8 @@ function loginByForm(commandOptions: CommandLoginOptions) {
      * browser state after executing the authentication flow.
      */
     function authCallback() {
-      // Get the feature flags from the Merchant Center API
+      // Get the feature flags from the Merchant Center API so we can
+      // check whether Identity is enabled
       cy.request({
         method: 'POST',
         url: `${appConfig.mcApiUrl}/graphql`,
@@ -222,6 +223,11 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
           if (isLocalhost) {
             if (isGlobalIdentityEnabled) {
+              // Cypress gets confused when switching between origins, likely because
+              // the redirect to Identity doesn't happen immediately.
+              // If we don't wait, Cypress fails as it tries to interact with `cy.origin`
+              // but the test is still in the initial origin URL.
+              // This is a bit unexpected and to be considered a workaround.
               // eslint-disable-next-line cypress/no-unnecessary-waiting
               cy.wait(1000);
 
@@ -264,6 +270,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               cy.url().should('include', url);
             } else {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
+              // See similar comment above regarding the usage of `cy.wait`.
               // eslint-disable-next-line cypress/no-unnecessary-waiting
               cy.wait(1000);
               cy.origin(
@@ -286,10 +293,16 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // Same as `fillLegacyLoginFormWithRetry`.
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=email]')
+                    // We use `force` as the MC login UI (production) in tests renders the
+                    // cookie banner overlapping the input fields.
+                    // To allow Cypress to interact with the input fields, we use `force`.
                     .clear({ force: true })
                     .type(userCredentials.email, { force: true });
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=password]')
+                    // We use `force` as the MC login UI (production) in tests renders the
+                    // cookie banner overlapping the input fields.
+                    // To allow Cypress to interact with the input fields, we use `force`.
                     .clear({ force: true })
                     .type(userCredentials.password, {
                       log: false,
