@@ -33,6 +33,9 @@ export default defineConfig({
           LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
           PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
           PACKAGE_NAME: process.env.CYPRESS_PACKAGE_NAME,
+          // In case we want to test the login flow with a different Identity URL.
+          // This is generally not needed as by default we use the production Identity URL.
+          IDENTITY_URL: process.env.CYPRESS_IDENTITY_URL,
         }),
       });
     },
