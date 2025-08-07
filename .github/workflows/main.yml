@@ -58,7 +58,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/jest/lcov.info
+          files: ./coverage/jest/lcov.info
           name: jest-coverage
         if: always()
 
@@ -374,6 +374,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage/cypress/lcov.info
+          files: ./coverage/cypress/lcov.info
           name: cypress-coverage
         if: always()
