@@ -1,7 +1,12 @@
 import { Suspense } from 'react';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { ProtectedRoute, type TProtectedRouteProps } from './protected-route';
+import {
+  ProtectedRoute,
+  type TProtectedRouteProps,
+  type TProtectedProps,
+  Protected,
+} from './protected-route';
 
 type TSuspendedProtectedRouteProps = TProtectedRouteProps & {
   loading?: React.ReactNode;
@@ -21,3 +26,16 @@ const SuspendedProtectedRoute: React.FC<TSuspendedProtectedRouteProps> = ({
 };
 
 export { SuspendedProtectedRoute, type TSuspendedProtectedRouteProps };
+
+type TSuspendedProtectedProps = TProtectedProps & {
+  loading?: React.ReactNode;
+  fallback?: React.ReactNode;
+};
+
+export function SuspendedProtected(props: TSuspendedProtectedProps) {
+  return (
+    <Suspense fallback={props.loading || <LoadingSpinner />}>
+      <Protected {...props} />
+    </Suspense>
+  );
+}

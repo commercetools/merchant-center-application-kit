@@ -19,6 +19,7 @@ import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
 import { Router } from 'react-router-dom';
+import { CompatRouter } from 'react-router-dom-v5-compat';
 import invariant from 'tiny-invariant';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
@@ -364,23 +365,25 @@ function createApplicationProviders<
             projectDataLocale={dataLocale}
           >
             <Router history={memoryHistory}>
-              <Suspense fallback={<LoadingFallback />}>
-                <ApplicationEntryPoint
-                  environment={mergedEnvironment}
-                  disableRoutePermissionCheck={disableRoutePermissionCheck}
-                  render={
-                    disableAutomaticEntryPointRoutes
-                      ? // eslint-disable-next-line testing-library/no-node-access
-                        () => <>{props.children}</>
-                      : undefined
-                  }
-                >
-                  {disableAutomaticEntryPointRoutes
-                    ? undefined
-                    : // eslint-disable-next-line testing-library/no-node-access
-                      props.children}
-                </ApplicationEntryPoint>
-              </Suspense>
+              <CompatRouter>
+                <Suspense fallback={<LoadingFallback />}>
+                  <ApplicationEntryPoint
+                    environment={mergedEnvironment}
+                    disableRoutePermissionCheck={disableRoutePermissionCheck}
+                    render={
+                      disableAutomaticEntryPointRoutes
+                        ? // eslint-disable-next-line testing-library/no-node-access
+                          () => <>{props.children}</>
+                        : undefined
+                    }
+                  >
+                    {disableAutomaticEntryPointRoutes
+                      ? undefined
+                      : // eslint-disable-next-line testing-library/no-node-access
+                        props.children}
+                  </ApplicationEntryPoint>
+                </Suspense>
+              </CompatRouter>
             </Router>
           </ApplicationContextProvider>
         </TestProviderFlopFlip>

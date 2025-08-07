@@ -18,6 +18,9 @@ export {
   SuspendedRoute,
   ProtectedRoute,
   SuspendedProtectedRoute,
+  Suspended,
+  SuspendedProtected,
+  Protected,
 } from './components/suspended-route';
 export { default as getPreviousProjectKey } from './utils/get-previous-project-key';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';

@@ -1,3 +1,6 @@
-export { SuspendedRoute } from './suspended-route';
-export { SuspendedProtectedRoute } from './suspended-protected-route';
-export { ProtectedRoute } from './protected-route';
+export { SuspendedRoute, Suspended } from './suspended-route';
+export {
+  SuspendedProtectedRoute,
+  SuspendedProtected,
+} from './suspended-protected-route';
+export { ProtectedRoute, Protected } from './protected-route';

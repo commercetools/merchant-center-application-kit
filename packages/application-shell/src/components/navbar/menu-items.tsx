@@ -14,7 +14,7 @@ import { useFlagVariation } from '@flopflip/react-broadcast';
 import type { TFlagVariation } from '@flopflip/types';
 import classnames from 'classnames';
 import { useIntl } from 'react-intl';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom-v5-compat';
 import type {
   TNormalizedMenuVisibilities,
   TNormalizedPermissions,
@@ -312,11 +312,10 @@ const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
   if (props.linkTo) {
     const linkLevel = props.isSubmenuLink ? 'text-link-sublist' : 'text-link';
     return (
-      <NavLinkWrapper exactMatch={exactMatch} {...props}>
+      <NavLinkWrapper {...props}>
         <NavLink
           to={props.linkTo}
-          exact={exactMatch}
-          activeClassName="highlighted"
+          end={exactMatch}
           data-link-level={linkLevel}
           css={getMenuItemLinkStyles(Boolean(props.isSubmenuLink))}
           tabIndex={props.isSubmenuLink && !props.isSubmenuFocused ? -1 : 0}
@@ -331,7 +330,7 @@ const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
             }
           }}
         >
-          <NavLinkClickableContentWrapper exactMatch={exactMatch} {...props}>
+          <NavLinkClickableContentWrapper {...props}>
             {props.children}
           </NavLinkClickableContentWrapper>
         </NavLink>

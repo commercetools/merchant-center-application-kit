@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 
@@ -20,3 +21,17 @@ const ProtectedRoute: React.FC<TProtectedRouteProps> = ({
 };
 
 export { ProtectedRoute, type TProtectedRouteProps };
+
+export type TProtectedProps = {
+  condition: boolean;
+  children: ReactNode;
+  fallback?: ReactNode;
+};
+
+export function Protected(props: TProtectedProps) {
+  return props.condition ? (
+    <>{props.children}</>
+  ) : (
+    <>{props.fallback || <PageUnauthorized />}</>
+  );
+}

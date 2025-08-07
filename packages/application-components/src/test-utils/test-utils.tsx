@@ -7,6 +7,7 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory, type MemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Router } from 'react-router-dom';
+import { CompatRouter } from 'react-router-dom-v5-compat';
 import {
   createApolloClient,
   ApplicationContextProvider,
@@ -71,7 +72,9 @@ const customRender = (
           >
             <IntlProvider locale={locale}>
               <Suspense fallback={<LoadingFallback />}>
-                <Router history={history}>{node}</Router>
+                <Router history={history}>
+                  <CompatRouter>{node}</CompatRouter>
+                </Router>
               </Suspense>
             </IntlProvider>
           </ApplicationContextProvider>
