@@ -46,10 +46,8 @@ jobs:
         env:
           CI: true
 
-      - name: Running tests for frontend packages with coverage
-        run: |
-          pnpm run test --reporters jest-silent-reporter
-          npx jest --coverage --coverageDirectory=./coverage/jest
+      - name: Running tests for frontend packages and generating coverage files
+        run: pnpm run test --reporters jest-silent-reporter --coverage --coverageDirectory=./coverage/jest
         continue-on-error: true
         env:
           CI: true
