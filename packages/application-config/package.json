@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-config",
-  "version": "24.3.0",
+  "version": "24.4.0",
   "description": "Configuration utilities for building Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -41,7 +41,7 @@
     "@babel/register": "^7.22.15",
     "@babel/runtime": "^7.22.15",
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/constants": "24.3.0",
+    "@commercetools-frontend/constants": "24.4.0",
     "@types/lodash": "^4.14.198",
     "@types/react": "^19.0.3",
     "ajv": "8.16.0",
