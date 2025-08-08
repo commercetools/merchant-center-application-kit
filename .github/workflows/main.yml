@@ -27,6 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # We need to fetch the full history to get the correct coverage data.
           fetch-depth: 2
 
       - name: Installing dependencies and building packages
@@ -311,6 +312,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # We need to fetch the full history to get the correct coverage data.
           fetch-depth: 2
 
       - name: Installing dependencies and building packages
@@ -343,7 +345,7 @@ jobs:
 
       - name: Running End-to-End tests for Playground application
         run: |
-          pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground -- pnpm cypress:coverage'
+          pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
