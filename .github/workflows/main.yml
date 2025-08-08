@@ -68,6 +68,8 @@ jobs:
         uses: ./.github/actions/ci
 
       - name: Building Visual Regression Tests application for UI components
+      # This step is skipped if the event is a pull request, and the title contains "[skip percy]"
+        if: ${{ github.event_name != 'pull_request' || !contains(github.event.pull_request.title, '[skip percy]') }}
         run: pnpm visual-testing-app:build
 
       # Explicitly install the Chrome binary in case it's not available yet.
@@ -78,6 +80,8 @@ jobs:
           PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
 
       - name: Running Visual Regression Tests for UI components
+      # This step is skipped if the event is a pull request, and the title contains "[skip percy]"
+        if: ${{ github.event_name != 'pull_request' || !contains(github.event.pull_request.title, '[skip percy]') }}
         run: pnpm vrt:components
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
