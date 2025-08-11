@@ -18,6 +18,7 @@ const defaultConfig = {
     /.*\[React Intl\] "defaultRichTextElements" was specified but "message" was not pre-compiled.*/,
     /.*util function is now deprecated and has been moved to Jest repository.*/,
     /.*"importFrom" and "exportTo" will be removed in a future version of postcss-custom-properties.*/,
+    /.*Browserslist: caniuse-lite is outdated.*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,
