@@ -2,8 +2,6 @@ import { Matcher as TMatcher } from '@testing-library/dom';
 import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import {
   loginByForm,
-  loginByOidc,
-  isLocalhost,
   type CommandLoginOptions as TCommandLoginOptions,
   type LoginToMerchantCenterForCustomViewCommandLoginOptions as TLoginToMerchantCenterForCustomViewCommandLoginOptions,
 } from './login';
@@ -24,11 +22,7 @@ Cypress.Commands.add(
   (commandOptions: CommandLoginOptions) => {
     Cypress.log({ name: 'loginToMerchantCenter' });
 
-    if (isLocalhost()) {
-      loginByOidc(commandOptions);
-    } else {
-      loginByForm(commandOptions);
-    }
+    loginByForm(commandOptions);
   }
 );
 
@@ -39,7 +33,7 @@ Cypress.Commands.add(
 
     const projectKey = Cypress.env('PROJECT_KEY');
 
-    loginByOidc({
+    loginByForm({
       ...commandOptions,
       entryPointUriPath: CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
       initialRoute: `/${projectKey}/${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH}`,
@@ -53,7 +47,7 @@ Cypress.Commands.add('loginByOidc', (commandOptions: CommandLoginOptions) => {
     'We recommend not to use the command "cy.loginByOidc" directly. Instead, use the more generic "cy.loginToMerchantCenter" command as it automatically detects which login mechanism to use.'
   );
 
-  loginByOidc(commandOptions);
+  loginByForm(commandOptions);
 });
 
 Cypress.Commands.add('hover', { prevSubject: true }, realHover);

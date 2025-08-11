@@ -55,7 +55,6 @@ const createTestProps = (props) => ({
     env: 'development',
     cdnUrl: 'http://localhost:3001',
     servedByProxy: 'false',
-    enableSignUp: 'true',
   },
   featureFlags: {},
   defaultFeatureFlags: {},
@@ -359,34 +358,6 @@ describe('when user first visits "/" with no projectKey defined in localStorage'
       expect(history.location.pathname).toBe(`/test-1`);
     });
     expect(getByLeftNavigation()).toBeInTheDocument();
-  });
-});
-describe('when user has no default project', () => {
-  beforeEach(() => {
-    mockServer.resetHandlers();
-    mockServer.use(
-      ...getDefaultMockResolvers({
-        user: UserMock.build({
-          defaultProjectKey: null,
-          projects: {
-            __typename: 'ProjectQueryResult',
-            total: 0,
-            results: [],
-          },
-        }),
-      })
-    );
-  });
-  it('should redirect to project creation', async () => {
-    renderApp(null, {
-      environment: {
-        servedByProxy: 'true',
-      },
-    });
-    await waitFor(() => {
-      expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
-    });
-    expect(screen.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -770,15 +741,37 @@ describe('when user has no projects', () => {
       })
     );
   });
-  it('should not render project switcher', async () => {
-    const { container } = renderApp();
-    await waitFor(() => {
-      expect(
-        // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
-        container.querySelector('[name="project-switcher"]')
-      ).not.toBeInTheDocument();
+  describe('when served by proxy', () => {
+    it('should redirect to project creation', async () => {
+      renderApp(null, {
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      await waitFor(() => {
+        expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
+      });
+      expect(screen.queryByText('OK')).not.toBeInTheDocument();
     });
-    await screen.findByText('Back to project');
+  });
+  describe('when not served by proxy', () => {
+    it('should not render project switcher', async () => {
+      const { container } = renderApp();
+      await screen.findByText(/Please create a project/);
+      await screen.findByText(/You are running in development mode/);
+      await waitFor(() => {
+        expect(location.replace).not.toHaveBeenCalledWith(
+          '/account/projects/new'
+        );
+      });
+      await waitFor(() => {
+        expect(
+          // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
+          container.querySelector('[name="project-switcher"]')
+        ).not.toBeInTheDocument();
+      });
+      await screen.findByText('Back to project');
+    });
   });
 });
 describe('when dispatching a loading notification', () => {

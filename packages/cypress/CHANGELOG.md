@@ -1,5 +1,27 @@
 # @commercetools-frontend/cypress
 
+## 24.4.0
+
+### Minor Changes
+
+- [#3790](https://github.com/commercetools/merchant-center-application-kit/pull/3790) [`92821ce`](https://github.com/commercetools/merchant-center-application-kit/commit/92821cec7e2a59fe9b21a7dbd4e26b0e1e546871) Thanks [@kark](https://github.com/kark)! - Unify login command and support login flow to Identity when enabled
+
+### Patch Changes
+
+- Updated dependencies [[`c3a39e4`](https://github.com/commercetools/merchant-center-application-kit/commit/c3a39e48a295f962744361b0e2edc4ce64101036)]:
+  - @commercetools-frontend/application-shell@24.4.0
+  - @commercetools-frontend/application-config@24.4.0
+  - @commercetools-frontend/constants@24.4.0
+
+## 24.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`81e9331`](https://github.com/commercetools/merchant-center-application-kit/commit/81e93311e89d898d881ceb82726d850faae931e9), [`bfafe16`](https://github.com/commercetools/merchant-center-application-kit/commit/bfafe1627b2faf24d274699a978e4f7ac2224b9b), [`77f85fc`](https://github.com/commercetools/merchant-center-application-kit/commit/77f85fced3ef6f7c95d505fa84f98d3f10a41b0e)]:
+  - @commercetools-frontend/constants@24.3.0
+  - @commercetools-frontend/application-shell@24.3.0
+  - @commercetools-frontend/application-config@24.3.0
+
 ## 24.2.1
 
 ### Patch Changes
