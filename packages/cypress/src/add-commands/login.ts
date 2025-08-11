@@ -24,6 +24,19 @@ export type LoginCredentials = {
   password: string;
 };
 
+export type LoginCommandTimeouts = {
+  /**
+   * The number of milliseconds to wait for the email input to appear.
+   * Defaults to `4000` (4 seconds).
+   */
+  waitForEmailInput?: number;
+  /**
+   * The number of milliseconds to wait for the password input to appear.
+   * Defaults to `8000` (8 seconds).
+   */
+  waitForPasswordInput?: number;
+};
+
 export type CommandLoginOptions = {
   /**
    * The application entry point URI path. This value is used to identify
@@ -60,6 +73,10 @@ export type CommandLoginOptions = {
    * This is only relevant for Cypress version >= `10.9.0`.
    */
   disableCacheAcrossSpecs?: boolean;
+  /**
+   * Configure timeouts for some of the command interactions.
+   */
+  timeouts?: LoginCommandTimeouts;
 };
 
 export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
@@ -76,6 +93,10 @@ export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
 
 // Alias for backwards compatibility
 export type CommandLoginByOidcOptions = CommandLoginOptions;
+
+const defaultTimeouts: LoginCommandTimeouts = {
+  waitForPasswordInput: 8000,
+};
 
 function isFeatureSupported(expectedVersion: string) {
   return semver.gte(Cypress.version, expectedVersion);
@@ -249,13 +270,19 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                 }) => {
                   cy.url().should('include', `${identityUrl}/login`);
                   // Fill in the email and click Next
-                  cy.get('input[name="identifier"]').type(
-                    userCredentials.email
-                  );
+                  cy.get('input[name="identifier"]', {
+                    timeout:
+                      commandOptions.timeouts?.waitForEmailInput ??
+                      defaultTimeouts.waitForEmailInput,
+                  }).type(userCredentials.email);
                   cy.get('button').contains('Next').click();
 
                   // Wait for the password form to appear
-                  cy.get('input[name="password"]').should('be.visible');
+                  cy.get('input[name="password"]', {
+                    timeout:
+                      commandOptions.timeouts?.waitForPasswordInput ??
+                      defaultTimeouts.waitForPasswordInput,
+                  }).should('be.visible');
                   // Fill in the password and submit
                   cy.get('input[name="password"]').type(
                     userCredentials.password,
@@ -292,14 +319,22 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
                   // Same as `fillLegacyLoginFormWithRetry`.
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
-                  cy.get('input[name=email]')
+                  cy.get('input[name=email]', {
+                    timeout:
+                      commandOptions.timeouts?.waitForEmailInput ??
+                      defaultTimeouts.waitForEmailInput,
+                  })
                     // We use `force` as the MC login UI (production) in tests renders the
                     // cookie banner overlapping the input fields.
                     // To allow Cypress to interact with the input fields, we use `force`.
                     .clear({ force: true })
                     .type(userCredentials.email, { force: true });
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
-                  cy.get('input[name=password]')
+                  cy.get('input[name=password]', {
+                    timeout:
+                      commandOptions.timeouts?.waitForPasswordInput ??
+                      defaultTimeouts.waitForPasswordInput,
+                  })
                     // We use `force` as the MC login UI (production) in tests renders the
                     // cookie banner overlapping the input fields.
                     // To allow Cypress to interact with the input fields, we use `force`.
@@ -322,11 +357,19 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             if (isGlobalIdentityEnabled) {
               cy.url().should('include', `${identityUrl}/login`);
               // Fill in the email and click Next
-              cy.get('input[name="identifier"]').type(userCredentials.email);
+              cy.get('input[name="identifier"]', {
+                timeout:
+                  commandOptions.timeouts?.waitForEmailInput ??
+                  defaultTimeouts.waitForEmailInput,
+              }).type(userCredentials.email);
               cy.get('button').contains('Next').click();
 
               // Wait for the password form to appear
-              cy.get('input[name="password"]').should('be.visible');
+              cy.get('input[name="password"]', {
+                timeout:
+                  commandOptions.timeouts?.waitForPasswordInput ??
+                  defaultTimeouts.waitForPasswordInput,
+              }).should('be.visible');
               // Fill in the password and submit
               cy.get('input[name="password"]').type(userCredentials.password, {
                 log: false,
@@ -348,7 +391,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               );
             } else {
               // Legacy login flow.
-              fillLegacyLoginFormWithRetry(userCredentials);
+              fillLegacyLoginFormWithRetry(
+                userCredentials,
+                commandOptions.timeouts
+              );
 
               // Wait for the flow to redirect back to the application.
               cy.get('[role="main"]').should('exist');
@@ -395,7 +441,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 /* Utilities */
 
 const legacyMaxLoginAttempts = Cypress.config('maxLoginAttempts') ?? 3;
-function fillLegacyLoginFormWithRetry(userCredentials: LoginCredentials) {
+function fillLegacyLoginFormWithRetry(
+  userCredentials: LoginCredentials,
+  timeouts?: LoginCommandTimeouts
+) {
   // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
   cy.intercept('POST', '**/tokens').as('loginRequest');
 
@@ -416,11 +465,16 @@ function fillLegacyLoginFormWithRetry(userCredentials: LoginCredentials) {
     cy.log(`Attempts left: ${attemptsLeft}`);
 
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=email]')
+    cy.get('input[name=email]', {
+      timeout: timeouts?.waitForEmailInput ?? defaultTimeouts.waitForEmailInput,
+    })
       .clear({ force: true })
       .type(userCredentials.email, { force: true });
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=password]')
+    cy.get('input[name=password]', {
+      timeout:
+        timeouts?.waitForPasswordInput ?? defaultTimeouts.waitForPasswordInput,
+    })
       .clear({ force: true })
       .type(userCredentials.password, {
         log: false,
