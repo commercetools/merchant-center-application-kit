@@ -260,20 +260,23 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   args: {
                     userCredentials,
                     identityUrl,
+                    timeouts: commandOptions.timeouts,
                   },
                 },
                 ({
                   userCredentials,
                   identityUrl,
+                  timeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   identityUrl: string;
+                  timeouts?: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${identityUrl}/login`);
                   // Fill in the email and click Next
                   cy.get('input[name="identifier"]', {
                     timeout:
-                      commandOptions.timeouts?.waitForEmailInput ??
+                      timeouts?.waitForEmailInput ??
                       defaultTimeouts.waitForEmailInput,
                   }).type(userCredentials.email);
                   cy.get('button').contains('Next').click();
@@ -281,7 +284,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // Wait for the password form to appear
                   cy.get('input[name="password"]', {
                     timeout:
-                      commandOptions.timeouts?.waitForPasswordInput ??
+                      timeouts?.waitForPasswordInput ??
                       defaultTimeouts.waitForPasswordInput,
                   }).should('be.visible');
                   // Fill in the password and submit
@@ -307,14 +310,17 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   args: {
                     userCredentials,
                     mcUrl,
+                    timeouts: commandOptions.timeouts,
                   },
                 },
                 ({
                   userCredentials,
                   mcUrl,
+                  timeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   mcUrl: string;
+                  timeouts?: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${mcUrl}/login`);
 
@@ -322,7 +328,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=email]', {
                     timeout:
-                      commandOptions.timeouts?.waitForEmailInput ??
+                      timeouts?.waitForEmailInput ??
                       defaultTimeouts.waitForEmailInput,
                   })
                     // We use `force` as the MC login UI (production) in tests renders the
@@ -333,7 +339,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
                   cy.get('input[name=password]', {
                     timeout:
-                      commandOptions.timeouts?.waitForPasswordInput ??
+                      timeouts?.waitForPasswordInput ??
                       defaultTimeouts.waitForPasswordInput,
                   })
                     // We use `force` as the MC login UI (production) in tests renders the
