@@ -321,7 +321,6 @@ jobs:
       - name: Building Playground application
         run: pnpm playground:build
         env:
-          NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
           NODE_OPTIONS: '--max-old-space-size=6144'
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
