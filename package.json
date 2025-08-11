@@ -37,7 +37,6 @@
     "test:e2e:playground": "cypress run --spec 'cypress/e2e/playground/**/*.cy.ts'",
     "test:e2e:template-custom-application-starter": "cypress run --spec 'cypress/e2e/custom-application-template-starter/**/*.cy.ts'",
     "test:e2e:template-custom-view-starter": "cypress run --spec 'cypress/e2e/custom-view-template-starter/**/*.cy.ts'",
-    "cypress:coverage": "CYPRESS_COVERAGE=true cypress run",
     "vrt:components": "percy exec -- pnpm test:visual",
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
