@@ -59,10 +59,6 @@ describe('babel-plugin-formatjs', () => {
       plugins: config.plugins,
     });
 
-    console.log('===================================================');
-    console.log(result.code);
-    console.log('===================================================');
-
     // Check that the welcome message has the correct AST structure
     expect(result.code).toMatch(
       /welcome:\s*{\s*id:\s*"app\.welcome",\s*defaultMessage:\s*\[\s*{\s*"type":\s*0,\s*"value":\s*"Welcome,\s*"\s*},\s*{\s*"type":\s*1,\s*"value":\s*"name"\s*},\s*{\s*"type":\s*0,\s*"value":\s*"!"\s*}\s*\]/
