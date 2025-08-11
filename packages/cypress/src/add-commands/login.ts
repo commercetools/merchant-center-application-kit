@@ -95,6 +95,7 @@ export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
 const defaultTimeouts: LoginCommandTimeouts = {
+  waitForEmailInput: 4000,
   waitForPasswordInput: 8000,
 };
 
