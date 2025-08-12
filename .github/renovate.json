@@ -1,6 +1,7 @@
 {
   "extends": ["config:base", ":preserveSemverRanges", "schedule:weekly"],
   "separateMajorMinor": true,
+  "rebaseWhen": "never",
   "packageRules": [
     {
       "packagePatterns": ["*"],
