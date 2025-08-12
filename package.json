@@ -155,6 +155,7 @@
     "jest-silent-reporter": "0.6.0",
     "jest-watch-typeahead": "2.2.2",
     "lint-staged": "11.2.6",
+    "nyc": "^17.1.0",
     "postcss": "8.4.38",
     "postcss-load-config": "3.1.4",
     "prettier": "2.8.8",
