@@ -1,5 +1,27 @@
 # @commercetools-frontend/cypress
 
+## 24.5.0
+
+### Minor Changes
+
+- [#3830](https://github.com/commercetools/merchant-center-application-kit/pull/3830) [`34ea2f8`](https://github.com/commercetools/merchant-center-application-kit/commit/34ea2f863469e4721edd6c6e17b28267fbbf0c37) Thanks [@emmenko](https://github.com/emmenko)! - Allow to configure timeouts for the login command interactions.
+
+  ```ts
+  cy.loginToMerchantCenter({
+    // ...
+    timeouts: {
+      waitForPasswordInput: 10000,
+    },
+  });
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@24.5.0
+  - @commercetools-frontend/application-shell@24.5.0
+  - @commercetools-frontend/constants@24.5.0
+
 ## 24.4.0
 
 ### Minor Changes
