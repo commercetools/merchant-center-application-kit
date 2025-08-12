@@ -261,16 +261,19 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                     userCredentials,
                     identityUrl,
                     timeouts: commandOptions.timeouts,
+                    defaultTimeouts,
                   },
                 },
                 ({
                   userCredentials,
                   identityUrl,
                   timeouts,
+                  defaultTimeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   identityUrl: string;
                   timeouts?: LoginCommandTimeouts;
+                  defaultTimeouts: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${identityUrl}/login`);
                   // Fill in the email and click Next
@@ -311,16 +314,19 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                     userCredentials,
                     mcUrl,
                     timeouts: commandOptions.timeouts,
+                    defaultTimeouts,
                   },
                 },
                 ({
                   userCredentials,
                   mcUrl,
                   timeouts,
+                  defaultTimeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   mcUrl: string;
                   timeouts?: LoginCommandTimeouts;
+                  defaultTimeouts: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${mcUrl}/login`);
 
