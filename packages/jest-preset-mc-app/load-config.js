@@ -19,6 +19,7 @@ const defaultConfig = {
     /.*util function is now deprecated and has been moved to Jest repository.*/,
     /.*"importFrom" and "exportTo" will be removed in a future version of postcss-custom-properties.*/,
     /.*Browserslist: caniuse-lite is outdated.*/,
+    /.*Browserslist: browsers data \(caniuse-lite\) is \d+ months old.*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,
