@@ -14,4 +14,17 @@ const SuspendedRoute = (props: TSuspendedRouteProps) => (
 
 SuspendedRoute.displayName = 'SuspendedRoute';
 
-export { SuspendedRoute };
+export { SuspendedRoute, type TSuspendedRouteProps };
+
+type TSuspendedProps = {
+  children: ReactNode;
+  fallback?: ReactNode;
+};
+
+export function Suspended(props: TSuspendedProps) {
+  return (
+    <Suspense fallback={props.fallback || <LoadingSpinner />}>
+      {props.children}
+    </Suspense>
+  );
+}

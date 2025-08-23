@@ -1,5 +1,10 @@
 import { useCallback } from 'react';
-import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  useMatch,
+  useNavigate,
+} from 'react-router-dom-v5-compat';
 import { CustomPanelDemo } from './components/custom-views';
 import EchoServer from './components/echo-server';
 import FormattersDemo from './components/formatters-demo';
@@ -8,42 +13,45 @@ import StateMachinesDetails from './components/state-machines-details';
 import StateMachinesList from './components/state-machines-list';
 
 const ApplicationRoutes = () => {
-  const match = useRouteMatch();
-  const history = useHistory();
+  const match = useMatch('/:projectKey/app-kit-playground/*');
+  const navigate = useNavigate();
+  const basePath = match.pathnameBase;
 
   const goToStateMachinesList = useCallback(() => {
-    history.push(match.url);
-  }, [history, match.url]);
+    navigate(basePath);
+  }, [navigate, basePath]);
   const goToStateMachineDetail = useCallback(
     (id) => {
-      history.push(`${match.url}/${id}`);
+      navigate(`${basePath}/${id}`);
     },
-    [history, match.url]
+    [navigate, basePath]
   );
+
   return (
-    <Switch>
-      <Route path={`${match.path}/echo-server`}>
-        <EchoServer />
-      </Route>
-      <Route path={`${match.path}/notifications`}>
-        <NotificationsPlayground />
-      </Route>
-      <Route path={`${match.path}/formatters`}>
-        <FormattersDemo />
-      </Route>
-      <Route path={`${match.path}/custom-panel`}>
-        <CustomPanelDemo />
-      </Route>
-      <Route>
-        <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>
-          <Route path={`${match.path}/:id`}>
+    <Routes>
+      <Route path={`${basePath}/echo-server`} element={<EchoServer />} />
+      <Route
+        path={`${basePath}/notifications/*`}
+        element={<NotificationsPlayground />}
+      />
+      <Route path={`${basePath}/formatters`} element={<FormattersDemo />} />
+      <Route path={`${basePath}/custom-panel`} element={<CustomPanelDemo />} />
+      <Route
+        path={`${basePath}`}
+        element={
+          <StateMachinesList goToStateMachineDetail={goToStateMachineDetail} />
+        }
+      >
+        <Route
+          path={`:id`}
+          element={
             <StateMachinesDetails
               goToStateMachinesList={goToStateMachinesList}
             />
-          </Route>
-        </StateMachinesList>
+          }
+        />
       </Route>
-    </Switch>
+    </Routes>
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
