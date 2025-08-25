@@ -1,5 +1,18 @@
 # @commercetools-frontend/mc-scripts
 
+## 24.5.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@24.5.0
+  - @commercetools-frontend/application-config@24.5.0
+  - @commercetools-frontend/assets@24.5.0
+  - @commercetools-frontend/babel-preset-mc-app@24.5.0
+  - @commercetools-frontend/constants@24.5.0
+  - @commercetools-frontend/mc-dev-authentication@24.5.0
+  - @commercetools-frontend/mc-html-template@24.5.0
+
 ## 24.4.0
 
 ### Patch Changes
