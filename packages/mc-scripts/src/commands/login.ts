@@ -27,6 +27,19 @@ const startServer = (server: Server) =>
       });
   });
 
+const resolveMcApiUrl = async () => {
+  // We first check whether the user has set the MC_API_URL environment variable
+  if (process.env.MC_API_URL) {
+    return process.env.MC_API_URL;
+  }
+
+  // If not, we parse the Custom Application configuration and check if it's defined over there
+  const applicationConfig = await processConfig();
+  const { mcApiUrl } = applicationConfig.env;
+
+  return mcApiUrl;
+};
+
 const generateRandomHash = (length: number = 16) =>
   crypto.randomBytes(length).toString('hex');
 
@@ -34,8 +47,11 @@ async function run() {
   const shouldUseExperimentalIdentityAuthFlow =
     process.env.ENABLE_EXPERIMENTAL_IDENTITY_AUTH_FLOW === 'true';
 
-  const applicationConfig = await processConfig();
-  const { mcApiUrl } = applicationConfig.env;
+  const mcApiUrl = await resolveMcApiUrl();
+
+  if (!mcApiUrl) {
+    throw new Error('No Merchant Center API environment URL found. Aborting.');
+  }
 
   console.log(`Using Merchant Center environment "${chalk.green(mcApiUrl)}".`);
   console.log();
