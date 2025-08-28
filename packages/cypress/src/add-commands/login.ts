@@ -435,13 +435,13 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // Wait for application to fully load
                   cy.get('[role="main"]', {
                     timeout:
-                      commandOptions.timeouts?.waitForElementTimeout ??
-                      defaultTimeouts.waitForElementTimeout,
+                      commandOptions.timeouts?.waitForElement ??
+                      defaultTimeouts.waitForElement,
                   }).should('exist');
                   cy.url({
                     timeout:
-                      commandOptions.timeouts?.waitForUrlTimeout ??
-                      defaultTimeouts.waitForUrlTimeout,
+                      commandOptions.timeouts?.waitForUrl ??
+                      defaultTimeouts.waitForUrl,
                   }).should('include', url);
                 }
               );
@@ -491,8 +491,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
       cy.visit(`${Cypress.config('baseUrl')}${commandOptions.initialRoute}`);
       cy.url({
         timeout:
-          commandOptions.timeouts?.waitForUrlTimeout ??
-          defaultTimeouts.waitForUrlTimeout,
+          commandOptions.timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
       }).should('include', commandOptions.initialRoute);
     }
   });
