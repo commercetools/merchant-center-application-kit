@@ -35,6 +35,26 @@ export type LoginCommandTimeouts = {
    * Defaults to `8000` (8 seconds).
    */
   waitForPasswordInput?: number;
+  /**
+   * The timeout in milliseconds for cy.get() operations on elements.
+   * Defaults to `15000` (15 seconds).
+   */
+  waitForElement?: number;
+  /**
+   * The timeout in milliseconds for cy.url() operations.
+   * Defaults to `15000` (15 seconds).
+   */
+  waitForUrl?: number;
+  /**
+   * The number of milliseconds to wait for redirects to complete.
+   * Defaults to `3000` (3 seconds).
+   */
+  waitForRedirect?: number;
+  /**
+   * The number of milliseconds to wait for Identity redirect to complete.
+   * Defaults to `8000` (8 seconds).
+   */
+  waitForIdentityRedirect?: number;
 };
 
 export type CommandLoginOptions = {
@@ -97,6 +117,10 @@ export type CommandLoginByOidcOptions = CommandLoginOptions;
 const defaultTimeouts: LoginCommandTimeouts = {
   waitForEmailInput: 4000,
   waitForPasswordInput: 8000,
+  waitForElement: 15000,
+  waitForUrl: 15000,
+  waitForRedirect: 3000,
+  waitForIdentityRedirect: 8000,
 };
 
 function isFeatureSupported(expectedVersion: string) {
@@ -300,8 +324,21 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               );
 
               // Wait for the flow to redirect back to the application.
-              cy.get('[role="main"]').should('exist');
-              cy.url().should('include', url);
+              // eslint-disable-next-line cypress/no-unnecessary-waiting
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
+              cy.get('[role="main"]', {
+                timeout:
+                  commandOptions.timeouts?.waitForElement ??
+                  defaultTimeouts.waitForElement,
+              }).should('exist');
+              cy.url({
+                timeout:
+                  commandOptions.timeouts?.waitForUrl ??
+                  defaultTimeouts.waitForUrl,
+              }).should('include', url);
             } else {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
               // See similar comment above regarding the usage of `cy.wait`.
@@ -368,7 +405,18 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             }
           } else {
             if (isGlobalIdentityEnabled) {
-              cy.url().should('include', `${identityUrl}/login`);
+              // Wait for redirect to Identity to complete
+              // eslint-disable-next-line cypress/no-unnecessary-waiting
+              cy.wait(
+                commandOptions.timeouts?.waitForIdentityRedirect ??
+                  defaultTimeouts.waitForIdentityRedirect
+              );
+
+              cy.url({
+                timeout:
+                  commandOptions.timeouts?.waitForUrl ??
+                  defaultTimeouts.waitForUrl,
+              }).should('include', `${identityUrl}/login`);
               // Fill in the email and click Next
               cy.get('input[name="identifier"]', {
                 timeout:
@@ -387,7 +435,14 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               cy.get('input[name="password"]').type(userCredentials.password, {
                 log: false,
               });
-              cy.get('button').contains('Submit').click();
+              cy.get('button').contains('Submit').click({ force: true });
+
+              // Wait for redirect to start
+              // eslint-disable-next-line cypress/no-unnecessary-waiting
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
 
               // Wait for the flow to redirect back to the application.
               cy.origin(
@@ -395,11 +450,28 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                 {
                   args: {
                     url,
+                    timeouts: commandOptions.timeouts,
+                    defaultTimeouts,
                   },
                 },
-                ({ url }: { url: string }) => {
-                  cy.get('[role="main"]').should('exist');
-                  cy.url().should('include', url);
+                ({
+                  url,
+                  timeouts,
+                  defaultTimeouts,
+                }: {
+                  url: string;
+                  timeouts?: LoginCommandTimeouts;
+                  defaultTimeouts: LoginCommandTimeouts;
+                }) => {
+                  // Wait for application to fully load
+                  cy.get('[role="main"]', {
+                    timeout:
+                      timeouts?.waitForElement ??
+                      defaultTimeouts.waitForElement,
+                  }).should('exist');
+                  cy.url({
+                    timeout: timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
+                  }).should('include', url);
                 }
               );
             } else {
@@ -446,7 +518,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
     if (commandOptions.initialRoute) {
       cy.visit(`${Cypress.config('baseUrl')}${commandOptions.initialRoute}`);
-      cy.url().should('include', commandOptions.initialRoute);
+      cy.url({
+        timeout:
+          commandOptions.timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
+      }).should('include', commandOptions.initialRoute);
     }
   });
 }
