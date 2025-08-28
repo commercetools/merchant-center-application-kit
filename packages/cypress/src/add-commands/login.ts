@@ -47,7 +47,7 @@ export type LoginCommandTimeouts = {
   waitForUrl?: number;
   /**
    * The number of milliseconds to wait for redirects to complete.
-   * Defaults to `1000` (1 second).
+   * Defaults to `3000` (3 seconds).
    */
   waitForRedirect?: number;
   /**
