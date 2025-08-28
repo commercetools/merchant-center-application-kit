@@ -453,19 +453,27 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                 {
                   args: {
                     url,
+                    timeouts: commandOptions.timeouts,
+                    defaultTimeouts,
                   },
                 },
-                ({ url }: { url: string }) => {
+                ({
+                  url,
+                  timeouts,
+                  defaultTimeouts,
+                }: {
+                  url: string;
+                  timeouts?: LoginCommandTimeouts;
+                  defaultTimeouts: LoginCommandTimeouts;
+                }) => {
                   // Wait for application to fully load
                   cy.get('[role="main"]', {
                     timeout:
-                      commandOptions.timeouts?.waitForElement ??
+                      timeouts?.waitForElement ??
                       defaultTimeouts.waitForElement,
                   }).should('exist');
                   cy.url({
-                    timeout:
-                      commandOptions.timeouts?.waitForUrl ??
-                      defaultTimeouts.waitForUrl,
+                    timeout: timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
                   }).should('include', url);
                 }
               );
