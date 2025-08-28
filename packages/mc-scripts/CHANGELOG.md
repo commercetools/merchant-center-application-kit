@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 24.6.0
+
+### Minor Changes
+
+- [#3835](https://github.com/commercetools/merchant-center-application-kit/pull/3835) [`8b1d8fc`](https://github.com/commercetools/merchant-center-application-kit/commit/8b1d8fcc95c1b6e5503ab4fafbfd80c06645e50a) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Allow the `login` command to read the `mcApiUrl` from an env variable (`MC_API_URL`).
+
+  This is an internal experimental feature that might be removed in the future without notice.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@24.6.0
+  - @commercetools-frontend/application-config@24.6.0
+  - @commercetools-frontend/assets@24.6.0
+  - @commercetools-frontend/babel-preset-mc-app@24.6.0
+  - @commercetools-frontend/constants@24.6.0
+  - @commercetools-frontend/mc-dev-authentication@24.6.0
+  - @commercetools-frontend/mc-html-template@24.6.0
+
 ## 24.5.0
 
 ### Patch Changes

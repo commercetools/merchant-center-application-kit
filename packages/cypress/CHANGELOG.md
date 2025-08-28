@@ -1,5 +1,18 @@
 # @commercetools-frontend/cypress
 
+## 24.6.0
+
+### Minor Changes
+
+- [#3833](https://github.com/commercetools/merchant-center-application-kit/pull/3833) [`855c2ef`](https://github.com/commercetools/merchant-center-application-kit/commit/855c2efef15ea863366a2e7907eb161cc7f667fd) Thanks [@kark](https://github.com/kark)! - Make element and url timeouts configurable in the login command
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@24.6.0
+  - @commercetools-frontend/application-shell@24.6.0
+  - @commercetools-frontend/constants@24.6.0
+
 ## 24.5.0
 
 ### Minor Changes
