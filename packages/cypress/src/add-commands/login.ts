@@ -45,6 +45,11 @@ export type LoginCommandTimeouts = {
    * Defaults to `15000` (15 seconds).
    */
   waitForUrl?: number;
+  /**
+   * The number of milliseconds to wait for redirects to complete.
+   * Defaults to `1000` (1 second).
+   */
+  waitForRedirect?: number;
 };
 
 export type CommandLoginOptions = {
@@ -109,6 +114,7 @@ const defaultTimeouts: LoginCommandTimeouts = {
   waitForPasswordInput: 8000,
   waitForElement: 15000,
   waitForUrl: 15000,
+  waitForRedirect: 1000,
 };
 
 function isFeatureSupported(expectedVersion: string) {
@@ -263,7 +269,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               // but the test is still in the initial origin URL.
               // This is a bit unexpected and to be considered a workaround.
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
 
               // Use cy.origin to handle the identity domain
               cy.origin(
@@ -313,7 +322,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
               // Wait for the flow to redirect back to the application.
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(3000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
               cy.get('[role="main"]', {
                 timeout:
                   commandOptions.timeouts?.waitForElement ??
@@ -328,7 +340,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
               // See similar comment above regarding the usage of `cy.wait`.
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
               cy.origin(
                 mcUrl,
                 {
@@ -382,7 +397,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                 }
               );
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
 
               // Wait for the flow to redirect back to the application.
               cy.get('[role="main"]').should('exist');
@@ -392,7 +410,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
             if (isGlobalIdentityEnabled) {
               // Wait for redirect to Identity to complete
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(8000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
 
               cy.url({
                 timeout:
@@ -421,7 +442,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
               // Wait for redirect to start
               // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(3000);
+              cy.wait(
+                commandOptions.timeouts?.waitForRedirect ??
+                  defaultTimeouts.waitForRedirect
+              );
 
               // Wait for the flow to redirect back to the application.
               cy.origin(
