@@ -39,12 +39,12 @@ export type LoginCommandTimeouts = {
    * The timeout in milliseconds for cy.get() operations on elements.
    * Defaults to `15000` (15 seconds).
    */
-  waitForElementTimeout?: number;
+  waitForElement?: number;
   /**
    * The timeout in milliseconds for cy.url() operations.
    * Defaults to `15000` (15 seconds).
    */
-  waitForUrlTimeout?: number;
+  waitForUrl?: number;
 };
 
 export type CommandLoginOptions = {
@@ -107,8 +107,8 @@ export type CommandLoginByOidcOptions = CommandLoginOptions;
 const defaultTimeouts: LoginCommandTimeouts = {
   waitForEmailInput: 4000,
   waitForPasswordInput: 8000,
-  waitForElementTimeout: 15000,
-  waitForUrlTimeout: 15000,
+  waitForElement: 15000,
+  waitForUrl: 15000,
 };
 
 function isFeatureSupported(expectedVersion: string) {
@@ -316,13 +316,13 @@ function loginByForm(commandOptions: CommandLoginOptions) {
               cy.wait(3000);
               cy.get('[role="main"]', {
                 timeout:
-                  commandOptions.timeouts?.waitForElementTimeout ??
-                  defaultTimeouts.waitForElementTimeout,
+                  commandOptions.timeouts?.waitForElement ??
+                  defaultTimeouts.waitForElement,
               }).should('exist');
               cy.url({
                 timeout:
-                  commandOptions.timeouts?.waitForUrlTimeout ??
-                  defaultTimeouts.waitForUrlTimeout,
+                  commandOptions.timeouts?.waitForUrl ??
+                  defaultTimeouts.waitForUrl,
               }).should('include', url);
             } else {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
@@ -396,8 +396,8 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 
               cy.url({
                 timeout:
-                  commandOptions.timeouts?.waitForUrlTimeout ??
-                  defaultTimeouts.waitForUrlTimeout,
+                  commandOptions.timeouts?.waitForUrl ??
+                  defaultTimeouts.waitForUrl,
               }).should('include', `${identityUrl}/login`);
               // Fill in the email and click Next
               cy.get('input[name="identifier"]', {
