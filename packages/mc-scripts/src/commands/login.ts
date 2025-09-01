@@ -33,11 +33,31 @@ const resolveMcApiUrl = async () => {
     return process.env.MC_API_URL;
   }
 
+  // In the future we might want to support this value as a command line parameter
+
   // If not, we parse the Custom Application configuration and check if it's defined over there
   const applicationConfig = await processConfig();
   const { mcApiUrl } = applicationConfig.env;
 
   return mcApiUrl;
+};
+
+const resolveProjectKey = async () => {
+  // We first check whether the user has set the CTP_PROJECT_KEY environment variable
+  if (process.env.CTP_PROJECT_KEY) {
+    return process.env.CTP_PROJECT_KEY;
+  }
+
+  // In the future we might want to support this value as a command line parameter
+
+  try {
+    const applicationConfig = await processConfig();
+    // @ts-expect-error - We know that the initialProjectKey is defined in the development environment
+    return applicationConfig.env.development.initialProjectKey;
+  } catch (error) {
+    // It's ok if there's not application config file or if it does not contain the initialProjectKey
+    return null;
+  }
 };
 
 const generateRandomHash = (length: number = 16) =>
@@ -64,20 +84,22 @@ async function run() {
   if (shouldUseExperimentalIdentityAuthFlow) {
     const open = await import('open');
 
+    const projectKey = await resolveProjectKey();
     const state = generateRandomHash();
     const nonce = generateRandomHash();
+
+    const scopes = ['openid'];
+    if (projectKey) {
+      scopes.push(`project_key:${projectKey}`);
+      scopes.push(`view_project_settings:${projectKey}`);
+      scopes.push(`manage_project:${projectKey}`);
+    }
 
     const authUrl = new URL('/login/authorize', mcApiUrl);
     authUrl.searchParams.set('response_type', 'id_token');
     authUrl.searchParams.set('response_mode', 'query');
     authUrl.searchParams.set('client_id', `__local:${clientIdentifier}`);
-    authUrl.searchParams.set(
-      'scope',
-      [
-        'openid',
-        // 'project_key:??',
-      ].join(' ')
-    );
+    authUrl.searchParams.set('scope', scopes.join(' '));
     authUrl.searchParams.set('state', state);
     authUrl.searchParams.set('nonce', nonce);
 
