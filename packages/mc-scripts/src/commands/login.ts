@@ -91,8 +91,7 @@ async function run() {
     const scopes = ['openid'];
     if (projectKey) {
       scopes.push(`project_key:${projectKey}`);
-      scopes.push(`view_project_settings:${projectKey}`);
-      scopes.push(`manage_project:${projectKey}`);
+      scopes.push('view:view_project_settings');
     }
 
     const authUrl = new URL('/login/authorize', mcApiUrl);
