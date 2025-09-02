@@ -77,7 +77,14 @@ async function run() {
         console.log();
       },
     });
+
     await startServer(server);
+
+    console.log(
+      `Initiating the OIDC authentication flow, opening the login page in your browser...`
+    );
+    console.log(`  ${authUrl}`);
+    console.log();
 
     await open.default(authUrl.toString());
 

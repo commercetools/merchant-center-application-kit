@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { exit } from 'node:process';
 import jwtDecode from 'jwt-decode';
 import type { TMcCliAuthToken } from '../types';
 
@@ -38,7 +39,9 @@ function createAuthCallbackServer(options: TAuthCallbackServerOptions) {
         response.setHeader('content-type', 'text/html');
         response.end('Success!');
 
-        server.close();
+        server.close(() => {
+          exit();
+        });
       }
     } catch (error) {
       response.setHeader('content-type', 'text/html');
@@ -50,7 +53,9 @@ function createAuthCallbackServer(options: TAuthCallbackServerOptions) {
         response.end(`Invalid authentication flow.`);
       }
 
-      server.close();
+      server.close(() => {
+        exit();
+      });
     }
   });
 
