@@ -92,6 +92,7 @@ async function run() {
     if (projectKey) {
       scopes.push(`project_key:${projectKey}`);
       scopes.push('view:view_project_settings');
+      scopes.push('view:view_products');
     }
 
     const authUrl = new URL('/login/authorize', mcApiUrl);
