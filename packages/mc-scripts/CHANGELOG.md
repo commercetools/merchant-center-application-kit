@@ -1,5 +1,30 @@
 # @commercetools-frontend/mc-scripts
 
+## 24.7.0
+
+### Minor Changes
+
+- [#3837](https://github.com/commercetools/merchant-center-application-kit/pull/3837) [`a9068f6`](https://github.com/commercetools/merchant-center-application-kit/commit/a9068f69d8feae5226bc10697a5c9c544c1e35ba) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Allow the `login` command to read the optional `projectKey` from an env variable (`CTP_PROJECT_KEY`).
+
+  This is an internal experimental feature that might be removed in the future without notice.
+
+### Patch Changes
+
+- [#3840](https://github.com/commercetools/merchant-center-application-kit/pull/3840) [`3250152`](https://github.com/commercetools/merchant-center-application-kit/commit/3250152cb59557f45973cfc4b04f806550e7e8d5) Thanks [@CarlosCortizasCT](https://github.com/CarlosCortizasCT)! - Extend the `login` command to add an extra oauth scope when generating a token bound to a project.
+
+  This is an internal experimental feature that might be removed in the future without notice.
+
+- [#3838](https://github.com/commercetools/merchant-center-application-kit/pull/3838) [`48beb10`](https://github.com/commercetools/merchant-center-application-kit/commit/48beb10a050ad667a1b72d00919bcd089e0a9b28) Thanks [@emmenko](https://github.com/emmenko)! - Minor improvements to login command
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@24.7.0
+  - @commercetools-frontend/application-config@24.7.0
+  - @commercetools-frontend/assets@24.7.0
+  - @commercetools-frontend/babel-preset-mc-app@24.7.0
+  - @commercetools-frontend/constants@24.7.0
+  - @commercetools-frontend/mc-dev-authentication@24.7.0
+  - @commercetools-frontend/mc-html-template@24.7.0
+
 ## 24.6.0
 
 ### Minor Changes
