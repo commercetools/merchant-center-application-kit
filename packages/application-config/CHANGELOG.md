@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 24.7.1
+
+### Patch Changes
+
+- [#3841](https://github.com/commercetools/merchant-center-application-kit/pull/3841) [`bc07e1c`](https://github.com/commercetools/merchant-center-application-kit/commit/bc07e1cd4eb389251f12f3d77a8030fac02dd96a) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Enable configuration of `media-src` content security policy in `headers.csp['media-src']` field of `custom-application-config.mjs` and `custom-view-config.mjs`
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@24.7.1
+
 ## 24.7.0
 
 ### Patch Changes
