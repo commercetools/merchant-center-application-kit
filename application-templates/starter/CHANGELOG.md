@@ -1,5 +1,25 @@
 # merchant-center-application-template-starter
 
+## 24.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@24.7.1
+  - @commercetools-frontend/application-shell@24.7.1
+  - @commercetools-frontend/application-shell-connectors@24.7.1
+  - @commercetools-frontend/mc-dev-authentication@24.7.1
+  - @commercetools-frontend/mc-scripts@24.7.1
+  - @commercetools-frontend/permissions@24.7.1
+  - @commercetools-frontend/actions-global@24.7.1
+  - @commercetools-frontend/assets@24.7.1
+  - @commercetools-frontend/babel-preset-mc-app@24.7.1
+  - @commercetools-frontend/constants@24.7.1
+  - @commercetools-frontend/eslint-config-mc-app@24.7.1
+  - @commercetools-frontend/i18n@24.7.1
+  - @commercetools-frontend/jest-preset-mc-app@24.7.1
+  - @commercetools-frontend/l10n@24.7.1
+
 ## 24.7.0
 
 ### Patch Changes
