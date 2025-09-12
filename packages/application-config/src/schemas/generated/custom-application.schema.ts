@@ -100,6 +100,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
       'script-src'?: CspDirective;
       'style-src'?: CspDirective;
       'frame-src'?: CspDirective;
+      'media-src'?: CspDirective;
     };
     /**
      * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-application-config#headerspermissionspolicies
