@@ -26,35 +26,10 @@ export type LoginCredentials = {
 
 export type LoginCommandTimeouts = {
   /**
-   * The number of milliseconds to wait for the email input to appear.
-   * Defaults to `4000` (4 seconds).
-   */
-  waitForEmailInput?: number;
-  /**
-   * The number of milliseconds to wait for the password input to appear.
-   * Defaults to `8000` (8 seconds).
-   */
-  waitForPasswordInput?: number;
-  /**
-   * The timeout in milliseconds for cy.get() operations on elements.
-   * Defaults to `15000` (15 seconds).
-   */
-  waitForElement?: number;
-  /**
-   * The timeout in milliseconds for cy.url() operations.
-   * Defaults to `15000` (15 seconds).
-   */
-  waitForUrl?: number;
-  /**
-   * The number of milliseconds to wait for redirects to complete.
-   * Defaults to `3000` (3 seconds).
-   */
-  waitForRedirect?: number;
-  /**
    * The number of milliseconds to wait for Identity redirect to complete.
-   * Defaults to `8000` (8 seconds).
+   * Defaults to `1000` (1 second).
    */
-  waitForIdentityRedirect?: number;
+  waitForRedirectToLogin?: number;
 };
 
 export type CommandLoginOptions = {
@@ -115,12 +90,7 @@ export type LoginToMerchantCenterForCustomViewCommandLoginOptions = Omit<
 export type CommandLoginByOidcOptions = CommandLoginOptions;
 
 const defaultTimeouts: LoginCommandTimeouts = {
-  waitForEmailInput: 4000,
-  waitForPasswordInput: 8000,
-  waitForElement: 15000,
-  waitForUrl: 15000,
-  waitForRedirect: 3000,
-  waitForIdentityRedirect: 8000,
+  waitForRedirectToLogin: 1000,
 };
 
 function isFeatureSupported(expectedVersion: string) {
@@ -164,9 +134,9 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     // Do not show log, as it may contain sensible information.
     { log: false }
   ).then((appConfig: ApplicationRuntimeEnvironment) => {
-    let url = `/${projectKey}/${commandOptions.entryPointUriPath}`;
+    let initialUriPath = `/${projectKey}/${commandOptions.entryPointUriPath}`;
     if (commandOptions.entryPointUriPath === 'account') {
-      url = `/${commandOptions.entryPointUriPath}`;
+      initialUriPath = `/${commandOptions.entryPointUriPath}`;
     }
 
     // Log loaded application config for debugging purposes.
@@ -190,7 +160,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
      * The function is used by Cypress `session` command to store the
      * browser state after executing the authentication flow.
      */
-    function authCallback() {
+    function sessionAuthCallback() {
       // Get the feature flags from the Merchant Center API so we can
       // check whether Identity is enabled
       cy.request({
@@ -198,7 +168,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
         url: `${appConfig.mcApiUrl}/graphql`,
         body: {
           operationName: 'AllFeatures',
-          query: `query AllFeatures { allFeatures { name value reason } }`,
+          query: `query AllFeatures { allFeatures { name value } }`,
         },
         headers: {
           'content-type': 'application/json',
@@ -210,7 +180,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
         (res: {
           body: {
             data: {
-              allFeatures: { name: string; value: string; reason: string }[];
+              allFeatures: { name: string; value: string }[];
             };
           };
         }) => {
@@ -224,11 +194,6 @@ function loginByForm(commandOptions: CommandLoginOptions) {
           });
           const identityUrl =
             Cypress.env('IDENTITY_URL') || 'https://identity.commercetools.com';
-
-          // Visit the application URL, which triggers then the login flow.
-          cy.visit(url, {
-            onBeforeLoad: commandOptions.onBeforeLoad,
-          });
 
           /**
            * There are different scenarios and variations on the flow depending
@@ -268,15 +233,24 @@ function loginByForm(commandOptions: CommandLoginOptions) {
            */
 
           if (isLocalhost) {
-            if (isGlobalIdentityEnabled) {
-              // Cypress gets confused when switching between origins, likely because
-              // the redirect to Identity doesn't happen immediately.
-              // If we don't wait, Cypress fails as it tries to interact with `cy.origin`
-              // but the test is still in the initial origin URL.
-              // This is a bit unexpected and to be considered a workaround.
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
+            // Visit the special endpoint /api/health to ensure that the primary origin is set to localhost.
+            cy.visit('/api/health');
+            // Visit the application URL, which triggers then the login flow.
+            cy.visit(initialUriPath, {
+              onBeforeLoad: commandOptions.onBeforeLoad,
+            });
+            // Cypress gets confused when switching between origins, likely because
+            // the redirect to Identity/MC doesn't happen immediately.
+            // If we don't wait, Cypress fails as it tries to interact with `cy.origin`
+            // but the test is still in the initial origin URL.
+            // This is a bit unexpected and to be considered a workaround.
+            // eslint-disable-next-line cypress/no-unnecessary-waiting
+            cy.wait(
+              commandOptions.timeouts?.waitForRedirectToLogin ??
+                defaultTimeouts.waitForRedirectToLogin
+            );
 
+            if (isGlobalIdentityEnabled) {
               // Use cy.origin to handle the identity domain
               cy.origin(
                 identityUrl,
@@ -284,107 +258,61 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   args: {
                     userCredentials,
                     identityUrl,
-                    timeouts: commandOptions.timeouts,
-                    defaultTimeouts,
                   },
                 },
                 ({
                   userCredentials,
                   identityUrl,
-                  timeouts,
-                  defaultTimeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   identityUrl: string;
-                  timeouts?: LoginCommandTimeouts;
-                  defaultTimeouts: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${identityUrl}/login`);
                   // Fill in the email and click Next
-                  cy.get('input[name="identifier"]', {
-                    timeout:
-                      timeouts?.waitForEmailInput ??
-                      defaultTimeouts.waitForEmailInput,
-                  }).type(userCredentials.email);
+                  cy.get('input[name="identifier"]').type(
+                    userCredentials.email
+                  );
                   cy.get('button').contains('Next').click();
 
                   // Wait for the password form to appear
-                  cy.get('input[name="password"]', {
-                    timeout:
-                      timeouts?.waitForPasswordInput ??
-                      defaultTimeouts.waitForPasswordInput,
-                  }).should('be.visible');
+                  cy.get('input[name="password"]').should('be.visible');
                   // Fill in the password and submit
                   cy.get('input[name="password"]').type(
                     userCredentials.password,
                     { log: false }
                   );
-                  cy.get('button').contains('Submit').click();
+                  cy.get('button').contains('Submit').click({ force: true });
                 }
               );
-
-              // Wait for the flow to redirect back to the application.
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(
-                commandOptions.timeouts?.waitForRedirect ??
-                  defaultTimeouts.waitForRedirect
-              );
-              cy.get('[role="main"]', {
-                timeout:
-                  commandOptions.timeouts?.waitForElement ??
-                  defaultTimeouts.waitForElement,
-              }).should('exist');
-              cy.url({
-                timeout:
-                  commandOptions.timeouts?.waitForUrl ??
-                  defaultTimeouts.waitForUrl,
-              }).should('include', url);
             } else {
               const mcUrl = appConfig.mcApiUrl.replace('mc-api', 'mc');
-              // See similar comment above regarding the usage of `cy.wait`.
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
               cy.origin(
                 mcUrl,
                 {
                   args: {
                     userCredentials,
                     mcUrl,
-                    timeouts: commandOptions.timeouts,
-                    defaultTimeouts,
                   },
                 },
                 ({
                   userCredentials,
                   mcUrl,
-                  timeouts,
-                  defaultTimeouts,
                 }: {
                   userCredentials: LoginCredentials;
                   mcUrl: string;
-                  timeouts?: LoginCommandTimeouts;
-                  defaultTimeouts: LoginCommandTimeouts;
                 }) => {
                   cy.url().should('include', `${mcUrl}/login`);
 
                   // Same as `fillLegacyLoginFormWithRetry`.
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
-                  cy.get('input[name=email]', {
-                    timeout:
-                      timeouts?.waitForEmailInput ??
-                      defaultTimeouts.waitForEmailInput,
-                  })
+                  cy.get('input[name=email]')
                     // We use `force` as the MC login UI (production) in tests renders the
                     // cookie banner overlapping the input fields.
                     // To allow Cypress to interact with the input fields, we use `force`.
                     .clear({ force: true })
                     .type(userCredentials.email, { force: true });
                   // eslint-disable-next-line cypress/unsafe-to-chain-command
-                  cy.get('input[name=password]', {
-                    timeout:
-                      timeouts?.waitForPasswordInput ??
-                      defaultTimeouts.waitForPasswordInput,
-                  })
+                  cy.get('input[name=password]')
                     // We use `force` as the MC login UI (production) in tests renders the
                     // cookie banner overlapping the input fields.
                     // To allow Cypress to interact with the input fields, we use `force`.
@@ -396,95 +324,63 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   cy.get('button').contains('Sign in').click({ force: true });
                 }
               );
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(1000);
-
-              // Wait for the flow to redirect back to the application.
-              cy.get('[role="main"]').should('exist');
-              cy.url().should('include', url);
             }
+            // Wait for the flow to redirect back to the application.
+            cy.get('[role="main"]').should('exist');
+            cy.url().should('include', initialUriPath);
           } else {
+            // Ensure the primary origin is set to MC.
+            cy.visit(new URL('/health', Cypress.config('baseUrl')).toString());
+
             if (isGlobalIdentityEnabled) {
-              // Wait for redirect to Identity to complete
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(
-                commandOptions.timeouts?.waitForIdentityRedirect ??
-                  defaultTimeouts.waitForIdentityRedirect
-              );
+              const identityArgs = {
+                email: userCredentials.email,
+                password: userCredentials.password,
+                returnTo: new URL(
+                  initialUriPath,
+                  Cypress.config('baseUrl')
+                ).toString(),
+              };
 
-              cy.url({
-                timeout:
-                  commandOptions.timeouts?.waitForUrl ??
-                  defaultTimeouts.waitForUrl,
-              }).should('include', `${identityUrl}/login`);
-              // Fill in the email and click Next
-              cy.get('input[name="identifier"]', {
-                timeout:
-                  commandOptions.timeouts?.waitForEmailInput ??
-                  defaultTimeouts.waitForEmailInput,
-              }).type(userCredentials.email);
-              cy.get('button').contains('Next').click();
-
-              // Wait for the password form to appear
-              cy.get('input[name="password"]', {
-                timeout:
-                  commandOptions.timeouts?.waitForPasswordInput ??
-                  defaultTimeouts.waitForPasswordInput,
-              }).should('be.visible');
-              // Fill in the password and submit
-              cy.get('input[name="password"]').type(userCredentials.password, {
-                log: false,
-              });
-              cy.get('button').contains('Submit').click({ force: true });
-
-              // Wait for redirect to start
-              // eslint-disable-next-line cypress/no-unnecessary-waiting
-              cy.wait(
-                commandOptions.timeouts?.waitForRedirect ??
-                  defaultTimeouts.waitForRedirect
-              );
-
-              // Wait for the flow to redirect back to the application.
+              // Perform the login flow through Identity.
               cy.origin(
-                Cypress.config('baseUrl'),
-                {
-                  args: {
-                    url,
-                    timeouts: commandOptions.timeouts,
-                    defaultTimeouts,
-                  },
-                },
-                ({
-                  url,
-                  timeouts,
-                  defaultTimeouts,
-                }: {
-                  url: string;
-                  timeouts?: LoginCommandTimeouts;
-                  defaultTimeouts: LoginCommandTimeouts;
+                'https://identity.commercetools.com',
+                { args: identityArgs },
+                (args: {
+                  email: string;
+                  password: string;
+                  returnTo: string;
                 }) => {
-                  // Wait for application to fully load
-                  cy.get('[role="main"]', {
-                    timeout:
-                      timeouts?.waitForElement ??
-                      defaultTimeouts.waitForElement,
-                  }).should('exist');
-                  cy.url({
-                    timeout: timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
-                  }).should('include', url);
+                  cy.visit({
+                    url: `/login`,
+                    qs: {
+                      returnTo: args.returnTo,
+                    },
+                  });
+                  // Fill in the email and click Next
+                  cy.get('input[name="identifier"]').type(args.email);
+                  cy.get('button').contains('Next').click();
+
+                  // Wait for the password form to appear
+                  cy.get('input[name="password"]').should('be.visible');
+                  // Fill in the password and submit
+                  cy.get('input[name="password"]').type(args.password, {
+                    log: false,
+                  });
+                  cy.get('button').contains('Submit').click({ force: true });
                 }
               );
             } else {
               // Legacy login flow.
-              fillLegacyLoginFormWithRetry(
-                userCredentials,
-                commandOptions.timeouts
-              );
-
-              // Wait for the flow to redirect back to the application.
-              cy.get('[role="main"]').should('exist');
-              cy.url().should('include', url);
+              // Visit the application URL, which triggers then the login flow.
+              cy.visit(initialUriPath, {
+                onBeforeLoad: commandOptions.onBeforeLoad,
+              });
+              fillLegacyLoginFormWithRetry(userCredentials);
             }
+            // Wait for the flow to redirect back to the application.
+            cy.get('[role="main"]').should('exist');
+            cy.url().should('include', initialUriPath);
           }
         }
       );
@@ -498,13 +394,23 @@ function loginByForm(commandOptions: CommandLoginOptions) {
       // https://www.cypress.io/blog/2021/08/04/authenticate-faster-in-tests-cy-session-command/
       cy.session(
         sessionKey,
-        authCallback,
+        sessionAuthCallback,
         isFeatureSupported('10.9.0')
           ? {
               cacheAcrossSpecs:
                 typeof commandOptions.disableCacheAcrossSpecs === 'boolean'
                   ? !commandOptions.disableCacheAcrossSpecs
                   : true,
+              // TODO: enable it once Identity is enabled by default.
+              // validate() {
+              //   if (isLocalhost) {
+              //     return;
+              //   }
+              //   // Verify that the session is valid (session cookie is included in the request).
+              //   cy.request(new URL('/whoami', appConfig.mcApiUrl).toString())
+              //     .its('status')
+              //     .should('eq', 200);
+              // },
             }
           : undefined
       );
@@ -513,15 +419,12 @@ function loginByForm(commandOptions: CommandLoginOptions) {
         `We recommend to use "cy.session" to reduce the time to log in between tests. Make sure to have at least Cypress v12 or enable it via "experimentalSessionAndOrigin" for older Cypress versions.`
       );
 
-      authCallback();
+      sessionAuthCallback();
     }
 
     if (commandOptions.initialRoute) {
       cy.visit(`${Cypress.config('baseUrl')}${commandOptions.initialRoute}`);
-      cy.url({
-        timeout:
-          commandOptions.timeouts?.waitForUrl ?? defaultTimeouts.waitForUrl,
-      }).should('include', commandOptions.initialRoute);
+      cy.url().should('include', commandOptions.initialRoute);
     }
   });
 }
@@ -529,10 +432,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
 /* Utilities */
 
 const legacyMaxLoginAttempts = Cypress.config('maxLoginAttempts') ?? 3;
-function fillLegacyLoginFormWithRetry(
-  userCredentials: LoginCredentials,
-  timeouts?: LoginCommandTimeouts
-) {
+function fillLegacyLoginFormWithRetry(userCredentials: LoginCredentials) {
   // Intercept the login request so we can retry it if we receive a TOO_MANY_REQUESTS status code
   cy.intercept('POST', '**/tokens').as('loginRequest');
 
@@ -553,16 +453,11 @@ function fillLegacyLoginFormWithRetry(
     cy.log(`Attempts left: ${attemptsLeft}`);
 
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=email]', {
-      timeout: timeouts?.waitForEmailInput ?? defaultTimeouts.waitForEmailInput,
-    })
+    cy.get('input[name=email]')
       .clear({ force: true })
       .type(userCredentials.email, { force: true });
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[name=password]', {
-      timeout:
-        timeouts?.waitForPasswordInput ?? defaultTimeouts.waitForPasswordInput,
-    })
+    cy.get('input[name=password]')
       .clear({ force: true })
       .type(userCredentials.password, {
         log: false,
