@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 24.7.2
+
+### Patch Changes
+
+- [#3844](https://github.com/commercetools/merchant-center-application-kit/pull/3844) [`d81f5d5`](https://github.com/commercetools/merchant-center-application-kit/commit/d81f5d5bf0fd51f9454571066b556fdfa7e31145) Thanks [@emmenko](https://github.com/emmenko)! - Improve login command steps in Cypress
+
 ## 24.7.1
 
 ## 24.7.0
