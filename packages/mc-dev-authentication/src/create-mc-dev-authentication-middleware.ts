@@ -16,6 +16,20 @@ function createMcDevAuthenticationMiddleware(
     response: ServerResponse,
     next: NextFunction
   ) => {
+    // This endpoint is meant to be used in Cypress tests to ensure
+    // that the primary origin is set to localhost.
+    if (request.originalUrl === '/api/health') {
+      response.statusCode = 200;
+      if (request.headers.accept === 'application/json') {
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify({ healthy: true }));
+      } else {
+        response.setHeader('Content-Type', 'text/html');
+        response.end(`healthy = true`);
+      }
+      return;
+    }
+
     if (request.originalUrl === '/api/graphql') {
       response.statusCode = 404;
       response.setHeader('Content-Type', 'application/json');
