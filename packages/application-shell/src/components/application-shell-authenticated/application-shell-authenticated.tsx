@@ -83,7 +83,7 @@ export const MainContainer = styled.main`
   */
   min-width: 0;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   /*
     layout the children. There will always be the page and side notification
@@ -356,6 +356,7 @@ export const ApplicationShellAuthenticated = (
                                 display: flex;
                                 flex-direction: column;
                                 position: relative;
+                                overflow: hidden auto;
 
                                 /*
                                 This is only necessary because we have an intermediary <div> wrapping the
