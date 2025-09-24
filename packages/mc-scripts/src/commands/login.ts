@@ -13,14 +13,25 @@ const credentialsStorage = new CredentialsStorage();
 const port = 3001;
 const clientIdentifier = `mc-scripts-${pkgJson.version}`;
 
+const isServerError = (error: unknown): error is NodeJS.ErrnoException => {
+  return error instanceof Error && 'code' in error;
+};
+
 const startServer = (server: Server) =>
   new Promise((resolve, reject) => {
     server
-      .listen(port)
+      .listen(port, 'localhost')
       .on('listening', resolve)
       .on('error', (error) => {
-        console.error('Problem starting server', error);
-        return reject(error);
+        if (isServerError(error) && error.code === 'EADDRINUSE') {
+          return reject(
+            new Error(
+              `The address "localhost:${port}" is already in use. Are you running a Merchant Center application in other process? Please stop that and try again.`,
+              { cause: error }
+            )
+          );
+        }
+        return reject(new Error('Problem starting server', { cause: error }));
       })
       .on('close', () => {
         process.exit();
