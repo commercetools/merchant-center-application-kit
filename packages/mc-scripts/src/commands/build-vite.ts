@@ -115,7 +115,7 @@ async function run() {
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
       process.env.ANALYZE_BUNDLE === 'true' &&
-        analyzer({ defaultSizes: 'parsed', openAnalyzer: true }),
+        analyzer({ defaultSizes: 'stat', openAnalyzer: true }),
       process.env.ANALYZE_BUNDLE_TREE === 'true' &&
         (visualizer({ open: true, template: 'network' }) as PluginOption),
     ],
