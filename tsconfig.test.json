@@ -1,0 +1,20 @@
+{
+  "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json",
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./@types", "./@types-extensions"],
+    "skipLibCheck": true,
+    "preserveSymlinks": false
+  },
+  "include": [
+    "packages/**/*.spec.ts",
+    "packages/**/*.spec.tsx",
+    "packages-backend/**/*.spec.ts",
+    "packages-backend/**/*.spec.tsx",
+    "visual-testing-app/**/*.visualspec.ts",
+    "visual-testing-app/**/*.spec.ts",
+    "visual-testing-app/**/*.spec.tsx",
+    "packages/application-components/src/components/dialogs/internals/dialog-test-utils.tsx",
+    "@types-extensions/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "build"]
+}

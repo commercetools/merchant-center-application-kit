@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/cldr": "^7.1.4",
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.14",
     "@types/prettier": "2.7.3",
     "chalk": "4.1.2",
     "cldr": "7.9.0",

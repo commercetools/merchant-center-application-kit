@@ -77,6 +77,10 @@ async function run() {
       : createWebpackConfigForProduction();
     const compiler = webpack(config);
 
+    if (!compiler) {
+      return Promise.reject(new Error('Failed to create webpack compiler'));
+    }
+
     return new Promise((resolve, reject) => {
       compiler.run((err, stats) => {
         let messages;

@@ -61,7 +61,7 @@ const parseJsonFile = <T>(filePath: string): T => {
   } catch (error) {
     // Ignore
   }
-  return rawData ? JSON.parse(rawData) : {};
+  return rawData ? JSON.parse(rawData) : ({} as T);
 };
 
 export {

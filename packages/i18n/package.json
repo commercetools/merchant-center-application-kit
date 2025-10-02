@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@formatjs/cli": "6.7.2",
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.14",
     "jest-mock": "29.7.0",
     "react": "19.0.0",
     "react-intl": "^7.1.4"

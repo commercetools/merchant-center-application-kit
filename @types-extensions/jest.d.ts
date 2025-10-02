@@ -1,5 +1,11 @@
 /// <reference types="@commercetools-frontend/application-config/client" />
 
+// Global types for jest-environment-puppeteer
+// These are provided at runtime by jest-puppeteer but need to be declared for TypeScript
+declare const page: import('puppeteer').Page;
+declare const browser: import('puppeteer').Browser;
+declare const context: import('puppeteer').BrowserContext;
+
 declare namespace jest {
   interface Matchers<R, T> {
     toHaveTextContent(selector: string): R;
