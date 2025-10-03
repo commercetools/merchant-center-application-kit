@@ -37,10 +37,12 @@ export type TSdkActionPayload =
 export type TSdkActionGetForUri = {
   type: 'SDK';
   payload: TSdkActionPayloadForUri & TSdkActionPayloadMethod<'GET'>;
+  [key: string]: unknown;
 };
 export type TSdkActionGetForService = {
   type: 'SDK';
   payload: TSdkActionPayloadForService & TSdkActionPayloadMethod<'GET'>;
+  [key: string]: unknown;
 };
 export type TSdkActionGet = TSdkActionGetForUri | TSdkActionGetForService;
 
@@ -49,22 +51,26 @@ export type TSdkActionPostForUri = {
   payload: TSdkActionPayloadForUri &
     TSdkActionPayloadMethod<'POST'> &
     TSdkActionPayloadBody;
+  [key: string]: unknown;
 };
 export type TSdkActionPostForService = {
   type: 'SDK';
   payload: TSdkActionPayloadForService &
     TSdkActionPayloadMethod<'POST'> &
     TSdkActionPayloadBody;
+  [key: string]: unknown;
 };
 export type TSdkActionPost = TSdkActionPostForUri | TSdkActionPostForService;
 
 export type TSdkActionDeleteForUri = {
   type: 'SDK';
   payload: TSdkActionPayloadForUri & TSdkActionPayloadMethod<'DELETE'>;
+  [key: string]: unknown;
 };
 export type TSdkActionDeleteForService = {
   type: 'SDK';
   payload: TSdkActionPayloadForService & TSdkActionPayloadMethod<'DELETE'>;
+  [key: string]: unknown;
 };
 export type TSdkActionDelete =
   | TSdkActionDeleteForUri
@@ -73,10 +79,12 @@ export type TSdkActionDelete =
 export type TSdkActionHeadForUri = {
   type: 'SDK';
   payload: TSdkActionPayloadForUri & TSdkActionPayloadMethod<'HEAD'>;
+  [key: string]: unknown;
 };
 export type TSdkActionHeadForService = {
   type: 'SDK';
   payload: TSdkActionPayloadForService & TSdkActionPayloadMethod<'HEAD'>;
+  [key: string]: unknown;
 };
 export type TSdkActionHead = TSdkActionHeadForUri | TSdkActionHeadForService;
 

@@ -6,7 +6,10 @@ import handleActionError from '../actions/handle-action-error';
 export default function useOnActionError() {
   const dispatch = useDispatch();
   return useCallback(
-    (error: ActionError) => dispatch(handleActionError(error)),
+    (error: ActionError) =>
+      dispatch(
+        handleActionError(error) as unknown as Parameters<typeof dispatch>[0]
+      ),
     [dispatch]
   );
 }
