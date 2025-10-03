@@ -1,5 +1,14 @@
 # @commercetools-frontend/l10n
 
+## 24.8.0
+
+### Patch Changes
+
+- [#3639](https://github.com/commercetools/merchant-center-application-kit/pull/3639) [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies to latest minor versions, see https://github.com/commercetools/merchant-center-application-kit/pull/3639 for details
+
+- Updated dependencies [[`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a)]:
+  - @commercetools-frontend/sentry@24.8.0
+
 ## 24.7.2
 
 ### Patch Changes
