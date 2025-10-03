@@ -279,7 +279,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // Fill in the password and submit
                   cy.get('input[name="password"]').type(
                     userCredentials.password,
-                    { log: false }
+                    { log: false, force: true }
                   );
                   cy.get('button').contains('Submit').click({ force: true });
                 }
@@ -366,6 +366,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   // Fill in the password and submit
                   cy.get('input[name="password"]').type(args.password, {
                     log: false,
+                    force: true,
                   });
                   cy.get('button').contains('Submit').click({ force: true });
                 }
