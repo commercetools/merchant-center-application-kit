@@ -178,19 +178,19 @@ const getDefaultMockResolvers = (mocks = {}) => {
       return res(ctx.data({ project: mockedProjects[0] ?? null }));
     }),
     graphql.query('FetchProjectExtensionsNavbar', (req, res, ctx) =>
-      ctx.data({
-        projectExtension: null,
-      })
+      res(
+        ctx.data({
+          projectExtension: null,
+        })
+      )
     ),
-    graphql
-      .link(`${window.location.origin}/api/graphql`)
-      .query('FetchApplicationsMenu', (req, res, ctx) =>
-        res(
-          ctx.data({
-            applicationsMenu: null,
-          })
-        )
-      ),
+    graphql.query('FetchApplicationsMenu', (req, res, ctx) =>
+      res(
+        ctx.data({
+          applicationsMenu: null,
+        })
+      )
+    ),
   ];
 };
 const mockServer = setupServer();
@@ -1294,43 +1294,41 @@ describe('navbar menu links interactions', () => {
             })
           );
         }),
-        graphql
-          .link(`${window.location.origin}/api/graphql`)
-          .query('FetchApplicationsMenu', (req, res, ctx) =>
-            res(
-              ctx.data({
-                applicationsMenu: {
-                  __typename: 'ApplicationsMenu',
-                  appBar: ApplicationAppbarMenuMock.buildList(1),
-                  navBarGroups: [
-                    ApplicationNavbarMenuGroupMock.random()
-                      .key('2')
-                      .items(
-                        ApplicationNavbarMenuMock.buildList(1, {
+        graphql.query('FetchApplicationsMenu', (req, res, ctx) =>
+          res(
+            ctx.data({
+              applicationsMenu: {
+                __typename: 'ApplicationsMenu',
+                appBar: ApplicationAppbarMenuMock.buildList(1),
+                navBarGroups: [
+                  ApplicationNavbarMenuGroupMock.random()
+                    .key('2')
+                    .items(
+                      ApplicationNavbarMenuMock.buildList(1, {
+                        labelAllLocales: [
+                          {
+                            __typename: 'LocalizedField',
+                            locale: 'en',
+                            value: 'Products',
+                          },
+                        ],
+                        submenu: ApplicationNavbarSubmenuMock.buildList(1, {
                           labelAllLocales: [
                             {
                               __typename: 'LocalizedField',
                               locale: 'en',
-                              value: 'Products',
+                              value: 'Add product',
                             },
                           ],
-                          submenu: ApplicationNavbarSubmenuMock.buildList(1, {
-                            labelAllLocales: [
-                              {
-                                __typename: 'LocalizedField',
-                                locale: 'en',
-                                value: 'Add product',
-                              },
-                            ],
-                          }),
-                        })
-                      )
-                      .buildGraphql(),
-                  ],
-                },
-              })
-            )
-          ),
+                        }),
+                      })
+                    )
+                    .buildGraphql(),
+                ],
+              },
+            })
+          )
+        ),
         ...getDefaultMockResolvers()
       );
     });
@@ -1377,11 +1375,9 @@ describe('navbar menu links interactions', () => {
             ])
           );
         }),
-        graphql
-          .link(`${window.location.origin}/api/graphql`)
-          .query('FetchApplicationsMenu', (req, res, ctx) =>
-            res(ctx.data({ applicationsMenu: null }))
-          )
+        graphql.query('FetchApplicationsMenu', (req, res, ctx) =>
+          res(ctx.data({ applicationsMenu: null }))
+        )
       );
       renderApp(null, {
         environment: {
