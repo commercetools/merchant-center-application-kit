@@ -16,5 +16,11 @@
     "packages/application-components/src/components/dialogs/internals/dialog-test-utils.tsx",
     "@types-extensions/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": ["node_modules", "dist", "build"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "ESNext",
+      "moduleResolution": "nodenext"
+    }
+  }
 }
