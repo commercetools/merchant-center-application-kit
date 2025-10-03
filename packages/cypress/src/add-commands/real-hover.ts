@@ -134,9 +134,9 @@ function getFrameElement(currentWindow: Window): HTMLElement | undefined {
   // fallback to querying using the parent window, mainly to grab the AUT iframe
   const iframeElements =
     currentWindow.parent.document.querySelectorAll('iframe');
-  return Array.from(iframeElements.entries())
-    .map(([, element]) => element)
-    .find((element) => element.contentWindow === currentWindow);
+  return Array.from(iframeElements).find(
+    (element) => element.contentWindow === currentWindow
+  );
 }
 
 function getIframesPositionShift(element: HTMLElement) {
