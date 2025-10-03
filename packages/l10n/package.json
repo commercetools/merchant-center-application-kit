@@ -38,21 +38,21 @@
     "@types/react": "^19.0.3",
     "lodash": "4.17.21",
     "moment": "^2.29.4",
-    "moment-timezone": "^0.5.40",
+    "moment-timezone": "^0.6.0",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
     "@types/cldr": "^7.1.4",
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.14",
     "@types/prettier": "2.7.3",
     "chalk": "4.1.2",
-    "cldr": "7.5.0",
+    "cldr": "7.9.0",
     "deep-diff": "1.0.2",
     "node-fetch": "2.7.0",
     "prettier": "2.8.8",
     "prompts": "^2.4.2",
     "react": "19.0.0",
-    "rimraf": "5.0.7"
+    "rimraf": "5.0.10"
   },
   "peerDependencies": {
     "react": "19.x"

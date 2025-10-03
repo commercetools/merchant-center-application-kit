@@ -2,6 +2,7 @@
   "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json",
   "compilerOptions": {
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
+    "skipLibCheck": true,
     // Allow tsc to resolve dependencies of `@types` packages in the way pnpm sets up the `node_modules`.
     "preserveSymlinks": false
   },
@@ -10,6 +11,13 @@
     "packages-backend",
     "visual-testing-app",
     "website-components-playground"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.visualspec.ts",
+    "**/test/**",
+    "packages/application-components/src/components/dialogs/internals/dialog-test-utils.tsx"
   ],
   // Old "moduleResolution": "Node" option required for Cypress
   // https://github.com/cypress-io/cypress/issues/26308#issuecomment-1663592648

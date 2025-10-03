@@ -25,9 +25,16 @@ const compiler = (fixture: string): Promise<Stats> => {
     },
   });
 
+  if (!compiler) {
+    throw new Error('Failed to create webpack compiler');
+  }
+
   // @ts-expect-error: IFs returned by createFsFromVolume does not exactly match OutputFileSystem
   compiler.outputFileSystem = createFsFromVolume(new Volume());
-  compiler.outputFileSystem!.join = path.join.bind(path);
+  if (!compiler.outputFileSystem) {
+    throw new Error('Failed to create output file system');
+  }
+  compiler.outputFileSystem.join = path.join.bind(path);
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {

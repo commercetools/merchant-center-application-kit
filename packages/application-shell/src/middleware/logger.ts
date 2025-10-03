@@ -1,5 +1,4 @@
 import type { Middleware } from 'redux';
-
 import { createLogger } from 'redux-logger';
 import { logger } from '@commercetools-frontend/application-shell-connectors';
 import {
@@ -7,7 +6,7 @@ import {
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
 
-const loggerMiddleware: Middleware = createLogger({
+const loggerMiddleware = createLogger({
   logger,
   collapsed: true,
   colors: {
@@ -44,6 +43,6 @@ const loggerMiddleware: Middleware = createLogger({
         return true;
     }
   },
-});
+}) as Middleware;
 
 export default loggerMiddleware;
