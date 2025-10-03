@@ -9,7 +9,7 @@ import {
 } from '@reduxjs/toolkit';
 import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,

@@ -22,9 +22,9 @@
     "@babel/runtime-corejs3": "^7.22.15"
   },
   "devDependencies": {
-    "redux": "4.2.1"
+    "redux": "5.0.1"
   },
   "peerDependencies": {
-    "redux": "4.x"
+    "redux": "4.x || 5.x"
   }
 }
