@@ -1,5 +1,32 @@
 # merchant-center-application-template-starter-typescript
 
+## 24.8.0
+
+### Minor Changes
+
+- [#3851](https://github.com/commercetools/merchant-center-application-kit/pull/3851) [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Update UI Kit versions to `^20.2.3`. Update MSW to `1.3.5`.
+
+### Patch Changes
+
+- [#3639](https://github.com/commercetools/merchant-center-application-kit/pull/3639) [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies to latest minor versions, see https://github.com/commercetools/merchant-center-application-kit/pull/3639 for details
+
+- Updated dependencies [[`4e2364d`](https://github.com/commercetools/merchant-center-application-kit/commit/4e2364d85ce294a799d83f47c67c8eb40b8aa234), [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c), [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a)]:
+  - @commercetools-frontend/mc-scripts@24.8.0
+  - @commercetools-frontend/application-shell-connectors@24.8.0
+  - @commercetools-frontend/application-components@24.8.0
+  - @commercetools-frontend/application-shell@24.8.0
+  - @commercetools-frontend/i18n@24.8.0
+  - @commercetools-frontend/eslint-config-mc-app@24.8.0
+  - @commercetools-frontend/application-config@24.8.0
+  - @commercetools-frontend/jest-preset-mc-app@24.8.0
+  - @commercetools-frontend/l10n@24.8.0
+  - @commercetools-frontend/permissions@24.8.0
+  - @commercetools-frontend/mc-dev-authentication@24.8.0
+  - @commercetools-frontend/actions-global@24.8.0
+  - @commercetools-frontend/assets@24.8.0
+  - @commercetools-frontend/babel-preset-mc-app@24.8.0
+  - @commercetools-frontend/constants@24.8.0
+
 ## 24.7.2
 
 ### Patch Changes
