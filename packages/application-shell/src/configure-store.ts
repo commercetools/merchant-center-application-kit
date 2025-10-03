@@ -1,7 +1,6 @@
 import {
   configureStore,
   combineReducers,
-  applyMiddleware,
   type ReducersMapObject,
   type Store,
   type Middleware,
@@ -9,7 +8,8 @@ import {
 } from '@reduxjs/toolkit';
 import mapValues from 'lodash/mapValues';
 import omitEmpty from 'omit-empty-es';
-import thunk from 'redux-thunk';
+import { applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
@@ -35,7 +35,7 @@ import loggerMiddleware from './middleware/logger';
 interface ApplicationWindowWithDevtools extends ApplicationWindow {
   __REDUX_DEVTOOLS_EXTENSION__: (config?: {
     actionsBlacklist: string[];
-  }) => StoreEnhancer<unknown, {}>;
+  }) => StoreEnhancer;
 }
 declare let window: ApplicationWindowWithDevtools;
 
@@ -97,8 +97,8 @@ const createInternalReducer = (
   );
 
   // NOTE: since we don't know in advance which reducers will be injected,
-  // we pass an `unknown` type to express this uncertainty and make the compiler happy.
-  return combineReducers<unknown>({
+  // we let TypeScript infer the type from the reducer map.
+  return combineReducers({
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
     ...injectedReducers,
@@ -119,12 +119,8 @@ export const createReduxStore = (
     devTools: {
       actionsDenylist: [SHOW_LOADING, HIDE_LOADING],
     },
-    middleware: (getDefaultMiddleware) => [
-      ...additionalMiddlewares,
-      hideNotificationsMiddleware,
-      notificationsMiddleware,
-      sdkMiddleware,
-      ...getDefaultMiddleware({
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
         // https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data
         serializableCheck: false,
         // This default check is logging warnings to console for some MC FE tests, probably
@@ -133,9 +129,12 @@ export const createReduxStore = (
         // to turn it off.
         // https://redux-toolkit.js.org/api/immutabilityMiddleware
         immutableCheck: false,
-      }),
-      loggerMiddleware,
-    ],
+      })
+        .prepend(sdkMiddleware as Middleware)
+        .prepend(notificationsMiddleware as Middleware)
+        .prepend(hideNotificationsMiddleware as Middleware)
+        .prepend(...(additionalMiddlewares as Middleware[]))
+        .concat(loggerMiddleware as Middleware),
   });
 
   const enhancedStore = store as TEnhancedStore;

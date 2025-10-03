@@ -19,6 +19,7 @@ import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
 import { Router } from 'react-router-dom';
+import type { Middleware } from 'redux';
 import invariant from 'tiny-invariant';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import {
@@ -520,7 +521,9 @@ function createReduxProviders<
     if (sdkMocks.length === 0) return createReduxStore(storeState);
 
     const testingMiddleware = createSdkTestMiddleware(sdkMocks);
-    return createReduxStore(storeState, [testingMiddleware]);
+    return createReduxStore(storeState, [
+      testingMiddleware as unknown as Middleware,
+    ]);
   })();
 
   const ReduxProviders = (props: { children: ReactNode }) => (

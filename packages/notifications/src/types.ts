@@ -18,11 +18,13 @@ export interface TAddNotificationAction<Payload extends TNotification>
   payload: Payload;
   meta?: TNotificationMetaOptions;
   dismiss?: () => void;
+  [key: string]: unknown;
 }
 
 export interface TRemoveNotificationAction
   extends Action<typeof REMOVE_NOTIFICATION> {
   payload: TNotification;
+  [key: string]: unknown;
 }
 
 export type TNotificationAction<Payload extends TNotification> =

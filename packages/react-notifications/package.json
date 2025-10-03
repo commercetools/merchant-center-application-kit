@@ -56,14 +56,14 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-intl": "^7.1.4",
-    "react-redux": "7.2.9",
+    "react-redux": "9.2.0",
     "react-router-dom": "5.3.4"
   },
   "peerDependencies": {
     "react": "19.x",
     "react-dom": "19.x",
     "react-intl": "7.x",
-    "react-redux": "7.x",
+    "react-redux": "7.x || 9.x",
     "react-router-dom": "5.x"
   }
 }

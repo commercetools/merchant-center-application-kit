@@ -48,13 +48,13 @@
     "jest-mock": "29.7.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-redux": "7.2.9",
-    "redux": "4.2.1",
-    "redux-thunk": "2.4.2"
+    "react-redux": "9.2.0",
+    "redux": "5.0.1",
+    "redux-thunk": "3.1.0"
   },
   "peerDependencies": {
     "react": "19.x",
-    "react-redux": "7.x",
-    "redux": "4.x"
+    "react-redux": "7.x || 9.x",
+    "redux": "4.x || 5.x"
   }
 }
