@@ -194,7 +194,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
   ${(props) => [
     props.isActive &&
       css`
-        background: ${uiKitDesignTokens.colorPrimary40};
+        background: ${uiKitDesignTokens.colorAccent20};
       `,
     !props.isActive &&
       css`
@@ -203,7 +203,7 @@ const SublistItem = styled.li<{ isActive: boolean }>`
           color: ${uiKitDesignTokens.colorSurface};
           font-weight: ${uiKitDesignTokens.fontWeight600};
           border-radius: ${uiKitDesignTokens.borderRadius4};
-          background: ${uiKitDesignTokens.colorPrimary95};
+          background: ${uiKitDesignTokens.colorAccent20};
 
           [data-link-level='text-link-sublist'] {
             > ${NavlinkClickableContent} {
