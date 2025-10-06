@@ -17,9 +17,15 @@ describe('dispatching add/remove notification actions', () => {
     const store = createStore<
       TNotificationState<FooNotification>,
       TNotificationAction<FooNotification>,
-      unknown,
-      unknown
-    >(reducer, undefined, applyMiddleware(middleware));
+      {},
+      {}
+    >(
+      reducer,
+      undefined,
+      applyMiddleware(
+        middleware as unknown as Parameters<typeof applyMiddleware>[0]
+      )
+    );
     expect(store.getState()).toEqual([]);
     const action = addNotification(notification, {
       dismissAfter: 100,
@@ -38,9 +44,15 @@ describe('dispatching add/remove notification actions', () => {
     const store = createStore<
       TNotificationState<FooNotification>,
       TNotificationAction<FooNotification>,
-      unknown,
-      unknown
-    >(reducer, undefined, applyMiddleware(middleware));
+      {},
+      {}
+    >(
+      reducer,
+      undefined,
+      applyMiddleware(
+        middleware as unknown as Parameters<typeof applyMiddleware>[0]
+      )
+    );
     expect(store.getState()).toEqual([]);
     const action = addNotification(notification, {
       onDismiss(notificationId) {

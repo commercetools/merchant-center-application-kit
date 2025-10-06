@@ -481,7 +481,9 @@ describe('renderAppWithRedux', () => {
   it('should be able to use storeState render option', () => {
     const TestComponent = () => {
       const store = useStore();
-      const state = store.getState();
+      const state = store.getState() as unknown as {
+        products: { currentVisible: { id: string } };
+      };
       return state.products.currentVisible.id;
     };
     renderAppWithRedux(
