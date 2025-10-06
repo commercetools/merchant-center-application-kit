@@ -1,5 +1,16 @@
 # @commercetools-frontend/sdk
 
+## 24.8.0
+
+### Patch Changes
+
+- [#3639](https://github.com/commercetools/merchant-center-application-kit/pull/3639) [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies to latest minor versions, see https://github.com/commercetools/merchant-center-application-kit/pull/3639 for details
+
+- [#3852](https://github.com/commercetools/merchant-center-application-kit/pull/3852) [`4309403`](https://github.com/commercetools/merchant-center-application-kit/commit/430940370f709eadb6e202683772ddb1467bf212) Thanks [@jaikamat](https://github.com/jaikamat)! - Update redux dependencies
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@24.8.0
+
 ## 24.7.2
 
 ### Patch Changes

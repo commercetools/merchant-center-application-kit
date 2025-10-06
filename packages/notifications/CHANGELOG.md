@@ -1,5 +1,11 @@
 # @commercetools-frontend/notifications
 
+## 24.8.0
+
+### Patch Changes
+
+- [#3852](https://github.com/commercetools/merchant-center-application-kit/pull/3852) [`4309403`](https://github.com/commercetools/merchant-center-application-kit/commit/430940370f709eadb6e202683772ddb1467bf212) Thanks [@jaikamat](https://github.com/jaikamat)! - Update redux dependencies
+
 ## 24.7.2
 
 ## 24.7.1

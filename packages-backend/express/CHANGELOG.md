@@ -1,5 +1,11 @@
 # @commercetools-backend/express
 
+## 24.8.0
+
+### Minor Changes
+
+- [#3851](https://github.com/commercetools/merchant-center-application-kit/pull/3851) [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Update UI Kit versions to `^20.2.3`. Update MSW to `1.3.5`.
+
 ## 24.7.2
 
 ## 24.7.1
