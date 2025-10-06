@@ -5,7 +5,7 @@ process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
  */
 module.exports = {
   extends: ['@commercetools-frontend/eslint-config-mc-app'],
-  plugins: ['graphql'],
+  plugins: ['@graphql-eslint'],
   rules: {
     'import/order': [
       'error',
@@ -55,62 +55,77 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.mc.graphql'],
+      parser: '@graphql-eslint/eslint-plugin',
+      parserOptions: {
+        graphQLConfig: {
+          schema: './schemas/mc.json',
+        },
+      },
       rules: {
-        'graphql/template-strings': [
-          'error',
-          {
-            env: 'literal',
-            schemaJson: require('./schemas/mc.json'),
-          },
-        ],
+        '@graphql-eslint/known-type-names': 'error',
+        '@graphql-eslint/known-argument-names': 'error',
+        '@graphql-eslint/known-directives': 'error',
+        '@graphql-eslint/scalar-leafs': 'error',
       },
     },
     {
       files: ['**/*.ctp.graphql'],
+      parser: '@graphql-eslint/eslint-plugin',
+      parserOptions: {
+        graphQLConfig: {
+          schema: './schemas/ctp.json',
+        },
+      },
       rules: {
-        'graphql/template-strings': [
-          'error',
-          {
-            env: 'literal',
-            schemaJson: require('./schemas/ctp.json'),
-          },
-        ],
+        '@graphql-eslint/known-type-names': 'error',
+        '@graphql-eslint/known-argument-names': 'error',
+        '@graphql-eslint/known-directives': 'error',
+        '@graphql-eslint/scalar-leafs': 'error',
       },
     },
     {
       files: ['**/*.core.graphql'],
+      parser: '@graphql-eslint/eslint-plugin',
+      parserOptions: {
+        graphQLConfig: {
+          schema: './schemas/core.json',
+        },
+      },
       rules: {
-        'graphql/template-strings': [
-          'error',
-          {
-            env: 'literal',
-            schemaJson: require('./schemas/core.json'),
-          },
-        ],
+        '@graphql-eslint/known-type-names': 'error',
+        '@graphql-eslint/known-argument-names': 'error',
+        '@graphql-eslint/known-directives': 'error',
+        '@graphql-eslint/scalar-leafs': 'error',
       },
     },
     {
       files: ['**/*.settings.graphql'],
+      parser: '@graphql-eslint/eslint-plugin',
+      parserOptions: {
+        graphQLConfig: {
+          schema: './schemas/settings.json',
+        },
+      },
       rules: {
-        'graphql/template-strings': [
-          'error',
-          {
-            env: 'literal',
-            schemaJson: require('./schemas/settings.json'),
-          },
-        ],
+        '@graphql-eslint/known-type-names': 'error',
+        '@graphql-eslint/known-argument-names': 'error',
+        '@graphql-eslint/known-directives': 'error',
+        '@graphql-eslint/scalar-leafs': 'error',
       },
     },
     {
       files: ['**/*.proxy.graphql'],
+      parser: '@graphql-eslint/eslint-plugin',
+      parserOptions: {
+        graphQLConfig: {
+          schema: './schemas/proxy.json',
+        },
+      },
       rules: {
-        'graphql/template-strings': [
-          'error',
-          {
-            env: 'literal',
-            schemaJson: require('./schemas/proxy.json'),
-          },
-        ],
+        '@graphql-eslint/known-type-names': 'error',
+        '@graphql-eslint/known-argument-names': 'error',
+        '@graphql-eslint/known-directives': 'error',
+        '@graphql-eslint/scalar-leafs': 'error',
       },
     },
   ],
