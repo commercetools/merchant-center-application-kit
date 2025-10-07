@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 24.8.0
+
 ## 24.7.2
 
 ### Patch Changes

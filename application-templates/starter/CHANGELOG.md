@@ -1,5 +1,39 @@
 # merchant-center-application-template-starter
 
+## 24.8.0
+
+### Minor Changes
+
+- [#3851](https://github.com/commercetools/merchant-center-application-kit/pull/3851) [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Update UI Kit versions to `^20.2.3`. Update MSW to `1.3.5`.
+
+### Patch Changes
+
+- [#3857](https://github.com/commercetools/merchant-center-application-kit/pull/3857) [`f457ed3`](https://github.com/commercetools/merchant-center-application-kit/commit/f457ed3609e82d73ddf2f07d16360d4b8ff7e7f6) Thanks [@jaikamat](https://github.com/jaikamat)! - Migrate from deprecated `eslint-plugin-graphql` to `@graphql-eslint/eslint-plugin` for graphql@16 compatibility. This change provides functional parity with the previous linting behavior while supporting modern GraphQL tooling.
+
+  **For consumers using graphql@16:** This change enables compatibility with graphql@16 and resolves peer dependency conflicts. The new plugin provides equivalent validation of GraphQL queries against schemas.
+
+  **Migration not required:** Existing consumer projects can continue using their current ESLint configuration. Migration is only needed if encountering graphql peer dependency conflicts (e.g., when adopting Redux 5.x or graphql@16 for other reasons).
+
+- [#3639](https://github.com/commercetools/merchant-center-application-kit/pull/3639) [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies to latest minor versions, see https://github.com/commercetools/merchant-center-application-kit/pull/3639 for details
+
+- [#3852](https://github.com/commercetools/merchant-center-application-kit/pull/3852) [`4309403`](https://github.com/commercetools/merchant-center-application-kit/commit/430940370f709eadb6e202683772ddb1467bf212) Thanks [@jaikamat](https://github.com/jaikamat)! - Update redux dependencies
+
+- Updated dependencies [[`4e2364d`](https://github.com/commercetools/merchant-center-application-kit/commit/4e2364d85ce294a799d83f47c67c8eb40b8aa234), [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c), [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a), [`4309403`](https://github.com/commercetools/merchant-center-application-kit/commit/430940370f709eadb6e202683772ddb1467bf212)]:
+  - @commercetools-frontend/mc-scripts@24.8.0
+  - @commercetools-frontend/application-shell-connectors@24.8.0
+  - @commercetools-frontend/application-components@24.8.0
+  - @commercetools-frontend/application-shell@24.8.0
+  - @commercetools-frontend/i18n@24.8.0
+  - @commercetools-frontend/eslint-config-mc-app@24.8.0
+  - @commercetools-frontend/jest-preset-mc-app@24.8.0
+  - @commercetools-frontend/l10n@24.8.0
+  - @commercetools-frontend/actions-global@24.8.0
+  - @commercetools-frontend/permissions@24.8.0
+  - @commercetools-frontend/mc-dev-authentication@24.8.0
+  - @commercetools-frontend/assets@24.8.0
+  - @commercetools-frontend/babel-preset-mc-app@24.8.0
+  - @commercetools-frontend/constants@24.8.0
+
 ## 24.7.2
 
 ### Patch Changes

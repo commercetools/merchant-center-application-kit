@@ -1,5 +1,28 @@
 # playground
 
+## 24.8.0
+
+### Minor Changes
+
+- [#3851](https://github.com/commercetools/merchant-center-application-kit/pull/3851) [`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Update UI Kit versions to `^20.2.3`. Update MSW to `1.3.5`.
+
+### Patch Changes
+
+- [#3639](https://github.com/commercetools/merchant-center-application-kit/pull/3639) [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependencies to latest minor versions, see https://github.com/commercetools/merchant-center-application-kit/pull/3639 for details
+
+- Updated dependencies [[`ac4943c`](https://github.com/commercetools/merchant-center-application-kit/commit/ac4943cc0c5fb3c690f9d8a939a80c94391cd87c), [`f2d1596`](https://github.com/commercetools/merchant-center-application-kit/commit/f2d1596c3b8d88105b543e8c2a7c76062549f74a), [`4309403`](https://github.com/commercetools/merchant-center-application-kit/commit/430940370f709eadb6e202683772ddb1467bf212)]:
+  - @commercetools-frontend/application-shell-connectors@24.8.0
+  - @commercetools-frontend/application-components@24.8.0
+  - @commercetools-frontend/application-shell@24.8.0
+  - @commercetools-frontend/i18n@24.8.0
+  - @commercetools-frontend/l10n@24.8.0
+  - @commercetools-frontend/sdk@24.8.0
+  - @commercetools-frontend/actions-global@24.8.0
+  - @commercetools-frontend/permissions@24.8.0
+  - @commercetools-frontend/assets@24.8.0
+  - @commercetools-frontend/browser-history@24.8.0
+  - @commercetools-frontend/constants@24.8.0
+
 ## 24.7.2
 
 ### Patch Changes
