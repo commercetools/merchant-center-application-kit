@@ -446,6 +446,7 @@ describe('processing a full config', () => {
               'https://track.avengers.app',
               'https://mc-api.europe-west1.gcp.commercetools.com',
               'https://avengers.app/',
+              'https://cdn.avengers.app/',
             ],
             'script-src': [
               'https://track.avengers.app',
@@ -606,6 +607,7 @@ describe('processing a full config', () => {
               'https://track.avengers.app',
               'https://mc-api.europe-west1.gcp.commercetools.com',
               'https://avengers.app/',
+              'https://cdn.avengers.app/',
             ],
             'script-src': [
               'https://track.avengers.app',
