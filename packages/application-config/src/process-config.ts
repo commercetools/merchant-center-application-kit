@@ -298,7 +298,12 @@ const processConfig = async ({
         'connect-src': getUniqueValues(
           appConfig.headers?.csp?.['connect-src'],
           [mcApiUrl.origin].concat(
-            isProd ? [`${trimTrailingSlash(appUrl.href)}/`] : []
+            isProd
+              ? [
+                  `${trimTrailingSlash(appUrl.href)}/`,
+                  `${trimTrailingSlash(cdnUrl.href)}/`,
+                ]
+              : []
           )
         ),
         'script-src': getUniqueValues(
