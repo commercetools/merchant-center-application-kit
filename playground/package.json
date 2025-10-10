@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-docs/ui-kit": "24.2.0",
+    "@commercetools-docs/ui-kit": "24.11.0",
     "@commercetools-frontend/actions-global": "24.8.0",
     "@commercetools-frontend/application-components": "24.8.0",
     "@commercetools-frontend/application-shell": "24.8.0",
