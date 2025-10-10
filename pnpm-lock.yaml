@@ -3084,8 +3084,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0
       sentry-testkit:
-        specifier: 5.0.10
-        version: 5.0.10
+        specifier: 6.2.2
+        version: 6.2.2
       wait-for-expect:
         specifier: 3.0.2
         version: 3.0.2
@@ -14320,8 +14320,8 @@ packages:
   sentence-case@3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
 
-  sentry-testkit@5.0.10:
-    resolution: {integrity: sha512-wpvt29IIK+L1Pe02uc0y7rJkXQcnIk46hvB02Zqd4UNgP2lIhzv80GjR2lu8RtsbAmf7LJnGz8zLuV3rVa69ew==}
+  sentry-testkit@6.2.2:
+    resolution: {integrity: sha512-1YdDokVhf8pbCGF91TeaWP1ue+lHSB358nH+I3mGOWg79O1hssvv3H3OWMojp9RZ+qHXm0DgcZ05oIjnbYoMRw==}
 
   seq@0.3.5:
     resolution: {integrity: sha512-sisY2Ln1fj43KBkRtXkesnRHYNdswIkIibvNe/0UKm2GZxjMbqmccpiatoKr/k2qX5VKiLU8xm+tz/74LAho4g==}
@@ -30133,7 +30133,7 @@ snapshots:
       tslib: 2.8.1
       upper-case-first: 2.0.2
 
-  sentry-testkit@5.0.10:
+  sentry-testkit@6.2.2:
     dependencies:
       body-parser: 1.20.3
       express: 4.22.0
