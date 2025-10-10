@@ -46,7 +46,7 @@
     "@commercetools-uikit/spacings": "^20.2.3",
     "@commercetools-uikit/text": "^20.2.3",
     "@emotion/react": "^11.14.0",
-    "@flopflip/react-broadcast": "15.1.2",
+    "@flopflip/react-broadcast": "15.1.3",
     "apollo-link-rest": "^0.9.0",
     "graphql": "16.11.0",
     "graphql-anywhere": "^4.2.8",

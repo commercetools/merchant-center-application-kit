@@ -1414,8 +1414,8 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@19.1.3)(react@19.0.0))(@types/react@19.1.3)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.2
-        version: 15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@radix-ui/react-dialog':
         specifier: 1.1.14
         version: 1.1.14(@types/react-dom@19.1.7(@types/react@19.1.3))(@types/react@19.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1656,23 +1656,23 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@19.1.3)(react@19.0.0))(@types/react@19.1.3)(react@19.0.0)
       '@flopflip/combine-adapters':
-        specifier: 15.1.2
-        version: 15.1.2(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(typescript@5.9.2)
       '@flopflip/http-adapter':
-        specifier: 15.1.2
-        version: 15.1.2(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(typescript@5.9.2)
       '@flopflip/launchdarkly-adapter':
-        specifier: 15.1.2
-        version: 15.1.2(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(typescript@5.9.2)
       '@flopflip/memory-adapter':
-        specifier: 15.1.2
-        version: 15.1.2(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(typescript@5.9.2)
       '@flopflip/react-broadcast':
-        specifier: 15.1.2
-        version: 15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@flopflip/types':
-        specifier: 15.1.2
-        version: 15.1.2(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(typescript@5.9.2)
       '@reduxjs/toolkit':
         specifier: 2.9.0
         version: 2.9.0(react-redux@9.2.0(@types/react@19.1.3)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
@@ -3217,8 +3217,8 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.3)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.2
-        version: 15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       apollo-link-rest:
         specifier: ^0.9.0
         version: 0.9.0(@apollo/client@3.13.9(@types/react@19.1.3)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(subscriptions-transport-ws@0.9.19(graphql@16.11.0)))(graphql@16.11.0)(qs@6.14.0)
@@ -3368,8 +3368,8 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@19.1.3)(react@19.0.0))(@types/react@19.1.3)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.2
-        version: 15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
+        specifier: 15.1.3
+        version: 15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@rollup/plugin-graphql':
         specifier: 2.0.5
         version: 2.0.5(graphql@16.11.0)(rollup@4.37.0)
@@ -4284,8 +4284,8 @@ packages:
     resolution: {integrity: sha512-uITFQYO68pMEYR46AHgQoyBg7KPPJDAbGn4jUTIRgCFJIp88MIBUianVOplhZDEec07bp9zIyr4Kp0FCyQzmWg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.27.4':
-    resolution: {integrity: sha512-t3yaEOuGu9NlIZ+hIeGbBjFtZT7j2cb2tg0fuaJKeGotchRjjLfrBA9Kwf8quhpP1EUuxModQg04q/mBwyg8uA==}
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.4':
@@ -5231,46 +5231,46 @@ packages:
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
-  '@flopflip/adapter-utilities@15.1.2':
-    resolution: {integrity: sha512-/cTQ4BGh4QlNPSrO4VLLjBMUarMz321UNBUIbHHmea63nsJo2Oz8xizKnKEXNHrzhy506O0dwh+107lzCKmJcg==}
+  '@flopflip/adapter-utilities@15.1.3':
+    resolution: {integrity: sha512-aukheAgik6OHauaR1OoRcm/UErNCq+vYM4AxrJ6vtOsRU2w2hWgi1JBO7wZzf8CpOknOjOWvKLIKxnfB5Iw77A==}
     peerDependencies:
       typescript: 4.x || 5.x
 
-  '@flopflip/cache@15.1.2':
-    resolution: {integrity: sha512-HnS1XdCHiSOwAf37oacCNPOIQ5ZHyB1gYMVwTASNWHv63FeMq1uRVE051Mj6/Cp16HRJg9ESzBBf6Du64OPvmQ==}
+  '@flopflip/cache@15.1.3':
+    resolution: {integrity: sha512-kS/FUyuZW9FUBoGmz0U7mTPIOwGoTN1crohuiQEE+g1U/g6akbFlsEEdJ6rdhScbJpkP3B2DlDfFGVDBqzWIaA==}
 
-  '@flopflip/combine-adapters@15.1.2':
-    resolution: {integrity: sha512-nxxKuenKVPl7u97vS7EqwljlrSWA5S9c2bgKhQXZ2CsUl4foZJoOk3BFq75vzWv8ld4lI3Iok1QpfgoUbahCmw==}
+  '@flopflip/combine-adapters@15.1.3':
+    resolution: {integrity: sha512-rCEEEi0/8guZgOhEmwc+PdDMke8uDoifAxZNnD0heaPmUs5Mq9lTWerXS/CfU+J4sTYeqEEdjpoW8M3Wzyt4WA==}
 
-  '@flopflip/http-adapter@15.1.2':
-    resolution: {integrity: sha512-XfIlj3JHkixr2qK2Cl+uRzUEbBEylHXSmxvobMkxKcj7CWecOU+AB27ATaRqlHNfpj6M2R/6c0xuK/lQXsIQpw==}
+  '@flopflip/http-adapter@15.1.3':
+    resolution: {integrity: sha512-Xz8mo0Ky7nf/BY3HzPzGE5h3FzwcbsTpBebGuA3XlMy5Y4PLgomZgMEgALiOdk4v/1PNwxPliSwC0TIcA3NAXw==}
 
-  '@flopflip/launchdarkly-adapter@15.1.2':
-    resolution: {integrity: sha512-cDYI3KiDkO6NufBPAUQPcSEClMgovdkqfABH56LGXCk6INR77NjV+MgWov8aRdyjPnBA6qsK00wzPS+8wPKHew==}
+  '@flopflip/launchdarkly-adapter@15.1.3':
+    resolution: {integrity: sha512-bjn0960ZmCjyVqXCpyXdGglfxh8PMrEV3MSR+qkXLAAdwTDn52i+yLLK1Rryt3M5gGy6gpu7F8FCeHYAAtNeUQ==}
 
-  '@flopflip/localstorage-cache@15.1.2':
-    resolution: {integrity: sha512-kZQ4p4d9IOkwMcLBhdEtRKsx+ay0cgj+Iq5EH3yULJ55oqRNNyl+CH0JjsriL/I7gfLPExHR3pJlQ7cXJtZscw==}
+  '@flopflip/localstorage-cache@15.1.3':
+    resolution: {integrity: sha512-QVDPDXTUw4srAOjyfWn7ZcwA5Qx8vYgoDaVnSQF5wv4h/oXqbFqSul2O6A+RfLZI7KoTijuSWSur+SUP6FqRfg==}
 
-  '@flopflip/memory-adapter@15.1.2':
-    resolution: {integrity: sha512-ZoXPajoUKT9hq61kokx9t+zGicS4XD1XoQQPftrachHuCpq+rw9XL3ja/uVDFZI8MZazYAeTUeVyFKqGYkVt4w==}
+  '@flopflip/memory-adapter@15.1.3':
+    resolution: {integrity: sha512-hj3OAE1tYbGF+h57PLie18124Q1P3c7rzZYfVzIGW5t6Q57Kd0xTq3Hq7JM7kKjfgQJGCjDcfmSw6A5XthADcQ==}
 
-  '@flopflip/react-broadcast@15.1.2':
-    resolution: {integrity: sha512-Y4kTtobfh8h2MQeXlDMNTQ5NWL0CAGrlG7xEO3czeA7DVLo9eejXWcVLW1nmfZQ9ZNMYtaR/52nqz3kS7HDl5A==}
+  '@flopflip/react-broadcast@15.1.3':
+    resolution: {integrity: sha512-ZJZvldB45lpdcWbmULvGXMURhRbs8ToI4aPe+6OMXm95iEHK4Nlml/3hmd/5Or7sQmdlYBs5URlyJTwM74nH7Q==}
     peerDependencies:
       react: 19.0.0
       react-dom: 19.0.0
 
-  '@flopflip/react@15.1.2':
-    resolution: {integrity: sha512-1l58Ol9Q3PK3fOzz9rrdYAcAftuZQAaz47/HL3nsRDsltoeiNvRHtdMzT0BjovuSXodBFv8ZJYqiKeUylKvReA==}
+  '@flopflip/react@15.1.3':
+    resolution: {integrity: sha512-HxIxOaGMtn6NCjEBporxsXUgosEVPZL9dIZg1E3oYQ5Dmag+nVD3cknTc+BEZoNdRcm5BMNfTnvj6z8PlF3ROA==}
     peerDependencies:
       react: 19.0.0
       react-dom: 19.0.0
 
-  '@flopflip/sessionstorage-cache@15.1.2':
-    resolution: {integrity: sha512-2G5qdRyc94DTaGIoRVjyLNHkrxYmVhtY0F9EosKfqgW8FWZCqlS73VEozZfRBZwh39pP9P53zRe/33aZAJXyXw==}
+  '@flopflip/sessionstorage-cache@15.1.3':
+    resolution: {integrity: sha512-foGwgDiDSN6uoafyDqRnhEsc3j16IITUDlafcANdCxh6W5MJr1BaxnedIMOx1qX6UmE0T+5G3VRSnp/bb3oVPw==}
 
-  '@flopflip/types@15.1.2':
-    resolution: {integrity: sha512-5Bj6Yq58Be5AOXtFnL9smXkA1nFigO61Ij99nRHAPydA78LGChLBDRw+2ToOpB+nKs5MTsz+39hewplci8qgig==}
+  '@flopflip/types@15.1.3':
+    resolution: {integrity: sha512-PO++iPwkb0Iken98mAsF2Ghobzvst/Hb87fAbQ2u8FR5CY7WxeUesDjki6+BY5HU3JPfbG/y9yxe3ViDItHZrA==}
     peerDependencies:
       typescript: 4.x || 5.x
 
@@ -16367,7 +16367,7 @@ snapshots:
       core-js-pure: 3.41.0
       regenerator-runtime: 0.14.1
 
-  '@babel/runtime@7.27.4': {}
+  '@babel/runtime@7.27.6': {}
 
   '@babel/runtime@7.28.4': {}
 
@@ -18469,54 +18469,54 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@flopflip/adapter-utilities@15.1.2(typescript@5.9.2)':
+  '@flopflip/adapter-utilities@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       globalthis: 1.0.4
       lodash: 4.17.21
       typescript: 5.9.2
 
-  '@flopflip/cache@15.1.2(typescript@5.9.2)':
+  '@flopflip/cache@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@flopflip/localstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/sessionstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@flopflip/localstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/sessionstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/combine-adapters@15.1.2(typescript@5.9.2)':
+  '@flopflip/combine-adapters@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/adapter-utilities': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/adapter-utilities': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       mitt: 3.0.1
       tiny-warning: 1.0.3
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/http-adapter@15.1.2(typescript@5.9.2)':
+  '@flopflip/http-adapter@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/adapter-utilities': 15.1.2(typescript@5.9.2)
-      '@flopflip/cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/localstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/sessionstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/adapter-utilities': 15.1.3(typescript@5.9.2)
+      '@flopflip/cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/localstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/sessionstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       lodash: 4.17.21
       mitt: 3.0.1
       tiny-warning: 1.0.3
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/launchdarkly-adapter@15.1.2(typescript@5.9.2)':
+  '@flopflip/launchdarkly-adapter@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/adapter-utilities': 15.1.2(typescript@5.9.2)
-      '@flopflip/cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/localstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/sessionstorage-cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/adapter-utilities': 15.1.3(typescript@5.9.2)
+      '@flopflip/cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/localstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/sessionstorage-cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       debounce-fn: 4.0.0
       launchdarkly-js-client-sdk: 3.8.1
       lodash: 4.17.21
@@ -18526,38 +18526,38 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/localstorage-cache@15.1.2(typescript@5.9.2)':
+  '@flopflip/localstorage-cache@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/memory-adapter@15.1.2(typescript@5.9.2)':
+  '@flopflip/memory-adapter@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/adapter-utilities': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/adapter-utilities': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       mitt: 3.0.1
       tiny-warning: 1.0.3
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/react-broadcast@15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)':
+  '@flopflip/react-broadcast@15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/react': 15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/react': 15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       use-sync-external-store: 1.5.0(react@19.0.0)
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/react@15.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)':
+  '@flopflip/react@15.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)':
     dependencies:
-      '@babel/runtime': 7.27.4
-      '@flopflip/cache': 15.1.2(typescript@5.9.2)
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@babel/runtime': 7.27.6
+      '@flopflip/cache': 15.1.3(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
       '@types/react-is': 19.0.0
       lodash: 4.17.21
       react: 19.0.0
@@ -18568,13 +18568,13 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/sessionstorage-cache@15.1.2(typescript@5.9.2)':
+  '@flopflip/sessionstorage-cache@15.1.3(typescript@5.9.2)':
     dependencies:
-      '@flopflip/types': 15.1.2(typescript@5.9.2)
+      '@flopflip/types': 15.1.3(typescript@5.9.2)
     transitivePeerDependencies:
       - typescript
 
-  '@flopflip/types@15.1.2(typescript@5.9.2)':
+  '@flopflip/types@15.1.3(typescript@5.9.2)':
     dependencies:
       launchdarkly-js-client-sdk: 3.8.1
       typescript: 5.9.2
