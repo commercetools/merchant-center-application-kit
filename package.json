@@ -185,7 +185,8 @@
       "@typescript-eslint/eslint-plugin": "^5.52.0",
       "@typescript-eslint/parser": "^5.52.0",
       "react": "19.0.0",
-      "react-dom": "19.0.0"
+      "react-dom": "19.0.0",
+      "form-data": ">=3.0.4"
     }
   },
   "engines": {
