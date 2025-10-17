@@ -272,7 +272,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
                   cy.get('input[name="identifier"]').type(
                     userCredentials.email
                   );
-                  cy.get('button').contains('Next').click();
+                  cy.get('button').contains('Next').click({ force: true });
 
                   // Wait for the password form to appear
                   cy.get('input[name="password"]').should('be.visible');
