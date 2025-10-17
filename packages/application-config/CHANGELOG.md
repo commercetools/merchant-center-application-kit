@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 24.8.1
+
+### Patch Changes
+
+- [#3858](https://github.com/commercetools/merchant-center-application-kit/pull/3858) [`bc7aafe`](https://github.com/commercetools/merchant-center-application-kit/commit/bc7aafe0215a6bcf18042eb0c6700271a2391eed) Thanks [@emmenko](https://github.com/emmenko)! - Include cdn url in connect-src (CSP) to allow devtools to load source maps
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@24.8.1
+
 ## 24.8.0
 
 ### Patch Changes
