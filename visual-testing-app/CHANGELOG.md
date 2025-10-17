@@ -1,5 +1,20 @@
 # @commercetools-local/visual-testing-app
 
+## 24.8.1
+
+### Patch Changes
+
+- [#3853](https://github.com/commercetools/merchant-center-application-kit/pull/3853) [`72e4c80`](https://github.com/commercetools/merchant-center-application-kit/commit/72e4c80f996b5a9958607455a5059dd88a3ee699) Thanks [@renovate](https://github.com/apps/renovate)! - Update all flopflip packages to v15.1.3
+
+- Updated dependencies [[`72e4c80`](https://github.com/commercetools/merchant-center-application-kit/commit/72e4c80f996b5a9958607455a5059dd88a3ee699), [`bc7aafe`](https://github.com/commercetools/merchant-center-application-kit/commit/bc7aafe0215a6bcf18042eb0c6700271a2391eed)]:
+  - @commercetools-frontend/application-components@24.8.1
+  - @commercetools-frontend/application-shell@24.8.1
+  - @commercetools-frontend/application-config@24.8.1
+  - @commercetools-frontend/react-notifications@24.8.1
+  - @commercetools-frontend/application-shell-connectors@24.8.1
+  - @commercetools-frontend/assets@24.8.1
+  - @commercetools-frontend/constants@24.8.1
+
 ## 24.8.0
 
 ### Minor Changes

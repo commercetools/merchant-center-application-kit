@@ -1,5 +1,28 @@
 # merchant-center-application-template-starter-typescript
 
+## 24.8.1
+
+### Patch Changes
+
+- [#3861](https://github.com/commercetools/merchant-center-application-kit/pull/3861) [`e66ed01`](https://github.com/commercetools/merchant-center-application-kit/commit/e66ed015a515af5aff8a239e36d42989ffeddf9e) Thanks [@jaikamat](https://github.com/jaikamat)! - Update starter kit redux dependencies and UI Kit dependencies
+
+- Updated dependencies [[`72e4c80`](https://github.com/commercetools/merchant-center-application-kit/commit/72e4c80f996b5a9958607455a5059dd88a3ee699), [`bc7aafe`](https://github.com/commercetools/merchant-center-application-kit/commit/bc7aafe0215a6bcf18042eb0c6700271a2391eed)]:
+  - @commercetools-frontend/application-components@24.8.1
+  - @commercetools-frontend/application-shell@24.8.1
+  - @commercetools-frontend/application-config@24.8.1
+  - @commercetools-frontend/mc-scripts@24.8.1
+  - @commercetools-frontend/application-shell-connectors@24.8.1
+  - @commercetools-frontend/mc-dev-authentication@24.8.1
+  - @commercetools-frontend/permissions@24.8.1
+  - @commercetools-frontend/actions-global@24.8.1
+  - @commercetools-frontend/assets@24.8.1
+  - @commercetools-frontend/babel-preset-mc-app@24.8.1
+  - @commercetools-frontend/constants@24.8.1
+  - @commercetools-frontend/eslint-config-mc-app@24.8.1
+  - @commercetools-frontend/i18n@24.8.1
+  - @commercetools-frontend/jest-preset-mc-app@24.8.1
+  - @commercetools-frontend/l10n@24.8.1
+
 ## 24.8.0
 
 ### Minor Changes
