@@ -56,7 +56,7 @@
     "@commercetools-uikit/utils": "^20.3.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@flopflip/react-broadcast": "15.1.3",
+    "@flopflip/react-broadcast": "15.1.5",
     "@radix-ui/react-dialog": "1.1.14",
     "@react-hook/latest": "1.0.3",
     "@react-hook/resize-observer": "1.2.6",
