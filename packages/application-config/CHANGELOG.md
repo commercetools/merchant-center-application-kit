@@ -1,5 +1,25 @@
 # @commercetools-frontend/application-config
 
+## 24.9.0
+
+### Minor Changes
+
+- [#3866](https://github.com/commercetools/merchant-center-application-kit/pull/3866) [`3c2049b`](https://github.com/commercetools/merchant-center-application-kit/commit/3c2049b83639d16a59e23fb91c03e9ae43c5a5d1) Thanks [@kark](https://github.com/kark)! - Add support for legacy login mode for local development of customizations.
+  In order to opt in, in your `custom-application-config.mjs` or `custom-view-config.mjs` file set:
+
+  ```js
+  env: {
+      development: {
+          mcIdentityLoginModeOverride: 'legacy',
+      }
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`3c2049b`](https://github.com/commercetools/merchant-center-application-kit/commit/3c2049b83639d16a59e23fb91c03e9ae43c5a5d1)]:
+  - @commercetools-frontend/constants@24.9.0
+
 ## 24.8.1
 
 ### Patch Changes
