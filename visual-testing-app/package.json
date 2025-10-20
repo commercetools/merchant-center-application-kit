@@ -9,7 +9,7 @@
     "preview": "vite preview --port 3000"
   },
   "dependencies": {
-    "@apollo/client": "3.13.9",
+    "@apollo/client": "3.14.0",
     "@commercetools-frontend/application-components": "workspace:*",
     "@commercetools-frontend/application-config": "workspace:*",
     "@commercetools-frontend/application-shell": "workspace:*",
@@ -47,6 +47,6 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "uuid": "9.0.1",
-    "vite": "~6.3.0"
+    "vite": "~6.4.0"
   }
 }
