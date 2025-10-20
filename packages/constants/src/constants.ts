@@ -243,6 +243,7 @@ export type ApplicationRuntimeEnvironmentForDevelopment = {
   menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
   customViewHostUrl?: string;
   customViewConfig?: CustomViewData;
+  mcIdentityLoginModeOverride?: 'legacy';
 };
 
 export type ApplicationRuntimeEnvironment = {
@@ -288,6 +289,7 @@ export const SUPPORTED_HEADERS = {
   X_FORWARD_TO_CLAIMS: 'X-Forward-To-Claims',
   X_GRAPHQL_TARGET: 'X-Graphql-Target',
   X_GRAPHQL_OPERATION_NAME: 'X-Graphql-Operation-Name',
+  X_MC_IDENTITY_LOGIN_MODE_OVERRIDE: 'x-mc-identity-login-mode-override',
   X_PROJECT_KEY: 'X-Project-Key',
   X_TEAM_ID: 'X-Team-Id',
   X_TOKEN_RETRY: 'X-Force-Token',

@@ -64,6 +64,10 @@ export interface JSONSchemaForCustomViewConfigurationFiles {
        * See https://docs.commercetools.com/merchant-center-customizations/tooling-and-configuration/custom-view-config#envdevelopmenthosturipath
        */
       hostUriPath?: string;
+      /**
+       * Set to 'legacy' to use legacy login mode for development, sending x-mc-identity-login-mode-override header instead of cookies
+       */
+      mcIdentityLoginModeOverride?: 'legacy';
     };
     production: {
       /**

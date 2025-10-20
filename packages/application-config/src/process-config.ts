@@ -57,7 +57,8 @@ const omitDevConfigIfEmpty = <Config>(devConfig: Config) => {
     (Object.hasOwn(devConfig, 'accountLinks') ||
       Object.hasOwn(devConfig, 'menuLinks') ||
       Object.hasOwn(devConfig, 'customViewHostUrl') ||
-      Object.hasOwn(devConfig, 'oidc'))
+      Object.hasOwn(devConfig, 'oidc') ||
+      Object.hasOwn(devConfig, 'mcIdentityLoginModeOverride'))
   ) {
     return devConfig;
   }
@@ -127,6 +128,9 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
       oidc: oidcConfig,
       customViewConfig: configurationData,
       customViewHostUrl: hostUrl.href,
+      mcIdentityLoginModeOverride: (
+        appConfig as JSONSchemaForCustomViewConfigurationFiles
+      ).env.development.mcIdentityLoginModeOverride,
     });
   }
 
@@ -139,6 +143,9 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
     },
     // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
     accountLinks: appConfig.accountLinks,
+    mcIdentityLoginModeOverride: (
+      appConfig as JSONSchemaForCustomApplicationConfigurationFiles
+    ).env.development.mcIdentityLoginModeOverride,
   });
 };
 

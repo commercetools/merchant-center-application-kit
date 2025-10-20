@@ -210,6 +210,9 @@ function createHttpClientOptions(config: TConfig = {}): TOptions {
       [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
       [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
       [SUPPORTED_HEADERS.X_USER_AGENT]: userAgent,
+      // MC Identity Login Mode Override header for development
+      [SUPPORTED_HEADERS.X_MC_IDENTITY_LOGIN_MODE_OVERRIDE]:
+        window.app.__DEVELOPMENT__?.mcIdentityLoginModeOverride,
       // Additional headers for the forward-to feature.
       ...getAppliedForwardToHeaders(config.forwardToConfig),
     }),
