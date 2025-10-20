@@ -95,7 +95,7 @@
     "@commercetools-frontend/jest-stylelint-runner": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",
     "@commercetools-uikit/design-system": "^20.3.0",
-    "@commercetools/composable-commerce-test-data": "11.0.0",
+    "@commercetools/composable-commerce-test-data": "11.8.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-conventional": "17.8.1",

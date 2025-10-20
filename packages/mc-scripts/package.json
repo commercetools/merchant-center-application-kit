@@ -123,7 +123,7 @@
     "webpackbar": "5.0.2"
   },
   "devDependencies": {
-    "@commercetools/composable-commerce-test-data": "11.0.0",
+    "@commercetools/composable-commerce-test-data": "11.8.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.198",
