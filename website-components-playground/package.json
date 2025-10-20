@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-website/components-playground",
-  "version": "24.8.1",
+  "version": "24.9.0",
   "private": true,
   "scripts": {
     "start": "vite --port 8001",
