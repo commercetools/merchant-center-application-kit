@@ -6,6 +6,7 @@ import fixtureConfigEnvVariables from './fixtures/custom-applications/config-env
 import fixtureConfigFilePathVariables from './fixtures/custom-applications/config-file-path-variables.json';
 import fixtureConfigFull from './fixtures/custom-applications/config-full.json';
 import fixtureConfigIntlVariables from './fixtures/custom-applications/config-intl-variables.json';
+import fixtureConfigMcIdentityLoginModeOverride from './fixtures/custom-applications/config-mc-identity-login-mode-override.json';
 import fixtureConfigOidcWithTeamId from './fixtures/custom-applications/config-oidc-with-team-id.json';
 import fixtureConfigOidc from './fixtures/custom-applications/config-oidc.json';
 import fixtureConfigSimple from './fixtures/custom-applications/config-simple.json';
@@ -1362,7 +1363,6 @@ describe('processing a config with account links', () => {
         revision: '',
         servedByProxy: false,
         __DEVELOPMENT__: {
-          accountLinks: undefined,
           menuLinks: {
             icon: 'unused',
             defaultLabel: '',
@@ -1671,5 +1671,34 @@ describe('when MC API URL is malformed', () => {
     await expect(
       processConfig(createTestOptions())
     ).rejects.toMatchInlineSnapshot(`[Error: Invalid MC API URL: "wrong url"]`);
+  });
+});
+
+describe('processing a config with mcIdentityLoginModeOverride', () => {
+  beforeEach(() => {
+    loadConfig.mockReturnValue(
+      Promise.resolve({
+        filepath: '/custom-application-config.js',
+        config: fixtureConfigMcIdentityLoginModeOverride,
+      })
+    );
+  });
+  it('should process the config and include mcIdentityLoginModeOverride in __DEVELOPMENT__', async () => {
+    const result = await processConfig(createTestOptions());
+    expect(result.env.__DEVELOPMENT__.mcIdentityLoginModeOverride).toBe(
+      'legacy'
+    );
+  });
+  describe('with NODE_ENV=production', () => {
+    it('should not include __DEVELOPMENT__ object in production', async () => {
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+          },
+        })
+      );
+      expect(result.env.__DEVELOPMENT__).toBeUndefined();
+    });
   });
 });

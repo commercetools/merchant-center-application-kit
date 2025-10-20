@@ -1,0 +1,26 @@
+{
+  "name": "avengers-app",
+  "entryPointUriPath": "avengers",
+  "cloudIdentifier": "gcp-eu",
+  "env": {
+    "development": {
+      "initialProjectKey": "test",
+      "mcIdentityLoginModeOverride": "legacy"
+    },
+    "production": {
+      "applicationId": "app-id-123",
+      "url": "https://avengers.app"
+    }
+  },
+  "oAuthScopes": {
+    "view": ["view_products"],
+    "manage": []
+  },
+  "icon": "<svg><path fill=\"#000000\" /></svg>",
+  "mainMenuLink": {
+    "defaultLabel": "Avengers",
+    "labelAllLocales": [],
+    "permissions": []
+  },
+  "submenuLinks": []
+}

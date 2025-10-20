@@ -212,4 +212,68 @@ describe('Custom HTTP client (fetch)', () => {
       })
     ).toThrowErrorMatchingInlineSnapshot(`"Missing required "uri" option."`);
   });
+
+  it('should include x-mc-identity-login-mode-override header when mcIdentityLoginModeOverride is set', () => {
+    // Store the original window.app
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const originalApp = (global as any).window.app;
+
+    // Extend existing window.app with the required properties
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).window.app = {
+      ...originalApp,
+      applicationIdentifier: 'test-app',
+      customViewId: undefined,
+      __DEVELOPMENT__: {
+        mcIdentityLoginModeOverride: 'legacy',
+      },
+    };
+
+    const options = createHttpClientOptions({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      userAgent: 'test-agent',
+    });
+
+    expect(options.headers).toEqual(
+      expect.objectContaining({
+        'x-mc-identity-login-mode-override': 'legacy',
+      })
+    );
+
+    // Restore original window.app
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).window.app = originalApp;
+  });
+
+  it('should not include x-mc-identity-login-mode-override header when mcIdentityLoginModeOverride is not set', () => {
+    // Store the original window.app
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const originalApp = (global as any).window.app;
+
+    // Extend existing window.app without mcIdentityLoginModeOverride
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).window.app = {
+      ...originalApp,
+      applicationIdentifier: 'test-app',
+      customViewId: undefined,
+      __DEVELOPMENT__: {},
+    };
+
+    const options = createHttpClientOptions({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      userAgent: 'test-agent',
+    });
+
+    expect(options.headers).not.toHaveProperty(
+      'x-mc-identity-login-mode-override'
+    );
+
+    // Restore original window.app
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).window.app = originalApp;
+  });
 });
