@@ -64,6 +64,10 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
        */
       initialProjectKey: string;
       teamId?: string;
+      /**
+       * Set to 'legacy' to use legacy login mode for development, sending x-mc-identity-login-mode-override header instead of cookies
+       */
+      mcIdentityLoginModeOverride?: 'legacy';
     };
     production: {
       /**
