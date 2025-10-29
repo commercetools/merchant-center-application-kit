@@ -10,6 +10,7 @@ import type {
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
   TCliCommandSetDeploymentPreviewOptions,
+  TCliCommandLoginOptions,
 } from './types';
 import doesFileExist from './utils/does-file-exist';
 
@@ -160,7 +161,24 @@ async function run() {
     .description(
       'Log in to your Merchant Center account through the CLI, using the cloud environment information from the Merchant Center customization config file. An API token is generated and stored in a configuration file for the related cloud environment, and valid for 36 hours.'
     )
-    .action(async () => {
+    .option(
+      '--mc-api-url <url>',
+      '(optional) The URL of the Merchant Center API. If not provided, the command will try to read it from the environment variable `MC_API_URL` or the Merchant Center Customization configuration file. In this case, the command needs to be executed from the folder where the Merchant Center Customization configuration file is located.'
+    )
+    .option(
+      '--project-key <key>',
+      '(optional) The project key to issue an API access token for. If not provided, the command will try to read it from the environment variable `CTP_PROJECT_KEY` or the Merchant Center Customization configuration file. In this case, the command needs to be executed from the folder where the Merchant Center Customization configuration file is located.'
+    )
+    .option(
+      '--oauth-scope <scope...>', // Variadic option. It allows multiple `--oauth-scope` options to be provided.
+      '(optional) The OAuth Scope to request when generating an API access token. Multiple flags are allowed. If not provided, the command will try to read it from the environment variable `CTP_OAUTH_SCOPES` (comma-separated list) or the Merchant Center Customization configuration file. In this case, the command needs to be executed from the folder where the Merchant Center Customization configuration file is located.'
+    )
+    .option(
+      '--force',
+      '(optional) If defined, the command will force the login even if a valid session already exists.',
+      false
+    )
+    .action(async (options: TCliCommandLoginOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
 
       // Load dotenv files into the process environment.
@@ -171,7 +189,7 @@ async function run() {
       process.env.NODE_ENV = 'production';
 
       const loginCommand = await import('./commands/login');
-      await loginCommand.default();
+      await loginCommand.default(options);
     });
 
   // Command: config:sync
