@@ -119,15 +119,11 @@ async function requestWithTokenRetry<Data, QueryVariables extends Variables>(
   },
   retryCount: number = 0
 ): Promise<Data> {
-  const shouldUseExperimentalIdentityAuthFlow =
-    process.env.ENABLE_EXPERIMENTAL_IDENTITY_AUTH_FLOW === 'true';
-
   const token = credentialsStorage.getToken(requestOptions.mcApiUrl);
 
-  const tokenHeader: Record<string, string | null> =
-    shouldUseExperimentalIdentityAuthFlow
-      ? { [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${token}` }
-      : { 'x-mc-cli-access-token': token };
+  const tokenHeader: Record<string, string | null> = {
+    [SUPPORTED_HEADERS.AUTHORIZATION]: `Bearer ${token}`,
+  };
 
   const client = new GraphQLClient(`${requestOptions.mcApiUrl}/graphql`, {
     headers: {
