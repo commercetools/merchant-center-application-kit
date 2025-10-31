@@ -1,5 +1,22 @@
 # playground
 
+## 24.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@24.10.0
+  - @commercetools-frontend/application-components@24.10.0
+  - @commercetools-frontend/application-shell@24.10.0
+  - @commercetools-frontend/application-shell-connectors@24.10.0
+  - @commercetools-frontend/assets@24.10.0
+  - @commercetools-frontend/browser-history@24.10.0
+  - @commercetools-frontend/constants@24.10.0
+  - @commercetools-frontend/i18n@24.10.0
+  - @commercetools-frontend/l10n@24.10.0
+  - @commercetools-frontend/permissions@24.10.0
+  - @commercetools-frontend/sdk@24.10.0
+
 ## 24.9.0
 
 ### Patch Changes
