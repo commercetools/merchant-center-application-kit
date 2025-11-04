@@ -15,6 +15,7 @@ import {
   ApplicationContextProvider,
   selectProjectKeyFromUrl,
   useApplicationContext,
+  selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
@@ -153,7 +154,11 @@ export const ApplicationShellAuthenticated = (
           }
           // Since we do not know the locale of the user, we pick it from the
           // user's browser to attempt to match the language for the correct translations.
-          const userLocale = getBrowserLocale(window);
+
+          // Get language from storage first, fallback to user language
+          const languageFromStorage = selectUserLanguageFromStorage();
+          const userLocale = languageFromStorage || getBrowserLocale(window);
+
           return (
             <AsyncLocaleData
               locale={userLocale}
@@ -172,6 +177,10 @@ export const ApplicationShellAuthenticated = (
         }
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
+
+      const languageFromStorage = selectUserLanguageFromStorage();
+      const userLocale = languageFromStorage || user?.language;
+
         return (
           <ApplicationContextProvider
             user={user}
@@ -185,7 +194,7 @@ export const ApplicationShellAuthenticated = (
             `isLoading` prop to decide what to render.
           */}
             <AsyncLocaleData
-              locale={user?.language}
+              locale={userLocale}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (

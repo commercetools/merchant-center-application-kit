@@ -5,3 +5,4 @@ export { default as getCorrelationId } from './get-correlation-id';
 export { default as getMcApiUrl } from './get-mc-api-url';
 export { createApolloContextForProxyForwardTo } from './apollo-context';
 export { isLoggerEnabled, default as logger } from './logger';
+export { default as selectUserLanguageFromStorage } from './select-user-language-from-storage';
