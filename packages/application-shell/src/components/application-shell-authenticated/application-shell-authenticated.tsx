@@ -128,6 +128,9 @@ export const ApplicationShellAuthenticated = (
     notificationsPageRef,
   });
 
+  // Get language from storage once, reused in both error and success paths
+  const languageFromStorage = selectUserLanguageFromStorage();
+
   return (
     <FetchUser>
       {({ isLoading: isLoadingUser, user, error }) => {
@@ -155,8 +158,7 @@ export const ApplicationShellAuthenticated = (
           // Since we do not know the locale of the user, we pick it from the
           // user's browser to attempt to match the language for the correct translations.
 
-          // Get language from storage first, fallback to user language
-          const languageFromStorage = selectUserLanguageFromStorage();
+          // Get language from storage first, fallback to browser locale
           const userLocale = languageFromStorage || getBrowserLocale(window);
 
           return (
@@ -178,7 +180,7 @@ export const ApplicationShellAuthenticated = (
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
 
-        const languageFromStorage = selectUserLanguageFromStorage();
+        // Get language from storage first, fallback to user language
         const userLocale = languageFromStorage || user?.language;
 
         return (
