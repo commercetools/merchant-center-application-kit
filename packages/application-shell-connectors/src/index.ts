@@ -36,6 +36,7 @@ export {
   selectUserId,
   selectProjectKeyFromUrl,
   selectTeamIdFromStorage,
+  selectUserLanguageFromStorage,
   createApolloContextForProxyForwardTo,
 } from './utils';
 export {
