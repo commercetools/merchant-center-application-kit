@@ -128,9 +128,6 @@ export const ApplicationShellAuthenticated = (
     notificationsPageRef,
   });
 
-  // Get language from storage once, reused in both error and success paths
-  const languageFromStorage = selectUserLanguageFromStorage();
-
   return (
     <FetchUser>
       {({ isLoading: isLoadingUser, user, error }) => {
@@ -159,7 +156,8 @@ export const ApplicationShellAuthenticated = (
           // user's browser to attempt to match the language for the correct translations.
 
           // Get language from storage first, fallback to browser locale
-          const userLocale = languageFromStorage || getBrowserLocale(window);
+          const userLocale =
+            selectUserLanguageFromStorage() || getBrowserLocale(window);
 
           return (
             <AsyncLocaleData
@@ -180,12 +178,14 @@ export const ApplicationShellAuthenticated = (
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
 
-        // Get language from storage first, fallback to user language
-        const userLocale = languageFromStorage || user?.language;
-
+        // Get language from storage first (if staff bar changed it), fallback to user language
+        const normalizedUser = {
+          ...user!,
+          language: selectUserLanguageFromStorage() || user?.language,
+        };
         return (
           <ApplicationContextProvider
-            user={user}
+            user={normalizedUser}
             environment={applicationEnvironment}
           >
             {/*
@@ -196,7 +196,7 @@ export const ApplicationShellAuthenticated = (
             `isLoading` prop to decide what to render.
           */}
             <AsyncLocaleData
-              locale={userLocale}
+              locale={normalizedUser?.language}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
@@ -206,7 +206,7 @@ export const ApplicationShellAuthenticated = (
                   {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
                   <SetupFlopFlipProvider
-                    user={user}
+                    user={normalizedUser}
                     projectKey={projectKeyFromUrl}
                     ldClientSideId={applicationEnvironment.ldClientSideId}
                     flags={props.featureFlags}
@@ -217,7 +217,7 @@ export const ApplicationShellAuthenticated = (
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
-                      <SentryUserTracker user={user ?? undefined} />
+                      <SentryUserTracker user={normalizedUser} />
                       <div
                         css={css`
                           height: 100vh;
@@ -267,7 +267,7 @@ export const ApplicationShellAuthenticated = (
                                         setProjectDataLocale,
                                       }) => (
                                         <ApplicationContextProvider
-                                          user={user}
+                                          user={normalizedUser}
                                           project={project}
                                           projectDataLocale={dataLocale}
                                           environment={applicationEnvironment}
@@ -293,7 +293,7 @@ export const ApplicationShellAuthenticated = (
                           `}
                         >
                           <AppBar
-                            user={user}
+                            user={normalizedUser}
                             projectKeyFromUrl={projectKeyFromUrl}
                           />
                         </header>
@@ -329,7 +329,7 @@ export const ApplicationShellAuthenticated = (
 
                                   return (
                                     <ApplicationContextProvider
-                                      user={user}
+                                      user={normalizedUser}
                                       environment={applicationEnvironment}
                                       // NOTE: do not pass the `project` into the application context.
                                       // The permissions for the Navbar are resolved separately, within
@@ -429,7 +429,8 @@ export const ApplicationShellAuthenticated = (
                                   {(() => {
                                     const previousProjectKey =
                                       getPreviousProjectKey(
-                                        user?.defaultProjectKey ?? undefined
+                                        normalizedUser?.defaultProjectKey ??
+                                          undefined
                                       );
 
                                     /**
@@ -440,7 +441,8 @@ export const ApplicationShellAuthenticated = (
                                      *   Given the user was working on a project previously or has a default
                                      *   project, the application will redirect to that project.
                                      */
-                                    if (!user) return <ApplicationLoader />;
+                                    if (!normalizedUser)
+                                      return <ApplicationLoader />;
                                     if (!previousProjectKey)
                                       return <RedirectToProjectCreate />;
                                     return (
@@ -450,7 +452,7 @@ export const ApplicationShellAuthenticated = (
                                 </Route>
                                 <Route exact={false} path="/:projectKey">
                                   <ProjectContainer
-                                    user={user}
+                                    user={normalizedUser}
                                     environment={applicationEnvironment}
                                     disableRoutePermissionCheck={
                                       props.disableRoutePermissionCheck
