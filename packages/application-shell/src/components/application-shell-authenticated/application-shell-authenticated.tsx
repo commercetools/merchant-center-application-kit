@@ -27,6 +27,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS, NAVBAR } from '../../constants';
+import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
@@ -179,10 +180,13 @@ export const ApplicationShellAuthenticated = (
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
 
         // Get language from storage first (if staff bar changed it), fallback to user language
-        const normalizedUser = {
-          ...user!,
-          language: selectUserLanguageFromStorage() || user?.language || '',
-        };
+        const normalizedUser: TFetchLoggedInUserQuery['user'] | undefined = user
+          ? {
+              ...user,
+              language: selectUserLanguageFromStorage() || user.language,
+            }
+          : undefined;
+
         return (
           <ApplicationContextProvider
             user={normalizedUser}
