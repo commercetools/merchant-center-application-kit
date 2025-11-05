@@ -181,8 +181,7 @@ export const ApplicationShellAuthenticated = (
         // Get language from storage first (if staff bar changed it), fallback to user language
         const normalizedUser = {
           ...user!,
-          language:
-            selectUserLanguageFromStorage() || user?.language || '',
+          language: selectUserLanguageFromStorage() || user?.language || '',
         };
         return (
           <ApplicationContextProvider
