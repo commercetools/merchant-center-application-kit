@@ -178,8 +178,8 @@ export const ApplicationShellAuthenticated = (
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
 
-      const languageFromStorage = selectUserLanguageFromStorage();
-      const userLocale = languageFromStorage || user?.language;
+        const languageFromStorage = selectUserLanguageFromStorage();
+        const userLocale = languageFromStorage || user?.language;
 
         return (
           <ApplicationContextProvider
