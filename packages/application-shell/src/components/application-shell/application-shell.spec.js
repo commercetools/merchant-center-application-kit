@@ -1444,3 +1444,88 @@ describe('when navbar menu items are hidden', () => {
     });
   });
 });
+
+describe('when user is ct staff', () => {
+  beforeEach(() => {
+    mockServer.resetHandlers();
+    mockServer.use(
+      ...getDefaultMockResolvers({
+        user: UserMock.build({
+          launchdarklyTrackingGroup: 'commercetools',
+          language: 'en',
+        }),
+      })
+    );
+    // Mock sessionStorage.getItem to return 'de' for ACTIVE_USER_LANGUAGE
+    jest.spyOn(window.sessionStorage, 'getItem').mockImplementation((key) => {
+      if (key === STORAGE_KEYS.ACTIVE_USER_LANGUAGE) {
+        return 'de';
+      }
+      return null;
+    });
+  });
+
+  it("should render the user's language selected via staff bar from local storage", async () => {
+    renderApp(null, {
+      route: '/foo',
+      renderNodeAsChildren: true,
+      disableRoutePermissionCheck: true,
+      environment: {
+        servedByProxy: 'true',
+      },
+    });
+
+    // For staff users, sessionStorage should be called to get ACTIVE_USER_LANGUAGE
+    await waitFor(() => {
+      expect(window.sessionStorage.getItem).toHaveBeenCalledWith(
+        STORAGE_KEYS.ACTIVE_USER_LANGUAGE
+      );
+    });
+
+    // Verify that sessionStorage returned 'de' as expected
+    const returnedValue = window.sessionStorage.getItem(
+      STORAGE_KEYS.ACTIVE_USER_LANGUAGE
+    );
+    expect(returnedValue).toBe('de');
+  });
+});
+
+describe('when user is not ct staff', () => {
+  beforeEach(() => {
+    mockServer.resetHandlers();
+    mockServer.use(
+      ...getDefaultMockResolvers({
+        user: UserMock.build({
+          launchdarklyTrackingGroup: 'customer', // Not staff
+          language: 'es',
+        }),
+      })
+    );
+    // Mock sessionStorage.getItem to return 'de' for ACTIVE_USER_LANGUAGE
+    jest.spyOn(window.sessionStorage, 'getItem').mockImplementation((key) => {
+      if (key === STORAGE_KEYS.ACTIVE_USER_LANGUAGE) {
+        return 'de';
+      }
+      return null;
+    });
+  });
+
+  it('should not check sessionStorage for non-staff users', async () => {
+    // Clear any previous calls to ensure clean state
+    window.sessionStorage.getItem.mockClear();
+
+    renderApp(null, {
+      route: '/foo',
+      renderNodeAsChildren: true,
+      disableRoutePermissionCheck: true,
+    });
+
+    // Wait for user fetch to complete (give time for any potential sessionStorage calls)
+    await waitFor(() => {
+      // For non-staff users, sessionStorage should NOT be called with ACTIVE_USER_LANGUAGE
+      expect(window.sessionStorage.getItem).not.toHaveBeenCalledWith(
+        STORAGE_KEYS.ACTIVE_USER_LANGUAGE
+      );
+    });
+  });
+});
