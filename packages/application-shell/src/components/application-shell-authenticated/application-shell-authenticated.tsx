@@ -177,11 +177,18 @@ export const ApplicationShellAuthenticated = (
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
 
-        // Get language from storage first (if staff bar changed it), fallback to user language
+        // Check if user is ct staff, and if so get language selected via staff bar from local storage
+        const staffBarLanguage =
+          user?.launchdarklyTrackingGroup === 'commercetools' ||
+          user?.launchdarklyTrackingGroup === 'mailosaur'
+            ? selectUserLanguageFromStorage()
+            : undefined;
+
         const normalizedUser: TFetchLoggedInUserQuery['user'] | undefined = user
           ? {
               ...user,
-              language: selectUserLanguageFromStorage() || user.language,
+              // set the staff bar language if applicable
+              language: staffBarLanguage ?? user.language,
             }
           : undefined;
 
