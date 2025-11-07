@@ -156,9 +156,7 @@ export const ApplicationShellAuthenticated = (
           // Since we do not know the locale of the user, we pick it from the
           // user's browser to attempt to match the language for the correct translations.
 
-          // Get language from storage first, fallback to browser locale
-          const userLocale =
-            selectUserLanguageFromStorage() || getBrowserLocale(window);
+          const userLocale = getBrowserLocale(window);
 
           return (
             <AsyncLocaleData
