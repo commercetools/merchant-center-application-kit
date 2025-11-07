@@ -1444,3 +1444,73 @@ describe('when navbar menu items are hidden', () => {
     });
   });
 });
+
+describe('when user is ct staff', () => {
+  beforeEach(() => {
+    mockServer.resetHandlers();
+    mockServer.use(
+      ...getDefaultMockResolvers({
+        user: UserMock.build({
+          launchdarklyTrackingGroup: 'commercetools',
+          language: 'en',
+        }),
+      })
+    );
+    // Mock sessionStorage.getItem to return 'de' for ACTIVE_USER_LANGUAGE
+    jest.spyOn(window.sessionStorage, 'getItem').mockImplementation((key) => {
+      if (key === STORAGE_KEYS.ACTIVE_USER_LANGUAGE) {
+        return 'de';
+      }
+      return null;
+    });
+  });
+
+  it("should render the user's language selected via staff bar from local storage", async () => {
+    const { waitForLeftNavigationToBeLoaded } = renderApp(null, {
+      route: '/test-1',
+      renderNodeAsChildren: true,
+      environment: {
+        servedByProxy: 'true',
+      },
+    });
+    await waitForLeftNavigationToBeLoaded();
+    await waitFor(() => {
+      expect(window.sessionStorage.getItem).toHaveBeenCalledWith(
+        STORAGE_KEYS.ACTIVE_USER_LANGUAGE
+      );
+    });
+  });
+});
+
+describe('when user is not ct staff', () => {
+  beforeEach(() => {
+    mockServer.resetHandlers();
+    mockServer.use(
+      ...getDefaultMockResolvers({
+        user: UserMock.build({
+          launchdarklyTrackingGroup: 'customer', // Not staff
+          language: 'es',
+        }),
+      })
+    );
+    // Mock sessionStorage.getItem to return 'de' for ACTIVE_USER_LANGUAGE
+    jest.spyOn(window.sessionStorage, 'getItem').mockImplementation((key) => {
+      if (key === STORAGE_KEYS.ACTIVE_USER_LANGUAGE) {
+        return 'de';
+      }
+      return null;
+    });
+  });
+
+  it('should not check sessionStorage for non-staff users', async () => {
+    const { waitForLeftNavigationToBeLoaded } = renderApp(null, {
+      route: '/test-1',
+      renderNodeAsChildren: true,
+    });
+    await waitForLeftNavigationToBeLoaded();
+
+    await waitFor(() => {
+      expect(window.sessionStorage.getItem).not.toHaveBeenCalled();
+    });
+  });
+});
