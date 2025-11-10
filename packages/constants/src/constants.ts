@@ -306,6 +306,7 @@ export const STORAGE_KEYS = {
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   LOGIN_STRATEGY: 'loginStrategy',
+  ACTIVE_USER_LANGUAGE: 'activeUserLanguage',
 } as const;
 
 export const HTTP_SECURITY_HEADER_KEYS = {

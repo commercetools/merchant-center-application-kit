@@ -15,6 +15,7 @@ import {
   ApplicationContextProvider,
   selectProjectKeyFromUrl,
   useApplicationContext,
+  selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
@@ -26,6 +27,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS, NAVBAR } from '../../constants';
+import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
@@ -153,7 +155,9 @@ export const ApplicationShellAuthenticated = (
           }
           // Since we do not know the locale of the user, we pick it from the
           // user's browser to attempt to match the language for the correct translations.
+
           const userLocale = getBrowserLocale(window);
+
           return (
             <AsyncLocaleData
               locale={userLocale}
@@ -172,9 +176,25 @@ export const ApplicationShellAuthenticated = (
         }
 
         const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
+
+        // Check if user is ct staff, and if so get language selected via staff bar from local storage
+        const staffBarLanguage =
+          user?.launchdarklyTrackingGroup === 'commercetools' ||
+          user?.launchdarklyTrackingGroup === 'mailosaur'
+            ? selectUserLanguageFromStorage()
+            : undefined;
+
+        const normalizedUser: TFetchLoggedInUserQuery['user'] | undefined = user
+          ? {
+              ...user,
+              // set the staff bar language if applicable
+              language: staffBarLanguage ?? user.language,
+            }
+          : undefined;
+
         return (
           <ApplicationContextProvider
-            user={user}
+            user={normalizedUser}
             environment={applicationEnvironment}
           >
             {/*
@@ -185,7 +205,7 @@ export const ApplicationShellAuthenticated = (
             `isLoading` prop to decide what to render.
           */}
             <AsyncLocaleData
-              locale={user?.language}
+              locale={normalizedUser?.language}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
@@ -195,7 +215,7 @@ export const ApplicationShellAuthenticated = (
                   {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
                   <SetupFlopFlipProvider
-                    user={user}
+                    user={normalizedUser}
                     projectKey={projectKeyFromUrl}
                     ldClientSideId={applicationEnvironment.ldClientSideId}
                     flags={props.featureFlags}
@@ -206,7 +226,7 @@ export const ApplicationShellAuthenticated = (
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                       <RequestsInFlightLoader />
-                      <SentryUserTracker user={user ?? undefined} />
+                      <SentryUserTracker user={normalizedUser} />
                       <div
                         css={css`
                           height: 100vh;
@@ -256,7 +276,7 @@ export const ApplicationShellAuthenticated = (
                                         setProjectDataLocale,
                                       }) => (
                                         <ApplicationContextProvider
-                                          user={user}
+                                          user={normalizedUser}
                                           project={project}
                                           projectDataLocale={dataLocale}
                                           environment={applicationEnvironment}
@@ -282,7 +302,7 @@ export const ApplicationShellAuthenticated = (
                           `}
                         >
                           <AppBar
-                            user={user}
+                            user={normalizedUser}
                             projectKeyFromUrl={projectKeyFromUrl}
                           />
                         </header>
@@ -318,7 +338,7 @@ export const ApplicationShellAuthenticated = (
 
                                   return (
                                     <ApplicationContextProvider
-                                      user={user}
+                                      user={normalizedUser}
                                       environment={applicationEnvironment}
                                       // NOTE: do not pass the `project` into the application context.
                                       // The permissions for the Navbar are resolved separately, within
@@ -418,7 +438,8 @@ export const ApplicationShellAuthenticated = (
                                   {(() => {
                                     const previousProjectKey =
                                       getPreviousProjectKey(
-                                        user?.defaultProjectKey ?? undefined
+                                        normalizedUser?.defaultProjectKey ??
+                                          undefined
                                       );
 
                                     /**
@@ -429,7 +450,8 @@ export const ApplicationShellAuthenticated = (
                                      *   Given the user was working on a project previously or has a default
                                      *   project, the application will redirect to that project.
                                      */
-                                    if (!user) return <ApplicationLoader />;
+                                    if (!normalizedUser)
+                                      return <ApplicationLoader />;
                                     if (!previousProjectKey)
                                       return <RedirectToProjectCreate />;
                                     return (
@@ -439,7 +461,7 @@ export const ApplicationShellAuthenticated = (
                                 </Route>
                                 <Route exact={false} path="/:projectKey">
                                   <ProjectContainer
-                                    user={user}
+                                    user={normalizedUser}
                                     environment={applicationEnvironment}
                                     disableRoutePermissionCheck={
                                       props.disableRoutePermissionCheck
