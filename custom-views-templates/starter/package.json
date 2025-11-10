@@ -52,7 +52,7 @@
     "@commercetools-uikit/text": "^20.3.0",
     "@commercetools-uikit/text-field": "^20.3.0",
     "@commercetools-uikit/text-input": "^20.3.0",
-    "@commercetools/composable-commerce-test-data": "11.0.0",
+    "@commercetools/composable-commerce-test-data": "13.11.0",
     "@commercetools/sync-actions": "^5.14.0",
     "@emotion/react": "^11.14.0",
     "@formatjs/cli": "6.7.2",
