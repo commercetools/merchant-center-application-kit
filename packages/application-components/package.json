@@ -72,7 +72,7 @@
     "raf-schd": "^4.0.3"
   },
   "devDependencies": {
-    "@apollo/client": "3.13.9",
+    "@apollo/client": "3.14.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "16.1.0",
     "@types/jest": "^29.5.14",
