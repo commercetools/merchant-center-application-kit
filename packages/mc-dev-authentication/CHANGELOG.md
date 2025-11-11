@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 24.11.0
+
 ## 24.10.0
 
 ## 24.9.0
