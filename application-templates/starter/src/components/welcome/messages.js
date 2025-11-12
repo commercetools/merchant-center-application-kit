@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'Welcome.title',
-    defaultMessage: 'Develop applications for the Merchant Center',
+    defaultMessage: 'sup?',
   },
   subtitle: {
     id: 'Welcome.subtitle',
