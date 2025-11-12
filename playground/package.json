@@ -77,7 +77,7 @@
     "ts-node": "^10.9.1",
     "typescript": "5.9.2"
   },
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=22",
     "pnpm": ">=8"
