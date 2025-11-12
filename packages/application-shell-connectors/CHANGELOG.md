@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 24.11.0
+
+### Minor Changes
+
+- [#3871](https://github.com/commercetools/merchant-center-application-kit/pull/3871) [`9ca3b44`](https://github.com/commercetools/merchant-center-application-kit/commit/9ca3b44b82de969318fa5cf6d520bf08795047dd) Thanks [@mario-priceless](https://github.com/mario-priceless)! - read user language from storage
+
+### Patch Changes
+
+- Updated dependencies [[`9ca3b44`](https://github.com/commercetools/merchant-center-application-kit/commit/9ca3b44b82de969318fa5cf6d520bf08795047dd)]:
+  - @commercetools-frontend/constants@24.11.0
+  - @commercetools-frontend/application-config@24.11.0
+  - @commercetools-frontend/sentry@24.11.0
+  - @commercetools-frontend/browser-history@24.11.0
+
 ## 24.10.0
 
 ### Patch Changes
