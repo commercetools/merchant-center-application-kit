@@ -45,14 +45,7 @@ git commit -m "chore(templates): add welcome header to starter template"
 git push origin my-template-changes # push the changes to the new branch
 ```
 
-#### 3. Build the CLI Locally
-
-```bash
-cd packages/create-mc-app
-pnpm build
-```
-
-#### 4. Run the Local CLI with Your Branch
+#### 3. Run the Local CLI with Your Branch
 
 From the repository root:
 
@@ -64,7 +57,7 @@ NODE_ENV=test node packages/create-mc-app/bin/cli.js my-test-app \
 
 **Important:** Use relative paths (e.g., `my-test-app`) not absolute paths (e.g., `/Users/name/my-test-app`).
 
-#### 5. Verify Your Changes
+#### 4. Verify Your Changes
 
 ```bash
 cd my-test-app # navigate to the new app
