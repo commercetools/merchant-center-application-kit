@@ -83,3 +83,26 @@ global.console.config.addSilencedWarning = (rexExp) =>
   additionalSilencedWarnings.push(rexExp);
 global.console.config.addNonThrowingWarning = (rexExp) =>
   additionalNonThrowingWarnings.push(rexExp);
+
+// Workaround for Radix UI CSS selector parsing issues in JSDOM
+// Radix UI generates invalid CSS selectors that cause JSDOM to throw errors
+if (typeof window !== 'undefined') {
+  const originalGetComputedStyle = window.getComputedStyle;
+  window.getComputedStyle = function (element, pseudoElement) {
+    try {
+      return originalGetComputedStyle.call(this, element, pseudoElement);
+    } catch (error) {
+      // Return a mock CSSStyleDeclaration for CSS parsing errors
+      // This prevents tests from crashing due to invalid Radix UI selectors
+      if (error.message && error.message.includes('not a valid selector')) {
+        return {
+          getPropertyValue: () => '',
+          length: 0,
+          item: () => null,
+          [Symbol.iterator]: function* () {},
+        };
+      }
+      throw error;
+    }
+  };
+}

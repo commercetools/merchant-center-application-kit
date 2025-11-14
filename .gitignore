@@ -16,6 +16,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
+cypress-coverage
 coverage
 
 # nyc test coverage
