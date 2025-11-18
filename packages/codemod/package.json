@@ -27,7 +27,7 @@
     "@babel/core": "^7.22.17",
     "@babel/preset-env": "^7.22.15",
     "commander": "^13.1.0",
-    "glob": "8.1.0",
+    "glob": "11.1.0",
     "jscodeshift": "0.16.1",
     "prettier": "2.8.8"
   },
