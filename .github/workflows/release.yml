@@ -7,7 +7,6 @@ on:
 
 permissions:
   id-token: write
-  contents: read
 
 jobs:
   release:
@@ -25,7 +24,7 @@ jobs:
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           # Pass a personal access token (using our `ct-changesets` app) to be able to trigger other workflows
 
@@ -36,10 +35,15 @@ jobs:
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Verify npm version
+      - name: Setting up authorization to NPM registry (.npmrc)
         run: |
-          npm --version
-          # Ensure latest npm is installed for trusted publishing (OIDC)
+          cat << EOF > "$HOME/.npmrc"
+            provenance=true
+            email=npmjs@commercetools.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Storing release version for changeset
         id: release_version
