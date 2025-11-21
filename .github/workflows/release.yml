@@ -7,6 +7,7 @@ on:
 
 permissions:
   id-token: write
+  contents: read
 
 jobs:
   release:
@@ -32,18 +33,22 @@ jobs:
           # https://github.community/t/action-does-not-trigger-another-on-push-tag-action/17148/8
           token: ${{ steps.generate_github_token.outputs.token }}
 
+      # Ensure we are using valid node version for npm trusted publising AFTER checkout
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm 11.5.1 or later is installed for OIDC support
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Verify npm version
+        run: npm --version
+
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
-
-      - name: Setting up authorization to NPM registry (.npmrc)
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            provenance=true
-            email=npmjs@commercetools.com
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Storing release version for changeset
         id: release_version
