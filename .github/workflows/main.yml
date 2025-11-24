@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # We need to fetch the full history to get the correct coverage data.
           fetch-depth: 2
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -106,7 +106,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Test Custom Application javascript starter template
         uses: ./.github/actions/test-template-action
@@ -130,7 +130,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -156,7 +156,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Test Custom Application typescript starter template
         uses: ./.github/actions/test-template-action
@@ -181,7 +181,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -207,7 +207,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Test Custom View javascript starter template
         uses: ./.github/actions/test-template-action
@@ -232,7 +232,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -258,7 +258,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Test Custom View typescript starter template
         uses: ./.github/actions/test-template-action
@@ -284,7 +284,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -310,7 +310,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # We need to fetch the full history to get the correct coverage data.
           fetch-depth: 2
