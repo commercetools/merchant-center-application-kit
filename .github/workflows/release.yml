@@ -35,7 +35,7 @@ jobs:
 
       # Ensure we are using valid node version for npm trusted publising AFTER checkout
       # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
