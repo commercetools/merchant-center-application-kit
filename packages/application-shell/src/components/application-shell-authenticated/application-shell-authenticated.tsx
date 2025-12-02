@@ -38,8 +38,6 @@ import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
 import ProjectContainer from '../project-container';
-import ProjectDataLocale from '../project-data-locale';
-import QuickAccess from '../quick-access';
 import RedirectToLogout from '../redirect-to-logout';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
@@ -248,53 +246,6 @@ export const ApplicationShellAuthenticated = (
                           <NotificationsList domain={DOMAINS.GLOBAL} />
                         </div>
 
-                        <Route>
-                          {() => {
-                            if (!projectKeyFromUrl) return <QuickAccess />;
-                            return (
-                              <FetchProject projectKey={projectKeyFromUrl}>
-                                {({ isLoading: isProjectLoading, project }) => {
-                                  if (isProjectLoading || !project) return null;
-
-                                  // when used outside of a project context,
-                                  // or when the project is expired or supsended
-                                  const shouldUseProjectContext = !(
-                                    (project.suspension &&
-                                      project.suspension.isActive) ||
-                                    (project.expiry && project.expiry.isActive)
-                                  );
-
-                                  if (!shouldUseProjectContext)
-                                    return <QuickAccess />;
-
-                                  return (
-                                    <ProjectDataLocale
-                                      locales={project.languages}
-                                    >
-                                      {({
-                                        locale: dataLocale,
-                                        setProjectDataLocale,
-                                      }) => (
-                                        <ApplicationContextProvider
-                                          user={normalizedUser}
-                                          project={project}
-                                          projectDataLocale={dataLocale}
-                                          environment={applicationEnvironment}
-                                        >
-                                          <QuickAccess
-                                            onChangeProjectDataLocale={
-                                              setProjectDataLocale
-                                            }
-                                          />
-                                        </ApplicationContextProvider>
-                                      )}
-                                    </ProjectDataLocale>
-                                  );
-                                }}
-                              </FetchProject>
-                            );
-                          }}
-                        </Route>
                         <header
                           css={css`
                             grid-row: '2/3';
