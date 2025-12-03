@@ -74,6 +74,14 @@ jobs:
 
       # Publish canary releases only if the packages weren't published already
       # TESTING
+      # Re-run setup-node to ensure .npmrc exists for OIDC authentication
+      # (it may not persist from earlier steps when using pnpm)
+      - uses: actions/setup-node@v6
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+      
       - name: Publishing canary releases to npm registry
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
