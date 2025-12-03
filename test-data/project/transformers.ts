@@ -1,6 +1,5 @@
 import { Transformer } from '@commercetools/composable-commerce-test-data/core';
 import * as AppliedActionRightMock from './fields/applied-action-right';
-import * as AppliedMenuVisibilitiesMock from './fields/applied-menu-visibilities';
 import * as AppliedPermissionMock from './fields/applied-permission';
 import * as AppliedStoreDataFenceMock from './fields/applied-store-data-fence';
 import type { TProject, TProjectGraphql } from './types';
@@ -13,7 +12,6 @@ const transformers = {
       'owner',
       'permissions',
       'actionRights',
-      'menuVisibilities',
       'dataFences',
     ],
   }),
@@ -24,7 +22,6 @@ const transformers = {
       'owner',
       'permissions',
       'actionRights',
-      'menuVisibilities',
       'dataFences',
     ],
     addFields: () => ({
@@ -42,16 +39,9 @@ const transformers = {
           AppliedActionRightMock.random().buildGraphql<AppliedActionRightMock.TAppliedActionRightsGraphql>(),
         allAppliedDataFences:
           AppliedStoreDataFenceMock.random().buildGraphql<AppliedStoreDataFenceMock.TAppliedStoreDataFencesGraphql>(),
-        allAppliedMenuVisibilities:
-          AppliedMenuVisibilitiesMock.random().buildGraphql<AppliedMenuVisibilitiesMock.TAppliedMenuVisibilitiesGraphql>(),
       },
     }),
-    removeFields: [
-      'permissions',
-      'actionRights',
-      'menuVisibilities',
-      'dataFences',
-    ],
+    removeFields: ['permissions', 'actionRights', 'dataFences'],
   }),
 };
 

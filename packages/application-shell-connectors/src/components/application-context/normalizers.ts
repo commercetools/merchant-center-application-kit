@@ -1,14 +1,8 @@
 import type {
   TAppliedPermission,
   TAppliedActionRight,
-  TAppliedMenuVisibilities,
   TStoreDataFence,
 } from '../../types/generated/mc';
-
-// Menu visibilities
-export type TMenuVisibilities = {
-  [key: string]: boolean;
-};
 
 // Permissions
 export type TPermissions = {
@@ -66,24 +60,6 @@ export const normalizeAllAppliedPermissions = (
     return null;
   }
   return allAppliedPermissions.reduce<TPermissions>(
-    (transformedAllApplied, allApplied) => {
-      if (!allApplied) return transformedAllApplied;
-      return {
-        ...transformedAllApplied,
-        [allApplied.name]: allApplied.value,
-      };
-    },
-    {}
-  );
-};
-
-export const normalizeAllAppliedMenuVisibilities = (
-  allAppliedMenuVisibilities?: TAppliedMenuVisibilities[]
-): TMenuVisibilities | null => {
-  if (!allAppliedMenuVisibilities || allAppliedMenuVisibilities.length === 0) {
-    return null;
-  }
-  return allAppliedMenuVisibilities.reduce<TMenuVisibilities>(
     (transformedAllApplied, allApplied) => {
       if (!allApplied) return transformedAllApplied;
       return {

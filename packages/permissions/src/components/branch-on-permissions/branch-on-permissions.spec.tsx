@@ -74,7 +74,6 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
           allAppliedPermissions: [],
           allAppliedActionRights: [],
           allAppliedDataFences: [],
-          allAppliedMenuVisibilities: [],
         },
       }}
       projectDataLocale="en"

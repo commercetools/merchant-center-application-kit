@@ -44,10 +44,6 @@ query FetchProject($projectKey: String) {
         name
         value
       }
-      allAppliedMenuVisibilities {
-        name
-        value
-      }
       allAppliedDataFences {
         ... on StoreDataFence {
           type

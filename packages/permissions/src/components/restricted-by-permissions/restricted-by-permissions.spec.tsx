@@ -12,10 +12,6 @@ type TAllAppliedActionRight = {
   value: boolean;
   group: string;
 };
-type TAllAppliedMenuVisibility = {
-  name: string;
-  value: boolean;
-};
 type TAllAppliedDataFence = {
   __typename: 'StoreDataFence';
   value: string;
@@ -31,13 +27,11 @@ type TDemandedActionRight = {
 const testRender = ({
   allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
   allAppliedActionRights = [],
-  allAppliedMenuVisibilities = [],
   allAppliedDataFences = [],
   component,
 }: {
   allAppliedPermissions?: TAllAppliedPermission[];
   allAppliedActionRights?: TAllAppliedActionRight[];
-  allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
   allAppliedDataFences?: TAllAppliedDataFence[];
   component: ReactElement;
 }) =>
@@ -71,7 +65,6 @@ const testRender = ({
           allAppliedPermissions,
           allAppliedActionRights,
           allAppliedDataFences,
-          allAppliedMenuVisibilities,
         },
       }}
       environment={{

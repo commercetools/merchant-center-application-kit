@@ -9,7 +9,6 @@ export {
   useApplicationContext,
   normalizeAllAppliedActionRights,
   normalizeAllAppliedDataFences,
-  normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from './components/application-context';
 
