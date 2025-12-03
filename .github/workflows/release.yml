@@ -73,11 +73,17 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
           SKIP_POSTINSTALL_DEV_SETUP: true
 
+      # TESTING ONLY:Show changesets output for testing
+      - name: Debug changesets output
+        run: |
+          echo "changesets.outputs.published = ${{ steps.changesets.outputs.published }}"
+          echo "github.ref = ${{ github.ref }}"
+
       # Publish canary releases only if the packages weren't published already
-      # TESTING ONLY: Condition modified to allow testing on any branch
+      # TESTING ONLY: Condition modified to always run for testing
       # TODO: Revert to: if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
       - name: Publishing canary releases to npm registry
-        if: steps.changesets.outputs.published != 'true' # TESTING: Temporarily removed && github.ref == 'refs/heads/main'
+        if: true # TESTING: Always run for testing. Revert to: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
           # Ensure .npmrc is properly configured for OIDC trusted publishing
           # setup-node@v6 with registry-url creates .npmrc with OIDC token,
