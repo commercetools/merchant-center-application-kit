@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # TESTING ONLY: Allows manual triggering for testing before merging to main
 
 permissions:
   id-token: write
@@ -73,9 +74,24 @@ jobs:
           SKIP_POSTINSTALL_DEV_SETUP: true
 
       # Publish canary releases only if the packages weren't published already
+      # TESTING ONLY: Condition modified to allow testing on any branch
+      # TODO: Revert to: if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
       - name: Publishing canary releases to npm registry
-        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        if: steps.changesets.outputs.published != 'true' # TESTING: Temporarily removed && github.ref == 'refs/heads/main'
         run: |
+          # Ensure .npmrc is properly configured for OIDC trusted publishing
+          # setup-node@v6 with registry-url creates .npmrc with OIDC token,
+          # but we might need to explicitly set provenance=true for trusted publishing
+          if [ ! -f "$HOME/.npmrc" ]; then
+            echo "ERROR: $HOME/.npmrc not found. OIDC setup may have failed." >&2
+            exit 1
+          fi
+          
+          # Add provenance=true if not already present (required for trusted publishing)
+          if ! grep -q "provenance=true" "$HOME/.npmrc"; then
+            printf "provenance=true\n" >> "$HOME/.npmrc"
+          fi
+          
           git checkout main
           pnpm changeset version --snapshot canary
           pnpm changeset publish --tag canary
