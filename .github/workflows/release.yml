@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # TESTING ONLY: Allows manual triggering for testing before merging to main
 
 permissions:
   id-token: write
@@ -73,17 +72,10 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
           SKIP_POSTINSTALL_DEV_SETUP: true
 
-      # TESTING ONLY:Show changesets output for testing
-      - name: Debug changesets output
-        run: |
-          echo "changesets.outputs.published = ${{ steps.changesets.outputs.published }}"
-          echo "github.ref = ${{ github.ref }}"
-
       # Publish canary releases only if the packages weren't published already
-      # TESTING ONLY: Condition modified to always run for testing
-      # TODO: Revert to: if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+      # TESTING
       - name: Publishing canary releases to npm registry
-        if: true # TESTING: Always run for testing. Revert to: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
           # Ensure .npmrc is properly configured for OIDC trusted publishing
           # setup-node@v6 with registry-url creates .npmrc with OIDC token,
