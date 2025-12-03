@@ -16,7 +16,6 @@ import classnames from 'classnames';
 import { useIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import type {
-  TNormalizedMenuVisibilities,
   TNormalizedPermissions,
   TNormalizedActionRights,
   TNormalizedDataFences,
@@ -342,22 +341,9 @@ const MenuItemLink = ({ exactMatch = false, ...props }: MenuItemLinkProps) => {
 };
 MenuItemLink.displayName = 'MenuItemLink';
 
-const isEveryMenuVisibilitySetToHidden = (
-  menuVisibilities?: TNormalizedMenuVisibilities | null,
-  namesOfMenuVisibilities?: string[]
-) =>
-  Array.isArray(namesOfMenuVisibilities) &&
-  namesOfMenuVisibilities.length > 0 &&
-  namesOfMenuVisibilities.every(
-    (nameOfMenuVisibility) =>
-      menuVisibilities && menuVisibilities[nameOfMenuVisibility] === true
-  );
-
 type RestrictedMenuItemProps = {
   featureToggle?: string;
-  namesOfMenuVisibilities?: string[];
   projectPermissions: TProjectPermissions;
-  menuVisibilities: TNormalizedMenuVisibilities | null;
   keyOfMenuItem: string;
   permissions: string[];
   actionRights?: TActionRight[];
@@ -378,16 +364,7 @@ const RestrictedMenuItem = ({
   permissions = [],
   ...props
 }: RestrictedMenuItemProps) => {
-  // NOTE: Custom application are activated/deactivated while their
-  // visibility is not controlled via a visibiility overwrite.
   const flagVariation = useFlagVariation(props.featureToggle);
-  if (
-    isEveryMenuVisibilitySetToHidden(
-      props.menuVisibilities,
-      props.namesOfMenuVisibilities
-    )
-  )
-    return null;
 
   const permissionsWrapper =
     (Array.isArray(permissions) && permissions.length > 0) ||
