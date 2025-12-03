@@ -304,33 +304,5 @@
   "ProjectSwitcher.suspended": {
     "developer_comment": "Label for a suspended project",
     "string": "Suspendu"
-  },
-  "TopNavigation.labelLoading": {
-    "developer_comment": "The text to show next to the loading icon",
-    "string": "Traitement..."
-  },
-  "UserSettingsMenu.closeMenuLabel": {
-    "developer_comment": "The label when menu is open and would be closed by a click",
-    "string": "Fermer le menu des paramètres d'utilisateur"
-  },
-  "UserSettingsMenu.logout": {
-    "developer_comment": "The label for logout option",
-    "string": "Déconnexion"
-  },
-  "UserSettingsMenu.menuLabel": {
-    "developer_comment": "The label describing the menu",
-    "string": "Menu paramètres utilisateur"
-  },
-  "UserSettingsMenu.openMenuLabel": {
-    "developer_comment": "The label when menu is closed and would be opened by a click",
-    "string": "Ouvrir le menu des paramètres d'utilisateur"
-  },
-  "UserSettingsMenu.privacyPolicy": {
-    "developer_comment": "The label for privacy policy option",
-    "string": "Politique de confidentialité"
-  },
-  "UserSettingsMenu.support": {
-    "developer_comment": "The label for Support",
-    "string": "Assistance"
   }
 }
