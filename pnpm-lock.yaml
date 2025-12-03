@@ -60,8 +60,8 @@ importers:
         specifier: ^20.3.0
         version: 20.3.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@commercetools/github-labels':
         specifier: 1.1.0
         version: 1.1.0(@octokit/core@7.0.6)
@@ -405,8 +405,8 @@ importers:
         specifier: ^20.3.0
         version: 20.3.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.19.2
@@ -618,8 +618,8 @@ importers:
         specifier: ^20.3.0
         version: 20.3.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.19.2
@@ -828,8 +828,8 @@ importers:
         specifier: ^20.3.0
         version: 20.3.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.19.2
@@ -1041,8 +1041,8 @@ importers:
         specifier: ^20.3.0
         version: 20.3.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.19.2
@@ -2746,8 +2746,8 @@ importers:
         version: 5.0.2(webpack@5.101.1(@swc/core@1.15.1))
     devDependencies:
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.2
@@ -3275,8 +3275,8 @@ importers:
         specifier: 24.11.0
         version: link:../packages/mc-scripts
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.11.0
-        version: 13.11.0(@types/node@22.19.1)(typescript@5.9.2)
+        specifier: 13.12.0
+        version: 13.12.0(@types/node@22.19.1)(typescript@5.9.2)
       '@formatjs/cli':
         specifier: 6.7.2
         version: 6.7.2
@@ -4779,8 +4779,8 @@ packages:
     resolution: {integrity: sha512-4QhfpWnW161XaRs/2o9h4ZVr21R31vYNHmpKbDh2Dp+lFR9IqdwiafP0fqfLzI+Xg6vTrA2s5coyxkh0qj7Gng==}
     engines: {node: '>=14'}
 
-  '@commercetools/composable-commerce-test-data@13.11.0':
-    resolution: {integrity: sha512-It0K5vkzq/kWafZzcIeEuBrNr3baaiWug/zaDv03UlIp7WcoV6Rg2JL7+EA/E9qec054PslmWJFTzfTYa02nHA==}
+  '@commercetools/composable-commerce-test-data@13.12.0':
+    resolution: {integrity: sha512-hlAaCaa+Y4S4RX3DbG5gtQAf8H5uKLFMi4cHAu2UQ4oYFM3aotgY+tzEIVKa7pUzG4k6rhkFokoalk+wxZXMPg==}
 
   '@commercetools/github-labels@1.1.0':
     resolution: {integrity: sha512-MNOUZDUyXKf6jRk67esFdvWjIdjUY9/9pAIdUt++VDPbYA8kbY4HZWs6dPgqxBfD9Krwax4Xqvon9zFvm25aPQ==}
@@ -18522,7 +18522,7 @@ snapshots:
 
   '@commercetools/api-request-builder@6.0.0': {}
 
-  '@commercetools/composable-commerce-test-data@13.11.0(@types/node@22.19.1)(typescript@5.9.2)':
+  '@commercetools/composable-commerce-test-data@13.12.0(@types/node@22.19.1)(typescript@5.9.2)':
     dependencies:
       '@babel/runtime': 7.28.4
       '@babel/runtime-corejs3': 7.28.4
@@ -30940,7 +30940,7 @@ snapshots:
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.3
+      semver: 7.7.2
       typescript: 5.9.2
       yargs-parser: 21.1.1
     optionalDependencies:
