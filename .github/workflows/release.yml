@@ -87,16 +87,25 @@ jobs:
         run: |
           # Ensure .npmrc is properly configured for OIDC trusted publishing
           # setup-node@v6 with registry-url creates .npmrc with OIDC token,
-          # but we might need to explicitly set provenance=true for trusted publishing
-          if [ ! -f "$HOME/.npmrc" ]; then
-            echo "ERROR: $HOME/.npmrc not found. OIDC setup may have failed." >&2
+          # but we need to explicitly set provenance=true for trusted publishing
+          # setup-node creates .npmrc at NPM_CONFIG_USERCONFIG, but pnpm reads from $HOME/.npmrc
+          # So we need to create/update $HOME/.npmrc with the OIDC token and provenance
+          
+          NPMRC_PATH="$HOME/.npmrc"
+          NODE_AUTH_TOKEN="${NODE_AUTH_TOKEN:-}"
+          
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "ERROR: NODE_AUTH_TOKEN not found. OIDC setup may have failed." >&2
             exit 1
           fi
           
-          # Add provenance=true if not already present (required for trusted publishing)
-          if ! grep -q "provenance=true" "$HOME/.npmrc"; then
-            printf "provenance=true\n" >> "$HOME/.npmrc"
-          fi
+          # Create or update .npmrc with OIDC token and provenance
+          {
+            echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}"
+            echo "provenance=true"
+          } > "$NPMRC_PATH"
+          
+          echo "Created .npmrc with OIDC token and provenance=true"
           
           git checkout main
           pnpm changeset version --snapshot canary
