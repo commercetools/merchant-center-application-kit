@@ -132,7 +132,6 @@ const useNavbarStateManager = (props: HookProps) => {
               permissions: application.mainMenuLink.permissions as string[],
               defaultLabel: application.mainMenuLink.defaultLabel,
               featureToggle: undefined,
-              menuVisibility: undefined,
               actionRights: undefined,
               dataFences: undefined,
               submenu: (application.submenuLinks || []).map((submenuLink) => ({
@@ -142,7 +141,6 @@ const useNavbarStateManager = (props: HookProps) => {
                 permissions: submenuLink.permissions as string[],
                 defaultLabel: submenuLink.defaultLabel,
                 featureToggle: undefined,
-                menuVisibility: undefined,
                 actionRights: undefined,
                 dataFences: undefined,
               })),

@@ -3,7 +3,6 @@ import type {
   TApplicationContext as ApplicationContext,
 } from './application-context';
 import type {
-  TMenuVisibilities as NormalizedMenuVisibilities,
   TPermissions as NormalizedPermissions,
   TActionRights as NormalizedActionRights,
   TDataFences as NormalizedDataFences,
@@ -14,7 +13,6 @@ export type TProviderProps<AdditionalEnvironmentProperties extends {}> =
 export type TApplicationContext<AdditionalEnvironmentProperties extends {}> =
   ApplicationContext<AdditionalEnvironmentProperties>;
 
-export type TNormalizedMenuVisibilities = NormalizedMenuVisibilities;
 export type TNormalizedPermissions = NormalizedPermissions;
 export type TNormalizedActionRights = NormalizedActionRights;
 export type TNormalizedDataFences = NormalizedDataFences;
@@ -29,6 +27,5 @@ export {
 export {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedDataFences,
-  normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from './normalizers';
