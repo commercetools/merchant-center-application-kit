@@ -1,0 +1,101 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      # Get GitHub token via the CT Changesets App
+      - name: Generate GitHub token (via CT Changesets App)
+        id: generate_github_token
+        uses: tibdex/github-app-token@v2.1.0
+        with:
+          app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
+          private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # Pass a personal access token (using our `ct-changesets` app) to be able to trigger other workflows
+
+          # https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+          # https://github.community/t/action-does-not-trigger-another-on-push-tag-action/17148/8
+          token: ${{ steps.generate_github_token.outputs.token }}
+
+      # Ensure we are using valid node version for npm trusted publising AFTER checkout
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm 11.5.1 or later is installed for OIDC support
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Verify npm version
+        run: npm --version
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      # Configure npm registry for trusted publishing (OIDC)
+      # This must run AFTER the CI action to override the Node setup with registry config
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - name: Setup npm registry for publishing
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Storing release version for changeset
+        id: release_version
+        run: echo "VALUE=$(./scripts/print_release_version.sh)" >> $GITHUB_OUTPUT
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+
+      - name: Creating release pull request or publishing release to npm registry
+        id: changesets
+        # uses: changesets/action@v1.3.0
+        uses: dotansimha/changesets-action@v1.5.2
+        with:
+          publish: pnpm changeset publish
+          version: pnpm changeset:version-and-format
+          commit: "ci(changesets): version packages"
+          createGithubReleases: aggregate
+          githubReleaseName: v${{ steps.release_version.outputs.VALUE }}
+          githubTagName: v${{ steps.release_version.outputs.VALUE }}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          SKIP_POSTINSTALL_DEV_SETUP: true
+
+      # Publish canary releases only if the packages weren't published already
+      - name: Publishing canary releases to npm registry
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        run: |
+          git checkout main
+          pnpm changeset version --snapshot canary
+          pnpm changeset publish --tag canary
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+
+      - name: Building Playground application
+        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        run: pnpm playground:build
+        env:
+          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+          MC_API_URL: ${{ secrets.MC_API_URL }}
+          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
