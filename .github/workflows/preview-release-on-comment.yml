@@ -64,7 +64,7 @@ jobs:
 
       - name: Publishing preview releases to npm registry
         run: |
-          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///')
+          PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///' | sed -e 's/[^a-zA-Z0-9-]/-/g')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
           pnpm changeset publish --tag ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
