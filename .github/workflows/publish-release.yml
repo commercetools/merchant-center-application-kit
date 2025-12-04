@@ -6,10 +6,9 @@ on:
       - main
 
 
-# Commenting out for now, existing in the entry point. 
-# permissions:
-#   id-token: write
-#   contents: read
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   publish-release:
