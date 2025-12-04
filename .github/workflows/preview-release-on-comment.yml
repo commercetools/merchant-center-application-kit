@@ -30,33 +30,37 @@ jobs:
         uses: xt0rted/pull-request-comment-branch@v3
         id: comment-branch
 
-      - name: Validate branch name
-        run: |
-          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
-            echo "Ignoring PR because of the branch name. Exiting workflow."
-            exit 1
-          fi
-        env:
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
-
       - name: Checkout PR branch
         uses: actions/checkout@v6
         with:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
+      # Ensure we are using valid node version for npm trusted publising AFTER checkout
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm 11.5.1 or later is installed for OIDC support
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Verify npm version
+        run: npm --version
+
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
 
-      - name: Setting up authorization to NPM registry (.npmrc)
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            provenance=true
-            email=npmjs@commercetools.com
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Configure npm registry for trusted publishing (OIDC)
+      # This must run AFTER the CI action to override the Node setup with registry config
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - name: Setup npm registry for publishing
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Publishing preview releases to npm registry
         run: |
