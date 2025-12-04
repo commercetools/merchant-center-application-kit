@@ -1,14 +1,13 @@
 name: Preview Release on Comment
 
+on:
+  workflow_call:
+
 permissions:
   id-token: write
   contents: read
   pull-requests: write
-  issues: write
-
-on:
-  issue_comment:
-    types: [created]
+  issues: write    
 
 jobs:
   release:
