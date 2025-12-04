@@ -76,6 +76,25 @@ jobs:
       - name: Publishing canary releases to npm registry
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
         run: |
+          # Ensure .npmrc is properly configured for OIDC trusted publishing
+          # setup-node@v6 with registry-url provides NODE_AUTH_TOKEN environment variable,
+          # but pnpm reads from $HOME/.npmrc, not NPM_CONFIG_USERCONFIG
+          # So we create $HOME/.npmrc directly with the OIDC token and provenance=true
+          
+          NPMRC_PATH="$HOME/.npmrc"
+          NODE_AUTH_TOKEN="${NODE_AUTH_TOKEN:-}"
+          
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "ERROR: NODE_AUTH_TOKEN not found. OIDC setup may have failed." >&2
+            exit 1
+          fi
+          
+          # Create .npmrc with OIDC token and provenance
+          {
+            echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}"
+            echo "provenance=true"
+          } > "$NPMRC_PATH"
+          
           git checkout main
           pnpm changeset version --snapshot canary
           pnpm changeset publish --tag canary
