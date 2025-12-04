@@ -30,15 +30,6 @@ jobs:
         uses: xt0rted/pull-request-comment-branch@v3
         id: comment-branch
 
-      - name: Validate branch name
-        run: |
-          if [[ ! "$BRANCH_NAME" =~ ^preview/[a-zA-Z0-9_-]+$ ]]; then
-            echo "Ignoring PR because of the branch name. Exiting workflow."
-            exit 1
-          fi
-        env:
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
-
       - name: Checkout PR branch
         uses: actions/checkout@v6
         with:
