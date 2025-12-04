@@ -7,11 +7,10 @@ permissions:
   id-token: write
   contents: read
   pull-requests: write
-  issues: write    
+  issues: write
 
 jobs:
   release:
-    if: github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
