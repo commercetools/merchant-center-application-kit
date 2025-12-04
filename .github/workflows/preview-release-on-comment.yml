@@ -36,7 +36,7 @@ jobs:
           ref: ${{ steps.comment-branch.outputs.head_ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
-      # Ensure we are using valid node version for npm trusted publising AFTER checkout
+      # Ensure we are using valid node version for npm trusted publishing AFTER checkout
       # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
       - uses: actions/setup-node@v6
         with:
