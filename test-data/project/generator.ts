@@ -27,7 +27,6 @@ const generator = Generator<TProject>({
     expiry: null,
     permissions: null,
     actionRights: null,
-    menuVisibilities: null,
     dataFences: null,
   },
   postBuild: (project) => {

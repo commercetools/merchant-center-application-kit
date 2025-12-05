@@ -16,10 +16,6 @@ type TAllAppliedActionRight = {
   value: boolean;
   group: string;
 };
-type TAllAppliedMenuVisibility = {
-  name: string;
-  value: boolean;
-};
 type TAllAppliedDataFence = {
   __typename: 'StoreDataFence';
   value: string;
@@ -72,7 +68,6 @@ const render = ({
   shouldMatchSomePermissions = false,
   allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
   allAppliedActionRights = [],
-  allAppliedMenuVisibilities = [],
   allAppliedDataFences = [],
 }: {
   demandedPermissions: TPermissionName[];
@@ -81,7 +76,6 @@ const render = ({
   selectDataFenceData?: TSelectDataFenceData;
   allAppliedPermissions?: TAllAppliedPermission[];
   allAppliedActionRights?: TAllAppliedActionRight[];
-  allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
   allAppliedDataFences?: TAllAppliedDataFence[];
   shouldMatchSomePermissions?: boolean;
 }) =>
@@ -115,7 +109,6 @@ const render = ({
           allAppliedPermissions,
           allAppliedActionRights,
           allAppliedDataFences,
-          allAppliedMenuVisibilities,
         },
       }}
       environment={{

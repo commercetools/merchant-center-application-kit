@@ -21,7 +21,8 @@ export type TAllPermissionsForAllApplications = {
   __typename?: 'AllPermissionsForAllApplications';
   allAppliedActionRights: Array<TAppliedActionRight>;
   allAppliedDataFences: Array<TAppliedDataFence>;
-  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
+  /** @deprecated This field is no longer supported */
+  allAppliedMenuVisibilities?: Maybe<Array<Maybe<TAppliedMenuVisibilities>>>;
   allAppliedPermissions: Array<TAppliedPermission>;
 };
 
@@ -174,6 +175,7 @@ export type TMutation = {
   createMyOrganization?: Maybe<TOrganizationCreated>;
   createMyProject?: Maybe<TProjectPendingCreation>;
   createOAuthClient: TOAuthClient;
+  createUserFromIdentity: TUser;
   deleteAccount: TDeletedUser;
   deleteOAuthClient: TOAuthClient;
   importSampleData: TImportResponse;
@@ -201,6 +203,11 @@ export type TMutation_CreateMyProjectArgs = {
 
 export type TMutation_CreateOAuthClientArgs = {
   draft: TOAuthClientCreationInput;
+};
+
+
+export type TMutation_CreateUserFromIdentityArgs = {
+  token: Scalars['String'];
 };
 
 
@@ -325,8 +332,8 @@ export type TProject = TMetaData & {
   __typename?: 'Project';
   allAppliedActionRights: Array<TAppliedActionRight>;
   allAppliedDataFences: Array<TAppliedDataFence>;
-  /** @deprecated This field has been moved into the menuPermissionsForAllApplications field. */
-  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>;
+  /** @deprecated This field is no longer supported */
+  allAppliedMenuVisibilities?: Maybe<Array<Maybe<TAppliedMenuVisibilities>>>;
   allAppliedPermissions: Array<TAppliedPermission>;
   allPermissionsForAllApplications: TAllPermissionsForAllApplications;
   apiVersion: Scalars['String'];
@@ -534,6 +541,7 @@ export type TResetUser = {
 
 export enum TSampleDatasets {
   B2B = 'B2B',
+  B2Clifestyle = 'B2CLIFESTYLE',
   Goodstore = 'GOODSTORE'
 }
 
@@ -674,7 +682,7 @@ export type TFetchProjectQueryVariables = Exact<{
 }>;
 
 
-export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, isProductionProject: boolean, sampleDataImportDataset?: string | null, isUserAdminOfCurrentProject?: boolean | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedMenuVisibilities: Array<{ __typename?: 'AppliedMenuVisibilities', name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
+export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, isProductionProject: boolean, sampleDataImportDataset?: string | null, isUserAdminOfCurrentProject?: boolean | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
