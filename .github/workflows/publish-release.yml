@@ -1,4 +1,9 @@
 name: Publish Release
+# Reusable workflow that handles official releases:
+# - Versions packages using changesets and publishes to npm
+# - Creates GitHub releases
+# - Publishes canary releases if no official release was created
+# - Builds playground application
 
 on:
   workflow_call:

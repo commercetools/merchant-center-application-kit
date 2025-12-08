@@ -1,4 +1,7 @@
 name: Release
+# Entry workflow that coordinates release processes:
+# - Publishes official releases when code is pushed to main, adhering to the single workflow, npm trusted publishing/OIDC pattern
+# - Publishes preview releases when triggered via PR comment with [preview_deployment]
 
 on:
   push:
