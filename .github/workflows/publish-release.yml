@@ -53,43 +53,46 @@ jobs:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Storing release version for changeset
-        id: release_version
-        run: echo "VALUE=$(./scripts/print_release_version.sh)" >> $GITHUB_OUTPUT
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      # TODO: RESTORE AFTER TESTING - Uncomment versioning steps below
+      # - name: Storing release version for changeset
+      #   id: release_version
+      #   run: echo "VALUE=$(./scripts/print_release_version.sh)" >> $GITHUB_OUTPUT
+      #   shell: bash
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
 
-      - name: Creating release pull request or publishing release to npm registry
-        id: changesets
-        # uses: changesets/action@v1.3.0
-        uses: dotansimha/changesets-action@v1.5.2
-        with:
-          publish: pnpm changeset publish
-          version: pnpm changeset:version-and-format
-          commit: "ci(changesets): version packages"
-          createGithubReleases: aggregate
-          githubReleaseName: v${{ steps.release_version.outputs.VALUE }}
-          githubTagName: v${{ steps.release_version.outputs.VALUE }}
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-          SKIP_POSTINSTALL_DEV_SETUP: true
+      # - name: Creating release pull request or publishing release to npm registry
+      #   id: changesets
+      #   # uses: changesets/action@v1.3.0
+      #   uses: dotansimha/changesets-action@v1.5.2
+      #   with:
+      #     publish: pnpm changeset publish
+      #     version: pnpm changeset:version-and-format
+      #     commit: "ci(changesets): version packages"
+      #     createGithubReleases: aggregate
+      #     githubReleaseName: v${{ steps.release_version.outputs.VALUE }}
+      #     githubTagName: v${{ steps.release_version.outputs.VALUE }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+      #     SKIP_POSTINSTALL_DEV_SETUP: true
 
-      # Publish canary releases only if the packages weren't published already
+      # TEMPORARY: Skip versioning, only publish canary for testing
+      # TODO: RESTORE AFTER TESTING - Change back to: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
       - name: Publishing canary releases to npm registry
-        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test-release-workflow'
         run: |
-          git checkout main
+          git checkout ${{ github.ref_name }}
           pnpm changeset version --snapshot canary
           pnpm changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
 
-      - name: Building Playground application
-        if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
-        run: pnpm playground:build
-        env:
-          APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
-          MC_API_URL: ${{ secrets.MC_API_URL }}
-          CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
-          HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+      # TODO: RESTORE AFTER TESTING - Uncomment playground build step below
+      # - name: Building Playground application
+      #   if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'
+      #   run: pnpm playground:build
+      #   env:
+      #     APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
+      #     MC_API_URL: ${{ secrets.MC_API_URL }}
+      #     CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+      #     HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
