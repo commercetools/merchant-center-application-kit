@@ -2,11 +2,11 @@ name: Preview Release on Comment
 
 on:
   workflow_call:
-    secrets:
-      CT_CHANGESETS_APP_ID:
-        required: true
-      CT_CHANGESETS_APP_PEM:
-        required: true
+    # secrets:
+    #   CT_CHANGESETS_APP_ID:
+    #     required: true
+    #   CT_CHANGESETS_APP_PEM:
+    #     required: true
 
 jobs:
   release:
@@ -15,6 +15,21 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      # Debug: Check if secrets are available (only outputs yes/no, never secret values)
+      - name: Debug secrets availability
+        run: |
+          if [ -n "${{ secrets.CT_CHANGESETS_APP_ID }}" ]; then
+            echo "CT_CHANGESETS_APP_ID is set: yes"
+          else
+            echo "CT_CHANGESETS_APP_ID is set: no"
+          fi
+          if [ -n "${{ secrets.CT_CHANGESETS_APP_PEM }}" ]; then
+            echo "CT_CHANGESETS_APP_PEM is set: yes"
+          else
+            echo "CT_CHANGESETS_APP_PEM is set: no"
+          fi
+        shell: bash
+
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
