@@ -2,6 +2,11 @@ name: Preview Release on Comment
 
 on:
   workflow_call:
+    secrets:
+      CT_CHANGESETS_APP_ID:
+        required: true
+      CT_CHANGESETS_APP_PEM:
+        required: true
 
 jobs:
   release:

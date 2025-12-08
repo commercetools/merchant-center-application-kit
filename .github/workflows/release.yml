@@ -37,4 +37,6 @@ jobs:
       contents: read
       pull-requests: write
       issues: write
-    secrets: inherit
+    secrets:
+      CT_CHANGESETS_APP_ID: ${{ secrets.CT_CHANGESETS_APP_ID }}
+      CT_CHANGESETS_APP_PEM: ${{ secrets.CT_CHANGESETS_APP_PEM }}
