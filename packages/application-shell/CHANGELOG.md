@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 24.12.0
+
+### Minor Changes
+
+- [#3887](https://github.com/commercetools/merchant-center-application-kit/pull/3887) [`2062492`](https://github.com/commercetools/merchant-center-application-kit/commit/20624928cff86d12dfec5da659a2a6fcda9b34e8) Thanks [@kark](https://github.com/kark)! - Decommission Quick Access
+
+### Patch Changes
+
+- Updated dependencies [[`2062492`](https://github.com/commercetools/merchant-center-application-kit/commit/20624928cff86d12dfec5da659a2a6fcda9b34e8)]:
+  - @commercetools-frontend/i18n@24.12.0
+  - @commercetools-frontend/application-components@24.12.0
+  - @commercetools-frontend/react-notifications@24.12.0
+  - @commercetools-frontend/actions-global@24.12.0
+  - @commercetools-frontend/application-config@24.12.0
+  - @commercetools-frontend/application-shell-connectors@24.12.0
+  - @commercetools-frontend/assets@24.12.0
+  - @commercetools-frontend/browser-history@24.12.0
+  - @commercetools-frontend/constants@24.12.0
+  - @commercetools-frontend/l10n@24.12.0
+  - @commercetools-frontend/notifications@24.12.0
+  - @commercetools-frontend/permissions@24.12.0
+  - @commercetools-frontend/sdk@24.12.0
+  - @commercetools-frontend/sentry@24.12.0
+  - @commercetools-frontend/url-utils@24.12.0
+
 ## 24.11.0
 
 ### Minor Changes
