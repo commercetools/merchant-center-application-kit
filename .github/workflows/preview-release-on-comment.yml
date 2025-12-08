@@ -3,12 +3,6 @@ name: Preview Release on Comment
 on:
   workflow_call:
 
-permissions:
-  id-token: write
-  contents: read
-  pull-requests: write
-  issues: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
