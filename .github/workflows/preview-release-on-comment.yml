@@ -1,13 +1,11 @@
 name: Preview Release on Comment
+# Reusable workflow that publishes preview releases from PR branches:
+# - Checks out the PR branch
+# - Publishes snapshot packages to npm with a preview tag
+# - Posts workflow status as a comment on the PR
 
 on:
   workflow_call:
-
-permissions:
-  id-token: write
-  contents: read
-  pull-requests: write
-  issues: write
 
 jobs:
   release:
