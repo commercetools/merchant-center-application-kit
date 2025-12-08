@@ -2,6 +2,11 @@ name: Preview Release on Comment
 
 on:
   workflow_call:
+    inputs:
+      issue_number:
+        description: 'The issue/PR number to comment on'
+        required: true
+        type: number
     secrets:
       CT_CHANGESETS_APP_ID:
         required: true
@@ -15,6 +20,18 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      # Verify workflow starts
+      - name: Workflow start
+        run: |
+          echo "=========================================="
+          echo "WORKFLOW STARTED"
+          echo "=========================================="
+          echo "Event: ${{ github.event_name }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "=========================================="
+      
       # Debug: Check if secrets are available (only outputs yes/no, never secret values)
       - name: Debug secrets availability
         run: |
@@ -87,7 +104,14 @@ jobs:
       - name: Post workflow result on PR as a comment
         if: always()
         run: |
-          gh issue comment ${{ github.event.issue.number }} \
+          # Use generated token if available, otherwise fall back to GITHUB_TOKEN
+          TOKEN="${{ steps.generate_github_token.outputs.token }}"
+          if [ -z "$TOKEN" ]; then
+            echo "Warning: Generated token not available, using default GITHUB_TOKEN"
+            TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          fi
+          
+          gh issue comment ${{ inputs.issue_number }} \
             --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
         env:
-          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token || secrets.GITHUB_TOKEN }}

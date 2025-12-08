@@ -29,14 +29,35 @@ jobs:
       contents: read
     secrets: inherit
 
+  debug-secrets:
+    if: github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug secrets in calling workflow
+        run: |
+          echo "=========================================="
+          echo "SECRETS DEBUG IN CALLING WORKFLOW"
+          echo "=========================================="
+          echo "Event: ${{ github.event_name }}"
+          
+          APP_ID_SET="${{ secrets.CT_CHANGESETS_APP_ID != '' && 'yes' || 'no' }}"
+          APP_PEM_SET="${{ secrets.CT_CHANGESETS_APP_PEM != '' && 'yes' || 'no' }}"
+          
+          echo "CT_CHANGESETS_APP_ID available: $APP_ID_SET"
+          echo "CT_CHANGESETS_APP_PEM available: $APP_PEM_SET"
+          echo "=========================================="
+
   publish-preview:
     if: github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    needs: debug-secrets
     uses: ./.github/workflows/preview-release-on-comment.yml
     permissions:
       id-token: write
       contents: read
       pull-requests: write
       issues: write
+    with:
+      issue_number: ${{ github.event.issue.number }}
     secrets:
       CT_CHANGESETS_APP_ID: ${{ secrets.CT_CHANGESETS_APP_ID }}
       CT_CHANGESETS_APP_PEM: ${{ secrets.CT_CHANGESETS_APP_PEM }}
