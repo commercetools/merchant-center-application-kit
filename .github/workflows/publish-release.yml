@@ -3,10 +3,6 @@ name: Publish Release
 on:
   workflow_call:
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   publish-release:
     runs-on: ubuntu-latest

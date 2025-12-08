@@ -1,11 +1,18 @@
 name: Release
 
 on:
+  # TODO: RESTORE AFTER TESTING - Uncomment the main branch trigger below
+  # push:
+  #   branches:
+  #     - main
+  # TEMPORARY: Test branch trigger - REMOVE AFTER TESTING
   push:
     branches:
-      - main
+      - test-release-workflow
   issue_comment:
     types: [created]
+  workflow_dispatch:
+    # TEMPORARY: Keep for manual testing - REMOVE AFTER TESTING if not needed
 
 permissions:
   id-token: write
@@ -13,11 +20,14 @@ permissions:
 
 jobs:
   publish-release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # TODO: RESTORE AFTER TESTING - Change back to: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # TEMPORARY: Testing on test branch or manual dispatch
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/test-release-workflow') || github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/publish-release.yml
     permissions:
       id-token: write
       contents: read
+    secrets: inherit
 
   publish-preview:
     if: github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
@@ -27,3 +37,4 @@ jobs:
       contents: read
       pull-requests: write
       issues: write
+    secrets: inherit
