@@ -21,7 +21,7 @@
   },
   "ApiError.DuplicatePriceScope": {
     "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
-    "string": "A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel, valid dates and recurrence policy is unique per price."
+    "string": "Un prix ayant la même portée existe déjà pour cette variante de produit. Assurez-vous que la combinaison de la devise, du pays, du groupe de clients, du canal, des dates de validité et de la politique de récurrence est unique pour chaque prix."
   },
   "ApiError.DuplicateSlug": {
     "developer_comment": "User tries to create a resource with an already existing slug",
@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel, validity date and recurrence policy must be unique for each price per SKU."
+    "string": "Un prix ayant la même portée existe déjà pour cette variante de produit. La combinaison de la devise, du pays, du groupe de clients, du canal, de la date de validité et de la politique de récurrence doit être unique pour chaque prix par SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -215,6 +215,12 @@
   "NavBar.MCSupport.title": {
     "string": "Assistance"
   },
+  "NavBar.MenuExpander.collapseMenu": {
+    "string": "Collapse menu"
+  },
+  "NavBar.MenuExpander.expandMenu": {
+    "string": "Expand menu"
+  },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
     "string": "Masquer les notifications"
@@ -298,33 +304,5 @@
   "ProjectSwitcher.suspended": {
     "developer_comment": "Label for a suspended project",
     "string": "Suspendu"
-  },
-  "TopNavigation.labelLoading": {
-    "developer_comment": "The text to show next to the loading icon",
-    "string": "Traitement..."
-  },
-  "UserSettingsMenu.closeMenuLabel": {
-    "developer_comment": "The label when menu is open and would be closed by a click",
-    "string": "Fermer le menu des paramètres d'utilisateur"
-  },
-  "UserSettingsMenu.logout": {
-    "developer_comment": "The label for logout option",
-    "string": "Déconnexion"
-  },
-  "UserSettingsMenu.menuLabel": {
-    "developer_comment": "The label describing the menu",
-    "string": "Menu paramètres utilisateur"
-  },
-  "UserSettingsMenu.openMenuLabel": {
-    "developer_comment": "The label when menu is closed and would be opened by a click",
-    "string": "Ouvrir le menu des paramètres d'utilisateur"
-  },
-  "UserSettingsMenu.privacyPolicy": {
-    "developer_comment": "The label for privacy policy option",
-    "string": "Politique de confidentialité"
-  },
-  "UserSettingsMenu.support": {
-    "developer_comment": "The label for Support",
-    "string": "Assistance"
   }
 }

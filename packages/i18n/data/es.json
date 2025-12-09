@@ -21,7 +21,7 @@
   },
   "ApiError.DuplicatePriceScope": {
     "developer_comment": "User tries to create a price with the exact same values as for an already existing price",
-    "string": "A price with the same scope already exists for this product variant. Make sure that the combination of currency, country, customer group, channel, valid dates and recurrence policy is unique per price."
+    "string": "Para esta variante de producto ya existe un precio con el mismo ámbito. Asegúrate de que la combinación de moneda, país, grupo de clientes, canal, fechas válidas y política de recurrencia sean únicas por precio."
   },
   "ApiError.DuplicateSlug": {
     "developer_comment": "User tries to create a resource with an already existing slug",
@@ -29,7 +29,7 @@
   },
   "ApiError.DuplicateStandalonePriceScope": {
     "developer_comment": "User tries to create a standalone price with the exact same values as for an already existing standalone price",
-    "string": "A price with the same scope already exists for this product variant. The combination of currency, country, customer group, channel, validity date and recurrence policy must be unique for each price per SKU."
+    "string": "Para esta variante de producto ya existe un precio con el mismo ámbito. La combinación de moneda, país, grupo de clientes, canal, fecha de validación y política de recurrencia deben ser únicas para cada producto por SKU."
   },
   "ApiError.DuplicateVariantValues": {
     "developer_comment": "User tries to generate a variant with the same SKU or attribute values",
@@ -215,6 +215,12 @@
   "NavBar.MCSupport.title": {
     "string": "Soporte (en inglés)"
   },
+  "NavBar.MenuExpander.collapseMenu": {
+    "string": "Collapse menu"
+  },
+  "NavBar.MenuExpander.expandMenu": {
+    "string": "Expand menu"
+  },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
     "string": "Ocultar notificación"
@@ -298,33 +304,5 @@
   "ProjectSwitcher.suspended": {
     "developer_comment": "Label for a suspended project",
     "string": "Interrumpido"
-  },
-  "TopNavigation.labelLoading": {
-    "developer_comment": "The text to show next to the loading icon",
-    "string": "Procesando..."
-  },
-  "UserSettingsMenu.closeMenuLabel": {
-    "developer_comment": "The label when menu is open and would be closed by a click",
-    "string": "Cerrar menú de configuración de usuario"
-  },
-  "UserSettingsMenu.logout": {
-    "developer_comment": "The label for logout option",
-    "string": "Cerrar sesión"
-  },
-  "UserSettingsMenu.menuLabel": {
-    "developer_comment": "The label describing the menu",
-    "string": "Menú de configuración de usuario"
-  },
-  "UserSettingsMenu.openMenuLabel": {
-    "developer_comment": "The label when menu is closed and would be opened by a click",
-    "string": "Abrir menú de configuración de usuario"
-  },
-  "UserSettingsMenu.privacyPolicy": {
-    "developer_comment": "The label for privacy policy option",
-    "string": "Política de privacidad"
-  },
-  "UserSettingsMenu.support": {
-    "developer_comment": "The label for Support",
-    "string": "Soporte (en inglés)"
   }
 }
