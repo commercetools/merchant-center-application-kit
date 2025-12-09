@@ -1,5 +1,16 @@
 # @commercetools-frontend/i18n
 
+## 24.12.0
+
+### Minor Changes
+
+- [#3887](https://github.com/commercetools/merchant-center-application-kit/pull/3887) [`2062492`](https://github.com/commercetools/merchant-center-application-kit/commit/20624928cff86d12dfec5da659a2a6fcda9b34e8) Thanks [@kark](https://github.com/kark)! - Decommission Quick Access
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@24.12.0
+
 ## 24.11.0
 
 ### Patch Changes
