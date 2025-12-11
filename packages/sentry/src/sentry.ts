@@ -1,7 +1,12 @@
 import * as Sentry from '@sentry/react';
 // eslint-disable-next-line import/order
 import { globalHandlersIntegration } from '@sentry/browser'; // Must import after `@sentry/react`
-import type { Extra, Extras, Event } from '@sentry/types';
+import type {
+  Extra,
+  Extras,
+  Event,
+  ErrorEvent as SentryErrorEvent,
+} from '@sentry/types';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
@@ -103,8 +108,9 @@ export const boot = () => {
       // we can implement the `tracesSampler` function.
       // https://docs.sentry.io/platforms/javascript/guides/react/configuration/sampling/#sampling-transaction-events
       tracesSampleRate: 0.05,
-      beforeSend(event) {
-        return redactUnsafeEventFields(event);
+      // Add hint parameter to match v8 signature, even though we don't use it yet
+      beforeSend(event, _hint) {
+        return redactUnsafeEventFields(event) as SentryErrorEvent;
       },
     });
     const sentryScope = Sentry.getCurrentScope();
@@ -160,7 +166,7 @@ export const reportErrorToSentry = (
     // The error stack should be available in Sentry, so there is no
     // need to print it in the console as well.
     // We just notify that an error occurred and provide the error ID.
-    console.error(`[SENTRY]: An error occured (ID: ${errorId}).`);
+    console.error(`[SENTRY]: An error occurred (ID: ${errorId}).`);
     return errorId;
   }
 
