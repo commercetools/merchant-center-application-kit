@@ -10,9 +10,7 @@ class SentryUserLogoutTracker extends Component {
     // When the user is not logged in anymore (e.g. on logout) we still track
     // errors but without the user data in context.
     if (window.app.trackingSentry) {
-      Sentry.configureScope((scope) => {
-        scope.clear();
-      });
+      Sentry.getCurrentScope().clear();
     }
   }
   render() {
