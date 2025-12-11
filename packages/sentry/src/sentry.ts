@@ -108,7 +108,8 @@ export const boot = () => {
       // we can implement the `tracesSampler` function.
       // https://docs.sentry.io/platforms/javascript/guides/react/configuration/sampling/#sampling-transaction-events
       tracesSampleRate: 0.05,
-      // Add hint parameter to match v8 signature, even though we don't use it yet
+      // v8 requires the hint parameter which provides additional error context.
+      // We only redact PII from event fields, so hint is unused for now.
       beforeSend(event, _hint) {
         return redactUnsafeEventFields(event) as SentryErrorEvent;
       },
