@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 24.13.0
+
+### Minor Changes
+
+- [#3889](https://github.com/commercetools/merchant-center-application-kit/pull/3889) [`3256ef6`](https://github.com/commercetools/merchant-center-application-kit/commit/3256ef6d32488fe311e26c19dfa7e66d15241841) Thanks [@kark](https://github.com/kark)! - Decommission menu visibilities evaluation in the navbar
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@24.13.0
+  - @commercetools-frontend/browser-history@24.13.0
+  - @commercetools-frontend/constants@24.13.0
+  - @commercetools-frontend/sentry@24.13.0
+
 ## 24.12.0
 
 ### Patch Changes
