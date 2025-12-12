@@ -1,13 +1,11 @@
 import type {
   TAppliedPermission,
   TAppliedActionRight,
-  TAppliedMenuVisibilities,
   TStoreDataFence,
 } from '../../types/generated/mc';
 
 import {
   normalizeAllAppliedActionRights,
-  normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
   normalizeAllAppliedDataFences,
 } from './normalizers';
@@ -39,23 +37,6 @@ describe('normalizeAllAppliedActionRights', () => {
     expect(normalizeAllAppliedActionRights(allAppliedActionRights)).toEqual(
       expect.objectContaining({
         products: { canEditPrices: true },
-      })
-    );
-  });
-});
-describe('normalizeAllAppliedMenuVisibilities', () => {
-  const allAppliedMenuVisibilities: TAppliedMenuVisibilities[] = [
-    {
-      name: 'hideDashboard',
-      value: true,
-    },
-  ];
-  it('should normalize menu visibilities', () => {
-    expect(
-      normalizeAllAppliedMenuVisibilities(allAppliedMenuVisibilities)
-    ).toEqual(
-      expect.objectContaining({
-        hideDashboard: true,
       })
     );
   });

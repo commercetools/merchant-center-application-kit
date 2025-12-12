@@ -5,10 +5,6 @@ import type {
   TAppliedActionRightsGraphql,
 } from './fields/applied-action-right';
 import type {
-  TMenuVisibilities,
-  TAppliedMenuVisibilitiesGraphql,
-} from './fields/applied-menu-visibilities';
-import type {
   TPermissions,
   TAppliedPermissionGraphql,
 } from './fields/applied-permission';
@@ -46,7 +42,6 @@ export type TProject = TBaseProject & {
   expiry: TProjectExpiry;
   permissions: TPermissions;
   actionRights: TActionRights;
-  menuVisibilities: TMenuVisibilities;
   dataFences: TStoreDataFences;
 };
 
@@ -62,7 +57,10 @@ export type TProjectGraphql = TBaseProject & {
     allAppliedPermissions: TAppliedPermissionGraphql;
     allAppliedActionRights: TAppliedActionRightsGraphql;
     allAppliedDataFences: TAppliedStoreDataFencesGraphql;
-    allAppliedMenuVisibilities: TAppliedMenuVisibilitiesGraphql;
+    allAppliedMenuVisibilities?: Array<{
+      name: string;
+      value: boolean;
+    }>;
   };
   isProductionProject: boolean;
 };

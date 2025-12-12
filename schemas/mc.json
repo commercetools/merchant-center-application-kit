@@ -1,10 +1,12 @@
 {
   "__schema": {
     "queryType": {
-      "name": "Query"
+      "name": "Query",
+      "kind": "OBJECT"
     },
     "mutationType": {
-      "name": "Mutation"
+      "name": "Mutation",
+      "kind": "OBJECT"
     },
     "subscriptionType": null,
     "types": [
@@ -12,6 +14,7 @@
         "kind": "INPUT_OBJECT",
         "name": "AdditionalUserInfo",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -55,6 +58,7 @@
         "kind": "OBJECT",
         "name": "AllPermissionsForAllApplications",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "allAppliedActionRights",
@@ -109,24 +113,16 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AppliedMenuVisibilities",
-                    "ofType": null
-                  }
-                }
+                "kind": "OBJECT",
+                "name": "AppliedMenuVisibilities",
+                "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "This field is no longer supported"
           },
           {
             "name": "allAppliedPermissions",
@@ -162,6 +158,7 @@
         "kind": "OBJECT",
         "name": "AppliedActionRight",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "group",
@@ -221,6 +218,7 @@
         "kind": "UNION",
         "name": "AppliedDataFence",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -237,6 +235,7 @@
         "kind": "OBJECT",
         "name": "AppliedMenuVisibilities",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -280,6 +279,7 @@
         "kind": "OBJECT",
         "name": "AppliedPermission",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -323,6 +323,7 @@
         "kind": "SCALAR",
         "name": "Boolean",
         "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -333,6 +334,7 @@
         "kind": "OBJECT",
         "name": "CartClassificationValue",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "allLocaleLabels",
@@ -380,6 +382,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserBusinessRole",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -403,6 +406,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserLanguage",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -430,6 +434,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserName",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -473,6 +478,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserNumberFormat",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -500,6 +506,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ChangeUserPassword",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -527,6 +534,7 @@
         "kind": "INTERFACE",
         "name": "DataFence",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "type",
@@ -560,6 +568,7 @@
         "kind": "OBJECT",
         "name": "DeleteAccountRequest",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "jwt",
@@ -583,6 +592,7 @@
         "kind": "OBJECT",
         "name": "DeletedUser",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -610,6 +620,7 @@
         "kind": "OBJECT",
         "name": "Feature",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -665,6 +676,7 @@
         "kind": "SCALAR",
         "name": "Float",
         "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -675,6 +687,7 @@
         "kind": "SCALAR",
         "name": "ID",
         "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -685,6 +698,7 @@
         "kind": "OBJECT",
         "name": "IdTokenUserInfo",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "additionalClaims",
@@ -808,6 +822,7 @@
         "kind": "OBJECT",
         "name": "ImportResponse",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "hasImportedSampleData",
@@ -855,6 +870,7 @@
         "kind": "SCALAR",
         "name": "Int",
         "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -865,6 +881,7 @@
         "kind": "INPUT_OBJECT",
         "name": "InvitationInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -932,6 +949,7 @@
         "kind": "INPUT_OBJECT",
         "name": "InvitationOrganizationInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -987,6 +1005,7 @@
         "kind": "OBJECT",
         "name": "InvitationQueryResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "gravatarHash",
@@ -1074,6 +1093,7 @@
         "kind": "OBJECT",
         "name": "InvitationResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "email",
@@ -1129,6 +1149,7 @@
         "kind": "ENUM",
         "name": "InvitationStatus",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -1158,6 +1179,7 @@
         "kind": "INPUT_OBJECT",
         "name": "InvitationTeamInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -1185,6 +1207,7 @@
         "kind": "INPUT_OBJECT",
         "name": "InvitationWhereInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -1244,6 +1267,7 @@
         "kind": "OBJECT",
         "name": "LocalizedField",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "locale",
@@ -1287,6 +1311,7 @@
         "kind": "INTERFACE",
         "name": "MetaData",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "createdAt",
@@ -1353,6 +1378,7 @@
         "kind": "OBJECT",
         "name": "Mutation",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "createMyOrganization",
@@ -1455,6 +1481,39 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "OAuthClient",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createUserFromIdentity",
+            "description": null,
+            "args": [
+              {
+                "name": "token",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
                 "ofType": null
               }
             },
@@ -1917,6 +1976,7 @@
         "kind": "INPUT_OBJECT",
         "name": "MyPermissionInitializationInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -1944,6 +2004,7 @@
         "kind": "OBJECT",
         "name": "OAuthClient",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "createdAt",
@@ -2067,6 +2128,7 @@
         "kind": "INPUT_OBJECT",
         "name": "OAuthClientCreationInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -2134,6 +2196,7 @@
         "kind": "OBJECT",
         "name": "OAuthClientQueryResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "count",
@@ -2223,6 +2286,7 @@
         "kind": "OBJECT",
         "name": "OAuthClientTemplate",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "key",
@@ -2274,6 +2338,7 @@
         "kind": "OBJECT",
         "name": "Organization",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "createdAt",
@@ -2333,6 +2398,7 @@
         "kind": "OBJECT",
         "name": "OrganizationCreated",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -2400,6 +2466,7 @@
         "kind": "INPUT_OBJECT",
         "name": "OrganizationDraftType",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -2443,6 +2510,7 @@
         "kind": "OBJECT",
         "name": "OrganizationTeamsCreated",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -2486,6 +2554,7 @@
         "kind": "OBJECT",
         "name": "Project",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "allAppliedActionRights",
@@ -2540,24 +2609,16 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AppliedMenuVisibilities",
-                    "ofType": null
-                  }
-                }
+                "kind": "OBJECT",
+                "name": "AppliedMenuVisibilities",
+                "ofType": null
               }
             },
             "isDeprecated": true,
-            "deprecationReason": "This field has been moved into the menuPermissionsForAllApplications field."
+            "deprecationReason": "This field is no longer supported"
           },
           {
             "name": "allAppliedPermissions",
@@ -2911,6 +2972,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ProjectDraftType",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -3066,6 +3128,7 @@
         "kind": "OBJECT",
         "name": "ProjectExpiry",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "daysLeft",
@@ -3105,6 +3168,7 @@
         "kind": "OBJECT",
         "name": "ProjectPendingCreation",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -3180,6 +3244,7 @@
         "kind": "OBJECT",
         "name": "ProjectPermission",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "key",
@@ -3231,6 +3296,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ProjectPermissionInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -3282,6 +3348,7 @@
         "kind": "OBJECT",
         "name": "ProjectQueryResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "count",
@@ -3371,6 +3438,7 @@
         "kind": "OBJECT",
         "name": "ProjectSuspension",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "isActive",
@@ -3410,6 +3478,7 @@
         "kind": "ENUM",
         "name": "ProjectSuspensionReason",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -3439,6 +3508,7 @@
         "kind": "OBJECT",
         "name": "Query",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "allFeatures",
@@ -3960,6 +4030,7 @@
         "kind": "INTERFACE",
         "name": "QueryResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "count",
@@ -4035,6 +4106,7 @@
         "kind": "OBJECT",
         "name": "Reference",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -4078,6 +4150,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ReferenceInput",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -4121,6 +4194,7 @@
         "kind": "OBJECT",
         "name": "ReleaseEntry",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "description",
@@ -4212,6 +4286,7 @@
         "kind": "OBJECT",
         "name": "ReleaseHistory",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "description",
@@ -4312,6 +4387,7 @@
         "kind": "ENUM",
         "name": "ReleaseOrigin",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4335,6 +4411,7 @@
         "kind": "OBJECT",
         "name": "ReleaseQueryResult",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "count",
@@ -4424,6 +4501,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ResetPasswordDraft",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -4451,6 +4529,7 @@
         "kind": "OBJECT",
         "name": "ResetPasswordRequest",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "jwt",
@@ -4474,6 +4553,7 @@
         "kind": "OBJECT",
         "name": "ResetUser",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -4501,12 +4581,19 @@
         "kind": "ENUM",
         "name": "SampleDatasets",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "B2B",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "B2CLIFESTYLE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4524,6 +4611,7 @@
         "kind": "INPUT_OBJECT",
         "name": "SetUserTimeZone",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -4547,6 +4635,7 @@
         "kind": "OBJECT",
         "name": "ShippingRateInputType",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "type",
@@ -4590,6 +4679,7 @@
         "kind": "ENUM",
         "name": "ShippingRateType",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4619,6 +4709,7 @@
         "kind": "OBJECT",
         "name": "SignUpRequest",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "jwt",
@@ -4642,6 +4733,7 @@
         "kind": "OBJECT",
         "name": "SignedUpUser",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "id",
@@ -4669,6 +4761,7 @@
         "kind": "OBJECT",
         "name": "StoreDataFence",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "group",
@@ -4750,6 +4843,7 @@
         "kind": "SCALAR",
         "name": "String",
         "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4760,6 +4854,7 @@
         "kind": "OBJECT",
         "name": "SupportedActionRight",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "group",
@@ -4803,6 +4898,7 @@
         "kind": "OBJECT",
         "name": "SupportedMenuVisibility",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "group",
@@ -4846,6 +4942,7 @@
         "kind": "OBJECT",
         "name": "SupportedOAuthScopeForOAuthClient",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -4873,6 +4970,7 @@
         "kind": "OBJECT",
         "name": "SupportedResource",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -4900,6 +4998,7 @@
         "kind": "OBJECT",
         "name": "SupportedStoreScope",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "group",
@@ -4943,6 +5042,7 @@
         "kind": "ENUM",
         "name": "SystemOperabilityStatus",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4972,6 +5072,7 @@
         "kind": "OBJECT",
         "name": "SystemStatus",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "status",
@@ -4999,6 +5100,7 @@
         "kind": "OBJECT",
         "name": "User",
         "description": null,
+        "isOneOf": null,
         "fields": [
           {
             "name": "businessRole",
@@ -5348,6 +5450,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UserDraft",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -5419,6 +5522,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UserUpdateAction",
         "description": null,
+        "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
@@ -5502,6 +5606,7 @@
         "kind": "ENUM",
         "name": "VerificationStatus",
         "description": null,
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -5525,6 +5630,7 @@
         "kind": "OBJECT",
         "name": "__Directive",
         "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -5641,6 +5747,7 @@
         "kind": "ENUM",
         "name": "__DirectiveLocation",
         "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -5766,6 +5873,7 @@
         "kind": "OBJECT",
         "name": "__EnumValue",
         "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -5833,6 +5941,7 @@
         "kind": "OBJECT",
         "name": "__Field",
         "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -5953,6 +6062,7 @@
         "kind": "OBJECT",
         "name": "__InputValue",
         "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "name",
@@ -6048,6 +6158,7 @@
         "kind": "OBJECT",
         "name": "__Schema",
         "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "description",
@@ -6159,6 +6270,7 @@
         "kind": "OBJECT",
         "name": "__Type",
         "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "isOneOf": null,
         "fields": [
           {
             "name": "kind",
@@ -6362,6 +6474,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "isOneOf",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6373,6 +6497,7 @@
         "kind": "ENUM",
         "name": "__TypeKind",
         "description": "An enum describing what kind of type a given `__Type` is.",
+        "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -6544,6 +6669,15 @@
         "isRepeatable": false,
         "locations": [
           "FIELD_DEFINITION"
+        ],
+        "args": []
+      },
+      {
+        "name": "oneOf",
+        "description": "Indicates exactly one field must be supplied and this field must not be `null`.",
+        "isRepeatable": false,
+        "locations": [
+          "INPUT_OBJECT"
         ],
         "args": []
       },

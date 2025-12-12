@@ -17,12 +17,10 @@ import {
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedDataFences,
-  normalizeAllAppliedMenuVisibilities,
   normalizeAllAppliedPermissions,
 } from '@commercetools-frontend/application-shell-connectors';
 import type {
   TApplicationContext,
-  TNormalizedMenuVisibilities,
   TNormalizedPermissions,
   TNormalizedActionRights,
   TNormalizedDataFences,
@@ -63,7 +61,6 @@ import {
 import { SublistItem, SafeArea } from './menu-items.styles';
 import messages from './messages';
 import NavBarSkeleton from './navbar-skeleton';
-import nonNullable from './non-nullable';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 import useNavbarStateManager, {
   TMousePosition,
@@ -105,7 +102,6 @@ type ApplicationMenuProps = {
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
   projectPermissions: TProjectPermissions;
-  menuVisibilities: TNormalizedMenuVisibilities | null;
   handleToggleItem: () => void;
   applicationLocale: string;
   projectKey: string;
@@ -115,11 +111,6 @@ type ApplicationMenuProps = {
   mousePosition: TMousePosition;
   pointerEvent?: string;
 };
-
-const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
-  menu.submenu.map((submenu) => submenu.menuVisibility).filter(nonNullable);
-const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
-  menu.menuVisibility ? [menu.menuVisibility] : [];
 
 const getIsSubmenuRouteActive = (
   uriPath: ApplicationMenuProps['menu']['submenu'][number]['uriPath'],
@@ -306,10 +297,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
 
-  const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
-    ? getMenuVisibilitiesOfSubmenus(props.menu)
-    : getMenuVisibilityOfMainmenu(props.menu);
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
     const currentlyFocusedItem = submenuRef.current?.querySelector(':focus');
 
@@ -330,8 +317,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       actionRights={props.menu.actionRights ?? undefined}
       dataFences={props.menu.dataFences ?? undefined}
       projectPermissions={props.projectPermissions}
-      menuVisibilities={props.menuVisibilities}
-      namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
     >
       <MenuItem
         hasSubmenu={hasSubmenu}
@@ -399,12 +384,6 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   actionRights={submenu.actionRights ?? undefined}
                   dataFences={submenu.dataFences ?? undefined}
                   projectPermissions={props.projectPermissions}
-                  menuVisibilities={props.menuVisibilities}
-                  namesOfMenuVisibilities={
-                    submenu.menuVisibility
-                      ? [submenu.menuVisibility]
-                      : undefined
-                  }
                 >
                   <SublistItem
                     isActive={getIsSubmenuRouteActive(submenu.uriPath, props)}
@@ -492,14 +471,6 @@ const NavBar = (props: TNavbarProps) => {
     }),
     [props.project]
   );
-  const menuVisibilities = useMemo(
-    () =>
-      normalizeAllAppliedMenuVisibilities(
-        props.project?.allPermissionsForAllApplications
-          .allAppliedMenuVisibilities
-      ),
-    [props.project]
-  );
 
   const applicationLocale = props.applicationLocale;
 
@@ -538,7 +509,6 @@ const NavBar = (props: TNavbarProps) => {
                         isMenuOpen={isMenuOpen}
                         shouldCloseMenuFly={shouldCloseMenuFly}
                         projectPermissions={projectPermissions}
-                        menuVisibilities={menuVisibilities}
                         applicationLocale={applicationLocale}
                         projectKey={props.projectKey}
                         useFullRedirectsForLinks={useFullRedirectsForLinks}

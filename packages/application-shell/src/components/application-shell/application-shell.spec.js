@@ -1391,7 +1391,7 @@ describe('navbar menu links interactions', () => {
     });
   });
 });
-describe('when navbar menu items are hidden', () => {
+describe('when navbar menu items with menuVisibility are configured', () => {
   beforeEach(() => {
     mockServer.resetHandlers();
     mockServer.use(
@@ -1412,7 +1412,7 @@ describe('when navbar menu items are hidden', () => {
       })
     );
   });
-  it('should not render hidden main menu items', async () => {
+  it('should render menu items even if menuVisibility data exists (menuVisibilities are no longer evaluated)', async () => {
     const menuLinks = createTestNavBarMenuLinksConfig({
       menuVisibility: 'hideFoo',
       submenuLinks: [],
@@ -1429,19 +1429,13 @@ describe('when navbar menu items are hidden', () => {
       }
     );
     await waitForLeftNavigationToBeLoaded();
-    // Get the nav container, to narrow down the search area
     const container = await findByLeftNavigation();
-    const navbarRendered = within(container);
 
     const applicationLocale = 'en';
     const mainMenuLabel = menuLinks.labelAllLocales.find(
       (localized) => localized.locale === applicationLocale
     );
-    await waitFor(() => {
-      expect(
-        navbarRendered.queryByText(mainMenuLabel.value)
-      ).not.toBeInTheDocument();
-    });
+    await within(container).findByText(mainMenuLabel.value);
   });
 });
 

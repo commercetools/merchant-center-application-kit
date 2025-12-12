@@ -21,7 +21,6 @@ query FetchApplicationsMenu {
           value
         }
         featureToggle
-        menuVisibility
         permissions
         actionRights {
           group
@@ -40,7 +39,6 @@ query FetchApplicationsMenu {
             value
           }
           featureToggle
-          menuVisibility
           permissions
           actionRights {
             group
