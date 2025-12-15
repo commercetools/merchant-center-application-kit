@@ -3071,11 +3071,11 @@ importers:
         specifier: ^7.22.15
         version: 7.28.4
       '@commercetools-frontend/browser-history':
-        specifier: 24.12.0
-        version: 24.12.0
+        specifier: 24.13.0
+        version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 24.12.0
-        version: 24.12.0
+        specifier: 24.13.0
+        version: link:../constants
       '@sentry/browser':
         specifier: 8.55.0
         version: 8.55.0
@@ -4369,14 +4369,8 @@ packages:
     resolution: {integrity: sha512-CoEw38Sqcin3hsuta5wlp1dldvmXYHUl74ruJXk+RJrQ77Wn+Cy8G52+KckRUt6uUb1wvaFW8WPI+gNT/gQiFA==}
     engines: {node: 18.x || 20.x || >=22.0.0}
 
-  '@commercetools-frontend/browser-history@24.12.0':
-    resolution: {integrity: sha512-YP7qq+OTiFAUmCiPKmFZh6p5qJC7LFAIyMLMWbECaEkN3+uw0glg2/qrO2xscHYmwPNZv91WWgRepAy7pRH6sQ==}
-
   '@commercetools-frontend/constants@24.11.0':
     resolution: {integrity: sha512-Tc6N0wZWaIGoYcqxq/GymIscHPfMVqM0iWxumoDJBbQW0k8Nh9/vAt5l/En17W6y52pmrJXyl8aAqSR74mia+g==}
-
-  '@commercetools-frontend/constants@24.12.0':
-    resolution: {integrity: sha512-miDkrun5eaXk5VqNd0MAvzmoD3oauF5Bq+tzxmPm/M+cd3WAS1RZFlX2fwhuV66hkzB51pEuXiC7J3ufDmeAiw==}
 
   '@commercetools-uikit/accessible-button@19.9.0':
     resolution: {integrity: sha512-E9xqiio/jv2aCDLe8IVLIXK4Hcgu0lzHVCt1wbQuijSv9t6J7VJ48AZ8vDZUCbwLpe08QbABHLvOe68vPv3HVQ==}
@@ -17196,21 +17190,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@commercetools-frontend/browser-history@24.12.0':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@babel/runtime-corejs3': 7.28.4
-      '@types/history': 4.7.11
-      history: 4.10.1
-      history-query-enhancer: 1.0.4(history@4.10.1)
-      qss: 2.0.3
-
   '@commercetools-frontend/constants@24.11.0':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@babel/runtime-corejs3': 7.28.4
-
-  '@commercetools-frontend/constants@24.12.0':
     dependencies:
       '@babel/runtime': 7.28.4
       '@babel/runtime-corejs3': 7.28.4
