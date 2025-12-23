@@ -32,7 +32,6 @@
     "@types/node-fetch": "2.6.13",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^19.0.3",
-    "@types/react-redux": "^7.1.26",
     "buffer": "6.0.3",
     "fast-equals": "2.0.4",
     "omit-empty-es": "1.2.0",
