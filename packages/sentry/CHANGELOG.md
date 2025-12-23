@@ -1,5 +1,15 @@
 # @commercetools-frontend/sentry
 
+## 24.13.1
+
+### Patch Changes
+
+- [#3904](https://github.com/commercetools/merchant-center-application-kit/pull/3904) [`1a8c379`](https://github.com/commercetools/merchant-center-application-kit/commit/1a8c379b4d0b0e47edac272aa4bdf6871cb3146c) Thanks [@valoriecarli](https://github.com/valoriecarli)! - Update @sentry/react to v8 for React 19 compatibility. Migrate deprecated `configureScope` API to `getCurrentScope()` and update type signatures to satisfy v8 requirements.
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@24.13.1
+  - @commercetools-frontend/constants@24.13.1
+
 ## 24.13.0
 
 ### Patch Changes

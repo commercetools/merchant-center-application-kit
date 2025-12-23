@@ -1,5 +1,17 @@
 # @commercetools-frontend/actions-global
 
+## 24.13.1
+
+### Patch Changes
+
+- [#3908](https://github.com/commercetools/merchant-center-application-kit/pull/3908) [`51a854a`](https://github.com/commercetools/merchant-center-application-kit/commit/51a854a2f22411213194f4a20b77603167e6e136) Thanks [@ragafus](https://github.com/ragafus)! - Remove unused `@types/react-redux` dependency
+
+- Updated dependencies [[`1a8c379`](https://github.com/commercetools/merchant-center-application-kit/commit/1a8c379b4d0b0e47edac272aa4bdf6871cb3146c)]:
+  - @commercetools-frontend/sentry@24.13.1
+  - @commercetools-frontend/browser-history@24.13.1
+  - @commercetools-frontend/constants@24.13.1
+  - @commercetools-frontend/notifications@24.13.1
+
 ## 24.13.0
 
 ### Patch Changes
