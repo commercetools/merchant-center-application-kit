@@ -65,8 +65,7 @@
     "generate-types:core": "graphql-codegen -r dotenv/config --config codegen.core.yml",
     "generate-types:settings": "graphql-codegen -r dotenv/config --config codegen.settings.yml",
     "generate-types:proxy": "graphql-codegen -r dotenv/config --config codegen.proxy.yml",
-    "generate-types": "pnpm generate-types:mc && pnpm generate-types:ctp && pnpm generate-types:core && pnpm generate-types:settings && pnpm generate-types:proxy",
-    "omlet:scan": "pnpm omlet analyze --hook-script ./scripts/omlet-hook-script.js"
+    "generate-types": "pnpm generate-types:mc && pnpm generate-types:ctp && pnpm generate-types:core && pnpm generate-types:settings && pnpm generate-types:proxy"
   },
   "preconstruct": {
     "packages": [
@@ -112,7 +111,6 @@
     "@manypkg/cli": "0.25.0",
     "@manypkg/find-root": "2.2.3",
     "@manypkg/get-packages": "1.1.3",
-    "@omlet/cli": "^1.12.0",
     "@percy/cli": "1.31.1",
     "@percy/core": "1.31.1",
     "@percy/cypress": "3.1.6",
