@@ -32,7 +32,7 @@
   "devDependencies": {
     "@emotion/react": "^11.14.0",
     "@types/jest": "^29.5.14",
-    "jest": "29.7.0",
+    "jest": "30.2.0",
     "react": "19.0.0",
     "sentry-testkit": "5.0.10",
     "wait-for-expect": "3.0.2"

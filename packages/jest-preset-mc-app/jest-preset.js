@@ -20,11 +20,6 @@ const defaultModuleExportsResolver = resolveRelativePath(
 
 module.exports = {
   displayName: 'test',
-  globals: {
-    'process.env': {
-      NODE_ENV: 'test',
-    },
-  },
   moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'json'],
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
