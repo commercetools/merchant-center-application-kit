@@ -1,12 +1,13 @@
 import os from 'node:os';
 import { mocked } from 'jest-mock';
-import mock from 'mock-fs';
+import { vol } from 'memfs';
 import CredentialsStorage from './credentials-storage';
 
 jest.mock('node:os');
+jest.mock('node:fs', () => require('memfs').fs);
 
 afterEach(() => {
-  mock.restore();
+  vol.reset();
   mocked(os.homedir).mockClear();
 });
 
@@ -16,7 +17,7 @@ const mcApiUrl = 'https://mc-api.europe-west1.gcp.commercetools.com';
 
 describe('when session is valid', () => {
   beforeEach(() => {
-    mock({
+    vol.fromJSON({
       [testCredentialsFilePath]: JSON.stringify({
         [mcApiUrl]: {
           token: 'hello-world',
@@ -43,7 +44,7 @@ describe('when session is valid', () => {
 
 describe('when session is expired', () => {
   beforeEach(() => {
-    mock({
+    vol.fromJSON({
       [testCredentialsFilePath]: JSON.stringify({
         [mcApiUrl]: {
           token: 'hello-world',
@@ -62,7 +63,7 @@ describe('when session is expired', () => {
 
 describe('when credentials file is missing', () => {
   beforeEach(() => {
-    mock({});
+    vol.fromJSON({});
   });
 
   it('should not load credentials and update token', () => {
