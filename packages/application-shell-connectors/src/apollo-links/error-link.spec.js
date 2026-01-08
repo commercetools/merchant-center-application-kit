@@ -195,11 +195,7 @@ describe('with unauthenticated error', () => {
         expect(terminatingLinkStub).toHaveBeenCalledTimes(1);
       });
       it('should not set `x-force-token`-header on retry', () => {
-        expect(context.headers).toEqual(
-          expect.not.objectContaining({
-            'X-Force-Token': 'true',
-          })
-        );
+        expect(context.headers?.['X-Force-Token']).toBeUndefined();
       });
     });
   });

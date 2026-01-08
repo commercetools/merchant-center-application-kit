@@ -1460,6 +1460,9 @@ describe('when user is ct staff', () => {
   });
 
   it("should render the user's language selected via staff bar from local storage", async () => {
+    // Allow MISSING_TRANSLATION errors for locale 'de' to be logged but not fail the test
+    console.config.addNonThrowingWarning(/MISSING_TRANSLATION/);
+
     renderApp(null, {
       route: '/foo',
       renderNodeAsChildren: true,
