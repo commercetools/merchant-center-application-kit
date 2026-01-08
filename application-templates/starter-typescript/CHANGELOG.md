@@ -1,5 +1,37 @@
 # merchant-center-application-template-starter-typescript
 
+## 25.0.0
+
+### Major Changes
+
+- [#3910](https://github.com/commercetools/merchant-center-application-kit/pull/3910) [`95dba14`](https://github.com/commercetools/merchant-center-application-kit/commit/95dba1403532fd8b871afab2d5bce13cf0707731) Thanks [@Sarah4VT](https://github.com/Sarah4VT)! - **Jest 30 upgrade** - [Upgrade guide](https://jestjs.io/docs/upgrading-to-jest30)
+
+  - Removed `globals` configuration (NODE_ENV set automatically)
+  - Removed `crypto.randomUUID` polyfill (JSDOM 26 native support)
+  - Removed `uuid` dependency
+  - Updated peer dependency to Jest 30.x
+  - Breaking changes: deprecated matcher aliases removed, non-enumerable properties excluded from object matchers
+  - JSDOM upgraded from v21 to v26 with improved spec compliance
+
+### Patch Changes
+
+- Updated dependencies [[`95dba14`](https://github.com/commercetools/merchant-center-application-kit/commit/95dba1403532fd8b871afab2d5bce13cf0707731), [`51a854a`](https://github.com/commercetools/merchant-center-application-kit/commit/51a854a2f22411213194f4a20b77603167e6e136)]:
+  - @commercetools-frontend/application-shell-connectors@25.0.0
+  - @commercetools-frontend/application-components@25.0.0
+  - @commercetools-frontend/jest-preset-mc-app@25.0.0
+  - @commercetools-frontend/application-shell@25.0.0
+  - @commercetools-frontend/actions-global@25.0.0
+  - @commercetools-frontend/permissions@25.0.0
+  - @commercetools-frontend/constants@25.0.0
+  - @commercetools-frontend/mc-scripts@25.0.0
+  - @commercetools-frontend/application-config@25.0.0
+  - @commercetools-frontend/i18n@25.0.0
+  - @commercetools-frontend/l10n@25.0.0
+  - @commercetools-frontend/mc-dev-authentication@25.0.0
+  - @commercetools-frontend/assets@25.0.0
+  - @commercetools-frontend/babel-preset-mc-app@25.0.0
+  - @commercetools-frontend/eslint-config-mc-app@25.0.0
+
 ## 24.13.0
 
 ### Patch Changes
