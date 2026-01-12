@@ -73,7 +73,7 @@
     "autoprefixer": "^10.4.15",
     "babel-loader": "8.4.1",
     "babel-plugin-formatjs": "^10.5.25",
-    "browserslist": "^4.21.10",
+    "browserslist": "^4.28.1",
     "chalk": "4.1.2",
     "commander": "^13.1.0",
     "core-js": "^3.32.2",

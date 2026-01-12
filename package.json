@@ -184,6 +184,7 @@
       "@types/webpack-env": "^1.18.8",
       "@typescript-eslint/eslint-plugin": "^5.52.0",
       "@typescript-eslint/parser": "^5.52.0",
+      "browserslist": "^4.28.1",
       "react": "19.0.0",
       "react-dom": "19.0.0"
     }
