@@ -1,5 +1,7 @@
 # @commercetools-frontend/jest-stylelint-runner
 
+## 25.1.0
+
 ## 25.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 25.1.0
+
+### Minor Changes
+
+- [#3847](https://github.com/commercetools/merchant-center-application-kit/pull/3847) [`086d7e3`](https://github.com/commercetools/merchant-center-application-kit/commit/086d7e3ef99d692b342950f557bf9e7e72392f4f) Thanks [@LucasGrahn](https://github.com/LucasGrahn)! - Added stores search constant values
+
 ## 25.0.0
 
 ### Major Changes
