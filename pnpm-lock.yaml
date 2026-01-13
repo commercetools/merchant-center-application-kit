@@ -2339,8 +2339,8 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       jest-watch-typeahead:
-        specifier: 2.2.2
-        version: 2.2.2(jest@30.2.0(@types/node@22.19.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.1)(typescript@5.9.2)))
+        specifier: 3.0.1
+        version: 3.0.1(jest@30.2.0(@types/node@22.19.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.1)(typescript@5.9.2)))
       raf:
         specifier: 3.4.1
         version: 3.4.1
@@ -7970,6 +7970,10 @@ packages:
     resolution: {integrity: sha512-4nJ3yixlEthEJ9Rk4vPcdBRkZvQZlYyu8j4/Mqz5sgIkddmEnH2Yj2ZrnP9S3tQOvSNRUIgVNF/1yPpRAGNRig==}
     engines: {node: '>=14.16'}
 
+  ansi-escapes@7.2.0:
+    resolution: {integrity: sha512-g6LhBsl+GBPRWGWsBtutpzBYuIIdBkLEvad5C/va/74Db018+5TZiyA26cZJAr3Rft5lprVqOIPxf5Vid6tqAw==}
+    engines: {node: '>=18'}
+
   ansi-html-community@0.0.8:
     resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
     engines: {'0': node >= 0.8.0}
@@ -9681,6 +9685,10 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+
+  environment@1.1.0:
+    resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
+    engines: {node: '>=18'}
 
   error-ex@1.3.4:
     resolution: {integrity: sha512-sqQamAnR14VgCr1A618A3sGrygcpK+HEbenA/HiEAkkUwcZIIB/tgWqHFxWgOyDh4nB4JCRimh79dR5Ywc9MDQ==}
@@ -11771,6 +11779,12 @@ packages:
     engines: {node: ^14.17.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
       jest: ^27.0.0 || ^28.0.0 || ^29.0.0
+
+  jest-watch-typeahead@3.0.1:
+    resolution: {integrity: sha512-SFmHcvdueTswZlVhPCWfLXMazvwZlA2UZTrcE7MC3NwEVeWvEcOx6HUe+igMbnmA6qowuBSW4in8iC6J2EYsgQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      jest: ^30.0.0
 
   jest-watcher@29.7.0:
     resolution: {integrity: sha512-49Fg7WXkU3Vl2h6LbLtMQ/HyB6rXSIX7SqvBLQmssRBGN9I0PNvPmAmCWSOY6SOvrjhI/F7/bGAv9RtnsPA03g==}
@@ -14638,6 +14652,10 @@ packages:
   string-length@5.0.1:
     resolution: {integrity: sha512-9Ep08KAMUn0OadnVaBuRdE2l615CQ508kr0XMadjClfYpdCyvrbFp6Taebo8yyxokQ4viUd/xPPUA4FGgUa0ow==}
     engines: {node: '>=12.20'}
+
+  string-length@6.0.0:
+    resolution: {integrity: sha512-1U361pxZHEQ+FeSjzqRpV+cu2vTzYeWeafXFLykiFlv4Vc0n3njgU8HrMbyik5uwm77naWMuVG8fhEF+Ovb1Kg==}
+    engines: {node: '>=16'}
 
   string-width@1.0.2:
     resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
@@ -22763,6 +22781,10 @@ snapshots:
 
   ansi-escapes@6.2.1: {}
 
+  ansi-escapes@7.2.0:
+    dependencies:
+      environment: 1.1.0
+
   ansi-html-community@0.0.8: {}
 
   ansi-regex@2.1.1: {}
@@ -24613,6 +24635,8 @@ snapshots:
   entities@6.0.1: {}
 
   env-paths@2.2.1: {}
+
+  environment@1.1.0: {}
 
   error-ex@1.3.4:
     dependencies:
@@ -27286,6 +27310,17 @@ snapshots:
       jest-watcher: 29.7.0
       slash: 5.1.0
       string-length: 5.0.1
+      strip-ansi: 7.1.2
+
+  jest-watch-typeahead@3.0.1(jest@30.2.0(@types/node@22.19.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.1)(typescript@5.9.2))):
+    dependencies:
+      ansi-escapes: 7.2.0
+      chalk: 5.6.2
+      jest: 30.2.0(@types/node@22.19.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.1)(typescript@5.9.2))
+      jest-regex-util: 30.0.1
+      jest-watcher: 30.2.0
+      slash: 5.1.0
+      string-length: 6.0.0
       strip-ansi: 7.1.2
 
   jest-watcher@29.7.0:
@@ -30544,6 +30579,10 @@ snapshots:
   string-length@5.0.1:
     dependencies:
       char-regex: 2.0.2
+      strip-ansi: 7.1.2
+
+  string-length@6.0.0:
+    dependencies:
       strip-ansi: 7.1.2
 
   string-width@1.0.2:

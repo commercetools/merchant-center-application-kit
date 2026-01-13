@@ -26,6 +26,12 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       defaultTransformFile,
     '\\.css$': 'identity-obj-proxy',
+    // Force @react-hook packages to use CJS version instead of ESM
+    '^@react-hook/resize-observer$':
+      '@react-hook/resize-observer/dist/main/index.js',
+    '^@react-hook/passive-layout-effect$':
+      '@react-hook/passive-layout-effect/dist/main/index.js',
+    '^@react-hook/latest$': '@react-hook/latest/dist/main/index.js',
   },
   resolver: defaultModuleExportsResolver,
   rootDir: rootPath,
