@@ -1,5 +1,14 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 25.1.0
+
+### Patch Changes
+
+- [#3911](https://github.com/commercetools/merchant-center-application-kit/pull/3911) [`0f02a3d`](https://github.com/commercetools/merchant-center-application-kit/commit/0f02a3dfbe679a8d7d4211d89c27865b459f539f) Thanks [@Sarah4VT](https://github.com/Sarah4VT)! - Move moduleNameWrapper for react-hook packages to jest-preset for inheritance by other apps
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@25.1.0
+
 ## 25.0.0
 
 ### Major Changes
