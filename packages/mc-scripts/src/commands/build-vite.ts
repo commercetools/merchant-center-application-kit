@@ -102,6 +102,9 @@ async function run() {
                   },
                 ]
               : undefined,
+            process.env.ENABLE_BABEL_REACT_COMPILER === 'true'
+              ? 'babel-plugin-react-compiler'
+              : undefined,
           ].filter(nonNullable),
         },
       }),
