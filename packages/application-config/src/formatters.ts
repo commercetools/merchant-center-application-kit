@@ -54,7 +54,7 @@ const formatEntryPointUriPathToResourceAccessKey = (
       // Regex below checking if the character is numeric.
       // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
       // If not, omit the hyphen and uppercase the first character
-      if (i > 0 && /^-?\d+$/.test(word[0])) {
+      if (i > 0 && /^\d+$/.test(word[0])) {
         return `/${word}`;
       }
       return upperFirst(word);
