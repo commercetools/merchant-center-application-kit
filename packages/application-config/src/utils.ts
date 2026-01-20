@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'path';
 import uniq from 'lodash/uniq';
 import { CLOUD_IDENTIFIERS, MC_API_URLS } from './constants';
 
@@ -53,9 +54,16 @@ const getOrThrow = <T>(fn: () => T, errorMessage: string): T => {
 };
 
 const parseJsonFile = <T>(filePath: string): T => {
+  const normalizedPath = path.normalize(filePath);
+  const resolvedPath = path.resolve(normalizedPath);
+  const baseDir = path.resolve(process.cwd());
+
+  if (!resolvedPath.startsWith(baseDir)) {
+    throw new Error('Access denied: File path is outside of base directory');
+  }
   let rawData;
   try {
-    rawData = fs.readFileSync(filePath, {
+    rawData = fs.readFileSync(resolvedPath, {
       encoding: 'utf8',
     });
   } catch (error) {
