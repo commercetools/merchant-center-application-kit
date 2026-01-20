@@ -66,9 +66,8 @@ const substituteEnvVariablePlaceholder = (
     );
   }
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
-    new RegExp(escapeRegExp(escapedMatchedString), 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     loadingOptions.processEnv[requestedEnvVar] as string
   );
 };
@@ -102,9 +101,8 @@ const substituteIntlVariablePlaceholder = (
     ? translation.string
     : translation;
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
-    new RegExp(escapeRegExp(escapedMatchedString), 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     translationValue
   );
 };
@@ -120,20 +118,55 @@ const substituteFilePathVariablePlaceholder = (
     paths: [loadingOptions.applicationPath],
   });
 
+  // Security check: Prevent path traversal attacks.
+  // require.resolve() already provides protection by only resolving modules
+  // accessible from the applicationPath. However, we add an extra layer to
+  // prevent access to sensitive system files outside the workspace.
   const normalizedPath = path.normalize(resolvedPath);
   const applicationPath = path.normalize(loadingOptions.applicationPath);
-  if (!normalizedPath.startsWith(applicationPath)) {
+
+  // Find workspace root by traversing up from applicationPath until we find
+  // package.json, pnpm-workspace.yaml, or reach root
+  let workspaceRoot = applicationPath;
+  let currentPath = applicationPath;
+  const rootPath = path.parse(currentPath).root;
+
+  while (currentPath !== rootPath) {
+    const hasPackageJson = fs.existsSync(
+      path.join(currentPath, 'package.json')
+    );
+    const hasWorkspaceConfig =
+      fs.existsSync(path.join(currentPath, 'pnpm-workspace.yaml')) ||
+      fs.existsSync(path.join(currentPath, 'lerna.json'));
+
+    if (hasPackageJson) {
+      workspaceRoot = currentPath;
+      if (hasWorkspaceConfig) {
+        // Found workspace root
+        break;
+      }
+    }
+    currentPath = path.dirname(currentPath);
+  }
+
+  const relativePath = path.relative(workspaceRoot, normalizedPath);
+
+  // Path is safe if it's within the workspace root.
+  // Use path.relative() to avoid string prefix vulnerabilities (e.g., "/app" vs "/app-evil")
+  const isSafePath =
+    !relativePath.startsWith('..') && !path.isAbsolute(relativePath);
+
+  if (!isSafePath) {
     throw new Error(
-      'Access to files outside application directory is not allowed'
+      `Access to files outside workspace directory is not allowed: ${filePathOrModule}`
     );
   }
   const content = fs.readFileSync(normalizedPath, {
     encoding: 'utf-8',
   });
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
-    new RegExp(escapeRegExp(escapedMatchedString), 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     content
   );
 };
@@ -146,8 +179,8 @@ const getValueOfPlaceholder = (valueWithPlaceholder: string) =>
 const substituteVariablePlaceholders = <T>(
   config: T,
   loadingOptions: LoadingConfigOptions
-): T =>
-  JSON.parse(JSON.stringify(config), (_key, value) => {
+): T => {
+  const result = JSON.parse(JSON.stringify(config), (_key, value) => {
     // Only strings are allowed
     let substitutedValue = value as string;
 
@@ -184,5 +217,7 @@ const substituteVariablePlaceholders = <T>(
     }
     return substitutedValue;
   });
+  return result;
+};
 
 export default substituteVariablePlaceholders;
