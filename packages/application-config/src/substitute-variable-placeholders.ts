@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'path';
 import type { LoadingConfigOptions } from './types';
 
 type TMessageKeyValue = string;
@@ -110,16 +111,21 @@ const substituteFilePathVariablePlaceholder = (
   loadingOptions: LoadingConfigOptions
 ) => {
   const [, filePathOrModule] = valueOfPlaceholder.split(':');
+  
+  const resolvedPath = require.resolve(filePathOrModule, {
+    paths: [loadingOptions.applicationPath],
+  });
 
-  const content = fs.readFileSync(
-    require.resolve(filePathOrModule, {
-      // Relative paths should be resolved from the application folder.
-      paths: [loadingOptions.applicationPath],
-    }),
-    {
-      encoding: 'utf-8',
-    }
-  );
+  const normalizedPath = path.normalize(resolvedPath);
+  const applicationPath = path.normalize(loadingOptions.applicationPath);
+
+  if (!normalizedPath.startsWith(applicationPath)) {
+    throw new Error('Access to files outside application directory is not allowed');
+  }
+
+  const content = fs.readFileSync(normalizedPath, {
+    encoding: 'utf-8',
+  });
 
   const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
