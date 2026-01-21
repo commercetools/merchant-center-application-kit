@@ -27,10 +27,6 @@
     {
       "matchPackageNames": ["nwsapi"],
       "allowedVersions": "<=2.2.7"
-    },
-    {
-      "matchPackageNames": ["react-router", "react-router-dom"],
-      "allowedVersions": "<6"
     }
   ],
   "stopUpdatingLabel": "🖐 Status: On Hold",
