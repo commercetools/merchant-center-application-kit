@@ -11,9 +11,28 @@
     {
       "matchSourceUrls": ["https://github.com/gregberge/svgr"],
       "groupName": "all svgr packages"
+    },
+    {
+      "matchPackageNames": ["postcss-custom-properties"],
+      "allowedVersions": "<=12.1.4"
+    },
+    {
+      "matchPackageNames": ["history"],
+      "allowedVersions": "<5"
+    },
+    {
+      "matchPackageNames": ["headers-polyfill"],
+      "allowedVersions": "<=3.2.5"
+    },
+    {
+      "matchPackageNames": ["nwsapi"],
+      "allowedVersions": "<=2.2.7"
+    },
+    {
+      "matchPackageNames": ["react-router", "react-router-dom"],
+      "allowedVersions": "<6"
     }
   ],
-  "labels": ["🤖 Type: Dependencies"],
   "stopUpdatingLabel": "🖐 Status: On Hold",
   "rebaseWhen": "never"
 }
