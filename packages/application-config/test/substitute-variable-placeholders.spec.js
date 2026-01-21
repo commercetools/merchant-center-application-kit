@@ -84,6 +84,30 @@ describe('providing a config with env variable placeholders', () => {
       ],
     });
   });
+
+  it('should handle replacement values with regex special characters', () => {
+    const processEnv = {
+      REGEX_CHARS: 'Value with $pecial (regex) chars []*+?.|\\^',
+      NORMAL: 'normal-value',
+    };
+    const result = substituteVariablePlaceholders(
+      {
+        specialValue: 'The value is: ${env:REGEX_CHARS}',
+        mixed: 'Normal ${env:NORMAL} and special ${env:REGEX_CHARS} values',
+        onlySpecial: '${env:REGEX_CHARS}',
+      },
+      {
+        processEnv,
+        applicationPath,
+      }
+    );
+    expect(result).toEqual({
+      specialValue: 'The value is: Value with $pecial (regex) chars []*+?.|\\^',
+      mixed:
+        'Normal normal-value and special Value with $pecial (regex) chars []*+?.|\\^ values',
+      onlySpecial: 'Value with $pecial (regex) chars []*+?.|\\^',
+    });
+  });
 });
 
 describe('providing a config without env variable placeholders', () => {

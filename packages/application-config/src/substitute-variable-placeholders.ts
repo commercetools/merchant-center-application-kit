@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'path';
 import type { LoadingConfigOptions } from './types';
 
 type TMessageKeyValue = string;
@@ -21,6 +22,11 @@ const variableSyntax = /\${([ ~:\w.'",\-/()@]+?)}/g;
 const envRefSyntax = /^env:/g;
 const intlRefSyntax = /^intl:/g;
 const filePathRefSyntax = /^path:/g;
+
+// Safe regex pattern escaping function
+const escapeRegExp = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
 
 const hasVariablePlaceholder = (valueOfEnvConfig: string) =>
   typeof valueOfEnvConfig === 'string' &&
@@ -60,9 +66,8 @@ const substituteEnvVariablePlaceholder = (
     );
   }
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
-    new RegExp(`(${escapedMatchedString})+`, 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     loadingOptions.processEnv[requestedEnvVar] as string
   );
 };
@@ -96,9 +101,8 @@ const substituteIntlVariablePlaceholder = (
     ? translation.string
     : translation;
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
   return valueOfEnvConfig.replace(
-    new RegExp(`(${escapedMatchedString})+`, 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     translationValue
   );
 };
@@ -110,20 +114,59 @@ const substituteFilePathVariablePlaceholder = (
   loadingOptions: LoadingConfigOptions
 ) => {
   const [, filePathOrModule] = valueOfPlaceholder.split(':');
+  const resolvedPath = require.resolve(filePathOrModule, {
+    paths: [loadingOptions.applicationPath],
+  });
 
-  const content = fs.readFileSync(
-    require.resolve(filePathOrModule, {
-      // Relative paths should be resolved from the application folder.
-      paths: [loadingOptions.applicationPath],
-    }),
-    {
-      encoding: 'utf-8',
+  // Security check: Prevent path traversal attacks.
+  // require.resolve() already provides protection by only resolving modules
+  // accessible from the applicationPath. However, we add an extra layer to
+  // prevent access to sensitive system files outside the workspace.
+  const normalizedPath = path.normalize(resolvedPath);
+  const applicationPath = path.normalize(loadingOptions.applicationPath);
+
+  // Find workspace root by traversing up from applicationPath until we find
+  // package.json, pnpm-workspace.yaml, or reach root
+  let workspaceRoot = applicationPath;
+  let currentPath = applicationPath;
+  const rootPath = path.parse(currentPath).root;
+
+  while (currentPath !== rootPath) {
+    const hasPackageJson = fs.existsSync(
+      path.join(currentPath, 'package.json')
+    );
+    const hasWorkspaceConfig =
+      fs.existsSync(path.join(currentPath, 'pnpm-workspace.yaml')) ||
+      fs.existsSync(path.join(currentPath, 'lerna.json'));
+
+    if (hasPackageJson) {
+      workspaceRoot = currentPath;
+      if (hasWorkspaceConfig) {
+        // Found workspace root
+        break;
+      }
     }
-  );
+    currentPath = path.dirname(currentPath);
+  }
 
-  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
+  const relativePath = path.relative(workspaceRoot, normalizedPath);
+
+  // Path is safe if it's within the workspace root.
+  // Use path.relative() to avoid string prefix vulnerabilities (e.g., "/app" vs "/app-evil")
+  const isSafePath =
+    !relativePath.startsWith('..') && !path.isAbsolute(relativePath);
+
+  if (!isSafePath) {
+    throw new Error(
+      `Access to files outside workspace directory is not allowed: ${filePathOrModule}`
+    );
+  }
+  const content = fs.readFileSync(normalizedPath, {
+    encoding: 'utf-8',
+  });
+
   return valueOfEnvConfig.replace(
-    new RegExp(`(${escapedMatchedString})+`, 'g'),
+    new RegExp(escapeRegExp(matchedString), 'g'),
     content
   );
 };
@@ -136,8 +179,8 @@ const getValueOfPlaceholder = (valueWithPlaceholder: string) =>
 const substituteVariablePlaceholders = <T>(
   config: T,
   loadingOptions: LoadingConfigOptions
-): T =>
-  JSON.parse(JSON.stringify(config), (_key, value) => {
+): T => {
+  const result = JSON.parse(JSON.stringify(config), (_key, value) => {
     // Only strings are allowed
     let substitutedValue = value as string;
 
@@ -174,5 +217,7 @@ const substituteVariablePlaceholders = <T>(
     }
     return substitutedValue;
   });
+  return result;
+};
 
 export default substituteVariablePlaceholders;
