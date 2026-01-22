@@ -6,7 +6,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
 const regexInvalidOperationRequiredAttribute =
-  /^Required attribute '(.*)' cannot be removed/;
+  /^Required attribute '([^']+)' cannot be removed/;
 
 // `error` fields for REST errors
 // `error.extensions` fields for GraphQL errors
