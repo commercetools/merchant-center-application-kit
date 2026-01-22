@@ -88,7 +88,7 @@
     "history": "4.10.1",
     "is-retina": "1.0.3",
     "jwt-decode": "3.1.2",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "memoize-one": "5.2.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.6.0",
