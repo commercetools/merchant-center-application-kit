@@ -9,6 +9,7 @@ import type {
   TCliCommandBuildOptions,
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
+  TCliCommandConfigSyncCIOptions,
   TCliCommandSetDeploymentPreviewOptions,
   TCliCommandLoginOptions,
 } from './types';
@@ -215,6 +216,38 @@ async function run() {
 
       const configSyncCommand = await import('./commands/config-sync');
       await configSyncCommand.default(options);
+    });
+
+  // Command: config:sync:ci
+  program
+    .command('config:sync:ci')
+    .description(
+      'Synchronizes the local Merchant Center customization config with the Merchant Center (CI mode). ' +
+        'Designed for non-interactive CI/CD environments.\n\n' +
+        'Environment variables:\n' +
+        '  MC_CLI_TOKEN              - Session token for authentication\n' +
+        '  MC_CLI_EMAIL              - Email for authentication (with MC_CLI_PASSWORD)\n' +
+        '  MC_CLI_PASSWORD           - Password for authentication (with MC_CLI_EMAIL)\n' +
+        '  MC_CLI_ORGANIZATION_ID    - Organization ID (required if multiple orgs)\n' +
+        '  MC_CLI_ORGANIZATION_NAME  - Organization name (required if multiple orgs)\n\n' +
+        'On create, outputs the app/view ID to a file in the config directory.'
+    )
+    .option(
+      '--dry-run',
+      '(optional) Executes the command but does not send any mutation request.',
+      false
+    )
+    .action(async (options: TCliCommandConfigSyncCIOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
+
+      // Load dotenv files into the process environment.
+      loadDotEnvFiles(globalOptions);
+
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
+
+      const configSyncCICommand = await import('./commands/config-sync-ci');
+      await configSyncCICommand.default(options);
     });
 
   // Command: deployment-previews:set
