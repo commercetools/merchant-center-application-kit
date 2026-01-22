@@ -21,6 +21,5 @@
       "allowedVersions": "<=2.2.7"
     }
   ],
-  "stopUpdatingLabel": "🖐 Status: On Hold",
   "rebaseWhen": "never"
 }
