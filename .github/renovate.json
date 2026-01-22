@@ -5,20 +5,12 @@
   ],
   "packageRules": [
     {
-      "matchSourceUrls": ["https://github.com/tdeekens/flopflip"],
-      "groupName": "all flopflip packages"
-    },
-    {
       "matchSourceUrls": ["https://github.com/gregberge/svgr"],
       "groupName": "all svgr packages"
     },
     {
       "matchPackageNames": ["postcss-custom-properties"],
       "allowedVersions": "<=12.1.4"
-    },
-    {
-      "matchPackageNames": ["history"],
-      "allowedVersions": "<5"
     },
     {
       "matchPackageNames": ["headers-polyfill"],
