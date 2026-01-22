@@ -61,6 +61,7 @@ const parseJsonFile = <T>(filePath: string): T => {
   if (!resolvedPath.startsWith(baseDir)) {
     throw new Error('Access denied: File path is outside of base directory');
   }
+
   let rawData;
   try {
     rawData = fs.readFileSync(resolvedPath, {
