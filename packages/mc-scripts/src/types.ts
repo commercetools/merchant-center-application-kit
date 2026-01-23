@@ -24,6 +24,7 @@ export type TCliCommandLoginOptions = {
   projectKey?: string;
   oauthScope?: string[];
   force?: boolean;
+  headless?: boolean;
 };
 
 export type TCliCommandSetDeploymentPreviewOptions = {

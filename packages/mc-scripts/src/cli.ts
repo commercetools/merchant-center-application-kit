@@ -179,6 +179,11 @@ async function run() {
       '(optional) If defined, the command will force the login even if a valid session already exists.',
       false
     )
+    .option(
+      '--headless',
+      '(optional) Use Puppeteer for automated headless login. Requires MC_USER_NAME and MC_USER_PASSWORD environment variables. Useful for CI/CD environments.',
+      false
+    )
     .action(async (options: TCliCommandLoginOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
 
@@ -226,17 +231,15 @@ async function run() {
         'Designed for non-interactive CI/CD environments.\n\n' +
         'Environment variables:\n' +
         '  MC_ACCESS_TOKEN        - Session token for authentication\n' +
-        '  MC_USER_NAME           - Email for authentication (with MC_USER_PASSWORD)\n' +
-        '  MC_USER_PASSWORD       - Password for authentication (with MC_USER_NAME)\n' +
         '  CT_ORGANIZATION_ID     - Organization ID (required if multiple orgs)\n' +
         '  CT_ORGANIZATION_NAME   - Organization name (required if multiple orgs)\n\n' +
         'On create, outputs the app/view ID to a file in the config directory.\n\n' +
+        'To obtain MC_ACCESS_TOKEN:\n' +
+        '  Option 1: Run "mc-scripts login --headless" with MC_USER_NAME and MC_USER_PASSWORD\n' +
+        '  Option 2: Run "mc-scripts login" locally, then extract token from ~/.commercetools/mc-credentials.json\n\n' +
         'SSO Authentication:\n' +
         '  This command does NOT support SSO directly (requires browser interaction).\n' +
-        '  For SSO organizations, use one of these approaches:\n' +
-        '  1. Service Account - Create a non-SSO account for CI/CD\n' +
-        '  2. Scheduled Token Refresh - Use Playwright/Puppeteer to automate SSO login\n' +
-        '  3. Manual Token - Run "mc-scripts login" locally, copy token to CI secrets'
+        '  For SSO organizations, use a service account without SSO for CI/CD.'
     )
     .option(
       '--dry-run',

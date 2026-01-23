@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import chalk from 'chalk';
 import omit from 'lodash/omit';
 import type {
@@ -44,24 +42,6 @@ export const isCustomViewData = (
 ): data is CustomViewData =>
   (data as CustomApplicationData).entryPointUriPath === undefined;
 
-type TWriteIdToFile = {
-  configFilePath: string;
-  id: string;
-  isCustomView: boolean;
-};
-
-export const writeIdToFile = ({
-  configFilePath,
-  id,
-  isCustomView,
-}: TWriteIdToFile) => {
-  const configDir = path.dirname(configFilePath);
-  const fileName = isCustomView ? 'custom-view-id' : 'custom-application-id';
-  const filePath = path.join(configDir, fileName);
-  fs.writeFileSync(filePath, id, 'utf-8');
-  console.log(chalk.green(`Created ID written to "${filePath}".`));
-};
-
 type TCreateCustomApplicationOptions = {
   mcApiUrl: string;
   organizationId: string;
@@ -69,7 +49,6 @@ type TCreateCustomApplicationOptions = {
   localCustomEntityData: CustomApplicationData;
   applicationIdentifier: string;
   dryRun: boolean;
-  configFilePath?: string;
 };
 
 export async function performCreateCustomApplication({
@@ -79,7 +58,6 @@ export async function performCreateCustomApplication({
   localCustomEntityData,
   applicationIdentifier,
   dryRun,
-  configFilePath,
 }: TCreateCustomApplicationOptions): Promise<string | null> {
   console.log(
     `Creating Custom Application in organization "${chalk.green(
@@ -119,14 +97,6 @@ export async function performCreateCustomApplication({
     `Please update the "env.production.applicationId" field in your local Custom Application config file with the ID above.`
   );
   console.log(`URL: ${chalk.gray(customAppLink)}`);
-
-  if (configFilePath) {
-    writeIdToFile({
-      configFilePath,
-      id: createdCustomApplication.id,
-      isCustomView: false,
-    });
-  }
 
   return createdCustomApplication.id;
 }
@@ -188,7 +158,6 @@ type TCreateCustomViewOptions = {
   localCustomEntityData: CustomViewData;
   applicationIdentifier: string;
   dryRun: boolean;
-  configFilePath?: string;
 };
 
 export async function performCreateCustomView({
@@ -198,7 +167,6 @@ export async function performCreateCustomView({
   localCustomEntityData,
   applicationIdentifier,
   dryRun,
-  configFilePath,
 }: TCreateCustomViewOptions): Promise<string | null> {
   console.log(
     `Creating Custom View in organization "${chalk.green(organizationName)}"...`
@@ -237,14 +205,6 @@ export async function performCreateCustomView({
     `Please update the "env.production.customViewId" field in your local Custom View config file with the ID above.`
   );
   console.log(`URL: ${chalk.gray(customViewLink)}`);
-
-  if (configFilePath) {
-    writeIdToFile({
-      configFilePath,
-      id: createdCustomView.id,
-      isCustomView: true,
-    });
-  }
 
   return createdCustomView.id;
 }

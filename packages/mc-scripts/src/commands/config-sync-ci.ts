@@ -6,9 +6,7 @@
  * Environment variables:
  * | Variable                  | Description                                        |
  * |---------------------------|----------------------------------------------------|
- * | MC_ACCESS_TOKEN           | Session token for authentication                   |
- * | MC_USER_NAME              | Email for authentication (with MC_USER_PASSWORD)   |
- * | MC_USER_PASSWORD          | Password for authentication (with MC_USER_NAME)    |
+ * | MC_ACCESS_TOKEN           | Session token for authentication (required)        |
  * | CT_ORGANIZATION_ID        | Organization ID (required if multiple orgs)        |
  * | CT_ORGANIZATION_NAME      | Organization name (required if multiple orgs)      |
  *
@@ -16,47 +14,31 @@
  *   --dry-run    Preview changes without applying them
  *
  * Usage:
- *   # Using token + organization name
  *   MC_ACCESS_TOKEN="your-token" \
- *   CT_ORGANIZATION_NAME="First Contact Organization" \
- *   pnpm mc-scripts config:sync:ci
- *
- *   # Using email/password + organization ID
- *   MC_USER_NAME="user@example.com" \
- *   MC_USER_PASSWORD="password" \
- *   CT_ORGANIZATION_ID="abc123" \
+ *   CT_ORGANIZATION_NAME="My Organization" \
  *   pnpm mc-scripts config:sync:ci
  *
  * Output:
- *   On create, outputs the app/view ID to a file in the config directory:
- *   - custom-application-id (for Custom Applications)
- *   - custom-view-id (for Custom Views)
+ *   On create, the app/view ID is printed to stdout in the format:
+ *     ID: <id>
  *
- * SSO Authentication:
- *   This command does NOT support SSO authentication directly, as SSO requires
- *   browser-based interaction with an external identity provider.
+ *   To capture in CI:
+ *     APP_ID=$(mc-scripts config:sync:ci 2>/dev/null | grep "^ID:" | cut -d' ' -f2)
  *
- *   For organizations using SSO, consider these approaches:
+ * Authentication:
+ *   This command requires a session token (MC_ACCESS_TOKEN) for authentication.
  *
- *   1. Service Account: Create a dedicated non-SSO service account with
- *      email/password authentication specifically for CI/CD pipelines.
+ *   To obtain a token:
+ *      1. Run `mc-scripts login` locally (opens browser for one-time setup)
+ *      2. Copy the "token" value from ~/.commercetools/mc-credentials.json
+ *      3. Store as MC_ACCESS_TOKEN secret in your CI/CD system
  *
- *   2. Scheduled Token Refresh: Set up a scheduled job (e.g., using Playwright
- *      or Puppeteer) that runs on a machine with browser access to:
- *      - Perform the SSO login flow programmatically
- *      - Extract the session token from the response
- *      - Store the refreshed token in your CI/CD secrets
- *      Note: Tokens typically expire after 36 hours, so schedule accordingly.
- *
- *   3. Manual Token: Run `mc-scripts login` locally (which opens browser for SSO),
- *      then copy the token from ~/.commercetools/mc-credentials.json to CI secrets.
- *      This requires manual refresh when the token expires.
+ *   Tokens expire after ~8 hours. Refresh by running `mc-scripts login` again.
  */
 
 import chalk from 'chalk';
 import {
   processConfig,
-  getConfigPath,
   type CustomApplicationData,
   type CustomViewData,
 } from '@commercetools-frontend/application-config';
@@ -157,13 +139,11 @@ async function handleCustomApplication({
   localCustomEntityData,
   applicationIdentifier,
   dryRun,
-  configFilePath,
 }: {
   mcApiUrl: string;
   localCustomEntityData: CustomApplicationData;
   applicationIdentifier: string;
   dryRun: boolean;
-  configFilePath: string;
 }) {
   const status = await checkCustomApplicationStatus({
     mcApiUrl,
@@ -186,7 +166,6 @@ async function handleCustomApplication({
       localCustomEntityData,
       applicationIdentifier,
       dryRun,
-      configFilePath,
     });
     return;
   }
@@ -218,14 +197,12 @@ async function handleCustomView({
   customViewId,
   applicationIdentifier,
   dryRun,
-  configFilePath,
 }: {
   mcApiUrl: string;
   localCustomEntityData: CustomViewData;
   customViewId: string;
   applicationIdentifier: string;
   dryRun: boolean;
-  configFilePath: string;
 }) {
   const status = await checkCustomViewStatus({
     mcApiUrl,
@@ -249,7 +226,6 @@ async function handleCustomView({
       localCustomEntityData,
       applicationIdentifier,
       dryRun,
-      configFilePath,
     });
     return;
   }
@@ -298,12 +274,6 @@ async function run(options: TCliCommandConfigSyncCIOptions) {
 
   console.log();
 
-  // Get config file path for ID output
-  const configFilePath = await getConfigPath();
-  if (!configFilePath) {
-    throw new Error('Could not determine config file path.');
-  }
-
   if (isCustomViewData(localCustomEntityData)) {
     await handleCustomView({
       mcApiUrl,
@@ -311,7 +281,6 @@ async function run(options: TCliCommandConfigSyncCIOptions) {
       customViewId: customViewId || localCustomEntityData.id,
       applicationIdentifier,
       dryRun: options.dryRun,
-      configFilePath,
     });
   } else {
     await handleCustomApplication({
@@ -319,7 +288,6 @@ async function run(options: TCliCommandConfigSyncCIOptions) {
       localCustomEntityData,
       applicationIdentifier,
       dryRun: options.dryRun,
-      configFilePath,
     });
   }
 }
