@@ -31,6 +31,26 @@
  *   On create, outputs the app/view ID to a file in the config directory:
  *   - custom-application-id (for Custom Applications)
  *   - custom-view-id (for Custom Views)
+ *
+ * SSO Authentication:
+ *   This command does NOT support SSO authentication directly, as SSO requires
+ *   browser-based interaction with an external identity provider.
+ *
+ *   For organizations using SSO, consider these approaches:
+ *
+ *   1. Service Account: Create a dedicated non-SSO service account with
+ *      email/password authentication specifically for CI/CD pipelines.
+ *
+ *   2. Scheduled Token Refresh: Set up a scheduled job (e.g., using Playwright
+ *      or Puppeteer) that runs on a machine with browser access to:
+ *      - Perform the SSO login flow programmatically
+ *      - Extract the session token from the response
+ *      - Store the refreshed token in your CI/CD secrets
+ *      Note: Tokens typically expire after 36 hours, so schedule accordingly.
+ *
+ *   3. Manual Token: Run `mc-scripts login` locally (which opens browser for SSO),
+ *      then copy the token from ~/.commercetools/mc-credentials.json to CI secrets.
+ *      This requires manual refresh when the token expires.
  */
 
 import chalk from 'chalk';

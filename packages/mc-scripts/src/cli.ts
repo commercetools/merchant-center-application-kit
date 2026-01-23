@@ -225,12 +225,18 @@ async function run() {
       'Synchronizes the local Merchant Center customization config with the Merchant Center (CI mode). ' +
         'Designed for non-interactive CI/CD environments.\n\n' +
         'Environment variables:\n' +
-        '  MC_ACCESS_TOKEN              - Session token for authentication\n' +
-        '  MC_USER_NAME              - Email for authentication (with MC_USER_PASSWORD)\n' +
-        '  MC_USER_PASSWORD           - Password for authentication (with MC_USER_NAME)\n' +
-        '  CT_ORGANIZATION_ID    - Organization ID (required if multiple orgs)\n' +
-        '  CT_ORGANIZATION_NAME  - Organization name (required if multiple orgs)\n\n' +
-        'On create, outputs the app/view ID to a file in the config directory.'
+        '  MC_ACCESS_TOKEN        - Session token for authentication\n' +
+        '  MC_USER_NAME           - Email for authentication (with MC_USER_PASSWORD)\n' +
+        '  MC_USER_PASSWORD       - Password for authentication (with MC_USER_NAME)\n' +
+        '  CT_ORGANIZATION_ID     - Organization ID (required if multiple orgs)\n' +
+        '  CT_ORGANIZATION_NAME   - Organization name (required if multiple orgs)\n\n' +
+        'On create, outputs the app/view ID to a file in the config directory.\n\n' +
+        'SSO Authentication:\n' +
+        '  This command does NOT support SSO directly (requires browser interaction).\n' +
+        '  For SSO organizations, use one of these approaches:\n' +
+        '  1. Service Account - Create a non-SSO account for CI/CD\n' +
+        '  2. Scheduled Token Refresh - Use Playwright/Puppeteer to automate SSO login\n' +
+        '  3. Manual Token - Run "mc-scripts login" locally, copy token to CI secrets'
     )
     .option(
       '--dry-run',
