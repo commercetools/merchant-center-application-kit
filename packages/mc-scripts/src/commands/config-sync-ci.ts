@@ -6,25 +6,25 @@
  * Environment variables:
  * | Variable                  | Description                                        |
  * |---------------------------|----------------------------------------------------|
- * | MC_CLI_TOKEN              | Session token for authentication                   |
- * | MC_CLI_EMAIL              | Email for authentication (with MC_CLI_PASSWORD)    |
- * | MC_CLI_PASSWORD           | Password for authentication (with MC_CLI_EMAIL)    |
- * | MC_CLI_ORGANIZATION_ID    | Organization ID (required if multiple orgs)        |
- * | MC_CLI_ORGANIZATION_NAME  | Organization name (required if multiple orgs)      |
+ * | MC_ACCESS_TOKEN           | Session token for authentication                   |
+ * | MC_USER_NAME              | Email for authentication (with MC_USER_PASSWORD)   |
+ * | MC_USER_PASSWORD          | Password for authentication (with MC_USER_NAME)    |
+ * | CT_ORGANIZATION_ID        | Organization ID (required if multiple orgs)        |
+ * | CT_ORGANIZATION_NAME      | Organization name (required if multiple orgs)      |
  *
  * CLI Options:
  *   --dry-run    Preview changes without applying them
  *
  * Usage:
  *   # Using token + organization name
- *   MC_CLI_TOKEN="your-token" \
- *   MC_CLI_ORGANIZATION_NAME="First Contact Organization" \
+ *   MC_ACCESS_TOKEN="your-token" \
+ *   CT_ORGANIZATION_NAME="First Contact Organization" \
  *   pnpm mc-scripts config:sync:ci
  *
  *   # Using email/password + organization ID
- *   MC_CLI_EMAIL="user@example.com" \
- *   MC_CLI_PASSWORD="password" \
- *   MC_CLI_ORGANIZATION_ID="abc123" \
+ *   MC_USER_NAME="user@example.com" \
+ *   MC_USER_PASSWORD="password" \
+ *   CT_ORGANIZATION_ID="abc123" \
  *   pnpm mc-scripts config:sync:ci
  *
  * Output:
@@ -33,10 +33,7 @@
  *   - custom-view-id (for Custom Views)
  */
 
-import fs from 'fs';
-import path from 'path';
 import chalk from 'chalk';
-import omit from 'lodash/omit';
 import {
   processConfig,
   getConfigPath,
@@ -45,83 +42,35 @@ import {
 } from '@commercetools-frontend/application-config';
 import type { TCliCommandConfigSyncCIOptions } from '../types';
 import {
-  getCustomApplicationConfigDiff,
-  getCustomViewConfigDiff,
-} from '../utils/get-config-diff';
-import {
-  fetchCustomApplication,
-  fetchCustomView,
-  updateCustomApplication,
-  updateCustomView,
-  createCustomApplication,
-  createCustomView,
-  fetchUserOrganizations,
-} from '../utils/graphql-requests';
+  isCustomViewData,
+  checkCustomApplicationStatus,
+  checkCustomViewStatus,
+  performCreateCustomApplication,
+  performUpdateCustomApplication,
+  performCreateCustomView,
+  performUpdateCustomView,
+} from '../utils/config-sync-helpers';
+import { fetchUserOrganizations } from '../utils/graphql-requests';
 import { authenticateForCI } from '../utils/headless-auth';
 
 /**
  * Environment variable names for CI configuration
  */
 const ENV_VARS = {
-  ORGANIZATION_ID: 'MC_CLI_ORGANIZATION_ID',
-  ORGANIZATION_NAME: 'MC_CLI_ORGANIZATION_NAME',
+  ORGANIZATION_ID: 'CT_ORGANIZATION_ID',
+  ORGANIZATION_NAME: 'CT_ORGANIZATION_NAME',
 } as const;
-
-type TGetMcUrlLink = {
-  mcApiUrl: string;
-  organizationId: string;
-  customEntityId: string;
-  isCustomView?: boolean;
-};
-
-const getMcUrlLink = ({
-  mcApiUrl,
-  organizationId,
-  customEntityId,
-  isCustomView,
-}: TGetMcUrlLink) => {
-  const mcUrl = mcApiUrl.replace('mc-api', 'mc');
-  const customEntityLink = `${mcUrl}/account/organizations/${organizationId}/custom-${
-    isCustomView ? 'views' : 'applications'
-  }/owned/${customEntityId}`;
-  return customEntityLink;
-};
-
-const isCustomViewData = (
-  data: CustomApplicationData | CustomViewData
-): data is CustomViewData =>
-  (data as CustomApplicationData).entryPointUriPath === undefined;
-
-type TWriteIdToFile = {
-  configFilePath: string;
-  id: string;
-  isCustomView: boolean;
-};
-
-const writeIdToFile = ({
-  configFilePath,
-  id,
-  isCustomView,
-}: TWriteIdToFile) => {
-  const configDir = path.dirname(configFilePath);
-  const fileName = isCustomView ? 'custom-view-id' : 'custom-application-id';
-  const filePath = path.join(configDir, fileName);
-  fs.writeFileSync(filePath, id, 'utf-8');
-  console.log(chalk.green(`Created ID written to "${filePath}".`));
-};
 
 type TResolveOrganization = {
   mcApiUrl: string;
   applicationIdentifier: string;
   customViewId?: string;
-  entityType: 'Custom Application' | 'Custom View';
 };
 
 async function resolveOrganization({
   mcApiUrl,
   applicationIdentifier,
   customViewId,
-  entityType,
 }: TResolveOrganization): Promise<{ id: string; name: string }> {
   const userOrganizations = await fetchUserOrganizations({
     mcApiUrl,
@@ -183,239 +132,127 @@ async function resolveOrganization({
   );
 }
 
-type TCreateOrUpdateCustomApplication = {
-  mcApiUrl: string;
-  localCustomEntityData: CustomApplicationData;
-  applicationIdentifier: string;
-  options: TCliCommandConfigSyncCIOptions;
-  configFilePath: string;
-};
-
-async function createOrUpdateCustomApplication({
+async function handleCustomApplication({
   mcApiUrl,
   localCustomEntityData,
   applicationIdentifier,
-  options,
+  dryRun,
   configFilePath,
-}: TCreateOrUpdateCustomApplication) {
-  const fetchedCustomApplication = await fetchCustomApplication({
+}: {
+  mcApiUrl: string;
+  localCustomEntityData: CustomApplicationData;
+  applicationIdentifier: string;
+  dryRun: boolean;
+  configFilePath: string;
+}) {
+  const status = await checkCustomApplicationStatus({
     mcApiUrl,
     entryPointUriPath: localCustomEntityData.entryPointUriPath,
     applicationIdentifier,
+    localCustomEntityData,
   });
 
-  if (!fetchedCustomApplication) {
+  if (!status.exists) {
     // Create new Custom Application
     const organization = await resolveOrganization({
       mcApiUrl,
       applicationIdentifier,
-      entityType: 'Custom Application',
     });
 
-    console.log(
-      `Creating Custom Application in organization "${chalk.green(
-        organization.name
-      )}"...`
-    );
-
-    if (options.dryRun) {
-      const data = omit(localCustomEntityData, ['id']);
-      console.log();
-      console.log('Dry run - would create Custom Application with:');
-      console.log(chalk.gray(JSON.stringify(data, null, 2)));
-      return;
-    }
-
-    const createdCustomApplication = await createCustomApplication({
+    await performCreateCustomApplication({
       mcApiUrl,
       organizationId: organization.id,
-      data: omit(localCustomEntityData, ['id']),
+      organizationName: organization.name,
+      localCustomEntityData,
       applicationIdentifier,
-    });
-
-    if (!createdCustomApplication) {
-      throw new Error('Failed to create the Custom Application.');
-    }
-
-    const customAppLink = getMcUrlLink({
-      mcApiUrl,
-      organizationId: organization.id,
-      customEntityId: createdCustomApplication.id,
-    });
-
-    console.log(chalk.green('Custom Application created successfully.'));
-    console.log(`ID: ${chalk.cyan(createdCustomApplication.id)}`);
-    console.log(`URL: ${chalk.gray(customAppLink)}`);
-
-    writeIdToFile({
+      dryRun,
       configFilePath,
-      id: createdCustomApplication.id,
-      isCustomView: false,
     });
     return;
   }
 
-  // Update existing Custom Application
-  const customAppLink = getMcUrlLink({
-    mcApiUrl,
-    organizationId: fetchedCustomApplication.organizationId,
-    customEntityId: fetchedCustomApplication.application.id,
-  });
-
-  const configDiff = getCustomApplicationConfigDiff(
-    fetchedCustomApplication.application as CustomApplicationData,
-    localCustomEntityData
-  );
-
-  if (!configDiff) {
+  // Check for changes
+  if (!status.configDiff) {
     console.log(chalk.green('Custom Application is up-to-date.'));
-    console.log(`URL: ${chalk.gray(customAppLink)}`);
+    console.log(`URL: ${chalk.gray(status.link)}`);
     return;
   }
 
   console.log('Changes detected:');
-  console.log(configDiff);
+  console.log(status.configDiff);
   console.log();
 
-  if (options.dryRun) {
-    const data = omit(localCustomEntityData, ['id']);
-    console.log('Dry run - would update Custom Application with:');
-    console.log(chalk.gray(JSON.stringify(data, null, 2)));
-    return;
-  }
-
-  console.log('Updating Custom Application...');
-
-  await updateCustomApplication({
+  await performUpdateCustomApplication({
     mcApiUrl,
-    organizationId: fetchedCustomApplication.organizationId,
-    data: omit(localCustomEntityData, ['id']),
-    applicationId: fetchedCustomApplication.application.id,
+    organizationId: status.organizationId,
+    applicationId: status.applicationId,
+    localCustomEntityData,
     applicationIdentifier,
+    dryRun,
   });
-
-  console.log(chalk.green('Custom Application updated successfully.'));
-  console.log(`URL: ${chalk.gray(customAppLink)}`);
 }
 
-type TCreateOrUpdateCustomView = {
-  mcApiUrl: string;
-  localCustomEntityData: CustomViewData;
-  customViewId: string;
-  options: TCliCommandConfigSyncCIOptions;
-  applicationIdentifier: string;
-  configFilePath: string;
-};
-
-async function createOrUpdateCustomView({
+async function handleCustomView({
   mcApiUrl,
   localCustomEntityData,
   customViewId,
-  options,
   applicationIdentifier,
+  dryRun,
   configFilePath,
-}: TCreateOrUpdateCustomView) {
-  const fetchedCustomView = await fetchCustomView({
+}: {
+  mcApiUrl: string;
+  localCustomEntityData: CustomViewData;
+  customViewId: string;
+  applicationIdentifier: string;
+  dryRun: boolean;
+  configFilePath: string;
+}) {
+  const status = await checkCustomViewStatus({
     mcApiUrl,
     customViewId,
     applicationIdentifier,
+    localCustomEntityData,
   });
 
-  if (!fetchedCustomView) {
+  if (!status.exists) {
     // Create new Custom View
     const organization = await resolveOrganization({
       mcApiUrl,
       applicationIdentifier,
       customViewId,
-      entityType: 'Custom View',
     });
 
-    console.log(
-      `Creating Custom View in organization "${chalk.green(
-        organization.name
-      )}"...`
-    );
-
-    if (options.dryRun) {
-      const data = omit(localCustomEntityData, ['id']);
-      console.log();
-      console.log('Dry run - would create Custom View with:');
-      console.log(chalk.gray(JSON.stringify(data, null, 2)));
-      return;
-    }
-
-    const createdCustomView = await createCustomView({
+    await performCreateCustomView({
       mcApiUrl,
       organizationId: organization.id,
-      data: omit(localCustomEntityData, ['id']),
+      organizationName: organization.name,
+      localCustomEntityData,
       applicationIdentifier,
-    });
-
-    if (!createdCustomView) {
-      throw new Error('Failed to create the Custom View.');
-    }
-
-    const customViewLink = getMcUrlLink({
-      mcApiUrl,
-      organizationId: organization.id,
-      customEntityId: createdCustomView.id,
-      isCustomView: true,
-    });
-
-    console.log(chalk.green('Custom View created successfully.'));
-    console.log(`ID: ${chalk.cyan(createdCustomView.id)}`);
-    console.log(`URL: ${chalk.gray(customViewLink)}`);
-
-    writeIdToFile({
+      dryRun,
       configFilePath,
-      id: createdCustomView.id,
-      isCustomView: true,
     });
     return;
   }
 
-  // Update existing Custom View
-  const customViewLink = getMcUrlLink({
-    mcApiUrl,
-    organizationId: fetchedCustomView.organizationId,
-    customEntityId: fetchedCustomView?.customView?.id || '',
-    isCustomView: true,
-  });
-
-  const configDiff = getCustomViewConfigDiff(
-    fetchedCustomView.customView as unknown as CustomViewData,
-    localCustomEntityData
-  );
-
-  if (!configDiff) {
+  // Check for changes
+  if (!status.configDiff) {
     console.log(chalk.green('Custom View is up-to-date.'));
-    console.log(`URL: ${chalk.gray(customViewLink)}`);
+    console.log(`URL: ${chalk.gray(status.link)}`);
     return;
   }
 
   console.log('Changes detected:');
-  console.log(configDiff);
+  console.log(status.configDiff);
   console.log();
 
-  if (options.dryRun) {
-    const data = omit(localCustomEntityData, ['id']);
-    console.log('Dry run - would update Custom View with:');
-    console.log(chalk.gray(JSON.stringify(data, null, 2)));
-    return;
-  }
-
-  console.log('Updating Custom View...');
-
-  await updateCustomView({
+  await performUpdateCustomView({
     mcApiUrl,
-    organizationId: fetchedCustomView.organizationId,
-    data: omit(localCustomEntityData, ['id']),
-    customViewId: fetchedCustomView?.customView?.id || '',
+    organizationId: status.organizationId,
+    customViewId: status.customViewId,
+    localCustomEntityData,
     applicationIdentifier,
+    dryRun,
   });
-
-  console.log(chalk.green('Custom View updated successfully.'));
-  console.log(`URL: ${chalk.gray(customViewLink)}`);
 }
 
 async function run(options: TCliCommandConfigSyncCIOptions) {
@@ -448,20 +285,20 @@ async function run(options: TCliCommandConfigSyncCIOptions) {
   }
 
   if (isCustomViewData(localCustomEntityData)) {
-    await createOrUpdateCustomView({
+    await handleCustomView({
       mcApiUrl,
       localCustomEntityData,
-      applicationIdentifier,
       customViewId: customViewId || localCustomEntityData.id,
-      options,
+      applicationIdentifier,
+      dryRun: options.dryRun,
       configFilePath,
     });
   } else {
-    await createOrUpdateCustomApplication({
+    await handleCustomApplication({
       mcApiUrl,
       localCustomEntityData,
       applicationIdentifier,
-      options,
+      dryRun: options.dryRun,
       configFilePath,
     });
   }

@@ -225,11 +225,11 @@ async function run() {
       'Synchronizes the local Merchant Center customization config with the Merchant Center (CI mode). ' +
         'Designed for non-interactive CI/CD environments.\n\n' +
         'Environment variables:\n' +
-        '  MC_CLI_TOKEN              - Session token for authentication\n' +
-        '  MC_CLI_EMAIL              - Email for authentication (with MC_CLI_PASSWORD)\n' +
-        '  MC_CLI_PASSWORD           - Password for authentication (with MC_CLI_EMAIL)\n' +
-        '  MC_CLI_ORGANIZATION_ID    - Organization ID (required if multiple orgs)\n' +
-        '  MC_CLI_ORGANIZATION_NAME  - Organization name (required if multiple orgs)\n\n' +
+        '  MC_ACCESS_TOKEN              - Session token for authentication\n' +
+        '  MC_USER_NAME              - Email for authentication (with MC_USER_PASSWORD)\n' +
+        '  MC_USER_PASSWORD           - Password for authentication (with MC_USER_NAME)\n' +
+        '  CT_ORGANIZATION_ID    - Organization ID (required if multiple orgs)\n' +
+        '  CT_ORGANIZATION_NAME  - Organization name (required if multiple orgs)\n\n' +
         'On create, outputs the app/view ID to a file in the config directory.'
     )
     .option(

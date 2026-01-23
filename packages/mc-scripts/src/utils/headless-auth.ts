@@ -123,9 +123,9 @@ async function headlessLogin({
  * Environment variable names for headless authentication
  */
 const ENV_VARS = {
-  TOKEN: 'MC_CLI_TOKEN',
-  EMAIL: 'MC_CLI_EMAIL',
-  PASSWORD: 'MC_CLI_PASSWORD',
+  TOKEN: 'MC_ACCESS_TOKEN',
+  EMAIL: 'MC_USER_NAME',
+  PASSWORD: 'MC_USER_PASSWORD',
 } as const;
 
 type TAuthenticateForCIOptions = {
@@ -134,7 +134,7 @@ type TAuthenticateForCIOptions = {
 
 /**
  * Authenticates for CI environments using environment variables.
- * Checks for MC_CLI_TOKEN first, then falls back to MC_CLI_EMAIL/MC_CLI_PASSWORD.
+ * Checks for MC_ACCESS_TOKEN first, then falls back to MC_USER_NAME/MC_USER_PASSWORD.
  */
 async function authenticateForCI({
   mcApiUrl,
@@ -149,7 +149,7 @@ async function authenticateForCI({
       const decodedToken = jwtDecode<TSessionToken>(envToken);
       const now = Math.floor(Date.now() / 1000);
       if (decodedToken.exp <= now) {
-        throw new Error('The provided MC_CLI_TOKEN has expired');
+        throw new Error('The provided MC_ACCESS_TOKEN has expired');
       }
       return {
         token: envToken,
@@ -159,7 +159,7 @@ async function authenticateForCI({
       if (error instanceof Error && error.message.includes('expired')) {
         throw error;
       }
-      throw new Error('The provided MC_CLI_TOKEN is invalid');
+      throw new Error('The provided MC_ACCESS_TOKEN is invalid');
     }
   }
 

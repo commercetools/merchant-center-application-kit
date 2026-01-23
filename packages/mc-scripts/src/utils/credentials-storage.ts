@@ -8,7 +8,7 @@ import doesFileExist from '../utils/does-file-exist';
  * Environment variable name for providing a token directly (useful for CI).
  * When set, this token will be used instead of the stored credentials.
  */
-const MC_CLI_TOKEN_ENV_VAR = 'MC_CLI_TOKEN';
+const MC_ACCESS_TOKEN_ENV_VAR = 'MC_ACCESS_TOKEN';
 
 class CredentialsStorage {
   private credentialsFilePath: string;
@@ -23,7 +23,7 @@ class CredentialsStorage {
 
     // Ensure the credentials file is present (skip if using env var token)
     if (
-      !process.env[MC_CLI_TOKEN_ENV_VAR] &&
+      !process.env[MC_ACCESS_TOKEN_ENV_VAR] &&
       !doesFileExist(this.credentialsFilePath)
     ) {
       fs.mkdirSync(credentialsFolderPath, { recursive: true });
@@ -49,7 +49,7 @@ class CredentialsStorage {
 
   getToken(environmentKey: string) {
     // Check for environment variable token first (useful for CI)
-    const envToken = process.env[MC_CLI_TOKEN_ENV_VAR];
+    const envToken = process.env[MC_ACCESS_TOKEN_ENV_VAR];
     if (envToken) {
       return envToken;
     }
@@ -63,7 +63,7 @@ class CredentialsStorage {
 
   setToken(environmentKey: string, credentials: TMcCliAuthToken) {
     // Don't write credentials if using env var token
-    if (process.env[MC_CLI_TOKEN_ENV_VAR]) {
+    if (process.env[MC_ACCESS_TOKEN_ENV_VAR]) {
       return;
     }
     const allCredentials = this._loadCredentials();
@@ -73,7 +73,7 @@ class CredentialsStorage {
 
   isSessionValid(environmentKey: string) {
     // If using environment variable token, assume it's valid
-    if (process.env[MC_CLI_TOKEN_ENV_VAR]) {
+    if (process.env[MC_ACCESS_TOKEN_ENV_VAR]) {
       return true;
     }
 
