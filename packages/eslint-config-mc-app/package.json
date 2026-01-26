@@ -11,6 +11,11 @@
   "homepage": "https://docs.commercetools.com/merchant-center-customizations",
   "keywords": ["javascript", "frontend", "react", "toolkit", "eslint"],
   "license": "MIT",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./flat": "./flat.js"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -33,6 +38,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^5.11.1",
+    "globals": "^15.15.0",
     "prettier": "^2.8.4",
     "typescript": "^5.2.2"
   },
