@@ -1,11 +1,7 @@
 process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 
-const { FlatCompat } = require('@eslint/eslintrc');
-const graphqlPlugin = require('eslint-plugin-graphql');
-
-// To be able to load legacy ESLint configurations and plugins (https://github.com/eslint/eslintrc)
-// TODO: remove once the new flat format is fully supported.
-const compat = new FlatCompat();
+const graphqlPlugin = require('@graphql-eslint/eslint-plugin');
+const mcAppConfig = require('@commercetools-frontend/eslint-config-mc-app/flat');
 
 /**
  * @type {import("eslint").Linter.FlatConfig[]}
@@ -25,7 +21,11 @@ module.exports = [
       '**/.cache/*',
     ],
   },
-  ...compat.extends('@commercetools-frontend/eslint-config-mc-app'),
+
+  // Base config from eslint-config-mc-app
+  ...mcAppConfig,
+
+  // Repository-specific overrides
   {
     files: ['**/*.{js,jsx,ts,tsx,cjs,mjs}'],
     rules: {
@@ -75,79 +75,86 @@ module.exports = [
       ],
     },
   },
+
+  // GraphQL validation - using @graphql-eslint/eslint-plugin
   {
     files: ['**/*.mc.graphql'],
     plugins: {
-      graphql: graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: './schemas/mc.json',
+      },
     },
     rules: {
-      'graphql/template-strings': [
-        'error',
-        {
-          env: 'literal',
-          schemaJson: require('./schemas/mc.json'),
-        },
-      ],
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
     },
   },
   {
     files: ['**/*.ctp.graphql'],
     plugins: {
-      graphql: graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: './schemas/ctp.json',
+      },
     },
     rules: {
-      'graphql/template-strings': [
-        'error',
-        {
-          env: 'literal',
-          schemaJson: require('./schemas/ctp.json'),
-        },
-      ],
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
     },
   },
   {
     files: ['**/*.core.graphql'],
     plugins: {
-      graphql: graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: './schemas/core.json',
+      },
     },
     rules: {
-      'graphql/template-strings': [
-        'error',
-        {
-          env: 'literal',
-          schemaJson: require('./schemas/core.json'),
-        },
-      ],
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
     },
   },
   {
     files: ['**/*.settings.graphql'],
     plugins: {
-      graphql: graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: './schemas/settings.json',
+      },
     },
     rules: {
-      'graphql/template-strings': [
-        'error',
-        {
-          env: 'literal',
-          schemaJson: require('./schemas/settings.json'),
-        },
-      ],
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
     },
   },
   {
     files: ['**/*.proxy.graphql'],
     plugins: {
-      graphql: graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: './schemas/proxy.json',
+      },
     },
     rules: {
-      'graphql/template-strings': [
-        'error',
-        {
-          env: 'literal',
-          schemaJson: require('./schemas/proxy.json'),
-        },
-      ],
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
     },
   },
 ];
