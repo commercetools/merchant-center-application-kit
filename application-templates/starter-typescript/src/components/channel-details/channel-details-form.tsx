@@ -2,13 +2,13 @@ import type { JSX, ReactElement } from 'react';
 import { useFormik, type FormikHelpers } from 'formik';
 import { useIntl } from 'react-intl';
 import LocalizedTextField from '@commercetools-uikit/localized-text-field';
-import TextField from '@commercetools-uikit/text-field';
-import Spacings from '@commercetools-uikit/spacings';
 import SelectField from '@commercetools-uikit/select-field';
+import Spacings from '@commercetools-uikit/spacings';
+import TextField from '@commercetools-uikit/text-field';
 import type { TFormValues } from '../../types';
 import { CHANNEL_ROLES } from './constants';
-import validate from './validate';
 import messages from './messages';
+import validate from './validate';
 
 type TChannelRole = keyof typeof CHANNEL_ROLES;
 type Formik = ReturnType<typeof useFormik>;
