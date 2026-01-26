@@ -56,7 +56,6 @@ describe('navigation menu', () => {
   it('should expand menu when clicking on the expand button', () => {
     cy.findAllByText('Initial').should('exist');
     cy.findByTestId('menu-expander').click();
-    // eslint-disable-next-line jest/valid-expect-in-promise
     cy.window().then((win) =>
       expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
     );

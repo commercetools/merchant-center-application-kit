@@ -1,33 +1,33 @@
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 import {
-  PageNotFound,
-  FormModalPage,
-} from '@commercetools-frontend/application-components';
-import { ContentNotification } from '@commercetools-uikit/notifications';
-import Text from '@commercetools-uikit/text';
-import Spacings from '@commercetools-uikit/spacings';
-import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import { useCallback } from 'react';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { formatLocalizedString } from '@commercetools-frontend/l10n';
-import { DOMAINS, NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
-import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import {
   useShowNotification,
   useShowApiErrorNotification,
 } from '@commercetools-frontend/actions-global';
+import {
+  PageNotFound,
+  FormModalPage,
+} from '@commercetools-frontend/application-components';
+import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { DOMAINS, NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
+import { formatLocalizedString } from '@commercetools-frontend/l10n';
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { ContentNotification } from '@commercetools-uikit/notifications';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import { PERMISSIONS } from '../../constants';
 import {
   useChannelDetailsUpdater,
   useChannelDetailsFetcher,
 } from '../../hooks/use-channels-connector';
-import { docToFormValues, formValuesToDoc } from './conversions';
 import ChannelsDetailsForm from './channel-details-form';
-import { transformErrors } from './transform-errors';
+import { docToFormValues, formValuesToDoc } from './conversions';
 import messages from './messages';
-import { ApplicationPageTitle } from '@commercetools-frontend/application-shell';
+import { transformErrors } from './transform-errors';
 
 const ChannelDetails = (props) => {
   const intl = useIntl();

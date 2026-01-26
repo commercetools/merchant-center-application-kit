@@ -1,7 +1,7 @@
-import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
-import type { TFetchChannelDetailsQuery } from '../../types/generated/ctp';
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import type { TFormValues } from '../../types';
+import type { TFetchChannelDetailsQuery } from '../../types/generated/ctp';
 
 export const docToFormValues = (
   channel: TFetchChannelDetailsQuery['channel'],
