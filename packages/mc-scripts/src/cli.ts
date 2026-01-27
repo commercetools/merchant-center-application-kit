@@ -181,7 +181,7 @@ async function run() {
     )
     .option(
       '--headless',
-      '(optional) Use Puppeteer for automated headless login. Requires MC_USER_NAME and MC_USER_PASSWORD environment variables. Useful for CI/CD environments.',
+      '(optional) Use Puppeteer for automated headless login. Requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables. Useful for CI/CD environments.',
       false
     )
     .action(async (options: TCliCommandLoginOptions) => {
@@ -235,7 +235,7 @@ async function run() {
         '  CT_ORGANIZATION_NAME   - Organization name (required if multiple orgs)\n\n' +
         'On create, outputs the app/view ID to a file in the config directory.\n\n' +
         'To obtain MC_ACCESS_TOKEN:\n' +
-        '  Option 1: Run "mc-scripts login --headless" with MC_USER_NAME and MC_USER_PASSWORD\n' +
+        '  Option 1: Run "mc-scripts login --headless" with IDENTITY_EMAIL and IDENTITY_PASSWORD\n' +
         '  Option 2: Run "mc-scripts login" locally, then extract token from ~/.commercetools/mc-credentials.json\n\n' +
         'SSO Authentication:\n' +
         '  This command does NOT support SSO directly (requires browser interaction).\n' +

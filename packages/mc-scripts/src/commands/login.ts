@@ -146,15 +146,15 @@ const generateRandomHash = (length: number = 16) =>
 
 /**
  * Performs headless login using Puppeteer.
- * Requires MC_USER_NAME and MC_USER_PASSWORD environment variables.
+ * Requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables.
  */
 async function runHeadlessLogin(authUrl: URL): Promise<void> {
-  const email = process.env.MC_USER_NAME;
-  const password = process.env.MC_USER_PASSWORD;
+  const email = process.env.IDENTITY_EMAIL;
+  const password = process.env.IDENTITY_PASSWORD;
 
   if (!email || !password) {
     throw new Error(
-      'Headless login requires MC_USER_NAME and MC_USER_PASSWORD environment variables'
+      'Headless login requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables'
     );
   }
 

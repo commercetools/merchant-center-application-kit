@@ -67,7 +67,7 @@ async function authenticateForCI({
   throw new Error(
     `No valid authentication found for CI mode. Please provide one of:\n` +
       `  - ${ENV_VARS.TOKEN}: A valid MC session token\n` +
-      `  - Run "mc-scripts login --headless" with MC_USER_NAME and MC_USER_PASSWORD\n` +
+      `  - Run "mc-scripts login --headless" with IDENTITY_EMAIL and IDENTITY_PASSWORD\n` +
       `  - Run "mc-scripts login" interactively to create a session`
   );
 }
