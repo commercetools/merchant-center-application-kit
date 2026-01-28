@@ -1,4 +1,10 @@
 import { graphql, type GraphQLHandler } from 'msw';
+import {
+  ChannelGraphql,
+  type TChannelGraphql,
+} from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
 import { setupServer } from 'msw/node';
 import {
   fireEvent,
@@ -8,14 +14,8 @@ import {
   mapResourceAccessToAppliedPermissions,
   type TRenderAppWithReduxOptions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
-import {
-  ChannelGraphql,
-  type TChannelGraphql,
-} from '@commercetools/composable-commerce-test-data/channel';
-import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
-import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
+import { renderApplicationWithRoutesAndRedux } from '../../test-utils';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());

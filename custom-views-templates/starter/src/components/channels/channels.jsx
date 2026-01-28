@@ -2,22 +2,22 @@ import { useIntl } from 'react-intl';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import {
+  formatLocalizedString,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
+import Constraints from '@commercetools-uikit/constraints';
+import DataTable from '@commercetools-uikit/data-table';
+import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
-import Constraints from '@commercetools-uikit/constraints';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import DataTable from '@commercetools-uikit/data-table';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import {
-  formatLocalizedString,
-  transformLocalizedFieldToLocalizedString,
-} from '@commercetools-frontend/l10n';
-import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
+import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import messages from './messages';
 
 const columns = [
