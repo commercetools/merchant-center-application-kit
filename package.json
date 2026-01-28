@@ -176,6 +176,7 @@
   },
   "pnpm": {
     "overrides": {
+      "glob@10.4.5": "10.5.0",
       "@types/eslint": "^8.2.2",
       "@types/node": "^22.13.2",
       "@types/react": "^19.0.3",
