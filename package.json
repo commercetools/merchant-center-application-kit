@@ -185,6 +185,8 @@
       "@typescript-eslint/eslint-plugin": "^5.52.0",
       "@typescript-eslint/parser": "^5.52.0",
       "browserslist": "^4.28.1",
+      "diff": "4.0.4",
+      "js-yaml": "3.14.2",
       "react": "19.0.0",
       "react-dom": "19.0.0"
     }

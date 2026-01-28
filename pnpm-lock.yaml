@@ -14,6 +14,8 @@ overrides:
   '@typescript-eslint/eslint-plugin': ^5.52.0
   '@typescript-eslint/parser': ^5.52.0
   browserslist: ^4.28.1
+  diff: 4.0.4
+  js-yaml: 3.14.2
   react: 19.0.0
   react-dom: 19.0.0
 
@@ -8122,9 +8124,6 @@ packages:
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
 
-  argparse@2.0.1:
-    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-
   aria-hidden@1.2.6:
     resolution: {integrity: sha512-ik3ZgC9dY/lYVVM++OISsaYDeg1tb0VtP5uL3ouh1koGOaUMDPpbFIei4JkFimWUFPn90sbMNMXQAIVOlnYKJA==}
     engines: {node: '>=10'}
@@ -9552,12 +9551,8 @@ packages:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  diff@4.0.2:
-    resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
-    engines: {node: '>=0.3.1'}
-
-  diff@5.2.0:
-    resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+  diff@4.0.4:
+    resolution: {integrity: sha512-X07nttJQkwkfKfvTPG/KSnE2OMdcUCao6+eXF3wmnIQRn2aPAHH3VxDbDOdegkd6JbPsXqShpvEOHfAT+nCNwQ==}
     engines: {node: '>=0.3.1'}
 
   dir-glob@3.0.1:
@@ -10691,12 +10686,12 @@ packages:
   glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  glob@10.4.5:
-    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+  glob@10.5.0:
+    resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
-  glob@11.0.3:
-    resolution: {integrity: sha512-2Nim7dha1KVkaiF4q6Dj+ngPPMdfvLJEOpZk/jKiUAkqKebpGAWQXAq9z1xu9HKu5lWfqw/FASuccEjyznjPaA==}
+  glob@11.1.0:
+    resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -11919,16 +11914,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@3.14.1:
-    resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
-    hasBin: true
-
-  js-yaml@4.1.0:
-    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
-    hasBin: true
-
-  js-yaml@4.1.1:
-    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
+  js-yaml@3.14.2:
+    resolution: {integrity: sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==}
     hasBin: true
 
   jsbn@0.1.1:
@@ -12025,6 +12012,7 @@ packages:
     resolution: {integrity: sha512-t0etAxTUk1w5MYdNOkZBZ8rvYYN5iL+2dHCCx/DpkFm/bW28M6y5nUS83D4XdZiHy35Fpaw6LBb+F88fHZnVCw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
+    bundledDependencies: []
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
@@ -12337,8 +12325,8 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lru-cache@11.2.2:
-    resolution: {integrity: sha512-F9ODfyqML2coTIsQpSkRHnLSZMtkU8Q+mSfcaIyKwy58u+8k5nvAYeiNhsyMARvzNcXJ9QfWVrcPsC9e9rAxtg==}
+  lru-cache@11.2.4:
+    resolution: {integrity: sha512-B5Y16Jr9LB9dHVkh6ZevG+vAbOsNOYCX+sXvFWFu7B3Iz5mijW3zdbMyhsh8ANd2mSWBYdJgnqi+mL7/LrOPYg==}
     engines: {node: 20 || >=22}
 
   lru-cache@2.5.0:
@@ -16105,7 +16093,7 @@ snapshots:
     dependencies:
       '@jsdevtools/ono': 7.1.3
       '@types/json-schema': 7.0.15
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
 
   '@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -17303,7 +17291,7 @@ snapshots:
   '@changesets/parse@0.4.1':
     dependencies:
       '@changesets/types': 6.1.0
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
 
   '@changesets/pre@2.0.2':
     dependencies:
@@ -18989,7 +18977,7 @@ snapshots:
       debug: 4.4.0
       execa: 4.1.0
       istanbul-lib-coverage: 3.2.2
-      js-yaml: 4.1.0
+      js-yaml: 3.14.2
       nyc: 15.1.0
       tinyglobby: 0.2.15
       webpack: 5.101.1(@swc/core@1.15.1)
@@ -19287,7 +19275,7 @@ snapshots:
       globals: 13.24.0
       ignore: 5.3.2
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -20142,7 +20130,7 @@ snapshots:
       http-proxy-agent: 6.1.1
       https-proxy-agent: 6.2.1
       jose: 4.15.9
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       json-stable-stringify: 1.3.0
       lodash: 4.17.23
       scuid: 1.1.0
@@ -20423,7 +20411,7 @@ snapshots:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       resolve-from: 5.0.0
 
   '@istanbuljs/schema@0.1.3': {}
@@ -20570,7 +20558,7 @@ snapshots:
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-instrument: 6.0.3
@@ -20814,12 +20802,12 @@ snapshots:
     dependencies:
       fast-glob: 3.3.3
       jju: 1.4.0
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
 
   '@manypkg/tools@2.1.0':
     dependencies:
       jju: 1.4.0
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       tinyglobby: 0.2.15
 
   '@mapbox/hast-util-table-cell-style@0.2.1':
@@ -22571,7 +22559,7 @@ snapshots:
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
       picomatch: 4.0.3
@@ -23037,8 +23025,6 @@ snapshots:
   argparse@1.0.10:
     dependencies:
       sprintf-js: 1.0.3
-
-  argparse@2.0.1: {}
 
   aria-hidden@1.2.6:
     dependencies:
@@ -24105,7 +24091,7 @@ snapshots:
     dependencies:
       import-fresh: 2.0.0
       is-directory: 0.3.1
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       parse-json: 4.0.0
 
   cosmiconfig@6.0.0:
@@ -24127,21 +24113,21 @@ snapshots:
   cosmiconfig@8.0.0:
     dependencies:
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       parse-json: 5.2.0
       path-type: 4.0.0
 
   cosmiconfig@8.2.0:
     dependencies:
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       parse-json: 5.2.0
       path-type: 4.0.0
 
   cosmiconfig@8.3.6(typescript@5.9.2):
     dependencies:
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
@@ -24151,7 +24137,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.2
@@ -24630,9 +24616,7 @@ snapshots:
 
   diff-sequences@29.6.3: {}
 
-  diff@4.0.2: {}
-
-  diff@5.2.0: {}
+  diff@4.0.4: {}
 
   dir-glob@3.0.1:
     dependencies:
@@ -25319,7 +25303,7 @@ snapshots:
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       is-path-inside: 3.0.3
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
       lodash.merge: 4.6.2
@@ -26009,7 +25993,7 @@ snapshots:
 
   glob-to-regexp@0.4.1: {}
 
-  glob@10.4.5:
+  glob@10.5.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
@@ -26018,7 +26002,7 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.0.3:
+  glob@11.1.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 4.1.1
@@ -27094,7 +27078,7 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.3.1
       deepmerge: 4.3.1
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-circus: 30.2.0(babel-plugin-macros@3.1.0)
       jest-docblock: 30.2.0
@@ -27404,7 +27388,7 @@ snapshots:
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
@@ -27603,18 +27587,10 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.14.1:
+  js-yaml@3.14.2:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
-
-  js-yaml@4.1.0:
-    dependencies:
-      argparse: 2.0.1
-
-  js-yaml@4.1.1:
-    dependencies:
-      argparse: 2.0.1
 
   jsbn@0.1.1: {}
 
@@ -27727,7 +27703,7 @@ snapshots:
       '@types/json-schema': 7.0.15
       '@types/lodash': 4.17.20
       is-glob: 4.0.3
-      js-yaml: 4.1.1
+      js-yaml: 3.14.2
       lodash: 4.17.23
       minimist: 1.2.8
       prettier: 3.6.2
@@ -28061,7 +28037,7 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lru-cache@11.2.2: {}
+  lru-cache@11.2.4: {}
 
   lru-cache@2.5.0: {}
 
@@ -29088,7 +29064,7 @@ snapshots:
 
   path-scurry@2.0.1:
     dependencies:
-      lru-cache: 11.2.2
+      lru-cache: 11.2.4
       minipass: 7.1.2
 
   path-to-regexp@0.1.12: {}
@@ -29876,7 +29852,7 @@ snapshots:
   read-yaml-file@1.1.0:
     dependencies:
       graceful-fs: 4.2.11
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       pify: 4.0.1
       strip-bom: 3.0.0
 
@@ -30158,7 +30134,7 @@ snapshots:
 
   rimraf@6.0.1:
     dependencies:
-      glob: 11.0.3
+      glob: 11.1.0
       package-json-from-dist: 1.0.1
 
   rollup-plugin-visualizer@5.14.0(rollup@4.53.2):
@@ -31339,7 +31315,7 @@ snapshots:
       acorn-walk: 8.3.4
       arg: 4.1.3
       create-require: 1.1.1
-      diff: 4.0.2
+      diff: 4.0.4
       make-error: 1.3.6
       typescript: 4.9.5
       v8-compile-cache-lib: 3.0.1
@@ -31359,7 +31335,7 @@ snapshots:
       acorn-walk: 8.3.4
       arg: 4.1.3
       create-require: 1.1.1
-      diff: 4.0.2
+      diff: 4.0.4
       make-error: 1.3.6
       typescript: 5.9.2
       v8-compile-cache-lib: 3.0.1
@@ -31379,7 +31355,7 @@ snapshots:
       acorn-walk: 8.3.4
       arg: 4.1.3
       create-require: 1.1.1
-      diff: 4.0.2
+      diff: 4.0.4
       make-error: 1.3.6
       typescript: 5.9.2
       v8-compile-cache-lib: 3.0.1
@@ -31390,7 +31366,7 @@ snapshots:
   ts-node@8.9.1(typescript@4.3.4):
     dependencies:
       arg: 4.1.3
-      diff: 4.0.2
+      diff: 4.0.4
       make-error: 1.3.6
       source-map-support: 0.5.21
       typescript: 4.3.4
@@ -31802,7 +31778,7 @@ snapshots:
   uvu@0.5.6:
     dependencies:
       dequal: 2.0.3
-      diff: 5.2.0
+      diff: 4.0.4
       kleur: 4.1.5
       sade: 1.8.1
 
