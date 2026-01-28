@@ -18,7 +18,6 @@ overrides:
   react-dom: 19.0.0
   test-exclude: ^7.0.1
   flat-cache>rimraf: ^5.0.10
-  del>rimraf: ^5.0.10
   webpack-dev-server>rimraf: ^5.0.10
   react-dev-utils>fork-ts-checker-webpack-plugin: ^9.1.0
 
@@ -2618,6 +2617,9 @@ importers:
       fs-extra:
         specifier: 10.1.0
         version: 10.1.0
+      glob:
+        specifier: ^10.5.0
+        version: 10.5.0
       graphql:
         specifier: 16.11.0
         version: 16.11.0
@@ -2720,9 +2722,6 @@ importers:
       vite-bundle-analyzer:
         specifier: 0.23.0
         version: 0.23.0
-      vite-plugin-clean-build:
-        specifier: ^1.4.1
-        version: 1.4.1(vite@6.4.1(@types/node@22.19.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1))
       webpack:
         specifier: 5.101.1
         version: 5.101.1(@swc/core@1.15.1)
@@ -9458,10 +9457,6 @@ packages:
     resolution: {integrity: sha512-TllpMR/t0M5sqCXfj85i4XaAzxmS5tVA16dqvdkMwGmzI+dXLXnw3J+3Vdv7VKw+ThlTMboK6i9rnZ6Nntj5CQ==}
     engines: {node: '>= 14'}
 
-  del@6.1.1:
-    resolution: {integrity: sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==}
-    engines: {node: '>=10'}
-
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
@@ -11408,10 +11403,6 @@ packages:
   is-obj@2.0.0:
     resolution: {integrity: sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==}
     engines: {node: '>=8'}
-
-  is-path-cwd@2.2.0:
-    resolution: {integrity: sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ==}
-    engines: {node: '>=6'}
 
   is-path-inside@3.0.3:
     resolution: {integrity: sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==}
@@ -15667,11 +15658,6 @@ packages:
   vite-bundle-analyzer@0.23.0:
     resolution: {integrity: sha512-G5chWCtFS546c7c6MCNdzXVWIMDfeUdJHA3LvCwTrhzdfwqbf6ppsIcNW4CnNrpdEAHQ9KgmdkNFV4u3UurXtQ==}
     hasBin: true
-
-  vite-plugin-clean-build@1.4.1:
-    resolution: {integrity: sha512-QtO/b8sFNsgcrQG0jyeCN7gy8Pgi+xSgIKb0LGZFT8fx8nLClCpA1ttwKuv8X842waF8/tM/ey6YrD1tdD81/g==}
-    peerDependencies:
-      vite: '>= 3.0.0'
 
   vite@6.4.1:
     resolution: {integrity: sha512-+Oxm7q9hDoLMyJOYfUYBuHQo+dkAloi33apOPP56pzj+vsdJDzr+j1NISE5pyaAuKL4A3UD34qd0lx5+kfKp2g==}
@@ -24542,17 +24528,6 @@ snapshots:
       escodegen: 2.1.0
       esprima: 4.0.1
 
-  del@6.1.1:
-    dependencies:
-      globby: 11.1.0
-      graceful-fs: 4.2.11
-      is-glob: 4.0.3
-      is-path-cwd: 2.2.0
-      is-path-inside: 3.0.3
-      p-map: 4.0.0
-      rimraf: 5.0.10
-      slash: 3.0.0
-
   delayed-stream@1.0.0: {}
 
   delegates@1.0.0: {}
@@ -26769,8 +26744,6 @@ snapshots:
   is-obj@1.0.1: {}
 
   is-obj@2.0.0: {}
-
-  is-path-cwd@2.2.0: {}
 
   is-path-inside@3.0.3: {}
 
@@ -31833,11 +31806,6 @@ snapshots:
       vfile-message: 3.1.4
 
   vite-bundle-analyzer@0.23.0: {}
-
-  vite-plugin-clean-build@1.4.1(vite@6.4.1(@types/node@22.19.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)):
-    dependencies:
-      del: 6.1.1
-      vite: 6.4.1(@types/node@22.19.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
 
   vite@6.4.1(@types/node@22.19.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1):
     dependencies:

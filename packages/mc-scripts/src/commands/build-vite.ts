@@ -10,12 +10,12 @@ import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import { getViteCacheGroups } from '../config/optimizations';
 import paths from '../config/paths';
 import nonNullable from '../utils/non-nullable';
+import pluginCleanBuild from '../vite-plugins/vite-plugin-clean-build';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
-  const CleanBuild = (await import('vite-plugin-clean-build')).default;
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
   // Ensure the `/public` folder exists.
@@ -108,9 +108,8 @@ async function run() {
           ].filter(nonNullable),
         },
       }),
-      // cleanbuild is needed to remove large svg assets
-      // that are not used after the build.
-      CleanBuild({
+      // Clean up large SVG assets that are not used after the build.
+      pluginCleanBuild({
         outputDir: paths.appBuild,
         patterns: ['*.react-*.svg'],
         verbose: true, // logs the files that are removed
