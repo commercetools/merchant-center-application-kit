@@ -70,6 +70,20 @@ module.exports = {
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': statusCode.off,
 
+    // Enforce direct lodash imports for tree-shaking (e.g., 'lodash/omit' not 'lodash')
+    'no-restricted-imports': [
+      statusCode.error,
+      {
+        paths: [
+          {
+            name: 'lodash',
+            message:
+              "Import from 'lodash/<function>' directly for tree-shaking (e.g., import omit from 'lodash/omit').",
+          },
+        ],
+      },
+    ],
+
     // Imports
     'import/extensions': [
       statusCode.error,
