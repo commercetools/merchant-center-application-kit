@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import isNumber from 'lodash/isNumber';
 import { useShowNotification } from '@commercetools-frontend/actions-global';
 import type {
@@ -13,7 +13,7 @@ import {
 type Props = {
   domain: TAppNotificationDomain;
   kind: TAppNotificationKind;
-  text?: string;
+  text?: ReactNode;
   meta?: { [key: string]: unknown };
   dismissAfter?: number;
 };

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type {
   TAppNotification,
   TAppNotificationDomain,
@@ -10,7 +11,7 @@ import type {
 export type TShowNotification = {
   domain: TAppNotificationDomain;
   kind: TAppNotificationKind;
-  text?: string;
+  text?: ReactNode;
 };
 
 export type TApiErrorNotification = TAppNotification<{
