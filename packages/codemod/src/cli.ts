@@ -1,6 +1,6 @@
 import path from 'path';
 import { program } from 'commander';
-import glob from 'glob';
+import { globSync } from 'glob';
 // @ts-ignore internal module
 import Runner from 'jscodeshift/src/Runner';
 import pkgJson from '../package.json';
@@ -52,7 +52,7 @@ const executeCodemod = async (
   globalOptions: TCliGlobalOptions
 ) => {
   const absoluteGlobPattern = path.resolve(globPattern);
-  const files = glob.sync(
+  const files = globSync(
     path.join(absoluteGlobPattern, '**/*.{ts,tsx,js,jsx}'),
     {
       ignore: [
