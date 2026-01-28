@@ -186,7 +186,11 @@
       "@typescript-eslint/parser": "^5.52.0",
       "browserslist": "^4.28.1",
       "react": "19.0.0",
-      "react-dom": "19.0.0"
+      "react-dom": "19.0.0",
+      "test-exclude": "^7.0.1",
+      "flat-cache>rimraf": "^5.0.10",
+      "webpack-dev-server>rimraf": "^5.0.10",
+      "react-dev-utils>fork-ts-checker-webpack-plugin": "^9.1.0"
     }
   },
   "engines": {
