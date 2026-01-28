@@ -72,7 +72,7 @@ module.exports = {
 
     // Enforce direct lodash imports for tree-shaking (e.g., 'lodash/omit' not 'lodash')
     'no-restricted-imports': [
-      statusCode.error,
+      statusCode.warn,
       {
         paths: [
           {
