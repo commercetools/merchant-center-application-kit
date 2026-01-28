@@ -1,5 +1,4 @@
 import chalk from 'chalk';
-import omit from 'lodash/omit';
 import prompts from 'prompts';
 import {
   processConfig,
@@ -7,47 +6,104 @@ import {
   type CustomViewData,
 } from '@commercetools-frontend/application-config';
 import type { TCliCommandConfigSyncOptions } from '../types';
+import {
+  isCustomViewData,
+  checkCustomApplicationStatus,
+  checkCustomViewStatus,
+  performCreateCustomApplication,
+  performUpdateCustomApplication,
+  performCreateCustomView,
+  performUpdateCustomView,
+} from '../utils/config-sync-helpers';
 import CredentialsStorage from '../utils/credentials-storage';
-import {
-  getCustomApplicationConfigDiff,
-  getCustomViewConfigDiff,
-} from '../utils/get-config-diff';
-import {
-  fetchCustomApplication,
-  fetchCustomView,
-  updateCustomApplication,
-  updateCustomView,
-  createCustomApplication,
-  createCustomView,
-  fetchUserOrganizations,
-} from '../utils/graphql-requests';
+import { fetchUserOrganizations } from '../utils/graphql-requests';
 
 const credentialsStorage = new CredentialsStorage();
 
-type TGetMcUrlLink = {
+type TPromptForOrganization = {
   mcApiUrl: string;
-  organizationId: string;
-  customEntityId: string;
-  isCustomView?: boolean;
+  applicationIdentifier: string;
+  customViewId?: string;
+  entityType: 'Custom Application' | 'Custom View';
 };
 
-const getMcUrlLink = ({
+async function promptForOrganization({
   mcApiUrl,
-  organizationId,
-  customEntityId,
-  isCustomView,
-}: TGetMcUrlLink) => {
-  const mcUrl = mcApiUrl.replace('mc-api', 'mc');
-  const customEntityLink = `${mcUrl}/account/organizations/${organizationId}/custom-${
-    isCustomView ? 'views' : 'applications'
-  }/owned/${customEntityId}`;
-  return customEntityLink;
+  applicationIdentifier,
+  customViewId,
+  entityType,
+}: TPromptForOrganization): Promise<{ id: string; name: string }> {
+  const userOrganizations = await fetchUserOrganizations({
+    mcApiUrl,
+    applicationIdentifier,
+    customViewId,
+  });
+
+  if (userOrganizations.total === 0) {
+    throw new Error(
+      `It seems you are not an admin of any Organization. Please make sure to be part of the Administrators team of the Organization you want the ${entityType} to be configured to.`
+    );
+  }
+
+  if (userOrganizations.total === 1) {
+    const [organization] = userOrganizations.results;
+    return { id: organization.id, name: organization.name };
+  }
+
+  const organizationChoices = userOrganizations.results.map((organization) => ({
+    title: organization.name,
+    value: organization.id,
+  }));
+
+  const { organizationId: selectedOrganizationId } = await prompts({
+    type: 'select',
+    name: 'organizationId',
+    message: 'Select an Organization',
+    choices: organizationChoices,
+    initial: 0,
+  });
+
+  if (!selectedOrganizationId) {
+    throw new Error(`No Organization selected, aborting.`);
+  }
+
+  const organizationName = (
+    organizationChoices.find(
+      ({ value }) => value === selectedOrganizationId
+    ) as {
+      title: string;
+    }
+  ).title;
+
+  return { id: selectedOrganizationId, name: organizationName };
+}
+
+type TConfirmAction = {
+  message: string;
+  dryRun: boolean;
+  dryRunMessage: string;
 };
 
-const isCustomViewData = (
-  data: CustomApplicationData | CustomViewData
-): data is CustomViewData =>
-  (data as CustomApplicationData).entryPointUriPath === undefined;
+async function confirmAction({
+  message,
+  dryRun,
+  dryRunMessage,
+}: TConfirmAction): Promise<boolean> {
+  const { confirmation } = await prompts({
+    type: 'text',
+    name: 'confirmation',
+    message: [message, dryRun && chalk.gray(dryRunMessage)]
+      .filter(Boolean)
+      .join('\n'),
+    initial: 'yes',
+  });
+
+  if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
+    console.log(chalk.red('Aborted.'));
+    return false;
+  }
+  return true;
+}
 
 type TCreateOrUpdateCustomApplication = {
   mcApiUrl: string;
@@ -62,193 +118,75 @@ async function createOrUpdateCustomApplication({
   applicationIdentifier,
   options,
 }: TCreateOrUpdateCustomApplication) {
-  const fetchedCustomApplication = await fetchCustomApplication({
+  const status = await checkCustomApplicationStatus({
     mcApiUrl,
     entryPointUriPath: localCustomEntityData.entryPointUriPath,
     applicationIdentifier,
+    localCustomEntityData,
   });
 
-  if (!fetchedCustomApplication) {
-    const userOrganizations = await fetchUserOrganizations({
+  if (!status.exists) {
+    // Create new Custom Application
+    const organization = await promptForOrganization({
       mcApiUrl,
       applicationIdentifier,
+      entityType: 'Custom Application',
     });
 
-    let organizationId: string, organizationName: string;
-
-    if (userOrganizations.total === 0) {
-      throw new Error(
-        `It seems you are not an admin of any Organization. Please make sure to be part of the Administrators team of the Organization you want the Custom Application to be configured to.`
-      );
-    }
-
-    if (userOrganizations.total === 1) {
-      const [organization] = userOrganizations.results;
-      organizationId = organization.id;
-      organizationName = organization.name;
-    } else {
-      const organizationChoices = userOrganizations.results.map(
-        (organization) => ({
-          title: organization.name,
-          value: organization.id,
-        })
-      );
-
-      const { organizationId: selectedOrganizationId } = await prompts({
-        type: 'select',
-        name: 'organizationId',
-        message: 'Select an Organization',
-        choices: organizationChoices,
-        initial: 0,
-      });
-
-      if (!selectedOrganizationId) {
-        throw new Error(`No Organization selected, aborting.`);
-      }
-
-      organizationId = selectedOrganizationId;
-      organizationName = (
-        organizationChoices.find(({ value }) => value === organizationId) as {
-          title: string;
-        }
-      ).title;
-    }
-
-    const { confirmation } = await prompts({
-      type: 'text',
-      name: 'confirmation',
-      message: [
-        `You are about to create a new Custom Application in the "${chalk.green(
-          organizationName
-        )}" organization. Are you sure you want to proceed?`,
-        options.dryRun &&
-          chalk.gray('Using "--dry-run", no data will be created.'),
-      ]
-        .filter(Boolean)
-        .join('\n'),
-      initial: 'yes',
+    const confirmed = await confirmAction({
+      message: `You are about to create a new Custom Application in the "${chalk.green(
+        organization.name
+      )}" organization. Are you sure you want to proceed?`,
+      dryRun: options.dryRun,
+      dryRunMessage: 'Using "--dry-run", no data will be created.',
     });
-    if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
-      console.log(chalk.red('Aborted.'));
-      return;
-    }
 
-    const data = omit(localCustomEntityData, ['id']);
-    if (options.dryRun) {
-      console.log();
-      console.log(
-        `The following payload would be used to create a new Custom Application.`
-      );
-      console.log();
-      console.log(chalk.gray(JSON.stringify(data, null, 2)));
-      return;
-    }
-    const createdCustomApplication = await createCustomApplication({
+    if (!confirmed) return;
+
+    await performCreateCustomApplication({
       mcApiUrl,
-      organizationId,
-      data,
+      organizationId: organization.id,
+      organizationName: organization.name,
+      localCustomEntityData,
       applicationIdentifier,
+      dryRun: options.dryRun,
     });
-
-    // This check is technically not necessary, as the `graphql-request` client
-    // throws an error in case of GraphQL errors.
-    // However, the generated TypeScript data related to the GraphQL query has the
-    // field typed as optional, thus having an extra check for type correctness.
-    if (!createdCustomApplication) {
-      throw new Error('Failed to create the Custom Application.');
-    }
-
-    const customAppLink = getMcUrlLink({
-      mcApiUrl,
-      organizationId,
-      customEntityId: createdCustomApplication.id,
-    });
-    console.log(
-      chalk.green(
-        `Custom Application created.\nPlease update the "env.production.applicationId" field in your local Custom Application config file with the following value: "${chalk.green(
-          createdCustomApplication.id
-        )}".`
-      )
-    );
-    console.log(
-      `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
-        customAppLink
-      )}".`
-    );
     return;
   }
 
-  const customAppLink = getMcUrlLink({
-    mcApiUrl,
-    organizationId: fetchedCustomApplication.organizationId,
-    customEntityId: fetchedCustomApplication.application.id,
-  });
-
-  const configDiff = getCustomApplicationConfigDiff(
-    fetchedCustomApplication.application as CustomApplicationData,
-    localCustomEntityData
-  );
-
-  if (!configDiff) {
+  // Check for changes
+  if (!status.configDiff) {
     console.log(chalk.green(`Custom Application up-to-date.`));
     console.log(
       `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
-        customAppLink
+        status.link
       )}".`
     );
     return;
   }
 
   console.log('Changes detected:');
-  console.log(configDiff);
+  console.log(status.configDiff);
   console.log();
 
-  const { confirmation } = await prompts({
-    type: 'text',
-    name: 'confirmation',
-    message: [
-      `You are about to update the Custom Application "${chalk.green(
-        localCustomEntityData.entryPointUriPath
-      )}" with the changes above. Are you sure you want to proceed?`,
-      options.dryRun &&
-        chalk.gray('Using "--dry-run", no data will be updated.'),
-    ]
-      .filter(Boolean)
-      .join('\n'),
-    initial: 'yes',
+  const confirmed = await confirmAction({
+    message: `You are about to update the Custom Application "${chalk.green(
+      localCustomEntityData.entryPointUriPath
+    )}" with the changes above. Are you sure you want to proceed?`,
+    dryRun: options.dryRun,
+    dryRunMessage: 'Using "--dry-run", no data will be updated.',
   });
-  if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
-    console.log(chalk.red('Aborted.'));
-    return;
-  }
 
-  const data = omit(localCustomEntityData, ['id']);
-  if (options.dryRun) {
-    console.log();
-    console.log(
-      `The following payload would be used to update the Custom Application "${chalk.green(
-        data.entryPointUriPath
-      )}".`
-    );
-    console.log();
-    console.log(chalk.gray(JSON.stringify(data, null, 2)));
-    return;
-  }
+  if (!confirmed) return;
 
-  await updateCustomApplication({
+  await performUpdateCustomApplication({
     mcApiUrl,
-    organizationId: fetchedCustomApplication.organizationId,
-    data: omit(localCustomEntityData, ['id']),
-    applicationId: fetchedCustomApplication.application.id,
+    organizationId: status.organizationId,
+    applicationId: status.applicationId,
+    localCustomEntityData,
     applicationIdentifier,
+    dryRun: options.dryRun,
   });
-
-  console.log(chalk.green(`Custom Application updated.`));
-  console.log(
-    `You can inspect the Custom Application data in the Merchant Center at "${chalk.gray(
-      customAppLink
-    )}".`
-  );
 }
 
 type TCreateOrUpdateCustomView = {
@@ -266,196 +204,76 @@ async function createOrUpdateCustomView({
   options,
   applicationIdentifier,
 }: TCreateOrUpdateCustomView) {
-  const fetchedCustomView = await fetchCustomView({
+  const status = await checkCustomViewStatus({
     mcApiUrl,
     customViewId,
     applicationIdentifier,
+    localCustomEntityData,
   });
 
-  if (!fetchedCustomView) {
-    const userOrganizations = await fetchUserOrganizations({
+  if (!status.exists) {
+    // Create new Custom View
+    const organization = await promptForOrganization({
       mcApiUrl,
+      applicationIdentifier,
       customViewId,
-      applicationIdentifier,
+      entityType: 'Custom View',
     });
 
-    let organizationId: string, organizationName: string;
-
-    if (userOrganizations.total === 0) {
-      throw new Error(
-        `It seems you are not an admin of any Organization. Please make sure to be part of the Administrators team of the Organization you want the Custom View to be configured to.`
-      );
-    }
-
-    if (userOrganizations.total === 1) {
-      const [organization] = userOrganizations.results;
-      organizationId = organization.id;
-      organizationName = organization.name;
-    } else {
-      const organizationChoices = userOrganizations.results.map(
-        (organization) => ({
-          title: organization.name,
-          value: organization.id,
-        })
-      );
-
-      const { organizationId: selectedOrganizationId } = await prompts({
-        type: 'select',
-        name: 'organizationId',
-        message: 'Select an Organization',
-        choices: organizationChoices,
-        initial: 0,
-      });
-
-      if (!selectedOrganizationId) {
-        throw new Error(`No Organization selected, aborting.`);
-      }
-
-      organizationId = selectedOrganizationId;
-      organizationName = (
-        organizationChoices.find(({ value }) => value === organizationId) as {
-          title: string;
-        }
-      ).title;
-    }
-
-    const { confirmation } = await prompts({
-      type: 'text',
-      name: 'confirmation',
-      message: [
-        `You are about to create a new Custom View in the "${chalk.green(
-          organizationName
-        )}" organization. Are you sure you want to proceed?`,
-        options.dryRun &&
-          chalk.gray('Using "--dry-run", no data will be created.'),
-      ]
-        .filter(Boolean)
-        .join('\n'),
-      initial: 'yes',
+    const confirmed = await confirmAction({
+      message: `You are about to create a new Custom View in the "${chalk.green(
+        organization.name
+      )}" organization. Are you sure you want to proceed?`,
+      dryRun: options.dryRun,
+      dryRunMessage: 'Using "--dry-run", no data will be created.',
     });
-    if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
-      console.log(chalk.red('Aborted.'));
-      return;
-    }
 
-    const data = omit(localCustomEntityData, ['id']);
-    if (options.dryRun) {
-      console.log();
-      console.log(
-        `The following payload would be used to create a new Custom View.`
-      );
-      console.log();
-      console.log(chalk.gray(JSON.stringify(data, null, 2)));
-      return;
-    }
-    const createdCustomView = await createCustomView({
+    if (!confirmed) return;
+
+    await performCreateCustomView({
       mcApiUrl,
-      organizationId,
-      data,
+      organizationId: organization.id,
+      organizationName: organization.name,
+      localCustomEntityData,
       applicationIdentifier,
+      dryRun: options.dryRun,
     });
-
-    // This check is technically not necessary, as the `graphql-request` client
-    // throws an error in case of GraphQL errors.
-    // However, the generated TypeScript data related to the GraphQL query has the
-    // field typed as optional, thus having an extra check for type correctness.
-    if (!createdCustomView) {
-      throw new Error('Failed to create the Custom View.');
-    }
-
-    const customViewLink = getMcUrlLink({
-      mcApiUrl,
-      organizationId,
-      customEntityId: createdCustomView.id,
-      isCustomView: true,
-    });
-    console.log(
-      chalk.green(
-        `Custom View created.\nPlease update the "env.production.customViewId" field in your local Custom View config file with the following value: "${chalk.green(
-          createdCustomView.id
-        )}".`
-      )
-    );
-    console.log(
-      `You can inspect the Custom View data in the Merchant Center at "${chalk.gray(
-        customViewLink
-      )}".`
-    );
     return;
   }
 
-  const customViewLink = getMcUrlLink({
-    mcApiUrl,
-    organizationId: fetchedCustomView.organizationId,
-    customEntityId: fetchedCustomView?.customView?.id || '',
-    isCustomView: true,
-  });
-
-  const configDiff = getCustomViewConfigDiff(
-    fetchedCustomView.customView as unknown as CustomViewData,
-    localCustomEntityData
-  );
-
-  if (!configDiff) {
+  // Check for changes
+  if (!status.configDiff) {
     console.log(chalk.green(`Custom View up-to-date.`));
     console.log(
       `You can inspect the Custom View data in the Merchant Center at "${chalk.gray(
-        customViewLink
+        status.link
       )}".`
     );
     return;
   }
 
   console.log('Changes detected:');
-  console.log(configDiff);
+  console.log(status.configDiff);
   console.log();
 
-  const { confirmation } = await prompts({
-    type: 'text',
-    name: 'confirmation',
-    message: [
-      `You are about to update the Custom View "${chalk.green(
-        localCustomEntityData.defaultLabel
-      )}" with the changes above. Are you sure you want to proceed?`,
-      options.dryRun &&
-        chalk.gray('Using "--dry-run", no data will be updated.'),
-    ]
-      .filter(Boolean)
-      .join('\n'),
-    initial: 'yes',
+  const confirmed = await confirmAction({
+    message: `You are about to update the Custom View "${chalk.green(
+      localCustomEntityData.defaultLabel
+    )}" with the changes above. Are you sure you want to proceed?`,
+    dryRun: options.dryRun,
+    dryRunMessage: 'Using "--dry-run", no data will be updated.',
   });
-  if (!confirmation || confirmation.toLowerCase().charAt(0) !== 'y') {
-    console.log(chalk.red('Aborted.'));
-    return;
-  }
 
-  const data = omit(localCustomEntityData, ['id']);
-  if (options.dryRun) {
-    console.log();
-    console.log(
-      `The following payload would be used to update the Custom View "${chalk.green(
-        data.defaultLabel
-      )}".`
-    );
-    console.log();
-    console.log(chalk.gray(JSON.stringify(data, null, 2)));
-    return;
-  }
+  if (!confirmed) return;
 
-  await updateCustomView({
+  await performUpdateCustomView({
     mcApiUrl,
-    organizationId: fetchedCustomView.organizationId,
-    data: omit(localCustomEntityData, ['id']),
-    customViewId: fetchedCustomView?.customView?.id || '',
+    organizationId: status.organizationId,
+    customViewId: status.customViewId,
+    localCustomEntityData,
     applicationIdentifier,
+    dryRun: options.dryRun,
   });
-
-  console.log(chalk.green(`Custom View updated.`));
-  console.log(
-    `You can inspect the Custom View data in the Merchant Center at "${chalk.gray(
-      customViewLink
-    )}".`
-  );
 }
 
 async function run(options: TCliCommandConfigSyncOptions) {
@@ -476,7 +294,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
   }
 
   if (isCustomViewData(localCustomEntityData)) {
-    createOrUpdateCustomView({
+    await createOrUpdateCustomView({
       mcApiUrl,
       localCustomEntityData,
       applicationIdentifier,
@@ -484,7 +302,7 @@ async function run(options: TCliCommandConfigSyncOptions) {
       options,
     });
   } else {
-    createOrUpdateCustomApplication({
+    await createOrUpdateCustomApplication({
       mcApiUrl,
       localCustomEntityData,
       applicationIdentifier,

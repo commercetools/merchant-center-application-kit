@@ -15,11 +15,16 @@ export type TCliCommandConfigSyncOptions = {
   dryRun: boolean;
 };
 
+export type TCliCommandConfigSyncCIOptions = {
+  dryRun: boolean;
+};
+
 export type TCliCommandLoginOptions = {
   mcApiUrl?: string;
   projectKey?: string;
   oauthScope?: string[];
   force?: boolean;
+  headless?: boolean;
 };
 
 export type TCliCommandSetDeploymentPreviewOptions = {
