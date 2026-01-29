@@ -37,6 +37,23 @@ function getListOfAvailableLocalesWithMatchingMomentLocale() {
       const [baseFileName] = fileName.split(path.extname(fileName));
       return baseFileName;
     });
+  // US and US territories use MM/DD/YYYY format (American convention).
+  // These locales should fall back to moment's default 'en' locale.
+  // All other English locales use DD/MM/YYYY (British/International convention)
+  // and should fall back to 'en-gb'.
+  const usEnglishLocales = [
+    'en-us', // United States
+    'en-um', // U.S. Outlying Islands
+    'en-pr', // Puerto Rico
+    'en-vi', // U.S. Virgin Islands
+    'en-as', // American Samoa
+    'en-gu', // Guam
+    'en-mp', // Northern Mariana Islands
+    'en-fm', // Federated States of Micronesia
+    'en-mh', // Marshall Islands
+    'en-pw', // Palau
+  ];
+
   // Assign to the available locales in the Merchant Center the corresponding
   // matching moment locale, to make it easier to generate the code.
   const allAvailableLocalesWithMatchingMomentLocale = allAvailableLocales
@@ -45,16 +62,45 @@ function getListOfAvailableLocalesWithMatchingMomentLocale() {
       const matchingLocale = momentLocaleDataFiles.find(
         (momentLocale) => momentLocale === availableLocale
       );
-      // Attempt to match a moment locale using only the language tag.
-      // This is used as a fallback in case the exact match didn't work.
+
+      // If there's an exact match, use it.
+      if (matchingLocale) {
+        return {
+          locale: availableLocale,
+          momentLocale: matchingLocale,
+        };
+      }
+
       const [language] = availableLocale.split('-');
+
+      // Special handling for English locales:
+      // - US and US territories should not load any moment locale (moment's
+      //   default 'en' uses MM/DD/YYYY which is correct for these regions)
+      // - All other English locales should fall back to 'en-gb' which uses
+      //   DD/MM/YYYY (the international standard outside US)
+      if (language === 'en') {
+        if (usEnglishLocales.includes(availableLocale)) {
+          // US locales: don't load any moment locale, use moment's default
+          return {
+            locale: availableLocale,
+            momentLocale: null,
+          };
+        }
+        // Non-US English locales: use British date format (DD/MM/YYYY)
+        return {
+          locale: availableLocale,
+          momentLocale: 'en-gb',
+        };
+      }
+
+      // For other languages, attempt to match using only the language tag.
+      // This is used as a fallback in case the exact match didn't work.
       const fallbackLocale = momentLocaleDataFiles.find(
         (momentLocale) => momentLocale === language
       );
-      const momentLocale = matchingLocale || fallbackLocale;
       return {
         locale: availableLocale,
-        momentLocale,
+        momentLocale: fallbackLocale,
       };
     })
     // Keep only locales that have a moment locale.
