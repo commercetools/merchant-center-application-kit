@@ -44,6 +44,13 @@ describe('moment-utils', () => {
       });
     });
 
+    describe('plain English without region', () => {
+      it('en (plain) should use moment default (not included in mappings)', () => {
+        // Plain 'en' without a region code should not load any locale
+        expect(getMomentLocaleFor('en')).toBe(null);
+      });
+    });
+
     describe('US and US territories', () => {
       it('en-US should use moment default (not included in mappings)', () => {
         expect(getMomentLocaleFor('en-US')).toBe(null);

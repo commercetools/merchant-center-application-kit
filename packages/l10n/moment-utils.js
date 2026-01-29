@@ -74,11 +74,20 @@ function getListOfAvailableLocalesWithMatchingMomentLocale() {
       const [language] = availableLocale.split('-');
 
       // Special handling for English locales:
+      // - Plain 'en' (without region) should not load any moment locale to
+      //   preserve existing behavior (moment's built-in default is US format)
       // - US and US territories should not load any moment locale (moment's
       //   default 'en' uses MM/DD/YYYY which is correct for these regions)
-      // - All other English locales should fall back to 'en-gb' which uses
-      //   DD/MM/YYYY (the international standard outside US)
+      // - All other English regional locales should fall back to 'en-gb' which
+      //   uses DD/MM/YYYY (the international standard outside US)
       if (language === 'en') {
+        // Plain 'en' without region code: don't load any locale
+        if (availableLocale === 'en') {
+          return {
+            locale: availableLocale,
+            momentLocale: null,
+          };
+        }
         if (usEnglishLocales.includes(availableLocale)) {
           // US locales: don't load any moment locale, use moment's default
           return {
@@ -86,7 +95,7 @@ function getListOfAvailableLocalesWithMatchingMomentLocale() {
             momentLocale: null,
           };
         }
-        // Non-US English locales: use British date format (DD/MM/YYYY)
+        // Non-US English regional locales: use British date format (DD/MM/YYYY)
         return {
           locale: availableLocale,
           momentLocale: 'en-gb',
