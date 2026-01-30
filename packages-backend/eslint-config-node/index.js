@@ -1,3 +1,9 @@
+/**
+ * @deprecated This package supports ESLint 8.x only and is in maintenance mode.
+ * Please migrate to @commercetools-backend/eslint-config-node-flat for ESLint 9.x support.
+ * @see https://github.com/commercetools/merchant-center-application-kit/tree/main/packages-backend/eslint-config-node-flat
+ */
+
 // This is a workaround for https://github.com/eslint/eslint/issues/3458
 require('@rushstack/eslint-patch/modern-module-resolution');
 

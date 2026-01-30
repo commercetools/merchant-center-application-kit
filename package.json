@@ -78,7 +78,8 @@
       "!packages/eslint-config-mc-app-flat",
       "!packages/jest-preset-mc-app",
       "!packages/jest-stylelint-runner",
-      "!packages-backend/eslint-config-node"
+      "!packages-backend/eslint-config-node",
+      "!packages-backend/eslint-config-node-flat"
     ]
   },
   "dependencies": {

@@ -1,3 +1,9 @@
+/**
+ * @deprecated This package supports ESLint 8.x only and is in maintenance mode.
+ * Please migrate to @commercetools-frontend/eslint-config-mc-app-flat for ESLint 9.x support.
+ * @see https://github.com/commercetools/merchant-center-application-kit/tree/main/packages/eslint-config-mc-app-flat
+ */
+
 process.env.BABEL_ENV = 'production';
 
 // This is a workaround for https://github.com/eslint/eslint/issues/3458
