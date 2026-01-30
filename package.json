@@ -75,6 +75,7 @@
       "!packages/babel-preset-mc-app",
       "!packages/codemod",
       "!packages/eslint-config-mc-app",
+      "!packages/eslint-config-mc-app-flat",
       "!packages/jest-preset-mc-app",
       "!packages/jest-stylelint-runner",
       "!packages-backend/eslint-config-node"
@@ -89,7 +90,7 @@
     "@commercetools-frontend/babel-preset-mc-app": "workspace:*",
     "@commercetools-frontend/constants": "workspace:*",
     "@commercetools-frontend/cypress": "workspace:*",
-    "@commercetools-frontend/eslint-config-mc-app": "workspace:*",
+    "@commercetools-frontend/eslint-config-mc-app-flat": "workspace:*",
     "@commercetools-frontend/jest-preset-mc-app": "workspace:*",
     "@commercetools-frontend/jest-stylelint-runner": "workspace:*",
     "@commercetools-frontend/mc-scripts": "workspace:*",

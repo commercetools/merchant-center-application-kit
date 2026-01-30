@@ -1,23 +1,15 @@
 /**
- * TODO: This is a basic/temporary flat config implementation created to unblock CI
- * and enable the root eslint.config.js to work. This file will need further work
- * to be fully feature-complete and maintain 100% backwards compatibility with the
- * legacy index.js config.
+ * ESLint flat config (v9+) for @commercetools-frontend/eslint-config-mc-app-flat
  *
- * Current status:
- * - ✅ Basic flat config structure working
- * - ✅ Supports TypeScript, React, JSX, and test files
- * - ✅ Maintains dual export (index.js for legacy, flat.js for flat config)
- * - ⚠️  May have minor rule differences from legacy config
- * - ⚠️  Not all edge cases tested yet
- *
- * Next steps for full Phase 1 completion:
- * - Add comprehensive test coverage comparing legacy vs flat output
- * - Verify all plugin configurations match legacy exactly
- * - Test with external consumers
- * - Update documentation
- *
- * See plans/flat-config.md Phase 1 for complete migration plan.
+ * This package provides ESLint configuration using the new flat config format
+ * introduced in ESLint v9. It includes support for:
+ * - TypeScript
+ * - React and JSX
+ * - Jest and Testing Library
+ * - Cypress
+ * - Import ordering and validation
+ * - Prettier integration
+ * - Accessibility rules (jsx-a11y)
  */
 
 process.env.BABEL_ENV = 'production';

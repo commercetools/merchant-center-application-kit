@@ -1,7 +1,7 @@
 process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
 
 const graphqlPlugin = require('@graphql-eslint/eslint-plugin');
-const mcAppConfig = require('@commercetools-frontend/eslint-config-mc-app/flat');
+const mcAppConfig = require('@commercetools-frontend/eslint-config-mc-app-flat');
 
 /**
  * @type {import("eslint").Linter.FlatConfig[]}
