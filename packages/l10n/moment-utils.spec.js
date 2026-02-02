@@ -1,4 +1,4 @@
-const moment = require('moment-timezone');
+const moment = require('moment');
 const { getListOfSupportedMomentLocales } = require('./moment-utils');
 
 // We need to access the internal function for testing

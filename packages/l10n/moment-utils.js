@@ -140,8 +140,7 @@ function generateMomentLocaleImports() {
 // @ts-nocheck
 /* THIS IS A GENERATED FILE */
 
-// eslint-disable-next-line import/no-unresolved
-import moment from 'moment-timezone';
+import moment from 'moment';
 
 /**
  * Registers a locale as a child of a parent locale if not already registered.
