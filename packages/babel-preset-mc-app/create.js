@@ -198,8 +198,6 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
       // https://emotion.sh/docs/@emotion/babel-preset-css-prop
       options.runtime === 'automatic' &&
         require('@emotion/babel-plugin').default,
-      // Cherry-pick Lodash modules
-      require('babel-plugin-lodash').default,
       isIstanbulPluginEnabled && [
         require('babel-plugin-istanbul').default,
         {

@@ -12,10 +12,10 @@ import paths from '../config/paths';
 import nonNullable from '../utils/non-nullable';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
+import pluginPostCleanup from '../vite-plugins/vite-plugin-post-cleanup';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
 async function run() {
-  const CleanBuild = (await import('vite-plugin-clean-build')).default;
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
   // Ensure the `/public` folder exists.
@@ -108,9 +108,8 @@ async function run() {
           ].filter(nonNullable),
         },
       }),
-      // cleanbuild is needed to remove large svg assets
-      // that are not used after the build.
-      CleanBuild({
+      // Clean up large SVG assets that are not used after the build.
+      pluginPostCleanup({
         outputDir: paths.appBuild,
         patterns: ['*.react-*.svg'],
         verbose: true, // logs the files that are removed
