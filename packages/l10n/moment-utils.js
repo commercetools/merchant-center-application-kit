@@ -140,17 +140,44 @@ function generateMomentLocaleImports() {
 // @ts-nocheck
 /* THIS IS A GENERATED FILE */
 
+// eslint-disable-next-line import/no-unresolved
+import moment from 'moment-timezone';
+
+/**
+ * Registers a locale as a child of a parent locale if not already registered.
+ * This is needed for regional locales (e.g., 'en-be') that don't have their own
+ * moment locale file but should inherit formatting from a parent (e.g., 'en-gb').
+ */
+function defineLocaleIfNeeded(locale: string, parentLocale: string): void {
+  if (!moment.locales().includes(locale)) {
+    moment.defineLocale(locale, { parentLocale });
+  }
+  moment.locale(locale);
+}
+
 async function loadMomentLocales(locale: string): Promise<void> {
   const lowercaseLocale = locale.toLowerCase();
 
   switch (lowercaseLocale) {
   ${allAvailableLocalesWithMatchingMomentLocale
-    .map(
-      ({ locale, momentLocale }) => `
+    .map(({ locale, momentLocale }) => {
+      // Check if the locale is an exact match with the moment locale
+      // If so, we only need to import. Otherwise, we need to define the locale
+      // as a child of the parent locale.
+      const needsDefineLocale = locale !== momentLocale;
+
+      if (needsDefineLocale) {
+        return `
     case '${locale}':
       await import('moment/dist/locale/${momentLocale}');
-      break;`
-    )
+      defineLocaleIfNeeded('${locale}', '${momentLocale}');
+      break;`;
+      }
+      return `
+    case '${locale}':
+      await import('moment/dist/locale/${momentLocale}');
+      break;`;
+    })
     .join('\n')}
 
     default:
