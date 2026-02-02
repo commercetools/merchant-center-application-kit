@@ -140,13 +140,14 @@ function generateMomentLocaleImports() {
 // @ts-nocheck
 /* THIS IS A GENERATED FILE */
 
+import moment from 'moment';
+
 /**
  * Registers a locale as a child of a parent locale if not already registered.
  * This is needed for regional locales (e.g., 'en-be') that don't have their own
  * moment locale file but should inherit formatting from a parent (e.g., 'en-gb').
  */
-async function defineLocaleIfNeeded(locale: string, parentLocale: string): Promise<void> {
-  const moment = (await import('moment')).default;
+function defineLocaleIfNeeded(locale: string, parentLocale: string): void {
   if (!moment.locales().includes(locale)) {
     moment.defineLocale(locale, { parentLocale });
   }
