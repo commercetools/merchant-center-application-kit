@@ -9,6 +9,7 @@ import type {
   TCliCommandBuildOptions,
   TCliCommandCompileHtmlOptions,
   TCliCommandConfigSyncOptions,
+  TCliCommandConfigSyncCIOptions,
   TCliCommandSetDeploymentPreviewOptions,
   TCliCommandLoginOptions,
 } from './types';
@@ -178,6 +179,11 @@ async function run() {
       '(optional) If defined, the command will force the login even if a valid session already exists.',
       false
     )
+    .option(
+      '--headless',
+      '(optional) Use Puppeteer for automated headless login. Requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables. Useful for CI/CD environments.',
+      false
+    )
     .action(async (options: TCliCommandLoginOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
 
@@ -215,6 +221,42 @@ async function run() {
 
       const configSyncCommand = await import('./commands/config-sync');
       await configSyncCommand.default(options);
+    });
+
+  // Command: config:sync:ci
+  program
+    .command('config:sync:ci')
+    .description(
+      'Synchronizes the local Merchant Center customization config with the Merchant Center (CI mode). ' +
+        'Designed for non-interactive CI/CD environments.\n\n' +
+        'Environment variables:\n' +
+        '  MC_ACCESS_TOKEN        - Session token for authentication\n' +
+        '  CT_ORGANIZATION_ID     - Organization ID (required if multiple orgs)\n' +
+        '  CT_ORGANIZATION_NAME   - Organization name (required if multiple orgs)\n\n' +
+        'On create, outputs the app/view ID to a file in the config directory.\n\n' +
+        'To obtain MC_ACCESS_TOKEN:\n' +
+        '  Option 1: Run "mc-scripts login --headless" with IDENTITY_EMAIL and IDENTITY_PASSWORD\n' +
+        '  Option 2: Run "mc-scripts login" locally, then extract token from ~/.commercetools/mc-credentials.json\n\n' +
+        'SSO Authentication:\n' +
+        '  This command does NOT support SSO directly (requires browser interaction).\n' +
+        '  For SSO organizations, use a service account without SSO for CI/CD.'
+    )
+    .option(
+      '--dry-run',
+      '(optional) Executes the command but does not send any mutation request.',
+      false
+    )
+    .action(async (options: TCliCommandConfigSyncCIOptions) => {
+      const globalOptions = program.opts<TCliGlobalOptions>();
+
+      // Load dotenv files into the process environment.
+      loadDotEnvFiles(globalOptions);
+
+      // Do this as the first thing so that any code reading it knows the right env.
+      process.env.NODE_ENV = 'production';
+
+      const configSyncCICommand = await import('./commands/config-sync-ci');
+      await configSyncCICommand.default(options);
     });
 
   // Command: deployment-previews:set

@@ -144,6 +144,127 @@ const resolveOAuthScopes = async (
 const generateRandomHash = (length: number = 16) =>
   crypto.randomBytes(length).toString('hex');
 
+/**
+ * Performs headless login using Puppeteer.
+ * Requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables.
+ */
+async function runHeadlessLogin(authUrl: URL): Promise<void> {
+  const email = process.env.IDENTITY_EMAIL;
+  const password = process.env.IDENTITY_PASSWORD;
+
+  if (!email || !password) {
+    throw new Error(
+      'Headless login requires IDENTITY_EMAIL and IDENTITY_PASSWORD environment variables'
+    );
+  }
+
+  let puppeteer;
+  try {
+    puppeteer = await import('puppeteer');
+  } catch {
+    throw new Error(
+      'Puppeteer is required for headless login. Install it with: npm install puppeteer'
+    );
+  }
+
+  const browser = await puppeteer.default.launch({
+    headless: 'new' as const,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+
+  try {
+    const page = await browser.newPage();
+
+    await page.goto(authUrl.toString(), { waitUntil: 'networkidle2' });
+
+    // Wait for the login page to load
+    await page.waitForSelector('input[name="identifier"]', { timeout: 30000 });
+
+    // Dismiss cookie banner if present
+    // Note: Using string-based evaluate to avoid bundler transforming Array.from
+    try {
+      await page.evaluate(`
+        (function() {
+          var buttons = Array.from(document.querySelectorAll('button'));
+          var acceptBtn = buttons.find(function(btn) {
+            return btn.textContent && btn.textContent.includes('Accept all cookies');
+          });
+          if (acceptBtn) acceptBtn.click();
+        })()
+      `);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch {
+      // Cookie banner not found or already dismissed
+    }
+
+    // Fill in email
+    await page.type('input[name="identifier"]', email);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Click "Next" button
+    await page.evaluate(`
+      (function() {
+        var buttons = Array.from(document.querySelectorAll('button'));
+        var nextBtn = buttons.find(function(btn) {
+          return btn.textContent && btn.textContent.toLowerCase().includes('next');
+        });
+        if (nextBtn) nextBtn.click();
+      })()
+    `);
+
+    // Wait for password field
+    await page.waitForSelector('input[name="password"]', {
+      visible: true,
+      timeout: 30000,
+    });
+
+    // Fill in password
+    await page.type('input[name="password"]', password);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Click "Submit" button
+    await page.evaluate(`
+      (function() {
+        var buttons = Array.from(document.querySelectorAll('button'));
+        var submitBtn = buttons.find(function(btn) {
+          return btn.textContent && btn.textContent.toLowerCase().includes('submit');
+        });
+        if (submitBtn) submitBtn.click();
+      })()
+    `);
+
+    // Wait for the callback to be processed (the server will close and exit)
+    // We just need to keep the browser alive until the redirect happens
+    const startTime = Date.now();
+    const timeout = 60000;
+
+    while (Date.now() - startTime < timeout) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const currentUrl = page.url();
+      if (currentUrl.includes('sessionToken=')) {
+        // Token was captured by the callback server, we can exit
+        break;
+      }
+
+      const pageContent = await page.content();
+      if (
+        pageContent.includes('Invalid credentials') ||
+        pageContent.includes('invalid_grant')
+      ) {
+        throw new Error('Invalid credentials');
+      }
+
+      // Check if page shows success (callback server response)
+      if (pageContent.includes('Success!')) {
+        break;
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
 async function run(options: TCliCommandLoginOptions) {
   const mcApiUrl = await resolveMcApiUrl(options);
 
@@ -196,16 +317,23 @@ async function run(options: TCliCommandLoginOptions) {
 
   await startServer(server);
 
-  console.log(
-    `Initiating the OIDC authentication flow, opening the login page in your browser...`
-  );
-  console.log(`  ${authUrl}`);
-  console.log();
+  if (options.headless) {
+    console.log(`Initiating headless authentication flow using Puppeteer...`);
+    console.log();
 
-  const open = await import('open');
-  await open.default(authUrl.toString());
+    await runHeadlessLogin(authUrl);
+  } else {
+    console.log(
+      `Initiating the OIDC authentication flow, opening the login page in your browser...`
+    );
+    console.log(`  ${authUrl}`);
+    console.log();
 
-  console.log('Waiting for the OIDC authentication to complete...');
+    const open = await import('open');
+    await open.default(authUrl.toString());
+
+    console.log('Waiting for the OIDC authentication to complete...');
+  }
 }
 
 export default run;
