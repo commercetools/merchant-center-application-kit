@@ -40,6 +40,7 @@ These packages will receive security fixes only. Please migrate to the new `-fla
 
 - `@typescript-eslint/eslint-plugin` and `@typescript-eslint/parser`: **v8.x** (previously v5.62.0)
 - `eslint-plugin-jest`: **v28.x** (previously v27.2.3)
+- `eslint-plugin-react-hooks`: **v5.x** (previously v4.6.0)
 - `eslint-plugin-testing-library`: **v6.x** (previously v5.11.1)
 - `globals`: **v15.15.0** (new dependency for explicit global definitions)
 
