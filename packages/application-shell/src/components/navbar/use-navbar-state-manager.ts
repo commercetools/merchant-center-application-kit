@@ -242,7 +242,6 @@ const useNavbarStateManager = (props: HookProps) => {
 
   useEffect(() => {
     checkSize();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run this only once!!
 
   useLayoutEffect(() => {

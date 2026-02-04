@@ -2,6 +2,7 @@
   "name": "@commercetools-frontend/eslint-config-mc-app",
   "version": "25.2.0",
   "description": "ESLint config used by Merchant Center customizations.",
+  "deprecated": "This package supports ESLint 8.x only. Please migrate to @commercetools-frontend/eslint-config-mc-app-flat for ESLint 9.x support.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
@@ -11,6 +12,7 @@
   "homepage": "https://docs.commercetools.com/merchant-center-customizations",
   "keywords": ["javascript", "frontend", "react", "toolkit", "eslint"],
   "license": "MIT",
+  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },

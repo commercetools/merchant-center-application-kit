@@ -2,6 +2,7 @@
   "name": "@commercetools-backend/eslint-config-node",
   "version": "25.2.0",
   "description": "ESLint config for Node.js projects.",
+  "deprecated": "This package supports ESLint 8.x only. Please migrate to @commercetools-backend/eslint-config-node-flat for ESLint 9.x support.",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",

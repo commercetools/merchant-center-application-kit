@@ -1,9 +1,0 @@
-_translations/
-dist/
-build/
-node_modules/*
-**/node_modules/*
-packages/application-shell/test-utils/index.js
-packages/application-shell-connectors/test-utils/index.js
-packages/sdk/test-utils/index.js
-**/.cache/*
