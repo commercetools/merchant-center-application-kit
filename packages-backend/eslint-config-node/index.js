@@ -4,6 +4,15 @@
  * @see https://github.com/commercetools/merchant-center-application-kit/tree/main/packages-backend/eslint-config-node-flat
  */
 
+// Runtime deprecation warning
+console.warn(
+  '\x1b[33m%s\x1b[0m',
+  '\n⚠️  DEPRECATION WARNING: @commercetools-backend/eslint-config-node\n' +
+    '   This package supports ESLint 8.x only and is in maintenance mode.\n' +
+    '   Please migrate to @commercetools-backend/eslint-config-node-flat for ESLint 9.x support.\n' +
+    '   See: https://github.com/commercetools/merchant-center-application-kit/tree/main/packages-backend/eslint-config-node-flat\n'
+);
+
 // This is a workaround for https://github.com/eslint/eslint/issues/3458
 require('@rushstack/eslint-patch/modern-module-resolution');
 
