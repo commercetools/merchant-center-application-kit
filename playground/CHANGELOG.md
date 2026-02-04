@@ -1,5 +1,28 @@
 # playground
 
+## 25.2.0
+
+### Patch Changes
+
+- [#3923](https://github.com/commercetools/merchant-center-application-kit/pull/3923) [`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds overrides for two transient dependencies.
+
+- [#3922](https://github.com/commercetools/merchant-center-application-kit/pull/3922) [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for transient dependency security issue.
+
+- [#3924](https://github.com/commercetools/merchant-center-application-kit/pull/3924) [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for tar package version.
+
+- Updated dependencies [[`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41), [`3e070aa`](https://github.com/commercetools/merchant-center-application-kit/commit/3e070aa7573d4a566f248741fe25d843b352e1f2), [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf), [`7f5fbb3`](https://github.com/commercetools/merchant-center-application-kit/commit/7f5fbb3fb8cf95829222bb5067ca927c29d6864e), [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524)]:
+  - @commercetools-frontend/actions-global@25.2.0
+  - @commercetools-frontend/application-components@25.2.0
+  - @commercetools-frontend/application-shell@25.2.0
+  - @commercetools-frontend/application-shell-connectors@25.2.0
+  - @commercetools-frontend/assets@25.2.0
+  - @commercetools-frontend/browser-history@25.2.0
+  - @commercetools-frontend/constants@25.2.0
+  - @commercetools-frontend/i18n@25.2.0
+  - @commercetools-frontend/l10n@25.2.0
+  - @commercetools-frontend/permissions@25.2.0
+  - @commercetools-frontend/sdk@25.2.0
+
 ## 25.1.0
 
 ### Patch Changes

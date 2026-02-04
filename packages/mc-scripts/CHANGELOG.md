@@ -1,5 +1,30 @@
 # @commercetools-frontend/mc-scripts
 
+## 25.2.0
+
+### Minor Changes
+
+- [#3913](https://github.com/commercetools/merchant-center-application-kit/pull/3913) [`1f3a346`](https://github.com/commercetools/merchant-center-application-kit/commit/1f3a3460753396a83d7990a47d8523d4bc767cf3) Thanks [@ragafus](https://github.com/ragafus)! - Make babel-plugin-react-compiler plugin opt-in via ENABLE_BABEL_REACT_COMPILER env variable
+
+### Patch Changes
+
+- [#3923](https://github.com/commercetools/merchant-center-application-kit/pull/3923) [`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds overrides for two transient dependencies.
+
+- [#3927](https://github.com/commercetools/merchant-center-application-kit/pull/3927) [`246ba28`](https://github.com/commercetools/merchant-center-application-kit/commit/246ba28620cea5b3ce14567e7ec721cc87401fb0) Thanks [@misama-ct](https://github.com/misama-ct)! - Fix SNYK-JS-INFLIGHT-6095116 vulnerability by removing dependencies on the deprecated `inflight` package.
+
+- [#3922](https://github.com/commercetools/merchant-center-application-kit/pull/3922) [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for transient dependency security issue.
+
+- [#3924](https://github.com/commercetools/merchant-center-application-kit/pull/3924) [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for tar package version.
+
+- Updated dependencies [[`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41), [`246ba28`](https://github.com/commercetools/merchant-center-application-kit/commit/246ba28620cea5b3ce14567e7ec721cc87401fb0), [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf), [`08c578c`](https://github.com/commercetools/merchant-center-application-kit/commit/08c578c9e956392f5c4e1c0c3c6a7f6fee1806c0), [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524), [`d817733`](https://github.com/commercetools/merchant-center-application-kit/commit/d8177335fb7d007e7bd798d9752becfb1cf3c055)]:
+  - @commercetools-frontend/application-components@25.2.0
+  - @commercetools-frontend/application-config@25.2.0
+  - @commercetools-frontend/assets@25.2.0
+  - @commercetools-frontend/babel-preset-mc-app@25.2.0
+  - @commercetools-frontend/constants@25.2.0
+  - @commercetools-frontend/mc-dev-authentication@25.2.0
+  - @commercetools-frontend/mc-html-template@25.2.0
+
 ## 25.1.0
 
 ### Patch Changes
