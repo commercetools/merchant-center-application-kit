@@ -1,5 +1,22 @@
 # @commercetools-frontend/application-config
 
+## 25.2.0
+
+### Patch Changes
+
+- [#3923](https://github.com/commercetools/merchant-center-application-kit/pull/3923) [`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds overrides for two transient dependencies.
+
+- [#3922](https://github.com/commercetools/merchant-center-application-kit/pull/3922) [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for transient dependency security issue.
+
+- [#3918](https://github.com/commercetools/merchant-center-application-kit/pull/3918) [`08c578c`](https://github.com/commercetools/merchant-center-application-kit/commit/08c578c9e956392f5c4e1c0c3c6a7f6fee1806c0) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Security fixes applied to application-config and react-notifications.
+
+- [#3924](https://github.com/commercetools/merchant-center-application-kit/pull/3924) [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Adds override for tar package version.
+
+- [#3917](https://github.com/commercetools/merchant-center-application-kit/pull/3917) [`d817733`](https://github.com/commercetools/merchant-center-application-kit/commit/d8177335fb7d007e7bd798d9752becfb1cf3c055) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Security fixes applied to application-config.
+
+- Updated dependencies [[`3b47e62`](https://github.com/commercetools/merchant-center-application-kit/commit/3b47e62fc0d7f63ac9fbf05fba907e4ac5705f41), [`4d19484`](https://github.com/commercetools/merchant-center-application-kit/commit/4d19484452f0955c84ecd4d13f1949bdfbdeadbf), [`a19546c`](https://github.com/commercetools/merchant-center-application-kit/commit/a19546c7d145da501b8e6d922664c2adaafad524)]:
+  - @commercetools-frontend/constants@25.2.0
+
 ## 25.1.0
 
 ### Patch Changes
