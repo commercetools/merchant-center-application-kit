@@ -4,6 +4,31 @@ const graphqlPlugin = require('@graphql-eslint/eslint-plugin');
 const mcAppConfig = require('@commercetools-frontend/eslint-config-mc-app-flat');
 
 /**
+ * Helper function to create GraphQL ESLint config for a specific schema type
+ * @param {string} schemaType - The schema type (e.g., 'mc', 'ctp', 'core')
+ * @param {string} schemaPath - Path to the JSON schema file
+ * @returns {import("eslint").Linter.FlatConfig}
+ */
+function createGraphQLConfig(schemaType, schemaPath) {
+  return {
+    files: [`**/*.${schemaType}.graphql`],
+    plugins: {
+      '@graphql-eslint': graphqlPlugin,
+    },
+    languageOptions: {
+      parser: require('@graphql-eslint/eslint-plugin'),
+      parserOptions: {
+        schema: schemaPath,
+      },
+    },
+    rules: {
+      '@graphql-eslint/known-type-names': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
+    },
+  };
+}
+
+/**
  * @type {import("eslint").Linter.FlatConfig[]}
  */
 module.exports = [
@@ -77,84 +102,10 @@ module.exports = [
   },
 
   // GraphQL validation - using @graphql-eslint/eslint-plugin
-  {
-    files: ['**/*.mc.graphql'],
-    plugins: {
-      '@graphql-eslint': graphqlPlugin,
-    },
-    languageOptions: {
-      parser: require('@graphql-eslint/eslint-plugin'),
-      parserOptions: {
-        schema: './schemas/mc.json',
-      },
-    },
-    rules: {
-      '@graphql-eslint/known-type-names': 'error',
-      '@graphql-eslint/no-deprecated': 'warn',
-    },
-  },
-  {
-    files: ['**/*.ctp.graphql'],
-    plugins: {
-      '@graphql-eslint': graphqlPlugin,
-    },
-    languageOptions: {
-      parser: require('@graphql-eslint/eslint-plugin'),
-      parserOptions: {
-        schema: './schemas/ctp.json',
-      },
-    },
-    rules: {
-      '@graphql-eslint/known-type-names': 'error',
-      '@graphql-eslint/no-deprecated': 'warn',
-    },
-  },
-  {
-    files: ['**/*.core.graphql'],
-    plugins: {
-      '@graphql-eslint': graphqlPlugin,
-    },
-    languageOptions: {
-      parser: require('@graphql-eslint/eslint-plugin'),
-      parserOptions: {
-        schema: './schemas/core.json',
-      },
-    },
-    rules: {
-      '@graphql-eslint/known-type-names': 'error',
-      '@graphql-eslint/no-deprecated': 'warn',
-    },
-  },
-  {
-    files: ['**/*.settings.graphql'],
-    plugins: {
-      '@graphql-eslint': graphqlPlugin,
-    },
-    languageOptions: {
-      parser: require('@graphql-eslint/eslint-plugin'),
-      parserOptions: {
-        schema: './schemas/settings.json',
-      },
-    },
-    rules: {
-      '@graphql-eslint/known-type-names': 'error',
-      '@graphql-eslint/no-deprecated': 'warn',
-    },
-  },
-  {
-    files: ['**/*.proxy.graphql'],
-    plugins: {
-      '@graphql-eslint': graphqlPlugin,
-    },
-    languageOptions: {
-      parser: require('@graphql-eslint/eslint-plugin'),
-      parserOptions: {
-        schema: './schemas/proxy.json',
-      },
-    },
-    rules: {
-      '@graphql-eslint/known-type-names': 'error',
-      '@graphql-eslint/no-deprecated': 'warn',
-    },
-  },
+  // Context-aware linting for 5 different GraphQL schema types
+  createGraphQLConfig('mc', './schemas/mc.json'),
+  createGraphQLConfig('ctp', './schemas/ctp.json'),
+  createGraphQLConfig('core', './schemas/core.json'),
+  createGraphQLConfig('settings', './schemas/settings.json'),
+  createGraphQLConfig('proxy', './schemas/proxy.json'),
 ];
