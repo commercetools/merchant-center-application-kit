@@ -1,5 +1,28 @@
 # @commercetools-applications/merchant-center-custom-view-template-starter-typescript
 
+## 26.0.0
+
+### Patch Changes
+
+- [#3932](https://github.com/commercetools/merchant-center-application-kit/pull/3932) [`f4f5a73`](https://github.com/commercetools/merchant-center-application-kit/commit/f4f5a73c19af93aa4e2db48f09e422eda53bb35e) Thanks [@ByronDWall](https://github.com/ByronDWall)! - fix(security): update ui-kit packages to v20.3.1 to fix issue with lodash v4.17.21 transitive dependency
+
+- Updated dependencies [[`f4f5a73`](https://github.com/commercetools/merchant-center-application-kit/commit/f4f5a73c19af93aa4e2db48f09e422eda53bb35e), [`b63d291`](https://github.com/commercetools/merchant-center-application-kit/commit/b63d291b390fa69bd37c65edaf0775a1bba43840), [`6c91a27`](https://github.com/commercetools/merchant-center-application-kit/commit/6c91a27d2b59e1d329e21cfb1d4c18f6cd205186)]:
+  - @commercetools-frontend/application-components@26.0.0
+  - @commercetools-frontend/application-shell@26.0.0
+  - @commercetools-frontend/i18n@26.0.0
+  - @commercetools-frontend/mc-scripts@26.0.0
+  - @commercetools-frontend/babel-preset-mc-app@26.0.0
+  - @commercetools-frontend/eslint-config-mc-app@26.0.0
+  - @commercetools-frontend/jest-preset-mc-app@26.0.0
+  - @commercetools-frontend/actions-global@26.0.0
+  - @commercetools-frontend/application-config@26.0.0
+  - @commercetools-frontend/application-shell-connectors@26.0.0
+  - @commercetools-frontend/assets@26.0.0
+  - @commercetools-frontend/constants@26.0.0
+  - @commercetools-frontend/l10n@26.0.0
+  - @commercetools-frontend/mc-dev-authentication@26.0.0
+  - @commercetools-frontend/permissions@26.0.0
+
 ## 25.2.0
 
 ### Patch Changes

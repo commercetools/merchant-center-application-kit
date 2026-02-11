@@ -1,5 +1,7 @@
 # @commercetools-frontend/browser-history
 
+## 26.0.0
+
 ## 25.2.0
 
 ### Patch Changes

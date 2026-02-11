@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 26.0.0
+
+### Patch Changes
+
+- [#3932](https://github.com/commercetools/merchant-center-application-kit/pull/3932) [`f4f5a73`](https://github.com/commercetools/merchant-center-application-kit/commit/f4f5a73c19af93aa4e2db48f09e422eda53bb35e) Thanks [@ByronDWall](https://github.com/ByronDWall)! - fix(security): update ui-kit packages to v20.3.1 to fix issue with lodash v4.17.21 transitive dependency
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@26.0.0
+
 ## 25.2.0
 
 ### Patch Changes

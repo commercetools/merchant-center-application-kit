@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 26.0.0
+
+### Patch Changes
+
+- [#3933](https://github.com/commercetools/merchant-center-application-kit/pull/3933) [`b63d291`](https://github.com/commercetools/merchant-center-application-kit/commit/b63d291b390fa69bd37c65edaf0775a1bba43840) Thanks [@ByronDWall](https://github.com/ByronDWall)! - fix(security): update webpack to version 5.105.1
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@26.0.0
+  - @commercetools-frontend/constants@26.0.0
+
 ## 25.2.0
 
 ### Patch Changes
