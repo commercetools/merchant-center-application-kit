@@ -52,6 +52,18 @@ module.exports = function createBabePresetConfigForMcApp(api, opts = {}, env) {
   const isIstanbulPluginEnabled =
     process.env.ENABLE_BABEL_PLUGIN_ISTANBUL === 'true';
 
+  if (isIstanbulPluginEnabled) {
+    try {
+      require.resolve('babel-plugin-istanbul');
+    } catch (e) {
+      throw new Error(
+        'Coverage instrumentation is enabled (ENABLE_BABEL_PLUGIN_ISTANBUL=true) ' +
+          'but babel-plugin-istanbul is not installed. ' +
+          'Install it with: pnpm add -D babel-plugin-istanbul'
+      );
+    }
+  }
+
   return {
     presets: [
       isEnvTest && [

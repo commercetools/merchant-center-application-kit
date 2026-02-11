@@ -37,12 +37,19 @@
     "@emotion/babel-plugin": "^11.13.5",
     "@emotion/babel-preset-css-prop": "^11.12.0",
     "babel-plugin-dev-expression": "^0.2.3",
-    "babel-plugin-istanbul": "7.0.1",
     "babel-plugin-formatjs": "^10.5.25",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-preval": "^5.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "core-js": "^3.32.2"
+  },
+  "peerDependencies": {
+    "babel-plugin-istanbul": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "babel-plugin-istanbul": {
+      "optional": true
+    }
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"
