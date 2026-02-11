@@ -6,10 +6,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 import type { XastElement, PluginInfo } from 'svgo';
 import TerserPlugin from 'terser-webpack-plugin';
-import webpack, {
-  type WebpackPluginInstance,
-  type Configuration,
-} from 'webpack';
+import webpack, { type Configuration } from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import type {
   TWebpackConfigToggleFlagsForProduction,
@@ -132,7 +129,7 @@ function createWebpackConfigForProduction(
           parallel: mergedOptions.toggleFlags.parallelism,
         }),
         mergedOptions.toggleFlags.enableExtractCss && new CssMinimizerPlugin(),
-      ].filter(Boolean) as WebpackPluginInstance[],
+      ],
       // Keep the runtime chunk separated to enable long term caching
       runtimeChunk: {
         name: 'runtime',
@@ -235,7 +232,7 @@ function createWebpackConfigForProduction(
         new BundleAnalyzerPlugin({
           defaultSizes: 'gzip',
         }),
-    ].filter(Boolean) as WebpackPluginInstance[],
+    ],
 
     module: {
       // Makes missing exports an error instead of warning.
