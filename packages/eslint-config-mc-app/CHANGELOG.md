@@ -1,5 +1,12 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 26.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`6c91a27`](https://github.com/commercetools/merchant-center-application-kit/commit/6c91a27d2b59e1d329e21cfb1d4c18f6cd205186)]:
+  - @commercetools-frontend/babel-preset-mc-app@26.0.0
+
 ## 25.2.0
 
 ### Patch Changes
