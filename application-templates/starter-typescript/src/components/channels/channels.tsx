@@ -5,31 +5,31 @@ import {
   useHistory,
   useRouteMatch,
 } from 'react-router-dom';
+import { SuspendedRoute } from '@commercetools-frontend/application-shell';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
+import {
+  formatLocalizedString,
+  transformLocalizedFieldToLocalizedString,
+} from '@commercetools-frontend/l10n';
+import Constraints from '@commercetools-uikit/constraints';
+import DataTable from '@commercetools-uikit/data-table';
+import FlatButton from '@commercetools-uikit/flat-button';
 import {
   usePaginationState,
   useDataTableSortingState,
 } from '@commercetools-uikit/hooks';
 import { BackIcon } from '@commercetools-uikit/icons';
-import Constraints from '@commercetools-uikit/constraints';
-import FlatButton from '@commercetools-uikit/flat-button';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
-import DataTable from '@commercetools-uikit/data-table';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import { Pagination } from '@commercetools-uikit/pagination';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { SuspendedRoute } from '@commercetools-frontend/application-shell';
-import {
-  formatLocalizedString,
-  transformLocalizedFieldToLocalizedString,
-} from '@commercetools-frontend/l10n';
-import type { TFetchChannelsQuery } from '../../types/generated/ctp';
-import { useChannelsFetcher } from '../../hooks/use-channels-connector';
 import { getErrorMessage } from '../../helpers';
-import messages from './messages';
+import { useChannelsFetcher } from '../../hooks/use-channels-connector';
+import type { TFetchChannelsQuery } from '../../types/generated/ctp';
 import ChannelDetails from '../channel-details';
+import messages from './messages';
 
 const columns = [
   { key: 'name', label: 'Channel name' },

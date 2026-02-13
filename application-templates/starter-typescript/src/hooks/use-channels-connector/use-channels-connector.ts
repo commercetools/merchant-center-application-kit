@@ -2,13 +2,18 @@
 /// <reference path="../../../@types-extensions/graphql-ctp/index.d.ts" />
 
 import type { ApolloError } from '@apollo/client';
+import { createSyncChannels } from '@commercetools/sync-actions';
 import {
   useMcQuery,
   useMcMutation,
 } from '@commercetools-frontend/application-shell';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { createSyncChannels } from '@commercetools/sync-actions';
 import type { TDataTableSortingState } from '@commercetools-uikit/hooks';
+import {
+  createGraphQlUpdateActions,
+  extractErrorFromGraphQlResponse,
+  convertToActionData,
+} from '../../helpers';
 import type {
   TFetchChannelsQuery,
   TFetchChannelsQueryVariables,
@@ -17,13 +22,8 @@ import type {
   TUpdateChannelDetailsMutation,
   TUpdateChannelDetailsMutationVariables,
 } from '../../types/generated/ctp';
-import {
-  createGraphQlUpdateActions,
-  extractErrorFromGraphQlResponse,
-  convertToActionData,
-} from '../../helpers';
-import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
+import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import UpdateChannelDetailsMutation from './update-channel-details.ctp.graphql';
 
 const syncChannels = createSyncChannels();

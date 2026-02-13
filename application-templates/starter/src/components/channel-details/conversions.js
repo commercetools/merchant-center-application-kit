@@ -1,5 +1,5 @@
-import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import { transformLocalizedFieldToLocalizedString } from '@commercetools-frontend/l10n';
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 
 export const docToFormValues = (channel, languages) => ({
   key: channel?.key ?? '',
