@@ -1,16 +1,16 @@
+import { createSyncChannels } from '@commercetools/sync-actions';
 import {
   useMcQuery,
   useMcMutation,
 } from '@commercetools-frontend/application-shell';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { createSyncChannels } from '@commercetools/sync-actions';
 import {
   createGraphQlUpdateActions,
   extractErrorFromGraphQlResponse,
   convertToActionData,
 } from '../../helpers';
-import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import FetchChannelDetailsQuery from './fetch-channel-details.ctp.graphql';
+import FetchChannelsQuery from './fetch-channels.ctp.graphql';
 import UpdateChannelDetailsMutation from './update-channel-details.ctp.graphql';
 
 const syncStores = createSyncChannels();
