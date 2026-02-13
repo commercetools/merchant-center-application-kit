@@ -10,6 +10,7 @@ module.exports = {
     'dist',
     'public/',
     'compiled',
+    'coverage',
     '.cache',
     '.vercel',
     '.spec.js',

@@ -1,264 +1,358 @@
+/**
+ * ESLint flat config (v9+) for @commercetools-frontend/eslint-config-mc-app
+ *
+ * This package provides ESLint configuration using the new flat config format
+ * introduced in ESLint v9. It includes support for:
+ * - TypeScript
+ * - React and JSX
+ * - Jest and Testing Library
+ * - Cypress
+ * - Import ordering and validation
+ * - Prettier integration
+ * - Accessibility rules (jsx-a11y)
+ */
+
 process.env.BABEL_ENV = 'production';
 
-// This is a workaround for https://github.com/eslint/eslint/issues/3458
-require('@rushstack/eslint-patch/modern-module-resolution');
+const babelParser = require('@babel/eslint-parser');
+const typescriptPlugin = require('@typescript-eslint/eslint-plugin');
+const typescriptParser = require('@typescript-eslint/parser');
+const prettierConfig = require('eslint-config-prettier');
+const cypressPlugin = require('eslint-plugin-cypress');
+const importPlugin = require('eslint-plugin-import');
+const jestPlugin = require('eslint-plugin-jest');
+const jestDomPlugin = require('eslint-plugin-jest-dom');
+const jsxA11yPlugin = require('eslint-plugin-jsx-a11y');
+const prettierPlugin = require('eslint-plugin-prettier');
+const reactPlugin = require('eslint-plugin-react');
+const reactHooksPlugin = require('eslint-plugin-react-hooks');
+const testingLibraryPlugin = require('eslint-plugin-testing-library');
+const globals = require('globals');
 
+// Reuse existing helpers
 const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 const { craRules } = require('./helpers/rules-presets');
 
 /**
- * @type {import("eslint").Linter.Config}
+ * ESLint flat config format for @commercetools-frontend/eslint-config-mc-app
+ * @type {import("eslint").Linter.FlatConfig[]}
  */
-module.exports = {
-  root: true,
-
-  parser: '@babel/eslint-parser',
-
-  parserOptions: {
-    sourceType: 'module',
-    requireConfigFile: false,
-    babelOptions: {
-      presets: [
-        require.resolve(
-          '@commercetools-frontend/babel-preset-mc-app/production'
-        ),
+module.exports = [
+  // Base config for all JavaScript/TypeScript files
+  {
+    files: ['**/*.{js,jsx,ts,tsx,cjs,mjs}'],
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        sourceType: 'module',
+        requireConfigFile: false,
+        babelOptions: {
+          presets: [
+            require.resolve(
+              '@commercetools-frontend/babel-preset-mc-app/production'
+            ),
+          ],
+        },
+      },
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+        ...globals.commonjs,
+        ...globals.es2015,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      import: importPlugin,
+      'jsx-a11y': jsxA11yPlugin,
+      prettier: prettierPlugin,
+      cypress: cypressPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: allSupportedExtensions,
+        },
+      },
+    },
+    rules: {
+      ...craRules.base,
+      // Disable React rules in base config - they'll be enabled in React file configs
+      'react/forbid-foreign-prop-types': statusCode.off,
+      'react/jsx-no-comment-textnodes': statusCode.off,
+      'react/jsx-no-duplicate-props': statusCode.off,
+      'react/jsx-no-target-blank': statusCode.off,
+      'react/jsx-no-undef': statusCode.off,
+      'react/jsx-pascal-case': statusCode.off,
+      'react/no-danger-with-children': statusCode.off,
+      'react/no-direct-mutation-state': statusCode.off,
+      'react/no-is-mounted': statusCode.off,
+      'react/no-typos': statusCode.off,
+      'react/require-render-return': statusCode.off,
+      'react/style-prop-object': statusCode.off,
+      'react-hooks/exhaustive-deps': statusCode.off,
+      'react-hooks/rules-of-hooks': statusCode.off,
+      'no-unused-expressions': statusCode.off,
+      // Enforce direct lodash imports for tree-shaking (e.g., 'lodash/<function>' not 'lodash')
+      'no-restricted-imports': [
+        statusCode.warn,
+        {
+          paths: [
+            {
+              name: 'lodash',
+              message:
+                "Import from 'lodash/<function>' directly for tree-shaking (e.g., import omit from 'lodash/omit').",
+            },
+          ],
+        },
       ],
+      'import/extensions': [
+        statusCode.error,
+        {
+          js: 'never',
+          jsx: 'never',
+          ts: 'never',
+          tsx: 'never',
+          mjs: 'never',
+          json: 'always',
+          svg: 'always',
+          graphql: 'always',
+        },
+      ],
+      'import/default': statusCode.off,
+      'import/first': statusCode.error,
+      'import/namespace': statusCode.off,
+      'import/no-extraneous-dependencies': statusCode.off,
+      'import/no-named-as-default': statusCode.off,
+      'import/no-named-as-default-member': statusCode.off,
+      'import/no-unresolved': statusCode.error,
+      'prettier/prettier': 'error',
     },
   },
 
-  env: {
-    browser: true,
-    commonjs: true,
-    es6: true,
-    jest: true,
-    node: true,
-  },
-
-  extends: [
-    // https://github.com/cypress-io/eslint-plugin-cypress
-    'plugin:cypress/recommended',
-    // https://github.com/import-js/eslint-plugin-import
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    // https://github.com/prettier/prettier-eslint
-    // NOTE: this should go last.
-    'prettier',
-  ],
-
-  plugins: [
-    // https://github.com/import-js/eslint-plugin-import
-    'import',
-    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
-    'jsx-a11y',
-    // https://github.com/prettier/prettier-eslint
-    'prettier',
-  ],
-
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: allSupportedExtensions,
-      },
-    },
-  },
-
-  rules: {
-    ...craRules.base,
-
-    // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
-    'no-unused-expressions': statusCode.off,
-
-    // Enforce direct lodash imports for tree-shaking (e.g., 'lodash/omit' not 'lodash')
-    'no-restricted-imports': [
-      statusCode.warn,
-      {
-        paths: [
-          {
-            name: 'lodash',
-            message:
-              "Import from 'lodash/<function>' directly for tree-shaking (e.g., import omit from 'lodash/omit').",
-          },
-        ],
-      },
-    ],
-
-    // Imports
-    'import/extensions': [
-      statusCode.error,
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-        mjs: 'never',
-        json: 'always',
-        svg: 'always',
-        graphql: 'always',
-      },
-    ],
-    'import/default': statusCode.off,
-    'import/first': statusCode.error,
-    // TODO: enable this once there is support for `import type`
-    // 'import/order': statusCode.error,
-    'import/namespace': statusCode.off,
-    'import/no-extraneous-dependencies': statusCode.off,
-    'import/no-named-as-default': statusCode.off,
-    'import/no-named-as-default-member': statusCode.off,
-    'import/no-unresolved': statusCode.error,
-  },
-
-  overrides: [
-    {
-      files: ['*.{spec,test}.*'],
-      env: {
-        'jest/globals': true,
-      },
-      extends: [
-        // https://github.com/jest-community/eslint-plugin-jest
-        'plugin:jest/recommended',
-        // https://github.com/testing-library/eslint-plugin-testing-library
-        'plugin:testing-library/react',
-        // https://github.com/prettier/prettier-eslint
-        // NOTE: this should go last.
-        'prettier',
-      ],
-      plugins: [
-        'testing-library',
-        // https://github.com/jest-community/eslint-plugin-jest
-        'jest',
-        // https://github.com/testing-library/eslint-plugin-jest-dom
-        'jest-dom',
-        // https://github.com/prettier/prettier-eslint
-        'prettier',
-      ],
-      rules: {
-        ...craRules.jest,
-
-        // React
-        'react/display-name': statusCode.off,
-
-        // Jest
-        'jest/expect-expect': statusCode.off,
-        'jest/no-identical-title': statusCode.warn,
-        'jest/no-focused-tests': statusCode.error,
-
-        // RTL
-        'testing-library/prefer-presence-queries': statusCode.error,
-        'testing-library/await-async-query': statusCode.error,
-        // Enabling these would be a breaking change to the config
-        'testing-library/render-result-naming-convention': statusCode.off,
-        'testing-library/prefer-screen-queries': statusCode.off,
-        'testing-library/no-container': statusCode.warn,
-      },
-    },
-    {
-      files: ['**/*.{ts,tsx}'],
-      parser: '@typescript-eslint/parser',
+  // TypeScript files (non-React)
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser: typescriptParser,
       parserOptions: {
         ecmaVersion: 2018,
         sourceType: 'module',
-        // typescript-eslint specific options
         warnOnUnsupportedTypeScriptVersion: true,
       },
-      plugins: ['@typescript-eslint'],
-      extends: ['prettier'],
-      rules: {
-        ...craRules.typescript,
+    },
+    plugins: {
+      '@typescript-eslint': typescriptPlugin,
+    },
+    settings: {
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+        node: {
+          extensions: allSupportedExtensions,
+        },
+      },
+    },
+    rules: {
+      ...craRules.typescript,
+      '@typescript-eslint/ban-types': statusCode.off,
+      '@typescript-eslint/naming-convention': statusCode.off,
+      '@typescript-eslint/consistent-type-definitions': statusCode.off,
+      '@typescript-eslint/no-explicit-any': statusCode.error,
+      '@typescript-eslint/no-use-before-define': [
+        statusCode.error,
+        { functions: false },
+      ],
+      '@typescript-eslint/no-var-requires': statusCode.off,
+      '@typescript-eslint/unbound-method': statusCode.off,
+      '@typescript-eslint/ban-ts-comment': statusCode.off,
+      '@typescript-eslint/explicit-function-return-type': statusCode.off,
+      '@typescript-eslint/explicit-member-accessibility': [
+        statusCode.error,
+        { accessibility: 'no-public' },
+      ],
+      '@typescript-eslint/no-require-imports': statusCode.off,
+      '@typescript-eslint/promise-function-async': statusCode.off,
+    },
+  },
 
-        // TypeScript
-        '@typescript-eslint/ban-types': statusCode.off,
-        '@typescript-eslint/naming-convention': statusCode.off,
-        '@typescript-eslint/consistent-type-definitions': statusCode.off,
-        '@typescript-eslint/no-explicit-any': statusCode.error,
-        '@typescript-eslint/no-use-before-define': [
-          statusCode.error,
-          { functions: false },
-        ],
-        '@typescript-eslint/no-var-requires': statusCode.off,
-        '@typescript-eslint/unbound-method': statusCode.off,
-        '@typescript-eslint/ban-ts-comment': statusCode.off,
-        '@typescript-eslint/explicit-function-return-type': statusCode.off,
-        '@typescript-eslint/explicit-member-accessibility': [
-          statusCode.error,
-          { accessibility: 'no-public' },
-        ],
-        '@typescript-eslint/no-require-imports': statusCode.off,
-        '@typescript-eslint/promise-function-async': statusCode.off,
-      },
-      settings: {
-        'import/parsers': {
-          '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
-        },
-        'import/resolver': {
-          'eslint-import-resolver-typescript': true,
-          typescript: {},
-          node: {
-            extensions: allSupportedExtensions,
-          },
-        },
+  // React/JSX files (JavaScript)
+  {
+    files: ['**/*.{js,jsx}'],
+    plugins: {
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+    },
+    settings: {
+      react: {
+        version: 'detect',
       },
     },
-    {
-      files: ['**/*.{js,jsx,tsx}'],
-      extends: [
-        // https://github.com/yannickcr/eslint-plugin-react
-        'plugin:react/recommended',
-      ],
-      plugins: [
-        // https://github.com/yannickcr/eslint-plugin-react
-        'react',
-        // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
-        'react-hooks',
-      ],
-      rules: {
-        // React
-        'react/jsx-uses-vars': statusCode.error,
-        'react/no-deprecated': statusCode.error,
-        'react/no-unused-prop-types': statusCode.error,
-        ...(hasJsxRuntime() && {
-          'react/jsx-uses-react': statusCode.off,
-          'react/react-in-jsx-scope': statusCode.off,
-        }),
-        'react/no-unknown-property': [
-          statusCode.error,
-          {
-            ignore: [
-              // To allow using Emotion's `css` prop: https://emotion.sh/docs/css-prop
-              'css',
-            ],
-          },
-        ],
-      },
-      settings: {
-        react: {
-          version: 'detect',
+    rules: {
+      'react/jsx-uses-vars': statusCode.error,
+      'react/no-deprecated': statusCode.error,
+      'react/no-unused-prop-types': statusCode.error,
+      ...(hasJsxRuntime() && {
+        'react/jsx-uses-react': statusCode.off,
+        'react/react-in-jsx-scope': statusCode.off,
+      }),
+      'react/no-unknown-property': [
+        statusCode.error,
+        {
+          ignore: ['css'], // Emotion's css prop
         },
-      },
+      ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
     },
-    {
-      files: ['**/*.tsx'],
-      parser: '@typescript-eslint/parser',
+  },
+
+  // TypeScript + React files (TSX)
+  {
+    files: ['**/*.tsx'],
+    languageOptions: {
+      parser: typescriptParser,
       parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        warnOnUnsupportedTypeScriptVersion: true,
         ecmaFeatures: {
           jsx: true,
         },
       },
-      rules: {
-        // React
-        'react/no-unused-prop-types': statusCode.off,
-        'react/prop-types': statusCode.off,
+    },
+    plugins: {
+      '@typescript-eslint': typescriptPlugin,
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+        node: {
+          extensions: allSupportedExtensions,
+        },
       },
     },
-    {
-      files: [
-        '.custom-application-config.{js,cjs,mjs,ts}',
-        'custom-application-config.{js,cjs,mjs,ts}',
+    rules: {
+      ...craRules.typescript,
+      '@typescript-eslint/ban-types': statusCode.off,
+      '@typescript-eslint/naming-convention': statusCode.off,
+      '@typescript-eslint/consistent-type-definitions': statusCode.off,
+      '@typescript-eslint/no-explicit-any': statusCode.error,
+      '@typescript-eslint/no-use-before-define': [
+        statusCode.error,
+        { functions: false },
       ],
-      rules: {
-        'no-template-curly-in-string': statusCode.off,
+      '@typescript-eslint/no-var-requires': statusCode.off,
+      '@typescript-eslint/unbound-method': statusCode.off,
+      '@typescript-eslint/ban-ts-comment': statusCode.off,
+      '@typescript-eslint/explicit-function-return-type': statusCode.off,
+      '@typescript-eslint/explicit-member-accessibility': [
+        statusCode.error,
+        { accessibility: 'no-public' },
+      ],
+      '@typescript-eslint/no-require-imports': statusCode.off,
+      '@typescript-eslint/promise-function-async': statusCode.off,
+      'react/jsx-uses-vars': statusCode.error,
+      'react/no-deprecated': statusCode.error,
+      'react/no-unused-prop-types': statusCode.off,
+      'react/prop-types': statusCode.off,
+      ...(hasJsxRuntime() && {
+        'react/jsx-uses-react': statusCode.off,
+        'react/react-in-jsx-scope': statusCode.off,
+      }),
+      'react/no-unknown-property': [
+        statusCode.error,
+        {
+          ignore: ['css'],
+        },
+      ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+
+  // Test files (all)
+  {
+    files: ['**/*.{spec,test}.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
       },
     },
-  ],
-};
+    plugins: {
+      jest: jestPlugin,
+      'jest-dom': jestDomPlugin,
+      'testing-library': testingLibraryPlugin,
+    },
+    rules: {
+      ...craRules.jest,
+      'react/display-name': statusCode.off,
+      'jest/expect-expect': statusCode.off,
+      'jest/no-identical-title': statusCode.warn,
+      'jest/no-focused-tests': statusCode.error,
+      'testing-library/prefer-presence-queries': statusCode.error,
+      'testing-library/await-async-queries': statusCode.error,
+      'testing-library/render-result-naming-convention': statusCode.off,
+      'testing-library/prefer-screen-queries': statusCode.off,
+      'testing-library/no-container': statusCode.warn,
+    },
+  },
+
+  // Test utility files (e.g., test-utils.tsx, test-helpers.tsx)
+  // These files aren't named *.spec.* or *.test.* but contain testing code
+  // and use inline eslint-disable comments for testing-library rules
+  {
+    files: [
+      '**/test-utils/**/*.{jsx,tsx}',
+      '**/*test-utils.{jsx,tsx}',
+      '**/*test-helpers.{jsx,tsx}',
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    plugins: {
+      jest: jestPlugin,
+      'jest-dom': jestDomPlugin,
+      'testing-library': testingLibraryPlugin,
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+    },
+    rules: {
+      'react/display-name': statusCode.off,
+      'testing-library/render-result-naming-convention': statusCode.off,
+      'testing-library/no-node-access': statusCode.warn,
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+
+  // Custom application config files
+  {
+    files: [
+      '.custom-application-config.{js,cjs,mjs,ts}',
+      'custom-application-config.{js,cjs,mjs,ts}',
+    ],
+    rules: {
+      'no-template-curly-in-string': statusCode.off,
+    },
+  },
+
+  // Prettier must be last to override formatting rules
+  prettierConfig,
+];
