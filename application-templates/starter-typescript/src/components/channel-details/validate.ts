@@ -1,6 +1,6 @@
-import TextInput from '@commercetools-uikit/text-input';
-import omitEmpty from 'omit-empty-es';
 import type { FormikErrors } from 'formik';
+import omitEmpty from 'omit-empty-es';
+import TextInput from '@commercetools-uikit/text-input';
 import type { TFormValues } from '../../types';
 
 type TErrors = {

@@ -1,16 +1,16 @@
 import { graphql } from 'msw';
+import { ChannelGraphql } from '@commercetools/composable-commerce-test-data/channel';
+import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
+import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
 import { setupServer } from 'msw/node';
 import {
   fireEvent,
   screen,
   mapResourceAccessToAppliedPermissions,
 } from '@commercetools-frontend/application-shell/test-utils';
-import { buildGraphqlList } from '@commercetools/composable-commerce-test-data/core';
-import { ChannelGraphql } from '@commercetools/composable-commerce-test-data/channel';
-import { LocalizedString } from '@commercetools/composable-commerce-test-data/commons';
-import { renderApplicationWithRedux } from '../../test-utils';
 import { entryPointUriPath, PERMISSIONS } from '../../constants';
 import ApplicationRoutes from '../../routes';
+import { renderApplicationWithRedux } from '../../test-utils';
 
 const mockServer = setupServer();
 afterEach(() => mockServer.resetHandlers());
