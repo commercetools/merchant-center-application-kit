@@ -149,6 +149,7 @@ export const mapProjectToApplicationContextProject = (
     sampleDataImportDataset: project.sampleDataImportDataset,
     isUserAdminOfCurrentProject: project.isUserAdminOfCurrentProject,
     isProductionProject: project.isProductionProject,
+    productCatalogModel: project.productCatalogModel,
   };
 };
 
