@@ -104,6 +104,18 @@ overrides: [
 }
 ```
 
+> **Important: glob patterns must include `**/` for subdirectory matching.\*\*
+>
+> In legacy config, `files: ['*.foo.js']` matched files named `*.foo.js` anywhere in the project. In flat config, the same pattern only matches files in the **root directory**. Always prefix with `**/` to restore recursive matching:
+>
+> ```js
+> // Before (legacy) — matched files anywhere:
+> files: ['*.visualspec.js'];
+>
+> // After (flat config) — must add **/ prefix:
+> files: ['**/*.visualspec.js'];
+> ```
+
 Key property mappings:
 
 | Legacy (`.eslintrc`)               | Flat config (`eslint.config.js`)                          |
@@ -298,6 +310,64 @@ module.exports = [
 ```
 
 ## Troubleshooting
+
+### Error: "Definition for rule 'plugin/rule-name' was not found"
+
+In flat config, plugins are scoped to specific file patterns. If a file contains an `// eslint-disable-next-line plugin/rule-name` comment but that plugin is not registered for that file type, ESLint 9 will error.
+
+The base config registers plugins only for the file types where their rules apply (e.g. `@typescript-eslint` for `*.ts`/`*.tsx`, `react-hooks` for `*.js`/`*.jsx`/`*.tsx`). Common cases:
+
+- A `.js` file with `// eslint-disable-next-line @typescript-eslint/...`
+- A `.ts` file with `// eslint-disable-next-line react-hooks/...`
+
+**Preferred fix: remove the stale disable comment.** These comments were often added to suppress rules that no longer apply or were never valid for that file type:
+
+```js
+// Before — triggers "Definition for rule not found" in flat config:
+document.createRange = () => ({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setStart: () => {},
+});
+
+// After — just remove the comment:
+document.createRange = () => ({
+  setStart: () => {},
+});
+```
+
+**Fallback: if the disable comment must stay**, register the plugin for that file type in your `eslint.config.js`:
+
+```js
+const typescriptPlugin = require('@typescript-eslint/eslint-plugin');
+
+module.exports = [
+  ...mcAppConfig,
+  {
+    files: ['**/*.js'],
+    plugins: { '@typescript-eslint': typescriptPlugin },
+  },
+];
+```
+
+### Error: Jest globals (`describe`, `it`, `expect`) not defined in custom spec files
+
+The base config only injects Jest globals for files matching `**/*.{spec,test}.{js,jsx,ts,tsx}`. If your project uses a different naming convention (e.g. `*.visualspec.js`, `*.bundlespec.js`), you need to add jest globals explicitly:
+
+```js
+const globals = require('globals');
+
+module.exports = [
+  ...mcAppConfig,
+  {
+    files: ['**/*.visualspec.js', '**/*.bundlespec.js'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+  },
+];
+```
 
 ### Error: "Cannot find module 'some-eslint-plugin'"
 
