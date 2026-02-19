@@ -1,68 +1,16 @@
 {
-  "extends": ["config:base", ":preserveSemverRanges", "schedule:weekly"],
-  "separateMajorMinor": true,
-  "rebaseWhen": "never",
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>commercetools/renovate-config:composite/merchant-center-application-kit"
+  ],
   "packageRules": [
-    {
-      "packagePatterns": ["*"],
-      "updateTypes": ["minor", "patch"],
-      "groupName": "all dependencies",
-      "groupSlug": "all"
-    },
-    {
-      "matchSourceUrls": ["https://github.com/commercetools/ui-kit"],
-      "groupName": "all ui-kit packages",
-      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
-    },
-    {
-      "matchSourceUrls": [
-        "https://github.com/commercetools/commercetools-docs-kit"
-      ],
-      "groupName": "all docs-kit packages",
-      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
-    },
-    {
-      "matchSourceUrls": ["https://github.com/commercetools/test-data"],
-      "groupName": "all test-data packages",
-      "schedule": ["after 10pm every weekday", "before 8am every weekday"]
-    },
-    {
-      "matchSourceUrls": ["https://github.com/tdeekens/flopflip"],
-      "groupName": "all flopflip packages"
-    },
     {
       "matchSourceUrls": ["https://github.com/gregberge/svgr"],
       "groupName": "all svgr packages"
     },
     {
-      "groupName": "all Node.js updates",
-      "matchPackageNames": ["node"],
-      "excludePackageNames": ["calico/node", "kindest/node"],
-      "matchPackagePatterns": ["/node$"]
-    },
-    {
       "matchPackageNames": ["postcss-custom-properties"],
       "allowedVersions": "<=12.1.4"
-    },
-    {
-      "matchPackageNames": ["history"],
-      "allowedVersions": "<5"
-    },
-    {
-      "matchPackageNames": ["react", "react-dom"],
-      "allowedVersions": "<18"
-    },
-    {
-      "matchPackageNames": ["react-router", "react-router-dom"],
-      "allowedVersions": "<6"
-    },
-    {
-      "matchPackageNames": ["@testing-library/react"],
-      "allowedVersions": "<13"
-    },
-    {
-      "matchPackageNames": ["@types/react"],
-      "allowedVersions": "<17.0.57"
     },
     {
       "matchPackageNames": ["headers-polyfill"],
@@ -73,10 +21,5 @@
       "allowedVersions": "<=2.2.7"
     }
   ],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "labels": ["🤖 Type: Dependencies"],
-  "stopUpdatingLabel": "🖐 Status: On Hold",
-  "ignoreDeps": []
+  "rebaseWhen": "never"
 }
