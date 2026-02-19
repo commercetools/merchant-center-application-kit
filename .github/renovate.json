@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>commercetools/renovate-config:composite/merchant-center-application-kit"
+    "github>commercetools/renovate-config//composite/merchant-center-application-kit"
   ],
   "packageRules": [
     {
