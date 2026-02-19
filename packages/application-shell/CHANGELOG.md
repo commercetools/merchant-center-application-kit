@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 26.0.1
+
+### Patch Changes
+
+- [#3941](https://github.com/commercetools/merchant-center-application-kit/pull/3941) [`65cc17a`](https://github.com/commercetools/merchant-center-application-kit/commit/65cc17a46dab1e4375b7e5d8e5454ff0aee7d5ff) Thanks [@ByronDWall](https://github.com/ByronDWall)! - fix(security): update `ajv` to 8.18.0 (ReDoS fix) and `@flopflip/*` to 15.1.7 (resolves transitive `lodash` prototype pollution via 4.17.23).
+
+  The remaining reported vulnerabilities (`minimatch` via `serve-handler` and `inflight` via `react-dev-utils`) have no upstream fix available. Both are transitive dependencies of `mc-scripts` dev-only build tooling and pose negligible security risk as they are not included in production bundles.
+
+- Updated dependencies [[`65cc17a`](https://github.com/commercetools/merchant-center-application-kit/commit/65cc17a46dab1e4375b7e5d8e5454ff0aee7d5ff)]:
+  - @commercetools-frontend/application-config@26.0.1
+  - @commercetools-frontend/application-components@26.0.1
+  - @commercetools-frontend/application-shell-connectors@26.0.1
+  - @commercetools-frontend/react-notifications@26.0.1
+  - @commercetools-frontend/permissions@26.0.1
+  - @commercetools-frontend/actions-global@26.0.1
+  - @commercetools-frontend/assets@26.0.1
+  - @commercetools-frontend/browser-history@26.0.1
+  - @commercetools-frontend/constants@26.0.1
+  - @commercetools-frontend/i18n@26.0.1
+  - @commercetools-frontend/l10n@26.0.1
+  - @commercetools-frontend/notifications@26.0.1
+  - @commercetools-frontend/sdk@26.0.1
+  - @commercetools-frontend/sentry@26.0.1
+  - @commercetools-frontend/url-utils@26.0.1
+
 ## 26.0.0
 
 ### Patch Changes
