@@ -1,4 +1,5 @@
 import type { TBuilder } from '@commercetools/composable-commerce-test-data/core';
+import { TProductCatalogModel } from '../../packages/application-shell/src/types/generated/mc';
 import type { TOrganization, TOrganizationGraphql } from '../organization';
 import type {
   TActionRights,
@@ -34,7 +35,7 @@ type TBaseProject = {
   isProductionProject: boolean;
   sampleDataImportDataset?: string;
   isUserAdminOfCurrentProject: boolean;
-  productCatalogModel: string;
+  productCatalogModel: TProductCatalogModel;
 };
 
 export type TProject = TBaseProject & {
