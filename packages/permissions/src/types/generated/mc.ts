@@ -328,6 +328,11 @@ export type TOrganizationTeamsCreated = {
   name: Scalars['String'];
 };
 
+export enum TProductCatalogModel {
+  Classic = 'Classic',
+  Modular = 'Modular'
+}
+
 export type TProject = TMetaData & {
   __typename?: 'Project';
   allAppliedActionRights: Array<TAppliedActionRight>;
@@ -350,6 +355,7 @@ export type TProject = TMetaData & {
   name: Scalars['String'];
   owner: TOrganization;
   plan: Scalars['String'];
+  productCatalogModel?: Maybe<TProductCatalogModel>;
   sampleDataImportDataset?: Maybe<Scalars['String']>;
   shippingRateInputType?: Maybe<TShippingRateInputType>;
   suspension: TProjectSuspension;
@@ -682,7 +688,7 @@ export type TFetchProjectQueryVariables = Exact<{
 }>;
 
 
-export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, isProductionProject: boolean, sampleDataImportDataset?: string | null, isUserAdminOfCurrentProject?: boolean | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
+export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?: 'Project', key: string, version?: number | null, name: string, countries: Array<string>, currencies: Array<string>, languages: Array<string>, initialized: boolean, isProductionProject: boolean, sampleDataImportDataset?: string | null, isUserAdminOfCurrentProject?: boolean | null, productCatalogModel?: TProductCatalogModel | null, expiry: { __typename?: 'ProjectExpiry', isActive: boolean, daysLeft?: number | null }, suspension: { __typename?: 'ProjectSuspension', isActive: boolean, reason?: TProjectSuspensionReason | null }, allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }>, allPermissionsForAllApplications: { __typename?: 'AllPermissionsForAllApplications', allAppliedPermissions: Array<{ __typename?: 'AppliedPermission', name: string, value: boolean }>, allAppliedActionRights: Array<{ __typename?: 'AppliedActionRight', group: string, name: string, value: boolean }>, allAppliedDataFences: Array<{ __typename: 'StoreDataFence', type: string, name: string, value: string, group: string }> }, owner: { __typename?: 'Organization', id: string, name: string } } | null };
 
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
