@@ -282,6 +282,7 @@ describe('mapProjectToApplicationContextProject', () => {
       sampleDataImportDataset: expect.any(String),
       isUserAdminOfCurrentProject: expect.any(Boolean),
       isProductionProject: expect.any(Boolean),
+      productCatalogModel: expect.any(String),
     });
   });
 });
