@@ -34,6 +34,7 @@ type TBaseProject = {
   isProductionProject: boolean;
   sampleDataImportDataset?: string;
   isUserAdminOfCurrentProject: boolean;
+  productCatalogModel: string;
 };
 
 export type TProject = TBaseProject & {

@@ -28,6 +28,7 @@ const generator = Generator<TProject>({
     permissions: null,
     actionRights: null,
     dataFences: null,
+    productCatalogModel: 'Classic',
   },
   postBuild: (project) => {
     project.key = faker.helpers.slugify(project.name);
