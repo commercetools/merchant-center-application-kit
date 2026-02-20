@@ -37,6 +37,7 @@ const Project = new Factory()
     name: faker.company.name(),
   }))
   .attr('sampleDataImportDataset', 'FASHION')
-  .attr('isUserAdminOfCurrentProject', true);
+  .attr('isUserAdminOfCurrentProject', true)
+  .attr('productCatalogModel', 'Classic');
 
 export default Project;

@@ -2551,6 +2551,30 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "ProductCatalogModel",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "Classic",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Modular",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "Project",
         "description": null,
@@ -2900,6 +2924,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productCatalogModel",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "ProductCatalogModel",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

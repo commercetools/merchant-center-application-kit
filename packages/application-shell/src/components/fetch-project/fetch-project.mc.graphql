@@ -60,5 +60,6 @@ query FetchProject($projectKey: String) {
     }
     sampleDataImportDataset
     isUserAdminOfCurrentProject
+    productCatalogModel
   }
 }
