@@ -125,7 +125,7 @@
   },
   "devDependencies": {
     "@commercetools/composable-commerce-test-data": "13.12.0",
-    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/node24": "^24.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.198",
     "@types/moment-locales-webpack-plugin": "^1.2.3",

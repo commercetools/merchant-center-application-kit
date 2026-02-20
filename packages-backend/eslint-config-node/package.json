@@ -35,7 +35,7 @@
     "eslint": "8.x"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/node24": "^24.0.0",
     "eslint": "8.57.1"
   },
   "engines": {
