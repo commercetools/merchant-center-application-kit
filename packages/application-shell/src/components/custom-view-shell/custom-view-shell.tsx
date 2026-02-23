@@ -100,8 +100,9 @@ function NotificationsContainer(props: TNotificationsContainerProps) {
   );
 }
 
+// 49px is the height of the ModalPageTopBar, which is fixed, so we need to subtract it from the height of the content.
 const ContentWrapper = styled.div`
-  height: 100%;
+  height: calc(100% - 49px);
   padding: ${designTokens.spacing40} 40px;
 `;
 
