@@ -1,5 +1,17 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 26.0.2
+
+### Patch Changes
+
+- [#3944](https://github.com/commercetools/merchant-center-application-kit/pull/3944) [`f1f0129`](https://github.com/commercetools/merchant-center-application-kit/commit/f1f0129db29082c35990b8b10fe22997c48e7905) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Expose `productCatalogModel` in application context
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@26.0.2
+  - @commercetools-frontend/browser-history@26.0.2
+  - @commercetools-frontend/constants@26.0.2
+  - @commercetools-frontend/sentry@26.0.2
+
 ## 26.0.1
 
 ### Patch Changes
