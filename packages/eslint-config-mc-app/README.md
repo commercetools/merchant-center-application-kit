@@ -11,6 +11,10 @@ ESLint flat config (v9+) for Merchant Center customizations.
 - ESLint 9.x or higher
 - Node.js 18.x, 20.x, or >=22.0.0
 
+## Migrations
+
+See the [migrations/](./migrations/) directory for version-specific upgrade guides. Each file is structured for both human and AI-assisted migration.
+
 ## Install
 
 ```bash

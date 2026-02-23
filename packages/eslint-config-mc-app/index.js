@@ -144,6 +144,7 @@ module.exports = [
     },
     plugins: {
       '@typescript-eslint': typescriptPlugin,
+      'react-hooks': reactHooksPlugin,
     },
     settings: {
       'import/parsers': {
@@ -178,6 +179,8 @@ module.exports = [
       ],
       '@typescript-eslint/no-require-imports': statusCode.off,
       '@typescript-eslint/promise-function-async': statusCode.off,
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
     },
   },
 

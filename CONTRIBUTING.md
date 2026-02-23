@@ -147,6 +147,15 @@ A [Changesets release GitHub Action](https://github.com/changesets/action) opens
 
 When the `Version Packages` Pull Request gets merged, the Changesets release GitHub Action will automatically trigger the release.
 
+### Migration guides
+
+If a release includes a **major version bump** for any package, add a migration guide to that package:
+
+1. Create `migrations/vN.md` in the package directory (e.g. `packages/some-package/migrations/v27.md`)
+2. Follow the structure of existing migration guides in that directory
+
+This provides a chronological set of upgrade instructions that both humans and AI tools can use to implement the necessary changes when upgrading between major versions.
+
 ## Canary releases
 
 On `main` branch, we automatically publish **canary** releases from CI to the `canary` distribution channel, _after_ the build runs successfully.
