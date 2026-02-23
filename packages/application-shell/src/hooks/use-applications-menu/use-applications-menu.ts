@@ -197,6 +197,7 @@ function useApplicationsMenu<Key extends MenuKey>(
 
       setHasWrittenToCache(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasWrittenToCache]); // Only subscribe to state changes.
 
   if (menuQueryResult && menuQueryResult.applicationsMenu) {
