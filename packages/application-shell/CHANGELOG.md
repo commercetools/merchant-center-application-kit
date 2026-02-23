@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 26.0.2
+
+### Patch Changes
+
+- [#3944](https://github.com/commercetools/merchant-center-application-kit/pull/3944) [`f1f0129`](https://github.com/commercetools/merchant-center-application-kit/commit/f1f0129db29082c35990b8b10fe22997c48e7905) Thanks [@jaikumar-tj](https://github.com/jaikumar-tj)! - Expose `productCatalogModel` in application context
+
+- [#3946](https://github.com/commercetools/merchant-center-application-kit/pull/3946) [`cad129d`](https://github.com/commercetools/merchant-center-application-kit/commit/cad129df45d7ced4a46f43fadc8acc5a2d98f6dd) Thanks [@ragafus](https://github.com/ragafus)! - Fixed the height calculation of the ContentWrapper component in the Custom View Shell
+
+- Updated dependencies [[`f1f0129`](https://github.com/commercetools/merchant-center-application-kit/commit/f1f0129db29082c35990b8b10fe22997c48e7905)]:
+  - @commercetools-frontend/application-shell-connectors@26.0.2
+  - @commercetools-frontend/permissions@26.0.2
+  - @commercetools-frontend/application-components@26.0.2
+  - @commercetools-frontend/react-notifications@26.0.2
+  - @commercetools-frontend/actions-global@26.0.2
+  - @commercetools-frontend/application-config@26.0.2
+  - @commercetools-frontend/assets@26.0.2
+  - @commercetools-frontend/browser-history@26.0.2
+  - @commercetools-frontend/constants@26.0.2
+  - @commercetools-frontend/i18n@26.0.2
+  - @commercetools-frontend/l10n@26.0.2
+  - @commercetools-frontend/notifications@26.0.2
+  - @commercetools-frontend/sdk@26.0.2
+  - @commercetools-frontend/sentry@26.0.2
+  - @commercetools-frontend/url-utils@26.0.2
+
 ## 26.0.1
 
 ### Patch Changes
