@@ -1,5 +1,28 @@
 # @commercetools-applications/merchant-center-custom-view-template-starter-typescript
 
+## 26.1.0
+
+### Patch Changes
+
+- [#3947](https://github.com/commercetools/merchant-center-application-kit/pull/3947) [`eb522b3`](https://github.com/commercetools/merchant-center-application-kit/commit/eb522b31b9aa8bcdd70bacf6606b75db1fa75a1e) Thanks [@ddouglasz](https://github.com/ddouglasz)! - update uikit to version `20.4.0`
+
+- Updated dependencies [[`eb522b3`](https://github.com/commercetools/merchant-center-application-kit/commit/eb522b31b9aa8bcdd70bacf6606b75db1fa75a1e)]:
+  - @commercetools-frontend/application-components@26.1.0
+  - @commercetools-frontend/application-shell@26.1.0
+  - @commercetools-frontend/i18n@26.1.0
+  - @commercetools-frontend/mc-scripts@26.1.0
+  - @commercetools-frontend/actions-global@26.1.0
+  - @commercetools-frontend/application-config@26.1.0
+  - @commercetools-frontend/application-shell-connectors@26.1.0
+  - @commercetools-frontend/assets@26.1.0
+  - @commercetools-frontend/babel-preset-mc-app@26.1.0
+  - @commercetools-frontend/constants@26.1.0
+  - @commercetools-frontend/eslint-config-mc-app@26.1.0
+  - @commercetools-frontend/jest-preset-mc-app@26.1.0
+  - @commercetools-frontend/l10n@26.1.0
+  - @commercetools-frontend/mc-dev-authentication@26.1.0
+  - @commercetools-frontend/permissions@26.1.0
+
 ## 26.0.2
 
 ### Patch Changes

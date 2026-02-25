@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-html-template
 
+## 26.1.0
+
+### Minor Changes
+
+- [#3949](https://github.com/commercetools/merchant-center-application-kit/pull/3949) [`32868c3`](https://github.com/commercetools/merchant-center-application-kit/commit/32868c31a652afeaf9998f3f41be641c7e4805ff) Thanks [@ddouglasz](https://github.com/ddouglasz)! - The new font link ensures the app-kit loads Inter with the same configuration as Nimbus, providing consistent font rendering and proper weight support.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@26.1.0
+  - @commercetools-frontend/constants@26.1.0
+
 ## 26.0.2
 
 ### Patch Changes
