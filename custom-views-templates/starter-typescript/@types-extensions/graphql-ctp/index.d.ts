@@ -1,5 +1,4 @@
 /* THIS IS A GENERATED FILE */
-/* eslint-disable import/no-duplicates */
 
 declare module '*/fetch-channel-details.ctp.graphql' {
   import { DocumentNode } from 'graphql';

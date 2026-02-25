@@ -1,14 +1,14 @@
+import { isApolloError, ApolloError, type ServerError } from '@apollo/client';
 import {
   transformLocalizedStringToLocalizedField,
   transformLocalizedFieldToLocalizedString,
 } from '@commercetools-frontend/l10n';
-import { isApolloError, ApolloError, type ServerError } from '@apollo/client';
-import type { TChannel } from './types/generated/ctp';
 import type {
   TGraphqlUpdateAction,
   TSyncAction,
   TChangeNameActionPayload,
 } from './types';
+import type { TChannel } from './types/generated/ctp';
 
 export const getErrorMessage = (error: ApolloError) =>
   error.graphQLErrors?.map((e) => e.message).join('\n') || error.message;

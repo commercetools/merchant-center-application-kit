@@ -12,6 +12,20 @@
  * - Accessibility rules (jsx-a11y)
  */
 
+/**
+ * ESLint flat config (v9+) for @commercetools-frontend/eslint-config-mc-app
+ *
+ * This package provides ESLint configuration using the new flat config format
+ * introduced in ESLint v9. It includes support for:
+ * - TypeScript
+ * - React and JSX
+ * - Jest and Testing Library
+ * - Cypress
+ * - Import ordering and validation
+ * - Prettier integration
+ * - Accessibility rules (jsx-a11y)
+ */
+
 process.env.BABEL_ENV = 'production';
 
 const babelParser = require('@babel/eslint-parser');
