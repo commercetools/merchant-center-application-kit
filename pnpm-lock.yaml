@@ -17478,8 +17478,8 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.5
       '@babel/register': 7.28.3(@babel/core@7.28.5)
-      '@babel/runtime': 7.28.6
-      '@babel/runtime-corejs3': 7.29.0
+      '@babel/runtime': 7.28.4
+      '@babel/runtime-corejs3': 7.28.4
       '@commercetools-frontend/constants': 24.11.0
       '@types/lodash': 4.17.20
       '@types/react': 19.2.4
@@ -17526,8 +17526,8 @@ snapshots:
 
   '@commercetools-frontend/constants@24.11.0':
     dependencies:
-      '@babel/runtime': 7.28.6
-      '@babel/runtime-corejs3': 7.29.0
+      '@babel/runtime': 7.28.4
+      '@babel/runtime-corejs3': 7.28.4
 
   '@commercetools-uikit/accessible-button@19.9.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -30341,7 +30341,7 @@ snapshots:
 
   react-router@5.3.4(react@19.0.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.28.4
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -30393,7 +30393,7 @@ snapshots:
 
   react-transition-group@4.4.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.28.4
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
