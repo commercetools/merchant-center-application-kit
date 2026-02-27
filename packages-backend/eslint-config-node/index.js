@@ -1,3 +1,45 @@
+const fs = require('fs');
+const path = require('path');
+
+const migrationGuide =
+  'node_modules/@commercetools-frontend/eslint-config-node/migrations/v27.md';
+
+// Detect if loaded from a legacy .eslintrc file (the array export won't work there)
+const caller = module.parent?.filename || '';
+if (/\.eslintrc/.test(caller)) {
+  console.error(
+    '\n\u274c @commercetools-frontend/eslint-config-node v27 exports a flat config array.\n' +
+      '   It cannot be used in .eslintrc files. Migrate to eslint.config.js.\n' +
+      '   Guide: ' +
+      migrationGuide +
+      '\n'
+  );
+}
+
+// Detect leftover legacy config files and warn
+const projectRoot = process.cwd();
+const legacyPatterns = [
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.json',
+  '.eslintrc.yml',
+  '.eslintrc.yaml',
+];
+const foundLegacy = legacyPatterns.filter((name) =>
+  fs.existsSync(path.join(projectRoot, name))
+);
+if (foundLegacy.length > 0) {
+  console.warn(
+    '\n\u26a0\ufe0f  @commercetools-frontend/eslint-config-node v27 uses ESLint 9 flat config.\n' +
+      `   Found legacy config file(s): ${foundLegacy.join(', ')}\n` +
+      '   These files are ignored by ESLint 9 and your subdirectory rules will not be applied.\n' +
+      '   Guide: ' +
+      migrationGuide +
+      '\n'
+  );
+}
+
 const babelParser = require('@babel/eslint-parser');
 const typescriptPlugin = require('@typescript-eslint/eslint-plugin');
 const typescriptParser = require('@typescript-eslint/parser');
