@@ -115,6 +115,16 @@ const extractCountryDataForLocale = (locale) => {
   );
 };
 
+// Currency codes that are not in CLDR/currencymap but should be included,
+// using the same label/symbol as their base currency (e.g. HUF0 → HUF).
+const CURRENCY_ALIASES = {
+  HUF0: 'HUF',
+  ILS0: 'ILS',
+  KZT0: 'KZT',
+  TRY0: 'TRY',
+  TWD0: 'TWD',
+};
+
 const extractCurrencyDataForLocale = async (locale) => {
   // Get the list of all currencies.
   // NOTE: this list contains "old" currencies that are not in used anymore.
@@ -125,23 +135,32 @@ const extractCurrencyDataForLocale = async (locale) => {
     'http://www.localeplanet.com/api/auto/currencymap.json'
   ).then((response) => response.json());
 
-  return Promise.resolve(
-    Object.keys(activeCurrencies).reduce(
-      (acc, key) =>
-        // `currencyInfo` given by `cldr` may not contain any information based on the
-        // currencyCode that we fetched from `currencymap.json`, so we have this definition
-        // check in place.
-        currencyInfo[key]
-          ? Object.assign({}, acc, {
-              [key]: {
-                label: currencyInfo[key].displayName,
-                symbol: activeCurrencies[key].symbol_native,
-              },
-            })
-          : acc,
-      {}
-    )
+  const baseCurrencies = Object.keys(activeCurrencies).reduce(
+    (acc, key) =>
+      // `currencyInfo` given by `cldr` may not contain any information based on the
+      // currencyCode that we fetched from `currencymap.json`, so we have this definition
+      // check in place.
+      currencyInfo[key]
+        ? Object.assign({}, acc, {
+            [key]: {
+              label: currencyInfo[key].displayName,
+              symbol: activeCurrencies[key].symbol_native,
+            },
+          })
+        : acc,
+    {}
   );
+
+  // Add alias currencies (same label/symbol as base code).
+  const withAliases = Object.keys(CURRENCY_ALIASES).reduce((acc, aliasCode) => {
+    const baseCode = CURRENCY_ALIASES[aliasCode];
+    if (acc[baseCode]) {
+      acc[aliasCode] = { ...acc[baseCode] };
+    }
+    return acc;
+  }, baseCurrencies);
+
+  return Promise.resolve(withAliases);
 };
 
 const extractLanguageDataForLocale = (locale) => {
