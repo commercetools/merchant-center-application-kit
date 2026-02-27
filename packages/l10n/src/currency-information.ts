@@ -34,7 +34,11 @@ const getImportChunk = (locale: string): Promise<ImportData> => {
 };
 
 export const currenciesShape = PropTypes.objectOf(
-  PropTypes.shape({ label: PropTypes.string, symbol: PropTypes.string })
+  PropTypes.shape({
+    label: PropTypes.string,
+    symbol: PropTypes.string,
+    fractionDigits: PropTypes.number,
+  })
 );
 
 /**

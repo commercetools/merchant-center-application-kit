@@ -1,670 +1,837 @@
 {
   "AED": {
     "label": "VAE-Dirham",
-    "symbol": "د.إ.‏"
+    "symbol": "د.إ.‏",
+    "fractionDigits": 2
   },
   "AFN": {
     "label": "Afghanischer Afghani",
-    "symbol": "؋"
+    "symbol": "؋",
+    "fractionDigits": 0
   },
   "ALL": {
     "label": "Albanischer Lek",
-    "symbol": "Lekë"
+    "symbol": "Lekë",
+    "fractionDigits": 0
   },
   "AMD": {
     "label": "Armenischer Dram",
-    "symbol": "֏"
+    "symbol": "֏",
+    "fractionDigits": 0
   },
   "ANG": {
     "label": "Niederländische-Antillen-Gulden",
-    "symbol": "NAf."
+    "symbol": "NAf.",
+    "fractionDigits": 2
   },
   "AOA": {
     "label": "Angolanischer Kwanza",
-    "symbol": "Kz"
+    "symbol": "Kz",
+    "fractionDigits": 2
   },
   "ARS": {
     "label": "Argentinischer Peso",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "AUD": {
     "label": "Australischer Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "AWG": {
     "label": "Aruba-Florin",
-    "symbol": "Afl."
+    "symbol": "Afl.",
+    "fractionDigits": 2
   },
   "AZN": {
     "label": "Aserbaidschan-Manat",
-    "symbol": "₼"
+    "symbol": "₼",
+    "fractionDigits": 2
   },
   "BAM": {
     "label": "Konvertible Mark Bosnien und Herzegowina",
-    "symbol": "КМ"
+    "symbol": "КМ",
+    "fractionDigits": 2
   },
   "BBD": {
     "label": "Barbados-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "BDT": {
     "label": "Bangladesch-Taka",
-    "symbol": "৳"
+    "symbol": "৳",
+    "fractionDigits": 2
   },
   "BGN": {
     "label": "Bulgarischer Lew",
-    "symbol": "лв."
+    "symbol": "лв.",
+    "fractionDigits": 2
   },
   "BHD": {
     "label": "Bahrain-Dinar",
-    "symbol": "د.ب.‏"
+    "symbol": "د.ب.‏",
+    "fractionDigits": 3
   },
   "BIF": {
     "label": "Burundi-Franc",
-    "symbol": "FBu"
+    "symbol": "FBu",
+    "fractionDigits": 0
   },
   "BMD": {
     "label": "Bermuda-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "BND": {
     "label": "Brunei-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "BOB": {
     "label": "Bolivianischer Boliviano",
-    "symbol": "Bs"
+    "symbol": "Bs",
+    "fractionDigits": 2
   },
   "BOV": {
     "label": "Boliviansiche Mvdol",
-    "symbol": "BOV"
+    "symbol": "BOV",
+    "fractionDigits": 2
   },
   "BRL": {
     "label": "Brasilianischer Real",
-    "symbol": "R$"
+    "symbol": "R$",
+    "fractionDigits": 2
   },
   "BSD": {
     "label": "Bahamas-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "BTN": {
     "label": "Bhutan-Ngultrum",
-    "symbol": "Nu."
+    "symbol": "Nu.",
+    "fractionDigits": 2
   },
   "BWP": {
     "label": "Botswanischer Pula",
-    "symbol": "P"
+    "symbol": "P",
+    "fractionDigits": 2
   },
   "BYN": {
     "label": "Weißrussischer Rubel",
-    "symbol": "Br"
+    "symbol": "Br",
+    "fractionDigits": 2
   },
   "BZD": {
     "label": "Belize-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "CAD": {
     "label": "Kanadischer Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "CDF": {
     "label": "Kongo-Franc",
-    "symbol": "FC"
+    "symbol": "FC",
+    "fractionDigits": 2
   },
   "CHE": {
     "label": "WIR-Euro",
-    "symbol": "CHE"
+    "symbol": "CHE",
+    "fractionDigits": 2
   },
   "CHF": {
     "label": "Schweizer Franken",
-    "symbol": "CHF"
+    "symbol": "CHF",
+    "fractionDigits": 2
   },
   "CHW": {
     "label": "WIR Franken",
-    "symbol": "CHW"
+    "symbol": "CHW",
+    "fractionDigits": 2
   },
   "CLF": {
     "label": "Chilenische Unidades de Fomento",
-    "symbol": "CLF"
+    "symbol": "CLF",
+    "fractionDigits": 4
   },
   "CLP": {
     "label": "Chilenischer Peso",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 0
   },
   "CNH": {
     "label": "Renminbi-Yuan (Offshore)",
-    "symbol": "CNH"
+    "symbol": "CNH",
+    "fractionDigits": 2
   },
   "CNY": {
     "label": "Renminbi Yuan",
-    "symbol": "¥"
+    "symbol": "¥",
+    "fractionDigits": 2
   },
   "COP": {
     "label": "Kolumbianischer Peso",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 0
   },
   "COU": {
     "label": "Kolumbianische Unidades de valor real",
-    "symbol": "COU"
+    "symbol": "COU",
+    "fractionDigits": 2
   },
   "CRC": {
     "label": "Costa-Rica-Colón",
-    "symbol": "₡"
+    "symbol": "₡",
+    "fractionDigits": 2
   },
   "CUC": {
     "label": "Kubanischer Peso (konvertibel)",
-    "symbol": "CUC"
+    "symbol": "CUC",
+    "fractionDigits": 2
   },
   "CUP": {
     "label": "Kubanischer Peso",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "CVE": {
     "label": "Cabo-Verde-Escudo",
-    "symbol": "​"
+    "symbol": "​",
+    "fractionDigits": 2
   },
   "CZK": {
     "label": "Tschechische Krone",
-    "symbol": "Kč"
+    "symbol": "Kč",
+    "fractionDigits": 2
   },
   "DJF": {
     "label": "Dschibuti-Franc",
-    "symbol": "Fdj"
+    "symbol": "Fdj",
+    "fractionDigits": 0
   },
   "DKK": {
     "label": "Dänische Krone",
-    "symbol": "kr."
+    "symbol": "kr.",
+    "fractionDigits": 2
   },
   "DOP": {
     "label": "Dominikanischer Peso",
-    "symbol": "RD$"
+    "symbol": "RD$",
+    "fractionDigits": 2
   },
   "DZD": {
     "label": "Algerischer Dinar",
-    "symbol": "د.ج.‏"
+    "symbol": "د.ج.‏",
+    "fractionDigits": 2
   },
   "EGP": {
     "label": "Ägyptisches Pfund",
-    "symbol": "ج.م.‏"
+    "symbol": "ج.م.‏",
+    "fractionDigits": 2
   },
   "ERN": {
     "label": "Eritreischer Nakfa",
-    "symbol": "Nfk"
+    "symbol": "Nfk",
+    "fractionDigits": 2
   },
   "ETB": {
     "label": "Äthiopischer Birr",
-    "symbol": "ብር"
+    "symbol": "ብር",
+    "fractionDigits": 2
   },
   "EUR": {
     "label": "Euro",
-    "symbol": "€"
+    "symbol": "€",
+    "fractionDigits": 2
   },
   "FJD": {
     "label": "Fidschi-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "FKP": {
     "label": "Falkland-Pfund",
-    "symbol": "£"
+    "symbol": "£",
+    "fractionDigits": 2
   },
   "GBP": {
     "label": "Britisches Pfund",
-    "symbol": "£"
+    "symbol": "£",
+    "fractionDigits": 2
   },
   "GEL": {
     "label": "Georgischer Lari",
-    "symbol": "₾"
+    "symbol": "₾",
+    "fractionDigits": 2
   },
   "GHS": {
     "label": "Ghanaischer Cedi",
-    "symbol": "GH₵"
+    "symbol": "GH₵",
+    "fractionDigits": 2
   },
   "GIP": {
     "label": "Gibraltar-Pfund",
-    "symbol": "£"
+    "symbol": "£",
+    "fractionDigits": 2
   },
   "GMD": {
     "label": "Gambia-Dalasi",
-    "symbol": "D"
+    "symbol": "D",
+    "fractionDigits": 2
   },
   "GNF": {
     "label": "Guinea-Franc",
-    "symbol": "FG"
+    "symbol": "FG",
+    "fractionDigits": 0
   },
   "GTQ": {
     "label": "Guatemaltekischer Quetzal",
-    "symbol": "Q"
+    "symbol": "Q",
+    "fractionDigits": 2
   },
   "GYD": {
     "label": "Guyana-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 0
   },
   "HKD": {
     "label": "Hongkong-Dollar",
-    "symbol": "HK$"
+    "symbol": "HK$",
+    "fractionDigits": 2
   },
   "HNL": {
     "label": "Honduras-Lempira",
-    "symbol": "L"
+    "symbol": "L",
+    "fractionDigits": 2
   },
   "HRK": {
     "label": "Kroatischer Kuna",
-    "symbol": "HRK"
+    "symbol": "HRK",
+    "fractionDigits": 2
   },
   "HTG": {
     "label": "Haitianische Gourde",
-    "symbol": "G"
+    "symbol": "G",
+    "fractionDigits": 2
   },
   "HUF": {
     "label": "Ungarischer Forint",
-    "symbol": "Ft"
-  },
-  "IDR": {
-    "label": "Indonesische Rupiah",
-    "symbol": "Rp"
-  },
-  "ILS": {
-    "label": "Israelischer Neuer Schekel",
-    "symbol": "₪"
-  },
-  "INR": {
-    "label": "Indische Rupie",
-    "symbol": "₹"
-  },
-  "IQD": {
-    "label": "Irakischer Dinar",
-    "symbol": "د.ع.‏"
-  },
-  "IRR": {
-    "label": "Iranischer Rial",
-    "symbol": "IRR"
-  },
-  "ISK": {
-    "label": "Isländische Krone",
-    "symbol": "ISK"
-  },
-  "JMD": {
-    "label": "Jamaika-Dollar",
-    "symbol": "$"
-  },
-  "JOD": {
-    "label": "Jordanischer Dinar",
-    "symbol": "د.أ.‏"
-  },
-  "JPY": {
-    "label": "Japanischer Yen",
-    "symbol": "￥"
-  },
-  "KES": {
-    "label": "Kenia-Schilling",
-    "symbol": "Ksh"
-  },
-  "KGS": {
-    "label": "Kirgisischer Som",
-    "symbol": "сом"
-  },
-  "KHR": {
-    "label": "Kambodschanischer Riel",
-    "symbol": "៛"
-  },
-  "KMF": {
-    "label": "Komoren-Franc",
-    "symbol": "CF"
-  },
-  "KPW": {
-    "label": "Nordkoreanischer Won",
-    "symbol": "KPW"
-  },
-  "KRW": {
-    "label": "Südkoreanischer Won",
-    "symbol": "₩"
-  },
-  "KWD": {
-    "label": "Kuwait-Dinar",
-    "symbol": "د.ك.‏"
-  },
-  "KYD": {
-    "label": "Kaiman-Dollar",
-    "symbol": "$"
-  },
-  "KZT": {
-    "label": "Kasachischer Tenge",
-    "symbol": "₸"
-  },
-  "LAK": {
-    "label": "Laotischer Kip",
-    "symbol": "₭"
-  },
-  "LBP": {
-    "label": "Libanesisches Pfund",
-    "symbol": "ل.ل.‏"
-  },
-  "LKR": {
-    "label": "Sri-Lanka-Rupie",
-    "symbol": "රු."
-  },
-  "LRD": {
-    "label": "Liberianischer Dollar",
-    "symbol": "$"
-  },
-  "LSL": {
-    "label": "Loti",
-    "symbol": "LSL"
-  },
-  "LYD": {
-    "label": "Libyscher Dinar",
-    "symbol": "د.ل.‏"
-  },
-  "MAD": {
-    "label": "Marokkanischer Dirham",
-    "symbol": "د.م.‏"
-  },
-  "MDL": {
-    "label": "Moldau-Leu",
-    "symbol": "L"
-  },
-  "MGA": {
-    "label": "Madagaskar-Ariary",
-    "symbol": "Ar"
-  },
-  "MKD": {
-    "label": "Mazedonischer Denar",
-    "symbol": "ден"
-  },
-  "MMK": {
-    "label": "Myanmarischer Kyat",
-    "symbol": "K"
-  },
-  "MNT": {
-    "label": "Mongolischer Tögrög",
-    "symbol": "₮"
-  },
-  "MOP": {
-    "label": "Macao-Pataca",
-    "symbol": "MOP$"
-  },
-  "MRO": {
-    "label": "Mauretanischer Ouguiya (1973–2017)",
-    "symbol": "أ.م.‏"
-  },
-  "MUR": {
-    "label": "Mauritius-Rupie",
-    "symbol": "Rs"
-  },
-  "MWK": {
-    "label": "Malawi-Kwacha",
-    "symbol": "MK"
-  },
-  "MXN": {
-    "label": "Mexikanischer Peso",
-    "symbol": "$"
-  },
-  "MXV": {
-    "label": "Mexicanischer Unidad de Inversion (UDI)",
-    "symbol": "MXV"
-  },
-  "MYR": {
-    "label": "Malaysischer Ringgit",
-    "symbol": "RM"
-  },
-  "MZN": {
-    "label": "Mosambikanischer Metical",
-    "symbol": "MTn"
-  },
-  "NAD": {
-    "label": "Namibia-Dollar",
-    "symbol": "$"
-  },
-  "NGN": {
-    "label": "Nigerianischer Naira",
-    "symbol": "₦"
-  },
-  "NIO": {
-    "label": "Nicaragua-Córdoba",
-    "symbol": "C$"
-  },
-  "NOK": {
-    "label": "Norwegische Krone",
-    "symbol": "kr"
-  },
-  "NPR": {
-    "label": "Nepalesische Rupie",
-    "symbol": "नेरू"
-  },
-  "NZD": {
-    "label": "Neuseeland-Dollar",
-    "symbol": "$"
-  },
-  "OMR": {
-    "label": "Omanischer Rial",
-    "symbol": "ر.ع.‏"
-  },
-  "PAB": {
-    "label": "Panamaischer Balboa",
-    "symbol": "B/."
-  },
-  "PEN": {
-    "label": "Peruanischer Sol",
-    "symbol": "S/"
-  },
-  "PGK": {
-    "label": "Papua-neuguineischer Kina",
-    "symbol": "K"
-  },
-  "PHP": {
-    "label": "Philippinischer Peso",
-    "symbol": "₱"
-  },
-  "PKR": {
-    "label": "Pakistanische Rupie",
-    "symbol": "Rs"
-  },
-  "PLN": {
-    "label": "Polnischer Złoty",
-    "symbol": "zł"
-  },
-  "PYG": {
-    "label": "Paraguayischer Guaraní",
-    "symbol": "Gs."
-  },
-  "QAR": {
-    "label": "Katar-Riyal",
-    "symbol": "ر.ق.‏"
-  },
-  "RON": {
-    "label": "Rumänischer Leu",
-    "symbol": "RON"
-  },
-  "RSD": {
-    "label": "Serbischer Dinar",
-    "symbol": "RSD"
-  },
-  "RUB": {
-    "label": "Russischer Rubel",
-    "symbol": "₽"
-  },
-  "RWF": {
-    "label": "Ruanda-Franc",
-    "symbol": "RF"
-  },
-  "SAR": {
-    "label": "Saudi-Rial",
-    "symbol": "ر.س.‏"
-  },
-  "SBD": {
-    "label": "Salomonen-Dollar",
-    "symbol": "$"
-  },
-  "SCR": {
-    "label": "Seychellen-Rupie",
-    "symbol": "SR"
-  },
-  "SDG": {
-    "label": "Sudanesisches Pfund",
-    "symbol": "ج.س."
-  },
-  "SEK": {
-    "label": "Schwedische Krone",
-    "symbol": "kr"
-  },
-  "SGD": {
-    "label": "Singapur-Dollar",
-    "symbol": "$"
-  },
-  "SHP": {
-    "label": "St.-Helena-Pfund",
-    "symbol": "£"
-  },
-  "SLL": {
-    "label": "Sierra-leonischer Leone (1964–2022)",
-    "symbol": "Le"
-  },
-  "SOS": {
-    "label": "Somalia-Schilling",
-    "symbol": "S"
-  },
-  "SRD": {
-    "label": "Suriname-Dollar",
-    "symbol": "$"
-  },
-  "SSP": {
-    "label": "Südsudanesisches Pfund",
-    "symbol": "£"
-  },
-  "STN": {
-    "label": "São-toméischer Dobra",
-    "symbol": "STN"
-  },
-  "SYP": {
-    "label": "Syrisches Pfund",
-    "symbol": "ل.س.‏"
-  },
-  "SZL": {
-    "label": "Swasiländischer Lilangeni",
-    "symbol": "E"
-  },
-  "THB": {
-    "label": "Thailändischer Baht",
-    "symbol": "THB"
-  },
-  "TJS": {
-    "label": "Tadschikistan-Somoni",
-    "symbol": "сом."
-  },
-  "TND": {
-    "label": "Tunesischer Dinar",
-    "symbol": "د.ت.‏"
-  },
-  "TOP": {
-    "label": "Tongaischer Paʻanga",
-    "symbol": "T$"
-  },
-  "TRY": {
-    "label": "Türkische Lira",
-    "symbol": "₺"
-  },
-  "TTD": {
-    "label": "Trinidad-und-Tobago-Dollar",
-    "symbol": "$"
-  },
-  "TWD": {
-    "label": "Neuer Taiwan-Dollar",
-    "symbol": "$"
-  },
-  "TZS": {
-    "label": "Tansania-Schilling",
-    "symbol": "TSh"
-  },
-  "UAH": {
-    "label": "Ukrainische Hrywnja",
-    "symbol": "₴"
-  },
-  "UGX": {
-    "label": "Uganda-Schilling",
-    "symbol": "USh"
-  },
-  "USD": {
-    "label": "US-Dollar",
-    "symbol": "$"
-  },
-  "USN": {
-    "label": "US Dollar (Nächster Tag)",
-    "symbol": "USN"
-  },
-  "UYI": {
-    "label": "Uruguayischer Peso (Indexierte Rechnungseinheiten)",
-    "symbol": "UYI"
-  },
-  "UYU": {
-    "label": "Uruguayischer Peso",
-    "symbol": "$"
-  },
-  "UZS": {
-    "label": "Usbekistan-Sum",
-    "symbol": "сўм"
-  },
-  "VEF": {
-    "label": "Venezolanischer Bolívar (2008–2018)",
-    "symbol": "Bs."
-  },
-  "VND": {
-    "label": "Vietnamesischer Dong",
-    "symbol": "₫"
-  },
-  "VUV": {
-    "label": "Vanuatu-Vatu",
-    "symbol": "VT"
-  },
-  "WST": {
-    "label": "Samoanischer Tala",
-    "symbol": "WS$"
-  },
-  "XAF": {
-    "label": "CFA-Franc (BEAC)",
-    "symbol": "FCFA"
-  },
-  "XCD": {
-    "label": "Ostkaribischer Dollar",
-    "symbol": "$"
-  },
-  "XOF": {
-    "label": "CFA-Franc (BCEAO)",
-    "symbol": "CFA"
-  },
-  "XPF": {
-    "label": "CFP-Franc",
-    "symbol": "FCFP"
-  },
-  "YER": {
-    "label": "Jemen-Rial",
-    "symbol": "ر.ي.‏"
-  },
-  "ZAR": {
-    "label": "Südafrikanischer Rand",
-    "symbol": "R"
-  },
-  "ZMW": {
-    "label": "Kwacha",
-    "symbol": "K"
+    "symbol": "Ft",
+    "fractionDigits": 2
   },
   "HUF0": {
     "label": "Ungarischer Forint",
-    "symbol": "Ft"
+    "symbol": "Ft",
+    "fractionDigits": 0
+  },
+  "IDR": {
+    "label": "Indonesische Rupiah",
+    "symbol": "Rp",
+    "fractionDigits": 0
+  },
+  "ILS": {
+    "label": "Israelischer Neuer Schekel",
+    "symbol": "₪",
+    "fractionDigits": 2
   },
   "ILS0": {
     "label": "Israelischer Neuer Schekel",
-    "symbol": "₪"
+    "symbol": "₪",
+    "fractionDigits": 0
+  },
+  "INR": {
+    "label": "Indische Rupie",
+    "symbol": "₹",
+    "fractionDigits": 2
+  },
+  "IQD": {
+    "label": "Irakischer Dinar",
+    "symbol": "د.ع.‏",
+    "fractionDigits": 0
+  },
+  "IRR": {
+    "label": "Iranischer Rial",
+    "symbol": "IRR",
+    "fractionDigits": 0
+  },
+  "ISK": {
+    "label": "Isländische Krone",
+    "symbol": "ISK",
+    "fractionDigits": 0
+  },
+  "JMD": {
+    "label": "Jamaika-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "JOD": {
+    "label": "Jordanischer Dinar",
+    "symbol": "د.أ.‏",
+    "fractionDigits": 3
+  },
+  "JPY": {
+    "label": "Japanischer Yen",
+    "symbol": "￥",
+    "fractionDigits": 0
+  },
+  "KES": {
+    "label": "Kenia-Schilling",
+    "symbol": "Ksh",
+    "fractionDigits": 2
+  },
+  "KGS": {
+    "label": "Kirgisischer Som",
+    "symbol": "сом",
+    "fractionDigits": 2
+  },
+  "KHR": {
+    "label": "Kambodschanischer Riel",
+    "symbol": "៛",
+    "fractionDigits": 2
+  },
+  "KMF": {
+    "label": "Komoren-Franc",
+    "symbol": "CF",
+    "fractionDigits": 0
+  },
+  "KPW": {
+    "label": "Nordkoreanischer Won",
+    "symbol": "KPW",
+    "fractionDigits": 0
+  },
+  "KRW": {
+    "label": "Südkoreanischer Won",
+    "symbol": "₩",
+    "fractionDigits": 0
+  },
+  "KWD": {
+    "label": "Kuwait-Dinar",
+    "symbol": "د.ك.‏",
+    "fractionDigits": 3
+  },
+  "KYD": {
+    "label": "Kaiman-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "KZT": {
+    "label": "Kasachischer Tenge",
+    "symbol": "₸",
+    "fractionDigits": 2
   },
   "KZT0": {
     "label": "Kasachischer Tenge",
-    "symbol": "₸"
+    "symbol": "₸",
+    "fractionDigits": 0
+  },
+  "LAK": {
+    "label": "Laotischer Kip",
+    "symbol": "₭",
+    "fractionDigits": 0
+  },
+  "LBP": {
+    "label": "Libanesisches Pfund",
+    "symbol": "ل.ل.‏",
+    "fractionDigits": 0
+  },
+  "LKR": {
+    "label": "Sri-Lanka-Rupie",
+    "symbol": "රු.",
+    "fractionDigits": 2
+  },
+  "LRD": {
+    "label": "Liberianischer Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "LSL": {
+    "label": "Loti",
+    "symbol": "LSL",
+    "fractionDigits": 2
+  },
+  "LYD": {
+    "label": "Libyscher Dinar",
+    "symbol": "د.ل.‏",
+    "fractionDigits": 3
+  },
+  "MAD": {
+    "label": "Marokkanischer Dirham",
+    "symbol": "د.م.‏",
+    "fractionDigits": 2
+  },
+  "MDL": {
+    "label": "Moldau-Leu",
+    "symbol": "L",
+    "fractionDigits": 2
+  },
+  "MGA": {
+    "label": "Madagaskar-Ariary",
+    "symbol": "Ar",
+    "fractionDigits": 0
+  },
+  "MKD": {
+    "label": "Mazedonischer Denar",
+    "symbol": "ден",
+    "fractionDigits": 2
+  },
+  "MMK": {
+    "label": "Myanmarischer Kyat",
+    "symbol": "K",
+    "fractionDigits": 0
+  },
+  "MNT": {
+    "label": "Mongolischer Tögrög",
+    "symbol": "₮",
+    "fractionDigits": 0
+  },
+  "MOP": {
+    "label": "Macao-Pataca",
+    "symbol": "MOP$",
+    "fractionDigits": 2
+  },
+  "MRO": {
+    "label": "Mauretanischer Ouguiya (1973–2017)",
+    "symbol": "أ.م.‏",
+    "fractionDigits": 0
+  },
+  "MUR": {
+    "label": "Mauritius-Rupie",
+    "symbol": "Rs",
+    "fractionDigits": 0
+  },
+  "MWK": {
+    "label": "Malawi-Kwacha",
+    "symbol": "MK",
+    "fractionDigits": 2
+  },
+  "MXN": {
+    "label": "Mexikanischer Peso",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "MXV": {
+    "label": "Mexicanischer Unidad de Inversion (UDI)",
+    "symbol": "MXV",
+    "fractionDigits": 2
+  },
+  "MYR": {
+    "label": "Malaysischer Ringgit",
+    "symbol": "RM",
+    "fractionDigits": 2
+  },
+  "MZN": {
+    "label": "Mosambikanischer Metical",
+    "symbol": "MTn",
+    "fractionDigits": 2
+  },
+  "NAD": {
+    "label": "Namibia-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "NGN": {
+    "label": "Nigerianischer Naira",
+    "symbol": "₦",
+    "fractionDigits": 2
+  },
+  "NIO": {
+    "label": "Nicaragua-Córdoba",
+    "symbol": "C$",
+    "fractionDigits": 2
+  },
+  "NOK": {
+    "label": "Norwegische Krone",
+    "symbol": "kr",
+    "fractionDigits": 2
+  },
+  "NPR": {
+    "label": "Nepalesische Rupie",
+    "symbol": "नेरू",
+    "fractionDigits": 2
+  },
+  "NZD": {
+    "label": "Neuseeland-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "OMR": {
+    "label": "Omanischer Rial",
+    "symbol": "ر.ع.‏",
+    "fractionDigits": 3
+  },
+  "PAB": {
+    "label": "Panamaischer Balboa",
+    "symbol": "B/.",
+    "fractionDigits": 2
+  },
+  "PEN": {
+    "label": "Peruanischer Sol",
+    "symbol": "S/",
+    "fractionDigits": 2
+  },
+  "PGK": {
+    "label": "Papua-neuguineischer Kina",
+    "symbol": "K",
+    "fractionDigits": 2
+  },
+  "PHP": {
+    "label": "Philippinischer Peso",
+    "symbol": "₱",
+    "fractionDigits": 2
+  },
+  "PKR": {
+    "label": "Pakistanische Rupie",
+    "symbol": "Rs",
+    "fractionDigits": 0
+  },
+  "PLN": {
+    "label": "Polnischer Złoty",
+    "symbol": "zł",
+    "fractionDigits": 2
+  },
+  "PYG": {
+    "label": "Paraguayischer Guaraní",
+    "symbol": "Gs.",
+    "fractionDigits": 0
+  },
+  "QAR": {
+    "label": "Katar-Riyal",
+    "symbol": "ر.ق.‏",
+    "fractionDigits": 2
+  },
+  "RON": {
+    "label": "Rumänischer Leu",
+    "symbol": "RON",
+    "fractionDigits": 2
+  },
+  "RSD": {
+    "label": "Serbischer Dinar",
+    "symbol": "RSD",
+    "fractionDigits": 0
+  },
+  "RUB": {
+    "label": "Russischer Rubel",
+    "symbol": "₽",
+    "fractionDigits": 2
+  },
+  "RWF": {
+    "label": "Ruanda-Franc",
+    "symbol": "RF",
+    "fractionDigits": 0
+  },
+  "SAR": {
+    "label": "Saudi-Rial",
+    "symbol": "ر.س.‏",
+    "fractionDigits": 2
+  },
+  "SBD": {
+    "label": "Salomonen-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "SCR": {
+    "label": "Seychellen-Rupie",
+    "symbol": "SR",
+    "fractionDigits": 2
+  },
+  "SDG": {
+    "label": "Sudanesisches Pfund",
+    "symbol": "ج.س.",
+    "fractionDigits": 2
+  },
+  "SEK": {
+    "label": "Schwedische Krone",
+    "symbol": "kr",
+    "fractionDigits": 2
+  },
+  "SGD": {
+    "label": "Singapur-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "SHP": {
+    "label": "St.-Helena-Pfund",
+    "symbol": "£",
+    "fractionDigits": 2
+  },
+  "SLL": {
+    "label": "Sierra-leonischer Leone (1964–2022)",
+    "symbol": "Le",
+    "fractionDigits": 0
+  },
+  "SOS": {
+    "label": "Somalia-Schilling",
+    "symbol": "S",
+    "fractionDigits": 0
+  },
+  "SRD": {
+    "label": "Suriname-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "SSP": {
+    "label": "Südsudanesisches Pfund",
+    "symbol": "£",
+    "fractionDigits": 2
+  },
+  "STN": {
+    "label": "São-toméischer Dobra",
+    "symbol": "STN",
+    "fractionDigits": 2
+  },
+  "SYP": {
+    "label": "Syrisches Pfund",
+    "symbol": "ل.س.‏",
+    "fractionDigits": 0
+  },
+  "SZL": {
+    "label": "Swasiländischer Lilangeni",
+    "symbol": "E",
+    "fractionDigits": 2
+  },
+  "THB": {
+    "label": "Thailändischer Baht",
+    "symbol": "THB",
+    "fractionDigits": 2
+  },
+  "TJS": {
+    "label": "Tadschikistan-Somoni",
+    "symbol": "сом.",
+    "fractionDigits": 2
+  },
+  "TND": {
+    "label": "Tunesischer Dinar",
+    "symbol": "د.ت.‏",
+    "fractionDigits": 3
+  },
+  "TOP": {
+    "label": "Tongaischer Paʻanga",
+    "symbol": "T$",
+    "fractionDigits": 2
+  },
+  "TRY": {
+    "label": "Türkische Lira",
+    "symbol": "₺",
+    "fractionDigits": 2
   },
   "TRY0": {
     "label": "Türkische Lira",
-    "symbol": "₺"
+    "symbol": "₺",
+    "fractionDigits": 0
+  },
+  "TTD": {
+    "label": "Trinidad-und-Tobago-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "TWD": {
+    "label": "Neuer Taiwan-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
   },
   "TWD0": {
     "label": "Neuer Taiwan-Dollar",
-    "symbol": "$"
+    "symbol": "$",
+    "fractionDigits": 0
+  },
+  "TZS": {
+    "label": "Tansania-Schilling",
+    "symbol": "TSh",
+    "fractionDigits": 0
+  },
+  "UAH": {
+    "label": "Ukrainische Hrywnja",
+    "symbol": "₴",
+    "fractionDigits": 2
+  },
+  "UGX": {
+    "label": "Uganda-Schilling",
+    "symbol": "USh",
+    "fractionDigits": 0
+  },
+  "USD": {
+    "label": "US-Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "USN": {
+    "label": "US Dollar (Nächster Tag)",
+    "symbol": "USN",
+    "fractionDigits": 2
+  },
+  "UYI": {
+    "label": "Uruguayischer Peso (Indexierte Rechnungseinheiten)",
+    "symbol": "UYI",
+    "fractionDigits": 0
+  },
+  "UYU": {
+    "label": "Uruguayischer Peso",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "UZS": {
+    "label": "Usbekistan-Sum",
+    "symbol": "сўм",
+    "fractionDigits": 0
+  },
+  "VEF": {
+    "label": "Venezolanischer Bolívar (2008–2018)",
+    "symbol": "Bs.",
+    "fractionDigits": 2
+  },
+  "VND": {
+    "label": "Vietnamesischer Dong",
+    "symbol": "₫",
+    "fractionDigits": 0
+  },
+  "VUV": {
+    "label": "Vanuatu-Vatu",
+    "symbol": "VT",
+    "fractionDigits": 0
+  },
+  "WST": {
+    "label": "Samoanischer Tala",
+    "symbol": "WS$",
+    "fractionDigits": 2
+  },
+  "XAF": {
+    "label": "CFA-Franc (BEAC)",
+    "symbol": "FCFA",
+    "fractionDigits": 0
+  },
+  "XCD": {
+    "label": "Ostkaribischer Dollar",
+    "symbol": "$",
+    "fractionDigits": 2
+  },
+  "XOF": {
+    "label": "CFA-Franc (BCEAO)",
+    "symbol": "CFA",
+    "fractionDigits": 0
+  },
+  "XPF": {
+    "label": "CFP-Franc",
+    "symbol": "FCFP",
+    "fractionDigits": 0
+  },
+  "YER": {
+    "label": "Jemen-Rial",
+    "symbol": "ر.ي.‏",
+    "fractionDigits": 0
+  },
+  "ZAR": {
+    "label": "Südafrikanischer Rand",
+    "symbol": "R",
+    "fractionDigits": 2
+  },
+  "ZMW": {
+    "label": "Kwacha",
+    "symbol": "K",
+    "fractionDigits": 2
   }
 }

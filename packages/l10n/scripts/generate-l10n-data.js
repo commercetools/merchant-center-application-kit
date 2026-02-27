@@ -115,14 +115,13 @@ const extractCountryDataForLocale = (locale) => {
   );
 };
 
-// Currency codes that are not in CLDR/currencymap but should be included,
-// using the same label/symbol as their base currency (e.g. HUF0 → HUF).
-const CURRENCY_ALIASES = {
-  HUF0: 'HUF',
-  ILS0: 'ILS',
-  KZT0: 'KZT',
-  TRY0: 'TRY',
-  TWD0: 'TWD',
+// Mapping of currencies that have a 0-fraction-digit variant (same label/symbol, fractionDigits 0).
+export const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
+  HUF: 'HUF0',
+  ILS: 'ILS0',
+  KZT: 'KZT0',
+  TRY: 'TRY0',
+  TWD: 'TWD0',
 };
 
 const extractCurrencyDataForLocale = async (locale) => {
@@ -145,22 +144,29 @@ const extractCurrencyDataForLocale = async (locale) => {
             [key]: {
               label: currencyInfo[key].displayName,
               symbol: activeCurrencies[key].symbol_native,
+              fractionDigits: activeCurrencies[key].decimal_digits,
             },
           })
         : acc,
     {}
   );
 
-  // Add alias currencies (same label/symbol as base code).
-  const withAliases = Object.keys(CURRENCY_ALIASES).reduce((acc, aliasCode) => {
-    const baseCode = CURRENCY_ALIASES[aliasCode];
-    if (acc[baseCode]) {
-      acc[aliasCode] = { ...acc[baseCode] };
-    }
-    return acc;
-  }, baseCurrencies);
+  // Add variant currencies (same label/symbol as base, fractionDigits forced to 0).
+  const result = {};
+  Object.keys(baseCurrencies)
+    .sort()
+    .forEach((key) => {
+      result[key] = baseCurrencies[key];
+      const variantCode = ZERO_FRACTION_DIGITS_CURRENCY_MAPPING[key];
+      if (variantCode) {
+        result[variantCode] = {
+          ...baseCurrencies[key],
+          fractionDigits: 0,
+        };
+      }
+    });
 
-  return Promise.resolve(withAliases);
+  return Promise.resolve(result);
 };
 
 const extractLanguageDataForLocale = (locale) => {
