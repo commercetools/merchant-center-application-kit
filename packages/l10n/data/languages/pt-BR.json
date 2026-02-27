@@ -417,6 +417,10 @@
     "language": "inglês",
     "country": "Gâmbia"
   },
+  "en-GS": {
+    "language": "inglês",
+    "country": "Ilhas Geórgia do Sul e Sandwich do Sul"
+  },
   "en-GU": {
     "language": "inglês",
     "country": "Guam"
@@ -963,10 +967,6 @@
     "language": "francês",
     "country": "Senegal"
   },
-  "fr-SY": {
-    "language": "francês",
-    "country": "Síria"
-  },
   "fr-TD": {
     "language": "francês",
     "country": "Chade"
@@ -1104,6 +1104,9 @@
   },
   "ik": {
     "language": "inupiaque"
+  },
+  "io": {
+    "language": "ido"
   },
   "is": {
     "language": "islandês"
@@ -1889,8 +1892,5 @@
   },
   "bh": {
     "language": "bhojpuri"
-  },
-  "io": {
-    "language": "ido"
   }
 }

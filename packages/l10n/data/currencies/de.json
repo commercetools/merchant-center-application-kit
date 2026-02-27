@@ -516,7 +516,7 @@
     "symbol": "£"
   },
   "SLL": {
-    "label": "Sierra-leonischer Leone (1964—2022)",
+    "label": "Sierra-leonischer Leone (1964–2022)",
     "symbol": "Le"
   },
   "SOS": {
@@ -646,5 +646,25 @@
   "ZMW": {
     "label": "Kwacha",
     "symbol": "K"
+  },
+  "HUF0": {
+    "label": "Ungarischer Forint",
+    "symbol": "Ft"
+  },
+  "ILS0": {
+    "label": "Israelischer Neuer Schekel",
+    "symbol": "₪"
+  },
+  "KZT0": {
+    "label": "Kasachischer Tenge",
+    "symbol": "₸"
+  },
+  "TRY0": {
+    "label": "Türkische Lira",
+    "symbol": "₺"
+  },
+  "TWD0": {
+    "label": "Neuer Taiwan-Dollar",
+    "symbol": "$"
   }
 }

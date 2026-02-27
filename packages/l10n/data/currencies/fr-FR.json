@@ -646,5 +646,25 @@
   "ZMW": {
     "label": "kwacha zambien",
     "symbol": "K"
+  },
+  "HUF0": {
+    "label": "forint hongrois",
+    "symbol": "Ft"
+  },
+  "ILS0": {
+    "label": "nouveau shekel israélien",
+    "symbol": "₪"
+  },
+  "KZT0": {
+    "label": "tenge kazakh",
+    "symbol": "₸"
+  },
+  "TRY0": {
+    "label": "livre turque",
+    "symbol": "₺"
+  },
+  "TWD0": {
+    "label": "nouveau dollar taïwanais",
+    "symbol": "$"
   }
 }

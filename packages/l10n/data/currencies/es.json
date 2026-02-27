@@ -4,15 +4,15 @@
     "symbol": "د.إ.‏"
   },
   "AFN": {
-    "label": "afgani",
+    "label": "afgani afgano",
     "symbol": "؋"
   },
   "ALL": {
-    "label": "lek",
+    "label": "lek albanés",
     "symbol": "Lekë"
   },
   "AMD": {
-    "label": "dram",
+    "label": "dram armenio",
     "symbol": "֏"
   },
   "ANG": {
@@ -20,7 +20,7 @@
     "symbol": "NAf."
   },
   "AOA": {
-    "label": "kuanza",
+    "label": "kuanza angoleño",
     "symbol": "Kz"
   },
   "ARS": {
@@ -48,7 +48,7 @@
     "symbol": "$"
   },
   "BDT": {
-    "label": "taka",
+    "label": "taka bangladesí",
     "symbol": "৳"
   },
   "BGN": {
@@ -88,11 +88,11 @@
     "symbol": "$"
   },
   "BTN": {
-    "label": "gultrum",
+    "label": "gultrum butanés",
     "symbol": "Nu."
   },
   "BWP": {
-    "label": "pula",
+    "label": "pula botsuano",
     "symbol": "P"
   },
   "BYN": {
@@ -136,7 +136,7 @@
     "symbol": "CNH"
   },
   "CNY": {
-    "label": "yuan",
+    "label": "yuan renminbi",
     "symbol": "¥"
   },
   "COP": {
@@ -188,11 +188,11 @@
     "symbol": "ج.م.‏"
   },
   "ERN": {
-    "label": "nakfa",
+    "label": "nakfa eritreo",
     "symbol": "Nfk"
   },
   "ETB": {
-    "label": "bir",
+    "label": "bir etíope",
     "symbol": "ብር"
   },
   "EUR": {
@@ -212,11 +212,11 @@
     "symbol": "£"
   },
   "GEL": {
-    "label": "lari",
+    "label": "lari georgiano",
     "symbol": "₾"
   },
   "GHS": {
-    "label": "cedi",
+    "label": "cedi ghanés",
     "symbol": "GH₵"
   },
   "GIP": {
@@ -224,7 +224,7 @@
     "symbol": "£"
   },
   "GMD": {
-    "label": "dalasi",
+    "label": "dalasi gambiano",
     "symbol": "D"
   },
   "GNF": {
@@ -248,7 +248,7 @@
     "symbol": "L"
   },
   "HRK": {
-    "label": "kuna",
+    "label": "kuna croata",
     "symbol": "HRK"
   },
   "HTG": {
@@ -292,7 +292,7 @@
     "symbol": "د.أ.‏"
   },
   "JPY": {
-    "label": "yen",
+    "label": "yen japonés",
     "symbol": "￥"
   },
   "KES": {
@@ -300,11 +300,11 @@
     "symbol": "Ksh"
   },
   "KGS": {
-    "label": "som",
+    "label": "som kirguís",
     "symbol": "сом"
   },
   "KHR": {
-    "label": "riel",
+    "label": "riel camboyano",
     "symbol": "៛"
   },
   "KMF": {
@@ -332,7 +332,7 @@
     "symbol": "₸"
   },
   "LAK": {
-    "label": "kip",
+    "label": "kip laosiano",
     "symbol": "₭"
   },
   "LBP": {
@@ -364,7 +364,7 @@
     "symbol": "L"
   },
   "MGA": {
-    "label": "ariari",
+    "label": "ariari malgache",
     "symbol": "Ar"
   },
   "MKD": {
@@ -372,15 +372,15 @@
     "symbol": "ден"
   },
   "MMK": {
-    "label": "kiat",
+    "label": "kiat de Myanmar",
     "symbol": "K"
   },
   "MNT": {
-    "label": "tugrik",
+    "label": "tugrik mongol",
     "symbol": "₮"
   },
   "MOP": {
-    "label": "pataca de Macao",
+    "label": "pataca macaense",
     "symbol": "MOP$"
   },
   "MRO": {
@@ -404,11 +404,11 @@
     "symbol": "MXV"
   },
   "MYR": {
-    "label": "ringit",
+    "label": "ringit malasio",
     "symbol": "RM"
   },
   "MZN": {
-    "label": "metical",
+    "label": "metical mozambiqueño",
     "symbol": "MTn"
   },
   "NAD": {
@@ -416,7 +416,7 @@
     "symbol": "$"
   },
   "NGN": {
-    "label": "naira",
+    "label": "naira nigeriano",
     "symbol": "₦"
   },
   "NIO": {
@@ -448,7 +448,7 @@
     "symbol": "S/"
   },
   "PGK": {
-    "label": "kina",
+    "label": "kina papú",
     "symbol": "K"
   },
   "PHP": {
@@ -460,7 +460,7 @@
     "symbol": "Rs"
   },
   "PLN": {
-    "label": "esloti",
+    "label": "esloti polaco",
     "symbol": "zł"
   },
   "PYG": {
@@ -516,7 +516,7 @@
     "symbol": "£"
   },
   "SLL": {
-    "label": "leona (1964—2022)",
+    "label": "leona sierraleonesa (1964–2022)",
     "symbol": "Le"
   },
   "SOS": {
@@ -532,7 +532,7 @@
     "symbol": "£"
   },
   "STN": {
-    "label": "dobra",
+    "label": "dobra santotomense",
     "symbol": "STN"
   },
   "SYP": {
@@ -540,11 +540,11 @@
     "symbol": "ل.س.‏"
   },
   "SZL": {
-    "label": "lilangeni",
+    "label": "lilangeni esuatiní",
     "symbol": "E"
   },
   "THB": {
-    "label": "bat",
+    "label": "bat tailandés",
     "symbol": "THB"
   },
   "TJS": {
@@ -556,7 +556,7 @@
     "symbol": "د.ت.‏"
   },
   "TOP": {
-    "label": "paanga",
+    "label": "paanga tongano",
     "symbol": "T$"
   },
   "TRY": {
@@ -576,7 +576,7 @@
     "symbol": "TSh"
   },
   "UAH": {
-    "label": "grivna",
+    "label": "grivna ucraniana",
     "symbol": "₴"
   },
   "UGX": {
@@ -600,7 +600,7 @@
     "symbol": "$"
   },
   "UZS": {
-    "label": "sum",
+    "label": "sum uzbeko",
     "symbol": "сўм"
   },
   "VEF": {
@@ -608,15 +608,15 @@
     "symbol": "Bs."
   },
   "VND": {
-    "label": "dong",
+    "label": "dong vietnamita",
     "symbol": "₫"
   },
   "VUV": {
-    "label": "vatu",
+    "label": "vatu vanuatense",
     "symbol": "VT"
   },
   "WST": {
-    "label": "tala",
+    "label": "tala samoano",
     "symbol": "WS$"
   },
   "XAF": {
@@ -640,11 +640,31 @@
     "symbol": "ر.ي.‏"
   },
   "ZAR": {
-    "label": "rand",
+    "label": "rand sudafricano",
     "symbol": "R"
   },
   "ZMW": {
     "label": "kuacha zambiano",
     "symbol": "K"
+  },
+  "HUF0": {
+    "label": "forinto húngaro",
+    "symbol": "Ft"
+  },
+  "ILS0": {
+    "label": "nuevo séquel israelí",
+    "symbol": "₪"
+  },
+  "KZT0": {
+    "label": "tengue kazajo",
+    "symbol": "₸"
+  },
+  "TRY0": {
+    "label": "lira turca",
+    "symbol": "₺"
+  },
+  "TWD0": {
+    "label": "nuevo dólar taiwanés",
+    "symbol": "$"
   }
 }
