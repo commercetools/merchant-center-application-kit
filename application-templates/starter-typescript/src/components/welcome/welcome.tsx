@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
-import { useRouteMatch, Link as RouterLink } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { useRouteMatch, Link as RouterLink } from 'react-router-dom';
 import Constraints from '@commercetools-uikit/constraints';
 import Grid from '@commercetools-uikit/grid';
 import { AngleRightIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import messages from './messages';
-import styles from './welcome.module.css';
 import WebDeveloperSvg from './web-developer.svg';
+import styles from './welcome.module.css';
 
 type TWrapWithProps = {
   children: ReactNode;

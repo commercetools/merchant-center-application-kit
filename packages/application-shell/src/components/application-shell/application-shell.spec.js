@@ -659,8 +659,10 @@ describe('when switching project', () => {
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
 
+    const testOption = await screen.findByText('Test 2');
+    fireEvent.click(testOption);
+
     await waitFor(() => {
-      screen.getByText('Test 2').click();
       expect(location.replace).toHaveBeenCalledWith(`/test-2`);
     });
   });
@@ -703,8 +705,11 @@ describe('when selecting project locale "de"', () => {
     const input = container.querySelector('[name="locale-switcher"]');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    const localeOption = await screen.findByText('de');
+    fireEvent.click(localeOption);
+
     await waitFor(() => {
-      screen.getByText('de').click();
       screen.getByText('Data locale: de');
     });
   });

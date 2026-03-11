@@ -6,6 +6,10 @@
 
 ESLint config for Node.js projects.
 
+## Migrations
+
+See the [migrations/](./migrations/) directory for version-specific upgrade guides. Each file is structured for both human and AI-assisted migration.
+
 ## Install
 
 ```bash
