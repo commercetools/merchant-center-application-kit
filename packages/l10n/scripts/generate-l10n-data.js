@@ -116,12 +116,21 @@ const extractCountryDataForLocale = (locale) => {
 };
 
 // Mapping of currencies that have a 0-fraction-digit variant (same label/symbol, fractionDigits 0).
-export const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
+const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
   HUF: 'HUF0',
   ILS: 'ILS0',
   KZT: 'KZT0',
   TRY: 'TRY0',
   TWD: 'TWD0',
+};
+
+// Per-locale suffix for zero-fraction currency label
+const ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE = {
+  en: ' (0 decimals)',
+  de: ' (0 Dezimalstellen)',
+  es: ' (0 decimales)',
+  'fr-FR': ' (0 décimales)',
+  'pt-BR': ' (0 decimais)',
 };
 
 const extractCurrencyDataForLocale = async (locale) => {
@@ -159,8 +168,12 @@ const extractCurrencyDataForLocale = async (locale) => {
       result[key] = baseCurrencies[key];
       const variantCode = ZERO_FRACTION_DIGITS_CURRENCY_MAPPING[key];
       if (variantCode) {
+        const suffix =
+          ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE[locale] ??
+          ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE['en'];
         result[variantCode] = {
           ...baseCurrencies[key],
+          label: `${baseCurrencies[key].label}${suffix}`,
           fractionDigits: 0,
         };
       }
