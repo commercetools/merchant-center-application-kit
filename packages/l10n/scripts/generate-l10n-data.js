@@ -117,6 +117,7 @@ const extractCountryDataForLocale = (locale) => {
 
 // Mapping of currencies that have a 0-fraction-digit variant (same label/symbol, fractionDigits 0).
 const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
+  CZK: 'CZK0',
   HUF: 'HUF0',
   ILS: 'ILS0',
   KZT: 'KZT0',

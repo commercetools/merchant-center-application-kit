@@ -209,6 +209,11 @@
     "symbol": "Kč",
     "fractionDigits": 2
   },
+  "CZK0": {
+    "label": "Tschechische Krone - Nicht ISO (0 Dezimalstellen)",
+    "symbol": "Kč",
+    "fractionDigits": 0
+  },
   "DJF": {
     "label": "Dschibuti-Franc",
     "symbol": "Fdj",
