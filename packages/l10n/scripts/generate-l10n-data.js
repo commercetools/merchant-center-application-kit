@@ -126,11 +126,11 @@ const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
 
 // Per-locale suffix for zero-fraction currency label
 const ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE = {
-  en: ' Non ISO (0 decimals)',
-  de: ' Nicht ISO (0 Dezimalstellen)',
-  es: ' No ISO (0 decimales)',
-  'fr-FR': ' Non ISO (0 décimales)',
-  'pt-BR': ' Não ISO (0 decimais)',
+  en: ' - Non ISO (0 decimals)',
+  de: ' - Nicht ISO (0 Dezimalstellen)',
+  es: ' - No ISO (0 decimales)',
+  'fr-FR': ' - Non ISO (0 décimales)',
+  'pt-BR': ' - Não ISO (0 decimais)',
 };
 
 const extractCurrencyDataForLocale = async (locale) => {

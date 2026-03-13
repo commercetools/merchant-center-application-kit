@@ -325,7 +325,7 @@
     "fractionDigits": 2
   },
   "HUF0": {
-    "label": "Hungarian Forint Non ISO (0 decimals)",
+    "label": "Hungarian Forint - Non ISO (0 decimals)",
     "symbol": "Ft",
     "fractionDigits": 0
   },
@@ -340,7 +340,7 @@
     "fractionDigits": 2
   },
   "ILS0": {
-    "label": "Israeli New Shekel Non ISO (0 decimals)",
+    "label": "Israeli New Shekel - Non ISO (0 decimals)",
     "symbol": "₪",
     "fractionDigits": 0
   },
@@ -425,7 +425,7 @@
     "fractionDigits": 2
   },
   "KZT0": {
-    "label": "Kazakhstani Tenge Non ISO (0 decimals)",
+    "label": "Kazakhstani Tenge - Non ISO (0 decimals)",
     "symbol": "₸",
     "fractionDigits": 0
   },
@@ -720,7 +720,7 @@
     "fractionDigits": 2
   },
   "TRY0": {
-    "label": "Turkish Lira Non ISO (0 decimals)",
+    "label": "Turkish Lira - Non ISO (0 decimals)",
     "symbol": "₺",
     "fractionDigits": 0
   },
@@ -735,7 +735,7 @@
     "fractionDigits": 2
   },
   "TWD0": {
-    "label": "New Taiwan Dollar Non ISO (0 decimals)",
+    "label": "New Taiwan Dollar - Non ISO (0 decimals)",
     "symbol": "$",
     "fractionDigits": 0
   },
