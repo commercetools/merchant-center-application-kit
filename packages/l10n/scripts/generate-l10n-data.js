@@ -115,6 +115,25 @@ const extractCountryDataForLocale = (locale) => {
   );
 };
 
+// Mapping of currencies that have a 0-fraction-digit variant (same label/symbol, fractionDigits 0).
+const ZERO_FRACTION_DIGITS_CURRENCY_MAPPING = {
+  CZK: 'CZK0',
+  HUF: 'HUF0',
+  ILS: 'ILS0',
+  KZT: 'KZT0',
+  TRY: 'TRY0',
+  TWD: 'TWD0',
+};
+
+// Per-locale suffix for zero-fraction currency label
+const ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE = {
+  en: ' - Non ISO (0 decimals)',
+  de: ' - Nicht ISO (0 Dezimalstellen)',
+  es: ' - No ISO (0 decimales)',
+  'fr-FR': ' - Non ISO (0 décimales)',
+  'pt-BR': ' - Não ISO (0 decimais)',
+};
+
 const extractCurrencyDataForLocale = async (locale) => {
   // Get the list of all currencies.
   // NOTE: this list contains "old" currencies that are not in used anymore.
@@ -125,23 +144,43 @@ const extractCurrencyDataForLocale = async (locale) => {
     'http://www.localeplanet.com/api/auto/currencymap.json'
   ).then((response) => response.json());
 
-  return Promise.resolve(
-    Object.keys(activeCurrencies).reduce(
-      (acc, key) =>
-        // `currencyInfo` given by `cldr` may not contain any information based on the
-        // currencyCode that we fetched from `currencymap.json`, so we have this definition
-        // check in place.
-        currencyInfo[key]
-          ? Object.assign({}, acc, {
-              [key]: {
-                label: currencyInfo[key].displayName,
-                symbol: activeCurrencies[key].symbol_native,
-              },
-            })
-          : acc,
-      {}
-    )
+  const baseCurrencies = Object.keys(activeCurrencies).reduce(
+    (acc, key) =>
+      // `currencyInfo` given by `cldr` may not contain any information based on the
+      // currencyCode that we fetched from `currencymap.json`, so we have this definition
+      // check in place.
+      currencyInfo[key]
+        ? Object.assign({}, acc, {
+            [key]: {
+              label: currencyInfo[key].displayName,
+              symbol: activeCurrencies[key].symbol_native,
+              fractionDigits: activeCurrencies[key].decimal_digits,
+            },
+          })
+        : acc,
+    {}
   );
+
+  // Add variant currencies (same label/symbol as base, fractionDigits forced to 0).
+  const result = {};
+  Object.keys(baseCurrencies)
+    .sort()
+    .forEach((key) => {
+      result[key] = baseCurrencies[key];
+      const variantCode = ZERO_FRACTION_DIGITS_CURRENCY_MAPPING[key];
+      if (variantCode) {
+        const suffix =
+          ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE[locale] ??
+          ZERO_DECIMAL_LABEL_SUFFIX_BY_LOCALE['en'];
+        result[variantCode] = {
+          ...baseCurrencies[key],
+          label: `${baseCurrencies[key].label}${suffix}`,
+          fractionDigits: 0,
+        };
+      }
+    });
+
+  return Promise.resolve(result);
 };
 
 const extractLanguageDataForLocale = (locale) => {
