@@ -417,6 +417,10 @@
     "language": "inglés",
     "country": "Gambia"
   },
+  "en-GS": {
+    "language": "inglés",
+    "country": "Islas Georgia del Sur y Sandwich del Sur"
+  },
   "en-GU": {
     "language": "inglés",
     "country": "Guam"
@@ -963,10 +967,6 @@
     "language": "francés",
     "country": "Senegal"
   },
-  "fr-SY": {
-    "language": "francés",
-    "country": "Siria"
-  },
   "fr-TD": {
     "language": "francés",
     "country": "Chad"
@@ -1104,6 +1104,9 @@
   },
   "ik": {
     "language": "inupiaq"
+  },
+  "io": {
+    "language": "ido"
   },
   "is": {
     "language": "islandés"
@@ -1889,8 +1892,5 @@
   },
   "bh": {
     "language": "bhoyapurí"
-  },
-  "io": {
-    "language": "ido"
   }
 }

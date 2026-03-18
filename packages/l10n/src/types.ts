@@ -1,6 +1,7 @@
 export type Currency = {
   label: string;
   symbol: string;
+  fractionDigits: number;
 };
 export type Currencies = Record<string, Currency>;
 

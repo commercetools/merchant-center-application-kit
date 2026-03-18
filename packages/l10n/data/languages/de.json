@@ -417,6 +417,10 @@
     "language": "Englisch",
     "country": "Gambia"
   },
+  "en-GS": {
+    "language": "Englisch",
+    "country": "Südgeorgien und die Südlichen Sandwichinseln"
+  },
   "en-GU": {
     "language": "Englisch",
     "country": "Guam"
@@ -963,10 +967,6 @@
     "language": "Französisch",
     "country": "Senegal"
   },
-  "fr-SY": {
-    "language": "Französisch",
-    "country": "Syrien"
-  },
   "fr-TD": {
     "language": "Französisch",
     "country": "Tschad"
@@ -1104,6 +1104,9 @@
   },
   "ik": {
     "language": "Inupiak"
+  },
+  "io": {
+    "language": "Ido"
   },
   "is": {
     "language": "Isländisch"
@@ -1889,8 +1892,5 @@
   },
   "bh": {
     "language": "Bhodschpuri"
-  },
-  "io": {
-    "language": "Ido"
   }
 }
