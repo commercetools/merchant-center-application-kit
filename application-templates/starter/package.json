@@ -90,6 +90,11 @@
   "devDependencies": {
     "@graphql-eslint/eslint-plugin": "^4.4.0"
   },
+  "pnpm": {
+    "overrides": {
+      "jest-runner-eslint>eslint": "^9.0.0"
+    }
+  },
   "resolutions": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
