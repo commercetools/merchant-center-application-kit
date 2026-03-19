@@ -1,5 +1,19 @@
 # @commercetools-frontend/l10n
 
+## 27.1.0
+
+### Minor Changes
+
+- [#3950](https://github.com/commercetools/merchant-center-application-kit/pull/3950) [`964c938`](https://github.com/commercetools/merchant-center-application-kit/commit/964c9389aa9faaef276fd9ded2a87947ad383797) Thanks [@nima-ct](https://github.com/nima-ct)! - In order to support both versions of the same currency with different fraction digits, these changes:
+
+  - Extend generated currency locale data to include fractionDigits (decimal precision) for each currency, sourced from currencymap.json.
+  - Introduce ZERO_FRACTION_DIGITS_CURRENCY_MAPPING to define which base currencies should have an explicit 0-fraction-digit variant.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/sentry@27.1.0
+
 ## 27.0.0
 
 ### Patch Changes
