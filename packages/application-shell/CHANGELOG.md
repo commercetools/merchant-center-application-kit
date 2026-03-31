@@ -1,5 +1,26 @@
 # @commercetools-frontend/application-shell
 
+## 27.2.0
+
+### Patch Changes
+
+- Updated dependencies [[`f9e80c7`](https://github.com/commercetools/merchant-center-application-kit/commit/f9e80c720718697ab5b11745a19c23617c6fe6be)]:
+  - @commercetools-frontend/constants@27.2.0
+  - @commercetools-frontend/actions-global@27.2.0
+  - @commercetools-frontend/application-components@27.2.0
+  - @commercetools-frontend/application-config@27.2.0
+  - @commercetools-frontend/application-shell-connectors@27.2.0
+  - @commercetools-frontend/react-notifications@27.2.0
+  - @commercetools-frontend/sdk@27.2.0
+  - @commercetools-frontend/sentry@27.2.0
+  - @commercetools-frontend/permissions@27.2.0
+  - @commercetools-frontend/i18n@27.2.0
+  - @commercetools-frontend/l10n@27.2.0
+  - @commercetools-frontend/assets@27.2.0
+  - @commercetools-frontend/browser-history@27.2.0
+  - @commercetools-frontend/notifications@27.2.0
+  - @commercetools-frontend/url-utils@27.2.0
+
 ## 27.1.0
 
 ### Patch Changes
