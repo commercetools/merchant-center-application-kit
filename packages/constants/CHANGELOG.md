@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 27.2.0
+
+### Minor Changes
+
+- [#3957](https://github.com/commercetools/merchant-center-application-kit/pull/3957) [`f9e80c7`](https://github.com/commercetools/merchant-center-application-kit/commit/f9e80c720718697ab5b11745a19c23617c6fe6be) Thanks [@yassinejebli](https://github.com/yassinejebli)! - Add agentic channels service to `GRAPHQL_TARGETS`
+
 ## 27.1.0
 
 ## 27.0.0
