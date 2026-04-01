@@ -127,7 +127,7 @@ module.exports = [
       'jsx-a11y': jsxA11yPlugin,
       prettier: prettierPlugin,
       cypress: cypressPlugin,
-      '@commercetools-frontend/mc-app': {
+      '@commercetools-frontend/eslint-config-mc-app/rules': {
         rules: {
           'no-direct-currency-formatting': noDirectCurrencyFormattingRule,
         },
