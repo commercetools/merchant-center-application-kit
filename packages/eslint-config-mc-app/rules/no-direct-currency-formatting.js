@@ -187,6 +187,8 @@ module.exports = {
     //         const fmt = intl.formatNumber
     const destructuredFormattingFunctionNames = new Set();
     const formattingFunctionNames = new Set(['formatNumber', 'formatCurrency']);
+    const formattedNumberComponentNames = new Set();
+    const reactIntlNamespaceImports = new Set();
 
     const collectFormatNumberFromObjectPattern = (objectPatternNode) => {
       if (!objectPatternNode || objectPatternNode.type !== 'ObjectPattern')
@@ -217,6 +219,30 @@ module.exports = {
     };
 
     return {
+      ImportDeclaration(node) {
+        if (!node.source || node.source.value !== 'react-intl') return;
+
+        node.specifiers.forEach((specifier) => {
+          if (specifier.type === 'ImportSpecifier') {
+            if (
+              specifier.imported &&
+              specifier.imported.type === 'Identifier' &&
+              specifier.imported.name === 'FormattedNumber'
+            ) {
+              formattedNumberComponentNames.add(specifier.local.name);
+            }
+          }
+
+          if (
+            specifier.type === 'ImportNamespaceSpecifier' &&
+            specifier.local &&
+            specifier.local.type === 'Identifier'
+          ) {
+            reactIntlNamespaceImports.add(specifier.local.name);
+          }
+        });
+      },
+
       // function Foo({ formatNumber }) { ... }
       FunctionDeclaration(node) {
         node.params.forEach(collectFormatNumberFromObjectPattern);
@@ -235,12 +261,59 @@ module.exports = {
           collectFormatNumberFromObjectPattern(node.id);
         }
 
+        // const { FormattedNumber } = require('react-intl')
+        if (
+          node.id &&
+          node.id.type === 'ObjectPattern' &&
+          node.init &&
+          node.init.type === 'CallExpression' &&
+          node.init.callee.type === 'Identifier' &&
+          node.init.callee.name === 'require' &&
+          node.init.arguments &&
+          node.init.arguments[0] &&
+          node.init.arguments[0].type === 'Literal' &&
+          node.init.arguments[0].value === 'react-intl'
+        ) {
+          node.id.properties.forEach((propertyNode) => {
+            if (propertyNode.type !== 'Property') return;
+            if (getPropertyKeyName(propertyNode) !== 'FormattedNumber') return;
+            if (propertyNode.value.type !== 'Identifier') return;
+            formattedNumberComponentNames.add(propertyNode.value.name);
+          });
+        }
+
         if (
           node.id &&
           node.id.type === 'Identifier' &&
           isFormatNumberMemberExpression(unwrapExpression(node.init))
         ) {
           destructuredFormattingFunctionNames.add(node.id.name);
+        }
+      },
+
+      JSXOpeningElement(node) {
+        if (!node.name) return;
+
+        // <FormattedNumber .../> with named or aliased import.
+        if (
+          node.name.type === 'JSXIdentifier' &&
+          formattedNumberComponentNames.has(node.name.name)
+        ) {
+          context.report({ node, messageId: 'noDirectCurrencyFormatting' });
+          return;
+        }
+
+        // <ReactIntl.FormattedNumber .../> with namespace import.
+        if (
+          node.name.type === 'JSXMemberExpression' &&
+          node.name.object &&
+          node.name.object.type === 'JSXIdentifier' &&
+          reactIntlNamespaceImports.has(node.name.object.name) &&
+          node.name.property &&
+          node.name.property.type === 'JSXIdentifier' &&
+          node.name.property.name === 'FormattedNumber'
+        ) {
+          context.report({ node, messageId: 'noDirectCurrencyFormatting' });
         }
       },
 

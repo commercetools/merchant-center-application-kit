@@ -4,7 +4,7 @@
 
 Add bundled `no-direct-currency-formatting` rule via the `@commercetools-frontend/eslint-config-mc-app/rules` inline plugin.
 
-This rule disallows direct currency formatting through `intl.formatNumber`, `intl.formatCurrency`, or `new Intl.NumberFormat` when using a `currency` option or `style: 'currency'`.
+This rule disallows direct currency formatting through `intl.formatNumber`, `intl.formatCurrency`, `new Intl.NumberFormat` when using a `currency` option or `style: 'currency'`, and `<FormattedNumber />` from `react-intl`.
 
 Use a shared currency formatting wrapper instead, and allowlist that wrapper path if needed.
 
