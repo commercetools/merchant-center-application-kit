@@ -119,6 +119,47 @@ const isCurrencyStyleOption = (node, scope, seenObjectNodes = new Set()) => {
   });
 };
 
+const getJsxAttributeName = (attributeNode) => {
+  if (
+    !attributeNode ||
+    attributeNode.type !== 'JSXAttribute' ||
+    !attributeNode.name ||
+    attributeNode.name.type !== 'JSXIdentifier'
+  ) {
+    return undefined;
+  }
+
+  return attributeNode.name.name;
+};
+
+const getJsxAttributeValueNode = (attributeNode) => {
+  if (!attributeNode || attributeNode.type !== 'JSXAttribute') return undefined;
+  if (!attributeNode.value) return undefined;
+
+  if (attributeNode.value.type === 'Literal') return attributeNode.value;
+  if (attributeNode.value.type !== 'JSXExpressionContainer') return undefined;
+
+  return unwrapExpression(attributeNode.value.expression);
+};
+
+const isCurrencyFormattedNumberElement = (node, scope) => {
+  if (!node || !node.attributes) return false;
+
+  return node.attributes.some((attributeNode) => {
+    if (attributeNode.type === 'JSXSpreadAttribute') {
+      return isCurrencyStyleOption(attributeNode.argument, scope);
+    }
+
+    if (getJsxAttributeName(attributeNode) !== 'style') return false;
+    const resolvedAttributeValue = resolveNodeFromIdentifier(
+      getJsxAttributeValueNode(attributeNode),
+      scope
+    );
+
+    return isStringLiteralCurrency(unwrapExpression(resolvedAttributeValue));
+  });
+};
+
 // Rule allowlist for wrapper files that are expected to format currencies directly.
 const isPathAllowed = (filename, allowedWrapperPaths) => {
   const normalizePathSeparators = (value) => value.replace(/\\/g, '/');
@@ -293,11 +334,13 @@ module.exports = {
 
       JSXOpeningElement(node) {
         if (!node.name) return;
+        const scope = getScopeForNode(context, node);
 
         // <FormattedNumber .../> with named or aliased import.
         if (
           node.name.type === 'JSXIdentifier' &&
-          formattedNumberComponentNames.has(node.name.name)
+          formattedNumberComponentNames.has(node.name.name) &&
+          isCurrencyFormattedNumberElement(node, scope)
         ) {
           context.report({ node, messageId: 'noDirectCurrencyFormatting' });
           return;
@@ -311,7 +354,8 @@ module.exports = {
           reactIntlNamespaceImports.has(node.name.object.name) &&
           node.name.property &&
           node.name.property.type === 'JSXIdentifier' &&
-          node.name.property.name === 'FormattedNumber'
+          node.name.property.name === 'FormattedNumber' &&
+          isCurrencyFormattedNumberElement(node, scope)
         ) {
           context.report({ node, messageId: 'noDirectCurrencyFormatting' });
         }
