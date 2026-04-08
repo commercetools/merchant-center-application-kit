@@ -90,6 +90,9 @@ const { statusCode, allSupportedExtensions } = require('./helpers/eslint');
 const hasJsxRuntime = require('./helpers/has-jsx-runtime');
 const { craRules } = require('./helpers/rules-presets');
 
+// Bundled custom rules
+const noDirectCurrencyFormattingRule = require('./rules/no-direct-currency-formatting');
+
 /**
  * ESLint flat config format for @commercetools-frontend/eslint-config-mc-app
  * @type {import("eslint").Linter.FlatConfig[]}
@@ -124,6 +127,11 @@ module.exports = [
       'jsx-a11y': jsxA11yPlugin,
       prettier: prettierPlugin,
       cypress: cypressPlugin,
+      '@commercetools-frontend/eslint-config-mc-app/rules': {
+        rules: {
+          'no-direct-currency-formatting': noDirectCurrencyFormattingRule,
+        },
+      },
     },
     settings: {
       'import/resolver': {
