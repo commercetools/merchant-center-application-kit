@@ -53,10 +53,13 @@ module.exports = {
       testEnvironment: 'jsdom',
     },
     // Custom ESLint rule tests — node environment, no preset/setup files.
+    // `transform: {}` disables Babel so the MC app preset's babel-plugin-istanbul
+    // doesn't conflict with Jest's own coverage instrumentation.
     {
       displayName: 'eslint-rules',
       testEnvironment: 'node',
       testMatch: ['<rootDir>/packages/eslint-config-mc-app/rules/**/*.spec.js'],
+      transform: {},
     },
   ],
 };
