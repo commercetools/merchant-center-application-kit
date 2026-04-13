@@ -12,7 +12,7 @@
     "extract-intl": "formatjs extract --format=./intl-formatter.js --out-file=./src/i18n/data/core.json 'src/**/!(*.spec).js'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
-    "lint": "jest --config jest.eslint.config.js",
+    "lint": "eslint .",
     "format": "prettier --write '**/*.js'",
     "versions:appkit": "manypkg upgrade @commercetools-frontend",
     "versions:uikit": "manypkg upgrade @commercetools-uikit"
@@ -73,8 +73,6 @@
     "graphql": "^16.8.0",
     "graphql-tag": "^2.12.6",
     "jest": "30.2.0",
-    "jest-runner-eslint": "2.3.0",
-    "jest-watch-typeahead": "2.2.2",
     "moment": "^2.29.4",
     "msw": "^1.3.5",
     "omit-empty-es": "1.2.0",
