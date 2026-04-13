@@ -1,5 +1,54 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 27.3.0
+
+### Minor Changes
+
+- [#3961](https://github.com/commercetools/merchant-center-application-kit/pull/3961) [`8efed36`](https://github.com/commercetools/merchant-center-application-kit/commit/8efed3678b99fbf2b23ea7a3d2a62d977a7d51b0) Thanks [@nima-ct](https://github.com/nima-ct)! - Add bundled `no-direct-currency-formatting` rule via the `@commercetools-frontend/eslint-config-mc-app/rules` inline plugin.
+
+  This rule disallows direct currency formatting through `intl.formatNumber`, `intl.formatCurrency`, `new Intl.NumberFormat` when using a `currency` option or `style: 'currency'`, and `<FormattedNumber />` from `react-intl`.
+
+  Use a shared currency formatting wrapper instead, and allowlist that wrapper path if needed.
+
+  ## How to update
+
+  Enable the bundled rule in your project config:
+
+  ```js
+  // eslint.config.js
+  import mcAppConfig from '@commercetools-frontend/eslint-config-mc-app';
+
+  export default [
+    ...mcAppConfig,
+    {
+      files: ['**/*.{js,jsx,ts,tsx}'],
+      rules: {
+        '@commercetools-frontend/eslint-config-mc-app/rules/no-direct-currency-formatting':
+          [
+            'error',
+            {
+              allowedWrapperPaths: [
+                'src/utils/money.js', // path to your shared wrapper implementation
+              ],
+            },
+          ],
+      },
+    },
+  ];
+  ```
+
+  If you need to customize the wrapper allowlist, pass `allowedWrapperPaths` as shown above.
+
+  ## Why
+
+  Direct currency formatting is hard to standardize across applications and can drift in behavior over time.
+  Enforcing a shared wrapper keeps formatting logic consistent, testable, and centrally maintainable.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@27.3.0
+
 ## 27.2.0
 
 ### Patch Changes
