@@ -1,5 +1,16 @@
 # @commercetools-frontend/react-notifications
 
+## 27.4.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.4.0
+  - @commercetools-frontend/application-components@27.4.0
+  - @commercetools-frontend/constants@27.4.0
+  - @commercetools-frontend/notifications@27.4.0
+  - @commercetools-frontend/sentry@27.4.0
+
 ## 27.3.0
 
 ### Patch Changes
