@@ -1,5 +1,31 @@
 # merchant-center-application-template-starter
 
+## 27.4.0
+
+### Minor Changes
+
+- [#3967](https://github.com/commercetools/merchant-center-application-kit/pull/3967) [`54907ff`](https://github.com/commercetools/merchant-center-application-kit/commit/54907ff2fa6c3840b14ab59820d485306f3e6445) Thanks [@valoriecarli](https://github.com/valoriecarli)! - -Remove `jest-runner-eslint` from starter templates to fix `npm install` failures caused by its stale `eslint@^7 || ^8` peer dependency declaration, which hard-fails under npm's strict resolution when ESLint 9 is present.
+  -The `lint` script now calls `eslint .` directly.
+  -Migration guides updated with recommended steps and a workaround for projects that prefer to keep `jest-runner-eslint`.
+
+### Patch Changes
+
+- Updated dependencies [[`54907ff`](https://github.com/commercetools/merchant-center-application-kit/commit/54907ff2fa6c3840b14ab59820d485306f3e6445)]:
+  - @commercetools-frontend/eslint-config-mc-app@27.4.0
+  - @commercetools-frontend/actions-global@27.4.0
+  - @commercetools-frontend/application-components@27.4.0
+  - @commercetools-frontend/application-shell@27.4.0
+  - @commercetools-frontend/application-shell-connectors@27.4.0
+  - @commercetools-frontend/assets@27.4.0
+  - @commercetools-frontend/babel-preset-mc-app@27.4.0
+  - @commercetools-frontend/constants@27.4.0
+  - @commercetools-frontend/i18n@27.4.0
+  - @commercetools-frontend/jest-preset-mc-app@27.4.0
+  - @commercetools-frontend/l10n@27.4.0
+  - @commercetools-frontend/mc-dev-authentication@27.4.0
+  - @commercetools-frontend/mc-scripts@27.4.0
+  - @commercetools-frontend/permissions@27.4.0
+
 ## 27.3.0
 
 ### Patch Changes
