@@ -22,12 +22,15 @@ class CredentialsStorage {
     );
 
     // Ensure the credentials file is present (skip if using env var token)
-    if (
-      !process.env[MC_ACCESS_TOKEN_ENV_VAR] &&
-      !doesFileExist(this.credentialsFilePath)
-    ) {
+    if (!process.env[MC_ACCESS_TOKEN_ENV_VAR]) {
+      this._ensureCredentialsFileExists();
+    }
+  }
+
+  _ensureCredentialsFileExists() {
+    if (!doesFileExist(this.credentialsFilePath)) {
+      const credentialsFolderPath = path.dirname(this.credentialsFilePath);
       fs.mkdirSync(credentialsFolderPath, { recursive: true });
-      // Initialize with an empty object
       this._writeCredentials();
     }
   }
@@ -62,10 +65,7 @@ class CredentialsStorage {
   }
 
   setToken(environmentKey: string, credentials: TMcCliAuthToken) {
-    // Don't write credentials if using env var token
-    if (process.env[MC_ACCESS_TOKEN_ENV_VAR]) {
-      return;
-    }
+    this._ensureCredentialsFileExists();
     const allCredentials = this._loadCredentials();
     allCredentials[environmentKey] = credentials;
     this._writeCredentials(allCredentials);
