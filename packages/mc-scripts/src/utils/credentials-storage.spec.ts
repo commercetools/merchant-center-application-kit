@@ -61,6 +61,32 @@ describe('when session is expired', () => {
   });
 });
 
+describe('when MC_ACCESS_TOKEN is set and login --force is used', () => {
+  beforeEach(() => {
+    process.env.MC_ACCESS_TOKEN = 'ci-token';
+    // No credentials file exists (CI environment)
+    vol.fromJSON({});
+    mocked(os.homedir).mockImplementation(() => testHomedir);
+  });
+
+  afterEach(() => {
+    delete process.env.MC_ACCESS_TOKEN;
+  });
+
+  it('should write the token to the credentials file', () => {
+    const credentialsStorage = new CredentialsStorage();
+    const newSessionData = {
+      token: 'login-token',
+      expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 36,
+    };
+    credentialsStorage.setToken(mcApiUrl, newSessionData);
+
+    // Clear env var and verify the token was persisted
+    delete process.env.MC_ACCESS_TOKEN;
+    expect(credentialsStorage.getToken(mcApiUrl)).toBe('login-token');
+  });
+});
+
 describe('when credentials file is missing', () => {
   beforeEach(() => {
     vol.fromJSON({});
