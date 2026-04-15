@@ -29,8 +29,6 @@ Shared skills installed via `skills add commercetools/agent-skills/skills/<name>
 - `/repo-healthcheck-node` — verify repo setup
 - `/remember` — persistent memory across sessions
 - `/repo-maintenance-node` — formatting, dead code, dependency validation
-- `/jira-create-epic-from-plan` — create Jira epic from markdown plan
-- `/jira-implement-task` — implement a Jira ticket end-to-end
 - `/renovate-review` — review Renovate dependency PRs
 - `/renovate-migrate` — migrate code for Renovate breaking changes
 - `/pr-review-navigator` — PR file dependency diagrams and review order

@@ -1,5 +1,7 @@
 # application-shell-connectors
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Provides Apollo Client configuration, GraphQL hooks (`useMcQuery`, `useMcLazyQuery`, `useMcMutation`), the `ApplicationContext` React context, and HTTP client utilities that all Merchant Center customizations use to communicate with commercetools APIs.

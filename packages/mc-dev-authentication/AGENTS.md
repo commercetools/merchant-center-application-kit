@@ -1,5 +1,7 @@
 # mc-dev-authentication
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Connect-compatible middleware that handles authentication routes during local development (`webpack-dev-server`), consumed by `mc-scripts` and downstream Custom Application dev servers.

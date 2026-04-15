@@ -1,5 +1,7 @@
 # application-components
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Shared higher-level UI components (modal pages, detail pages, main pages, dialogs, drawers, tabs, maintenance pages) used by Merchant Center customizations to build standard page layouts on top of `@commercetools-uikit` primitives.

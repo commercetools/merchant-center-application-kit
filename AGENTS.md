@@ -39,7 +39,7 @@ i18n, and API communication so individual apps focus on business logic.
    - **mc** — user, team, organization metadata
    - **ctp** — Composable Commerce (products, orders, etc.)
    - **settings** — custom app/view configuration and deployment
-   - **core** (aka `administration`) — internal administration queries
+   - **core** — internal administration queries (codegen target: `core`)
    - **proxy** — forward-to endpoint for secure backend calls (uses a
      different base URL)
 
@@ -54,13 +54,13 @@ symlinks so packages can be consumed without building.
 
 ### Verify your work
 
-| Task                   | Command                                              | Notes                                                      |
-| ---------------------- | ---------------------------------------------------- | ---------------------------------------------------------- |
-| Tests (single package) | `pnpm --filter @commercetools-frontend/FOO run test` | Uses jest.test.config.js; test files are `*.spec.{ts,tsx}` |
-| Tests (all)            | `pnpm test`                                          | Runs all unit/component tests                              |
-| Typecheck              | `pnpm typecheck`                                     | Runs two passes: main tsconfig + tsconfig.test.json        |
-| Lint (JS + CSS)        | `pnpm lint`                                          | Uses jest-runner-eslint and jest-stylelint-runner          |
-| Build packages         | `pnpm build`                                         | Required before playground or template testing             |
+| Task                   | Command                                              | Notes                                                             |
+| ---------------------- | ---------------------------------------------------- | ----------------------------------------------------------------- |
+| Tests (single package) | `pnpm --filter @commercetools-frontend/FOO run test` | Uses jest.test.config.js; test files are `*.spec.{js,jsx,ts,tsx}` |
+| Tests (all)            | `pnpm test`                                          | Runs all unit/component tests                                     |
+| Typecheck              | `pnpm typecheck`                                     | Runs two passes: main tsconfig + tsconfig.test.json               |
+| Lint (JS + CSS)        | `pnpm lint`                                          | Uses jest-runner-eslint and jest-stylelint-runner                 |
+| Build packages         | `pnpm build`                                         | Required before playground or template testing                    |
 
 ### Common workflows
 
@@ -126,12 +126,22 @@ number and bump together.
 - Linting runs through **jest-runner-eslint / jest-stylelint-runner**, not
   eslint/stylelint CLI directly. `pnpm lint` invokes Jest, which means
   Jest-specific flags apply (e.g. `--onlyChanged`, `--reporters`).
+- **Preconstruct exclusions**: `assets`, `babel-preset-mc-app`, `codemod`,
+  `eslint-config-mc-app`, `jest-preset-mc-app`, `jest-stylelint-runner`, and
+  `eslint-config-node` (backend) are excluded from preconstruct. They use plain
+  JS or their own build — do not add `src/`+`dist/` structure to them.
 - `preconstruct dev` (via postinstall) must run before packages can be imported
   locally. If imports break after a fresh `pnpm install`, check that
   postinstall ran successfully.
-- `packages/application-config/schema.json` is auto-generated — editing it by
-  hand will be overwritten. Lint-staged regenerates it on commit when the
-  source changes.
+- **Generated files** — do not hand-edit any of these; they are overwritten by
+  codegen or build scripts:
+  - `packages/application-config/custom-application.schema.json` and
+    `custom-view.schema.json` (lint-staged regenerates on commit)
+  - `packages/application-config/src/schemas/generated/*.ts`
+  - `packages/*/src/types/generated/*.ts` (GraphQL codegen output)
+  - `packages/constants/src/generated/settings.ts`
+  - `packages/i18n/compiled-data/` and `packages/i18n/data/core.json`
+  - `packages/l10n/data/` (CLDR-derived locale data)
 - The playground and template apps consume **built** package output (not
   source). Always `pnpm build` (or `pnpm build:watch`) before running them.
 - All packages use **fixed versioning** via changesets — a bump to any package
@@ -139,7 +149,9 @@ number and bump together.
 
 ## Conventions
 
-- Test files use `*.spec.{ts,tsx}` — not `*.test.*`.
+- **Node version**: pinned in `.nvmrc` (currently Node 22). Use `nvm use` or
+  equivalent before running commands.
+- Test files use `*.spec.{js,jsx,ts,tsx}` — not `*.test.*`.
 - i18n message definitions go in files named `*messages.ts`.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/)
   (enforced by commitlint via husky).

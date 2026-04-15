@@ -1,5 +1,7 @@
 # application-config
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Loads, validates, and transforms Custom Application and Custom View configuration files (`custom-application-config.*` / `custom-view-config.*`) into runtime configuration objects consumed by the build toolchain and shell.

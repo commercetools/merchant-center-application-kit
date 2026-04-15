@@ -1,5 +1,7 @@
 # mc-html-template
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Generates and compiles the `index.html` for Merchant Center Custom Applications, handling CDN URL placeholder replacement, CSP headers, and runtime configuration injection.

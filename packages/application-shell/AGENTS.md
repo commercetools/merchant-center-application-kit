@@ -1,5 +1,7 @@
 # application-shell
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Runtime shell that bootstraps every Merchant Center customization — provides authentication, routing, navigation chrome, error boundaries, Redux store, Apollo Client, i18n, and feature flags so custom app code only implements business logic.

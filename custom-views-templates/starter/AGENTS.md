@@ -1,5 +1,7 @@
 # Custom View Template Starter (JS)
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 JavaScript starter template for Merchant Center Custom Views, used both as living documentation and as the source directory that `create-mc-app` copies to scaffold new projects.

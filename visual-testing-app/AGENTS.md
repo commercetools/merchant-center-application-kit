@@ -1,5 +1,7 @@
 # visual-testing-app
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Internal Vite app that renders application-components in isolation for visual regression testing with Percy and Puppeteer.

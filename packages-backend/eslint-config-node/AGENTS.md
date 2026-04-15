@@ -1,5 +1,7 @@
 # @commercetools-backend/eslint-config-node
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Shared ESLint flat-config preset for Node.js backend projects, consumed by downstream services using `@commercetools-backend/*` packages.

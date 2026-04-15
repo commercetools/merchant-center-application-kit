@@ -1,5 +1,7 @@
 # Custom Application Template Starter (TypeScript)
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 TypeScript starter template for Merchant Center Custom Applications, used both as living documentation and as the source directory that `create-mc-app` copies to scaffold new projects.

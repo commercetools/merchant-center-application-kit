@@ -1,5 +1,7 @@
 # website-components-playground
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Internal Vite app for interactively previewing `application-components` (dialogs, pages, drawers) outside of the Merchant Center shell, used for the documentation website.

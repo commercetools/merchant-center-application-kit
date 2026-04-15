@@ -1,5 +1,7 @@
 # cypress
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Cypress custom commands and task helpers for end-to-end testing of Custom Applications and Custom Views, consumed by downstream projects as `@commercetools-frontend/cypress`.

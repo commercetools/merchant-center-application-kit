@@ -1,5 +1,7 @@
 # @commercetools-backend/loggers
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Opinionated JSON-capable loggers and Express access-log middleware for Node.js backend services, built on Winston.

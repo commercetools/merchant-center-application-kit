@@ -1,7 +1,6 @@
 # url-utils
 
-Subdirectory context — supplements the root `AGENTS.md`. Only includes what
-an agent needs to know to work safely in this package specifically.
+See root `AGENTS.md` for monorepo-wide context.
 
 ## Purpose
 

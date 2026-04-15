@@ -1,5 +1,7 @@
 # playground
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Internal Custom Application used for local development testing of the application-kit packages (shell, components, connectors, SDK).

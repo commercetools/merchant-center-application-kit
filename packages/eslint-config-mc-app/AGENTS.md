@@ -1,5 +1,7 @@
 # eslint-config-mc-app
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Shared ESLint flat config (v9+) for Merchant Center Custom Applications and Custom Views, bundling rules for TypeScript, React, Jest, Testing Library, Cypress, accessibility, and Prettier.

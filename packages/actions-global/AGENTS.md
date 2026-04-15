@@ -1,5 +1,7 @@
 # @commercetools-frontend/actions-global
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Redux thunk action creators and React hooks for dispatching notifications and handling API errors in Merchant Center Custom Applications.

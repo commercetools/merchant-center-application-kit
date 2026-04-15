@@ -1,5 +1,7 @@
 # @commercetools-frontend/notifications
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Framework-agnostic Redux reducer, middleware, and action creators for managing a notification queue, consumed by `@commercetools-frontend/react-notifications` and `@commercetools-frontend/actions-global`.

@@ -1,5 +1,7 @@
 # jest-preset-mc-app
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Jest preset providing default configuration (transforms, module mappers, setup files, environment) for testing Merchant Center Custom Applications and Custom Views.

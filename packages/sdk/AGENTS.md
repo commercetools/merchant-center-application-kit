@@ -1,5 +1,7 @@
 # @commercetools-frontend/sdk
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Redux middleware and action creators for making HTTP requests to the Merchant Center API Gateway, consumed by Custom Applications and the application shell.

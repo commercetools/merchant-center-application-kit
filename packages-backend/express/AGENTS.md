@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Express.js middleware and utilities for verifying Merchant Center JWT session tokens in custom backend services that sit behind the MC API proxy.

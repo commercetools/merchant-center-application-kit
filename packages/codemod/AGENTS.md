@@ -1,5 +1,7 @@
 # codemod
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 CLI (`npx @commercetools-frontend/codemod`) that runs jscodeshift-based AST transforms to automate migration steps for downstream Custom Application and Custom View projects.

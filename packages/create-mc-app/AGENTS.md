@@ -1,5 +1,7 @@
 # create-mc-app
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 CLI (`npx @commercetools-frontend/create-mc-app`) that scaffolds new Custom Application and Custom View projects from starter templates, consumed by external developers bootstrapping Merchant Center customizations.

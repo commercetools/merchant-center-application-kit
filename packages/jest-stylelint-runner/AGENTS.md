@@ -1,5 +1,7 @@
 # jest-stylelint-runner
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Custom Jest runner that transforms CSS through PostCSS before running stylelint, used by the monorepo's `pnpm lint:css` command.

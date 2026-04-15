@@ -1,5 +1,7 @@
 # @commercetools-frontend/permissions
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 React components and hooks for declaratively checking Merchant Center user permissions, action rights, and data fences, consumed by Custom Applications to gate UI based on authorization.

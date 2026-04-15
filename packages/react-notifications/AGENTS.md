@@ -1,5 +1,7 @@
 # @commercetools-frontend/react-notifications
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 React components for rendering notification UI (global, page, and side domains), consumed by the application shell to display error, warning, info, and success messages.
@@ -19,5 +21,5 @@ Follows root workflows. Test with `pnpm --filter @commercetools-frontend/react-n
 
 ## Gotchas
 
-- The `Notifier` component dispatches a notification on mount and dismisses it on unmount. It intentionally uses an empty dependency array in its `useEffect` — do not add dependencies or it will fire on every render.
+- The `Notifier` component dispatches a notification on mount and dismisses it on unmount. It intentionally uses an empty dependency array in its `useEffect` (with an eslint-disable) — do not add dependencies or it will re-dispatch on every change.
 - Notification rendering is split into three separate sub-components (`NotificationsListGlobal`, `NotificationsListPage`, `NotificationsListSide`), each with its own selector and supported notification kinds. Adding a new notification kind requires updating the correct sub-component's switch statement.

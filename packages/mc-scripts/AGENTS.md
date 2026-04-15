@@ -1,5 +1,7 @@
 # mc-scripts
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 CLI and build toolchain (`mc-scripts start`, `build`, `compile-html`, `serve`, `config-sync`, `login`) used by downstream Custom Applications and Custom Views to develop and produce production bundles.
@@ -17,5 +19,5 @@ Root commands apply. Run tests with `pnpm --filter @commercetools-frontend/mc-sc
 
 ## Gotchas
 
-- This package **is** included in the preconstruct build (unlike most other packages in this task). Source changes require a build step (or `preconstruct dev` symlinks) before the CLI or exports are usable locally.
+- This package is built by preconstruct. Source changes require a build step (or `preconstruct dev` symlinks) before the CLI or exports are usable locally.
 - The Webpack and PostCSS config files in `src/config/` are re-exported as public API — breaking changes here affect every downstream Custom Application build.

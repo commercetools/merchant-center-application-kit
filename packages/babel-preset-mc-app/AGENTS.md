@@ -1,5 +1,7 @@
 # babel-preset-mc-app
 
+See root `AGENTS.md` for monorepo-wide context.
+
 ## Purpose
 
 Babel preset providing the standard transform pipeline (env, React, TypeScript, Emotion, formatjs) for all Merchant Center Custom Applications and Custom Views.
