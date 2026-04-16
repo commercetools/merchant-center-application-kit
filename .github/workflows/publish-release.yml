@@ -67,18 +67,24 @@ jobs:
 
       - name: Creating release pull request or publishing release to npm registry
         id: changesets
-        # uses: changesets/action@v1.3.0
-        uses: dotansimha/changesets-action@v1.5.2
+        uses: changesets/action@v1.7.0
         with:
           publish: pnpm changeset publish
           version: pnpm changeset:version-and-format
           commit: "ci(changesets): version packages"
-          createGithubReleases: aggregate
-          githubReleaseName: v${{ steps.release_version.outputs.VALUE }}
-          githubTagName: v${{ steps.release_version.outputs.VALUE }}
+          createGithubReleases: false
+          commitMode: "github-api"
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
           SKIP_POSTINSTALL_DEV_SETUP: true
+
+      - name: Create aggregate GitHub release
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          RELEASE_VERSION: ${{ steps.release_version.outputs.VALUE }}
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
+        run: ./scripts/create-aggregate-github-release.sh
 
       # Publish canary releases only if the packages weren't published already
       - name: Publishing canary releases to npm registry
