@@ -1,5 +1,18 @@
 # @commercetools-local/visual-testing-app
 
+## 27.4.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.4.1
+  - @commercetools-frontend/application-config@27.4.1
+  - @commercetools-frontend/application-shell@27.4.1
+  - @commercetools-frontend/application-shell-connectors@27.4.1
+  - @commercetools-frontend/assets@27.4.1
+  - @commercetools-frontend/constants@27.4.1
+  - @commercetools-frontend/react-notifications@27.4.1
+
 ## 27.4.0
 
 ### Patch Changes
