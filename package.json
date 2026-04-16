@@ -197,7 +197,12 @@
       "react-dev-utils>fork-ts-checker-webpack-plugin": "^9.1.0",
       "lodash": "4.18.1",
       "picomatch@^2": "^2.3.2",
-      "flatted": ">=3.4.2"
+      "flatted": ">=3.4.2",
+      "serialize-javascript": ">=7.0.5",
+      "axios": ">=1.15.0",
+      "basic-ftp": ">=5.2.2",
+      "dompurify": ">=3.4.0",
+      "follow-redirects": ">=1.16.0"
     }
   },
   "engines": {
