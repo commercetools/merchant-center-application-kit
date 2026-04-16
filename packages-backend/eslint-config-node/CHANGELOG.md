@@ -1,5 +1,7 @@
 # @commercetools-backend/eslint-config-node
 
+## 27.4.1
+
 ## 27.4.0
 
 ### Minor Changes

@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.4.1
+
+### Patch Changes
+
+- [#3969](https://github.com/commercetools/merchant-center-application-kit/pull/3969) [`6e0598e`](https://github.com/commercetools/merchant-center-application-kit/commit/6e0598ed932eb26f1af8d9309ee4d4dfc0d21031) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Fix `setToken` silently discarding credentials when `MC_ACCESS_TOKEN` environment variable is set. Previously, running `mc-scripts login --force` with the env var set would complete successfully but not persist the token. The env var guard is now removed from `setToken`, and file creation logic is extracted so `setToken` works regardless of whether the credentials file already exists.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.4.1
+  - @commercetools-frontend/application-config@27.4.1
+  - @commercetools-frontend/assets@27.4.1
+  - @commercetools-frontend/babel-preset-mc-app@27.4.1
+  - @commercetools-frontend/constants@27.4.1
+  - @commercetools-frontend/mc-dev-authentication@27.4.1
+  - @commercetools-frontend/mc-html-template@27.4.1
+
 ## 27.4.0
 
 ### Patch Changes
