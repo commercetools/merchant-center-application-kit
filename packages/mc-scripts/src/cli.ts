@@ -153,7 +153,11 @@ async function run() {
       process.env.NODE_ENV = 'production';
 
       const serveCommand = await import('./commands/serve');
-      await serveCommand.default();
+      const server = await serveCommand.default();
+      const address = server.address();
+      const boundPort =
+        address && typeof address === 'object' ? address.port : '?';
+      console.log(`Running at http://localhost:${boundPort}`);
     });
 
   // Command: login

@@ -56,13 +56,7 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   });
 
   return new Promise((resolve) => {
-    server.listen(port, () => {
-      const address = server.address();
-      const boundPort =
-        address && typeof address === 'object' ? address.port : port;
-      console.log(`Running at http://localhost:${boundPort}`);
-      resolve(server);
-    });
+    server.listen(port, () => resolve(server));
   });
 }
 

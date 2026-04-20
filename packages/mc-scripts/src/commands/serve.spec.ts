@@ -99,16 +99,6 @@ const stopServer = (context: ServerContext | undefined) =>
 describe('mc-scripts serve', () => {
   let fixtureDir: string;
   let context: ServerContext | undefined;
-  let consoleLogSpy: jest.SpyInstance;
-
-  beforeAll(() => {
-    // `run()` logs "Running at http://localhost:<port>" on listen — silence it.
-    consoleLogSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
-  });
-
-  afterAll(() => {
-    consoleLogSpy.mockRestore();
-  });
 
   beforeEach(() => {
     fixtureDir = writeServedFiles();
