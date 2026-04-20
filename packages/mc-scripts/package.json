@@ -110,7 +110,7 @@
     "rollup-plugin-visualizer": "^5.14.0",
     "sharp": "^0.34.1",
     "shelljs": "0.10.0",
-    "sirv": "2.0.4",
+    "sirv": "^3.0.2",
     "style-loader": "3.3.4",
     "svg-url-loader": "7.1.1",
     "terser-webpack-plugin": "5.3.14",
