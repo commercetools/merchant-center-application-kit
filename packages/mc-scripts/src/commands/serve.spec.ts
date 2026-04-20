@@ -6,8 +6,9 @@
  * same suite can validate future reimplementations (e.g. Vite's preview
  * server) produce identical output.
  *
- * The server binds to an ephemeral port (`port: 0`) and is torn down after
- * every test; fixtures live in a temp directory.
+ * The server binds to an ephemeral port and is torn down after every test;
+ * fixtures live in a temp directory. See `startServer` for how we drive the
+ * current no-arg `run()` entry point.
  *
  * Historical context (why these rules exist — for maintainers of the next
  * rewrite, not for readers of the tests):
@@ -34,16 +35,27 @@
  *  3. **The SPA glob must NOT swallow `/login/authorize`, `/logout`, or
  *     `/favicon*`** — downstream auth flow and the inline handlers below
  *     all depend on these paths reaching their dedicated branches.
- *
- * @jest-environment node
  */
 
 import fs from 'fs';
-import type http from 'http';
+import http from 'http';
 import os from 'os';
 import path from 'path';
-import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+// Use node-fetch directly: the spec runs under jsdom (the repo's default Jest
+// environment) where `global.fetch` is routed through jsdom's XHR and blocks
+// cross-origin requests to our ephemeral-port test server.
+import fetch from 'node-fetch';
+import { processConfig } from '@commercetools-frontend/application-config';
+import paths from '../config/paths';
 import run from './serve';
+
+jest.mock('@commercetools-frontend/application-config', () => ({
+  processConfig: jest.fn(),
+}));
+jest.mock('../config/paths', () => ({
+  __esModule: true,
+  default: { appBuild: '' },
+}));
 
 // 1x1 transparent PNG (smallest valid PNG).
 const FAVICON_PNG = Buffer.from(
@@ -67,15 +79,50 @@ const createFixture = (): string => {
   return dir;
 };
 
+// `serve.ts` (as shipped on main) takes no arguments: it reads the config
+// via `processConfig()`, serves from `paths.appBuild`, and binds the server
+// to a hardcoded port 3001 with no return value. To drive it from tests we:
+//
+//   1. Mock `processConfig` so each test can supply its own `mcApiUrl`.
+//   2. Mock `paths.appBuild` so the server serves the per-test fixture dir.
+//   3. Spy on `http.createServer` to capture the server instance (there's no
+//      other handle we can grab) and force `listen(3001, ...)` to `listen(0, ...)`,
+//      so tests bind to an ephemeral port and can run in parallel / in sequence
+//      without colliding on 3001.
 const startServer = async (
   publicPath: string,
   mcApiUrl: string
 ): Promise<ServerContext> => {
-  const applicationConfig = {
-    env: { mcApiUrl },
-  } as unknown as ApplicationRuntimeConfig;
+  paths.appBuild = publicPath;
+  (processConfig as jest.Mock).mockResolvedValue({ env: { mcApiUrl } });
 
-  const server = await run({ port: 0, publicPath, applicationConfig });
+  let capturedServer: http.Server | undefined;
+  const actualCreateServer = jest.requireActual('http')
+    .createServer as typeof http.createServer;
+  const spy = jest.spyOn(http, 'createServer').mockImplementation(((
+    handler: http.RequestListener
+  ) => {
+    const server = actualCreateServer(handler);
+    const actualListen = server.listen.bind(server);
+    (server as { listen: unknown }).listen = (_port: number, cb: () => void) =>
+      actualListen(0, cb);
+    capturedServer = server;
+    return server;
+  }) as typeof http.createServer);
+
+  try {
+    await run();
+  } finally {
+    spy.mockRestore();
+  }
+
+  if (!capturedServer) {
+    throw new Error('Expected http.createServer to be called');
+  }
+  const server = capturedServer;
+  if (!server.listening) {
+    await new Promise<void>((resolve) => server.once('listening', resolve));
+  }
   const address = server.address();
   if (!address || typeof address !== 'object') {
     throw new Error('Expected server to bind to an address');
@@ -95,6 +142,16 @@ const stopServer = (context: ServerContext | undefined) =>
 describe('mc-scripts serve', () => {
   let fixtureDir: string;
   let context: ServerContext | undefined;
+  let consoleLogSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    // `run()` logs "Running at http://localhost:3001" on listen — silence it.
+    consoleLogSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    consoleLogSpy.mockRestore();
+  });
 
   beforeEach(() => {
     fixtureDir = createFixture();
