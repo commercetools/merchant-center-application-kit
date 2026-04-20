@@ -1,24 +1,12 @@
 import http from 'http';
 import serveHandler from 'serve-handler';
-import {
-  processConfig,
-  type ApplicationRuntimeConfig,
-} from '@commercetools-frontend/application-config';
+import { processConfig } from '@commercetools-frontend/application-config';
 import paths from '../config/paths';
 
-type RunOptions = {
-  port?: number;
-  publicPath?: string;
-  applicationConfig?: ApplicationRuntimeConfig;
-};
+const port = 3001;
 
-async function run({
-  port = 3001,
-  publicPath,
-  applicationConfig: providedConfig,
-}: RunOptions = {}): Promise<http.Server> {
-  const applicationConfig = providedConfig ?? (await processConfig());
-  const resolvedPublicPath = publicPath ?? paths.appBuild;
+async function run() {
+  const applicationConfig = await processConfig();
 
   const server = http.createServer((request, response) => {
     // When developing against local APIs, handle the login|logout routes separately.
@@ -37,7 +25,7 @@ async function run({
     // You pass two more arguments for config and middleware
     // More details here: https://github.com/vercel/serve-handler#options
     return serveHandler(request, response, {
-      public: resolvedPublicPath,
+      public: paths.appBuild,
       rewrites: [
         {
           source: '/favicon*',
@@ -55,14 +43,8 @@ async function run({
     });
   });
 
-  return new Promise((resolve) => {
-    server.listen(port, () => {
-      const address = server.address();
-      const boundPort =
-        address && typeof address === 'object' ? address.port : port;
-      console.log(`Running at http://localhost:${boundPort}`);
-      resolve(server);
-    });
+  server.listen(port, () => {
+    console.log(`Running at http://localhost:${port}`);
   });
 }
 
