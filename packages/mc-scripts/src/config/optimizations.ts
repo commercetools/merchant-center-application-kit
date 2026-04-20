@@ -1,9 +1,17 @@
 import chalk from 'chalk';
 
-// Dependencies to be split/grouped into separate chunks.
-// This is useful to reduce the main bundle size and have more
-// dedicated caching strategy for specific chunks.
-const manualChunks = {
+// Dependencies to be split/grouped into separate chunks for the Webpack build.
+// This is useful to reduce the main bundle size and have more dedicated
+// caching strategy for specific chunks.
+//
+// NOTE: this is intentionally Webpack-only. The Vite build does NOT use
+// manualChunks — Rollup's declarative manualChunks form does not claim
+// transitive deps, which caused a chunk-level cycle (icons ↔ app-shell) that
+// crashed at runtime with a TDZ ("aM is undefined") error. Rollup's default
+// chunking handles co-location correctly; Webpack's splitChunks with a regex
+// test has different, cycle-safe semantics (shared modules are hoisted into a
+// shared chunk automatically).
+const manualChunks: Record<string, string[]> = {
   'commercetools-uikit-icons': ['@commercetools-uikit/icons'],
   moment: ['moment', 'moment-timezone'],
   'app-shell': [
@@ -35,14 +43,6 @@ const removeNonExistantDependencies = (
     {} as Record<string, string[]>
   );
 };
-
-// Reference: https://rollupjs.org/configuration-options/#output-manualchunks
-export function getViteCacheGroups(appDependencies: Record<string, string>) {
-  return removeNonExistantDependencies(
-    manualChunks,
-    Object.keys(appDependencies)
-  );
-}
 
 // Reference: https://webpack.js.org/plugins/split-chunks-plugin/
 export function getWepbackCacheGroups(appDependencies: Record<string, string>) {

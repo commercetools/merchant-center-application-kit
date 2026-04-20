@@ -102,3 +102,31 @@ runs:
         APP_ID: ${{ inputs.playground-application-id }}
         MC_API_URL: ${{ inputs.mc-api-url }}
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+
+    # --- Experimental Vite bundler coverage -------------------------------
+    # The Webpack path is exercised above. The Vite bundler is opt-in via
+    # `ENABLE_EXPERIMENTAL_VITE_BUNDLER=true` and historically had a gap in
+    # CI (FEC-832) — a chunk-level cycle produced a TDZ crash at startup
+    # that no build-time check caught. These two steps close that gap:
+    #
+    #   1. Build the template with the flag set. Overwrites `public/` with
+    #      Vite output; the Webpack Cypress run above has already completed
+    #      so nothing downstream depends on Webpack artifacts.
+    #   2. Serve the Vite build and load the app in a headless browser.
+    #      Any uncaught runtime error (TDZ, missing symbol, circular chunk
+    #      init) fails the job.
+    - name: Building Starter template with experimental Vite bundler
+      shell: bash
+      run: pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:build
+      env:
+        ENABLE_EXPERIMENTAL_VITE_BUNDLER: 'true'
+        CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
+
+    - name: Smoke-testing Vite production build (catches runtime chunk cycles)
+      shell: bash
+      run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'node ./scripts/smoke-test-templates.mjs http://127.0.0.1:3001'
+      env:
+        HOST_GCP_STAGING: ${{ inputs.host-gcp-staging }}
+        APP_ID: ${{ inputs.playground-application-id }}
+        MC_API_URL: ${{ inputs.mc-api-url }}
+        CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
