@@ -1,13 +1,39 @@
 /**
  * Integration tests for the `mc-scripts serve` command.
  *
- * These tests describe the observable HTTP behavior of the serve command —
- * they are intentionally agnostic of the underlying implementation (currently
- * `serve-handler`) so the same suite can validate future reimplementations
- * (e.g. Vite's preview server).
+ * These tests describe the observable HTTP behavior of the serve command.
+ * They are intentionally agnostic of the underlying implementation so the
+ * same suite can validate future reimplementations (e.g. Vite's preview
+ * server) produce identical output.
  *
  * The server binds to an ephemeral port (`port: 0`) and is torn down after
  * every test; fixtures live in a temp directory.
+ *
+ * Historical context (why these rules exist — for maintainers of the next
+ * rewrite, not for readers of the tests):
+ *
+ *  - **#1787** (Oct 2020) introduced `mc-scripts serve` as a minimal static
+ *    file server to replace `mc-http-server`. Favicon rewrite, SPA fallback,
+ *    and the `/login` → `login.html` / `/logout` → `logout.html` rewrites
+ *    were all part of the initial design.
+ *  - **#3734** (Mar 2025) removed the static `login.html` / `logout.html`
+ *    files from `mc-dev-authentication` and replaced the rewrites with
+ *    inline runtime handlers, gated on `mcApiUrl` being a localhost URL.
+ *    The SPA rewrite glob keeps its `login|logout` exclusion — a leftover
+ *    that now causes non-localhost `/login*` and `/logout*` to 404 rather
+ *    than fall back to the SPA.
+ *
+ * Load-bearing facts pinned by this suite (surfaced from a survey of
+ * downstream consumer repos under `/Volumes/Code/mcf-repos/maintained/`):
+ *
+ *  1. **Port 3001 is hardcoded in Cypress configs** in
+ *     `merchant-center-frontend`, `merchant-center-operations`, and
+ *     `merchant-center-prices`. The default port must stay 3001.
+ *  2. **SPA fallback to `index.html`** is used extensively by those same
+ *     Cypress suites for deep-link navigation.
+ *  3. **The SPA glob must NOT swallow `/login/authorize`, `/logout`, or
+ *     `/favicon*`** — downstream auth flow and the inline handlers below
+ *     all depend on these paths reaching their dedicated branches.
  *
  * @jest-environment node
  */
@@ -80,6 +106,9 @@ describe('mc-scripts serve', () => {
     fs.rmSync(fixtureDir, { recursive: true, force: true });
   });
 
+  // --- static file serving -------------------------------------------------
+  // Intent: present since #1787. Baseline static file server responsibilities.
+
   describe('static file serving', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'https://mc.example.com');
@@ -100,6 +129,11 @@ describe('mc-scripts serve', () => {
     });
   });
 
+  // --- SPA fallback --------------------------------------------------------
+  // Intent: present since #1787. Required by downstream Cypress suites that
+  // navigate to deep routes (e.g. `/<project>/products/123`) and expect the
+  // SPA shell to boot and handle the route client-side.
+
   describe('SPA fallback', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'https://mc.example.com');
@@ -117,7 +151,20 @@ describe('mc-scripts serve', () => {
       expect(res.status).toBe(200);
       expect(await res.text()).toBe(INDEX_HTML);
     });
+
+    it('falls back to index.html for deep paths with query strings', async () => {
+      const res = await fetch(
+        `${context!.baseUrl}/projects/my-project?tab=orders`
+      );
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
   });
+
+  // --- favicon rewrite -----------------------------------------------------
+  // Intent: present since #1787. Browsers request `/favicon.ico` by default,
+  // but MC apps ship `favicon.png`. The rewrite absorbs any `/favicon*`
+  // variant (e.g. `favicon-32x32.png`) into the single PNG.
 
   describe('favicon rewrite', () => {
     beforeEach(async () => {
@@ -139,12 +186,48 @@ describe('mc-scripts serve', () => {
     });
   });
 
+  // --- SPA glob exclusion invariant ----------------------------------------
+  // Intent: serve-handler rewrites don't short-circuit on first match
+  // (vercel/serve-handler#71), so the SPA rewrite's glob explicitly excludes
+  // `favicon|login|logout`. These tests pin the exclusion — without it,
+  // `/favicon.ico` and the auth paths would be served as `index.html`,
+  // silently breaking downstream auth flows and favicon rendering.
+
+  describe('SPA glob does not swallow exempt paths', () => {
+    beforeEach(async () => {
+      context = await startServer(fixtureDir, 'https://mc.example.com');
+    });
+
+    it('serves favicon bytes for /favicon.ico (not the SPA)', async () => {
+      const res = await fetch(`${context!.baseUrl}/favicon.ico`);
+      expect(res.headers.get('content-type')).toBe('image/png');
+      expect(await res.text()).not.toContain('<!doctype html>');
+    });
+
+    it('does not serve the SPA for /login (bare path)', async () => {
+      // Non-localhost mcApiUrl: no inline handler triggers, and SPA glob
+      // excludes `/login*`. Result: 404, not index.html.
+      const res = await fetch(`${context!.baseUrl}/login`);
+      expect(res.status).toBe(404);
+    });
+
+    it('does not serve the SPA for /logout (bare path)', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout`);
+      expect(res.status).toBe(404);
+    });
+  });
+
+  // --- localhost auth interception (#3734) ---------------------------------
+  // Intent: when MC_API_URL points at a local proxy (http://localhost:*),
+  // replace the absent login/logout UI with inline responses so the app
+  // can be exercised end-to-end locally without a real MC backend.
+
   describe('localhost auth interception', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'http://localhost:8080');
     });
 
-    it('redirects /login/authorize (301) to the configured mcApiUrl, preserving the path and query', async () => {
+    it('redirects /login/authorize (301) to mcApiUrl, preserving path and query', async () => {
       const res = await fetch(
         `${context!.baseUrl}/login/authorize?foo=bar&baz=qux`,
         { redirect: 'manual' }
@@ -155,24 +238,72 @@ describe('mc-scripts serve', () => {
       );
     });
 
+    it('redirects /login/authorize without query string', async () => {
+      const res = await fetch(`${context!.baseUrl}/login/authorize`, {
+        redirect: 'manual',
+      });
+      expect(res.status).toBe(301);
+      expect(res.headers.get('location')).toBe(
+        'http://localhost:8080/login/authorize'
+      );
+    });
+
+    it('redirects any path under /login/authorize/* (startsWith match)', async () => {
+      const res = await fetch(`${context!.baseUrl}/login/authorize/callback`, {
+        redirect: 'manual',
+      });
+      expect(res.status).toBe(301);
+      expect(res.headers.get('location')).toBe(
+        'http://localhost:8080/login/authorize/callback'
+      );
+    });
+
+    it('redirects regardless of HTTP method (no method check in the branch)', async () => {
+      const res = await fetch(`${context!.baseUrl}/login/authorize`, {
+        method: 'POST',
+        redirect: 'manual',
+      });
+      expect(res.status).toBe(301);
+    });
+
     it('responds to /logout with a clear-session message', async () => {
       const res = await fetch(`${context!.baseUrl}/logout`);
       expect(res.status).toBe(200);
       expect(await res.text()).toBe('Please clear your session storage.');
     });
+
+    it('matches any path under /logout* (startsWith match)', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout/everything`);
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe('Please clear your session storage.');
+    });
+
+    it('does NOT intercept /login (bare) — only /login/authorize', async () => {
+      // The inline handler uses `startsWith('/login/authorize')`, so `/login`
+      // alone (or `/login/foo`) falls through to serve-handler. The SPA glob
+      // then excludes it → 404. This pins the exact trigger shape so the
+      // rewrite keeps the same sensitivity.
+      const res = await fetch(`${context!.baseUrl}/login`);
+      expect(res.status).toBe(404);
+    });
   });
+
+  // --- non-localhost auth routes -------------------------------------------
+  // Intent: the inline handlers are intentionally gated behind a localhost
+  // mcApiUrl check (#3734). With any remote mcApiUrl, these paths should
+  // NOT be intercepted — the real MC proxy is expected to handle them.
 
   describe('non-localhost auth routes', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'https://mc.example.com');
     });
 
-    // The SPA fallback glob explicitly excludes `/login*` and `/logout*` —
-    // these paths were historically served via dedicated `login.html` /
-    // `logout.html` files (removed in PR #3734). With no matching file and no
-    // SPA fallback, `serve-handler` returns 404. This pins the current
-    // observable behavior; future implementations that choose to fall through
-    // to the SPA must update these assertions deliberately.
+    // Current observable contract: 404 (not SPA fallback, not redirect).
+    // This is a leftover from pre-#3734 when `/login` / `/logout` mapped to
+    // dedicated static HTML files. Those files are gone but the SPA glob
+    // still excludes these paths. A future rewrite may consciously change
+    // this to SPA fallback — these assertions will fail first and force an
+    // intentional decision.
     it('returns 404 for /login/authorize (no redirect, no SPA fallback)', async () => {
       const res = await fetch(`${context!.baseUrl}/login/authorize?foo=bar`, {
         redirect: 'manual',
