@@ -122,6 +122,18 @@ runs:
         ENABLE_EXPERIMENTAL_VITE_BUNDLER: 'true'
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
+    # Explicitly install the Chrome binary in case it's not available yet.
+    # Same workaround as the visual-regression-tests job uses — the CI
+    # composite action's `pnpm install` sets PUPPETEER_DOWNLOAD_BASE_URL but
+    # puppeteer's postinstall doesn't always land Chrome in the cache dir
+    # that `puppeteer.launch()` looks in. See
+    # https://github.com/puppeteer/puppeteer/issues/9533.
+    - name: Installing Chrome via Puppeteer
+      shell: bash
+      run: pnpm -C node_modules/puppeteer run postinstall
+      env:
+        PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
+
     - name: Smoke-testing Vite production build (catches runtime chunk cycles)
       shell: bash
       run: pnpm start-server-and-test 'pnpm template-${{ inputs.application-type }}-${{ inputs.template-name }}:start:prod:local' http-get://127.0.0.1:3001 'node ./scripts/smoke-test-templates.mjs http://127.0.0.1:3001'
