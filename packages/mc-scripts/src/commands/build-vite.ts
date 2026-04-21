@@ -7,9 +7,9 @@ import { build, PluginOption, type Plugin } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
-import { getViteCacheGroups } from '../config/optimizations';
 import paths from '../config/paths';
 import nonNullable from '../utils/non-nullable';
+import pluginChunkCycleCheck from '../vite-plugins/vite-plugin-chunk-cycle-check';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
 import pluginPostCleanup from '../vite-plugins/vite-plugin-post-cleanup';
@@ -33,11 +33,6 @@ async function run() {
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
 
-  const appDependencies = require(paths.appPackageJson).dependencies as Record<
-    string,
-    string
-  >;
-
   await build({
     root: paths.appRoot,
     base: './', // <-- Important to allow configuring the runtime base path.
@@ -55,7 +50,12 @@ async function run() {
         // NOTE that after the build, Vite will write the `index.html` (template)
         // at the `/public/public/index.html` location. See `fs.renameSync` below.
         input: paths.appIndexHtml,
-        output: { manualChunks: getViteCacheGroups(appDependencies) },
+        // NOTE: we intentionally do not set `output.manualChunks` here. The
+        // declarative form does not claim transitive deps, so shared packages
+        // (babel-runtime, emotion, uikit internals) can land in a chunk that
+        // also imports back from another chunk — producing a TDZ cycle at
+        // runtime (historical "aM is undefined" crash with the icons/app-shell
+        // split). Rollup's default chunking handles co-location correctly.
         // Reduce the memory footprint when building sourcemaps.
         // https://github.com/vitejs/vite/issues/2433#issuecomment-1361094727
         cache: false,
@@ -116,6 +116,10 @@ async function run() {
       }),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
+      // Fail the build if the emitted chunk graph contains circular imports.
+      // Chunk cycles are silent at build time but crash at runtime with TDZ
+      // errors (historical "aM is undefined" from the icons/app-shell split).
+      pluginChunkCycleCheck(),
       process.env.ANALYZE_BUNDLE === 'true' &&
         analyzer({ defaultSizes: 'stat', openAnalyzer: true }),
       process.env.ANALYZE_BUNDLE_TREE === 'true' &&
