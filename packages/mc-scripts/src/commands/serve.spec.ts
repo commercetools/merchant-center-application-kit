@@ -26,7 +26,7 @@
  *    than fall back to the SPA.
  *
  * Load-bearing facts pinned by this suite (surfaced from a survey of
- * downstream consumer repos under `/Volumes/Code/mcf-repos/maintained/`):
+ * downstream consumer repos):
  *
  *  1. **Port 3001 is hardcoded in Cypress configs** in
  *     `merchant-center-frontend`, `merchant-center-operations`, and
