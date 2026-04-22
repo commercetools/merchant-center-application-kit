@@ -420,7 +420,7 @@ importers:
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
         specifier: 13.12.0
-        version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
+        version: 13.12.0(@types/node@22.19.11)(typescript@5.9.2)
       '@commercetools/sync-actions':
         specifier: ^5.14.0
         version: 5.19.2
@@ -480,13 +480,13 @@ importers:
         version: 2.12.6(graphql@16.11.0)
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
       moment:
         specifier: ^2.29.4
         version: 2.30.1
       msw:
         specifier: ^1.3.5
-        version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
+        version: 1.3.5(@types/node@22.19.11)(typescript@5.9.2)
       omit-empty-es:
         specifier: 1.2.0
         version: 1.2.0
@@ -517,7 +517,7 @@ importers:
     devDependencies:
       '@graphql-eslint/eslint-plugin':
         specifier: ^4.4.0
-        version: 4.4.0(@types/node@22.19.17)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
+        version: 4.4.0(@types/node@22.19.11)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
 
   application-templates/starter-typescript:
     dependencies:
@@ -688,7 +688,7 @@ importers:
         version: 2.12.6(graphql@16.11.0)
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -893,7 +893,7 @@ importers:
         version: 2.12.6(graphql@16.11.0)
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -1101,7 +1101,7 @@ importers:
         version: 2.12.6(graphql@16.11.0)
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -1171,7 +1171,7 @@ importers:
         version: 2.32.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-jest:
         specifier: ^28.14.0
-        version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)
+        version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
       eslint-plugin-n:
         specifier: ^17.1.0
         version: 17.23.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
@@ -1281,16 +1281,16 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/browser-history':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@types/lodash':
         specifier: ^4.14.198
@@ -1310,7 +1310,7 @@ importers:
         version: 29.5.14
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -1330,28 +1330,28 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/actions-global':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../actions-global
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../assets
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../l10n
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
         specifier: ^20.4.0
@@ -1473,7 +1473,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       msw:
         specifier: ^1.3.5
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
@@ -1505,7 +1505,7 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@types/lodash':
         specifier: ^4.14.198
@@ -1557,49 +1557,49 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/actions-global':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../assets
       '@commercetools-frontend/browser-history':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/i18n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../i18n
       '@commercetools-frontend/l10n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../l10n
       '@commercetools-frontend/notifications':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../notifications
       '@commercetools-frontend/permissions':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../permissions
       '@commercetools-frontend/react-notifications':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../react-notifications
       '@commercetools-frontend/sdk':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sdk
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@commercetools-frontend/url-utils':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../url-utils
       '@commercetools-uikit/accessible-hidden':
         specifier: ^20.4.0
@@ -1787,7 +1787,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
         specifier: 30.2.0
         version: 30.2.0
@@ -1822,16 +1822,16 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/browser-history':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -1890,7 +1890,7 @@ importers:
         version: 3.3.0
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
         specifier: 30.2.0
         version: 30.2.0
@@ -1967,7 +1967,7 @@ importers:
         version: 0.2.3(@babel/core@7.29.0)
       babel-plugin-formatjs:
         specifier: ^10.5.25
-        version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
+        version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       babel-plugin-istanbul:
         specifier: ^7.0.0
         version: 7.0.1
@@ -2062,7 +2062,7 @@ importers:
         version: 29.5.14
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
 
   packages/create-mc-app:
     dependencies:
@@ -2076,7 +2076,7 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-config':
-        specifier: ^27.4.1
+        specifier: ^27.4.2
         version: link:../application-config
       '@types/babel__core':
         specifier: ^7.20.1
@@ -2116,13 +2116,13 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/application-shell':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-shell
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@manypkg/get-packages':
         specifier: 1.1.3
@@ -2153,7 +2153,7 @@ importers:
         specifier: ^7.22.15
         version: 7.28.5(@babel/core@7.29.0)(eslint@9.39.2(jiti@2.6.1))
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: ^27.4.1
+        specifier: ^27.4.2
         version: link:../babel-preset-mc-app
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.0.0
@@ -2178,7 +2178,7 @@ importers:
         version: 2.32.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-jest:
         specifier: ^28.0.0
-        version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)
+        version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
       eslint-plugin-jest-dom:
         specifier: ^4.0.3
         version: 4.0.3(eslint@9.39.2(jiti@2.6.1))
@@ -2223,7 +2223,7 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@commercetools-uikit/i18n':
         specifier: ^20.4.0
@@ -2269,7 +2269,7 @@ importers:
         specifier: ^7.22.17
         version: 7.29.0
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
         specifier: ^2.2.1
@@ -2330,7 +2330,7 @@ importers:
         version: 0.6.0
       jest-watch-typeahead:
         specifier: 3.0.1
-        version: 3.0.1(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))
+        version: 3.0.1(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))
       raf:
         specifier: 3.4.1
         version: 3.4.1
@@ -2346,7 +2346,7 @@ importers:
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
 
   packages/jest-stylelint-runner:
     dependencies:
@@ -2373,7 +2373,7 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.14.0
@@ -2465,10 +2465,10 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       serialize-javascript:
         specifier: '>=7.0.5'
@@ -2508,25 +2508,25 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-components':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-components
       '@commercetools-frontend/application-config':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-config
       '@commercetools-frontend/assets':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../assets
       '@commercetools-frontend/babel-preset-mc-app':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../babel-preset-mc-app
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../mc-dev-authentication
       '@commercetools-frontend/mc-html-template':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
         specifier: 3.0.0
@@ -2536,7 +2536,7 @@ importers:
         version: 11.13.5
       '@formatjs/cli-lib':
         specifier: ^6.3.8
-        version: 6.6.6(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
+        version: 6.6.6(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: 0.6.1
         version: 0.6.1(react-refresh@0.17.0)(type-fest@4.41.0)(webpack-dev-server@4.15.2(webpack@5.105.1(@swc/core@1.15.1)))(webpack@5.105.1(@swc/core@1.15.1))
@@ -2578,7 +2578,7 @@ importers:
         version: 8.4.1(@babel/core@7.29.0)(webpack@5.105.1(@swc/core@1.15.1))
       babel-plugin-formatjs:
         specifier: ^10.5.25
-        version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
+        version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
@@ -2786,10 +2786,10 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-shell-connectors
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@emotion/react':
         specifier: ^11.14.0
@@ -2824,7 +2824,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
         specifier: 30.2.0
         version: 30.2.0
@@ -2841,19 +2841,19 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/actions-global':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../actions-global
       '@commercetools-frontend/application-components':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../application-components
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools-frontend/notifications':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../notifications
       '@commercetools-frontend/sentry':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../sentry
       '@commercetools-uikit/design-system':
         specifier: ^20.4.0
@@ -2927,7 +2927,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
         specifier: 30.2.0
         version: 30.2.0
@@ -2956,7 +2956,7 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@commercetools/api-request-builder':
         specifier: 6.0.0
@@ -3041,10 +3041,10 @@ importers:
         specifier: ^7.22.15
         version: 7.29.0
       '@commercetools-frontend/browser-history':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../browser-history
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../constants
       '@sentry/browser':
         specifier: 8.55.0
@@ -3073,7 +3073,7 @@ importers:
         version: 29.5.14
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -3106,37 +3106,37 @@ importers:
         specifier: 24.11.0
         version: 24.11.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-frontend/actions-global':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/actions-global
       '@commercetools-frontend/application-components':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/application-components
       '@commercetools-frontend/application-shell':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/application-shell
       '@commercetools-frontend/application-shell-connectors':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/application-shell-connectors
       '@commercetools-frontend/assets':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/assets
       '@commercetools-frontend/browser-history':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/browser-history
       '@commercetools-frontend/constants':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/constants
       '@commercetools-frontend/i18n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/i18n
       '@commercetools-frontend/l10n':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/l10n
       '@commercetools-frontend/permissions':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/permissions
       '@commercetools-frontend/sdk':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/sdk
       '@commercetools-uikit/card':
         specifier: ^20.4.0
@@ -3236,13 +3236,13 @@ importers:
         version: 24.2.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@commercetools-backend/express':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages-backend/express
       '@commercetools-frontend/mc-dev-authentication':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/mc-dev-authentication
       '@commercetools-frontend/mc-scripts':
-        specifier: 27.4.1
+        specifier: 27.4.2
         version: link:../packages/mc-scripts
       '@commercetools/composable-commerce-test-data':
         specifier: 13.12.0
@@ -3375,7 +3375,7 @@ importers:
         version: 16.11.0
       jest:
         specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-each:
         specifier: 30.2.0
         version: 30.2.0
@@ -13611,7 +13611,7 @@ packages:
   puppeteer@20.9.0:
     resolution: {integrity: sha512-kAglT4VZ9fWEGg3oLc4/de+JcONuEJhlh3J6f5R1TLkrY/EHHIHxWXDOzXvaxQCtedmyVXBwg8M+P8YCO/wZjw==}
     engines: {node: '>=16.3.0'}
-    deprecated: < 22.8.2 is no longer supported
+    deprecated: < 24.15.0 is no longer supported
 
   pure-rand@7.0.1:
     resolution: {integrity: sha512-oTUZM/NAZS8p7ANR3SHh30kXB+zK2r2BPcEn/awJIbOvq82WoMN4p62AWWp3Hhw50G0xMsw1mhIBLqHw64EcNQ==}
@@ -19313,11 +19313,11 @@ snapshots:
       launchdarkly-js-client-sdk: 3.9.0
       typescript: 5.9.2
 
-  '@formatjs/cli-lib@6.6.6(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))':
+  '@formatjs/cli-lib@6.6.6(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))':
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.9.4
       '@formatjs/icu-skeleton-parser': 1.8.8
-      '@formatjs/ts-transformer': 3.13.23(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
+      '@formatjs/ts-transformer': 3.13.23(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       '@types/estree': 1.0.8
       '@types/fs-extra': 11.0.4
       '@types/json-stable-stringify': 1.2.0
@@ -19490,7 +19490,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.2
 
-  '@formatjs/ts-transformer@3.13.23(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))':
+  '@formatjs/ts-transformer@3.13.23(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))':
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.9.4
       '@types/json-stable-stringify': 1.2.0
@@ -19500,9 +19500,9 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.2
     optionalDependencies:
-      ts-jest: 29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)
+      ts-jest: 29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
 
-  '@formatjs/ts-transformer@3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))':
+  '@formatjs/ts-transformer@3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))':
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
       '@types/node': 22.19.11
@@ -19511,18 +19511,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.2
     optionalDependencies:
-      ts-jest: 29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)
-
-  '@formatjs/ts-transformer@3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))':
-    dependencies:
-      '@formatjs/icu-messageformat-parser': 2.11.4
-      '@types/node': 22.19.11
-      chalk: 4.1.2
-      json-stable-stringify: 1.3.0
-      tslib: 2.8.1
-      typescript: 5.9.2
-    optionalDependencies:
-      ts-jest: 29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)
+      ts-jest: 29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
 
   '@graphql-codegen/add@3.2.3(graphql@16.11.0)':
     dependencies:
@@ -20429,6 +20418,42 @@ snapshots:
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
       jest-config: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest-haste-map: 30.2.0
+      jest-message-util: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-resolve-dependencies: 30.2.0
+      jest-runner: 30.2.0
+      jest-runtime: 30.2.0
+      jest-snapshot: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      jest-watcher: 30.2.0
+      micromatch: 4.0.8
+      pretty-format: 30.2.0
+      slash: 3.0.0
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
+  '@jest/core@30.2.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))':
+    dependencies:
+      '@jest/console': 30.2.0
+      '@jest/pattern': 30.0.1
+      '@jest/reporters': 30.2.0
+      '@jest/test-result': 30.2.0
+      '@jest/transform': 30.2.0
+      '@jest/types': 30.2.0
+      '@types/node': 22.19.11
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      exit-x: 0.2.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 30.2.0
+      jest-config: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -23239,7 +23264,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.0
 
-  babel-plugin-formatjs@10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)):
+  babel-plugin-formatjs@10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/helper-plugin-utils': 7.28.6
@@ -23247,24 +23272,7 @@ snapshots:
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
       '@formatjs/icu-messageformat-parser': 2.11.4
-      '@formatjs/ts-transformer': 3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
-      '@types/babel__core': 7.20.5
-      '@types/babel__helper-plugin-utils': 7.10.3
-      '@types/babel__traverse': 7.28.0
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - supports-color
-      - ts-jest
-
-  babel-plugin-formatjs@10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2)):
-    dependencies:
-      '@babel/core': 7.29.0
-      '@babel/helper-plugin-utils': 7.28.6
-      '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.29.0)
-      '@babel/traverse': 7.29.0
-      '@babel/types': 7.29.0
-      '@formatjs/icu-messageformat-parser': 2.11.4
-      '@formatjs/ts-transformer': 3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2))
+      '@formatjs/ts-transformer': 3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       '@types/babel__core': 7.20.5
       '@types/babel__helper-plugin-utils': 7.10.3
       '@types/babel__traverse': 7.28.0
@@ -25148,13 +25156,13 @@ snapshots:
       eslint: 9.39.2(jiti@2.6.1)
       requireindex: 1.2.0
 
-  eslint-plugin-jest@28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2):
+  eslint-plugin-jest@28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2):
     dependencies:
       '@typescript-eslint/utils': 8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       eslint: 9.39.2(jiti@2.6.1)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
-      jest: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -27097,15 +27105,15 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)):
+  jest-cli@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest-config: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-util: 30.2.0
       jest-validate: 30.2.0
       yargs: 17.7.2
@@ -27149,7 +27157,40 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)):
+  jest-config@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)):
+    dependencies:
+      '@babel/core': 7.29.0
+      '@jest/get-type': 30.1.0
+      '@jest/pattern': 30.0.1
+      '@jest/test-sequencer': 30.2.0
+      '@jest/types': 30.2.0
+      babel-jest: 30.2.0(@babel/core@7.29.0)
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      deepmerge: 4.3.1
+      glob: 10.5.0
+      graceful-fs: 4.2.11
+      jest-circus: 30.2.0(babel-plugin-macros@3.1.0)
+      jest-docblock: 30.2.0
+      jest-environment-node: 30.2.0
+      jest-regex-util: 30.0.1
+      jest-resolve: 30.2.0
+      jest-runner: 30.2.0
+      jest-util: 30.2.0
+      jest-validate: 30.2.0
+      micromatch: 4.0.8
+      parse-json: 5.2.0
+      pretty-format: 30.2.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 22.19.11
+      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)):
     dependencies:
       '@babel/core': 7.29.0
       '@jest/get-type': 30.1.0
@@ -27177,7 +27218,7 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 22.19.17
-      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
+      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -27562,11 +27603,11 @@ snapshots:
       string-length: 5.0.1
       strip-ansi: 7.1.2
 
-  jest-watch-typeahead@3.0.1(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))):
+  jest-watch-typeahead@3.0.1(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))):
     dependencies:
       ansi-escapes: 7.2.0
       chalk: 5.6.2
-      jest: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-regex-util: 30.0.1
       jest-watcher: 30.2.0
       slash: 5.1.0
@@ -27647,12 +27688,12 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)):
+  jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)):
     dependencies:
-      '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      '@jest/core': 30.2.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       '@jest/types': 30.2.0
       import-local: 3.2.0
-      jest-cli: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest-cli: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -31362,32 +31403,12 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2):
+  ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2):
     dependencies:
       bs-logger: 0.2.6
       ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
-      jest: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
-      jest-util: 29.7.0
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.7.2
-      typescript: 5.9.2
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.29.0
-      '@jest/transform': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.29.0)
-    optional: true
-
-  ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))(typescript@5.9.2):
-    dependencies:
-      bs-logger: 0.2.6
-      ejs: 3.1.10
-      fast-json-stable-stringify: 2.1.0
-      jest: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2

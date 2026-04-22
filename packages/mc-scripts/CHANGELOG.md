@@ -1,5 +1,26 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.4.2
+
+### Patch Changes
+
+- [#3979](https://github.com/commercetools/merchant-center-application-kit/pull/3979) [`35a222d`](https://github.com/commercetools/merchant-center-application-kit/commit/35a222d8e0581d82cf9691fb26abb6c1b4182bc3) Thanks [@misama-ct](https://github.com/misama-ct)! - Drop the `serve-handler` dependency from `mc-scripts serve` to close the CVE-2026-26996 ReDoS in `minimatch@3.x` (pulled in transitively, no upstream fix available). Replaced with `sirv`. No change to the command's observable behavior.
+
+- [#3981](https://github.com/commercetools/merchant-center-application-kit/pull/3981) [`9920424`](https://github.com/commercetools/merchant-center-application-kit/commit/992042409613149995261796d042a14d6280bb5e) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Fix Vite production build crashing at startup with a TDZ `TypeError` (e.g. `"aM is undefined"`) in `@commercetools-uikit/icons` caused by a chunk-level cycle between the `icons` and `app-shell` chunks.
+
+  The Vite build no longer passes `output.manualChunks` to Rollup — the declarative form did not claim transitive deps, so shared packages (`@babel/runtime-corejs3`, `@emotion/react`, uikit internals) could land in one chunk that was also imported back from another, producing a runtime cycle on first evaluation. Rollup's default chunking handles co-location correctly. The Webpack build is unchanged.
+
+  Adds `vite-plugin-chunk-cycle-check`, a build-time regression guard that fails the build if the emitted chunk graph contains circular imports.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.4.2
+  - @commercetools-frontend/application-config@27.4.2
+  - @commercetools-frontend/assets@27.4.2
+  - @commercetools-frontend/babel-preset-mc-app@27.4.2
+  - @commercetools-frontend/constants@27.4.2
+  - @commercetools-frontend/mc-dev-authentication@27.4.2
+  - @commercetools-frontend/mc-html-template@27.4.2
+
 ## 27.4.1
 
 ### Patch Changes
