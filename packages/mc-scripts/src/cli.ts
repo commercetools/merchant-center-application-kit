@@ -144,9 +144,9 @@ async function run() {
       'Serves previously built and compiled application from the "public" folder.'
     )
     .option(
-      '--handle-auth-routes',
-      '(optional) If defined, requests to `/login*` and `/logout*` are passed through to the SPA fallback instead of being intercepted by the built-in login/logout handlers. Use this for applications that own the auth routes themselves (e.g. `application-authentication`).',
-      false
+      '--handle-auth-routes <enabled>',
+      '(optional) Whether `/login*` and `/logout*` are intercepted by the built-in login/logout handlers (`true`, the default) or passed through to the SPA fallback (`false`). Set to `false` for applications that own those routes themselves (e.g. `application-authentication`).',
+      'true'
     )
     .action(async (options: TCliCommandServeOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
@@ -160,7 +160,7 @@ async function run() {
 
       const serveCommand = await import('./commands/serve');
       const server = await serveCommand.default({
-        handleAuthRoutes: options.handleAuthRoutes,
+        handleAuthRoutes: options.handleAuthRoutes !== 'false',
       });
       const address = server.address();
       const boundPort =

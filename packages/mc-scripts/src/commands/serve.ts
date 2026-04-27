@@ -20,7 +20,7 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   const publicPath = options.publicPath ?? paths.appBuild;
   const applicationConfig =
     options.applicationConfig ?? (await processConfig());
-  const handleAuthRoutes = options.handleAuthRoutes ?? false;
+  const handleAuthRoutes = options.handleAuthRoutes ?? true;
   const isLocalMcApi =
     applicationConfig.env.mcApiUrl.startsWith('http://localhost');
 
@@ -34,9 +34,9 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
 
   const server = http.createServer((request, response) => {
     // Apps that own the `/login*` / `/logout*` routes themselves (e.g.
-    // `application-authentication`) opt out of all auth-route handling so
+    // `application-authentication`) opt out via `handleAuthRoutes: false` so
     // those paths flow through to the SPA fallback like any other route.
-    if (!handleAuthRoutes) {
+    if (handleAuthRoutes) {
       // Localhost-only: inline replacement for the login/logout UI that
       // `mc-dev-authentication` used to ship as static HTML (#3734).
       if (isLocalMcApi && request.url?.startsWith('/login/authorize')) {

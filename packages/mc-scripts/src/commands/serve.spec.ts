@@ -327,18 +327,18 @@ describe('mc-scripts serve', () => {
     });
   });
 
-  // --- handleAuthRoutes opt-in --------------------------------------------
+  // --- handleAuthRoutes opt-out -------------------------------------------
   // Intent: applications that own the `/login*` / `/logout*` route shape
   // themselves (e.g. `application-authentication`) need the static server
   // to stop intercepting those paths so the SPA fallback can handle them.
-  // Setting `handleAuthRoutes: true` (CLI: `--handle-auth-routes`) disables
-  // all three auth-route branches as a bundle, regardless of whether
-  // `mcApiUrl` is localhost. The favicon rewrite is unaffected.
+  // Setting `handleAuthRoutes: false` (CLI: `--handle-auth-routes false`)
+  // disables all three auth-route branches as a bundle, regardless of
+  // whether `mcApiUrl` is localhost. The favicon rewrite is unaffected.
 
-  describe('with handleAuthRoutes enabled (localhost mcApiUrl)', () => {
+  describe('with handleAuthRoutes disabled (localhost mcApiUrl)', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'http://localhost:8080', {
-        handleAuthRoutes: true,
+        handleAuthRoutes: false,
       });
     });
 
@@ -373,10 +373,10 @@ describe('mc-scripts serve', () => {
     });
   });
 
-  describe('with handleAuthRoutes enabled (non-localhost mcApiUrl)', () => {
+  describe('with handleAuthRoutes disabled (non-localhost mcApiUrl)', () => {
     beforeEach(async () => {
       context = await startServer(fixtureDir, 'https://mc.example.com', {
-        handleAuthRoutes: true,
+        handleAuthRoutes: false,
       });
     });
 

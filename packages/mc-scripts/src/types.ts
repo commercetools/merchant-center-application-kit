@@ -20,7 +20,7 @@ export type TCliCommandConfigSyncCIOptions = {
 };
 
 export type TCliCommandServeOptions = {
-  handleAuthRoutes: boolean;
+  handleAuthRoutes: string;
 };
 
 export type TCliCommandLoginOptions = {
