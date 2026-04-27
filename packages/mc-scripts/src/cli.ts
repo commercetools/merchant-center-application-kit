@@ -148,6 +148,14 @@ async function run() {
       '(optional) If defined, requests to `/login*` and `/logout*` are passed through to the SPA fallback instead of being intercepted by the built-in login/logout handlers. Use this for applications that own the auth routes themselves (e.g. `application-authentication`).',
       false
     )
+    .addHelpText(
+      'after',
+      `
+Examples:
+  $ mc-scripts serve
+  $ mc-scripts serve --handle-auth-routes
+`
+    )
     .action(async (options: TCliCommandServeOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
 
