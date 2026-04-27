@@ -19,6 +19,10 @@ export type TCliCommandConfigSyncCIOptions = {
   dryRun: boolean;
 };
 
+export type TCliCommandServeOptions = {
+  handleAuthRoutes: boolean;
+};
+
 export type TCliCommandLoginOptions = {
   mcApiUrl?: string;
   projectKey?: string;
