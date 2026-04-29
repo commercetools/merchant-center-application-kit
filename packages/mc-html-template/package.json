@@ -37,7 +37,7 @@
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/node24": "^24.0.0",
     "@types/serialize-javascript": "^5.0.2",
     "html-webpack-plugin": "5.6.3",
     "webpack": "5.105.1"
