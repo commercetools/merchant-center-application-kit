@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.5.0
+
+### Minor Changes
+
+- [#3986](https://github.com/commercetools/merchant-center-application-kit/pull/3986) [`6fc29f1`](https://github.com/commercetools/merchant-center-application-kit/commit/6fc29f11ea65ead944760edf20c7c5adfd871359) Thanks [@misama-ct](https://github.com/misama-ct)! - fix(security): bump `terser-webpack-plugin` to `^5.5.0` and `css-minimizer-webpack-plugin` to `^8.0.0` to remove transitive `serialize-javascript@6.0.2` (GHSA-5c6j-r48x-rmvq) from the dependency graph. `terser-webpack-plugin` 5.4.0+ no longer depends on `serialize-javascript` at all, and `css-minimizer-webpack-plugin` 8 requires `serialize-javascript@^7.0.3`. Also bumps `postcss` to `^8.5.12` to satisfy the new `cssnano@7` peer dependency.
+
+  BREAKING: minimum supported Node.js is now `20.x` (was `18.x || 20.x || >=22.0.0`), to match `css-minimizer-webpack-plugin@8`'s `>= 20.9` engine requirement.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.5.0
+  - @commercetools-frontend/application-config@27.5.0
+  - @commercetools-frontend/assets@27.5.0
+  - @commercetools-frontend/babel-preset-mc-app@27.5.0
+  - @commercetools-frontend/constants@27.5.0
+  - @commercetools-frontend/mc-dev-authentication@27.5.0
+  - @commercetools-frontend/mc-html-template@27.5.0
+
 ## 27.4.2
 
 ### Patch Changes
