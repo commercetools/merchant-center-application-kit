@@ -73,13 +73,19 @@ const writeServedFiles = (): string => {
 
 const startServer = async (
   publicPath: string,
-  mcApiUrl: string
+  mcApiUrl: string,
+  extraOptions: { handleAuthRoutes?: boolean } = {}
 ): Promise<ServerContext> => {
   const applicationConfig = {
     env: { mcApiUrl },
   } as unknown as ApplicationRuntimeConfig;
 
-  const server = await run({ port: 0, publicPath, applicationConfig });
+  const server = await run({
+    port: 0,
+    publicPath,
+    applicationConfig,
+    ...extraOptions,
+  });
   const address = server.address();
   if (!address || typeof address !== 'object') {
     throw new Error('Expected server to bind to an address');
@@ -318,6 +324,74 @@ describe('mc-scripts serve', () => {
     it('returns 404 for /logout (no SPA fallback)', async () => {
       const res = await fetch(`${context!.baseUrl}/logout`);
       expect(res.status).toBe(404);
+    });
+  });
+
+  // --- handleAuthRoutes opt-out -------------------------------------------
+  // Intent: applications that own the `/login*` / `/logout*` route shape
+  // themselves (e.g. `application-authentication`) need the static server
+  // to stop intercepting those paths so the SPA fallback can handle them.
+  // Setting `handleAuthRoutes: false` (CLI: `--handle-auth-routes false`)
+  // disables all three auth-route branches as a bundle, regardless of
+  // whether `mcApiUrl` is localhost. The favicon rewrite is unaffected.
+
+  describe('with handleAuthRoutes disabled (localhost mcApiUrl)', () => {
+    beforeEach(async () => {
+      context = await startServer(fixtureDir, 'http://localhost:8080', {
+        handleAuthRoutes: false,
+      });
+    });
+
+    it('falls through /login/authorize to the SPA instead of redirecting', async () => {
+      const res = await fetch(
+        `${context!.baseUrl}/login/authorize?foo=bar&baz=qux`,
+        { redirect: 'manual' }
+      );
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /logout to the SPA instead of returning the clear-session text', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through bare /login to the SPA instead of returning 404', async () => {
+      const res = await fetch(`${context!.baseUrl}/login`);
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('still rewrites /favicon.ico to /favicon.png', async () => {
+      const res = await fetch(`${context!.baseUrl}/favicon.ico`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toBe('image/png');
+      expect(Buffer.from(await res.arrayBuffer())).toEqual(FAVICON_PNG);
+    });
+  });
+
+  describe('with handleAuthRoutes disabled (non-localhost mcApiUrl)', () => {
+    beforeEach(async () => {
+      context = await startServer(fixtureDir, 'https://mc.example.com', {
+        handleAuthRoutes: false,
+      });
+    });
+
+    it('falls through /login/authorize to the SPA instead of returning 404', async () => {
+      const res = await fetch(`${context!.baseUrl}/login/authorize?foo=bar`, {
+        redirect: 'manual',
+      });
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /logout to the SPA instead of returning 404', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout`);
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
     });
   });
 });
