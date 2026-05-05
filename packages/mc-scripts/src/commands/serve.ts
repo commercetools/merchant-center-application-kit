@@ -12,6 +12,7 @@ type RunOptions = {
   port?: number;
   publicPath?: string;
   applicationConfig?: ApplicationRuntimeConfig;
+  handleAuthRoutes?: boolean;
 };
 
 async function run(options: RunOptions = {}): Promise<http.Server> {
@@ -19,6 +20,7 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   const publicPath = options.publicPath ?? paths.appBuild;
   const applicationConfig =
     options.applicationConfig ?? (await processConfig());
+  const handleAuthRoutes = options.handleAuthRoutes ?? true;
   const isLocalMcApi =
     applicationConfig.env.mcApiUrl.startsWith('http://localhost');
 
@@ -31,28 +33,33 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   });
 
   const server = http.createServer((request, response) => {
-    // Localhost-only: inline replacement for the login/logout UI that
-    // `mc-dev-authentication` used to ship as static HTML (#3734).
-    if (isLocalMcApi && request.url?.startsWith('/login/authorize')) {
-      const redirectTo = new URL(request.url, applicationConfig.env.mcApiUrl);
-      response.writeHead(301, { Location: redirectTo.toString() }).end();
-      return;
-    }
-    if (isLocalMcApi && request.url?.startsWith('/logout')) {
-      response.end('Please clear your session storage.');
-      return;
-    }
+    // Apps that own the `/login*` / `/logout*` routes themselves (e.g.
+    // `application-authentication`) opt out via `handleAuthRoutes: false` so
+    // those paths flow through to the SPA fallback like any other route.
+    if (handleAuthRoutes) {
+      // Localhost-only: inline replacement for the login/logout UI that
+      // `mc-dev-authentication` used to ship as static HTML (#3734).
+      if (isLocalMcApi && request.url?.startsWith('/login/authorize')) {
+        const redirectTo = new URL(request.url, applicationConfig.env.mcApiUrl);
+        response.writeHead(301, { Location: redirectTo.toString() }).end();
+        return;
+      }
+      if (isLocalMcApi && request.url?.startsWith('/logout')) {
+        response.end('Please clear your session storage.');
+        return;
+      }
 
-    // Preserve the pre-swap contract: any other `/login*` or `/logout*`
-    // request (bare `/login`, non-localhost auth callbacks, etc.) must NOT
-    // fall back to the SPA — that would mask OAuth callback
-    // misconfigurations by rendering the app on a URL the backend owns.
-    if (
-      request.url?.startsWith('/login') ||
-      request.url?.startsWith('/logout')
-    ) {
-      response.writeHead(404).end();
-      return;
+      // Preserve the pre-swap contract: any other `/login*` or `/logout*`
+      // request (bare `/login`, non-localhost auth callbacks, etc.) must NOT
+      // fall back to the SPA — that would mask OAuth callback
+      // misconfigurations by rendering the app on a URL the backend owns.
+      if (
+        request.url?.startsWith('/login') ||
+        request.url?.startsWith('/logout')
+      ) {
+        response.writeHead(404).end();
+        return;
+      }
     }
 
     // Absorb `/favicon*` variants (e.g. `/favicon.ico`, `/favicon-32x32.png`)

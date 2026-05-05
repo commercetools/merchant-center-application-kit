@@ -12,6 +12,7 @@ import type {
   TCliCommandConfigSyncCIOptions,
   TCliCommandSetDeploymentPreviewOptions,
   TCliCommandLoginOptions,
+  TCliCommandServeOptions,
 } from './types';
 import doesFileExist from './utils/does-file-exist';
 
@@ -142,7 +143,12 @@ async function run() {
     .description(
       'Serves previously built and compiled application from the "public" folder.'
     )
-    .action(async () => {
+    .option(
+      '--handle-auth-routes <enabled>',
+      '(optional) Whether `/login*` and `/logout*` are intercepted by the built-in login/logout handlers (`true`, the default) or passed through to the SPA fallback (`false`). Set to `false` for applications that own those routes themselves (e.g. `application-authentication`).',
+      'true'
+    )
+    .action(async (options: TCliCommandServeOptions) => {
       const globalOptions = program.opts<TCliGlobalOptions>();
 
       // Load dotenv files into the process environment.
@@ -153,7 +159,9 @@ async function run() {
       process.env.NODE_ENV = 'production';
 
       const serveCommand = await import('./commands/serve');
-      const server = await serveCommand.default();
+      const server = await serveCommand.default({
+        handleAuthRoutes: options.handleAuthRoutes !== 'false',
+      });
       const address = server.address();
       const boundPort =
         address && typeof address === 'object' ? address.port : '?';
