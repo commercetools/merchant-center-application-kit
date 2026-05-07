@@ -1,9 +1,6 @@
 import http from 'http';
 import sirv from 'sirv';
-import {
-  type ApplicationRuntimeConfig,
-  processConfig,
-} from '@commercetools-frontend/application-config';
+import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import paths from '../config/paths';
 
 const DEFAULT_PORT = 3001;
@@ -19,19 +16,9 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   const port = options.port ?? DEFAULT_PORT;
   const publicPath = options.publicPath ?? paths.appBuild;
   const handleAuthRoutes = options.handleAuthRoutes ?? true;
-  // Only resolve the application config when the auth-route handlers actually
-  // need it. With `handleAuthRoutes: false`, the server is a pure static file
-  // server — skipping `processConfig()` lets consumers (e.g.
-  // `application-authentication`) run `serve` without wiring up dotenv files
-  // or the `${env:...}` substitutions that `processConfig` would otherwise
-  // demand.
-  let applicationConfig: ApplicationRuntimeConfig | undefined;
-  let isLocalMcApi = false;
-  if (handleAuthRoutes) {
-    applicationConfig = options.applicationConfig ?? (await processConfig());
-    isLocalMcApi =
-      applicationConfig.env.mcApiUrl.startsWith('http://localhost');
-  }
+  const { applicationConfig } = options;
+  const isLocalMcApi =
+    applicationConfig?.env.mcApiUrl.startsWith('http://localhost') ?? false;
 
   // `single: true` gives us the SPA fallback — any unmatched path is served as
   // the root `index.html`. This replaces the complex glob workaround that
@@ -42,9 +29,13 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
   });
 
   const server = http.createServer((request, response) => {
-    // Apps that own the `/login*` / `/logout*` routes themselves (e.g.
-    // `application-authentication`) opt out via `handleAuthRoutes: false` so
-    // those paths flow through to the SPA fallback like any other route.
+    // The auth-route handlers are the only consumer of `applicationConfig`,
+    // so the branch is entered only when both the flag is on AND the caller
+    // supplied a config. The CLI pairs the two — see `serve` action in
+    // `cli.ts`. Apps that own the `/login*` / `/logout*` routes themselves
+    // (e.g. `application-authentication`) opt out via
+    // `--handle-auth-routes=false` so those paths flow through to the SPA
+    // fallback like any other route.
     if (handleAuthRoutes && applicationConfig) {
       // Localhost-only: inline replacement for the login/logout UI that
       // `mc-dev-authentication` used to ship as static HTML (#3734).

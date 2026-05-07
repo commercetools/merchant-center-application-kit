@@ -158,9 +158,23 @@ async function run() {
       // Do this as the first thing so that any code reading it knows the right env.
       process.env.NODE_ENV = 'production';
 
+      const handleAuthRoutes = options.handleAuthRoutes !== 'false';
+
+      // The application config is consumed only by `serve`'s auth-route
+      // handlers. When those are disabled, skip `processConfig()` entirely
+      // so the command can run as a pure static file server with no dotenv
+      // files or `${env:...}` substitutions configured (the
+      // `application-authentication` use case).
+      const applicationConfig = handleAuthRoutes
+        ? await (
+            await import('@commercetools-frontend/application-config')
+          ).processConfig()
+        : undefined;
+
       const serveCommand = await import('./commands/serve');
       const server = await serveCommand.default({
-        handleAuthRoutes: options.handleAuthRoutes !== 'false',
+        handleAuthRoutes,
+        applicationConfig,
       });
       const address = server.address();
       const boundPort =

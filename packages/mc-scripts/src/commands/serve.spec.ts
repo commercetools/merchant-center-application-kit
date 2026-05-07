@@ -49,20 +49,6 @@ import fetch from 'node-fetch';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import run from './serve';
 
-// Make `processConfig()` throw if anything reaches it. The serve command
-// should call it only when `handleAuthRoutes` is true AND no
-// `applicationConfig` is provided — every test in this file either sets
-// `handleAuthRoutes: false` or passes an explicit `applicationConfig`, so
-// the real `processConfig` (which reads dotenv files / `${env:...}`
-// substitutions from disk) must never run.
-jest.mock('@commercetools-frontend/application-config', () => ({
-  processConfig: jest.fn(() => {
-    throw new Error(
-      'processConfig() should not be called: tests must either pass an explicit applicationConfig or disable handleAuthRoutes'
-    );
-  }),
-}));
-
 // 1x1 transparent PNG (smallest valid PNG).
 const FAVICON_PNG = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
@@ -410,12 +396,12 @@ describe('mc-scripts serve', () => {
   });
 
   // --- handleAuthRoutes disabled without application config ---------------
-  // Intent: with `handleAuthRoutes: false`, the command must not touch the
-  // application config — no `processConfig()` call, no dotenv files, no
-  // `${env:...}` substitutions. This unblocks consumers like
-  // `application-authentication` that own the auth routes themselves and
-  // want `mc-scripts serve` to act as a pure static file server. The mock
-  // at the top of the file would throw if `processConfig` were called.
+  // Intent: pin `serve.ts`'s contract that it accepts an _optional_
+  // `applicationConfig` and acts as a pure static file server when none is
+  // supplied — the auth-route branch is skipped. This is the shape the CLI
+  // relies on to invoke `serve` as a pure static server when
+  // `--handle-auth-routes=false` is passed (no `processConfig()` call, no
+  // dotenv files, no `${env:...}` substitutions).
 
   describe('with handleAuthRoutes disabled and no applicationConfig', () => {
     beforeEach(async () => {
@@ -431,10 +417,7 @@ describe('mc-scripts serve', () => {
       context = { server, baseUrl: `http://127.0.0.1:${address.port}` };
     });
 
-    it('starts the server without resolving the application config', async () => {
-      // Reaching this point already proves `processConfig()` was not called
-      // (it would throw — see the jest.mock at the top of this file). Sanity
-      // check the server is actually listening.
+    it('starts and serves the SPA without an applicationConfig', async () => {
       const res = await fetch(`${context!.baseUrl}/`);
       expect(res.status).toBe(200);
       expect(await res.text()).toBe(INDEX_HTML);
