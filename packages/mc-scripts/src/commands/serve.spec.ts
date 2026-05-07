@@ -394,4 +394,54 @@ describe('mc-scripts serve', () => {
       expect(await res.text()).toBe(INDEX_HTML);
     });
   });
+
+  // --- handleAuthRoutes disabled without application config ---------------
+  // Intent: pin `serve.ts`'s contract that it accepts an _optional_
+  // `applicationConfig` and acts as a pure static file server when none is
+  // supplied — the auth-route branch is skipped. This is the shape the CLI
+  // relies on to invoke `serve` as a pure static server when
+  // `--handle-auth-routes=false` is passed (no `processConfig()` call, no
+  // dotenv files, no `${env:...}` substitutions).
+
+  describe('with handleAuthRoutes disabled and no applicationConfig', () => {
+    beforeEach(async () => {
+      const server = await run({
+        port: 0,
+        publicPath: fixtureDir,
+        handleAuthRoutes: false,
+      });
+      const address = server.address();
+      if (!address || typeof address !== 'object') {
+        throw new Error('Expected server to bind to an address');
+      }
+      context = { server, baseUrl: `http://127.0.0.1:${address.port}` };
+    });
+
+    it('starts and serves the SPA without an applicationConfig', async () => {
+      const res = await fetch(`${context!.baseUrl}/`);
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /login to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/login`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /logout to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through arbitrary deep links to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/some/nested/route`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+  });
 });
