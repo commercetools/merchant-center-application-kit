@@ -145,7 +145,7 @@ async function run() {
     )
     .option(
       '--handle-auth-routes <enabled>',
-      '(optional) Whether `/login*` and `/logout*` are intercepted by the built-in login/logout handlers (`true`, the default) or passed through to the SPA fallback (`false`). Set to `false` for applications that own those routes themselves (e.g. `application-authentication`).',
+      '(optional) Whether `/login*` and `/logout*` are intercepted by the built-in login/logout handlers (`true`, the default) or passed through to the SPA fallback (`false`). Set to `false` for applications that own those routes themselves (e.g. `application-authentication`); doing so also skips loading the application config entirely, so the command can run as a pure static file server with no dotenv files or `${env:...}` substitutions configured.',
       'true'
     )
     .action(async (options: TCliCommandServeOptions) => {

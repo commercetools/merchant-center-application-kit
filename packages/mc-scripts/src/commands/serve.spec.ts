@@ -49,6 +49,20 @@ import fetch from 'node-fetch';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
 import run from './serve';
 
+// Make `processConfig()` throw if anything reaches it. The serve command
+// should call it only when `handleAuthRoutes` is true AND no
+// `applicationConfig` is provided — every test in this file either sets
+// `handleAuthRoutes: false` or passes an explicit `applicationConfig`, so
+// the real `processConfig` (which reads dotenv files / `${env:...}`
+// substitutions from disk) must never run.
+jest.mock('@commercetools-frontend/application-config', () => ({
+  processConfig: jest.fn(() => {
+    throw new Error(
+      'processConfig() should not be called: tests must either pass an explicit applicationConfig or disable handleAuthRoutes'
+    );
+  }),
+}));
+
 // 1x1 transparent PNG (smallest valid PNG).
 const FAVICON_PNG = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
@@ -391,6 +405,59 @@ describe('mc-scripts serve', () => {
     it('falls through /logout to the SPA instead of returning 404', async () => {
       const res = await fetch(`${context!.baseUrl}/logout`);
       expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+  });
+
+  // --- handleAuthRoutes disabled without application config ---------------
+  // Intent: with `handleAuthRoutes: false`, the command must not touch the
+  // application config — no `processConfig()` call, no dotenv files, no
+  // `${env:...}` substitutions. This unblocks consumers like
+  // `application-authentication` that own the auth routes themselves and
+  // want `mc-scripts serve` to act as a pure static file server. The mock
+  // at the top of the file would throw if `processConfig` were called.
+
+  describe('with handleAuthRoutes disabled and no applicationConfig', () => {
+    beforeEach(async () => {
+      const server = await run({
+        port: 0,
+        publicPath: fixtureDir,
+        handleAuthRoutes: false,
+      });
+      const address = server.address();
+      if (!address || typeof address !== 'object') {
+        throw new Error('Expected server to bind to an address');
+      }
+      context = { server, baseUrl: `http://127.0.0.1:${address.port}` };
+    });
+
+    it('starts the server without resolving the application config', async () => {
+      // Reaching this point already proves `processConfig()` was not called
+      // (it would throw — see the jest.mock at the top of this file). Sanity
+      // check the server is actually listening.
+      const res = await fetch(`${context!.baseUrl}/`);
+      expect(res.status).toBe(200);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /login to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/login`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through /logout to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/logout`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
+      expect(await res.text()).toBe(INDEX_HTML);
+    });
+
+    it('falls through arbitrary deep links to the SPA', async () => {
+      const res = await fetch(`${context!.baseUrl}/some/nested/route`);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toMatch(/text\/html/);
       expect(await res.text()).toBe(INDEX_HTML);
     });
   });
