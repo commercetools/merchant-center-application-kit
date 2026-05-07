@@ -1,5 +1,22 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.5.1
+
+### Patch Changes
+
+- [#3990](https://github.com/commercetools/merchant-center-application-kit/pull/3990) [`a8de735`](https://github.com/commercetools/merchant-center-application-kit/commit/a8de7350821ad80177b7b1c4be80682a4f8cfac0) Thanks [@misama-ct](https://github.com/misama-ct)! - `mc-scripts serve` now skips loading the application config when invoked with `--handle-auth-routes=false`. The application config is consumed only by the built-in `/login*` / `/logout*` handlers, so disabling those handlers also makes `processConfig()` (and the dotenv files / `${env:...}` substitutions it requires) unnecessary. Consumers that own the auth routes themselves (e.g. `application-authentication`) can now run `mc-scripts serve --handle-auth-routes=false` as a pure static file server with no environment wiring.
+
+  Internally, the decision lives in `cli.ts`: the `serve` action now calls `processConfig()` only when `handleAuthRoutes` is on, and passes the resulting `applicationConfig` (or `undefined`) into the `serve` command. `serve.ts` itself no longer imports `processConfig`; its `applicationConfig` option stays optional and the auth-route branch is gated on it being present.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.5.1
+  - @commercetools-frontend/application-config@27.5.1
+  - @commercetools-frontend/assets@27.5.1
+  - @commercetools-frontend/babel-preset-mc-app@27.5.1
+  - @commercetools-frontend/constants@27.5.1
+  - @commercetools-frontend/mc-dev-authentication@27.5.1
+  - @commercetools-frontend/mc-html-template@27.5.1
+
 ## 27.5.0
 
 ### Minor Changes
