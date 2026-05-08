@@ -151,16 +151,22 @@ const substituteFilePathVariablePlaceholder = (
 
   const relativePath = path.relative(workspaceRoot, normalizedPath);
 
-  // Path is safe if it's within the workspace root.
-  // Use path.relative() to avoid string prefix vulnerabilities (e.g., "/app" vs "/app-evil")
-  const isSafePath =
-    !relativePath.startsWith('..') && !path.isAbsolute(relativePath);
+  const isModuleName =
+    !filePathOrModule.startsWith('.') && !filePathOrModule.startsWith('/');
 
-  if (!isSafePath) {
-    throw new Error(
-      `Access to files outside workspace directory is not allowed: ${filePathOrModule}`
-    );
+  if (!isModuleName) {
+    // Path is safe if it's within the workspace root.
+    // Use path.relative() to avoid string prefix vulnerabilities (e.g., "/app" vs "/app-evil")
+    const isSafePath =
+      !relativePath.startsWith('..') && !path.isAbsolute(relativePath);
+
+    if (!isSafePath) {
+      throw new Error(
+        `Access to files outside workspace directory is not allowed: ${filePathOrModule}`
+      );
+    }
   }
+
   const content = fs.readFileSync(normalizedPath, {
     encoding: 'utf-8',
   });
