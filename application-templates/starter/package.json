@@ -95,5 +95,10 @@
     "@types/react-router-dom": "<6",
     "headers-polyfill": "3.2.5",
     "nwsapi": "2.2.7"
+  },
+  "overrides": {
+    "lodash": ">=4.18.0",
+    "serialize-javascript": ">=7.0.3",
+    "vite": ">=6.4.2"
   }
 }
