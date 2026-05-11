@@ -38,7 +38,7 @@
     "prop-types": "15.8.1",
     "qss": "2.0.3",
     "unfetch": "4.2.0",
-    "uuid": "9.0.1"
+    "uuid": "14.0.0"
   },
   "devDependencies": {
     "@emotion/react": "^11.14.0",

@@ -46,7 +46,7 @@
     "react-intl": "^7.1.4",
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
-    "uuid": "9.0.1",
-    "vite": "~6.4.0"
+    "uuid": "14.0.0",
+    "vite": "~6.4.2"
   }
 }
