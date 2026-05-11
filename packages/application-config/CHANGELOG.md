@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 27.5.2
+
+### Patch Changes
+
+- [#3993](https://github.com/commercetools/merchant-center-application-kit/pull/3993) [`241d4b2`](https://github.com/commercetools/merchant-center-application-kit/commit/241d4b2ee47dcea78b436111b3dbc76213dcafca) Thanks [@abreu-ct](https://github.com/abreu-ct)! - Allow module resolution from outside of workspace.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@27.5.2
+
 ## 27.5.1
 
 ### Patch Changes
