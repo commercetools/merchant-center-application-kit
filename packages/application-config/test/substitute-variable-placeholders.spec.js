@@ -110,6 +110,69 @@ describe('providing a config with env variable placeholders', () => {
   });
 });
 
+describe('path variable placeholder security', () => {
+  it('should block path traversal in bare module specifiers', () => {
+    expect(() => {
+      substituteVariablePlaceholders(
+        {
+          icon: '${path:some-pkg/../../../../etc/passwd}',
+        },
+        {
+          processEnv: {},
+          applicationPath,
+        }
+      );
+    }).toThrow('Path traversal in module specifiers is not allowed');
+  });
+
+  it('should block path traversal with nested segments in bare module specifiers', () => {
+    expect(() => {
+      substituteVariablePlaceholders(
+        {
+          icon: '${path:some-pkg/sub/../../../../../../etc/shadow}',
+        },
+        {
+          processEnv: {},
+          applicationPath,
+        }
+      );
+    }).toThrow('Path traversal in module specifiers is not allowed');
+  });
+
+  it('should allow bare module specifiers without path traversal (e.g. hoisted CI deps)', () => {
+    // Bare module specifiers like "@scope/pkg/file.svg" pass the security
+    // check even when they resolve outside the workspace root (e.g. to
+    // /layers/google.nodejs.yarn/yarn_modules/node_modules/).
+    // Here the module doesn't exist, so require.resolve throws — but the
+    // error must be MODULE_NOT_FOUND, not the security gate.
+    expect(() => {
+      substituteVariablePlaceholders(
+        {
+          icon: '${path:nonexistent-external-pkg/icon.svg}',
+        },
+        {
+          processEnv: {},
+          applicationPath,
+        }
+      );
+    }).toThrow(/Cannot (?:find|resolve) module/);
+  });
+
+  it('should allow scoped bare module specifiers without path traversal', () => {
+    expect(() => {
+      substituteVariablePlaceholders(
+        {
+          icon: '${path:@nonexistent-scope/pkg/icon.svg}',
+        },
+        {
+          processEnv: {},
+          applicationPath,
+        }
+      );
+    }).toThrow(/Cannot (?:find|resolve) module/);
+  });
+});
+
 describe('providing a config without env variable placeholders', () => {
   it('should return the config as-is', () => {
     const result = substituteVariablePlaceholders(
