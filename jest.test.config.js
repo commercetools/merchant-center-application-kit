@@ -6,7 +6,7 @@ process.env.ENABLE_NEW_JSX_TRANSFORM = 'true';
  *
  *  - "test"         — the main suite (jsdom). Uses the MC app preset which
  *                     sets up window.app, localStorage mocks, etc.
- *  - "eslint-rules" — custom ESLint rule tests (node). These use ESLint's
+ *  - "eslint-rules" — ESLint config and rule tests (node). These use ESLint's
  *                     RuleTester which requires `structuredClone` (available
  *                     in Node but not in jsdom) and has no DOM dependencies.
  *                     The MC app preset's setup files also assume jsdom
@@ -45,6 +45,7 @@ module.exports = {
         '/node_modules/',
         // Excluded here because these tests need the node environment (see below).
         'packages/eslint-config-mc-app/rules/',
+        'packages/eslint-config-mc-app/index.spec.js',
       ],
       transformIgnorePatterns: [
         // Transpile also our local packages as they are only symlinked.
@@ -58,7 +59,10 @@ module.exports = {
     {
       displayName: 'eslint-rules',
       testEnvironment: 'node',
-      testMatch: ['<rootDir>/packages/eslint-config-mc-app/rules/**/*.spec.js'],
+      testMatch: [
+        '<rootDir>/packages/eslint-config-mc-app/rules/**/*.spec.js',
+        '<rootDir>/packages/eslint-config-mc-app/index.spec.js',
+      ],
       transform: {},
     },
   ],

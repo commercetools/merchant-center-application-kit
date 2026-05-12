@@ -135,6 +135,11 @@ module.exports = [
     },
     settings: {
       'import/resolver': {
+        // The node resolver alone can't resolve non-hoisted pnpm packages
+        // or packages that only use the `exports` field (no main/module).
+        typescript: {
+          alwaysTryTypes: true,
+        },
         node: {
           extensions: allSupportedExtensions,
         },
