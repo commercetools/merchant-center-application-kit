@@ -1,5 +1,31 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 27.5.3
+
+### Patch Changes
+
+- [#3989](https://github.com/commercetools/merchant-center-application-kit/pull/3989) [`222259a`](https://github.com/commercetools/merchant-center-application-kit/commit/222259a810691eaf7904e89acddca444ac8bd0b6) Thanks [@misama-ct](https://github.com/misama-ct)! - Bump transitive dependencies via pnpm overrides to address 46 high-severity Dependabot alerts. Updated dependencies:
+
+  - `@isaacs/brace-expansion` >= 5.0.1
+  - `@remix-run/router` >= 1.23.2
+  - `@xmldom/xmldom` >= 0.8.13
+  - `axios` >= 1.15.2
+  - `immutable` >= 3.8.3
+  - `lodash-es` >= 4.17.21
+  - `minimatch@^3` ^3.1.4
+  - `minimatch@^4` ^4.2.5
+  - `minimatch@^9` ^9.0.7
+  - `minimatch@^10` ^10.2.3
+  - `path-to-regexp@^6` ^6.3.0
+  - `picomatch@^4` ^4.0.4
+  - `rollup` ^4.59.0
+  - `semver@^6` ^6.3.1
+  - `svgo` >= 2.8.1
+  - `systeminformation` >= 5.31.0
+  - `tar` >= 7.5.11
+  - `tar-fs` >= 3.1.1
+  - `undici` >= 6.24.0
+
 ## 27.5.2
 
 ## 27.5.1
