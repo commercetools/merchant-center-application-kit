@@ -47,6 +47,7 @@ describe('navigation menu', () => {
   it('should stay collapsed for small viewports', () => {
     cy.viewport(900, 800);
     cy.findAllByText('Initial').should('exist');
+    cy.findByText('Custom Views:').should('be.visible');
     cy.percySnapshot(
       // @ts-ignore
       cy.state('runnable').fullTitle(),
