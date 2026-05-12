@@ -135,6 +135,9 @@ module.exports = [
     },
     settings: {
       'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
         node: {
           extensions: allSupportedExtensions,
         },
