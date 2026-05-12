@@ -72,10 +72,21 @@ async function run() {
     experimental: {
       // https://vitejs.dev/guide/build.html#advanced-base-options
       renderBuiltUrl(filename, { hostType }) {
-        if (hostType === 'html') {
-          return `__CDN_URL__${filename}`;
+        switch (hostType) {
+          case 'html': {
+            return `__CDN_URL__${filename}`;
+          }
+          case 'css':
+            // Vite does not support `{ runtime: ... }` for assets referenced from CSS
+            // (e.g. KaTeX fonts pulled in via CopilotKit → streamdown). Use relative URLs.
+            return {
+              relative: true,
+            };
+          default:
+            return {
+              runtime: `window.__toCdnUrl(${JSON.stringify(filename)})`,
+            };
         }
-        return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` };
       },
     },
     plugins: [
