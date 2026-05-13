@@ -1,5 +1,14 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 27.5.4
+
+### Patch Changes
+
+- [#4006](https://github.com/commercetools/merchant-center-application-kit/pull/4006) [`1b2d65c`](https://github.com/commercetools/merchant-center-application-kit/commit/1b2d65c6058231bb53a6315ff5d81390f398c551) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Add `eslint-import-resolver-typescript` to the base ESLint config block so JS/JSX files can resolve non-hoisted pnpm packages and packages using only the `exports` field.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@27.5.4
+
 ## 27.5.3
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @commercetools-backend/express
 
+## 27.5.4
+
 ## 27.5.3
 
 ### Patch Changes

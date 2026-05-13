@@ -1,5 +1,12 @@
 # @commercetools-frontend/create-mc-app
 
+## 27.5.4
+
+### Patch Changes
+
+- Updated dependencies [[`fae9486`](https://github.com/commercetools/merchant-center-application-kit/commit/fae9486539443d6d66a053290ff70dcf482c7254)]:
+  - @commercetools-frontend/application-config@27.5.4
+
 ## 27.5.3
 
 ### Patch Changes
