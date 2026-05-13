@@ -20,7 +20,7 @@ async function loadMomentLocales(locale: string): Promise<void> {
   const lowercaseLocale = locale.toLowerCase();
 
   switch (lowercaseLocale) {
-  
+
     case 'de':
       await import('moment/dist/locale/de');
       break;

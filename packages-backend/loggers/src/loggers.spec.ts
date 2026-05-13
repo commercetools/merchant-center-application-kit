@@ -1,4 +1,5 @@
 import createApplicationLogger from './create-application-logger';
+import removeFieldsFormatter from './formatters/remove-fields';
 import rewriteFieldsFormatter from './formatters/rewrite-fields';
 
 describe('application logger', () => {
@@ -35,6 +36,59 @@ describe('application logger', () => {
       `);
     });
   });
+  describe('when removing fields', () => {
+    it('should omit removed paths from log output', () => {
+      // @ts-ignore
+      console._stdout.write = jest.fn();
+      const logger = createApplicationLogger({
+        json: true,
+        formatters: [removeFieldsFormatter(['meta.req.headers.authorization'])],
+      });
+      logger.info('Test log', {
+        meta: {
+          req: {
+            headers: {
+              Accept: 'application/json',
+              authorization: 'Bearer secret',
+            },
+          },
+        },
+      });
+      // @ts-ignore
+      expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
+        [
+          "{"level":"info","message":"Test log","meta":{"req":{"headers":{"Accept":"application/json"}}}}
+        ",
+        ]
+      `);
+    });
+
+    it('should not mutate meta when removing fields', () => {
+      // @ts-ignore
+      console._stdout.write = jest.fn();
+      const logger = createApplicationLogger({
+        json: true,
+        formatters: [removeFieldsFormatter(['meta.secret'])],
+      });
+      const meta = {
+        secret: 'do-not-touch-original',
+        keep: true,
+      };
+      logger.info('Test log', { meta });
+      expect(meta).toEqual({
+        secret: 'do-not-touch-original',
+        keep: true,
+      });
+      // @ts-ignore
+      expect(console._stdout.write.mock.lastCall).toMatchInlineSnapshot(`
+        [
+          "{"level":"info","message":"Test log","meta":{"keep":true}}
+        ",
+        ]
+      `);
+    });
+  });
+
   describe('when not replacing field', () => {
     it('should log and add but not replace fields', () => {
       // @ts-ignore
