@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.5.4
+
+### Patch Changes
+
+- [#4009](https://github.com/commercetools/merchant-center-application-kit/pull/4009) [`fae9486`](https://github.com/commercetools/merchant-center-application-kit/commit/fae9486539443d6d66a053290ff70dcf482c7254) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Scope the `rollup` pnpm override to `rollup@^4` so it only affects Rollup 4.x consumers.
+
+  The unscoped `"rollup": "^4.59.0"` override introduced in 27.5.3 forced `@preconstruct/cli`'s `rollup@^2` dependency to resolve to Rollup 4.x. Rollup 4 no longer emits `Object.defineProperty(exports, '__esModule', { value: true })` in CJS output by default, which broke `jest.spyOn` on namespace imports (`import * as X from 'module'`) in downstream consumers.
+
+- Updated dependencies [[`fae9486`](https://github.com/commercetools/merchant-center-application-kit/commit/fae9486539443d6d66a053290ff70dcf482c7254)]:
+  - @commercetools-frontend/actions-global@27.5.4
+  - @commercetools-frontend/application-components@27.5.4
+  - @commercetools-frontend/application-config@27.5.4
+  - @commercetools-frontend/application-shell-connectors@27.5.4
+  - @commercetools-frontend/browser-history@27.5.4
+  - @commercetools-frontend/constants@27.5.4
+  - @commercetools-frontend/i18n@27.5.4
+  - @commercetools-frontend/l10n@27.5.4
+  - @commercetools-frontend/notifications@27.5.4
+  - @commercetools-frontend/permissions@27.5.4
+  - @commercetools-frontend/react-notifications@27.5.4
+  - @commercetools-frontend/sdk@27.5.4
+  - @commercetools-frontend/sentry@27.5.4
+  - @commercetools-frontend/url-utils@27.5.4
+  - @commercetools-frontend/assets@27.5.4
+
 ## 27.5.3
 
 ### Patch Changes
