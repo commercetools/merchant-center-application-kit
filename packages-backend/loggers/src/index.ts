@@ -5,4 +5,5 @@ export { default as createAccessLoggerMiddleware } from './middlewares/create-ac
 export { default as createApplicationLogger } from './create-application-logger';
 
 // Formatters
+export { default as redactFieldsFormatter } from './formatters/redact-fields';
 export { default as rewriteFieldsFormatter } from './formatters/rewrite-fields';
