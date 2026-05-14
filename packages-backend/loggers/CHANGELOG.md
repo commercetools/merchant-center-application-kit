@@ -1,5 +1,11 @@
 # @commercetools-backend/loggers
 
+## 27.6.0
+
+### Minor Changes
+
+- [#4010](https://github.com/commercetools/merchant-center-application-kit/pull/4010) [`b6bdadb`](https://github.com/commercetools/merchant-center-application-kit/commit/b6bdadb6c3af3ddb9a6c35f4b81bbb7f7e74405e) Thanks [@kittsville](https://github.com/kittsville)! - Add helper to redact entire value from sensitive log metadata
+
 ## 27.5.4
 
 ## 27.5.3

@@ -1,5 +1,7 @@
 # @commercetools-frontend/url-utils
 
+## 27.6.0
+
 ## 27.5.4
 
 ### Patch Changes
