@@ -20,7 +20,7 @@ const defaultModuleExportsResolver = resolveRelativePath(
 
 module.exports = {
   displayName: 'test',
-  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'json'],
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json'],
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -42,6 +42,7 @@ module.exports = {
     url: 'https://mc.europe-west1.gcp.commercetools.com/',
   },
   testPathIgnorePatterns: ['node_modules', 'cypress'],
+  transformIgnorePatterns: ['node_modules/(?!(uuid|\\.pnpm))'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
     '^.+\\.(js|jsx|mjs|ts|tsx)$': defaultTransformBabelJest,
