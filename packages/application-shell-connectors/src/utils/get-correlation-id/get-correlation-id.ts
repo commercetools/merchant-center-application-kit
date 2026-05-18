@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import { v4 as uuid } from 'uuid';
 import selectProjectKeyFromUrl from '../select-project-key-from-url';
 

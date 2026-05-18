@@ -39,7 +39,7 @@
     "omit-empty-es": "1.2.0",
     "prop-types": "15.8.1",
     "tiny-warning": "1.0.3",
-    "uuid": "9.0.1",
+    "uuid": "14.0.0",
     "wait-for-observables": "1.0.3"
   },
   "devDependencies": {
