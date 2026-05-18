@@ -195,9 +195,6 @@ importers:
       '@types/testing-library__jest-dom':
         specifier: ^5.14.9
         version: 5.14.9
-      '@types/uuid':
-        specifier: ^9.0.3
-        version: 9.0.8
       '@types/webpack-env':
         specifier: ^1.18.8
         version: 1.18.8
@@ -1717,9 +1714,6 @@ importers:
       '@types/redux-logger':
         specifier: 3.0.13
         version: 3.0.13
-      '@types/uuid':
-        specifier: ^9.0.3
-        version: 9.0.8
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -1787,8 +1781,8 @@ importers:
         specifier: 4.2.0
         version: 4.2.0
       uuid:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 14.0.0
+        version: 14.0.0
     devDependencies:
       '@apollo/client':
         specifier: 3.13.9
@@ -1887,8 +1881,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       uuid:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 14.0.0
+        version: 14.0.0
       wait-for-observables:
         specifier: 1.0.3
         version: 1.0.3
@@ -2151,8 +2145,8 @@ importers:
         specifier: 7.7.2
         version: 7.7.2
       uuid:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 14.0.0
+        version: 14.0.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3018,8 +3012,8 @@ importers:
         specifier: 4.2.0
         version: 4.2.0
       uuid:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 14.0.0
+        version: 14.0.0
     devDependencies:
       '@emotion/react':
         specifier: ^11.14.0
@@ -3027,9 +3021,6 @@ importers:
       '@testing-library/react':
         specifier: 16.1.0
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@types/uuid':
-        specifier: ^9.0.3
-        version: 9.0.8
       jest-mock:
         specifier: 29.7.0
         version: 29.7.0
@@ -3378,9 +3369,6 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
-      '@types/uuid':
-        specifier: ^9.0.3
-        version: 9.0.8
       '@vitejs/plugin-react':
         specifier: 4.7.0
         version: 4.7.0(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
@@ -3412,8 +3400,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4(react@19.0.0)
       uuid:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 14.0.0
+        version: 14.0.0
       vite:
         specifier: ~6.4.2
         version: 6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1)
@@ -7526,9 +7514,6 @@ packages:
 
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
-
-  '@types/uuid@9.0.8':
-    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@types/webpack-bundle-analyzer@4.7.0':
     resolution: {integrity: sha512-c5i2ThslSNSG8W891BRvOd/RoCjI2zwph8maD22b1adtSns20j+0azDDMCK06DiVrzTgnwiDl5Ntmu1YRJw8Sg==}
@@ -12028,6 +12013,7 @@ packages:
     resolution: {integrity: sha512-t0etAxTUk1w5MYdNOkZBZ8rvYYN5iL+2dHCCx/DpkFm/bW28M6y5nUS83D4XdZiHy35Fpaw6LBb+F88fHZnVCw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
+    bundledDependencies: []
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
@@ -15581,13 +15567,12 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
-  uuid@8.3.2:
-    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+  uuid@14.0.0:
+    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
     hasBin: true
 
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+  uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
@@ -22378,8 +22363,6 @@ snapshots:
   '@types/unist@3.0.3': {}
 
   '@types/use-sync-external-store@0.0.6': {}
-
-  '@types/uuid@9.0.8': {}
 
   '@types/webpack-bundle-analyzer@4.7.0(@swc/core@1.15.1)':
     dependencies:
@@ -32018,9 +32001,9 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  uuid@8.3.2: {}
+  uuid@14.0.0: {}
 
-  uuid@9.0.1: {}
+  uuid@8.3.2: {}
 
   uvu@0.5.6:
     dependencies:

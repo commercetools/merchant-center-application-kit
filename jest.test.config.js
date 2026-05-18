@@ -48,8 +48,8 @@ module.exports = {
         'packages/eslint-config-mc-app/index.spec.js',
       ],
       transformIgnorePatterns: [
-        // Transpile also our local packages as they are only symlinked.
-        'node_modules/(?!(@commercetools-[frontend|backend]+)/)',
+        // Transpile local symlinked packages and ESM-only deps (uuid).
+        'node_modules/(?!\\.pnpm/uuid@)(?!(@commercetools-[frontend|backend]+|uuid)/)',
       ],
       testEnvironment: 'jsdom',
     },
