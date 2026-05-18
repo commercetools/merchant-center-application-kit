@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 27.6.1
+
+### Patch Changes
+
+- [#4012](https://github.com/commercetools/merchant-center-application-kit/pull/4012) [`063cef2`](https://github.com/commercetools/merchant-center-application-kit/commit/063cef2df4098074d1180bca1721150386570b75) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Upgrade `uuid` from 9.0.1 to 14.0.0 to address CVE-2026-41907 (High). Remove `@types/uuid` as uuid@14 ships its own type definitions.
+
+- Updated dependencies [[`063cef2`](https://github.com/commercetools/merchant-center-application-kit/commit/063cef2df4098074d1180bca1721150386570b75)]:
+  - @commercetools-frontend/application-shell-connectors@27.6.1
+  - @commercetools-frontend/sdk@27.6.1
+  - @commercetools-frontend/application-components@27.6.1
+  - @commercetools-frontend/permissions@27.6.1
+  - @commercetools-frontend/react-notifications@27.6.1
+  - @commercetools-frontend/actions-global@27.6.1
+  - @commercetools-frontend/application-config@27.6.1
+  - @commercetools-frontend/assets@27.6.1
+  - @commercetools-frontend/browser-history@27.6.1
+  - @commercetools-frontend/constants@27.6.1
+  - @commercetools-frontend/i18n@27.6.1
+  - @commercetools-frontend/l10n@27.6.1
+  - @commercetools-frontend/notifications@27.6.1
+  - @commercetools-frontend/sentry@27.6.1
+  - @commercetools-frontend/url-utils@27.6.1
+
 ## 27.6.0
 
 ### Patch Changes
