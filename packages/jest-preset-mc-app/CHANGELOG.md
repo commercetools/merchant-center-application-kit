@@ -1,5 +1,16 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 27.6.2
+
+### Patch Changes
+
+- [#4015](https://github.com/commercetools/merchant-center-application-kit/pull/4015) [`bdfc13d`](https://github.com/commercetools/merchant-center-application-kit/commit/bdfc13d6cd0bbd53b72f07e29509bed803e08934) Thanks [@ByronDWall](https://github.com/ByronDWall)! - fix: handle ESM-only dependencies (uuid v14) in jest preset
+
+  Add `transformIgnorePatterns` to the shared jest preset so that ESM-only packages like `uuid` v14 are transpiled by babel-jest. Also add `ts` and `tsx` to the base preset's `moduleFileExtensions` so JavaScript starter templates can resolve TypeScript dependencies.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@27.6.2
+
 ## 27.6.1
 
 ### Patch Changes
