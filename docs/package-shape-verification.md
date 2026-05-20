@@ -107,6 +107,16 @@ sibling ([FEC-936
 mirror](https://commercetools.atlassian.net/browse/FEC-936)) will drive these
 to zero; until then `REPORT_ONLY` is true so the check does not gate merges.
 
+> **The baseline is a regression contract, not a punch list.** Listing a
+> finding here does not mean it must be fixed in this ticket — these are the
+> known-existing shape issues as of the date above, frozen so subsequent work
+> (catalog adoption, metadata normalization, dependency upgrades) can be
+> proven non-regressing. The expected outcome of a PR is **"no new findings"**,
+> not "all findings resolved." If your PR adds a row to this table, that is
+> the regression; if it leaves the existing rows unchanged, the baseline holds.
+> Findings get removed from this list only when an explicit cleanup ticket
+> resolves them.
+
 | Package                                         | Tool    | Finding                                                                                                                                                                 |
 | ----------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@commercetools-frontend/application-shell`     | attw    | `InternalResolutionError` on root entry and `/test-utils` subpath — bare relative imports in emitted `.d.ts` files fail `node16` ESM resolution. Both 4 modes affected. |
