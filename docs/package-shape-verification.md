@@ -204,8 +204,8 @@ resolved.
 ## Related Files
 
 - `scripts/check-package-shape.mjs` — The check script.
-- `.changeset/config.json` — Source of truth for the publishable package set
-  (the `fixed` group).
+- Each workspace's `package.json` — `"private": true` excludes a workspace from
+  the gate; the script picks up this field directly via `pnpm m ls`.
 - `.github/workflows/main.yml` — CI wiring (the `Check package shape` step in
   the `lint_and_test` job).
 
