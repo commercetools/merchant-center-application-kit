@@ -43,14 +43,16 @@ the flag flips to `false` and the check starts blocking.
 
 ## What Gets Tracked
 
-The check mirrors the `fixed` group in `.changeset/config.json` — every package
-the changeset bot ships in a release. That is the 29 publishable workspaces
-under `@commercetools-frontend/*` and `@commercetools-backend/*`. Private
+The list of tracked packages is derived at runtime from `pnpm m ls`: every
+workspace whose `package.json` is _not_ marked `"private": true`. That matches
+the set the changeset bot ships in a release — today, 29 workspaces under
+`@commercetools-frontend/*` and `@commercetools-backend/*`. Internal
 workspaces (`@commercetools-applications/*`, `@commercetools-local/*`,
-`@commercetools-website/*`) are excluded because they are not published.
+`@commercetools-website/*`) are excluded because they all carry
+`"private": true`.
 
-To add or remove a tracked package, edit the `PACKAGES` array at the top of
-`scripts/check-package-shape.mjs`.
+To add or remove a tracked package, flip `"private"` in the workspace's
+`package.json` — the script picks the change up automatically.
 
 ## The Tools
 

@@ -23,7 +23,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { mkdtempSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -35,129 +35,20 @@ const ROOT = join(__dirname, '..');
 // reaches zero so this gate starts blocking merges.
 const REPORT_ONLY = true;
 
-// Mirror of the publishable workspaces in the Changesets `fixed` group
-// (`.changeset/config.json`) — every `@commercetools-frontend/*` and
-// `@commercetools-backend/*` package the changeset bot ships. Private
-// workspaces (`@commercetools-applications/*`, `@commercetools-local/*`,
-// `@commercetools-website/*`) are excluded by design — they are not published.
-const PACKAGES = [
-  {
-    name: '@commercetools-frontend/actions-global',
-    dir: join(ROOT, 'packages/actions-global'),
-  },
-  {
-    name: '@commercetools-frontend/application-components',
-    dir: join(ROOT, 'packages/application-components'),
-  },
-  {
-    name: '@commercetools-frontend/application-config',
-    dir: join(ROOT, 'packages/application-config'),
-  },
-  {
-    name: '@commercetools-frontend/application-shell',
-    dir: join(ROOT, 'packages/application-shell'),
-  },
-  {
-    name: '@commercetools-frontend/application-shell-connectors',
-    dir: join(ROOT, 'packages/application-shell-connectors'),
-  },
-  {
-    name: '@commercetools-frontend/assets',
-    dir: join(ROOT, 'packages/assets'),
-  },
-  {
-    name: '@commercetools-frontend/babel-preset-mc-app',
-    dir: join(ROOT, 'packages/babel-preset-mc-app'),
-  },
-  {
-    name: '@commercetools-frontend/browser-history',
-    dir: join(ROOT, 'packages/browser-history'),
-  },
-  {
-    name: '@commercetools-frontend/codemod',
-    dir: join(ROOT, 'packages/codemod'),
-  },
-  {
-    name: '@commercetools-frontend/constants',
-    dir: join(ROOT, 'packages/constants'),
-  },
-  {
-    name: '@commercetools-frontend/create-mc-app',
-    dir: join(ROOT, 'packages/create-mc-app'),
-  },
-  {
-    name: '@commercetools-frontend/cypress',
-    dir: join(ROOT, 'packages/cypress'),
-  },
-  {
-    name: '@commercetools-frontend/eslint-config-mc-app',
-    dir: join(ROOT, 'packages/eslint-config-mc-app'),
-  },
-  {
-    name: '@commercetools-frontend/i18n',
-    dir: join(ROOT, 'packages/i18n'),
-  },
-  {
-    name: '@commercetools-frontend/jest-preset-mc-app',
-    dir: join(ROOT, 'packages/jest-preset-mc-app'),
-  },
-  {
-    name: '@commercetools-frontend/jest-stylelint-runner',
-    dir: join(ROOT, 'packages/jest-stylelint-runner'),
-  },
-  {
-    name: '@commercetools-frontend/l10n',
-    dir: join(ROOT, 'packages/l10n'),
-  },
-  {
-    name: '@commercetools-frontend/mc-dev-authentication',
-    dir: join(ROOT, 'packages/mc-dev-authentication'),
-  },
-  {
-    name: '@commercetools-frontend/mc-html-template',
-    dir: join(ROOT, 'packages/mc-html-template'),
-  },
-  {
-    name: '@commercetools-frontend/mc-scripts',
-    dir: join(ROOT, 'packages/mc-scripts'),
-  },
-  {
-    name: '@commercetools-frontend/notifications',
-    dir: join(ROOT, 'packages/notifications'),
-  },
-  {
-    name: '@commercetools-frontend/permissions',
-    dir: join(ROOT, 'packages/permissions'),
-  },
-  {
-    name: '@commercetools-frontend/react-notifications',
-    dir: join(ROOT, 'packages/react-notifications'),
-  },
-  {
-    name: '@commercetools-frontend/sdk',
-    dir: join(ROOT, 'packages/sdk'),
-  },
-  {
-    name: '@commercetools-frontend/sentry',
-    dir: join(ROOT, 'packages/sentry'),
-  },
-  {
-    name: '@commercetools-frontend/url-utils',
-    dir: join(ROOT, 'packages/url-utils'),
-  },
-  {
-    name: '@commercetools-backend/eslint-config-node',
-    dir: join(ROOT, 'packages-backend/eslint-config-node'),
-  },
-  {
-    name: '@commercetools-backend/express',
-    dir: join(ROOT, 'packages-backend/express'),
-  },
-  {
-    name: '@commercetools-backend/loggers',
-    dir: join(ROOT, 'packages-backend/loggers'),
-  },
-];
+async function discoverPackages() {
+  const { code, stdout, stderr } = await runCommand(
+    'pnpm',
+    ['m', 'ls', '--json', '--depth', '-1'],
+    { cwd: ROOT }
+  );
+  if (code !== 0) {
+    throw new Error(`pnpm m ls exited ${code}\n${stderr}`);
+  }
+  return JSON.parse(stdout)
+    .filter((w) => w.private !== true)
+    .map((w) => ({ name: w.name, dir: w.path }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
 
 const DIM = '\x1b[2m';
 const BOLD = '\x1b[1m';
@@ -225,11 +116,6 @@ async function checkPackage(pkg, workDir) {
 
   log(header(pkg.name));
 
-  if (!existsSync(pkg.dir)) {
-    log(`${YELLOW}⚠ Skipping — ${pkg.dir} not found${RESET}\n`);
-    return { buffer, failures };
-  }
-
   let tarball;
   try {
     tarball = await packTarball(pkg, workDir);
@@ -241,19 +127,8 @@ async function checkPackage(pkg, workDir) {
     return { buffer, failures };
   }
 
-  // Wrap each tool run so a spawn failure (binary missing from PATH, etc.)
-  // doesn't reject out of Promise.all and bypass the structured summary.
-  const safeRun = async (label, bin) => {
-    try {
-      return await runTool(label, bin, [tarball], log);
-    } catch (err) {
-      log(`${RED}✗ ${label} failed to run: ${err.message}${RESET}\n`);
-      return false;
-    }
-  };
-
-  const attwOk = await safeRun('attw', 'attw');
-  const publintOk = await safeRun('publint', 'publint');
+  const attwOk = await runTool('attw', 'attw', [tarball], log);
+  const publintOk = await runTool('publint', 'publint', [tarball], log);
 
   if (!attwOk) failures.push({ pkg: pkg.name, tool: 'attw' });
   if (!publintOk) failures.push({ pkg: pkg.name, tool: 'publint' });
@@ -262,12 +137,16 @@ async function checkPackage(pkg, workDir) {
 }
 
 async function main() {
+  const packages = await discoverPackages();
+  process.stdout.write(
+    `${DIM}Discovered ${packages.length} publishable workspace(s).${RESET}\n`
+  );
   const workDir = mkdtempSync(join(tmpdir(), 'app-kit-pkg-shape-'));
   const failures = [];
 
   try {
     const results = await Promise.all(
-      PACKAGES.map((pkg) => checkPackage(pkg, workDir))
+      packages.map((pkg) => checkPackage(pkg, workDir))
     );
     for (const { buffer, failures: pkgFailures } of results) {
       for (const chunk of buffer) process.stdout.write(chunk);
