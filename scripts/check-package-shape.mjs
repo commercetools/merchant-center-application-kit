@@ -31,9 +31,8 @@ import { fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = join(__dirname, '..');
 
-// Surface findings without failing CI. Flip to `false` in the follow-up that
-// drives the baseline to zero (mirror of FEC-936) so this gate starts blocking
-// merges.
+// Surface findings without failing CI. Flip to `false` once the baseline
+// reaches zero so this gate starts blocking merges.
 const REPORT_ONLY = true;
 
 // Mirror of the publishable workspaces in the Changesets `fixed` group

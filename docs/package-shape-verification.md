@@ -37,11 +37,9 @@ target package:
    readable even when packages run in parallel.
 
 A `REPORT_ONLY` constant at the top of the script controls whether findings
-fail the check. While the baseline is being driven to zero (see [FEC-936
-mirror](https://commercetools.atlassian.net/browse/FEC-936) — the metadata
-normalization cleanup), `REPORT_ONLY = true`: CI surfaces findings but does not
-gate merges. Once the baseline reaches zero, the flag flips to `false` and the
-check starts blocking.
+fail the check. While the baseline is being driven to zero, `REPORT_ONLY = true`:
+CI surfaces findings but does not gate merges. Once the baseline reaches zero,
+the flag flips to `false` and the check starts blocking.
 
 ## What Gets Tracked
 
@@ -102,10 +100,9 @@ when:
 
 ## Baseline (2026-05-20)
 
-Snapshot of the findings on `main` after the check was introduced. The cleanup
-sibling ([FEC-936
-mirror](https://commercetools.atlassian.net/browse/FEC-936)) will drive these
-to zero; until then `REPORT_ONLY` is true so the check does not gate merges.
+Snapshot of the findings on `main` after the check was introduced. A follow-up
+cleanup will drive these to zero; until then `REPORT_ONLY` is true so the check
+does not gate merges.
 
 > **The baseline is a regression contract, not a punch list.** Listing a
 > finding here does not mean it must be fixed in this ticket — these are the
@@ -143,8 +140,8 @@ them:
 
 `application-shell` is the one structural outlier — `InternalResolutionError`
 indicates bare relative imports in emitted `.d.ts` that fail Node16 ESM
-resolution; the precedent in Nimbus needed a relative-import rewriter in
-postbuild scripts to address the same class of issue.
+resolution. Resolving it likely requires a relative-import rewriter in the
+postbuild step.
 
 ## CI Integration
 
@@ -197,9 +194,9 @@ in the job log under the "Check package shape" step.
 ### You Need To Land Something Despite Known Findings
 
 `REPORT_ONLY` is already `true` during the baseline-cleanup phase, so this
-isn't a concern right now. Once the flag flips to `false`, the same escape
-hatch documented in Nimbus applies: flip `REPORT_ONLY` to `true` in the same
-PR or open a follow-up issue, and flip back as soon as the underlying issue is
+isn't a concern right now. Once the flag flips to `false`, the escape hatch is
+to flip `REPORT_ONLY` back to `true` in the same PR (or open a follow-up
+issue) and flip it back to `false` as soon as the underlying issue is
 resolved.
 
 ## Related Files
@@ -212,11 +209,5 @@ resolved.
 
 ## References
 
-- Nimbus precedent:
-  [PR #1498](https://github.com/commercetools/nimbus/pull/1498) — the original
-  cross-repo implementation this is ported from.
 - [FEC-951](https://commercetools.atlassian.net/browse/FEC-951) — the ticket
   that introduced this gate.
-- [FEC-936
-  mirror](https://commercetools.atlassian.net/browse/FEC-936) — the cleanup
-  sibling that drives the baseline to zero and flips `REPORT_ONLY` to `false`.
