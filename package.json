@@ -58,6 +58,7 @@
     "template-custom-view-starter-typescript:start:prod:local": "pnpm --filter @commercetools-applications/merchant-center-custom-view-template-starter-typescript run start:prod:local",
     "build": "./scripts/build_packages.sh",
     "build:watch": "pnpm build --watch",
+    "check:package-shape": "node scripts/check-package-shape.mjs",
     "vercel-build": "echo \"Nothing to do, the build and deployment is managed in GH actions.\"",
     "labels:sync": "github-labels sync",
     "generate-types:mc": "graphql-codegen -r dotenv/config --config codegen.mc.yml",
@@ -81,6 +82,7 @@
     ]
   },
   "dependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.17",
     "@changesets/changelog-github": "0.5.1",
@@ -155,6 +157,7 @@
     "postcss": "8.5.6",
     "postcss-load-config": "3.1.4",
     "prettier": "2.8.8",
+    "publint": "^0.3.21",
     "puppeteer": "20.9.0",
     "qss": "2.0.3",
     "react": "19.0.0",
@@ -205,6 +208,7 @@
       "@isaacs/brace-expansion": ">=5.0.1",
       "@remix-run/router": ">=1.23.2",
       "@xmldom/xmldom": ">=0.8.13",
+      "fflate": "0.8.2",
       "immutable": ">=3.8.3",
       "lodash-es": ">=4.17.21",
       "minimatch@^3": "^3.1.4",

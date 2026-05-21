@@ -42,6 +42,9 @@ jobs:
       - name: Running static type checking (Starter Template)
         run: pnpm typecheck:starters
 
+      - name: Check package shape
+        run: pnpm check:package-shape
+
       - name: Running linters
         run: pnpm jest --projects jest.{eslint,stylelint}.config.js --reporters jest-silent-reporter
         env:
