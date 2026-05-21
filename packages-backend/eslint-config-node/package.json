@@ -25,7 +25,7 @@
     "eslint-import-resolver-typescript": "catalog:lint",
     "eslint-plugin-import": "catalog:lint",
     "eslint-plugin-jest": "catalog:lint",
-    "eslint-plugin-n": "^17.1.0",
+    "eslint-plugin-n": "catalog:lint",
     "eslint-plugin-prettier": "catalog:lint",
     "globals": "catalog:lint",
     "prettier": "catalog:lint",

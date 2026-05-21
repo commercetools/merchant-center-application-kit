@@ -6,18 +6,21 @@
  * 1. A dependency must not appear in both "dependencies" and "devDependencies".
  *
  * Cross-workspace rules (catalog protocol — see pnpm-workspace.yaml):
- * 2. Every dep listed under `catalog:` (default) must be consumed via
- *    `catalog:` in workspace `dependencies` / `devDependencies`.
- * 3. Every dep listed under a named catalog `catalogs.<name>:` must be
- *    consumed via `catalog:<name>` in workspace `dependencies` /
- *    `devDependencies`.
+ * 2. Every external dep used in `dependencies` / `devDependencies` of any
+ *    workspace package must be consumed via either a `catalog:` reference
+ *    or a `workspace:` protocol. Literal version strings are an error —
+ *    pnpm-workspace.yaml is the single source of truth for every
+ *    third-party version in the repo.
+ * 3. Every dep listed under `catalog:` (default) must be consumed via
+ *    `catalog:`; every dep under `catalogs.<name>:` must be consumed via
+ *    `catalog:<name>`. Wrong-catalog or literal references are an error.
  * 4. Every dep listed under `catalogs.peer:` must be consumed via
  *    `catalog:peer` in workspace `peerDependencies`.
- *    Literal versions on a cataloged dep are an error in all three cases.
- * 5. Drift: an uncataloged external dep used at two or more distinct
- *    specifiers across workspaces is an error — add it to a catalog so
- *    the version is centrally controlled. Install (deps + devDeps) and
- *    peer drift are checked separately.
+ * 5. Drift: peerDependencies are deliberately allowed to use raw ranges
+ *    (e.g. `jest@30.x`) and are NOT covered by rule 2. But an uncataloged
+ *    peer dep used at two or more distinct specifiers across workspaces
+ *    is still an error — add it to `catalogs.peer:` so the consumer
+ *    range is centrally controlled.
  *
  * Published-package metadata rules (license, repository, engines.node, type)
  * are intentionally NOT enforced here — see FEC-952 for that pass.
@@ -168,6 +171,34 @@ for (const [name, keys] of catalogs.named) {
   enforceCatalog(keys, installUsage, `catalog:${name}`, `${name} catalog`);
 }
 enforceCatalog(peerCatalogKeys, peerUsage, 'catalog:peer', 'peer catalog');
+
+// Coverage enforcement: every external dep in dependencies/devDependencies
+// must resolve through pnpm-workspace.yaml. `workspace:` specs were dropped
+// at accumulation time, so anything that reaches `installUsage` must either
+// already use a `catalog:` reference (catalog hit) or be added to one. A
+// literal spec is an error even when the dep isn't cataloged yet — the
+// catalog is the single source of truth.
+const installCatalogedKeysForCoverage = new Set([
+  ...defaultCatalogKeys,
+  ...[...catalogs.named.entries()]
+    .filter(([n]) => n !== 'peer')
+    .flatMap(([, s]) => [...s]),
+]);
+for (const [name, bySpec] of installUsage) {
+  // Skip deps already covered by enforceCatalog — that pass produces a
+  // more specific message ("must use catalog:<name>").
+  if (installCatalogedKeysForCoverage.has(name)) continue;
+  for (const [spec, workspaceLabels] of bySpec) {
+    if (spec.startsWith('catalog:')) continue;
+    for (const label of workspaceLabels) {
+      errors.push(
+        `${label}: "${name}" is declared at literal version ${JSON.stringify(
+          spec
+        )}; add it to a catalog in pnpm-workspace.yaml and reference it via "catalog:" / "catalog:<name>"`
+      );
+    }
+  }
+}
 
 // Drift detection: an uncataloged dep used at multiple distinct specs across
 // workspaces is drift. Cataloged deps are skipped — their consistency is

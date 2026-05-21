@@ -17,7 +17,7 @@
     "@commercetools-uikit/icon-button": "catalog:repo",
     "@commercetools-uikit/icons": "catalog:repo",
     "@commercetools-uikit/link": "catalog:repo",
-    "@commercetools-uikit/multiline-text-field": "^20.4.0",
+    "@commercetools-uikit/multiline-text-field": "catalog:repo",
     "@commercetools-uikit/secondary-button": "catalog:repo",
     "@commercetools-uikit/select-field": "catalog:repo",
     "@commercetools-uikit/spacings": "catalog:repo",

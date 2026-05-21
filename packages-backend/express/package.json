@@ -23,7 +23,7 @@
     "@types/express": "catalog:",
     "@types/node": "catalog:",
     "express": "catalog:",
-    "jose": "^5.10.0"
+    "jose": "catalog:"
   },
   "devDependencies": {
     "@tsconfig/node22": "catalog:",
