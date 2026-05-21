@@ -24,7 +24,7 @@
 
 import { spawn } from 'node:child_process';
 import { mkdtempSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { availableParallelism, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -138,15 +138,24 @@ async function checkPackage(pkg, workDir) {
 
 async function main() {
   const packages = await discoverPackages();
+  const concurrency = Math.min(packages.length, availableParallelism());
   process.stdout.write(
-    `${DIM}Discovered ${packages.length} publishable workspace(s).${RESET}\n`
+    `${DIM}Discovered ${packages.length} publishable workspace(s); checking up to ${concurrency} in parallel.${RESET}\n`
   );
   const workDir = mkdtempSync(join(tmpdir(), 'app-kit-pkg-shape-'));
   const failures = [];
 
   try {
-    const results = await Promise.all(
-      packages.map((pkg) => checkPackage(pkg, workDir))
+    const results = new Array(packages.length);
+    let next = 0;
+    await Promise.all(
+      Array.from({ length: concurrency }, async () => {
+        while (true) {
+          const i = next++;
+          if (i >= packages.length) return;
+          results[i] = await checkPackage(packages[i], workDir);
+        }
+      })
     );
     for (const { buffer, failures: pkgFailures } of results) {
       for (const chunk of buffer) process.stdout.write(chunk);
