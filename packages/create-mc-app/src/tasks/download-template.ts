@@ -1,4 +1,3 @@
-import os from 'node:os';
 import path from 'node:path';
 import execa from 'execa';
 import { Listr, type ListrTask } from 'listr2';
@@ -13,18 +12,10 @@ function downloadTemplate(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Downloading template',
     task: () => {
-      const tmpDir = os.tmpdir();
-      const tmpFolderNameForClonedRepository = [
-        'merchant-center-application-kit',
-        '--',
-        options.tagOrBranchVersion,
-        '--',
-        Date.now().toString(),
-      ].join('');
-      const clonedRepositoryPath = path.join(
-        tmpDir,
-        tmpFolderNameForClonedRepository
-      );
+      const clonedRepositoryPath = options.clonedRepositoryPath;
+      const tmpDir = path.dirname(clonedRepositoryPath);
+      const tmpFolderNameForClonedRepository =
+        path.basename(clonedRepositoryPath);
       const templateFolderPath = path.join(
         clonedRepositoryPath,
         options.applicationType === applicationTypes['custom-view']

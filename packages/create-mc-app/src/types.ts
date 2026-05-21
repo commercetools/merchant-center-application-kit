@@ -26,6 +26,10 @@ export type TCliTaskOptions = {
   projectDirectoryPath: string;
   templateName: TCliCommandOptions['template'];
   tagOrBranchVersion: string;
+  // Absolute path to the temporary directory where the app-kit repo is
+  // cloned by `downloadTemplate`. Subsequent tasks read pnpm-workspace.yaml
+  // from here to resolve catalog references in the scaffolded package.json.
+  clonedRepositoryPath: string;
   entryPointUriPath?: string;
   initialProjectKey: string;
   cloudIdentifier: string;
