@@ -22,7 +22,7 @@
     "@babel/runtime-corejs3": "catalog:build",
     "@types/history": "catalog:react",
     "history": "catalog:react",
-    "history-query-enhancer": "1.0.4",
+    "history-query-enhancer": "catalog:",
     "qss": "catalog:"
   }
 }

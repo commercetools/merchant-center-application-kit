@@ -45,7 +45,7 @@
     "moment": "catalog:",
     "moment-timezone": "catalog:",
     "prop-types": "catalog:react",
-    "reselect": "4.1.8"
+    "reselect": "catalog:"
   },
   "devDependencies": {
     "@types/jest": "catalog:test",

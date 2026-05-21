@@ -29,9 +29,9 @@
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:^",
-    "@tsconfig/node22": "^22.0.0",
-    "@types/connect": "^3.4.36",
-    "connect": "^3.7.0"
+    "@tsconfig/node22": "catalog:",
+    "@types/connect": "catalog:",
+    "connect": "catalog:"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"

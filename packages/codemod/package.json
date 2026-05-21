@@ -28,15 +28,15 @@
     "@babel/preset-env": "catalog:build",
     "commander": "catalog:",
     "glob": "catalog:",
-    "jscodeshift": "0.16.1",
+    "jscodeshift": "catalog:",
     "prettier": "catalog:lint"
   },
   "devDependencies": {
     "@commercetools-frontend/application-components": "workspace:^",
     "@emotion/react": "catalog:build",
-    "@tsconfig/node22": "^22.0.0",
-    "@types/jscodeshift": "0.12.0",
-    "@types/prettier": "2.7.3",
+    "@tsconfig/node22": "catalog:",
+    "@types/jscodeshift": "catalog:",
+    "@types/prettier": "catalog:",
     "rimraf": "catalog:",
     "typescript": "catalog:build"
   },

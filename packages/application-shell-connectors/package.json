@@ -32,7 +32,7 @@
     "@types/lodash": "catalog:",
     "@types/prop-types": "catalog:react",
     "@types/react": "catalog:react",
-    "apollo-link-logger": "2.0.1",
+    "apollo-link-logger": "catalog:",
     "graphql": "catalog:apollo",
     "lodash": "catalog:",
     "moment-timezone": "catalog:",
@@ -40,13 +40,13 @@
     "prop-types": "catalog:react",
     "tiny-warning": "catalog:",
     "uuid": "catalog:",
-    "wait-for-observables": "1.0.3"
+    "wait-for-observables": "catalog:"
   },
   "devDependencies": {
     "@apollo/client": "catalog:apollo",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",
-    "headers-polyfill": "^3.1.2",
+    "headers-polyfill": "catalog:test",
     "jest": "catalog:test",
     "jest-mock": "catalog:test",
     "msw": "catalog:test",

@@ -38,25 +38,25 @@
   },
   "dependencies": {
     "@babel/core": "catalog:build",
-    "@babel/register": "^7.22.15",
+    "@babel/register": "catalog:build",
     "@babel/runtime": "catalog:build",
     "@babel/runtime-corejs3": "catalog:build",
     "@commercetools-frontend/constants": "workspace:^",
     "@types/lodash": "catalog:",
     "@types/react": "catalog:react",
-    "ajv": "8.18.0",
+    "ajv": "catalog:",
     "core-js": "catalog:",
     "cosmiconfig": "catalog:",
-    "cosmiconfig-typescript-loader": "6.1.0",
-    "dompurify": "^3.0.0",
-    "jsdom": "^21.1.2",
+    "cosmiconfig-typescript-loader": "catalog:",
+    "dompurify": "catalog:",
+    "jsdom": "catalog:",
     "lodash": "catalog:",
     "omit-empty-es": "catalog:"
   },
   "devDependencies": {
     "@commercetools-frontend/assets": "workspace:^",
-    "@types/jsdom": "^21.1.2",
-    "json-schema-to-typescript": "15.0.4"
+    "@types/jsdom": "catalog:",
+    "json-schema-to-typescript": "catalog:"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"

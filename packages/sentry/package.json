@@ -22,9 +22,9 @@
     "@babel/runtime-corejs3": "catalog:build",
     "@commercetools-frontend/browser-history": "workspace:^",
     "@commercetools-frontend/constants": "workspace:^",
-    "@sentry/browser": "8.55.0",
-    "@sentry/react": "8.55.0",
-    "@sentry/types": "8.55.0",
+    "@sentry/browser": "catalog:",
+    "@sentry/react": "catalog:",
+    "@sentry/types": "catalog:",
     "@types/prop-types": "catalog:react",
     "@types/react": "catalog:react",
     "prop-types": "catalog:react"
@@ -34,8 +34,8 @@
     "@types/jest": "catalog:test",
     "jest": "catalog:test",
     "react": "catalog:react",
-    "sentry-testkit": "6.2.2",
-    "wait-for-expect": "3.0.2"
+    "sentry-testkit": "catalog:test",
+    "wait-for-expect": "catalog:test"
   },
   "peerDependencies": {
     "react": "catalog:peer"

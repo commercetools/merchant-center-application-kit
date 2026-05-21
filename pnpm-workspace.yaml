@@ -65,7 +65,7 @@ overrides:
 #
 # Named catalogs group deps by role in the toolchain:
 #   apollo     — Apollo Client + GraphQL runtime/tooling
-#   build      — compile/bundle/style toolchain (babel, postcss, ts, vite, emotion)
+#   build      — compile/bundle/style toolchain (babel, postcss, ts, vite, webpack, emotion)
 #   lint       — code-quality enforcers (eslint, stylelint, prettier, ts-eslint)
 #   peer       — consumer compatibility ranges for public packages
 #   react      — react framework and react-bound libraries (router, redux, intl)
@@ -85,40 +85,106 @@ overrides:
 # comments anywhere inside a catalog block.
 
 catalog:
+  '@commercetools-community-kit/i18n': ^0.3.0
+  '@commercetools/api-request-builder': 6.0.0
   '@commercetools/composable-commerce-test-data': 13.12.0
   '@commercetools/http-user-agent': 3.0.0
+  '@commercetools/sdk-client': 3.0.0
+  '@commercetools/sdk-middleware-correlation-id': 3.0.0
+  '@commercetools/sdk-middleware-http': 7.0.4
   '@commercetools/sync-actions': ^5.14.0
+  '@flopflip/combine-adapters': 15.1.7
+  '@flopflip/http-adapter': 15.1.7
+  '@flopflip/launchdarkly-adapter': 15.1.7
+  '@flopflip/memory-adapter': 15.1.7
+  '@flopflip/types': 15.1.7
+  '@formatjs/cli-lib': ^6.3.8
+  '@formatjs/icu-messageformat-parser': 2.11.2
+  '@formatjs/intl-getcanonicallocales': ^2.2.1
+  '@formatjs/intl-listformat': ^7.4.1
+  '@formatjs/intl-locale': ^3.3.3
+  '@formatjs/intl-numberformat': ^8.7.1
+  '@formatjs/intl-pluralrules': ^5.2.5
+  '@sentry/browser': 8.55.0
+  '@sentry/react': 8.55.0
+  '@sentry/types': 8.55.0
+  '@tsconfig/node22': ^22.0.0
+  '@types/babel__core': ^7.20.1
+  '@types/cldr': ^7.1.4
+  '@types/common-tags': ^1.8.2
+  '@types/connect': ^3.4.36
   '@types/express': ^4.17.17
+  '@types/fs-extra': ^11.0.1
+  '@types/jscodeshift': 0.12.0
+  '@types/jsdom': ^21.1.2
   '@types/lodash': ^4.14.198
+  '@types/moment-locales-webpack-plugin': ^1.2.3
   '@types/node': ^22.13.2
   '@types/node-fetch': 2.6.13
+  '@types/prettier': 2.7.3
+  '@types/prompts': ^2.4.4
+  '@types/raf-schd': ^4.0.1
+  '@types/redux-logger': 3.0.13
   '@types/semver': ^7.5.1
+  '@types/serialize-javascript': ^5.0.2
+  '@types/svgo': ^2.6.4
+  '@types/webpack-bundle-analyzer': ^4.6.0
+  ajv: 8.18.0
+  apollo-link-logger: 2.0.1
   autoprefixer: ^10.4.15
+  buffer: 6.0.3
   chalk: 4.1.2
+  cldr: 7.9.0
   commander: ^13.1.0
+  common-tags: 1.8.2
+  connect: ^3.7.0
   core-js: ^3.32.2
   cosmiconfig: 9.0.0
+  cosmiconfig-typescript-loader: 6.1.0
+  create-jest-runner: 1.0.0
   cypress: 14.5.4
+  debounce-async: 0.0.2
+  deep-diff: 1.0.2
+  dompurify: ^3.0.0
   dotenv: 16.6.1
+  execa: 5.1.1
   express: ^4.21.2
+  fast-equals: 2.0.4
+  fs-extra: 10.1.0
+  fuse.js: 6.6.2
   glob: ^10.5.0
+  graphql-request: 5.2.0
+  history-query-enhancer: 1.0.4
+  is-retina: 1.0.3
+  jscodeshift: 0.16.1
+  jsdom: ^21.1.2
+  json-schema-to-typescript: 15.0.4
   jwt-decode: 3.1.2
+  listr2: 5.0.8
   lodash: 4.18.1
+  memoize-one: 5.2.1
   moment: ^2.29.4
   moment-timezone: ^0.6.0
   node-fetch: 2.7.0
   omit-empty-es: 1.2.0
+  open: ^10.1.0
   postcss-load-config: 3.1.4
   prompts: ^2.4.2
   puppeteer: 20.9.0
   qss: 2.0.3
+  querystring-es3: ^0.2.1
+  reselect: 4.1.8
   rimraf: 6.0.1
   semver: 7.7.2
+  sharp: ^0.34.1
   shelljs: 0.10.0
+  sirv: ^3.0.2
   tiny-invariant: 1.3.3
   tiny-warning: 1.0.3
   unfetch: 4.2.0
+  url: ^0.11.0
   uuid: 14.0.0
+  wait-for-observables: 1.0.3
 
 catalogs:
   apollo:
@@ -130,27 +196,83 @@ catalogs:
     # Babel
     '@babel/core': ^7.22.17
     '@babel/preset-env': ^7.22.15
+    '@babel/preset-react': ^7.22.15
     '@babel/preset-typescript': ^7.22.15
+    '@babel/register': ^7.22.15
     '@babel/runtime': ^7.22.15
     '@babel/runtime-corejs3': ^7.22.15
     '@babel/plugin-proposal-do-expressions': ^7.22.5
+    '@babel/plugin-proposal-export-default-from': ^7.22.17
+    '@babel/plugin-transform-class-properties': ^7.22.5
+    '@babel/plugin-transform-destructuring': ^7.22.15
+    '@babel/plugin-transform-export-namespace-from': ^7.22.11
+    '@babel/plugin-transform-logical-assignment-operators': ^7.22.11
+    '@babel/plugin-transform-object-rest-spread': ^7.22.15
+    '@babel/plugin-transform-private-methods': ^7.22.5
+    '@babel/plugin-transform-private-property-in-object': ^7.22.11
+    '@babel/plugin-transform-regenerator': ^7.22.10
+    '@babel/plugin-transform-runtime': ^7.22.15
+    babel-loader: 8.4.1
+    babel-plugin-dev-expression: ^0.2.3
     babel-plugin-formatjs: ^10.5.25
+    babel-plugin-macros: ^3.1.0
+    babel-plugin-preval: ^5.1.0
+    babel-plugin-react-compiler: ^1.0.0
+    babel-plugin-transform-react-remove-prop-types: ^0.4.24
 
     # Emotion (CSS-in-JS)
     '@emotion/react': ^11.14.0
     '@emotion/styled': ^11.14.0
     '@emotion/babel-plugin': ^11.13.5
+    '@emotion/babel-preset-css-prop': ^11.12.0
 
     # PostCSS
     postcss: 8.5.6
+    postcss-custom-media: 8.0.2
+    postcss-custom-properties: 12.1.4
+    postcss-import: 14.1.0
+    postcss-loader: 6.2.1
+    postcss-reporter: 7.1.0
 
     # TypeScript
     typescript: 5.9.2
     ts-node: 10.9.2
 
-    # Vite
+    # Vite / Rollup
     vite: ~6.4.2
     '@vitejs/plugin-react': 4.7.0
+    '@vitejs/plugin-react-swc': 3.11.0
+    '@rollup/plugin-graphql': 2.0.5
+    '@rollup/pluginutils': 5.2.0
+    rollup-plugin-visualizer: ^5.14.0
+    vite-bundle-analyzer: 0.23.0
+
+    # Webpack + loaders/plugins (mc-scripts / mc-html-template)
+    webpack: 5.105.1
+    webpack-bundle-analyzer: 4.10.2
+    webpack-dev-server: 4.15.2
+    webpackbar: 5.0.2
+    browserslist: ^4.28.1
+    css-loader: 6.11.0
+    css-minimizer-webpack-plugin: ^8.0.0
+    dotenv-expand: 8.0.3
+    html-webpack-plugin: 5.6.3
+    json-loader: 0.5.7
+    mini-css-extract-plugin: 2.9.4
+    moment-locales-webpack-plugin: 1.2.0
+    '@pmmmwh/react-refresh-webpack-plugin': 0.6.1
+    react-dev-utils: 12.0.1
+    react-refresh: 0.17.0
+    serialize-javascript: 7.0.5
+    style-loader: 3.3.4
+    svg-url-loader: 7.1.1
+    '@svgr/babel-preset': ^6.5.1
+    '@svgr/core': ^6.5.1
+    '@svgr/webpack': ^6.5.1
+    terser-webpack-plugin: ^5.5.0
+    thread-loader: 3.0.4
+    uglify-js: 3.19.3
+    uglifycss: 0.0.29
 
   lint:
     # ESLint
@@ -164,11 +286,18 @@ catalogs:
 
     # ESLint plugins / configs
     '@graphql-eslint/eslint-plugin': ^4.4.0
+    confusing-browser-globals: ^1.0.11
     eslint-config-prettier: ^8.10.0
     eslint-import-resolver-typescript: ^3.6.0
+    eslint-plugin-cypress: ^2.14.0
     eslint-plugin-import: ^2.28.1
     eslint-plugin-jest: ^28.14.0
+    eslint-plugin-jest-dom: ^4.0.3
+    eslint-plugin-jsx-a11y: ^6.7.1
     eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-react: ^7.33.2
+    eslint-plugin-react-hooks: ^5.0.0
+    eslint-plugin-testing-library: ^7.15.4
     globals: ^15.15.0
 
     # Stylelint
@@ -210,8 +339,10 @@ catalogs:
     '@types/history': ^4.7.11
 
     # State management
+    '@reduxjs/toolkit': 2.9.0
     react-redux: 9.2.0
     redux: 5.0.1
+    redux-logger: 3.0.6
     redux-thunk: 3.1.0
 
     # i18n (react-intl / formatjs)
@@ -222,8 +353,15 @@ catalogs:
     '@flopflip/react-broadcast': 15.1.7
 
     # React-bound utilities
+    '@radix-ui/react-dialog': 1.1.14
+    '@react-hook/latest': 1.0.3
+    '@react-hook/resize-observer': 1.2.6
+    classnames: ^2.3.2
+    downshift: 6.1.12
     formik: 2.4.6
     prop-types: 15.8.1
+    raf-schd: ^4.0.3
+    react-required-if: 1.0.3
     react-select: 5.10.2
 
   repo:
@@ -233,6 +371,8 @@ catalogs:
 
     # @commercetools-uikit/* (cross-repo dep cohort — moves with ui-kit releases)
     '@commercetools-uikit/accessible-button': ^20.4.0
+    '@commercetools-uikit/accessible-hidden': ^20.4.0
+    '@commercetools-uikit/avatar': ^20.4.0
     '@commercetools-uikit/card': ^20.4.0
     '@commercetools-uikit/constraints': ^20.4.0
     '@commercetools-uikit/data-table': ^20.4.0
@@ -240,6 +380,7 @@ catalogs:
     '@commercetools-uikit/flat-button': ^20.4.0
     '@commercetools-uikit/grid': ^20.4.0
     '@commercetools-uikit/hooks': ^20.4.0
+    '@commercetools-uikit/i18n': ^20.4.0
     '@commercetools-uikit/icon-button': ^20.4.0
     '@commercetools-uikit/icons': ^20.4.0
     '@commercetools-uikit/label': ^20.4.0
@@ -247,27 +388,35 @@ catalogs:
     '@commercetools-uikit/loading-spinner': ^20.4.0
     '@commercetools-uikit/localized-text-field': ^20.4.0
     '@commercetools-uikit/localized-text-input': ^20.4.0
+    '@commercetools-uikit/messages': ^20.4.0
     '@commercetools-uikit/notifications': ^20.4.0
     '@commercetools-uikit/pagination': ^20.4.0
     '@commercetools-uikit/primary-button': ^20.4.0
     '@commercetools-uikit/secondary-button': ^20.4.0
     '@commercetools-uikit/secondary-icon-button': ^20.4.0
     '@commercetools-uikit/select-field': ^20.4.0
+    '@commercetools-uikit/select-input': ^20.4.0
     '@commercetools-uikit/spacings': ^20.4.0
+    '@commercetools-uikit/stamp': ^20.4.0
     '@commercetools-uikit/text': ^20.4.0
     '@commercetools-uikit/text-field': ^20.4.0
     '@commercetools-uikit/text-input': ^20.4.0
     '@commercetools-uikit/utils': ^20.4.0
 
   test:
-    # Jest core
+    # Jest core (versions move together)
     jest: 30.2.0
     jest-each: 30.2.0
+    jest-environment-jsdom: 30.2.0
     jest-mock: 30.2.0
+    babel-jest: 30.2.0
+    babel-preset-jest: 30.2.0
     '@jest/types': 29.6.3
     '@types/jest': ^29.5.14
 
-    # Jest plugins / runners
+    # Jest plugins / runners / mocks
+    identity-obj-proxy: 3.0.0
+    jest-localstorage-mock: 2.4.26
     jest-silent-reporter: 0.6.0
     jest-watch-typeahead: 3.0.1
 
@@ -277,5 +426,18 @@ catalogs:
     '@testing-library/react': 16.1.0
     '@types/testing-library__jest-dom': ^5.14.9
 
-    # Mocks
+    # MSW + utilities
     msw: ^1.3.5
+    headers-polyfill: ^3.1.2
+
+    # Browser-API polyfills / shims for jsdom
+    '@sheerun/mutationobserver-shim': 0.3.3
+    colors: 1.4.0
+    intl: 1.2.5
+    memfs: ^4.8.2
+    raf: 3.4.1
+    setimmediate: 1.0.5
+
+    # Sentry test harness
+    sentry-testkit: 6.2.2
+    wait-for-expect: 3.0.2

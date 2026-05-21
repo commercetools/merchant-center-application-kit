@@ -37,7 +37,7 @@
     "winston": "3.17.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/node22": "catalog:",
     "@types/express": "catalog:",
     "express": "catalog:",
     "typescript": "catalog:build"

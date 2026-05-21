@@ -42,12 +42,12 @@
     "prop-types": "catalog:react"
   },
   "devDependencies": {
-    "@types/cldr": "^7.1.4",
+    "@types/cldr": "catalog:",
     "@types/jest": "catalog:test",
-    "@types/prettier": "2.7.3",
+    "@types/prettier": "catalog:",
     "chalk": "catalog:",
-    "cldr": "7.9.0",
-    "deep-diff": "1.0.2",
+    "cldr": "catalog:",
+    "deep-diff": "catalog:",
     "node-fetch": "catalog:",
     "prettier": "catalog:lint",
     "prompts": "catalog:",

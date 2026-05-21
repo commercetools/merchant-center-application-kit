@@ -31,7 +31,7 @@
     "@emotion/react": "catalog:build",
     "@emotion/styled": "catalog:build",
     "@flopflip/react-broadcast": "catalog:react",
-    "@rollup/plugin-graphql": "2.0.5",
+    "@rollup/plugin-graphql": "catalog:build",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "@types/react-router-dom": "catalog:react",
