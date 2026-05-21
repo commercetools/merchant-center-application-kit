@@ -42,6 +42,9 @@ jobs:
       - name: Running static type checking (Starter Template)
         run: pnpm typecheck:starters
 
+      - name: Check workspace constraints (catalog + drift)
+        run: pnpm check:workspace-constraints
+
       - name: Check package shape
         run: pnpm check:package-shape
 
