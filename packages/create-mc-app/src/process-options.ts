@@ -122,12 +122,16 @@ async function processOptions(
   // Compute the path used by `downloadTemplate` to clone the app-kit repo
   // here so subsequent tasks (e.g. `updatePackageJson`) can read
   // pnpm-workspace.yaml from the same checkout to resolve catalog refs.
+  // Branch names with `/` (`feat/foo`) would otherwise create a nested
+  // tmp path and break dirname/basename splits downstream — sanitize them
+  // into the folder name only.
+  const safeBranchSegment = tagOrBranchVersion.replace(/[^A-Za-z0-9._-]/g, '_');
   const clonedRepositoryPath = path.join(
     os.tmpdir(),
     [
       'merchant-center-application-kit',
       '--',
-      tagOrBranchVersion,
+      safeBranchSegment,
       '--',
       Date.now().toString(),
     ].join('')
