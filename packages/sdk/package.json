@@ -21,38 +21,38 @@
   "module": "dist/commercetools-frontend-sdk.esm.js",
   "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15",
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build",
     "@commercetools-frontend/constants": "workspace:^",
     "@commercetools/api-request-builder": "6.0.0",
-    "@commercetools/http-user-agent": "3.0.0",
+    "@commercetools/http-user-agent": "catalog:",
     "@commercetools/sdk-client": "3.0.0",
     "@commercetools/sdk-middleware-correlation-id": "3.0.0",
     "@commercetools/sdk-middleware-http": "7.0.4",
-    "@types/node-fetch": "2.6.13",
-    "@types/prop-types": "^15.7.5",
-    "@types/react": "^19.0.3",
+    "@types/node-fetch": "catalog:",
+    "@types/prop-types": "catalog:react",
+    "@types/react": "catalog:react",
     "buffer": "6.0.3",
     "fast-equals": "2.0.4",
-    "omit-empty-es": "1.2.0",
-    "prop-types": "15.8.1",
-    "qss": "2.0.3",
-    "unfetch": "4.2.0",
-    "uuid": "14.0.0"
+    "omit-empty-es": "catalog:",
+    "prop-types": "catalog:react",
+    "qss": "catalog:",
+    "unfetch": "catalog:",
+    "uuid": "catalog:"
   },
   "devDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@testing-library/react": "16.1.0",
-    "jest-mock": "29.7.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-redux": "9.2.0",
-    "redux": "5.0.1",
-    "redux-thunk": "3.1.0"
+    "@emotion/react": "catalog:build",
+    "@testing-library/react": "catalog:test",
+    "jest-mock": "catalog:test",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
+    "react-redux": "catalog:react",
+    "redux": "catalog:react",
+    "redux-thunk": "catalog:react"
   },
   "peerDependencies": {
-    "react": "19.x",
-    "react-redux": "7.x || 9.x",
-    "redux": "4.x || 5.x"
+    "react": "catalog:peer",
+    "react-redux": "catalog:peer",
+    "redux": "catalog:peer"
   }
 }

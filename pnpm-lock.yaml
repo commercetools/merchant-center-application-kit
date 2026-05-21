@@ -4,6 +4,363 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  apollo:
+    '@apollo/client':
+      specifier: 3.13.9
+      version: 3.13.9
+    graphql:
+      specifier: 16.11.0
+      version: 16.11.0
+    graphql-tag:
+      specifier: ^2.12.6
+      version: 2.12.6
+  build:
+    '@babel/core':
+      specifier: ^7.22.17
+      version: 7.29.0
+    '@babel/plugin-proposal-do-expressions':
+      specifier: ^7.22.5
+      version: 7.28.3
+    '@babel/preset-env':
+      specifier: ^7.22.15
+      version: 7.28.5
+    '@babel/preset-typescript':
+      specifier: ^7.22.15
+      version: 7.28.5
+    '@babel/runtime':
+      specifier: ^7.22.15
+      version: 7.28.6
+    '@babel/runtime-corejs3':
+      specifier: ^7.22.15
+      version: 7.29.0
+    '@emotion/babel-plugin':
+      specifier: ^11.13.5
+      version: 11.13.5
+    '@emotion/react':
+      specifier: ^11.14.0
+      version: 11.14.0
+    '@emotion/styled':
+      specifier: ^11.14.0
+      version: 11.14.1
+    '@vitejs/plugin-react':
+      specifier: 4.7.0
+      version: 4.7.0
+    babel-plugin-formatjs:
+      specifier: ^10.5.25
+      version: 10.5.41
+    postcss:
+      specifier: 8.5.6
+      version: 8.5.6
+    ts-node:
+      specifier: 10.9.2
+      version: 10.9.2
+    typescript:
+      specifier: 5.9.2
+      version: 5.9.2
+    vite:
+      specifier: ~6.4.2
+      version: 6.4.2
+  default:
+    '@commercetools/composable-commerce-test-data':
+      specifier: 13.12.0
+      version: 13.12.0
+    '@commercetools/http-user-agent':
+      specifier: 3.0.0
+      version: 3.0.0
+    '@commercetools/sync-actions':
+      specifier: ^5.14.0
+      version: 5.19.2
+    '@types/express':
+      specifier: ^4.17.17
+      version: 4.17.25
+    '@types/lodash':
+      specifier: ^4.14.198
+      version: 4.17.20
+    '@types/node-fetch':
+      specifier: 2.6.13
+      version: 2.6.13
+    '@types/semver':
+      specifier: ^7.5.1
+      version: 7.7.1
+    autoprefixer:
+      specifier: ^10.4.15
+      version: 10.4.22
+    chalk:
+      specifier: 4.1.2
+      version: 4.1.2
+    commander:
+      specifier: ^13.1.0
+      version: 13.1.0
+    core-js:
+      specifier: ^3.32.2
+      version: 3.46.0
+    cosmiconfig:
+      specifier: 9.0.0
+      version: 9.0.0
+    cypress:
+      specifier: 14.5.4
+      version: 14.5.4
+    dotenv:
+      specifier: 16.6.1
+      version: 16.6.1
+    express:
+      specifier: ^4.21.2
+      version: 4.22.0
+    glob:
+      specifier: ^10.5.0
+      version: 10.5.0
+    jwt-decode:
+      specifier: 3.1.2
+      version: 3.1.2
+    moment:
+      specifier: ^2.29.4
+      version: 2.30.1
+    moment-timezone:
+      specifier: ^0.6.0
+      version: 0.6.0
+    node-fetch:
+      specifier: 2.7.0
+      version: 2.7.0
+    omit-empty-es:
+      specifier: 1.2.0
+      version: 1.2.0
+    postcss-load-config:
+      specifier: 3.1.4
+      version: 3.1.4
+    prompts:
+      specifier: ^2.4.2
+      version: 2.4.2
+    puppeteer:
+      specifier: 20.9.0
+      version: 20.9.0
+    qss:
+      specifier: 2.0.3
+      version: 2.0.3
+    rimraf:
+      specifier: 6.0.1
+      version: 6.0.1
+    semver:
+      specifier: 7.7.2
+      version: 7.7.2
+    shelljs:
+      specifier: 0.10.0
+      version: 0.10.0
+    tiny-invariant:
+      specifier: 1.3.3
+      version: 1.3.3
+    tiny-warning:
+      specifier: 1.0.3
+      version: 1.0.3
+    unfetch:
+      specifier: 4.2.0
+      version: 4.2.0
+    uuid:
+      specifier: 14.0.0
+      version: 14.0.0
+  lint:
+    '@babel/eslint-parser':
+      specifier: ^7.22.15
+      version: 7.28.5
+    '@graphql-eslint/eslint-plugin':
+      specifier: ^4.4.0
+      version: 4.4.0
+    eslint:
+      specifier: ^9.0.0
+      version: 9.39.2
+    eslint-config-prettier:
+      specifier: ^8.10.0
+      version: 8.10.2
+    eslint-formatter-pretty:
+      specifier: 4.1.0
+      version: 4.1.0
+    eslint-import-resolver-typescript:
+      specifier: ^3.6.0
+      version: 3.10.1
+    eslint-plugin-import:
+      specifier: ^2.28.1
+      version: 2.32.0
+    eslint-plugin-jest:
+      specifier: ^28.14.0
+      version: 28.14.0
+    eslint-plugin-prettier:
+      specifier: ^4.2.1
+      version: 4.2.5
+    globals:
+      specifier: ^15.15.0
+      version: 15.15.0
+    prettier:
+      specifier: 2.8.8
+      version: 2.8.8
+    stylelint:
+      specifier: 14.16.1
+      version: 14.16.1
+  react:
+    '@flopflip/react-broadcast':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@formatjs/cli':
+      specifier: 6.7.2
+      version: 6.7.2
+    '@types/history':
+      specifier: ^4.7.11
+      version: 4.7.11
+    '@types/prop-types':
+      specifier: ^15.7.5
+      version: 15.7.15
+    '@types/react-router-dom':
+      specifier: ^5.3.3
+      version: 5.3.3
+    formik:
+      specifier: 2.4.6
+      version: 2.4.6
+    history:
+      specifier: 4.10.1
+      version: 4.10.1
+    prop-types:
+      specifier: 15.8.1
+      version: 15.8.1
+    react-intl:
+      specifier: ^7.1.4
+      version: 7.1.14
+    react-redux:
+      specifier: 9.2.0
+      version: 9.2.0
+    react-router-dom:
+      specifier: 5.3.4
+      version: 5.3.4
+    react-select:
+      specifier: 5.10.2
+      version: 5.10.2
+    redux:
+      specifier: 5.0.1
+      version: 5.0.1
+    redux-thunk:
+      specifier: 3.1.0
+      version: 3.1.0
+  repo:
+    '@commercetools-uikit/accessible-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/card':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/constraints':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/data-table':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/design-system':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/flat-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/grid':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/hooks':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/icon-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/icons':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/label':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/link':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/loading-spinner':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/localized-text-field':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/localized-text-input':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/notifications':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/pagination':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/primary-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/secondary-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/secondary-icon-button':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/select-field':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/spacings':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/text':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/text-field':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/text-input':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@commercetools-uikit/utils':
+      specifier: ^20.4.0
+      version: 20.4.0
+    '@manypkg/cli':
+      specifier: 0.25.0
+      version: 0.25.0
+    '@manypkg/get-packages':
+      specifier: 1.1.3
+      version: 1.1.3
+  test:
+    '@jest/types':
+      specifier: 29.6.3
+      version: 29.6.3
+    '@testing-library/dom':
+      specifier: ^10.4.0
+      version: 10.4.1
+    '@testing-library/jest-dom':
+      specifier: ^6.6.3
+      version: 6.9.1
+    '@testing-library/react':
+      specifier: 16.1.0
+      version: 16.1.0
+    '@types/jest':
+      specifier: ^29.5.14
+      version: 29.5.14
+    '@types/testing-library__jest-dom':
+      specifier: ^5.14.9
+      version: 5.14.9
+    jest:
+      specifier: 30.2.0
+      version: 30.2.0
+    jest-each:
+      specifier: 30.2.0
+      version: 30.2.0
+    jest-mock:
+      specifier: 30.2.0
+      version: 30.2.0
+    jest-silent-reporter:
+      specifier: 0.6.0
+      version: 0.6.0
+    jest-watch-typeahead:
+      specifier: 3.0.1
+      version: 3.0.1
+    msw:
+      specifier: ^1.3.5
+      version: 1.3.5
+
 overrides:
   '@types/eslint': ^8.2.2
   '@types/node': ^22.13.2
@@ -62,7 +419,7 @@ importers:
         specifier: ^7.22.15
         version: 7.28.3(@babel/core@7.29.0)
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@changesets/changelog-github':
         specifier: 0.5.1
@@ -95,10 +452,10 @@ importers:
         specifier: workspace:^
         version: link:packages/mc-scripts
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.11)(typescript@5.9.2)
       '@commercetools/github-labels':
         specifier: 1.1.0
@@ -116,7 +473,7 @@ importers:
         specifier: 8.4.1
         version: 8.4.1
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@graphql-codegen/add':
         specifier: 3.2.3
@@ -137,16 +494,16 @@ importers:
         specifier: 2.5.13
         version: 2.5.13(graphql@16.11.0)
       '@graphql-eslint/eslint-plugin':
-        specifier: ^4.4.0
+        specifier: catalog:lint
         version: 4.4.0(@types/node@22.19.11)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
       '@manypkg/cli':
-        specifier: 0.25.0
+        specifier: catalog:repo
         version: 0.25.0
       '@manypkg/find-root':
         specifier: 2.2.3
         version: 2.2.3
       '@manypkg/get-packages':
-        specifier: 1.1.3
+        specifier: catalog:repo
         version: 1.1.3
       '@percy/cli':
         specifier: 1.31.1
@@ -176,10 +533,10 @@ importers:
         specifier: 10.1.0
         version: 10.1.0(cypress@14.5.4)
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tsconfig/cypress':
         specifier: ^1.0.1
@@ -188,7 +545,7 @@ importers:
         specifier: ^8.2.2
         version: 8.56.12
       '@types/jest':
-        specifier: ^29.5.4
+        specifier: catalog:test
         version: 29.5.14
       '@types/node':
         specifier: ^22.13.2
@@ -197,13 +554,13 @@ importers:
         specifier: ^0.0.45
         version: 0.0.45
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       '@types/webpack-env':
         specifier: ^1.18.8
         version: 1.18.8
       autoprefixer:
-        specifier: ^10.4.15
+        specifier: 'catalog:'
         version: 10.4.22(postcss@8.5.6)
       babel-plugin-import-graphql:
         specifier: ^2.8.1
@@ -221,31 +578,31 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       cypress:
-        specifier: 14.5.4
+        specifier: 'catalog:'
         version: 14.5.4
       dotenv:
-        specifier: 16.6.1
+        specifier: 'catalog:'
         version: 16.6.1
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
       eslint-formatter-pretty:
-        specifier: 4.1.0
+        specifier: catalog:lint
         version: 4.1.0
       find-up:
         specifier: 5.0.0
         version: 5.0.0
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       husky:
         specifier: 7.0.4
         version: 7.0.4
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
       jest-each:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       jest-environment-puppeteer:
         specifier: 8.0.6
@@ -263,31 +620,31 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       jest-silent-reporter:
-        specifier: 0.6.0
+        specifier: catalog:test
         version: 0.6.0
       jest-watch-typeahead:
-        specifier: 2.2.2
-        version: 2.2.2(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))
+        specifier: catalog:test
+        version: 3.0.1(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)))
       lint-staged:
         specifier: 11.2.6
         version: 11.2.6
       postcss:
-        specifier: 8.5.6
+        specifier: catalog:build
         version: 8.5.6
       postcss-load-config:
-        specifier: 3.1.4
+        specifier: 'catalog:'
         version: 3.1.4(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       publint:
         specifier: ^0.3.21
         version: 0.3.21
       puppeteer:
-        specifier: 20.9.0
+        specifier: 'catalog:'
         version: 20.9.0(typescript@5.9.2)
       qss:
-        specifier: 2.0.3
+        specifier: 'catalog:'
         version: 2.0.3
       react:
         specifier: 19.0.0
@@ -302,13 +659,13 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       shelljs:
-        specifier: 0.10.0
+        specifier: 'catalog:'
         version: 0.10.0
       start-server-and-test:
         specifier: 2.0.13
         version: 2.0.13
       stylelint:
-        specifier: 14.16.1
+        specifier: catalog:lint
         version: 14.16.1
       stylelint-config-prettier:
         specifier: 9.0.5
@@ -323,13 +680,13 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(stylelint@14.16.1)
       ts-node:
-        specifier: 10.9.2
+        specifier: catalog:build
         version: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
       tsc-files:
         specifier: 1.1.4
         version: 1.1.4(typescript@5.9.2)
       typescript:
-        specifier: 5.9.2
+        specifier: catalog:build
         version: 5.9.2
       vfile-message:
         specifier: 3.1.4
@@ -338,13 +695,13 @@ importers:
   application-templates/starter:
     dependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -389,85 +746,85 @@ importers:
         specifier: workspace:^
         version: link:../../packages/permissions
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/data-table':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/pagination':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/select-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
-        version: 13.12.0(@types/node@22.19.11)(typescript@5.9.2)
+        specifier: 'catalog:'
+        version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@commercetools/sync-actions':
-        specifier: ^5.14.0
+        specifier: 'catalog:'
         version: 5.19.2
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@jest/types':
-        specifier: 29.6.3
+        specifier: catalog:test
         version: 29.6.3
       '@manypkg/cli':
-        specifier: 0.25.0
+        specifier: catalog:repo
         version: 0.25.0
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: catalog:test
         version: 6.9.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/react':
         specifier: ^19.0.3
@@ -479,43 +836,43 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
       eslint-formatter-pretty:
-        specifier: 4.1.0
+        specifier: catalog:lint
         version: 4.1.0
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       graphql:
-        specifier: ^16.8.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       jest:
-        specifier: 30.2.0
-        version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+        specifier: catalog:test
+        version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       msw:
-        specifier: ^1.3.5
-        version: 1.3.5(@types/node@22.19.11)(typescript@5.9.2)
+        specifier: catalog:test
+        version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       react:
         specifier: 19.0.0
@@ -524,32 +881,32 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
     devDependencies:
       '@graphql-eslint/eslint-plugin':
-        specifier: ^4.4.0
-        version: 4.4.0(@types/node@22.19.11)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
+        specifier: catalog:lint
+        version: 4.4.0(@types/node@22.19.17)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
 
   application-templates/starter-typescript:
     dependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -597,85 +954,85 @@ importers:
         specifier: workspace:^
         version: link:../../packages/permissions
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/data-table':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/pagination':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/select-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@commercetools/sync-actions':
-        specifier: ^5.14.0
+        specifier: 'catalog:'
         version: 5.19.2
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@jest/types':
-        specifier: 29.6.3
+        specifier: catalog:test
         version: 29.6.3
       '@manypkg/cli':
-        specifier: 0.25.0
+        specifier: catalog:repo
         version: 0.25.0
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: catalog:test
         version: 6.9.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/react':
         specifier: ^19.0.3
@@ -687,40 +1044,40 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
       eslint-formatter-pretty:
-        specifier: 4.1.0
+        specifier: catalog:lint
         version: 4.1.0
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       graphql:
-        specifier: ^16.8.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       react:
         specifier: 19.0.0
@@ -729,35 +1086,35 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
       typescript:
-        specifier: 5.9.2
+        specifier: catalog:build
         version: 5.9.2
     devDependencies:
       '@graphql-eslint/eslint-plugin':
-        specifier: ^4.4.0
+        specifier: catalog:lint
         version: 4.4.0(@types/node@22.19.17)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
 
   custom-views-templates/starter:
     dependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -802,85 +1159,85 @@ importers:
         specifier: workspace:^
         version: link:../../packages/permissions
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/data-table':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/pagination':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/select-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@commercetools/sync-actions':
-        specifier: ^5.14.0
+        specifier: 'catalog:'
         version: 5.19.2
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@jest/types':
-        specifier: 29.6.3
+        specifier: catalog:test
         version: 29.6.3
       '@manypkg/cli':
-        specifier: 0.25.0
+        specifier: catalog:repo
         version: 0.25.0
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: catalog:test
         version: 6.9.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/react':
         specifier: ^19.0.3
@@ -892,43 +1249,43 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
       eslint-formatter-pretty:
-        specifier: 4.1.0
+        specifier: catalog:lint
         version: 4.1.0
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       graphql:
-        specifier: ^16.8.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       react:
         specifier: 19.0.0
@@ -937,32 +1294,32 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
     devDependencies:
       '@graphql-eslint/eslint-plugin':
-        specifier: ^4.4.0
+        specifier: catalog:lint
         version: 4.4.0(@types/node@22.19.17)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
 
   custom-views-templates/starter-typescript:
     dependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -1010,85 +1367,85 @@ importers:
         specifier: workspace:^
         version: link:../../packages/permissions
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/data-table':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/localized-text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/pagination':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/select-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@commercetools/sync-actions':
-        specifier: ^5.14.0
+        specifier: 'catalog:'
         version: 5.19.2
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@jest/types':
-        specifier: 29.6.3
+        specifier: catalog:test
         version: 29.6.3
       '@manypkg/cli':
-        specifier: 0.25.0
+        specifier: catalog:repo
         version: 0.25.0
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: catalog:test
         version: 6.9.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/react':
         specifier: ^19.0.3
@@ -1100,40 +1457,40 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
       eslint-formatter-pretty:
-        specifier: 4.1.0
+        specifier: catalog:lint
         version: 4.1.0
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       graphql:
-        specifier: ^16.8.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       react:
         specifier: 19.0.0
@@ -1142,38 +1499,38 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
       typescript:
-        specifier: 5.9.2
+        specifier: catalog:build
         version: 5.9.2
     devDependencies:
       '@graphql-eslint/eslint-plugin':
-        specifier: ^4.4.0
+        specifier: catalog:lint
         version: 4.4.0(@types/node@22.19.17)(eslint@9.39.2(jiti@2.6.1))(graphql@16.11.0)(typescript@5.9.2)
 
   packages-backend/eslint-config-node:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/eslint-parser':
-        specifier: ^7.22.15
+        specifier: catalog:lint
         version: 7.28.5(@babel/core@7.29.0)(eslint@9.39.2(jiti@2.6.1))
       '@babel/preset-env':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/preset-typescript':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.5(@babel/core@7.29.0)
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.0.0
@@ -1182,56 +1539,56 @@ importers:
         specifier: ^8.0.0
         version: 8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       eslint-config-prettier:
-        specifier: ^8.10.0
+        specifier: catalog:lint
         version: 8.10.2(eslint@9.39.2(jiti@2.6.1))
       eslint-import-resolver-typescript:
-        specifier: ^3.6.0
+        specifier: catalog:lint
         version: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-import:
-        specifier: ^2.28.1
+        specifier: catalog:lint
         version: 2.32.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-jest:
-        specifier: ^28.14.0
+        specifier: catalog:lint
         version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
       eslint-plugin-n:
         specifier: ^17.1.0
         version: 17.23.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       eslint-plugin-prettier:
-        specifier: ^4.2.1
+        specifier: catalog:lint
         version: 4.2.5(eslint-config-prettier@8.10.2(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@2.8.8)
       globals:
-        specifier: ^15.15.0
+        specifier: catalog:lint
         version: 15.15.0
       prettier:
-        specifier: ^2.8.4
+        specifier: catalog:lint
         version: 2.8.8
       typescript:
-        specifier: ^5.2.2
+        specifier: catalog:build
         version: 5.9.2
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.2
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
 
   packages-backend/express:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@types/express':
-        specifier: ^4.17.17
+        specifier: 'catalog:'
         version: 4.17.25
       '@types/node':
         specifier: ^22.13.2
         version: 22.19.11
       express:
-        specifier: ^4.21.2
+        specifier: 'catalog:'
         version: 4.22.0
       jose:
         specifier: ^5.10.0
@@ -1241,22 +1598,22 @@ importers:
         specifier: ^22.0.0
         version: 22.0.2
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.11)(typescript@5.9.2)
       typescript:
-        specifier: ^5.2.2
+        specifier: catalog:build
         version: 5.9.2
 
   packages-backend/loggers:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/triple-beam':
         specifier: 1.3.5
@@ -1284,22 +1641,22 @@ importers:
         specifier: ^22.0.0
         version: 22.0.2
       '@types/express':
-        specifier: ^4.17.17
+        specifier: 'catalog:'
         version: 4.17.25
       express:
-        specifier: ^4.21.2
+        specifier: 'catalog:'
         version: 4.22.0
       typescript:
-        specifier: ^5.2.2
+        specifier: catalog:build
         version: 5.9.2
 
   packages/actions-global:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/browser-history':
         specifier: workspace:^
@@ -1314,7 +1671,7 @@ importers:
         specifier: workspace:^
         version: link:../sentry
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/react':
         specifier: ^19.0.3
@@ -1323,32 +1680,32 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       redux-thunk:
-        specifier: 3.1.0
+        specifier: catalog:react
         version: 3.1.0(redux@5.0.1)
     devDependencies:
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       react:
         specifier: 19.0.0
         version: 19.0.0
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
 
   packages/application-components:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -1375,64 +1732,64 @@ importers:
         specifier: workspace:^
         version: link:../sentry
       '@commercetools-uikit/accessible-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/card':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/label':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/messages':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/primary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/secondary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/secondary-icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/stamp':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/utils':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react@19.0.0)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@emotion/styled':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.7
+        specifier: catalog:react
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@radix-ui/react-dialog':
         specifier: 1.1.14
@@ -1444,13 +1801,13 @@ importers:
         specifier: 1.2.6
         version: 1.2.6(react@19.0.0)
       '@types/history':
-        specifier: ^4.7.11
+        specifier: catalog:react
         version: 4.7.11
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -1459,44 +1816,44 @@ importers:
         specifier: 19.1.7
         version: 19.1.7(@types/react@19.2.4)
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       history:
-        specifier: 4.10.1
+        specifier: catalog:react
         version: 4.10.1
       lodash:
         specifier: 4.18.1
         version: 4.18.1
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       raf-schd:
         specifier: ^4.0.3
         version: 4.0.3
     devDependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: catalog:test
         version: 10.4.1
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/raf-schd':
         specifier: ^4.0.1
         version: 4.0.3
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       react:
         specifier: 19.0.0
@@ -1505,31 +1862,31 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
 
   packages/application-config:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/register':
         specifier: ^7.22.15
         version: 7.28.3(@babel/core@7.29.0)
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/constants':
         specifier: workspace:^
         version: link:../constants
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/react':
         specifier: ^19.0.3
@@ -1538,10 +1895,10 @@ importers:
         specifier: 8.18.0
         version: 8.18.0
       core-js:
-        specifier: ^3.32.2
+        specifier: 'catalog:'
         version: 3.46.0
       cosmiconfig:
-        specifier: 9.0.0
+        specifier: 'catalog:'
         version: 9.0.0(typescript@5.9.2)
       cosmiconfig-typescript-loader:
         specifier: 6.1.0
@@ -1556,7 +1913,7 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
     devDependencies:
       '@commercetools-frontend/assets':
@@ -1572,10 +1929,10 @@ importers:
   packages/application-shell:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -1629,49 +1986,49 @@ importers:
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/card':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/primary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/secondary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/select-input':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@emotion/styled':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/combine-adapters':
         specifier: 15.1.7
@@ -1686,7 +2043,7 @@ importers:
         specifier: 15.1.7
         version: 15.1.7(typescript@5.9.2)
       '@flopflip/react-broadcast':
-        specifier: 15.1.7
+        specifier: catalog:react
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@flopflip/types':
         specifier: 15.1.7
@@ -1698,13 +2055,13 @@ importers:
         specifier: ^1.8.2
         version: 1.8.4
       '@types/history':
-        specifier: ^4.7.11
+        specifier: catalog:react
         version: 4.7.11
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -1716,7 +2073,7 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@types/redux-logger':
         specifier: 3.0.13
@@ -1737,16 +2094,16 @@ importers:
         specifier: 6.6.2
         version: 6.6.2
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       history:
-        specifier: 4.10.1
+        specifier: catalog:react
         version: 4.10.1
       is-retina:
         specifier: 1.0.3
         version: 1.0.3
       jwt-decode:
-        specifier: 3.1.2
+        specifier: 'catalog:'
         version: 3.1.2
       lodash:
         specifier: 4.18.1
@@ -1755,62 +2112,62 @@ importers:
         specifier: 5.2.1
         version: 5.2.1
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       qss:
-        specifier: 2.0.3
+        specifier: 'catalog:'
         version: 2.0.3
       react-required-if:
         specifier: 1.0.3
         version: 1.0.3
       react-select:
-        specifier: 5.10.2
+        specifier: catalog:react
         version: 5.10.2(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       redux-logger:
         specifier: 3.0.6
         version: 3.0.6
       redux-thunk:
-        specifier: 3.1.0
+        specifier: catalog:react
         version: 3.1.0(redux@5.0.1)
       tiny-invariant:
-        specifier: 1.3.3
+        specifier: 'catalog:'
         version: 1.3.3
       unfetch:
-        specifier: 4.2.0
+        specifier: 'catalog:'
         version: 4.2.0
       uuid:
-        specifier: 14.0.0
+        specifier: 'catalog:'
         version: 14.0.0
     devDependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       react:
         specifier: 19.0.0
@@ -1819,25 +2176,25 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
 
   packages/application-shell-connectors:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-config':
         specifier: workspace:^
@@ -1852,16 +2209,16 @@ importers:
         specifier: workspace:^
         version: link:../sentry
       '@commercetools/http-user-agent':
-        specifier: 3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -1870,50 +2227,50 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       lodash:
         specifier: 4.18.1
         version: 4.18.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       tiny-warning:
-        specifier: 1.0.3
+        specifier: 'catalog:'
         version: 1.0.3
       uuid:
-        specifier: 14.0.0
+        specifier: 'catalog:'
         version: 14.0.0
       wait-for-observables:
         specifier: 1.0.3
         version: 1.0.3
     devDependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       headers-polyfill:
         specifier: ^3.1.2
         version: 3.3.0
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       react:
         specifier: 19.0.0
@@ -1924,10 +2281,10 @@ importers:
   packages/babel-preset-mc-app:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/plugin-proposal-do-expressions':
-        specifier: ^7.22.5
+        specifier: catalog:build
         version: 7.28.3(@babel/core@7.29.0)
       '@babel/plugin-proposal-export-default-from':
         specifier: ^7.22.17
@@ -1960,22 +2317,22 @@ importers:
         specifier: ^7.22.15
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/preset-env':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/preset-react':
         specifier: ^7.22.15
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/preset-typescript':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@emotion/babel-plugin':
-        specifier: ^11.13.5
+        specifier: catalog:build
         version: 11.13.5
       '@emotion/babel-preset-css-prop':
         specifier: ^11.12.0
@@ -1984,7 +2341,7 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(@babel/core@7.29.0)
       babel-plugin-formatjs:
-        specifier: ^10.5.25
+        specifier: catalog:build
         version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       babel-plugin-istanbul:
         specifier: ^7.0.0
@@ -1999,56 +2356,56 @@ importers:
         specifier: ^0.4.24
         version: 0.4.24
       core-js:
-        specifier: ^3.32.2
+        specifier: 'catalog:'
         version: 3.46.0
 
   packages/browser-history:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@types/history':
-        specifier: ^4.7.11
+        specifier: catalog:react
         version: 4.7.11
       history:
-        specifier: 4.10.1
+        specifier: catalog:react
         version: 4.10.1
       history-query-enhancer:
         specifier: 1.0.4
         version: 1.0.4(history@4.10.1)
       qss:
-        specifier: 2.0.3
+        specifier: 'catalog:'
         version: 2.0.3
 
   packages/codemod:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/preset-env':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.5(@babel/core@7.29.0)
       commander:
-        specifier: ^13.1.0
+        specifier: 'catalog:'
         version: 13.1.0
       glob:
-        specifier: ^10.5.0
+        specifier: 'catalog:'
         version: 10.5.0
       jscodeshift:
         specifier: 0.16.1
         version: 0.16.1(@babel/preset-env@7.28.5(@babel/core@7.29.0))
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
     devDependencies:
       '@commercetools-frontend/application-components':
         specifier: workspace:^
         version: link:../application-components
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2060,38 +2417,38 @@ importers:
         specifier: 2.7.3
         version: 2.7.3
       rimraf:
-        specifier: 6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
       typescript:
-        specifier: 5.9.2
+        specifier: catalog:build
         version: 5.9.2
 
   packages/constants:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
     devDependencies:
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
 
   packages/create-mc-app:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-config':
         specifier: workspace:^
@@ -2100,10 +2457,10 @@ importers:
         specifier: ^7.20.1
         version: 7.20.5
       '@types/semver':
-        specifier: ^7.5.1
+        specifier: 'catalog:'
         version: 7.7.1
       commander:
-        specifier: ^13.1.0
+        specifier: 'catalog:'
         version: 13.1.0
       execa:
         specifier: 5.1.1
@@ -2112,10 +2469,10 @@ importers:
         specifier: 5.0.8
         version: 5.0.8(enquirer@2.4.1)
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       semver:
-        specifier: 7.7.2
+        specifier: 'catalog:'
         version: 7.7.2
     devDependencies:
       '@tsconfig/node22':
@@ -2128,10 +2485,10 @@ importers:
   packages/cypress:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-config':
         specifier: workspace:^
@@ -2143,32 +2500,32 @@ importers:
         specifier: workspace:^
         version: link:../constants
       '@manypkg/get-packages':
-        specifier: 1.1.3
+        specifier: catalog:repo
         version: 1.1.3
       '@types/semver':
-        specifier: ^7.5.1
+        specifier: 'catalog:'
         version: 7.7.1
       semver:
-        specifier: 7.7.2
+        specifier: 'catalog:'
         version: 7.7.2
       uuid:
-        specifier: 14.0.0
+        specifier: 'catalog:'
         version: 14.0.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.2
       cypress:
-        specifier: 14.5.4
+        specifier: 'catalog:'
         version: 14.5.4
 
   packages/eslint-config-mc-app:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/eslint-parser':
-        specifier: ^7.22.15
+        specifier: catalog:lint
         version: 7.28.5(@babel/core@7.29.0)(eslint@9.39.2(jiti@2.6.1))
       '@commercetools-frontend/babel-preset-mc-app':
         specifier: workspace:^
@@ -2183,19 +2540,19 @@ importers:
         specifier: ^1.0.11
         version: 1.0.11
       eslint-config-prettier:
-        specifier: ^8.10.0
+        specifier: catalog:lint
         version: 8.10.2(eslint@9.39.2(jiti@2.6.1))
       eslint-import-resolver-typescript:
-        specifier: ^3.6.0
+        specifier: catalog:lint
         version: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-cypress:
         specifier: ^2.14.0
         version: 2.15.2(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-import:
-        specifier: ^2.28.1
+        specifier: catalog:lint
         version: 2.32.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-jest:
-        specifier: ^28.0.0
+        specifier: catalog:lint
         version: 28.14.0(@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2)
       eslint-plugin-jest-dom:
         specifier: ^4.0.3
@@ -2204,7 +2561,7 @@ importers:
         specifier: ^6.7.1
         version: 6.10.2(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-prettier:
-        specifier: ^4.2.1
+        specifier: catalog:lint
         version: 4.2.5(eslint-config-prettier@8.10.2(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@2.8.8)
       eslint-plugin-react:
         specifier: ^7.33.2
@@ -2216,26 +2573,26 @@ importers:
         specifier: ^7.15.4
         version: 7.15.4(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       globals:
-        specifier: ^15.15.0
+        specifier: catalog:lint
         version: 15.15.0
       prettier:
-        specifier: ^2.8.4
+        specifier: catalog:lint
         version: 2.8.8
       typescript:
-        specifier: ^5.2.2
+        specifier: catalog:build
         version: 5.9.2
     devDependencies:
       eslint:
-        specifier: ^9.0.0
+        specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
 
   packages/i18n:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-community-kit/i18n':
         specifier: ^0.3.0
@@ -2247,44 +2604,44 @@ importers:
         specifier: ^20.4.0
         version: 20.4.0
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/icu-messageformat-parser':
         specifier: 2.11.2
         version: 2.11.2
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
         version: 19.2.4
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
     devDependencies:
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       jest-mock:
-        specifier: 29.7.0
-        version: 29.7.0
+        specifier: catalog:test
+        version: 30.2.0
       react:
         specifier: 19.0.0
         version: 19.0.0
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
 
   packages/jest-preset-mc-app:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/babel-preset-mc-app':
         specifier: workspace:^
@@ -2308,7 +2665,7 @@ importers:
         specifier: 0.3.3
         version: 0.3.3
       '@testing-library/jest-dom':
-        specifier: ^6.6.3
+        specifier: catalog:test
         version: 6.9.1
       babel-jest:
         specifier: 30.2.0
@@ -2320,13 +2677,13 @@ importers:
         specifier: 1.4.0
         version: 1.4.0
       cosmiconfig:
-        specifier: 9.0.0
+        specifier: 'catalog:'
         version: 9.0.0(typescript@5.9.2)
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       identity-obj-proxy:
         specifier: 3.0.0
@@ -2341,13 +2698,13 @@ importers:
         specifier: 2.4.26
         version: 2.4.26
       jest-mock:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       jest-silent-reporter:
-        specifier: 0.6.0
+        specifier: catalog:test
         version: 0.6.0
       jest-watch-typeahead:
-        specifier: 3.0.1
+        specifier: catalog:test
         version: 3.0.1(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))
       raf:
         specifier: 3.4.1
@@ -2356,14 +2713,14 @@ importers:
         specifier: 1.0.5
         version: 1.0.5
       unfetch:
-        specifier: 4.2.0
+        specifier: 'catalog:'
         version: 4.2.0
     devDependencies:
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
 
   packages/jest-stylelint-runner:
@@ -2372,35 +2729,35 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(@jest/test-result@30.2.0)(jest-runner@30.2.0)
       postcss-load-config:
-        specifier: 3.1.4
+        specifier: 'catalog:'
         version: 3.1.4(postcss@8.5.6)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
     devDependencies:
       postcss:
-        specifier: 8.5.6
+        specifier: catalog:build
         version: 8.5.6
       stylelint:
-        specifier: 14.16.1
+        specifier: catalog:lint
         version: 14.16.1
 
   packages/l10n:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/sentry':
         specifier: workspace:^
         version: link:../sentry
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -2409,26 +2766,26 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
     devDependencies:
       '@types/cldr':
         specifier: ^7.1.4
         version: 7.1.4
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/prettier':
         specifier: 2.7.3
         version: 2.7.3
       chalk:
-        specifier: 4.1.2
+        specifier: 'catalog:'
         version: 4.1.2
       cldr:
         specifier: 7.9.0
@@ -2437,28 +2794,28 @@ importers:
         specifier: 1.0.2
         version: 1.0.2
       node-fetch:
-        specifier: 2.7.0
+        specifier: 'catalog:'
         version: 2.7.0
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       prompts:
-        specifier: ^2.4.2
+        specifier: 'catalog:'
         version: 2.4.2
       react:
         specifier: 19.0.0
         version: 19.0.0
       rimraf:
-        specifier: 6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
 
   packages/mc-dev-authentication:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
     devDependencies:
       '@commercetools-frontend/application-config':
@@ -2477,10 +2834,10 @@ importers:
   packages/mc-html-template:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-config':
         specifier: workspace:^
@@ -2514,16 +2871,16 @@ importers:
   packages/mc-scripts:
     dependencies:
       '@babel/core':
-        specifier: ^7.22.17
+        specifier: catalog:build
         version: 7.29.0
       '@babel/plugin-proposal-do-expressions':
-        specifier: ^7.22.5
+        specifier: catalog:build
         version: 7.28.3(@babel/core@7.29.0)
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-components':
         specifier: workspace:^
@@ -2547,10 +2904,10 @@ importers:
         specifier: workspace:^
         version: link:../mc-html-template
       '@commercetools/http-user-agent':
-        specifier: 3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       '@emotion/babel-plugin':
-        specifier: ^11.13.5
+        specifier: catalog:build
         version: 11.13.5
       '@formatjs/cli-lib':
         specifier: ^6.3.8
@@ -2583,19 +2940,19 @@ importers:
         specifier: ^4.6.0
         version: 4.7.0(@swc/core@1.15.1)
       '@vitejs/plugin-react':
-        specifier: 4.7.0
+        specifier: catalog:build
         version: 4.7.0(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
       '@vitejs/plugin-react-swc':
         specifier: 3.11.0
         version: 3.11.0(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
       autoprefixer:
-        specifier: ^10.4.15
-        version: 10.4.22(postcss@8.5.12)
+        specifier: 'catalog:'
+        version: 10.4.22(postcss@8.5.6)
       babel-loader:
         specifier: 8.4.1
         version: 8.4.1(@babel/core@7.29.0)(webpack@5.105.1(@swc/core@1.15.1))
       babel-plugin-formatjs:
-        specifier: ^10.5.25
+        specifier: catalog:build
         version: 10.5.41(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       babel-plugin-react-compiler:
         specifier: ^1.0.0
@@ -2604,13 +2961,13 @@ importers:
         specifier: ^4.28.1
         version: 4.28.1
       chalk:
-        specifier: 4.1.2
+        specifier: 'catalog:'
         version: 4.1.2
       commander:
-        specifier: ^13.1.0
+        specifier: 'catalog:'
         version: 13.1.0
       core-js:
-        specifier: ^3.32.2
+        specifier: 'catalog:'
         version: 3.46.0
       css-loader:
         specifier: 6.11.0
@@ -2619,7 +2976,7 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(webpack@5.105.1(@swc/core@1.15.1))
       dotenv:
-        specifier: 16.6.1
+        specifier: 'catalog:'
         version: 16.6.1
       dotenv-expand:
         specifier: 8.0.3
@@ -2628,16 +2985,16 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       glob:
-        specifier: ^10.5.0
+        specifier: 'catalog:'
         version: 10.5.0
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-request:
         specifier: 5.2.0
         version: 5.2.0(graphql@16.11.0)
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:apollo
         version: 2.12.6(graphql@16.11.0)
       html-webpack-plugin:
         specifier: 5.6.3
@@ -2646,7 +3003,7 @@ importers:
         specifier: 0.5.7
         version: 0.5.7
       jwt-decode:
-        specifier: 3.1.2
+        specifier: 'catalog:'
         version: 3.1.2
       lodash:
         specifier: 4.18.1
@@ -2655,40 +3012,40 @@ importers:
         specifier: 2.9.4
         version: 2.9.4(webpack@5.105.1(@swc/core@1.15.1))
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-locales-webpack-plugin:
         specifier: 1.2.0
         version: 1.2.0(moment@2.30.1)(webpack@5.105.1(@swc/core@1.15.1))
       node-fetch:
-        specifier: 2.7.0
+        specifier: 'catalog:'
         version: 2.7.0
       open:
         specifier: ^10.1.0
         version: 10.2.0
       postcss:
-        specifier: ^8.5.12
-        version: 8.5.12
+        specifier: catalog:build
+        version: 8.5.6
       postcss-custom-media:
         specifier: 8.0.2
-        version: 8.0.2(postcss@8.5.12)
+        version: 8.0.2(postcss@8.5.6)
       postcss-custom-properties:
         specifier: 12.1.4
-        version: 12.1.4(postcss@8.5.12)
+        version: 12.1.4(postcss@8.5.6)
       postcss-import:
         specifier: 14.1.0
-        version: 14.1.0(postcss@8.5.12)
+        version: 14.1.0(postcss@8.5.6)
       postcss-loader:
         specifier: 6.2.1
-        version: 6.2.1(postcss@8.5.12)(webpack@5.105.1(@swc/core@1.15.1))
+        version: 6.2.1(postcss@8.5.6)(webpack@5.105.1(@swc/core@1.15.1))
       postcss-reporter:
         specifier: 7.1.0
-        version: 7.1.0(postcss@8.5.12)
+        version: 7.1.0(postcss@8.5.6)
       prettier:
-        specifier: 2.8.8
+        specifier: catalog:lint
         version: 2.8.8
       prompts:
-        specifier: ^2.4.2
+        specifier: 'catalog:'
         version: 2.4.2
       querystring-es3:
         specifier: ^0.2.1
@@ -2706,7 +3063,7 @@ importers:
         specifier: ^0.34.1
         version: 0.34.5
       shelljs:
-        specifier: 0.10.0
+        specifier: 'catalog:'
         version: 0.10.0
       sirv:
         specifier: ^3.0.2
@@ -2727,7 +3084,7 @@ importers:
         specifier: ^0.11.0
         version: 0.11.4
       vite:
-        specifier: ~6.4.2
+        specifier: catalog:build
         version: 6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1)
       vite-bundle-analyzer:
         specifier: 0.23.0
@@ -2746,7 +3103,7 @@ importers:
         version: 5.0.2(webpack@5.105.1(@swc/core@1.15.1))
     devDependencies:
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2755,53 +3112,53 @@ importers:
         specifier: ^11.0.1
         version: 11.0.4
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/moment-locales-webpack-plugin':
         specifier: ^1.2.3
         version: 1.2.6(@swc/core@1.15.1)
       '@types/node-fetch':
-        specifier: 2.6.13
+        specifier: 'catalog:'
         version: 2.6.13
       '@types/prettier':
         specifier: 2.7.3
         version: 2.7.3
       jest-mock:
-        specifier: 29.7.0
-        version: 29.7.0
+        specifier: catalog:test
+        version: 30.2.0
       memfs:
         specifier: ^4.8.2
         version: 4.51.0
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.17)(typescript@5.9.2)
       puppeteer:
-        specifier: 20.9.0
+        specifier: 'catalog:'
         version: 20.9.0(typescript@5.9.2)
       rimraf:
-        specifier: 6.0.1
+        specifier: 'catalog:'
         version: 6.0.1
 
   packages/notifications:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
     devDependencies:
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
 
   packages/permissions:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/application-shell-connectors':
         specifier: workspace:^
@@ -2810,13 +3167,13 @@ importers:
         specifier: workspace:^
         version: link:../sentry
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -2825,26 +3182,26 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       tiny-invariant:
-        specifier: 1.3.3
+        specifier: 'catalog:'
         version: 1.3.3
       tiny-warning:
-        specifier: 1.0.3
+        specifier: 'catalog:'
         version: 1.0.3
     devDependencies:
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       react:
         specifier: 19.0.0
@@ -2853,10 +3210,10 @@ importers:
   packages/react-notifications:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/actions-global':
         specifier: workspace:^
@@ -2874,40 +3231,40 @@ importers:
         specifier: workspace:^
         version: link:../sentry
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/secondary-icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/utils':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react@19.0.0)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@emotion/styled':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@types/history':
-        specifier: ^4.7.11
+        specifier: catalog:react
         version: 4.7.11
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: 'catalog:'
         version: 4.17.20
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -2919,35 +3276,35 @@ importers:
         specifier: 5.1.20
         version: 5.1.20
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       lodash:
         specifier: 4.18.1
         version: 4.18.1
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       reselect:
         specifier: 4.1.8
         version: 4.1.8
     devDependencies:
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-mock:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       react:
         specifier: 19.0.0
@@ -2956,22 +3313,22 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
 
   packages/sdk:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/constants':
         specifier: workspace:^
@@ -2980,7 +3337,7 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
       '@commercetools/http-user-agent':
-        specifier: 3.0.0
+        specifier: 'catalog:'
         version: 3.0.0
       '@commercetools/sdk-client':
         specifier: 3.0.0
@@ -2992,10 +3349,10 @@ importers:
         specifier: 7.0.4
         version: 7.0.4
       '@types/node-fetch':
-        specifier: 2.6.13
+        specifier: 'catalog:'
         version: 2.6.13
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
@@ -3007,30 +3364,30 @@ importers:
         specifier: 2.0.4
         version: 2.0.4
       omit-empty-es:
-        specifier: 1.2.0
+        specifier: 'catalog:'
         version: 1.2.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       qss:
-        specifier: 2.0.3
+        specifier: 'catalog:'
         version: 2.0.3
       unfetch:
-        specifier: 4.2.0
+        specifier: 'catalog:'
         version: 4.2.0
       uuid:
-        specifier: 14.0.0
+        specifier: 'catalog:'
         version: 14.0.0
     devDependencies:
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@testing-library/react':
-        specifier: 16.1.0
+        specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       jest-mock:
-        specifier: 29.7.0
-        version: 29.7.0
+        specifier: catalog:test
+        version: 30.2.0
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -3038,22 +3395,22 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-redux:
-        specifier: 9.2.0
+        specifier: catalog:react
         version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       redux:
-        specifier: 5.0.1
+        specifier: catalog:react
         version: 5.0.1
       redux-thunk:
-        specifier: 3.1.0
+        specifier: catalog:react
         version: 3.1.0(redux@5.0.1)
 
   packages/sentry:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-frontend/browser-history':
         specifier: workspace:^
@@ -3071,23 +3428,23 @@ importers:
         specifier: 8.55.0
         version: 8.55.0
       '@types/prop-types':
-        specifier: ^15.7.5
+        specifier: catalog:react
         version: 15.7.15
       '@types/react':
         specifier: ^19.0.3
         version: 19.2.4
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
     devDependencies:
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       react:
         specifier: 19.0.0
@@ -3102,20 +3459,20 @@ importers:
   packages/url-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.28.6
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
     devDependencies:
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
 
   playground:
     dependencies:
       '@babel/runtime-corejs3':
-        specifier: ^7.22.15
+        specifier: catalog:build
         version: 7.29.0
       '@commercetools-docs/ui-kit':
         specifier: 24.11.0
@@ -3154,82 +3511,82 @@ importers:
         specifier: workspace:^
         version: link:../packages/sdk
       '@commercetools-uikit/card':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/checkbox-input':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/constraints':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/data-table':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/date-time-input':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(moment-timezone@0.6.0)(moment@2.30.1)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/flat-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/hooks':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/label':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/loading-spinner':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/notifications':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/pagination':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/primary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/secondary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.7
+        specifier: catalog:react
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       apollo-link-rest:
         specifier: ^0.9.0
         version: 0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.14.1)
       graphql:
-        specifier: 16.11.0
+        specifier: catalog:apollo
         version: 16.11.0
       graphql-anywhere:
         specifier: ^4.2.8
         version: 4.2.8(graphql@16.11.0)
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       prop-types:
-        specifier: 15.8.1
+        specifier: catalog:react
         version: 15.8.1
       qs:
         specifier: ^6.11.2
@@ -3241,10 +3598,10 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       vercel:
         specifier: 24.2.5
@@ -3260,19 +3617,19 @@ importers:
         specifier: workspace:^
         version: link:../packages/mc-scripts
       '@commercetools/composable-commerce-test-data':
-        specifier: 13.12.0
+        specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.11)(typescript@5.9.2)
       '@formatjs/cli':
-        specifier: 6.7.2
+        specifier: catalog:react
         version: 6.7.2
       '@types/jest':
-        specifier: ^29.5.14
+        specifier: catalog:test
         version: 29.5.14
       '@types/node':
         specifier: ^22.13.2
         version: 22.19.11
       '@types/testing-library__jest-dom':
-        specifier: ^5.14.9
+        specifier: catalog:test
         version: 5.14.9
       '@vercel/node':
         specifier: ^5.0.0
@@ -3281,25 +3638,25 @@ importers:
         specifier: ^4.0.0
         version: 4.1.0
       express:
-        specifier: 4.22.0
+        specifier: 'catalog:'
         version: 4.22.0
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
       msw:
-        specifier: ^1.3.5
+        specifier: catalog:test
         version: 1.3.5(@types/node@22.19.11)(typescript@5.9.2)
       ts-node:
-        specifier: ^10.9.1
+        specifier: catalog:build
         version: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
       typescript:
-        specifier: 5.9.2
+        specifier: catalog:build
         version: 5.9.2
 
   visual-testing-app:
     dependencies:
       '@apollo/client':
-        specifier: 3.13.9
+        specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-frontend/application-components':
         specifier: workspace:^
@@ -3323,46 +3680,46 @@ importers:
         specifier: workspace:^
         version: link:../packages/react-notifications
       '@commercetools-uikit/accessible-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/card':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/grid':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react@19.0.0)
       '@commercetools-uikit/icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@emotion/styled':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: 15.1.7
+        specifier: catalog:react
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@rollup/plugin-graphql':
         specifier: 2.0.5
@@ -3374,22 +3731,22 @@ importers:
         specifier: 19.1.7
         version: 19.1.7(@types/react@19.2.4)
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@vitejs/plugin-react':
-        specifier: 4.7.0
+        specifier: catalog:build
         version: 4.7.0(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       graphql:
-        specifier: ^16.8.1
+        specifier: catalog:apollo
         version: 16.11.0
       jest:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-each:
-        specifier: 30.2.0
+        specifier: catalog:test
         version: 30.2.0
       react:
         specifier: 19.0.0
@@ -3398,19 +3755,19 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-redux:
-        specifier: 7.2.9
-        version: 7.2.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: catalog:react
+        version: 9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       uuid:
-        specifier: 14.0.0
+        specifier: 'catalog:'
         version: 14.0.0
       vite:
-        specifier: ~6.4.2
+        specifier: catalog:build
         version: 6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1)
 
   website-components-playground:
@@ -3431,55 +3788,55 @@ importers:
         specifier: workspace:^
         version: link:../packages/l10n
       '@commercetools-uikit/design-system':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/icon-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/icons':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/link':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/multiline-text-field':
         specifier: ^20.4.0
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/secondary-button':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react-router-dom@5.3.4(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/select-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/spacings':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commercetools-uikit/text':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       '@commercetools-uikit/text-field':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@commercetools-uikit/text-input':
-        specifier: ^20.4.0
+        specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
       '@emotion/react':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@emotion/styled':
-        specifier: ^11.14.0
+        specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       formik:
-        specifier: 2.4.6
+        specifier: catalog:react
         version: 2.4.6(@types/react@19.2.4)(react@19.0.0)
       history:
-        specifier: 4.10.1
+        specifier: catalog:react
         version: 4.10.1
       moment:
-        specifier: ^2.29.4
+        specifier: 'catalog:'
         version: 2.30.1
       moment-timezone:
-        specifier: ^0.6.0
+        specifier: 'catalog:'
         version: 0.6.0
       react:
         specifier: 19.0.0
@@ -3488,20 +3845,20 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-intl:
-        specifier: ^7.1.4
+        specifier: catalog:react
         version: 7.1.14(react@19.0.0)(typescript@5.9.2)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: catalog:react
         version: 5.3.4(react@19.0.0)
       react-select:
-        specifier: 5.10.2
+        specifier: catalog:react
         version: 5.10.2(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@commercetools-frontend/application-config':
         specifier: workspace:^
         version: link:../packages/application-config
       '@types/history':
-        specifier: ^4.7.11
+        specifier: catalog:react
         version: 4.7.11
       '@types/react':
         specifier: ^19.0.3
@@ -3510,13 +3867,13 @@ importers:
         specifier: 19.1.7
         version: 19.1.7(@types/react@19.2.4)
       '@types/react-router-dom':
-        specifier: ^5.3.3
+        specifier: catalog:react
         version: 5.3.3
       '@vitejs/plugin-react':
-        specifier: 4.7.0
+        specifier: catalog:build
         version: 4.7.0(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
       vite:
-        specifier: ~6.4.2
+        specifier: catalog:build
         version: 6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1)
 
 packages:
@@ -6012,10 +6369,6 @@ packages:
     resolution: {integrity: sha512-+Sg6GCR/wy1oSmQDFq4LQDAhm3ETKnorxN+y5nbLULOR3P0c14f2Wurzj3/xqPXtasLFfHd5iRFQ7AJt4KH2cw==}
     engines: {node: '>=8'}
 
-  '@jest/console@29.7.0':
-    resolution: {integrity: sha512-5Ni4CU7XHQi32IJ398EEP4RrB8eV09sXP2ROqD4bksHrnTree52PsxvX8tpL8LvTZ3pFzXyPbNQReSN41CAhOg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-
   '@jest/console@30.2.0':
     resolution: {integrity: sha512-+O1ifRjkvYIkBqASKWgLxrpEhQAAE7hY77ALLUufSk5717KfOShg6IbqLmdsLMPdUiFvA2kTs0R7YZy+l0IzZQ==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
@@ -6107,10 +6460,6 @@ packages:
   '@jest/source-map@30.0.1':
     resolution: {integrity: sha512-MIRWMUUR3sdbP36oyNyhbThLHyJ2eEDClPCiHVbrYAe5g3CHRArIVpBw7cdSB5fr+ofSfIb2Tnsw8iEHL0PYQg==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
-
-  '@jest/test-result@29.7.0':
-    resolution: {integrity: sha512-Fdx+tv6x1zlkJPcWXmMDAG2HBnaR9XPSd5aDWQVsfrZmLVT3lU1cwyxLgRmXR9yrq4NBoEm9BMsfgFzTQAbJYA==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
   '@jest/test-result@30.2.0':
     resolution: {integrity: sha512-RF+Z+0CCHkARz5HT9mcQCBulb1wgCP3FBvl9VFokMX27acKphwyQsNuWH3c+ojd1LeWBLoTYoxF0zm6S/66mjg==}
@@ -7463,9 +7812,6 @@ packages:
   '@types/react-modal@3.16.3':
     resolution: {integrity: sha512-xXuGavyEGaFQDgBv4UVm8/ZsG+qxeQ7f77yNrW3n+1J6XAstUy5rYHeIHPh1KzsGc6IkCIdu6lQ2xWzu1jBTLg==}
 
-  '@types/react-redux@7.1.34':
-    resolution: {integrity: sha512-GdFaVjEbYv4Fthm2ZLvj1VSCedV7TqE5y1kNwnjSdBOTXuRSgowux6J8TAct15T3CKBr63UMk+2CO7ilRhyrAQ==}
-
   '@types/react-router-dom@5.3.3':
     resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
 
@@ -8028,10 +8374,6 @@ packages:
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
-
-  ansi-escapes@6.2.1:
-    resolution: {integrity: sha512-4nJ3yixlEthEJ9Rk4vPcdBRkZvQZlYyu8j4/Mqz5sgIkddmEnH2Yj2ZrnP9S3tQOvSNRUIgVNF/1yPpRAGNRig==}
-    engines: {node: '>=14.16'}
 
   ansi-escapes@7.2.0:
     resolution: {integrity: sha512-g6LhBsl+GBPRWGWsBtutpzBYuIIdBkLEvad5C/va/74Db018+5TZiyA26cZJAr3Rft5lprVqOIPxf5Vid6tqAw==}
@@ -8701,10 +9043,6 @@ packages:
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
     engines: {node: '>=10'}
-
-  char-regex@2.0.2:
-    resolution: {integrity: sha512-cbGOjAptfM2LVmWhwRFHEKTPkLwNddVmuqYZQt895yXwAsWsXObCG+YN4DGQ/JBtT4GP1a1lPPdio2z413LmTg==}
-    engines: {node: '>=12.20'}
 
   character-entities@2.0.2:
     resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
@@ -11896,21 +12234,11 @@ packages:
     resolution: {integrity: sha512-FBGWi7dP2hpdi8nBoWxSsLvBFewKAg0+uSQwBaof4Y4DPgBabXgpSYC5/lR7VmnIlSpASmCi/ntRWPbv7089Pw==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
 
-  jest-watch-typeahead@2.2.2:
-    resolution: {integrity: sha512-+QgOFW4o5Xlgd6jGS5X37i08tuuXNW8X0CV9WNFi+3n8ExCIP+E1melYhvYLjv5fE6D0yyzk74vsSO8I6GqtvQ==}
-    engines: {node: ^14.17.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      jest: ^27.0.0 || ^28.0.0 || ^29.0.0
-
   jest-watch-typeahead@3.0.1:
     resolution: {integrity: sha512-SFmHcvdueTswZlVhPCWfLXMazvwZlA2UZTrcE7MC3NwEVeWvEcOx6HUe+igMbnmA6qowuBSW4in8iC6J2EYsgQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       jest: ^30.0.0
-
-  jest-watcher@29.7.0:
-    resolution: {integrity: sha512-49Fg7WXkU3Vl2h6LbLtMQ/HyB6rXSIX7SqvBLQmssRBGN9I0PNvPmAmCWSOY6SOvrjhI/F7/bGAv9RtnsPA03g==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
   jest-watcher@30.2.0:
     resolution: {integrity: sha512-PYxa28dxJ9g777pGm/7PrbnMeA0Jr7osHP9bS7eJy9DuAjMgdGtxgf0uKMyoIsTWAkIbUW5hSDdJ3urmgXBqxg==}
@@ -13913,18 +14241,6 @@ packages:
       react: 19.0.0
       react-dom: 19.0.0
 
-  react-redux@7.2.9:
-    resolution: {integrity: sha512-Gx4L3uM182jEEayZfRbI/G11ZpYdNAnBs70lFVMNdHJI76XYtR+7m0MN+eAs7UHBPhWXcnFPaS+9owSCJQHNpQ==}
-    peerDependencies:
-      react: 19.0.0
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-
   react-redux@9.2.0:
     resolution: {integrity: sha512-ROY9fvHhwOD9ySfrF0wmvu//bKCQ6AeZZq1nJNtbDC+kk5DuSuNX/n6YWYF/SYy7bSba4D4FSz8DJeKY/S/r+g==}
     peerDependencies:
@@ -14076,9 +14392,6 @@ packages:
     resolution: {integrity: sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==}
     peerDependencies:
       redux: ^5.0.0
-
-  redux@4.2.1:
-    resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
 
   redux@5.0.1:
     resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
@@ -14735,9 +15048,6 @@ packages:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
     engines: {node: '>=10.0.0'}
 
-  streamx@2.23.0:
-    resolution: {integrity: sha512-kn+e44esVfn2Fa/O0CPFcex27fjIL6MkVae0Mm6q+E6f0hWv578YCERbv+4m02cjxvDsPKLnmxral/rR6lBMAg==}
-
   streamx@2.25.0:
     resolution: {integrity: sha512-0nQuG6jf1w+wddNEEXCF4nTg3LtufWINB5eFEN+5TNZW7KWJp6x87+JFL43vaAUPyCfH1wID+mNVyW6OHtFamg==}
 
@@ -14760,10 +15070,6 @@ packages:
   string-length@4.0.2:
     resolution: {integrity: sha512-+l6rNN5fYHNhZZy41RXsYptCjA2Igmq4EG7kZAYFQI1E1VTXarr6ZPXBg6eq7Y6eK4FEhY6AJlyuFIb/v/S0VQ==}
     engines: {node: '>=10'}
-
-  string-length@5.0.1:
-    resolution: {integrity: sha512-9Ep08KAMUn0OadnVaBuRdE2l615CQ508kr0XMadjClfYpdCyvrbFp6Taebo8yyxokQ4viUd/xPPUA4FGgUa0ow==}
-    engines: {node: '>=12.20'}
 
   string-length@6.0.0:
     resolution: {integrity: sha512-1U361pxZHEQ+FeSjzqRpV+cu2vTzYeWeafXFLykiFlv4Vc0n3njgU8HrMbyik5uwm77naWMuVG8fhEF+Ovb1Kg==}
@@ -16210,7 +16516,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.0
       '@babel/generator': 7.29.1
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/runtime': 7.28.6
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
@@ -16244,7 +16550,7 @@ snapshots:
       commander: 10.0.1
       marked: 9.1.6
       marked-terminal: 7.3.0(marked@9.1.6)
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@arethetypeswrong/core@0.18.2':
     dependencies:
@@ -16253,7 +16559,7 @@ snapshots:
       cjs-module-lexer: 1.2.3
       fflate: 0.8.2
       lru-cache: 11.2.5
-      semver: 7.7.2
+      semver: 7.7.4
       typescript: 5.6.1-rc
       validate-npm-package-name: 5.0.1
 
@@ -16294,7 +16600,7 @@ snapshots:
       '@babel/helper-compilation-targets': 7.28.6
       '@babel/helper-module-transforms': 7.28.6(@babel/core@7.29.0)
       '@babel/helpers': 7.28.6
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/template': 7.28.6
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
@@ -16317,7 +16623,7 @@ snapshots:
 
   '@babel/generator@7.29.1':
     dependencies:
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/types': 7.29.0
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
@@ -16448,7 +16754,6 @@ snapshots:
   '@babel/parser@7.29.2':
     dependencies:
       '@babel/types': 7.29.0
-    optional: true
 
   '@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.28.5(@babel/core@7.29.0)':
     dependencies:
@@ -17154,7 +17459,7 @@ snapshots:
   '@babel/template@7.28.6':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/types': 7.29.0
 
   '@babel/traverse@7.29.0':
@@ -17162,7 +17467,7 @@ snapshots:
       '@babel/code-frame': 7.29.0
       '@babel/generator': 7.29.1
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
       debug: 4.4.3(supports-color@8.1.1)
@@ -17192,7 +17497,7 @@ snapshots:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@changesets/assemble-release-plan@6.0.9':
     dependencies:
@@ -17201,7 +17506,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@changesets/changelog-git@0.2.1':
     dependencies:
@@ -17242,7 +17547,7 @@ snapshots:
       package-manager-detector: 0.2.11
       picocolors: 1.1.1
       resolve-from: 5.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       spawndamnit: 3.0.1
       term-size: 2.2.1
 
@@ -17265,7 +17570,7 @@ snapshots:
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
       picocolors: 1.1.1
-      semver: 7.7.2
+      semver: 7.7.4
 
   '@changesets/get-github-info@0.6.0':
     dependencies:
@@ -18938,15 +19243,15 @@ snapshots:
       '@commitlint/execute-rule': 17.8.1
       '@commitlint/resolve-extends': 17.8.1
       '@commitlint/types': 17.8.1
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.9.2)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@22.19.11)(cosmiconfig@8.3.6(typescript@5.9.2))(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))(typescript@5.9.2)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@22.19.17)(cosmiconfig@8.3.6(typescript@5.9.2))(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))(typescript@5.9.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
+      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)
       typescript: 5.9.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -19050,7 +19355,7 @@ snapshots:
       combined-stream: 1.0.8
       extend: 3.0.2
       forever-agent: 0.6.1
-      form-data: 4.0.4
+      form-data: 4.0.5
       http-signature: 1.4.0
       is-typedarray: 1.0.0
       isstream: 0.1.2
@@ -19071,7 +19376,7 @@ snapshots:
       bluebird: 3.7.1
       debug: 4.4.3(supports-color@8.1.1)
       lodash: 4.18.1
-      semver: 7.7.2
+      semver: 7.7.4
       webpack: 5.105.1(@swc/core@1.15.1)
     transitivePeerDependencies:
       - supports-color
@@ -19672,7 +19977,7 @@ snapshots:
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.9.4
       '@types/json-stable-stringify': 1.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       json-stable-stringify: 1.3.0
       tslib: 2.8.1
@@ -19683,7 +19988,7 @@ snapshots:
   '@formatjs/ts-transformer@3.14.2(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))':
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       json-stable-stringify: 1.3.0
       tslib: 2.8.1
@@ -20142,7 +20447,7 @@ snapshots:
 
   '@graphql-tools/graphql-tag-pluck@7.5.2(@babel/core@7.29.0)(graphql@16.11.0)':
     dependencies:
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/plugin-syntax-import-assertions': 7.27.1(@babel/core@7.29.0)
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
@@ -20156,7 +20461,7 @@ snapshots:
   '@graphql-tools/graphql-tag-pluck@8.3.25(graphql@16.11.0)':
     dependencies:
       '@babel/core': 7.29.0
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/plugin-syntax-import-assertions': 7.27.1(@babel/core@7.29.0)
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
@@ -20559,19 +20864,10 @@ snapshots:
   '@istanbuljs/schema@0.1.6':
     optional: true
 
-  '@jest/console@29.7.0':
-    dependencies:
-      '@jest/types': 29.6.3
-      '@types/node': 22.19.11
-      chalk: 4.1.2
-      jest-message-util: 29.7.0
-      jest-util: 29.7.0
-      slash: 3.0.0
-
   '@jest/console@30.2.0':
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       jest-message-util: 30.2.0
       jest-util: 30.2.0
@@ -20585,14 +20881,14 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.3.1
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
-      jest-config: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
+      jest-config: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -20621,14 +20917,14 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.3.1
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
-      jest-config: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
+      jest-config: 30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -20657,7 +20953,7 @@ snapshots:
       '@jest/fake-timers': 30.2.0
       '@jest/types': 30.2.0
       '@types/jsdom': 21.1.7
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-mock: 30.2.0
       jest-util: 30.2.0
       jsdom: 26.1.0
@@ -20666,14 +20962,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-mock: 29.7.0
 
   '@jest/environment@30.2.0':
     dependencies:
       '@jest/fake-timers': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-mock: 30.2.0
 
   '@jest/expect-utils@29.7.0':
@@ -20695,7 +20991,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -20704,7 +21000,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.2.0
       '@sinonjs/fake-timers': 13.0.5
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-message-util: 30.2.0
       jest-mock: 30.2.0
       jest-util: 30.2.0
@@ -20722,7 +21018,7 @@ snapshots:
 
   '@jest/pattern@30.0.1':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-regex-util: 30.0.1
 
   '@jest/reporters@30.2.0':
@@ -20733,7 +21029,7 @@ snapshots:
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -20773,13 +21069,6 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       callsites: 3.1.0
       graceful-fs: 4.2.11
-
-  '@jest/test-result@29.7.0':
-    dependencies:
-      '@jest/console': 29.7.0
-      '@jest/types': 29.6.3
-      '@types/istanbul-lib-coverage': 2.0.6
-      collect-v8-coverage: 1.0.3
 
   '@jest/test-result@30.2.0':
     dependencies:
@@ -20840,7 +21129,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/yargs': 15.0.19
       chalk: 4.1.2
 
@@ -20849,7 +21138,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/yargs': 17.0.34
       chalk: 4.1.2
 
@@ -20859,7 +21148,7 @@ snapshots:
       '@jest/schemas': 30.0.5
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/yargs': 17.0.34
       chalk: 4.1.2
 
@@ -20948,14 +21237,14 @@ snapshots:
       parse-github-url: 1.0.3
       picocolors: 1.1.1
       sembear: 0.7.0
-      semver: 7.7.2
+      semver: 7.7.4
       tinyexec: 1.0.2
       validate-npm-package-name: 6.0.2
 
   '@manypkg/find-root@1.1.0':
     dependencies:
       '@babel/runtime': 7.28.6
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       find-up: 4.1.0
       fs-extra: 8.1.0
 
@@ -21006,7 +21295,7 @@ snapshots:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.7.2
+      semver: 7.7.4
       tar: 7.5.14
     transitivePeerDependencies:
       - encoding
@@ -21019,7 +21308,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0
       nopt: 8.1.0
-      semver: 7.7.2
+      semver: 7.7.4
       tar: 7.5.14
     transitivePeerDependencies:
       - encoding
@@ -21185,7 +21474,7 @@ snapshots:
 
   '@octokit/types@2.16.2':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@octokit/types@6.41.0':
     dependencies:
@@ -21456,7 +21745,7 @@ snapshots:
       quick-lru: 5.1.1
       resolve-from: 5.0.0
       rollup: 2.80.0
-      semver: 7.7.2
+      semver: 7.7.4
       terser: 5.46.0
       v8-compile-cache: 2.4.0
       zod: 3.25.76
@@ -21671,7 +21960,7 @@ snapshots:
       blob-stream: 0.1.3
       busboy: 0.3.1
       cookie-signature: 1.2.2
-      form-data: 4.0.4
+      form-data: 4.0.5
       node-fetch: 2.7.0
       source-map-support: 0.5.21
     transitivePeerDependencies:
@@ -22192,7 +22481,7 @@ snapshots:
 
   '@types/babel__template@7.4.4':
     dependencies:
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@babel/types': 7.29.0
 
   '@types/babel__traverse@7.28.0':
@@ -22202,15 +22491,15 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/busboy@0.3.5':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/cldr@7.1.4': {}
 
@@ -22219,7 +22508,7 @@ snapshots:
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 5.1.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/connect@3.4.38':
     dependencies:
@@ -22253,14 +22542,14 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.7':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
 
   '@types/express-serve-static-core@5.1.0':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
@@ -22299,7 +22588,7 @@ snapshots:
 
   '@types/http-proxy@1.17.17':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -22341,11 +22630,11 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/lodash.kebabcase@4.1.9':
     dependencies:
@@ -22380,12 +22669,12 @@ snapshots:
 
   '@types/node-fetch@2.6.13':
     dependencies:
-      '@types/node': 22.19.11
-      form-data: 4.0.4
+      '@types/node': 22.19.17
+      form-data: 4.0.5
 
   '@types/node-forge@1.3.14':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/node@22.19.11':
     dependencies:
@@ -22432,13 +22721,6 @@ snapshots:
     dependencies:
       '@types/react': 19.2.4
 
-  '@types/react-redux@7.1.34':
-    dependencies:
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.4)
-      '@types/react': 19.2.4
-      hoist-non-react-statics: 3.3.2
-      redux: 4.2.1
-
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
@@ -22464,11 +22746,11 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/retry@0.12.0': {}
 
@@ -22479,11 +22761,11 @@ snapshots:
   '@types/send@0.17.6':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/serialize-javascript@5.0.4': {}
 
@@ -22494,12 +22776,12 @@ snapshots:
   '@types/serve-static@1.15.10':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@types/send': 0.17.6
 
   '@types/set-cookie-parser@2.4.10':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/sinonjs__fake-timers@8.1.1': {}
 
@@ -22507,7 +22789,7 @@ snapshots:
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/stack-utils@2.0.3': {}
 
@@ -22546,7 +22828,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -22560,7 +22842,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)':
@@ -22765,7 +23047,7 @@ snapshots:
 
   '@vercel/node@1.15.4':
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       '@vercel/node-bridge': 2.2.2
       ts-node: 8.9.1(typescript@4.3.4)
       typescript: 4.3.4
@@ -23146,8 +23428,6 @@ snapshots:
     dependencies:
       type-fest: 0.21.3
 
-  ansi-escapes@6.2.1: {}
-
   ansi-escapes@7.2.0:
     dependencies:
       environment: 1.1.0
@@ -23370,16 +23650,6 @@ snapshots:
       when-exit: 2.1.5
 
   auto-bind@4.0.0: {}
-
-  autoprefixer@10.4.22(postcss@8.5.12):
-    dependencies:
-      browserslist: 4.28.1
-      caniuse-lite: 1.0.30001764
-      fraction.js: 5.3.4
-      normalize-range: 0.1.2
-      picocolors: 1.1.1
-      postcss: 8.5.12
-      postcss-value-parser: 4.2.0
 
   autoprefixer@10.4.22(postcss@8.5.6):
     dependencies:
@@ -23980,8 +24250,6 @@ snapshots:
 
   char-regex@1.0.2: {}
 
-  char-regex@2.0.2: {}
-
   character-entities@2.0.2: {}
 
   chardet@0.7.0: {}
@@ -24317,9 +24585,9 @@ snapshots:
       ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
       typescript: 5.9.2
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@22.19.11)(cosmiconfig@8.3.6(typescript@5.9.2))(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))(typescript@5.9.2):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@22.19.17)(cosmiconfig@8.3.6(typescript@5.9.2))(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))(typescript@5.9.2):
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       cosmiconfig: 8.3.6(typescript@5.9.2)
       ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
       typescript: 5.9.2
@@ -24471,7 +24739,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.12)
       postcss-modules-values: 4.0.0(postcss@8.5.12)
       postcss-value-parser: 4.2.0
-      semver: 7.7.2
+      semver: 7.7.4
     optionalDependencies:
       webpack: 5.105.1(@swc/core@1.15.1)
 
@@ -24625,7 +24893,7 @@ snapshots:
       process: 0.11.10
       proxy-from-env: 1.0.0
       request-progress: 3.0.0
-      semver: 7.7.2
+      semver: 7.7.4
       supports-color: 8.1.1
       tmp: 0.2.5
       tree-kill: 1.2.2
@@ -25331,7 +25599,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
-      semver: 7.7.2
+      semver: 7.7.4
 
   eslint-config-prettier@8.10.2(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
@@ -26023,7 +26291,7 @@ snapshots:
       minimatch: 3.1.5
       node-abort-controller: 3.1.1
       schema-utils: 3.3.0
-      semver: 7.7.2
+      semver: 7.7.4
       tapable: 2.3.0
       typescript: 5.9.2
       webpack: 5.105.1(@swc/core@1.15.1)
@@ -26988,7 +27256,7 @@ snapshots:
 
   is-bun-module@2.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   is-callable@1.2.7: {}
 
@@ -27263,10 +27531,10 @@ snapshots:
   istanbul-lib-instrument@6.0.3:
     dependencies:
       '@babel/core': 7.29.0
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.29.2
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -27344,7 +27612,7 @@ snapshots:
       '@jest/expect': 30.2.0
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.0(babel-plugin-macros@3.1.0)
@@ -27435,7 +27703,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)):
+  jest-config@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)):
     dependencies:
       '@babel/core': 7.29.0
       '@jest/get-type': 30.1.0
@@ -27462,8 +27730,8 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 22.19.11
-      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)
+      '@types/node': 22.19.17
+      ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -27556,7 +27824,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -27565,7 +27833,7 @@ snapshots:
       '@jest/environment': 30.2.0
       '@jest/fake-timers': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-mock: 30.2.0
       jest-util: 30.2.0
       jest-validate: 30.2.0
@@ -27603,7 +27871,7 @@ snapshots:
   jest-haste-map@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -27663,13 +27931,13 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-util: 29.7.0
 
   jest-mock@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       jest-util: 30.2.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@30.2.0):
@@ -27709,7 +27977,8 @@ snapshots:
       - debug
       - typescript
 
-  jest-regex-util@29.6.3: {}
+  jest-regex-util@29.6.3:
+    optional: true
 
   jest-regex-util@30.0.1: {}
 
@@ -27756,7 +28025,7 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -27785,7 +28054,7 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
@@ -27829,7 +28098,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.2
+      semver: 7.7.4
       synckit: 0.11.11
     transitivePeerDependencies:
       - supports-color
@@ -27837,7 +28106,7 @@ snapshots:
   jest-util@26.6.2:
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       graceful-fs: 4.2.11
       is-ci: 2.0.0
@@ -27846,7 +28115,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -27855,7 +28124,7 @@ snapshots:
   jest-util@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       chalk: 4.1.2
       ci-info: 4.3.1
       graceful-fs: 4.2.11
@@ -27870,15 +28139,15 @@ snapshots:
       leven: 3.1.0
       pretty-format: 30.2.0
 
-  jest-watch-typeahead@2.2.2(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))):
+  jest-watch-typeahead@3.0.1(jest@30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))):
     dependencies:
-      ansi-escapes: 6.2.1
+      ansi-escapes: 7.2.0
       chalk: 5.6.2
       jest: 30.2.0(@types/node@22.19.11)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2))
-      jest-regex-util: 29.6.3
-      jest-watcher: 29.7.0
+      jest-regex-util: 30.0.1
+      jest-watcher: 30.2.0
       slash: 5.1.0
-      string-length: 5.0.1
+      string-length: 6.0.0
       strip-ansi: 7.1.2
 
   jest-watch-typeahead@3.0.1(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2))):
@@ -27892,22 +28161,11 @@ snapshots:
       string-length: 6.0.0
       strip-ansi: 7.1.2
 
-  jest-watcher@29.7.0:
-    dependencies:
-      '@jest/test-result': 29.7.0
-      '@jest/types': 29.6.3
-      '@types/node': 22.19.11
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      emittery: 0.13.1
-      jest-util: 29.7.0
-      string-length: 4.0.2
-
   jest-watcher@30.2.0:
     dependencies:
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -27921,7 +28179,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
@@ -27933,7 +28191,7 @@ snapshots:
 
   jest-worker@28.1.3:
     dependencies:
-      '@types/node': 22.19.11
+      '@types/node': 22.19.17
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -28488,7 +28746,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   make-error@1.3.6: {}
 
@@ -29073,7 +29331,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -29402,7 +29660,7 @@ snapshots:
       ky: 1.14.0
       registry-auth-token: 5.1.0
       registry-url: 6.0.1
-      semver: 7.7.2
+      semver: 7.7.4
 
   package-json@6.5.0:
     dependencies:
@@ -29576,7 +29834,7 @@ snapshots:
   postcss-calc@10.1.1(postcss@8.5.12):
     dependencies:
       postcss: 8.5.12
-      postcss-selector-parser: 7.1.0
+      postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
 
   postcss-colormin@7.0.9(postcss@8.5.12):
@@ -29593,14 +29851,14 @@ snapshots:
       postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
-  postcss-custom-media@8.0.2(postcss@8.5.12):
+  postcss-custom-media@8.0.2(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.12
+      postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
-  postcss-custom-properties@12.1.4(postcss@8.5.12):
+  postcss-custom-properties@12.1.4(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.12
+      postcss: 8.5.6
       postcss-value-parser: 4.2.0
 
   postcss-discard-comments@7.0.7(postcss@8.5.12):
@@ -29619,13 +29877,6 @@ snapshots:
   postcss-discard-overridden@7.0.2(postcss@8.5.12):
     dependencies:
       postcss: 8.5.12
-
-  postcss-import@14.1.0(postcss@8.5.12):
-    dependencies:
-      postcss: 8.5.12
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.11
 
   postcss-import@14.1.0(postcss@8.5.6):
     dependencies:
@@ -29658,12 +29909,12 @@ snapshots:
       postcss: 8.5.6
       ts-node: 10.9.2(@swc/core@1.15.1)(@types/node@22.19.11)(typescript@5.9.2)
 
-  postcss-loader@6.2.1(postcss@8.5.12)(webpack@5.105.1(@swc/core@1.15.1)):
+  postcss-loader@6.2.1(postcss@8.5.6)(webpack@5.105.1(@swc/core@1.15.1)):
     dependencies:
       cosmiconfig: 7.1.0
       klona: 2.0.6
-      postcss: 8.5.12
-      semver: 7.7.2
+      postcss: 8.5.6
+      semver: 7.7.4
       webpack: 5.105.1(@swc/core@1.15.1)
 
   postcss-media-query-parser@0.2.3: {}
@@ -29792,17 +30043,17 @@ snapshots:
       postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
-  postcss-reporter@7.1.0(postcss@8.5.12):
+  postcss-reporter@7.1.0(postcss@8.5.6):
     dependencies:
       picocolors: 1.1.1
-      postcss: 8.5.12
+      postcss: 8.5.6
       thenby: 1.3.4
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.6):
+  postcss-safe-parser@6.0.0(postcss@8.5.12):
     dependencies:
-      postcss: 8.5.6
+      postcss: 8.5.12
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -30174,18 +30425,6 @@ snapshots:
       react-lifecycles-compat: 3.0.4
       warning: 4.0.3
 
-  react-redux@7.2.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      '@babel/runtime': 7.28.6
-      '@types/react-redux': 7.1.34
-      hoist-non-react-statics: 3.3.2
-      loose-envify: 1.4.0
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-is: 17.0.2
-    optionalDependencies:
-      react-dom: 19.0.0(react@19.0.0)
-
   react-redux@9.2.0(@types/react@19.2.4)(react@19.0.0)(redux@5.0.1):
     dependencies:
       '@types/use-sync-external-store': 0.0.6
@@ -30380,10 +30619,6 @@ snapshots:
   redux-thunk@3.1.0(redux@5.0.1):
     dependencies:
       redux: 5.0.1
-
-  redux@4.2.1:
-    dependencies:
-      '@babel/runtime': 7.28.6
 
   redux@5.0.1: {}
 
@@ -30743,7 +30978,7 @@ snapshots:
 
   sembear@0.7.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   semver-compare@1.0.0: {}
 
@@ -31176,15 +31411,6 @@ snapshots:
 
   streamsearch@1.1.0: {}
 
-  streamx@2.23.0:
-    dependencies:
-      events-universal: 1.0.1
-      fast-fifo: 1.3.2
-      text-decoder: 1.2.3
-    transitivePeerDependencies:
-      - bare-abort-controller
-      - react-native-b4a
-
   streamx@2.25.0:
     dependencies:
       events-universal: 1.0.1
@@ -31193,7 +31419,6 @@ snapshots:
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
-    optional: true
 
   strict-event-emitter@0.2.8:
     dependencies:
@@ -31211,11 +31436,6 @@ snapshots:
     dependencies:
       char-regex: 1.0.2
       strip-ansi: 6.0.1
-
-  string-length@5.0.1:
-    dependencies:
-      char-regex: 2.0.2
-      strip-ansi: 7.1.2
 
   string-length@6.0.0:
     dependencies:
@@ -31409,10 +31629,10 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.6
+      postcss: 8.5.12
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 6.0.0(postcss@8.5.6)
+      postcss-safe-parser: 6.0.0(postcss@8.5.12)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -31529,7 +31749,7 @@ snapshots:
     dependencies:
       b4a: 1.7.3
       fast-fifo: 1.3.2
-      streamx: 2.23.0
+      streamx: 2.25.0
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
@@ -31780,7 +32000,7 @@ snapshots:
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.2
+      semver: 7.7.4
       typescript: 5.9.2
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -31856,7 +32076,6 @@ snapshots:
       yn: 3.1.1
     optionalDependencies:
       '@swc/core': 1.15.1
-    optional: true
 
   ts-node@8.9.1(typescript@4.3.4):
     dependencies:
@@ -32161,7 +32380,7 @@ snapshots:
       is-npm: 6.1.0
       latest-version: 9.0.0
       pupa: 3.3.0
-      semver: 7.7.2
+      semver: 7.7.4
       xdg-basedir: 5.1.0
 
   upper-case-first@2.0.2:

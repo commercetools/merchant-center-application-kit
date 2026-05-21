@@ -28,8 +28,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15",
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build",
     "@commercetools-frontend/application-config": "workspace:^",
     "@commercetools-frontend/constants": "workspace:^",
     "serialize-javascript": "7.0.5",

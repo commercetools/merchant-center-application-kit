@@ -18,11 +18,11 @@
   "module": "dist/commercetools-frontend-constants.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15"
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "jest": "30.2.0"
+    "@types/jest": "catalog:test",
+    "jest": "catalog:test"
   }
 }
