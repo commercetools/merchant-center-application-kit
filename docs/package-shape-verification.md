@@ -100,51 +100,6 @@ when:
 - You bump a major dependency that touches the type graph
 - You change the build scripts in `scripts/`
 
-## Baseline (2026-05-20)
-
-Snapshot of the findings on `main` after the check was introduced. A follow-up
-cleanup will drive these to zero; until then `REPORT_ONLY` is true so the check
-does not gate merges.
-
-> **The baseline is a regression contract, not a punch list.** Listing a
-> finding here does not mean it must be fixed in this ticket — these are the
-> known-existing shape issues as of the date above, frozen so subsequent work
-> (catalog adoption, metadata normalization, dependency upgrades) can be
-> proven non-regressing. The expected outcome of a PR is **"no new findings"**,
-> not "all findings resolved." If your PR adds a row to this table, that is
-> the regression; if it leaves the existing rows unchanged, the baseline holds.
-> Findings get removed from this list only when an explicit cleanup ticket
-> resolves them.
-
-| Package                                         | Tool    | Finding                                                                                                                                                                 |
-| ----------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@commercetools-frontend/application-shell`     | attw    | `InternalResolutionError` on root entry and `/test-utils` subpath — bare relative imports in emitted `.d.ts` files fail `node16` ESM resolution. Both 4 modes affected. |
-| `@commercetools-frontend/browser-history`       | attw    | `FalseExportDefault` on root — `.d.ts` uses `export default` where the JS file uses `module.exports =`. All 4 modes.                                                    |
-| `@commercetools-frontend/cypress`               | attw    | `FalseExportDefault` on `/task` subpath. All 4 modes; root and `/add-commands` are clean.                                                                               |
-| `@commercetools-frontend/mc-html-template`      | attw    | `FalseExportDefault` on `/webpack-html-template` subpath. All 4 modes; root is clean.                                                                                   |
-| `@commercetools-frontend/mc-scripts`            | attw    | `FalseExportDefault` on `/webpack-loaders/i18n-message-compilation-loader` subpath. All 4 modes; six other entry points are clean.                                      |
-| `@commercetools-frontend/assets`                | publint | `pkg.module should be ESM, but the code is written in CJS` — `module: "index.js"` declared but the file is CJS.                                                         |
-| `@commercetools-frontend/babel-preset-mc-app`   | publint | Same root cause as `assets` — `module: "./index.js"` declared, file is CJS.                                                                                             |
-| `@commercetools-frontend/jest-preset-mc-app`    | publint | Same root cause — `module: "./jest-preset.js"` declared, file is CJS.                                                                                                   |
-| `@commercetools-frontend/jest-stylelint-runner` | publint | Same root cause — `module: "index.js"` declared, file is CJS.                                                                                                           |
-
-**Total: 9 findings across 7 packages.** Two failure modes account for all of
-them:
-
-- **attw `FalseExportDefault`** on subpath entries with `module.exports =`-style
-  JS but `export default`-style `.d.ts` (`browser-history`, `cypress/task`,
-  `mc-html-template/webpack-html-template`,
-  `mc-scripts/webpack-loaders/i18n-message-compilation-loader`).
-- **publint `pkg.module should be ESM`** on the four preconstruct-excluded
-  packages that ship plain CJS but declare a `module` field
-  (`assets`, `babel-preset-mc-app`, `jest-preset-mc-app`,
-  `jest-stylelint-runner`).
-
-`application-shell` is the one structural outlier — `InternalResolutionError`
-indicates bare relative imports in emitted `.d.ts` that fail Node16 ESM
-resolution. Resolving it likely requires a relative-import rewriter in the
-postbuild step.
-
 ## CI Integration
 
 The check runs in the `lint_and_test` job
@@ -178,8 +133,10 @@ in the job log under the "Check package shape" step.
 
 1. Look at the CI output. Each finding is annotated with the package and tool
    that produced it.
-2. Compare against the baseline above — if it's listed, no action needed; if
-   it's new, your change introduced a regression.
+2. Compare against the same job on `main` to know whether your change
+   introduced the finding or it was already there. Easiest way: run
+   `pnpm check:package-shape` locally on `main`, then on your branch, and
+   diff the two outputs.
 3. attw failures usually point to one of:
    - A new subpath in `exports` that lacks a `types` condition.
    - A `require.types` pointing at an `.d.ts` file that TypeScript will treat
