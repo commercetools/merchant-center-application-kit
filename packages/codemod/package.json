@@ -32,7 +32,7 @@
     "prettier": "2.8.8"
   },
   "devDependencies": {
-    "@commercetools-frontend/application-components": "workspace:*",
+    "@commercetools-frontend/application-components": "workspace:^",
     "@emotion/react": "^11.14.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/jscodeshift": "0.12.0",

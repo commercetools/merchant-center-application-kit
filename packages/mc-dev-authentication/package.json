@@ -28,7 +28,7 @@
     "@babel/runtime-corejs3": "^7.22.15"
   },
   "devDependencies": {
-    "@commercetools-frontend/application-config": "workspace:*",
+    "@commercetools-frontend/application-config": "workspace:^",
     "@tsconfig/node22": "^22.0.0",
     "@types/connect": "^3.4.36",
     "connect": "^3.7.0"

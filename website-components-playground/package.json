@@ -8,11 +8,11 @@
     "preview": "vite preview --port 8001"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "workspace:*",
-    "@commercetools-frontend/browser-history": "workspace:*",
-    "@commercetools-frontend/constants": "workspace:*",
-    "@commercetools-frontend/i18n": "workspace:*",
-    "@commercetools-frontend/l10n": "workspace:*",
+    "@commercetools-frontend/application-components": "workspace:^",
+    "@commercetools-frontend/browser-history": "workspace:^",
+    "@commercetools-frontend/constants": "workspace:^",
+    "@commercetools-frontend/i18n": "workspace:^",
+    "@commercetools-frontend/l10n": "workspace:^",
     "@commercetools-uikit/design-system": "^20.4.0",
     "@commercetools-uikit/icon-button": "^20.4.0",
     "@commercetools-uikit/icons": "^20.4.0",
@@ -37,7 +37,7 @@
     "react-select": "5.10.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/application-config": "workspace:*",
+    "@commercetools-frontend/application-config": "workspace:^",
     "@types/history": "^4.7.11",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
