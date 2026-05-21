@@ -2,15 +2,12 @@
 '@commercetools-frontend/create-mc-app': patch
 ---
 
-Resolve `workspace:^` and `catalog:` / `catalog:<name>` specifiers when
-scaffolding from a template. Previously `update-package-json` only
-flattened the exact string `workspace:*` — templates that have since
-moved to `workspace:^` or to pnpm catalogs would leak those specifiers
-into the scaffolded app and break installation.
+Fix scaffolding from templates that use pnpm catalogs or the
+`workspace:^` protocol. Previously the CLI only flattened the exact
+`workspace:*` specifier, so apps generated from the latest templates
+would end up with unresolved `workspace:^` or `catalog:` entries in
+their `package.json` and fail to install.
 
-The CLI now reads the cloned repo's `pnpm-workspace.yaml` to resolve
-each catalog reference to a concrete version, and rewrites
-`workspace:^` to `^<releaseVersion>` (matching what pnpm rewrites at
-publish time). Older template tags that predate catalog adoption are
-still supported — if no `pnpm-workspace.yaml` is present in the clone,
-the legacy `workspace:*` rewrite path runs alone.
+The CLI now resolves these to concrete versions automatically. No
+changes are needed in your usage — `npx create-mc-app …` keeps working
+the same way against any template version, old or new.
