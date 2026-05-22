@@ -28,7 +28,8 @@
     "execa": "catalog:",
     "listr2": "catalog:",
     "prettier": "catalog:lint",
-    "semver": "catalog:"
+    "semver": "catalog:",
+    "yaml": "catalog:"
   },
   "devDependencies": {
     "@tsconfig/node22": "catalog:",

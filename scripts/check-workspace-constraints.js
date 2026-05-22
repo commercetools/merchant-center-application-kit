@@ -28,60 +28,43 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const { parse: parseYaml } = require('yaml');
 
 const ROOT = path.resolve(__dirname, '..');
 
-// Parse the `catalog:` (default) and `catalogs.<name>:` (named) blocks from
-// pnpm-workspace.yaml. Minimal parser scoped to the shape we use — key:value
-// entries with optional single-quoted keys, with blank lines separating
-// named catalogs. Avoids pulling a YAML lib into a root-only script.
+/**
+ * Parsed view of pnpm-workspace.yaml's catalog declarations.
+ *
+ * @typedef {Object} CatalogIndex
+ * @property {Set<string>} default  Dep names declared under top-level `catalog:`.
+ * @property {Map<string, Set<string>>} named  Named catalog → dep names declared
+ *   under `catalogs.<name>:`. The `peer` catalog is included like any other.
+ */
+
+/**
+ * Cross-workspace usage accumulator. Records every place a given dependency
+ * appears in a workspace `package.json`, grouped by the literal specifier
+ * string so that drift between specifiers is detectable.
+ *
+ * @typedef {Map<string, Map<string, Set<string>>>} UsageMap
+ *   depName → spec → set of workspace labels that pin the dep to that spec.
+ */
+
+/**
+ * Parse the `catalog:` (default) and `catalogs.<name>:` (named) blocks from
+ * pnpm-workspace.yaml into an index of declared dep names per catalog.
+ *
+ * @returns {CatalogIndex}
+ */
 function readCatalogs() {
-  const yaml = fs.readFileSync(path.join(ROOT, 'pnpm-workspace.yaml'), 'utf-8');
-  const lines = yaml.split('\n');
-  const out = { default: new Set(), named: new Map() };
-
-  const indentOf = (l) => l.match(/^( *)/)[1].length;
-  const entryKey = (l) => {
-    const m = l.match(/^\s+'?([^'":\s]+)'?\s*:/);
-    return m ? m[1] : null;
+  const text = fs.readFileSync(path.join(ROOT, 'pnpm-workspace.yaml'), 'utf-8');
+  const doc = parseYaml(text) ?? {};
+  const out = {
+    default: new Set(Object.keys(doc.catalog ?? {})),
+    named: new Map(),
   };
-
-  let mode = null; // 'default' | 'catalogs' | null
-  let currentNamed = null;
-  for (const line of lines) {
-    const trimmed = line.trim();
-    // Blank lines and comment-only lines are visual separators; preserve
-    // current mode and currentNamed so sub-cohort grouping inside a named
-    // catalog is allowed (with `# comment` headers and blank-line gaps).
-    if (trimmed === '' || trimmed.startsWith('#')) continue;
-    if (/^\S/.test(line)) {
-      if (/^catalog:\s*$/.test(line)) {
-        mode = 'default';
-        currentNamed = null;
-      } else if (/^catalogs:\s*$/.test(line)) {
-        mode = 'catalogs';
-        currentNamed = null;
-      } else {
-        mode = null;
-        currentNamed = null;
-      }
-      continue;
-    }
-    const ind = indentOf(line);
-    if (mode === 'default' && ind === 2) {
-      const k = entryKey(line);
-      if (k) out.default.add(k);
-    } else if (mode === 'catalogs') {
-      if (ind === 2) {
-        currentNamed = line.trim().replace(/:$/, '');
-        if (!out.named.has(currentNamed)) {
-          out.named.set(currentNamed, new Set());
-        }
-      } else if (ind >= 4 && currentNamed) {
-        const k = entryKey(line);
-        if (k) out.named.get(currentNamed).add(k);
-      }
-    }
+  for (const [name, entries] of Object.entries(doc.catalogs ?? {})) {
+    out.named.set(name, new Set(Object.keys(entries)));
   }
   return out;
 }
@@ -144,10 +127,18 @@ for (const ws of workspaces) {
   }
 }
 
-// Catalog enforcement: every cataloged dep must be referenced via its
-// catalog. Literal versions are an error — the catalog is the single
-// source of truth, and skipping the reference re-introduces the version
-// drift this rule exists to prevent.
+/**
+ * Catalog enforcement: every cataloged dep must be referenced via its
+ * catalog. Literal versions are an error — the catalog is the single
+ * source of truth, and skipping the reference re-introduces the version
+ * drift this rule exists to prevent. Appends violations to the outer
+ * `errors` array.
+ *
+ * @param {Set<string>} catalogKeys  Dep names that the catalog declares.
+ * @param {UsageMap} usage           Observed usage across all workspaces.
+ * @param {string} expectedSpec      The spec consumers must use (e.g. `catalog:build`).
+ * @param {string} ruleName          Human label used in the error message.
+ */
 function enforceCatalog(catalogKeys, usage, expectedSpec, ruleName) {
   for (const name of catalogKeys) {
     const bySpec = usage.get(name);
@@ -212,6 +203,17 @@ const installCatalogedKeys = new Set([
     .flatMap(([, s]) => [...s]),
 ]);
 
+/**
+ * Flag deps that are not in any catalog yet but are already used at two or
+ * more distinct specs across the workspace. Appends violations to the outer
+ * `errors` array.
+ *
+ * @param {UsageMap} usage           Observed usage across all workspaces.
+ * @param {Set<string>} catalogedKeys  Dep names already covered by a catalog;
+ *   these are skipped because `enforceCatalog` has already vetted them.
+ * @param {string} scope             `'install'` or `'peer'` — used in the
+ *   error message to disambiguate the two scans.
+ */
 function detectDrift(usage, catalogedKeys, scope) {
   for (const [name, bySpec] of usage) {
     if (catalogedKeys.has(name)) continue;

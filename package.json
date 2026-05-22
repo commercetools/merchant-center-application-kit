@@ -175,7 +175,8 @@
     "ts-node": "catalog:build",
     "tsc-files": "catalog:lint",
     "typescript": "catalog:build",
-    "vfile-message": "catalog:"
+    "vfile-message": "catalog:",
+    "yaml": "catalog:"
   },
   "engines": {
     "node": ">=22",

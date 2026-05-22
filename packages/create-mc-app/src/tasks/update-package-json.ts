@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import type { ListrTask } from 'listr2';
+import { parse as parseYaml } from 'yaml';
 import type { TCliTaskOptions } from '../types';
 import { getPreferredPackageManager, slugify } from '../utils';
 
@@ -15,74 +16,21 @@ import { getPreferredPackageManager, slugify } from '../utils';
 // share one code path.
 type Catalogs = Map<string, Map<string, string>>;
 
-// Minimal pnpm-workspace.yaml parser scoped to the shape we use — `key: value`
-// entries with optional single-quoted keys, blank lines and `# comment`
-// separators tolerated inside catalog blocks. Mirrors the state machine in
-// scripts/check-workspace-constraints.js (that one tracks just keys; this
-// one tracks key + resolved spec).
-function parseCatalogs(yaml: string): Catalogs {
+type WorkspaceYaml = {
+  catalog?: Record<string, string>;
+  catalogs?: Record<string, Record<string, string>>;
+};
+
+function parseCatalogs(yamlText: string): Catalogs {
+  const doc = (parseYaml(yamlText) ?? {}) as WorkspaceYaml;
   const out: Catalogs = new Map();
-  const lines = yaml.split('\n');
-  const indentOf = (l: string) => (l.match(/^( *)/) || ['', ''])[1].length;
-  // Captures both `key:` and `'key': value` / `"key": value` shapes; the
-  // value (if any) is captured ungrouped so we can pull it raw.
-  const entryRe = /^\s+(?:'([^']+)'|"([^"]+)"|([^\s:'"]+))\s*:\s*(.*)$/;
-
-  const ensure = (name: string) => {
-    if (!out.has(name)) out.set(name, new Map());
-    return out.get(name)!;
-  };
-
-  let mode: 'default' | 'catalogs' | null = null;
-  let currentCatalog: string | null = null;
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (trimmed === '' || trimmed.startsWith('#')) continue;
-    if (/^\S/.test(line)) {
-      if (/^catalog:\s*$/.test(line)) {
-        mode = 'default';
-        currentCatalog = 'default';
-        ensure('default');
-      } else if (/^catalogs:\s*$/.test(line)) {
-        mode = 'catalogs';
-        currentCatalog = null;
-      } else {
-        mode = null;
-        currentCatalog = null;
-      }
-      continue;
-    }
-    const ind = indentOf(line);
-    if (mode === 'default' && ind === 2 && currentCatalog) {
-      const m = line.match(entryRe);
-      if (m)
-        ensure(currentCatalog).set(m[1] || m[2] || m[3], stripQuotes(m[4]));
-    } else if (mode === 'catalogs') {
-      if (ind === 2) {
-        currentCatalog = trimmed.replace(/:$/, '');
-        ensure(currentCatalog);
-      } else if (ind >= 4 && currentCatalog) {
-        const m = line.match(entryRe);
-        if (m)
-          ensure(currentCatalog).set(m[1] || m[2] || m[3], stripQuotes(m[4]));
-      }
-    }
+  if (doc.catalog) {
+    out.set('default', new Map(Object.entries(doc.catalog)));
+  }
+  for (const [name, entries] of Object.entries(doc.catalogs ?? {})) {
+    out.set(name, new Map(Object.entries(entries)));
   }
   return out;
-}
-
-// YAML scalars may be quoted to escape characters like `>=` or `*` — strip
-// the surrounding quotes so the resolved spec is a plain version string.
-function stripQuotes(value: string): string {
-  const v = value.trim();
-  if (
-    (v.startsWith("'") && v.endsWith("'")) ||
-    (v.startsWith('"') && v.endsWith('"'))
-  ) {
-    return v.slice(1, -1);
-  }
-  return v;
 }
 
 // `workspace:` specifier → rewriter that takes the release version and
@@ -95,6 +43,15 @@ const WORKSPACE_REWRITERS: Record<string, (releaseVersion: string) => string> =
     'workspace:~': (v) => `~${v}`,
   };
 
+/**
+ * Resolve a `catalog:` / `catalog:<name>` specifier to a concrete version
+ * string by looking it up in the parsed `pnpm-workspace.yaml`.
+ *
+ * @throws {Error} when the named catalog does not exist in the template's
+ *   `pnpm-workspace.yaml`, or when the catalog exists but does not declare
+ *   an entry for `depName`. Both cases mean the scaffold cannot produce a
+ *   valid `package.json` and is unrecoverable — let it propagate.
+ */
 function resolveCatalogRef(
   spec: string,
   depName: string,
