@@ -103,7 +103,7 @@
     "@commitlint/config-conventional": "catalog:repo",
     "@cypress/code-coverage": "catalog:test",
     "@faker-js/faker": "catalog:test",
-    "@formatjs/cli": "catalog:react",
+    "@formatjs/cli": "catalog:formatjs",
     "@graphql-codegen/add": "catalog:",
     "@graphql-codegen/cli": "catalog:",
     "@graphql-codegen/introspection": "catalog:",
@@ -175,7 +175,6 @@
     "ts-node": "catalog:build",
     "tsc-files": "catalog:lint",
     "typescript": "catalog:build",
-    "vfile-message": "catalog:",
     "yaml": "catalog:"
   },
   "engines": {

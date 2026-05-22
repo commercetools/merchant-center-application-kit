@@ -57,7 +57,7 @@
     "@commercetools/composable-commerce-test-data": "catalog:",
     "@commercetools/sync-actions": "catalog:",
     "@emotion/react": "catalog:build",
-    "@formatjs/cli": "catalog:react",
+    "@formatjs/cli": "catalog:formatjs",
     "@jest/types": "catalog:test",
     "@manypkg/cli": "catalog:repo",
     "@testing-library/dom": "catalog:test",

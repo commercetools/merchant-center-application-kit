@@ -58,7 +58,7 @@
     "@commercetools-frontend/mc-html-template": "workspace:^",
     "@commercetools/http-user-agent": "catalog:",
     "@emotion/babel-plugin": "catalog:build",
-    "@formatjs/cli-lib": "catalog:",
+    "@formatjs/cli-lib": "catalog:formatjs",
     "@pmmmwh/react-refresh-webpack-plugin": "catalog:build",
     "@rollup/plugin-graphql": "catalog:build",
     "@rollup/pluginutils": "catalog:build",

@@ -63,9 +63,19 @@ overrides:
 #   "react":  "catalog:react"     -> named catalog (deps that move together)
 #   "react":  "catalog:peer"      -> peer catalog (consumer compatibility ranges)
 #
-# Named catalogs group deps by role in the toolchain:
-#   apollo     — Apollo Client + GraphQL runtime/tooling
+# When does a dep earn a named catalog? ALL of:
+#   (a) members release in lockstep OR are consumed together as a framework cohort,
+#   (b) ≥2 consuming workspaces (not just the repo root),
+#   (c) drift-from-catalog would cause real breakage (peer mismatch, runtime split).
+# Single-consumer cohorts and topology clusters ("things that run server-side")
+# stay in default — drift detection already prevents version drift, so a catalog
+# adds *cohort signaling*, not safety.
+#
+# Named catalogs:
+#   apollo     — Apollo Client + GraphQL runtime/tooling + apollo-link-* (peer-pinned to @apollo/client)
 #   build      — compile/bundle/style toolchain (babel, postcss, ts, vite, webpack, emotion)
+#   flopflip   — @flopflip/* feature-flag framework (releases in lockstep at one version)
+#   formatjs   — @formatjs/* i18n ecosystem (cli, polyfills, parser — release together on majors)
 #   lint       — code-quality enforcers (eslint, stylelint, prettier, ts-eslint)
 #   peer       — consumer compatibility ranges for public packages
 #   react      — react framework and react-bound libraries (router, redux, intl)
@@ -95,18 +105,6 @@ catalog:
   '@commercetools/sdk-middleware-correlation-id': 3.0.0
   '@commercetools/sdk-middleware-http': 7.0.4
   '@commercetools/sync-actions': ^5.14.0
-  '@flopflip/combine-adapters': 15.1.7
-  '@flopflip/http-adapter': 15.1.7
-  '@flopflip/launchdarkly-adapter': 15.1.7
-  '@flopflip/memory-adapter': 15.1.7
-  '@flopflip/types': 15.1.7
-  '@formatjs/cli-lib': ^6.3.8
-  '@formatjs/icu-messageformat-parser': 2.11.2
-  '@formatjs/intl-getcanonicallocales': ^2.2.1
-  '@formatjs/intl-listformat': ^7.4.1
-  '@formatjs/intl-locale': ^3.3.3
-  '@formatjs/intl-numberformat': ^8.7.1
-  '@formatjs/intl-pluralrules': ^5.2.5
   '@graphql-codegen/add': 3.2.3
   '@graphql-codegen/cli': 2.16.5
   '@graphql-codegen/introspection': 2.2.3
@@ -144,8 +142,6 @@ catalog:
   '@types/webpack-env': ^1.18.8
   '@vercel/node': ^5.0.0
   ajv: 8.18.0
-  apollo-link-logger: 2.0.1
-  apollo-link-rest: ^0.9.0
   autoprefixer: ^10.4.15
   buffer: 6.0.3
   chalk: 4.1.2
@@ -212,7 +208,6 @@ catalog:
   url: ^0.11.0
   uuid: 14.0.0
   vercel: 24.2.5
-  vfile-message: 3.1.4
   wait-for-observables: 1.0.3
   winston: 3.17.0
   yaml: ^2.6.1
@@ -222,6 +217,10 @@ catalogs:
     '@apollo/client': 3.13.9
     graphql: 16.11.0
     graphql-tag: ^2.12.6
+
+    # apollo-link-* — peer-pinned to @apollo/client (^3.0.0 / >=3)
+    apollo-link-logger: 2.0.1
+    apollo-link-rest: ^0.9.0
 
   build:
     # Babel
@@ -316,6 +315,28 @@ catalogs:
     # Library publish toolchain
     '@preconstruct/cli': 2.8.12
 
+  flopflip:
+    # @flopflip/* feature-flag framework — pinned in lockstep at one version.
+    # `react-broadcast` is the React binding; the rest are runtime + adapters.
+    '@flopflip/combine-adapters': 15.1.7
+    '@flopflip/http-adapter': 15.1.7
+    '@flopflip/launchdarkly-adapter': 15.1.7
+    '@flopflip/memory-adapter': 15.1.7
+    '@flopflip/react-broadcast': 15.1.7
+    '@flopflip/types': 15.1.7
+
+  formatjs:
+    # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
+    # parser ship together on majors.
+    '@formatjs/cli': 6.7.2
+    '@formatjs/cli-lib': ^6.3.8
+    '@formatjs/icu-messageformat-parser': 2.11.2
+    '@formatjs/intl-getcanonicallocales': ^2.2.1
+    '@formatjs/intl-listformat': ^7.4.1
+    '@formatjs/intl-locale': ^3.3.3
+    '@formatjs/intl-numberformat': ^8.7.1
+    '@formatjs/intl-pluralrules': ^5.2.5
+
   lint:
     # ESLint
     eslint: ^9.0.0
@@ -396,12 +417,8 @@ catalogs:
     redux-logger: 3.0.6
     redux-thunk: 3.1.0
 
-    # i18n (react-intl / formatjs)
+    # i18n (react-intl) — formatjs runtime/cli lives in `catalog:formatjs`
     react-intl: ^7.1.4
-    '@formatjs/cli': 6.7.2
-
-    # Feature flags
-    '@flopflip/react-broadcast': 15.1.7
 
     # React-bound utilities
     '@radix-ui/react-dialog': 1.1.14

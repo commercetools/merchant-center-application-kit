@@ -38,14 +38,14 @@
     "@commercetools-frontend/sentry": "workspace:^",
     "@commercetools-uikit/i18n": "catalog:repo",
     "@emotion/react": "catalog:build",
-    "@formatjs/icu-messageformat-parser": "catalog:",
+    "@formatjs/icu-messageformat-parser": "catalog:formatjs",
     "@types/prop-types": "catalog:react",
     "@types/react": "catalog:react",
     "moment": "catalog:",
     "prop-types": "catalog:react"
   },
   "devDependencies": {
-    "@formatjs/cli": "catalog:react",
+    "@formatjs/cli": "catalog:formatjs",
     "@types/jest": "catalog:test",
     "jest-mock": "catalog:test",
     "react": "catalog:react",

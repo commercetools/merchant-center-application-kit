@@ -56,7 +56,7 @@
     "@commercetools-uikit/utils": "catalog:repo",
     "@emotion/react": "catalog:build",
     "@emotion/styled": "catalog:build",
-    "@flopflip/react-broadcast": "catalog:react",
+    "@flopflip/react-broadcast": "catalog:flopflip",
     "@radix-ui/react-dialog": "catalog:react",
     "@react-hook/latest": "catalog:react",
     "@react-hook/resize-observer": "catalog:react",

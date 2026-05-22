@@ -9,6 +9,12 @@ catalogs:
     '@apollo/client':
       specifier: 3.13.9
       version: 3.13.9
+    apollo-link-logger:
+      specifier: 2.0.1
+      version: 2.0.1
+    apollo-link-rest:
+      specifier: ^0.9.0
+      version: 0.9.0
     graphql:
       specifier: 16.11.0
       version: 16.11.0
@@ -272,42 +278,6 @@ catalogs:
     '@commercetools/sync-actions':
       specifier: ^5.14.0
       version: 5.19.2
-    '@flopflip/combine-adapters':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@flopflip/http-adapter':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@flopflip/launchdarkly-adapter':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@flopflip/memory-adapter':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@flopflip/types':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@formatjs/cli-lib':
-      specifier: ^6.3.8
-      version: 6.6.6
-    '@formatjs/icu-messageformat-parser':
-      specifier: 2.11.2
-      version: 2.11.2
-    '@formatjs/intl-getcanonicallocales':
-      specifier: ^2.2.1
-      version: 2.5.6
-    '@formatjs/intl-listformat':
-      specifier: ^7.4.1
-      version: 7.7.13
-    '@formatjs/intl-locale':
-      specifier: ^3.3.3
-      version: 3.4.6
-    '@formatjs/intl-numberformat':
-      specifier: ^8.7.1
-      version: 8.15.6
-    '@formatjs/intl-pluralrules':
-      specifier: ^5.2.5
-      version: 5.4.6
     '@graphql-codegen/add':
       specifier: 3.2.3
       version: 3.2.3
@@ -410,12 +380,6 @@ catalogs:
     ajv:
       specifier: 8.18.0
       version: 8.18.0
-    apollo-link-logger:
-      specifier: 2.0.1
-      version: 2.0.1
-    apollo-link-rest:
-      specifier: ^0.9.0
-      version: 0.9.0
     autoprefixer:
       specifier: ^10.4.15
       version: 10.4.22
@@ -608,9 +572,6 @@ catalogs:
     vercel:
       specifier: 24.2.5
       version: 24.2.5
-    vfile-message:
-      specifier: 3.1.4
-      version: 3.1.4
     wait-for-observables:
       specifier: 1.0.3
       version: 1.0.3
@@ -620,6 +581,50 @@ catalogs:
     yaml:
       specifier: ^2.6.1
       version: 2.8.1
+  flopflip:
+    '@flopflip/combine-adapters':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@flopflip/http-adapter':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@flopflip/launchdarkly-adapter':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@flopflip/memory-adapter':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@flopflip/react-broadcast':
+      specifier: 15.1.7
+      version: 15.1.7
+    '@flopflip/types':
+      specifier: 15.1.7
+      version: 15.1.7
+  formatjs:
+    '@formatjs/cli':
+      specifier: 6.7.2
+      version: 6.7.2
+    '@formatjs/cli-lib':
+      specifier: ^6.3.8
+      version: 6.6.6
+    '@formatjs/icu-messageformat-parser':
+      specifier: 2.11.2
+      version: 2.11.2
+    '@formatjs/intl-getcanonicallocales':
+      specifier: ^2.2.1
+      version: 2.5.6
+    '@formatjs/intl-listformat':
+      specifier: ^7.4.1
+      version: 7.7.13
+    '@formatjs/intl-locale':
+      specifier: ^3.3.3
+      version: 3.4.6
+    '@formatjs/intl-numberformat':
+      specifier: ^8.7.1
+      version: 8.15.6
+    '@formatjs/intl-pluralrules':
+      specifier: ^5.2.5
+      version: 5.4.6
   lint:
     '@babel/eslint-parser':
       specifier: ^7.22.15
@@ -700,12 +705,6 @@ catalogs:
       specifier: 1.1.4
       version: 1.1.4
   react:
-    '@flopflip/react-broadcast':
-      specifier: 15.1.7
-      version: 15.1.7
-    '@formatjs/cli':
-      specifier: 6.7.2
-      version: 6.7.2
     '@radix-ui/react-dialog':
       specifier: 1.1.14
       version: 1.1.14
@@ -1139,7 +1138,7 @@ importers:
         specifier: catalog:test
         version: 8.4.1
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@graphql-codegen/add':
         specifier: 'catalog:'
@@ -1354,9 +1353,6 @@ importers:
       typescript:
         specifier: catalog:build
         version: 5.9.2
-      vfile-message:
-        specifier: 'catalog:'
-        version: 3.1.4
       yaml:
         specifier: 'catalog:'
         version: 2.8.1
@@ -1475,7 +1471,7 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@jest/types':
         specifier: catalog:test
@@ -1683,7 +1679,7 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@jest/types':
         specifier: catalog:test
@@ -1888,7 +1884,7 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@jest/types':
         specifier: catalog:test
@@ -2096,7 +2092,7 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@jest/types':
         specifier: catalog:test
@@ -2458,7 +2454,7 @@ importers:
         specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: catalog:react
+        specifier: catalog:flopflip
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@radix-ui/react-dialog':
         specifier: catalog:react
@@ -2700,22 +2696,22 @@ importers:
         specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/combine-adapters':
-        specifier: 'catalog:'
+        specifier: catalog:flopflip
         version: 15.1.7(typescript@5.9.2)
       '@flopflip/http-adapter':
-        specifier: 'catalog:'
+        specifier: catalog:flopflip
         version: 15.1.7(typescript@5.9.2)
       '@flopflip/launchdarkly-adapter':
-        specifier: 'catalog:'
+        specifier: catalog:flopflip
         version: 15.1.7(typescript@5.9.2)
       '@flopflip/memory-adapter':
-        specifier: 'catalog:'
+        specifier: catalog:flopflip
         version: 15.1.7(typescript@5.9.2)
       '@flopflip/react-broadcast':
-        specifier: catalog:react
+        specifier: catalog:flopflip
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@flopflip/types':
-        specifier: 'catalog:'
+        specifier: catalog:flopflip
         version: 15.1.7(typescript@5.9.2)
       '@reduxjs/toolkit':
         specifier: catalog:react
@@ -2893,7 +2889,7 @@ importers:
         specifier: ^19.0.3
         version: 19.2.4
       apollo-link-logger:
-        specifier: 'catalog:'
+        specifier: catalog:apollo
         version: 2.0.1(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       graphql:
         specifier: catalog:apollo
@@ -3279,7 +3275,7 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@formatjs/icu-messageformat-parser':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 2.11.2
       '@types/prop-types':
         specifier: catalog:react
@@ -3295,7 +3291,7 @@ importers:
         version: 15.8.1
     devDependencies:
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@types/jest':
         specifier: catalog:test
@@ -3319,19 +3315,19 @@ importers:
         specifier: workspace:^
         version: link:../babel-preset-mc-app
       '@formatjs/intl-getcanonicallocales':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 2.5.6
       '@formatjs/intl-listformat':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 7.7.13
       '@formatjs/intl-locale':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 3.4.6
       '@formatjs/intl-numberformat':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 8.15.6
       '@formatjs/intl-pluralrules':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 5.4.6
       '@sheerun/mutationobserver-shim':
         specifier: catalog:test
@@ -3582,7 +3578,7 @@ importers:
         specifier: catalog:build
         version: 11.13.5
       '@formatjs/cli-lib':
-        specifier: 'catalog:'
+        specifier: catalog:formatjs
         version: 6.6.6(ts-jest@29.2.6(@babel/core@7.29.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.29.0))(jest@30.2.0(@types/node@22.19.17)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.1)(@types/node@22.19.17)(typescript@5.9.2)))(typescript@5.9.2))
       '@pmmmwh/react-refresh-webpack-plugin':
         specifier: catalog:build
@@ -4240,10 +4236,10 @@ importers:
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: catalog:react
+        specifier: catalog:flopflip
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       apollo-link-rest:
-        specifier: 'catalog:'
+        specifier: catalog:apollo
         version: 0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.14.1)
       graphql:
         specifier: catalog:apollo
@@ -4292,7 +4288,7 @@ importers:
         specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.11)(typescript@5.9.2)
       '@formatjs/cli':
-        specifier: catalog:react
+        specifier: catalog:formatjs
         version: 6.7.2
       '@types/jest':
         specifier: catalog:test
@@ -4391,7 +4387,7 @@ importers:
         specifier: catalog:build
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(@types/react@19.2.4)(react@19.0.0)
       '@flopflip/react-broadcast':
-        specifier: catalog:react
+        specifier: catalog:flopflip
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       '@rollup/plugin-graphql':
         specifier: catalog:build
@@ -13068,7 +13064,6 @@ packages:
     resolution: {integrity: sha512-t0etAxTUk1w5MYdNOkZBZ8rvYYN5iL+2dHCCx/DpkFm/bW28M6y5nUS83D4XdZiHy35Fpaw6LBb+F88fHZnVCw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
-    bundledDependencies: []
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}

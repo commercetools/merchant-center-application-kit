@@ -32,7 +32,7 @@
     "@types/lodash": "catalog:",
     "@types/prop-types": "catalog:react",
     "@types/react": "catalog:react",
-    "apollo-link-logger": "catalog:",
+    "apollo-link-logger": "catalog:apollo",
     "graphql": "catalog:apollo",
     "lodash": "catalog:",
     "moment-timezone": "catalog:",
