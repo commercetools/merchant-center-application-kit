@@ -7,6 +7,15 @@ packages:
   - visual-testing-app
   - website-components-playground
 
+# Reject `pnpm add foo` when foo is not in a catalog — moves the gate that
+# scripts/check-workspace-constraints.js enforces in CI down to the local
+# command, giving developers earlier feedback. Requires pnpm ≥ 10.12.1.
+catalogMode: strict
+
+# Drop catalog entries whose last consumer is removed. Idempotent in steady
+# state (every entry is in use today); guards against silent rot over time.
+cleanupUnusedCatalogs: true
+
 # Transitive-dep pins for Dependabot security advisories and known-good
 # baselines. Yarn-style `package@range` keys are preserved so a single
 # entry can target a specific incoming range without affecting others.
