@@ -121,6 +121,8 @@ function loadCatalogsFromClone(clonedRepositoryPath: string): Catalogs {
 type TAppPackageJson = {
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
+  optionalDependencies?: Record<string, string>;
   scripts: Record<string, string> & { 'start:prod:local': string };
   [key: string]: unknown;
 };
@@ -132,6 +134,11 @@ function buildUpdatedPackageJson(
   catalogs: Catalogs
 ): TAppPackageJson {
   const packageManager = getPreferredPackageManager(options);
+  // Flatten workspace: and catalog: specifiers into concrete versions across
+  // every dependency section — the scaffolded app is not part of any pnpm
+  // workspace and would otherwise fail to install.
+  const resolve = (deps?: Record<string, string>) =>
+    resolveDependencies(deps, releaseVersion, catalogs);
   return {
     ...appPackageJson,
     version: '1.0.0',
@@ -141,19 +148,14 @@ function buildUpdatedPackageJson(
     // as a result the package name potentially needs to be altered when derived.
     name: slugify(options.projectDirectoryName),
     description: '',
-    // Flatten workspace: and catalog: specifiers into concrete versions
-    // — the scaffolded app is not part of any pnpm workspace and would
-    // otherwise fail to install.
-    dependencies: resolveDependencies(
-      appPackageJson.dependencies,
-      releaseVersion,
-      catalogs
-    ),
-    devDependencies: resolveDependencies(
-      appPackageJson.devDependencies,
-      releaseVersion,
-      catalogs
-    ),
+    dependencies: resolve(appPackageJson.dependencies),
+    devDependencies: resolve(appPackageJson.devDependencies),
+    ...(appPackageJson.peerDependencies && {
+      peerDependencies: resolve(appPackageJson.peerDependencies),
+    }),
+    ...(appPackageJson.optionalDependencies && {
+      optionalDependencies: resolve(appPackageJson.optionalDependencies),
+    }),
     scripts: {
       ...appPackageJson.scripts,
       'start:prod:local': appPackageJson.scripts['start:prod:local'].replace(

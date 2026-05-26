@@ -6,11 +6,11 @@
  * 1. A dependency must not appear in both "dependencies" and "devDependencies".
  *
  * Cross-workspace rules (catalog protocol — see pnpm-workspace.yaml):
- * 2. Every external dep used in `dependencies` / `devDependencies` of any
- *    workspace package must be consumed via either a `catalog:` reference
- *    or a `workspace:` protocol. Literal version strings are an error —
- *    pnpm-workspace.yaml is the single source of truth for every
- *    third-party version in the repo.
+ * 2. Every external dep used in `dependencies` / `devDependencies` /
+ *    `optionalDependencies` of any workspace package must be consumed via
+ *    either a `catalog:` reference or a `workspace:` protocol. Literal
+ *    version strings are an error — pnpm-workspace.yaml is the single
+ *    source of truth for every third-party version in the repo.
  * 3. Every dep listed under `catalog:` (default) must be consumed via
  *    `catalog:`; every dep under `catalogs.<name>:` must be consumed via
  *    `catalog:<name>`. Wrong-catalog or literal references are an error.
@@ -105,15 +105,19 @@ for (const ws of workspaces) {
   }
 
   // Accumulate cross-workspace dep usage. Skip workspace: refs (internal
-  // links) — only cataloging external deps. Split install (deps + devDeps)
-  // from peer because cataloged keysets differ.
+  // links) — only cataloging external deps. Split install (deps + devDeps
+  // + optionalDeps) from peer because cataloged keysets differ.
   const addUsage = (map, name, spec) => {
     if (!map.has(name)) map.set(name, new Map());
     const bySpec = map.get(name);
     if (!bySpec.has(spec)) bySpec.set(spec, new Set());
     bySpec.get(spec).add(label);
   };
-  for (const section of ['dependencies', 'devDependencies']) {
+  for (const section of [
+    'dependencies',
+    'devDependencies',
+    'optionalDependencies',
+  ]) {
     const sectionDeps = pkg[section] || {};
     for (const [name, spec] of Object.entries(sectionDeps)) {
       if (typeof spec !== 'string' || spec.startsWith('workspace:')) continue;
