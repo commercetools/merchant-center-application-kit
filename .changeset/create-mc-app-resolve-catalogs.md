@@ -2,19 +2,17 @@
 '@commercetools-frontend/create-mc-app': patch
 ---
 
-Fix scaffolding from templates that use pnpm catalogs or the
-`workspace:^` protocol. Previously the CLI only flattened the exact
-`workspace:*` specifier, so apps generated from the latest templates
-would end up with unresolved `workspace:^` or `catalog:` entries in
-their `package.json` and fail to install.
+Support `workspace:^` and `catalog:` specifiers when scaffolding —
+previously the CLI only handled `workspace:*`, so apps generated from
+the latest templates failed to install.
 
-Internal `@commercetools-frontend/*` references in the latest templates
-are now declared as `workspace:^` (caret) instead of `workspace:*`
-(exact), and the CLI resolves them to `^x.y.z` in the scaffolded
-`package.json`. As a result, your installation will automatically pick
-up compatible patch and minor updates of the Application Kit packages
-on subsequent `npm install` / `yarn install` / `pnpm install` runs —
-no manual bumps required.
+Scaffolded `package.json` files now pin internal
+`@commercetools-frontend/*` deps with caret ranges (`^x.y.z`) instead
+of exact versions. Application Kit packages release in lockstep, so a
+caret range always resolves to a synchronized set of latest patches —
+the lockstep invariant is preserved, and subsequent
+`npm install` / `yarn install` / `pnpm install` runs pick up
+patch/minor updates automatically.
 
-No changes are needed in your usage — `npx create-mc-app …` keeps
-working the same way against any template version, old or new.
+`npx create-mc-app …` continues to work against any template version,
+old or new.
