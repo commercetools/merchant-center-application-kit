@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import os from 'node:os';
 import path from 'node:path';
 import readline, { type Interface } from 'node:readline';
 import { CLOUD_IDENTIFIERS } from '@commercetools-frontend/application-config';
@@ -118,12 +119,31 @@ async function processOptions(
   const cloudIdentifier = await getCloudIdentifier(rl, options);
   rl.close();
 
+  // Compute the path used by `downloadTemplate` to clone the app-kit repo
+  // here so subsequent tasks (e.g. `updatePackageJson`) can read
+  // pnpm-workspace.yaml from the same checkout to resolve catalog refs.
+  // Branch names with `/` (`feat/foo`) would otherwise create a nested
+  // tmp path and break dirname/basename splits downstream — sanitize them
+  // into the folder name only.
+  const safeBranchSegment = tagOrBranchVersion.replace(/[^A-Za-z0-9._-]/g, '_');
+  const clonedRepositoryPath = path.join(
+    os.tmpdir(),
+    [
+      'merchant-center-application-kit',
+      '--',
+      safeBranchSegment,
+      '--',
+      Date.now().toString(),
+    ].join('')
+  );
+
   return {
     applicationType: options.applicationType,
     projectDirectoryName,
     projectDirectoryPath,
     templateName,
     tagOrBranchVersion,
+    clonedRepositoryPath,
     entryPointUriPath,
     initialProjectKey,
     cloudIdentifier,

@@ -1,8 +1,553 @@
 packages:
-- packages/*
-- packages-backend/*
-- application-templates/*
-- custom-views-templates/*
-- playground
-- visual-testing-app
-- website-components-playground
+  - packages/*
+  - packages-backend/*
+  - application-templates/*
+  - custom-views-templates/*
+  - playground
+  - visual-testing-app
+  - website-components-playground
+
+# Reject `pnpm add foo` when foo is not in a catalog — moves the gate that
+# scripts/check-workspace-constraints.js enforces in CI down to the local
+# command, giving developers earlier feedback. Requires pnpm ≥ 10.12.1.
+catalogMode: strict
+
+# Drop catalog entries whose last consumer is removed. Idempotent in steady
+# state (every entry is in use today); guards against silent rot over time.
+cleanupUnusedCatalogs: true
+
+# Transitive-dep pins for Dependabot security advisories and known-good
+# baselines. Yarn-style `package@range` keys are preserved so a single
+# entry can target a specific incoming range without affecting others.
+overrides:
+  '@types/eslint': ^8.2.2
+  '@types/node': ^22.13.2
+  '@types/react': ^19.0.3
+  '@types/react-dom': 19.1.7
+  '@types/react-router': 5.1.20
+  '@types/webpack-env': ^1.18.8
+  '@typescript-eslint/eslint-plugin': ^8.0.0
+  '@typescript-eslint/parser': ^8.0.0
+  browserslist: ^4.28.1
+  diff: 4.0.4
+  js-yaml: 3.14.2
+  node-forge: 1.4.0
+  react: 19.0.0
+  react-dom: 19.0.0
+  tar: '>=7.5.11'
+  test-exclude: ^7.0.1
+  flat-cache>rimraf: ^5.0.10
+  webpack-dev-server>rimraf: ^5.0.10
+  react-dev-utils>fork-ts-checker-webpack-plugin: ^9.1.0
+  lodash: 4.18.1
+  'picomatch@^2': ^2.3.2
+  flatted: '>=3.4.2'
+  serialize-javascript: '>=7.0.5'
+  axios: '>=1.15.2'
+  basic-ftp: '>=5.2.2'
+  dompurify: '>=3.4.0'
+  follow-redirects: '>=1.16.0'
+  '@isaacs/brace-expansion': '>=5.0.1'
+  '@remix-run/router': '>=1.23.2'
+  '@xmldom/xmldom': '>=0.8.13'
+  fflate: 0.8.2
+  immutable: '>=3.8.3'
+  lodash-es: '>=4.17.21'
+  'minimatch@^3': ^3.1.4
+  'minimatch@^4': ^4.2.5
+  'minimatch@^9': ^9.0.7
+  'minimatch@^10': ^10.2.3
+  'path-to-regexp@^6': ^6.3.0
+  'picomatch@^4': ^4.0.4
+  'rollup@^4': ^4.59.0
+  'semver@^6': ^6.3.1
+  svgo: '>=2.8.1'
+  systeminformation: '>=5.31.0'
+  tar-fs: '>=3.1.1'
+  undici: '>=6.24.0'
+
+# Single source of truth for external dep versions across the workspace.
+# Workspace package.json files reference catalog entries via the catalog protocol:
+#   "lodash": "catalog:"          -> default catalog (singletons / leaf utilities)
+#   "react":  "catalog:react"     -> named catalog (deps that move together)
+#   "react":  "catalog:peer"      -> peer catalog (consumer compatibility ranges)
+#
+# When does a dep earn a named catalog? ALL of:
+#   (a) members release in lockstep OR are consumed together as a framework cohort,
+#   (b) ≥2 consuming workspaces (not just the repo root),
+#   (c) drift-from-catalog would cause real breakage (peer mismatch, runtime split).
+# Single-consumer cohorts and topology clusters ("things that run server-side")
+# stay in default — drift detection already prevents version drift, so a catalog
+# adds *cohort signaling*, not safety.
+#
+# Named catalogs:
+#   apollo     — Apollo Client + GraphQL runtime/tooling + apollo-link-* (peer-pinned to @apollo/client)
+#   build      — compile/bundle/style toolchain (babel, postcss, ts, vite, webpack, emotion)
+#   flopflip   — @flopflip/* feature-flag framework (releases in lockstep at one version)
+#   formatjs   — @formatjs/* i18n ecosystem (cli, polyfills, parser — release together on majors)
+#   lint       — code-quality enforcers (eslint, stylelint, prettier, ts-eslint)
+#   peer       — consumer compatibility ranges for public packages
+#   react      — react framework and react-bound libraries (router, redux, intl)
+#   repo       — monorepo plumbing & cross-repo cohorts (@manypkg, @commercetools-uikit,
+#                changesets, husky, commitlint, publint, attw)
+#   test       — jest, testing library, msw, percy, puppeteer-based runners
+#
+# Entries inside each named catalog are grouped by sub-cohort (separator
+# comments + blank lines) rather than alphabetized. Keep new entries in
+# their group instead of dropping them at the bottom. The default catalog
+# stays alphabetical (its members are singletons by definition).
+#
+# scripts/check-workspace-constraints.js enforces that every dep named in
+# a catalog is consumed only via its catalog reference; literal versions
+# in workspace package.json files are an error. It also flags uncataloged
+# deps used at multiple specifiers across workspaces (drift) — the fix is
+# to add the dep to a catalog. The parser tolerates blank lines and `#`
+# comments anywhere inside a catalog block.
+
+catalog:
+  '@commercetools-community-kit/i18n': ^0.3.0
+  '@commercetools-docs/ui-kit': 24.11.0
+  '@commercetools/api-request-builder': 6.0.0
+  '@commercetools/composable-commerce-test-data': 13.12.0
+  '@commercetools/http-user-agent': 3.0.0
+  '@commercetools/sdk-client': 3.0.0
+  '@commercetools/sdk-middleware-correlation-id': 3.0.0
+  '@commercetools/sdk-middleware-http': 7.0.4
+  '@commercetools/sync-actions': ^5.14.0
+  '@graphql-codegen/add': 3.2.3
+  '@graphql-codegen/cli': 2.16.5
+  '@graphql-codegen/introspection': 2.2.3
+  '@graphql-codegen/typescript': 2.8.8
+  '@graphql-codegen/typescript-graphql-files-modules': 2.2.1
+  '@graphql-codegen/typescript-operations': 2.5.13
+  '@sentry/browser': 8.55.0
+  '@sentry/react': 8.55.0
+  '@sentry/types': 8.55.0
+  '@tsconfig/cypress': ^1.0.1
+  '@tsconfig/node22': ^22.0.0
+  '@types/babel__core': ^7.20.1
+  '@types/cldr': ^7.1.4
+  '@types/common-tags': ^1.8.2
+  '@types/connect': ^3.4.36
+  '@types/eslint': ^8.44.2
+  '@types/express': ^4.17.17
+  '@types/fs-extra': ^11.0.1
+  '@types/jscodeshift': 0.12.0
+  '@types/jsdom': ^21.1.2
+  '@types/lodash': ^4.14.198
+  '@types/moment-locales-webpack-plugin': ^1.2.3
+  '@types/node': ^22.13.2
+  '@types/node-fetch': 2.6.13
+  '@types/prettier': 2.7.3
+  '@types/prompts': ^2.4.4
+  '@types/raf-schd': ^4.0.1
+  '@types/redux-logger': 3.0.13
+  '@types/rosie': ^0.0.45
+  '@types/semver': ^7.5.1
+  '@types/serialize-javascript': ^5.0.2
+  '@types/svgo': ^2.6.4
+  '@types/triple-beam': 1.3.5
+  '@types/webpack-bundle-analyzer': ^4.6.0
+  '@types/webpack-env': ^1.18.8
+  '@vercel/node': ^5.0.0
+  ajv: 8.18.0
+  autoprefixer: ^10.4.15
+  buffer: 6.0.3
+  chalk: 4.1.2
+  cldr: 7.9.0
+  commander: ^13.1.0
+  common-tags: 1.8.2
+  connect: ^3.7.0
+  core-js: ^3.32.2
+  cosmiconfig: 9.0.0
+  cosmiconfig-typescript-loader: 6.1.0
+  create-jest-runner: 1.0.0
+  cross-env: 7.0.3
+  cypress: 14.5.4
+  debounce-async: 0.0.2
+  deep-diff: 1.0.2
+  dompurify: ^3.0.0
+  dotenv: 16.6.1
+  dotenv-flow: ^4.0.0
+  execa: 5.1.1
+  express: ^4.21.2
+  express-winston: 4.2.0
+  fast-equals: 2.0.4
+  fast-safe-stringify: 2.1.1
+  find-up: 5.0.0
+  fs-extra: 10.1.0
+  fuse.js: 6.6.2
+  glob: ^10.5.0
+  graphql-anywhere: ^4.2.8
+  graphql-request: 5.2.0
+  history-query-enhancer: 1.0.4
+  is-retina: 1.0.3
+  jose: ^5.10.0
+  jscodeshift: 0.16.1
+  jsdom: ^21.1.2
+  json-schema-to-typescript: 15.0.4
+  jwt-decode: 3.1.2
+  listr2: 5.0.8
+  lodash: 4.18.1
+  logform: 2.7.0
+  memoize-one: 5.2.1
+  moment: ^2.29.4
+  moment-timezone: ^0.6.0
+  node-fetch: 2.7.0
+  omit-empty-es: 1.2.0
+  open: ^10.1.0
+  postcss-load-config: 3.1.4
+  prompts: ^2.4.2
+  puppeteer: 20.9.0
+  qs: ^6.11.2
+  qss: 2.0.3
+  querystring-es3: ^0.2.1
+  replace: 1.2.2
+  reselect: 4.1.8
+  rimraf: 6.0.1
+  rosie: 2.1.1
+  semver: 7.7.2
+  sharp: ^0.34.1
+  shelljs: 0.10.0
+  sirv: ^3.0.2
+  tiny-invariant: 1.3.3
+  tiny-warning: 1.0.3
+  triple-beam: 1.4.1
+  unfetch: 4.2.0
+  url: ^0.11.0
+  uuid: 14.0.0
+  vercel: 24.2.5
+  wait-for-observables: 1.0.3
+  winston: 3.17.0
+  yaml: ^2.6.1
+
+catalogs:
+  apollo:
+    '@apollo/client': 3.13.9
+    graphql: 16.11.0
+    graphql-tag: ^2.12.6
+
+    # apollo-link-* — peer-pinned to @apollo/client (^3.0.0 / >=3)
+    apollo-link-logger: 2.0.1
+    apollo-link-rest: ^0.9.0
+
+  build:
+    # Babel
+    '@babel/cli': ^7.22.15
+    '@babel/core': ^7.22.17
+    '@babel/preset-env': ^7.22.15
+    '@babel/preset-react': ^7.22.15
+    '@babel/preset-typescript': ^7.22.15
+    '@babel/register': ^7.22.15
+    '@babel/runtime': ^7.22.15
+    '@babel/runtime-corejs3': ^7.22.15
+    '@babel/plugin-proposal-do-expressions': ^7.22.5
+    '@babel/plugin-proposal-export-default-from': ^7.22.17
+    '@babel/plugin-transform-class-properties': ^7.22.5
+    '@babel/plugin-transform-destructuring': ^7.22.15
+    '@babel/plugin-transform-export-namespace-from': ^7.22.11
+    '@babel/plugin-transform-logical-assignment-operators': ^7.22.11
+    '@babel/plugin-transform-object-rest-spread': ^7.22.15
+    '@babel/plugin-transform-private-methods': ^7.22.5
+    '@babel/plugin-transform-private-property-in-object': ^7.22.11
+    '@babel/plugin-transform-regenerator': ^7.22.10
+    '@babel/plugin-transform-runtime': ^7.22.15
+    babel-loader: 8.4.1
+    babel-plugin-dev-expression: ^0.2.3
+    babel-plugin-formatjs: ^10.5.25
+    babel-plugin-import-graphql: ^2.8.1
+    babel-plugin-istanbul: 7.0.1
+    babel-plugin-macros: ^3.1.0
+    babel-plugin-preval: ^5.1.0
+    babel-plugin-react-compiler: ^1.0.0
+    babel-plugin-transform-react-remove-prop-types: ^0.4.24
+    babel-plugin-transform-rename-import: ^2.3.0
+    babel-plugin-typescript-to-proptypes: 2.1.0
+
+    # Emotion (CSS-in-JS)
+    '@emotion/react': ^11.14.0
+    '@emotion/styled': ^11.14.0
+    '@emotion/babel-plugin': ^11.13.5
+    '@emotion/babel-preset-css-prop': ^11.12.0
+
+    # PostCSS
+    postcss: 8.5.6
+    postcss-custom-media: 8.0.2
+    postcss-custom-properties: 12.1.4
+    postcss-import: 14.1.0
+    postcss-loader: 6.2.1
+    postcss-reporter: 7.1.0
+
+    # TypeScript
+    typescript: 5.9.2
+    ts-node: 10.9.2
+
+    # Vite / Rollup
+    vite: ~6.4.2
+    '@vitejs/plugin-react': 4.7.0
+    '@vitejs/plugin-react-swc': 3.11.0
+    '@rollup/plugin-graphql': 2.0.5
+    '@rollup/pluginutils': 5.2.0
+    rollup-plugin-visualizer: ^5.14.0
+    vite-bundle-analyzer: 0.23.0
+
+    # Webpack + loaders/plugins (mc-scripts / mc-html-template)
+    webpack: 5.105.1
+    webpack-bundle-analyzer: 4.10.2
+    webpack-dev-server: 4.15.2
+    webpackbar: 5.0.2
+    browserslist: ^4.28.1
+    css-loader: 6.11.0
+    css-minimizer-webpack-plugin: ^8.0.0
+    dotenv-expand: 8.0.3
+    html-webpack-plugin: 5.6.3
+    json-loader: 0.5.7
+    mini-css-extract-plugin: 2.9.4
+    moment-locales-webpack-plugin: 1.2.0
+    '@pmmmwh/react-refresh-webpack-plugin': 0.6.1
+    react-dev-utils: 12.0.1
+    react-refresh: 0.17.0
+    serialize-javascript: 7.0.5
+    style-loader: 3.3.4
+    svg-url-loader: 7.1.1
+    '@svgr/babel-preset': ^6.5.1
+    '@svgr/cli': 6.5.1
+    '@svgr/core': ^6.5.1
+    '@svgr/plugin-jsx': 6.5.1
+    '@svgr/plugin-svgo': 6.5.1
+    '@svgr/webpack': ^6.5.1
+    terser-webpack-plugin: ^5.5.0
+    thread-loader: 3.0.4
+    uglify-js: 3.19.3
+    uglifycss: 0.0.29
+
+    # Library publish toolchain
+    '@preconstruct/cli': 2.8.12
+
+  flopflip:
+    # @flopflip/* feature-flag framework — pinned in lockstep at one version.
+    # `react-broadcast` is the React binding; the rest are runtime + adapters.
+    '@flopflip/combine-adapters': 15.1.7
+    '@flopflip/http-adapter': 15.1.7
+    '@flopflip/launchdarkly-adapter': 15.1.7
+    '@flopflip/memory-adapter': 15.1.7
+    '@flopflip/react-broadcast': 15.1.7
+    '@flopflip/types': 15.1.7
+
+  formatjs:
+    # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
+    # parser ship together on majors.
+    '@formatjs/cli': 6.7.2
+    '@formatjs/cli-lib': ^6.3.8
+    '@formatjs/icu-messageformat-parser': 2.11.2
+    '@formatjs/intl-getcanonicallocales': ^2.2.1
+    '@formatjs/intl-listformat': ^7.4.1
+    '@formatjs/intl-locale': ^3.3.3
+    '@formatjs/intl-numberformat': ^8.7.1
+    '@formatjs/intl-pluralrules': ^5.2.5
+
+  lint:
+    # ESLint
+    eslint: ^9.0.0
+    eslint-formatter-pretty: 4.1.0
+    '@babel/eslint-parser': ^7.22.15
+
+    # typescript-eslint
+    '@typescript-eslint/eslint-plugin': ^8.55.0
+    '@typescript-eslint/parser': ^8.55.0
+
+    # ESLint plugins / configs
+    '@graphql-eslint/eslint-plugin': ^4.4.0
+    confusing-browser-globals: ^1.0.11
+    eslint-config-prettier: ^8.10.0
+    eslint-import-resolver-typescript: ^3.6.0
+    eslint-plugin-cypress: ^2.14.0
+    eslint-plugin-import: ^2.28.1
+    eslint-plugin-jest: ^28.14.0
+    eslint-plugin-jest-dom: ^4.0.3
+    eslint-plugin-jsx-a11y: ^6.7.1
+    eslint-plugin-n: ^17.1.0
+    eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-react: ^7.33.2
+    eslint-plugin-react-hooks: ^5.0.0
+    eslint-plugin-testing-library: ^7.15.4
+    globals: ^15.15.0
+
+    # Stylelint
+    stylelint: 14.16.1
+    stylelint-config-prettier: 9.0.5
+    stylelint-config-standard: 26.0.0
+    stylelint-order: 5.0.0
+    stylelint-value-no-unknown-custom-properties: 4.0.0
+
+    # Formatter
+    prettier: 2.8.8
+
+    # Pre-commit / type-check orchestrator
+    lint-staged: 11.2.6
+    tsc-files: 1.1.4
+
+  peer:
+    # React stack
+    react: '19.x'
+    react-dom: '19.x'
+    react-intl: '7.x'
+    react-router-dom: '5.x'
+    react-redux: '7.x || 9.x'
+    redux: '4.x || 5.x'
+
+    # Apollo
+    '@apollo/client': '3.x'
+
+    # Lint integration
+    eslint: ^9.0.0
+
+  react:
+    # React core
+    react: 19.0.0
+    react-dom: 19.0.0
+
+    # @types (must match runtime major)
+    '@types/react': ^19.0.3
+    '@types/react-dom': ^19.0.2
+    '@types/prop-types': ^15.7.5
+
+    # React Router (5.x)
+    react-router-dom: 5.3.4
+    '@types/react-router': ^5.1.20
+    '@types/react-router-dom': ^5.3.3
+    history: 4.10.1
+    '@types/history': ^4.7.11
+
+    # State management
+    '@reduxjs/toolkit': 2.9.0
+    react-redux: 9.2.0
+    redux: 5.0.1
+    redux-logger: 3.0.6
+    redux-thunk: 3.1.0
+
+    # i18n (react-intl) — formatjs runtime/cli lives in `catalog:formatjs`
+    react-intl: ^7.1.4
+
+    # React-bound utilities
+    '@radix-ui/react-dialog': 1.1.14
+    '@react-hook/latest': 1.0.3
+    '@react-hook/resize-observer': 1.2.6
+    classnames: ^2.3.2
+    downshift: 6.1.12
+    formik: 2.4.6
+    prop-types: 15.8.1
+    raf-schd: ^4.0.3
+    react-required-if: 1.0.3
+    react-select: 5.10.2
+
+  repo:
+    # Monorepo tooling
+    '@manypkg/cli': 0.25.0
+    '@manypkg/find-root': 2.2.3
+    '@manypkg/get-packages': 1.1.3
+
+    # Changesets / release tooling
+    '@changesets/changelog-github': 0.5.1
+    '@changesets/cli': 2.29.5
+    '@commercetools/github-labels': 1.1.0
+
+    # Git hooks / commit policy
+    husky: 7.0.4
+    '@commitlint/cli': 17.8.1
+    '@commitlint/config-conventional': 17.8.1
+
+    # Publish-shape gatekeepers
+    '@arethetypeswrong/cli': ^0.18.2
+    publint: ^0.3.21
+
+    # @commercetools-uikit/* (cross-repo dep cohort — moves with ui-kit releases)
+    '@commercetools-uikit/accessible-button': ^20.4.0
+    '@commercetools-uikit/accessible-hidden': ^20.4.0
+    '@commercetools-uikit/avatar': ^20.4.0
+    '@commercetools-uikit/card': ^20.4.0
+    '@commercetools-uikit/checkbox-input': ^20.4.0
+    '@commercetools-uikit/constraints': ^20.4.0
+    '@commercetools-uikit/data-table': ^20.4.0
+    '@commercetools-uikit/date-time-input': ^20.4.0
+    '@commercetools-uikit/design-system': ^20.4.0
+    '@commercetools-uikit/flat-button': ^20.4.0
+    '@commercetools-uikit/grid': ^20.4.0
+    '@commercetools-uikit/hooks': ^20.4.0
+    '@commercetools-uikit/i18n': ^20.4.0
+    '@commercetools-uikit/icon-button': ^20.4.0
+    '@commercetools-uikit/icons': ^20.4.0
+    '@commercetools-uikit/label': ^20.4.0
+    '@commercetools-uikit/link': ^20.4.0
+    '@commercetools-uikit/loading-spinner': ^20.4.0
+    '@commercetools-uikit/localized-text-field': ^20.4.0
+    '@commercetools-uikit/localized-text-input': ^20.4.0
+    '@commercetools-uikit/messages': ^20.4.0
+    '@commercetools-uikit/multiline-text-field': ^20.4.0
+    '@commercetools-uikit/notifications': ^20.4.0
+    '@commercetools-uikit/pagination': ^20.4.0
+    '@commercetools-uikit/primary-button': ^20.4.0
+    '@commercetools-uikit/secondary-button': ^20.4.0
+    '@commercetools-uikit/secondary-icon-button': ^20.4.0
+    '@commercetools-uikit/select-field': ^20.4.0
+    '@commercetools-uikit/select-input': ^20.4.0
+    '@commercetools-uikit/spacings': ^20.4.0
+    '@commercetools-uikit/stamp': ^20.4.0
+    '@commercetools-uikit/text': ^20.4.0
+    '@commercetools-uikit/text-field': ^20.4.0
+    '@commercetools-uikit/text-input': ^20.4.0
+    '@commercetools-uikit/utils': ^20.4.0
+
+  test:
+    # Jest core (versions move together)
+    jest: 30.2.0
+    jest-each: 30.2.0
+    jest-environment-jsdom: 30.2.0
+    jest-mock: 30.2.0
+    babel-jest: 30.2.0
+    babel-preset-jest: 30.2.0
+    '@jest/types': 29.6.3
+    '@types/jest': ^29.5.14
+
+    # Jest plugins / runners / mocks
+    identity-obj-proxy: 3.0.0
+    jest-localstorage-mock: 2.4.26
+    jest-preview: ^0.3.1
+    jest-runner-eslint: 2.3.0
+    jest-runner-executor: 1.0.0
+    jest-silent-reporter: 0.6.0
+    jest-watch-typeahead: 3.0.1
+
+    # Testing Library
+    '@testing-library/cypress': 10.1.0
+    '@testing-library/dom': ^10.4.0
+    '@testing-library/jest-dom': ^6.6.3
+    '@testing-library/react': 16.1.0
+    '@types/testing-library__jest-dom': ^5.14.9
+
+    # MSW + utilities
+    msw: ^1.3.5
+    headers-polyfill: ^3.1.2
+
+    # Browser-API polyfills / shims for jsdom
+    '@sheerun/mutationobserver-shim': 0.3.3
+    colors: 1.4.0
+    intl: 1.2.5
+    memfs: ^4.8.2
+    raf: 3.4.1
+    setimmediate: 1.0.5
+
+    # Sentry test harness
+    sentry-testkit: 6.2.2
+    wait-for-expect: 3.0.2
+
+    # E2E / visual regression (Cypress + Puppeteer + Percy)
+    '@cypress/code-coverage': ^3.14.5
+    '@faker-js/faker': 8.4.1
+    '@percy/cli': 1.31.1
+    '@percy/core': 1.31.1
+    '@percy/cypress': 3.1.6
+    '@percy/puppeteer': 2.0.2
+    jest-environment-puppeteer: 8.0.6
+    jest-puppeteer: 8.0.6
+    start-server-and-test: 2.0.13

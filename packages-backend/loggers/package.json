@@ -25,22 +25,22 @@
   "module": "dist/commercetools-backend-loggers.esm.js",
   "files": ["dist", "package.json", "LICENSE", "README.md"],
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15",
-    "@types/lodash": "^4.14.198",
-    "@types/triple-beam": "1.3.5",
-    "express-winston": "4.2.0",
-    "fast-safe-stringify": "2.1.1",
-    "lodash": "4.18.1",
-    "logform": "2.7.0",
-    "triple-beam": "1.4.1",
-    "winston": "3.17.0"
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build",
+    "@types/lodash": "catalog:",
+    "@types/triple-beam": "catalog:",
+    "express-winston": "catalog:",
+    "fast-safe-stringify": "catalog:",
+    "lodash": "catalog:",
+    "logform": "catalog:",
+    "triple-beam": "catalog:",
+    "winston": "catalog:"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
-    "@types/express": "^4.17.17",
-    "express": "^4.21.2",
-    "typescript": "^5.2.2"
+    "@tsconfig/node22": "catalog:",
+    "@types/express": "catalog:",
+    "express": "catalog:",
+    "typescript": "catalog:build"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"

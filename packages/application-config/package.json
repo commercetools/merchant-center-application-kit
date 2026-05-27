@@ -37,26 +37,26 @@
     "build-schemas": "pnpm build-schema:custom-application && pnpm build-schema:custom-view"
   },
   "dependencies": {
-    "@babel/core": "^7.22.17",
-    "@babel/register": "^7.22.15",
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/constants": "27.6.2",
-    "@types/lodash": "^4.14.198",
-    "@types/react": "^19.0.3",
-    "ajv": "8.18.0",
-    "core-js": "^3.32.2",
-    "cosmiconfig": "9.0.0",
-    "cosmiconfig-typescript-loader": "6.1.0",
-    "dompurify": "^3.0.0",
-    "jsdom": "^21.1.2",
-    "lodash": "4.18.1",
-    "omit-empty-es": "1.2.0"
+    "@babel/core": "catalog:build",
+    "@babel/register": "catalog:build",
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build",
+    "@commercetools-frontend/constants": "workspace:^",
+    "@types/lodash": "catalog:",
+    "@types/react": "catalog:react",
+    "ajv": "catalog:",
+    "core-js": "catalog:",
+    "cosmiconfig": "catalog:",
+    "cosmiconfig-typescript-loader": "catalog:",
+    "dompurify": "catalog:",
+    "jsdom": "catalog:",
+    "lodash": "catalog:",
+    "omit-empty-es": "catalog:"
   },
   "devDependencies": {
-    "@commercetools-frontend/assets": "workspace:*",
-    "@types/jsdom": "^21.1.2",
-    "json-schema-to-typescript": "15.0.4"
+    "@commercetools-frontend/assets": "workspace:^",
+    "@types/jsdom": "catalog:",
+    "json-schema-to-typescript": "catalog:"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"

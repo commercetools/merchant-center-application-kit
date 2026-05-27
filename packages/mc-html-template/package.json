@@ -28,19 +28,19 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.22.15",
-    "@babel/runtime-corejs3": "^7.22.15",
-    "@commercetools-frontend/application-config": "27.6.2",
-    "@commercetools-frontend/constants": "27.6.2",
-    "serialize-javascript": "7.0.5",
-    "uglify-js": "3.19.3",
-    "uglifycss": "0.0.29"
+    "@babel/runtime": "catalog:build",
+    "@babel/runtime-corejs3": "catalog:build",
+    "@commercetools-frontend/application-config": "workspace:^",
+    "@commercetools-frontend/constants": "workspace:^",
+    "serialize-javascript": "catalog:build",
+    "uglify-js": "catalog:build",
+    "uglifycss": "catalog:build"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
-    "@types/serialize-javascript": "^5.0.2",
-    "html-webpack-plugin": "5.6.3",
-    "webpack": "5.105.1"
+    "@tsconfig/node22": "catalog:",
+    "@types/serialize-javascript": "catalog:",
+    "html-webpack-plugin": "catalog:build",
+    "webpack": "catalog:build"
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"
