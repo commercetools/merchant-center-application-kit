@@ -71,7 +71,7 @@ runs:
 
     - name: Running integration tests
       shell: bash
-      run: pnpm test -- "${{ inputs.application-type == 'custom-application' && 'application-templates' || 'custom-views-templates'}}/${{ inputs.template-name }}/**/*.spec.{js,ts,tsx}"
+      run: pnpm test -- "${{ inputs.application-type == 'custom-application' && 'application-templates' || 'custom-views-templates'}}/${{ inputs.template-name }}/.*\\.spec\\.(js|ts|tsx)$"
 
     - name: Running template tests with local jest config (mirrors end-user yarn test)
       shell: bash
