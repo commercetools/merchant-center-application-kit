@@ -4241,6 +4241,9 @@ importers:
       '@commercetools-uikit/text':
         specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+      '@commercetools/nimbus':
+        specifier: catalog:build
+        version: 3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@emotion/react':
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
