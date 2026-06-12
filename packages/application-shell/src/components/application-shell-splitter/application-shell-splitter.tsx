@@ -1,6 +1,11 @@
 import { type ReactNode, useMemo, useRef, useState } from 'react';
 import type { NimbusRouterConfig } from '@commercetools/nimbus';
-import { NimbusProvider, Splitter, Region } from '@commercetools/nimbus';
+import {
+  NimbusProvider,
+  Splitter,
+  Region,
+  useResponsiveSplitterSizes,
+} from '@commercetools/nimbus';
 import { REGIONS } from '../../constants';
 
 type TApplicationShellSplitterProps = {
@@ -16,8 +21,19 @@ export type TApplicationShellSplitterValue = {
   toggle: () => void;
 };
 
+// 1444px = 1024px (WINDOW_SIZES.STANDARD main min) + 420px (aside min)
+const BREAKPOINT_SIDE_BY_SIDE = 1444;
+
 const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
   const [open, setOpen] = useState(false);
+
+  const { rootProps } = useResponsiveSplitterSizes({
+    orientation: 'horizontal',
+    persistKey: REGIONS.MC_RIGHT_PANEL,
+    size: { 0: '100%', [BREAKPOINT_SIDE_BY_SIDE]: 420 },
+    minSize: { 0: '100%', [BREAKPOINT_SIDE_BY_SIDE]: 420 },
+    maxSize: { [BREAKPOINT_SIDE_BY_SIDE]: 640 },
+  });
 
   const commands = useRef({
     expand: () => setOpen(true),
@@ -37,12 +53,10 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
       loadFonts={false}
     >
       <Splitter.Root
+        {...rootProps}
         collapsible
         collapsed={!open}
-        onCollapsedChange={(c) => setOpen(!c)}
-        defaultSize={30}
-        minSize={15}
-        maxSize={50}
+        onCollapsedChange={(c: boolean) => setOpen(!c)}
       >
         <Splitter.Main style={{ containerType: 'inline-size', minWidth: 0 }}>
           {props.children}
