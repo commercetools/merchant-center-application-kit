@@ -2819,6 +2819,9 @@ importers:
       '@apollo/client':
         specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@commercetools/nimbus':
+        specifier: catalog:build
+        version: 3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@testing-library/react':
         specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -21120,6 +21123,40 @@ snapshots:
       - supports-color
       - typescript
 
+  '@commercetools/nimbus@3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)':
+    dependencies:
+      '@chakra-ui/cli': 3.36.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
+      '@chakra-ui/react': 3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@commercetools/nimbus-icons': 3.1.0(typescript@5.9.2)
+      '@commercetools/nimbus-tokens': 3.1.0
+      '@emotion/is-prop-valid': 1.4.0
+      '@github-ui/storybook-addon-performance-panel': 1.1.4(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@internationalized/string': 3.2.9
+      '@react-aria/interactions': 3.28.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-aria/utils': 3.34.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      dequal: 2.0.3
+      escape-html: 1.0.3
+      is-hotkey: 0.2.0
+      next-themes: 0.4.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-aria: 3.49.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-aria-components: 1.18.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-hotkeys-hook: 5.3.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-stately: 3.47.0(react@19.0.0)
+      react-use: 17.6.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      slate: 0.123.0
+      slate-history: 0.115.0(slate@0.123.0)
+      slate-hyperscript: 0.115.0(slate@0.123.0)
+      slate-react: 0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0)
+      use-debounce: 10.1.1(react@19.0.0)
+    transitivePeerDependencies:
+      - '@storybook/icons'
+      - '@storybook/react'
+      - react-dom
+      - storybook
+      - supports-color
+      - typescript
+
   '@commercetools/platform-sdk@8.18.0':
     dependencies:
       '@commercetools/ts-client': 4.3.0
@@ -22080,6 +22117,13 @@ snapshots:
     dependencies:
       '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       storybook: 10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+    optionalDependencies:
+      react: 19.0.0
+
+  '@github-ui/storybook-addon-performance-panel@1.1.4(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+    dependencies:
+      '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      storybook: 10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     optionalDependencies:
       react: 19.0.0
 
@@ -34714,6 +34758,33 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.4
       prettier: 2.8.8
+    transitivePeerDependencies:
+      - '@testing-library/dom'
+      - bufferutil
+      - react
+      - react-dom
+      - utf-8-validate
+
+  storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@storybook/global': 5.0.0
+      '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@testing-library/jest-dom': 6.9.1
+      '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.1)
+      '@vitest/expect': 3.2.4
+      '@vitest/spy': 3.2.4
+      '@webcontainer/env': 1.1.1
+      esbuild: 0.27.7
+      open: 10.2.0
+      oxc-parser: 0.127.0
+      oxc-resolver: 11.20.0
+      recast: 0.23.11
+      semver: 7.7.4
+      use-sync-external-store: 1.6.0(react@19.0.0)
+      ws: 8.18.3
+    optionalDependencies:
+      '@types/react': 19.2.4
+      prettier: 3.8.1
     transitivePeerDependencies:
       - '@testing-library/dom'
       - bufferutil

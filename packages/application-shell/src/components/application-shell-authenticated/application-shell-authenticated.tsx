@@ -32,6 +32,7 @@ import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
+import ApplicationShellSplitter from '../application-shell-splitter';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
@@ -219,7 +220,7 @@ export const ApplicationShellAuthenticated = (
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >
-                    <>
+                    <ApplicationShellSplitter locale={locale ?? 'en'}>
                       <ThemeSwitcher />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -430,7 +431,7 @@ export const ApplicationShellAuthenticated = (
                           </MainContainer>
                         )}
                       </div>
-                    </>
+                    </ApplicationShellSplitter>
                   </SetupFlopFlipProvider>
                 </ConfigureIntlProvider>
               )}

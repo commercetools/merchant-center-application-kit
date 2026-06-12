@@ -19,6 +19,7 @@ export {
   ProtectedRoute,
   SuspendedProtectedRoute,
 } from './components/suspended-route';
+export { REGIONS } from './constants';
 export { default as getPreviousProjectKey } from './utils/get-previous-project-key';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';

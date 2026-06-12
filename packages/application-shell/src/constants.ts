@@ -28,6 +28,10 @@ export const CONTAINERS = {
   LEFT_OF_PROFILE: 'left-of-profile',
 } as const;
 
+export const REGIONS = {
+  MC_RIGHT_PANEL: 'mc:right-panel',
+} as const;
+
 export const SUSPENSION_REASONS = {
   TEMPORARY_MAINTENANCE: 'TemporaryMaintenance',
   PAYMENT: 'Payment',
