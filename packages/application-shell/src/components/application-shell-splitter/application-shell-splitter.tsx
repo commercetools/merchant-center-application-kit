@@ -55,6 +55,7 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
       <Splitter.Root
         {...rootProps}
         collapsible
+        collapsedSize={0}
         collapsed={!open}
         onCollapsedChange={(c: boolean) => setOpen(!c)}
       >
