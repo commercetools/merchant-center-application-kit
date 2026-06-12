@@ -10,6 +10,7 @@ import {
   processHeaders,
 } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
+import { tryLoadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
 import pluginMerchantCenterCustomization from '../vite-plugins/vite-plugin-merchant-center-customization';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
@@ -48,6 +49,7 @@ async function run() {
       headers: compiledHeaders,
     },
     plugins: [
+      tryLoadNimbusVitePlugin({ cwd: paths.appRoot }),
       pluginGraphql() as Plugin,
       pluginReact({
         jsxImportSource: '@emotion/react',
