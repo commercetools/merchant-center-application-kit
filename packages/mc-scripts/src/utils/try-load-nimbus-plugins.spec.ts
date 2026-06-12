@@ -41,7 +41,9 @@ describe('tryLoadNimbusWebpackPlugin', () => {
     jest.mock(
       '@commercetools/nimbus/plugins/webpack',
       () => {
-        throw new Error('Cannot find module');
+        const error: NodeJS.ErrnoException = new Error('Cannot find module');
+        error.code = 'MODULE_NOT_FOUND';
+        throw error;
       },
       { virtual: true }
     );
@@ -50,6 +52,19 @@ describe('tryLoadNimbusWebpackPlugin', () => {
     const plugin = tryLoadNimbusWebpackPlugin();
 
     expect(plugin).toBeNull();
+  });
+
+  it('re-throws non-MODULE_NOT_FOUND errors', () => {
+    jest.mock(
+      '@commercetools/nimbus/plugins/webpack',
+      () => {
+        throw new TypeError('Unexpected token');
+      },
+      { virtual: true }
+    );
+
+    const { tryLoadNimbusWebpackPlugin } = require('./try-load-nimbus-plugins');
+    expect(() => tryLoadNimbusWebpackPlugin()).toThrow('Unexpected token');
   });
 });
 
@@ -97,7 +112,9 @@ describe('tryLoadNimbusVitePlugin', () => {
     jest.mock(
       '@commercetools/nimbus/plugins/vite',
       () => {
-        throw new Error('Cannot find module');
+        const error: NodeJS.ErrnoException = new Error('Cannot find module');
+        error.code = 'MODULE_NOT_FOUND';
+        throw error;
       },
       { virtual: true }
     );
@@ -106,5 +123,18 @@ describe('tryLoadNimbusVitePlugin', () => {
     const plugin = tryLoadNimbusVitePlugin();
 
     expect(plugin).toBeNull();
+  });
+
+  it('re-throws non-MODULE_NOT_FOUND errors', () => {
+    jest.mock(
+      '@commercetools/nimbus/plugins/vite',
+      () => {
+        throw new TypeError('Unexpected token');
+      },
+      { virtual: true }
+    );
+
+    const { tryLoadNimbusVitePlugin } = require('./try-load-nimbus-plugins');
+    expect(() => tryLoadNimbusVitePlugin()).toThrow('Unexpected token');
   });
 });
