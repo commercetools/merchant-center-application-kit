@@ -1128,9 +1128,6 @@ importers:
       '@commercetools/github-labels':
         specifier: catalog:repo
         version: 1.1.0(@octokit/core@7.0.6)
-      '@commercetools/nimbus':
-        specifier: catalog:build
-        version: 3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@commitlint/cli':
         specifier: catalog:repo
         version: 17.8.1(@swc/core@1.15.1(@swc/helpers@0.5.23))
@@ -3779,6 +3776,9 @@ importers:
       '@commercetools/composable-commerce-test-data':
         specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
+      '@commercetools/nimbus':
+        specifier: catalog:build
+        version: 3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@tsconfig/node22':
         specifier: 'catalog:'
         version: 22.0.2

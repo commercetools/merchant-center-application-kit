@@ -125,6 +125,7 @@
   },
   "devDependencies": {
     "@commercetools/composable-commerce-test-data": "catalog:",
+    "@commercetools/nimbus": "catalog:build",
     "@tsconfig/node22": "catalog:",
     "@types/fs-extra": "catalog:",
     "@types/lodash": "catalog:",

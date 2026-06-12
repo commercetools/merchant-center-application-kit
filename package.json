@@ -97,7 +97,6 @@
     "@commercetools-frontend/jest-stylelint-runner": "workspace:^",
     "@commercetools-frontend/mc-scripts": "workspace:^",
     "@commercetools-uikit/design-system": "catalog:repo",
-    "@commercetools/nimbus": "catalog:build",
     "@commercetools/composable-commerce-test-data": "catalog:",
     "@commercetools/github-labels": "catalog:repo",
     "@commitlint/cli": "catalog:repo",
