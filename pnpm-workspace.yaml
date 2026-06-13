@@ -199,7 +199,7 @@ catalog:
   postcss-load-config: 3.1.4
   prompts: ^2.4.2
   puppeteer: 20.9.0
-  qs: ^6.11.2
+  qs: ^6.15.2
   qss: 2.0.3
   querystring-es3: ^0.2.1
   replace: 1.2.2
@@ -219,7 +219,7 @@ catalog:
   vercel: 24.2.5
   wait-for-observables: 1.0.3
   winston: 3.17.0
-  yaml: ^2.6.1
+  yaml: ^1.10.3
 
 catalogs:
   apollo:
@@ -271,7 +271,7 @@ catalogs:
     '@emotion/babel-preset-css-prop': ^11.12.0
 
     # PostCSS
-    postcss: 8.5.6
+    postcss: 8.5.10
     postcss-custom-media: 8.0.2
     postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
@@ -294,7 +294,7 @@ catalogs:
     # Webpack + loaders/plugins (mc-scripts / mc-html-template)
     webpack: 5.105.1
     webpack-bundle-analyzer: 4.10.2
-    webpack-dev-server: 4.15.2
+    webpack-dev-server: 5.2.4
     webpackbar: 5.0.2
     browserslist: ^4.28.1
     css-loader: 6.11.0
