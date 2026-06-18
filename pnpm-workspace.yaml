@@ -283,7 +283,7 @@ catalogs:
     ts-node: 10.9.2
 
     # Nimbus (optional — bundler plugins only, no runtime dep)
-    '@commercetools/nimbus': 3.1.0
+    '@commercetools/nimbus': 3.2.0
 
     # Vite / Rollup
     vite: ~6.4.2
