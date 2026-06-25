@@ -11,7 +11,8 @@ constant exported from `@commercetools-frontend/application-shell`.
 Apps without Nimbus installed see no change — the splitter chunk
 fails to load and the existing layout renders unchanged.
 
-Overlay scoping is updated with CSS container query length units
+`@commercetools-frontend/application-components`: The `PortalsContainer`
+overlay scoping is updated with CSS container query length units
 (`100cqw`) so that modals and dropdowns stay within the main content
 pane when the aside is open, with an `@supports` fallback for the
 existing behavior.

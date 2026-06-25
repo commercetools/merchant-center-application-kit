@@ -197,12 +197,12 @@ const PortalsContainer = forwardRef<TLayoutRefs, TPortalsContainerProps>(
 
                 @supports (width: 100cqw) {
                   #${PORTALS_CONTAINER_ID} {
-                    width: 100cqw;
+                    width: calc(100cqw - ${offsetLeft});
                     right: calc(100vw - 100cqw);
                   }
 
                   .body__menu-open #${PORTALS_CONTAINER_ID} {
-                    width: 100cqw;
+                    width: calc(100cqw - ${offsetLeftOnExpandedMenu});
                     right: calc(100vw - 100cqw);
                   }
                 }
