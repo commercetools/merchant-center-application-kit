@@ -76,15 +76,15 @@ import type { TApplicationShellSplitterValue } from '@commercetools-frontend/app
 
 ## Responsive behavior
 
-The splitter uses `useResponsiveSplitterSizes` with a 1444px breakpoint
-(1024px main min + 420px aside min):
+The splitter uses `useResponsiveSplitterSizes` with a 1408px breakpoint
+(1024px main min + 384px aside min):
 
 | Viewport width | Aside state | Layout                                          |
 | -------------- | ----------- | ----------------------------------------------- |
-| >= 1444px      | Expanded    | Side-by-side: main + handle + aside (420-640px) |
-| >= 1444px      | Collapsed   | Full-width main content                         |
-| < 1444px       | Expanded    | Stacked: aside takes 100% width                 |
-| < 1444px       | Collapsed   | Full-width main content                         |
+| >= 1408px      | Expanded    | Side-by-side: main + handle + aside (384px min) |
+| >= 1408px      | Collapsed   | Full-width main content                         |
+| < 1408px       | Expanded    | Stacked: aside takes 100% width                 |
+| < 1408px       | Collapsed   | Full-width main content                         |
 
 ## Overlay scoping
 

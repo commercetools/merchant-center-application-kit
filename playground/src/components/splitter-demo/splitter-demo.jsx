@@ -100,8 +100,8 @@ const SplitterDemo = () => {
                 <Stack direction="column" gap="200">
                   <Text fontWeight="semibold">Responsive behavior</Text>
                   <Text fontSize="sm" color="neutral.11">
-                    Below 1440px the panel becomes a full-width overlay. Above
-                    1440px it&apos;s a resizable side-by-side split. Drag the
+                    Below 1408px the panel becomes a full-width overlay. Above
+                    1408px it&apos;s a resizable side-by-side split. Drag the
                     handle or use arrow keys when focused.
                   </Text>
                 </Stack>
