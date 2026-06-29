@@ -38,7 +38,10 @@ describe('ApplicationShellSplitterWrapper', () => {
       // Read the actual source to confirm the .catch() logs the error
       const fs = require('fs');
       const path = require('path');
-      const source = fs.readFileSync(path.join(__dirname, 'index.tsx'), 'utf8');
+      const source = fs.readFileSync(
+        path.join(__dirname, 'application-shell-splitter.async.tsx'),
+        'utf8'
+      );
 
       expect(source).toContain('.catch((error)');
       expect(source).toContain('console.error(');

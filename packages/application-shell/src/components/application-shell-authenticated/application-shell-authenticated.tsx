@@ -32,7 +32,7 @@ import { getPreviousProjectKey } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
-import ApplicationShellSplitter from '../application-shell-splitter';
+import ApplicationShellSplitter from '../application-shell-splitter/application-shell-splitter.async';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
