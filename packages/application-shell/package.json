@@ -103,7 +103,7 @@
     "uuid": "catalog:"
   },
   "devDependencies": {
-    "@commercetools/nimbus": "catalog:build",
+    "@commercetools/nimbus": "catalog:nimbus",
     "@apollo/client": "catalog:apollo",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",
