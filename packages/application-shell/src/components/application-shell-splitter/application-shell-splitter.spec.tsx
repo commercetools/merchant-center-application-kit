@@ -6,7 +6,6 @@ let mockLastOnCollapsedChange: ((collapsed: boolean) => void) | undefined;
 let mockHookOptions: Record<string, unknown> = {};
 
 jest.mock('@commercetools/nimbus', () => {
-  const React = require('react');
   return {
     NimbusProvider: ({ children }: { children: unknown }) => <>{children}</>,
     Splitter: {

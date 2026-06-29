@@ -5,7 +5,10 @@ import {
   Region,
   useRegion,
 } from '@commercetools/nimbus';
-import { REGIONS } from '@commercetools-frontend/application-shell';
+import {
+  REGIONS,
+  type TApplicationShellSplitterValue,
+} from '@commercetools-frontend/application-shell';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/shell-splitter';
@@ -58,7 +61,9 @@ const SplitterShell = ({
 SplitterShell.displayName = 'SplitterShell';
 
 const AsideContent = () => {
-  const { Region: Filler, value } = useRegion(REGIONS.MC_RIGHT_PANEL);
+  const { Region: Filler, value } = useRegion<TApplicationShellSplitterValue>(
+    REGIONS.MC_RIGHT_PANEL
+  );
 
   useEffect(() => {
     value?.expand();
