@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 import type { NimbusRouterConfig } from '@commercetools/nimbus';
 import {
   NimbusProvider,
@@ -21,24 +21,43 @@ export type TApplicationShellSplitterValue = {
   toggle: () => void;
 };
 
-// 1444px = 1024px (WINDOW_SIZES.STANDARD main min) + 420px (aside min)
-const BREAKPOINT_SIDE_BY_SIDE = 1444;
+// breakpoint-lg (1024) + sm (384) = 1408
+// Below 1408px container: overlay — one panel visible at a time
+// Above 1408px container: side-by-side — main ≥ 1024px, aside ≥ 384px
+const OVERLAY_THRESHOLD = 1408;
+
+const SPLITTER_ROOT_ID = 'mc-shell-splitter';
+const SPLITTER_MAIN_ID = 'mc-shell-splitter-main';
+const SPLITTER_ASIDE_ID = 'mc-shell-splitter-aside';
 
 const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
   const [open, setOpen] = useState(false);
 
+  const onCollapsedChange = useCallback((collapsed: boolean) => {
+    setOpen(!collapsed);
+  }, []);
+
   const { rootProps } = useResponsiveSplitterSizes({
     orientation: 'horizontal',
     persistKey: REGIONS.MC_RIGHT_PANEL,
-    size: { 0: '100%', [BREAKPOINT_SIDE_BY_SIDE]: 420 },
-    minSize: { 0: '100%', [BREAKPOINT_SIDE_BY_SIDE]: 420 },
-    maxSize: { [BREAKPOINT_SIDE_BY_SIDE]: 640 },
+    size: { 0: '100%', [OVERLAY_THRESHOLD]: 'sm' },
+    minSize: { 0: '100%', [OVERLAY_THRESHOLD]: 'sm' },
+    maxSize: { 0: '100%', [OVERLAY_THRESHOLD]: '50%' },
+    onCollapsedChange,
   });
 
+  // Ref to the hook's composite handler for programmatic control.
+  // The hook's handler does persistence suppression + calls our onCollapsedChange.
+  const compositeHandlerRef = useRef(rootProps.onCollapsedChange);
+  compositeHandlerRef.current = rootProps.onCollapsedChange;
+
+  const openRef = useRef(open);
+  openRef.current = open;
+
   const commands = useRef({
-    expand: () => setOpen(true),
-    collapse: () => setOpen(false),
-    toggle: () => setOpen((o) => !o),
+    expand: () => compositeHandlerRef.current(false),
+    collapse: () => compositeHandlerRef.current(true),
+    toggle: () => compositeHandlerRef.current(openRef.current),
   }).current;
 
   const controller = useMemo<TApplicationShellSplitterValue>(
@@ -54,16 +73,16 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
     >
       <Splitter.Root
         {...rootProps}
+        id={SPLITTER_ROOT_ID}
         collapsible
         collapsedSize={0}
         collapsed={!open}
-        onCollapsedChange={(c: boolean) => setOpen(!c)}
       >
-        <Splitter.Main style={{ containerType: 'inline-size', minWidth: 0 }}>
+        <Splitter.Main id={SPLITTER_MAIN_ID} containerType="inline-size">
           {props.children}
         </Splitter.Main>
         <Splitter.Handle aria-label="Resize side panel" />
-        <Splitter.Aside>
+        <Splitter.Aside id={SPLITTER_ASIDE_ID}>
           <Region name={REGIONS.MC_RIGHT_PANEL} value={controller} />
         </Splitter.Aside>
       </Splitter.Root>

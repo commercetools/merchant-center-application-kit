@@ -5,11 +5,10 @@ import {
   Region,
   useRegion,
 } from '@commercetools/nimbus';
+import { REGIONS } from '@commercetools-frontend/application-shell';
 import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/shell-splitter';
-
-const MC_RIGHT_PANEL = 'mc:right-panel' as const;
 
 type SplitterShellProps = {
   defaultOpen?: boolean;
@@ -50,7 +49,7 @@ const SplitterShell = ({
         </Splitter.Main>
         <Splitter.Handle aria-label="Resize side panel" />
         <Splitter.Aside>
-          <Region name={MC_RIGHT_PANEL} value={controller} />
+          <Region name={REGIONS.MC_RIGHT_PANEL} value={controller} />
         </Splitter.Aside>
       </Splitter.Root>
     </NimbusProvider>
@@ -59,7 +58,7 @@ const SplitterShell = ({
 SplitterShell.displayName = 'SplitterShell';
 
 const AsideContent = () => {
-  const { Region: Filler, value } = useRegion(MC_RIGHT_PANEL);
+  const { Region: Filler, value } = useRegion(REGIONS.MC_RIGHT_PANEL);
 
   useEffect(() => {
     value?.expand();
