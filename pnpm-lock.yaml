@@ -79,9 +79,6 @@ catalogs:
     '@babel/runtime-corejs3':
       specifier: ^7.22.15
       version: 7.29.0
-    '@commercetools/nimbus':
-      specifier: 3.1.0
-      version: 3.1.0
     '@emotion/babel-plugin':
       specifier: ^11.13.5
       version: 11.13.5
@@ -707,6 +704,13 @@ catalogs:
     tsc-files:
       specifier: 1.1.4
       version: 1.1.4
+  nimbus:
+    '@commercetools/nimbus':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@commercetools/nimbus-icons':
+      specifier: ^3.2.0
+      version: 3.2.0
   react:
     '@radix-ui/react-dialog':
       specifier: 1.1.14
@@ -2819,6 +2823,9 @@ importers:
       '@apollo/client':
         specifier: catalog:apollo
         version: 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@commercetools/nimbus':
+        specifier: catalog:nimbus
+        version: 3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@testing-library/react':
         specifier: catalog:test
         version: 16.1.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -3777,8 +3784,8 @@ importers:
         specifier: 'catalog:'
         version: 13.12.0(@types/node@22.19.17)(typescript@5.9.2)
       '@commercetools/nimbus':
-        specifier: catalog:build
-        version: 3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
+        specifier: catalog:nimbus
+        version: 3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@tsconfig/node22':
         specifier: 'catalog:'
         version: 22.0.2
@@ -4238,6 +4245,12 @@ importers:
       '@commercetools-uikit/text':
         specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+      '@commercetools/nimbus':
+        specifier: catalog:nimbus
+        version: 3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
+      '@commercetools/nimbus-icons':
+        specifier: catalog:nimbus
+        version: 3.2.0(typescript@5.9.2)
       '@emotion/react':
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
@@ -4386,6 +4399,9 @@ importers:
       '@commercetools-uikit/text-input':
         specifier: catalog:repo
         version: 20.4.0(@types/react@19.2.4)(react-dom@19.0.0(react@19.0.0))(react-intl@7.1.14(react@19.0.0)(typescript@5.9.2))(react@19.0.0)(typescript@5.9.2)
+      '@commercetools/nimbus':
+        specifier: catalog:nimbus
+        version: 3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@emotion/react':
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
@@ -5856,18 +5872,18 @@ packages:
     resolution: {integrity: sha512-kHlVST/Ax8GFpG9vpcUR5wKBGBoY2tZDA87kSC3nxhgk2+szZfv7MMMaAt0EIz2thpyO7oJv9NyPY/3XrrNIXQ==}
     engines: {node: '>=14'}
 
-  '@commercetools/nimbus-icons@3.1.0':
-    resolution: {integrity: sha512-9E50Plc++mwcl/Jull/v62jq2UJv8UhY7gVveO6ydMZVkj06nST01FnZSI/dyeDSapq0t+4RRp134+bC8luswg==}
+  '@commercetools/nimbus-icons@3.2.0':
+    resolution: {integrity: sha512-PIKVEJW8hef3mSDT4wCHssaCLZEdtkgA3AhQL4vUZO98+dAlRFi7O2gKjg284stOQ7++bfZg2dKaxaF5weUtbA==}
 
   '@commercetools/nimbus-tokens@3.1.0':
     resolution: {integrity: sha512-cp2McV/hRLdu2kKpd3/wKwHmBq0VilNE4IYnQMCMSQseFws/y8lFRYnH6tR2YnsVIIPbJxAY7UdYSUWM2IBTUg==}
 
-  '@commercetools/nimbus@3.1.0':
-    resolution: {integrity: sha512-Jmqe4HSuz8cjbnBOX99rPUd6w1K7WidHSwqNhCzph16yB6Gi7Uq7I0fatEv06z+E8fA1BlRy33GcWSi1ZZoFOw==}
+  '@commercetools/nimbus@3.2.0':
+    resolution: {integrity: sha512-K3fGr4KMY965LafVEBq+IVQCGshFGYCc21wEez2V2gj1F5XsXV7RAO8dh3Egflp5v8QsK97SJw6ZZMyAaU3NIQ==}
     peerDependencies:
       '@chakra-ui/react': ^3.36.0
-      '@commercetools/nimbus-icons': ^3.1.0
-      '@commercetools/nimbus-tokens': ^3.1.0
+      '@commercetools/nimbus-icons': ^3.2.0
+      '@commercetools/nimbus-tokens': ^3.2.0
       react: 19.0.0
       slate: ^0.123.0
       slate-history: ^0.115.0
@@ -17409,6 +17425,7 @@ packages:
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
     engines: {node: ^18 || >=20}
+    deprecated: unmaintained
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -21076,7 +21093,7 @@ snapshots:
 
   '@commercetools/http-user-agent@3.0.0': {}
 
-  '@commercetools/nimbus-icons@3.1.0(typescript@5.9.2)':
+  '@commercetools/nimbus-icons@3.2.0(typescript@5.9.2)':
     dependencies:
       '@material-design-icons/svg': 0.14.15
       '@svgr/cli': 8.1.0(typescript@5.9.2)
@@ -21086,14 +21103,48 @@ snapshots:
 
   '@commercetools/nimbus-tokens@3.1.0': {}
 
-  '@commercetools/nimbus@3.1.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.1.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)':
+  '@commercetools/nimbus@3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)':
     dependencies:
       '@chakra-ui/cli': 3.36.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
       '@chakra-ui/react': 3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@commercetools/nimbus-icons': 3.1.0(typescript@5.9.2)
+      '@commercetools/nimbus-icons': 3.2.0(typescript@5.9.2)
       '@commercetools/nimbus-tokens': 3.1.0
       '@emotion/is-prop-valid': 1.4.0
       '@github-ui/storybook-addon-performance-panel': 1.1.4(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@internationalized/string': 3.2.9
+      '@react-aria/interactions': 3.28.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-aria/utils': 3.34.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      dequal: 2.0.3
+      escape-html: 1.0.3
+      is-hotkey: 0.2.0
+      next-themes: 0.4.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-aria: 3.49.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-aria-components: 1.18.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-hotkeys-hook: 5.3.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-stately: 3.47.0(react@19.0.0)
+      react-use: 17.6.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      slate: 0.123.0
+      slate-history: 0.115.0(slate@0.123.0)
+      slate-hyperscript: 0.115.0(slate@0.123.0)
+      slate-react: 0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0)
+      use-debounce: 10.1.1(react@19.0.0)
+    transitivePeerDependencies:
+      - '@storybook/icons'
+      - '@storybook/react'
+      - react-dom
+      - storybook
+      - supports-color
+      - typescript
+
+  '@commercetools/nimbus@3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.1.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)':
+    dependencies:
+      '@chakra-ui/cli': 3.36.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
+      '@chakra-ui/react': 3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@commercetools/nimbus-icons': 3.2.0(typescript@5.9.2)
+      '@commercetools/nimbus-tokens': 3.1.0
+      '@emotion/is-prop-valid': 1.4.0
+      '@github-ui/storybook-addon-performance-panel': 1.1.4(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@internationalized/string': 3.2.9
       '@react-aria/interactions': 3.28.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/utils': 3.34.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -22080,6 +22131,13 @@ snapshots:
     dependencies:
       '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       storybook: 10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+    optionalDependencies:
+      react: 19.0.0
+
+  '@github-ui/storybook-addon-performance-panel@1.1.4(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+    dependencies:
+      '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      storybook: 10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     optionalDependencies:
       react: 19.0.0
 
@@ -34714,6 +34772,33 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.4
       prettier: 2.8.8
+    transitivePeerDependencies:
+      - '@testing-library/dom'
+      - bufferutil
+      - react
+      - react-dom
+      - utf-8-validate
+
+  storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@storybook/global': 5.0.0
+      '@storybook/icons': 2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@testing-library/jest-dom': 6.9.1
+      '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.1)
+      '@vitest/expect': 3.2.4
+      '@vitest/spy': 3.2.4
+      '@webcontainer/env': 1.1.1
+      esbuild: 0.27.7
+      open: 10.2.0
+      oxc-parser: 0.127.0
+      oxc-resolver: 11.20.0
+      recast: 0.23.11
+      semver: 7.7.4
+      use-sync-external-store: 1.6.0(react@19.0.0)
+      ws: 8.18.3
+    optionalDependencies:
+      '@types/react': 19.2.4
+      prettier: 3.8.1
     transitivePeerDependencies:
       - '@testing-library/dom'
       - bufferutil

@@ -41,8 +41,9 @@ describe('tryLoadNimbusWebpackPlugin', () => {
     jest.mock(
       '@commercetools/nimbus/plugins/webpack',
       () => {
-        const error: NodeJS.ErrnoException = new Error('Cannot find module');
-        error.code = 'MODULE_NOT_FOUND';
+        const error = Object.assign(new Error('Cannot find module'), {
+          code: 'MODULE_NOT_FOUND',
+        });
         throw error;
       },
       { virtual: true }
@@ -112,8 +113,9 @@ describe('tryLoadNimbusVitePlugin', () => {
     jest.mock(
       '@commercetools/nimbus/plugins/vite',
       () => {
-        const error: NodeJS.ErrnoException = new Error('Cannot find module');
-        error.code = 'MODULE_NOT_FOUND';
+        const error = Object.assign(new Error('Cannot find module'), {
+          code: 'MODULE_NOT_FOUND',
+        });
         throw error;
       },
       { virtual: true }

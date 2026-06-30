@@ -19,6 +19,8 @@
     "@commercetools-frontend/actions-global": "workspace:^",
     "@commercetools-frontend/application-components": "workspace:^",
     "@commercetools-frontend/application-shell": "workspace:^",
+    "@commercetools/nimbus": "catalog:nimbus",
+    "@commercetools/nimbus-icons": "catalog:nimbus",
     "@commercetools-frontend/application-shell-connectors": "workspace:^",
     "@commercetools-frontend/assets": "workspace:^",
     "@commercetools-frontend/browser-history": "workspace:^",

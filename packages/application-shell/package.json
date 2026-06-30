@@ -103,6 +103,7 @@
     "uuid": "catalog:"
   },
   "devDependencies": {
+    "@commercetools/nimbus": "catalog:nimbus",
     "@apollo/client": "catalog:apollo",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",
@@ -119,6 +120,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "catalog:peer",
+    "@commercetools/nimbus": ">=3.2.0",
     "@testing-library/react": "16.x",
     "react": "catalog:peer",
     "react-dom": "catalog:peer",
@@ -126,6 +128,11 @@
     "react-redux": "catalog:peer",
     "react-router-dom": "catalog:peer",
     "redux": "catalog:peer"
+  },
+  "peerDependenciesMeta": {
+    "@commercetools/nimbus": {
+      "optional": true
+    }
   },
   "engines": {
     "node": "18.x || 20.x || >=22.0.0"

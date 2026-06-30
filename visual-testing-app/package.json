@@ -13,6 +13,7 @@
     "@commercetools-frontend/application-components": "workspace:^",
     "@commercetools-frontend/application-config": "workspace:^",
     "@commercetools-frontend/application-shell": "workspace:^",
+    "@commercetools/nimbus": "catalog:nimbus",
     "@commercetools-frontend/application-shell-connectors": "workspace:^",
     "@commercetools-frontend/assets": "workspace:^",
     "@commercetools-frontend/constants": "workspace:^",

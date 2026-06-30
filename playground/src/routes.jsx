@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { lazy, Suspense, useCallback } from 'react';
 import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom';
 import { CustomPanelDemo } from './components/custom-views';
 import EchoServer from './components/echo-server';
@@ -6,6 +6,10 @@ import FormattersDemo from './components/formatters-demo';
 import NotificationsPlayground from './components/notifications-playground';
 import StateMachinesDetails from './components/state-machines-details';
 import StateMachinesList from './components/state-machines-list';
+
+const SplitterDemo = lazy(() =>
+  import('./components/splitter-demo/splitter-demo')
+);
 
 const ApplicationRoutes = () => {
   const match = useRouteMatch();
@@ -33,6 +37,11 @@ const ApplicationRoutes = () => {
       </Route>
       <Route path={`${match.path}/custom-panel`}>
         <CustomPanelDemo />
+      </Route>
+      <Route path={`${match.path}/splitter-demo`}>
+        <Suspense fallback={null}>
+          <SplitterDemo />
+        </Suspense>
       </Route>
       <Route>
         <StateMachinesList goToStateMachineDetail={goToStateMachineDetail}>

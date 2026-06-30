@@ -282,9 +282,6 @@ catalogs:
     typescript: 5.9.2
     ts-node: 10.9.2
 
-    # Nimbus (optional — bundler plugins only, no runtime dep)
-    '@commercetools/nimbus': 3.1.0
-
     # Vite / Rollup
     vite: ~6.4.2
     '@vitejs/plugin-react': 4.7.0
@@ -554,3 +551,13 @@ catalogs:
     jest-environment-puppeteer: 8.0.6
     jest-puppeteer: 8.0.6
     start-server-and-test: 2.0.13
+
+  nimbus:
+    '@commercetools/nimbus': 3.2.0
+    '@commercetools/nimbus-icons': ^3.2.0
+    '@commercetools/nimbus-tokens': ^3.2.0
+    '@chakra-ui/react': ^3.36.0
+    slate: ^0.123.0
+    slate-history: ^0.115.0
+    slate-hyperscript: ^0.115.0
+    slate-react: ^0.123.0
