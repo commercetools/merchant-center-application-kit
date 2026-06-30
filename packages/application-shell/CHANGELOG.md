@@ -1,5 +1,42 @@
 # @commercetools-frontend/application-shell
 
+## 27.7.0
+
+### Minor Changes
+
+- [#4025](https://github.com/commercetools/merchant-center-application-kit/pull/4025) [`e33d461`](https://github.com/commercetools/merchant-center-application-kit/commit/e33d4610327ff756ecee25112780428e155b57cc) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Add a shell-level resizable split pane layout powered by the Nimbus
+  `Splitter` component. When `@commercetools/nimbus` is installed, the
+  shell mounts a collapsible aside pane that consumers can fill and
+  control via Nimbus's `useRegion` hook, targeting the `REGIONS.MC_RIGHT_PANEL`
+  constant exported from `@commercetools-frontend/application-shell`.
+  Apps without Nimbus installed see no change — the splitter chunk
+  fails to load and the existing layout renders unchanged.
+
+  `@commercetools-frontend/application-components`: The `PortalsContainer`
+  overlay scoping is updated with CSS container query length units
+  (`100cqw`) so that modals and dropdowns stay within the main content
+  pane when the aside is open, with an `@supports` fallback for the
+  existing behavior.
+
+### Patch Changes
+
+- Updated dependencies [[`e33d461`](https://github.com/commercetools/merchant-center-application-kit/commit/e33d4610327ff756ecee25112780428e155b57cc)]:
+  - @commercetools-frontend/application-components@27.7.0
+  - @commercetools-frontend/actions-global@27.7.0
+  - @commercetools-frontend/application-config@27.7.0
+  - @commercetools-frontend/application-shell-connectors@27.7.0
+  - @commercetools-frontend/assets@27.7.0
+  - @commercetools-frontend/browser-history@27.7.0
+  - @commercetools-frontend/constants@27.7.0
+  - @commercetools-frontend/i18n@27.7.0
+  - @commercetools-frontend/l10n@27.7.0
+  - @commercetools-frontend/notifications@27.7.0
+  - @commercetools-frontend/permissions@27.7.0
+  - @commercetools-frontend/react-notifications@27.7.0
+  - @commercetools-frontend/sdk@27.7.0
+  - @commercetools-frontend/sentry@27.7.0
+  - @commercetools-frontend/url-utils@27.7.0
+
 ## 27.6.3
 
 ### Patch Changes
