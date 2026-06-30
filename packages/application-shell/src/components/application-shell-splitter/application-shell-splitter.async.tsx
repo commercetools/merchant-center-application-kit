@@ -4,15 +4,9 @@ import { useHistory } from 'react-router-dom';
 const LazyApplicationShellSplitter = lazy(() =>
   import(
     './application-shell-splitter' /* webpackChunkName: "application-shell-splitter" */
-  ).catch((error) => {
-    console.error(
-      'ApplicationShellSplitter chunk failed to load, falling back to passthrough.',
-      error
-    );
-    return {
-      default: ({ children }: { children: ReactNode }) => <>{children}</>,
-    };
-  })
+  ).catch(() => ({
+    default: ({ children }: { children: ReactNode }) => <>{children}</>,
+  }))
 );
 
 type TApplicationShellSplitterWrapperProps = {
