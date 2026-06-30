@@ -1,5 +1,26 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.7.0
+
+### Minor Changes
+
+- [#4025](https://github.com/commercetools/merchant-center-application-kit/pull/4025) [`e33d461`](https://github.com/commercetools/merchant-center-application-kit/commit/e33d4610327ff756ecee25112780428e155b57cc) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Automatically detect and load `@commercetools/nimbus` bundler plugins
+  during Vite and webpack builds. If you add `@commercetools/nimbus` as a
+  dependency in your project, Nimbus plugins and dependencies are picked up with no
+  additional configuration. If `@commercetools/nimbus` is not installed,
+  builds are unaffected.
+
+### Patch Changes
+
+- Updated dependencies [[`e33d461`](https://github.com/commercetools/merchant-center-application-kit/commit/e33d4610327ff756ecee25112780428e155b57cc)]:
+  - @commercetools-frontend/application-components@27.7.0
+  - @commercetools-frontend/application-config@27.7.0
+  - @commercetools-frontend/assets@27.7.0
+  - @commercetools-frontend/babel-preset-mc-app@27.7.0
+  - @commercetools-frontend/constants@27.7.0
+  - @commercetools-frontend/mc-dev-authentication@27.7.0
+  - @commercetools-frontend/mc-html-template@27.7.0
+
 ## 27.6.3
 
 ### Patch Changes
