@@ -75,9 +75,10 @@ describe('loadNimbusWebpackPlugin', () => {
 
       expect(NormalModuleReplacementPlugin).toHaveBeenCalledTimes(1);
       const [regex, replacement] = NormalModuleReplacementPlugin.mock.calls[0];
-      expect(replacement).toBe(
-        '@commercetools-frontend/mc-scripts/nimbus-stub'
-      );
+      // Absolute path (not a bare specifier) so it resolves under pnpm's strict
+      // node_modules, where application-shell cannot see mc-scripts.
+      expect(require('path').isAbsolute(replacement)).toBe(true);
+      expect(replacement).toMatch(/[/\\]nimbus-stub\.js$/);
       // matches nimbus + subpaths, excludes /plugins, ignores siblings
       expect(regex.test('@commercetools/nimbus')).toBe(true);
       expect(regex.test('@commercetools/nimbus/components/Button')).toBe(true);

@@ -13,9 +13,7 @@ type NimbusPluginOptions = {
 const NIMBUS_RUNTIME_RE = /^@commercetools\/nimbus(?:$|\/(?!plugins(?:\/|$)))/;
 
 // Empty CJS stub shipped by mc-scripts (see `packages/mc-scripts/nimbus-stub.js`).
-// Bare specifier so webpack resolves it from the consumer app's build context —
-// mc-scripts is always installed there, even when `@commercetools/nimbus` is not.
-const NIMBUS_STUB_MODULE = '@commercetools-frontend/mc-scripts/nimbus-stub';
+const NIMBUS_STUB_SUBPATH = '@commercetools-frontend/mc-scripts/nimbus-stub';
 
 function isModuleNotFound(error: unknown): boolean {
   return (
@@ -26,6 +24,19 @@ function isModuleNotFound(error: unknown): boolean {
 }
 
 /**
+ * Resolve the stub to an absolute path from the application root. mc-scripts is
+ * a (dev)dependency of the app being built, so it is resolvable there under any
+ * package-manager layout. Resolving to an absolute path — rather than handing
+ * webpack the bare specifier — is what makes this work under pnpm's strict
+ * `node_modules`: a bare specifier would be re-resolved from application-shell's
+ * context, which cannot see mc-scripts (it is not application-shell's
+ * dependency).
+ */
+function resolveNimbusStub(cwd: string = process.cwd()): string {
+  return require.resolve(NIMBUS_STUB_SUBPATH, { paths: [cwd] });
+}
+
+/**
  * webpack fallback used when `@commercetools/nimbus` — and therefore its own
  * `@commercetools/nimbus/plugins/webpack` — is not installed. Redirects every
  * Nimbus runtime import to the empty stub so the build resolves. Mirrors
@@ -33,6 +44,12 @@ function isModuleNotFound(error: unknown): boolean {
  * it works precisely in the case Nimbus is absent.
  */
 class NimbusStubWebpackPlugin {
+  private stubPath: string;
+
+  constructor(cwd?: string) {
+    this.stubPath = resolveNimbusStub(cwd);
+  }
+
   apply(compiler: {
     webpack?: {
       NormalModuleReplacementPlugin: new (
@@ -48,10 +65,9 @@ class NimbusStubWebpackPlugin {
       );
     }
     const { NormalModuleReplacementPlugin } = compiler.webpack;
-    new NormalModuleReplacementPlugin(
-      NIMBUS_RUNTIME_RE,
-      NIMBUS_STUB_MODULE
-    ).apply(compiler);
+    new NormalModuleReplacementPlugin(NIMBUS_RUNTIME_RE, this.stubPath).apply(
+      compiler
+    );
   }
 }
 
@@ -90,7 +106,8 @@ export function loadNimbusWebpackPlugin(options?: NimbusPluginOptions) {
     // Nimbus is not installed: its own plugin can't be loaded (it lives inside
     // Nimbus), so mc-scripts stubs the imports itself. Any other error (e.g. a
     // present-but-broken Nimbus) still surfaces.
-    if (isModuleNotFound(error)) return new NimbusStubWebpackPlugin();
+    if (isModuleNotFound(error))
+      return new NimbusStubWebpackPlugin(options?.cwd);
     throw error;
   }
 }
