@@ -40,7 +40,7 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
   const { rootProps } = useResponsiveSplitterSizes({
     orientation: 'horizontal',
     persistKey: REGIONS.MC_RIGHT_PANEL,
-    size: { 0: '100%', [OVERLAY_THRESHOLD]: 'sm' },
+    size: { 0: '100%', [OVERLAY_THRESHOLD]: 'md' },
     minSize: { 0: '100%', [OVERLAY_THRESHOLD]: 'sm' },
     maxSize: { 0: '100%', [OVERLAY_THRESHOLD]: '50%' },
     onCollapsedChange,
