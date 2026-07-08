@@ -35,6 +35,7 @@
     "postcss",
     "webpack",
     "webpack-loaders",
+    "nimbus-stub.js",
     "package.json",
     "LICENSE",
     "README.md"

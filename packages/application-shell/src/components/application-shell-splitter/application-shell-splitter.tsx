@@ -8,6 +8,17 @@ import {
 } from '@commercetools/nimbus';
 import { REGIONS } from '../../constants';
 
+/**
+ * Whether `@commercetools/nimbus` actually resolved at build time. When an app
+ * has not installed Nimbus, the mc-scripts bundler fallback stubs the import to
+ * an empty module, so the bindings above are `undefined`. The async wrapper
+ * reads this flag and renders a passthrough instead of mounting the splitter, so
+ * Nimbus hooks (e.g. `useResponsiveSplitterSizes`) are never called without
+ * Nimbus present. See nimbus `home-bundler-plugins.mdx` ("shared code is
+ * responsible for checking whether Nimbus is available before rendering").
+ */
+export const hasNimbus = typeof Splitter !== 'undefined';
+
 type TApplicationShellSplitterProps = {
   children: ReactNode;
   locale: string;

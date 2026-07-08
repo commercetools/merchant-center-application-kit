@@ -12,7 +12,7 @@ import type {
   TWebpackConfigToggleFlagsForProduction,
   TWebpackConfigOptions,
 } from '../types';
-import { tryLoadNimbusWebpackPlugin } from '../utils/try-load-nimbus-plugins';
+import { loadNimbusWebpackPlugin } from '../utils/try-load-nimbus-plugins';
 import FinalStatsWriterPlugin from '../webpack-plugins/final-stats-writer-plugin';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
@@ -187,7 +187,7 @@ function createWebpackConfigForProduction(
     },
 
     plugins: [
-      tryLoadNimbusWebpackPlugin({ cwd: paths.appRoot }),
+      loadNimbusWebpackPlugin({ cwd: paths.appRoot }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({

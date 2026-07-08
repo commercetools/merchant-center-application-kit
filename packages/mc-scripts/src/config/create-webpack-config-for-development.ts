@@ -11,7 +11,7 @@ import type {
   TWebpackConfigToggleFlagsForDevelopment,
   TWebpackConfigOptions,
 } from '../types';
-import { tryLoadNimbusWebpackPlugin } from '../utils/try-load-nimbus-plugins';
+import { loadNimbusWebpackPlugin } from '../utils/try-load-nimbus-plugins';
 import LocalHtmlWebpackPlugin from '../webpack-plugins/local-html-webpack-plugin';
 import createPostcssConfig from './create-postcss-config';
 import hasJsxRuntime from './has-jsx-runtime';
@@ -162,7 +162,7 @@ function createWebpackConfigForDevelopment(
     },
 
     plugins: [
-      tryLoadNimbusWebpackPlugin({ cwd: paths.appRoot }),
+      loadNimbusWebpackPlugin({ cwd: paths.appRoot }),
       new WebpackBar(),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
