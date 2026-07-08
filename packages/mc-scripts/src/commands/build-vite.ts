@@ -9,7 +9,7 @@ import { packageLocation as applicationStaticAssetsPath } from '@commercetools-f
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
 import nonNullable from '../utils/non-nullable';
-import { tryLoadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
+import { loadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
 import pluginChunkCycleCheck from '../vite-plugins/vite-plugin-chunk-cycle-check';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
@@ -91,7 +91,7 @@ async function run() {
       },
     },
     plugins: [
-      tryLoadNimbusVitePlugin({ cwd: paths.appRoot }),
+      loadNimbusVitePlugin({ cwd: paths.appRoot }),
       pluginSvgr(),
       pluginGraphql() as Plugin,
       pluginReact({
