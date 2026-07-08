@@ -1,5 +1,7 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 27.7.1
+
 ## 27.7.0
 
 ## 27.6.3

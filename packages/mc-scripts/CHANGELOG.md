@@ -1,5 +1,31 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.7.1
+
+### Patch Changes
+
+- [#4031](https://github.com/commercetools/merchant-center-application-kit/pull/4031) [`c45469c`](https://github.com/commercetools/merchant-center-application-kit/commit/c45469c3a8de9a59615c9a893a40ca1ba5396ec8) Thanks [@misama-ct](https://github.com/misama-ct)! - Fix Custom Application builds failing with
+  `Module not found: Can't resolve '@commercetools/nimbus'` when
+  `@commercetools/nimbus` is not installed (e.g. a fresh
+  `create-mc-app --template=starter-typescript` project).
+
+  `@commercetools/nimbus` is an optional dependency of the application shell.
+  Previously the build only stayed unaffected when the app already had Nimbus
+  installed, because the stubbing plugin was loaded from Nimbus itself and could
+  not run when Nimbus was absent. `mc-scripts` now ships its own build-time
+  fallback that stubs Nimbus imports when the package is not installed, and the
+  shell splitter degrades to a passthrough at runtime when Nimbus is absent — so
+  Nimbus stays genuinely optional for both webpack and Vite builds.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.7.1
+  - @commercetools-frontend/application-config@27.7.1
+  - @commercetools-frontend/assets@27.7.1
+  - @commercetools-frontend/babel-preset-mc-app@27.7.1
+  - @commercetools-frontend/constants@27.7.1
+  - @commercetools-frontend/mc-dev-authentication@27.7.1
+  - @commercetools-frontend/mc-html-template@27.7.1
+
 ## 27.7.0
 
 ### Minor Changes
