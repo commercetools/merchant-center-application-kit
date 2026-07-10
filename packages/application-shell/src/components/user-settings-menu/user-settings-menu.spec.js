@@ -157,6 +157,88 @@ describe('rendering', () => {
       });
     });
   });
+  describe('when a menu item has a boolean feature toggle set to true', () => {
+    it('should render the menu item', async () => {
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
+        flags: { myBooleanFlag: true },
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [
+              createTestMenuConfig('flagged-item', {
+                featureToggle: 'myBooleanFlag',
+              }),
+            ],
+          },
+        },
+        disableAutomaticEntryPointRoutes: true,
+      });
+      const dropdownMenu = await screen.findByRole('button', {
+        name: /open user settings menu/i,
+      });
+      fireEvent.click(dropdownMenu);
+
+      expect(await screen.findByText('Flagged-item')).toBeInTheDocument();
+    });
+  });
+  describe('when a menu item has a long-lived feature toggle with value true', () => {
+    it('should render the menu item', async () => {
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
+        flags: { myLongLivedFlag: { value: true, reason: 'on' } },
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [
+              createTestMenuConfig('long-lived-item', {
+                featureToggle: 'myLongLivedFlag',
+              }),
+            ],
+          },
+        },
+        disableAutomaticEntryPointRoutes: true,
+      });
+      const dropdownMenu = await screen.findByRole('button', {
+        name: /open user settings menu/i,
+      });
+      fireEvent.click(dropdownMenu);
+
+      expect(await screen.findByText('Long-lived-item')).toBeInTheDocument();
+    });
+  });
+  describe('when a menu item has a feature toggle set to false', () => {
+    it('should not render the menu item', async () => {
+      const props = createTestProps();
+      renderApp(<UserSettingsMenu {...props} />, {
+        disableRoutePermissionCheck: true,
+        flags: { myDisabledFlag: false },
+        environment: {
+          __DEVELOPMENT__: {
+            // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
+            accountLinks: [
+              createTestMenuConfig('disabled-item', {
+                featureToggle: 'myDisabledFlag',
+              }),
+            ],
+          },
+        },
+        disableAutomaticEntryPointRoutes: true,
+      });
+      const dropdownMenu = await screen.findByRole('button', {
+        name: /open user settings menu/i,
+      });
+      fireEvent.click(dropdownMenu);
+      // Wait for the menu to be open
+      await screen.findByRole('button', {
+        name: /close user settings menu/i,
+      });
+
+      expect(screen.queryByText('Disabled-item')).not.toBeInTheDocument();
+    });
+  });
   describe('when clicking on the Privacy link', () => {
     it('should close the user menu', async () => {
       const props = createTestProps();
