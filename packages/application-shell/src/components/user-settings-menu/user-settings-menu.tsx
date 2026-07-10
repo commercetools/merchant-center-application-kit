@@ -1,7 +1,8 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ToggleFeature } from '@flopflip/react-broadcast';
+import { useFlagVariation } from '@flopflip/react-broadcast';
+import type { TFlagVariation } from '@flopflip/types';
 import Downshift, {
   type ControllerStateAndHelpers,
   type DownshiftProps,
@@ -96,11 +97,25 @@ const stateReducer: DownshiftProps<{}>['stateReducer'] = (state, changes) => {
   }
 };
 
+type TLongLivedFlag = {
+  value: boolean;
+  reason?: string;
+};
+
+function isLongLivedFlag(
+  flag: TFlagVariation | TLongLivedFlag
+): flag is TLongLivedFlag {
+  return typeof (flag as TLongLivedFlag)?.value === 'boolean';
+}
+
 const OptionalFeatureToggle = (props: OptionalFeatureToggleProps) => {
+  const flagVariation = useFlagVariation(props.featureToggle);
+
   if (props.featureToggle) {
-    return (
-      <ToggleFeature flag={props.featureToggle}>{props.children}</ToggleFeature>
-    );
+    if (flagVariation === true) return <>{props.children}</>;
+    if (isLongLivedFlag(flagVariation) && flagVariation.value === true)
+      return <>{props.children}</>;
+    return null;
   }
   return <>{props.children}</>;
 };
