@@ -39,9 +39,9 @@ jobs:
           node-version: "24.15.0"
           registry-url: "https://registry.npmjs.org"
 
-      # Ensure npm 11.5.1 or later is installed for OIDC support
+      # Ensure npm >=11.5.1 for OIDC support (npm@12 has a broken sigstore dependency)
       - name: Update npm
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
 
       - name: Verify npm version
         run: npm --version
