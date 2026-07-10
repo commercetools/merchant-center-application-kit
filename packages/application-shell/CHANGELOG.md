@@ -1,5 +1,35 @@
 # @commercetools-frontend/application-shell
 
+## 27.8.0
+
+### Minor Changes
+
+- [#4029](https://github.com/commercetools/merchant-center-application-kit/pull/4029) [`bfaac50`](https://github.com/commercetools/merchant-center-application-kit/commit/bfaac504d63bde6c9585f7dc85ca0f0e9b8ec57a) Thanks [@kark](https://github.com/kark)! - Improve right panel initial width — increase default to `md`
+
+### Patch Changes
+
+- [#4033](https://github.com/commercetools/merchant-center-application-kit/pull/4033) [`3de1472`](https://github.com/commercetools/merchant-center-application-kit/commit/3de147273ec78c797e2d16f94360f02b5a3d0718) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Fix user-settings menu items gated by long-lived feature flags
+  (`{ value: boolean, reason?: string }`) never rendering. The
+  `OptionalFeatureToggle` component now uses `useFlagVariation` instead of
+  flopflip's `ToggleFeature`, matching the pattern already used by the
+  navbar's `RestrictedMenuItem`.
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.8.0
+  - @commercetools-frontend/application-components@27.8.0
+  - @commercetools-frontend/application-config@27.8.0
+  - @commercetools-frontend/application-shell-connectors@27.8.0
+  - @commercetools-frontend/assets@27.8.0
+  - @commercetools-frontend/browser-history@27.8.0
+  - @commercetools-frontend/constants@27.8.0
+  - @commercetools-frontend/i18n@27.8.0
+  - @commercetools-frontend/l10n@27.8.0
+  - @commercetools-frontend/notifications@27.8.0
+  - @commercetools-frontend/permissions@27.8.0
+  - @commercetools-frontend/react-notifications@27.8.0
+  - @commercetools-frontend/sdk@27.8.0
+  - @commercetools-frontend/sentry@27.8.0
+  - @commercetools-frontend/url-utils@27.8.0
+
 ## 27.7.1
 
 ### Patch Changes
