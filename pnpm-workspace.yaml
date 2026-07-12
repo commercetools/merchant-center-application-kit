@@ -124,7 +124,7 @@ catalog:
   '@sentry/react': 8.55.0
   '@sentry/types': 8.55.0
   '@tsconfig/cypress': ^1.0.1
-  '@tsconfig/node22': ^22.0.0
+  '@tsconfig/node24': ^24.0.0
   '@types/babel__core': ^7.20.1
   '@types/cldr': ^7.1.4
   '@types/common-tags': ^1.8.2
