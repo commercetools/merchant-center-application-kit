@@ -166,7 +166,7 @@ catalog:
   cypress: 14.5.4
   debounce-async: 0.0.2
   deep-diff: 1.0.2
-  dompurify: ^3.0.0
+  dompurify: ^3.4.11
   dotenv: 16.6.1
   dotenv-flow: ^4.0.0
   execa: 5.1.1
@@ -199,7 +199,7 @@ catalog:
   postcss-load-config: 3.1.4
   prompts: ^2.4.2
   puppeteer: 20.9.0
-  qs: ^6.11.2
+  qs: ^6.15.2
   qss: 2.0.3
   querystring-es3: ^0.2.1
   replace: 1.2.2
@@ -219,7 +219,7 @@ catalog:
   vercel: 24.2.5
   wait-for-observables: 1.0.3
   winston: 3.17.0
-  yaml: ^2.6.1
+  yaml: ^1.10.3
 
 catalogs:
   apollo:
@@ -234,7 +234,7 @@ catalogs:
   build:
     # Babel
     '@babel/cli': ^7.22.15
-    '@babel/core': ^7.22.17
+    '@babel/core': ^7.29.6
     '@babel/preset-env': ^7.22.15
     '@babel/preset-react': ^7.22.15
     '@babel/preset-typescript': ^7.22.15
@@ -271,7 +271,7 @@ catalogs:
     '@emotion/babel-preset-css-prop': ^11.12.0
 
     # PostCSS
-    postcss: 8.5.6
+    postcss: 8.5.10
     postcss-custom-media: 8.0.2
     postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
@@ -283,7 +283,7 @@ catalogs:
     ts-node: 10.9.2
 
     # Vite / Rollup
-    vite: ~6.4.2
+    vite: ~6.4.3
     '@vitejs/plugin-react': 4.7.0
     '@vitejs/plugin-react-swc': 3.11.0
     '@rollup/plugin-graphql': 2.0.5
@@ -294,7 +294,7 @@ catalogs:
     # Webpack + loaders/plugins (mc-scripts / mc-html-template)
     webpack: 5.105.1
     webpack-bundle-analyzer: 4.10.2
-    webpack-dev-server: 4.15.2
+    webpack-dev-server: 5.2.5
     webpackbar: 5.0.2
     browserslist: ^4.28.1
     css-loader: 6.11.0
