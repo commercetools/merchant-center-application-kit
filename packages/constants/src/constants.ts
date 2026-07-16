@@ -42,6 +42,7 @@ export const PERMISSION_GROUP_NAME_REGEX =
 // DOM elements
 export const PORTALS_CONTAINER_ID = 'portals-container';
 export const PORTALS_CONTAINER_INDENTATION_SIZE = '48px';
+export const MC_MAIN_CONTAINER_PORTAL_ID = 'mc-main-container-portal';
 
 // Links
 export const SUPPORT_PORTAL_URL = 'https://support.commercetools.com';

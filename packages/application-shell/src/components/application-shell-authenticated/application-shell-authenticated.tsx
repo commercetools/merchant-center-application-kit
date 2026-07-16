@@ -18,7 +18,11 @@ import {
   selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  DOMAINS,
+  LOGOUT_REASONS,
+  MC_MAIN_CONTAINER_PORTAL_ID,
+} from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
@@ -428,6 +432,15 @@ export const ApplicationShellAuthenticated = (
                                 </Route>
                               </Switch>
                             </div>
+                            <div
+                              id={MC_MAIN_CONTAINER_PORTAL_ID}
+                              css={css`
+                                position: sticky;
+                                bottom: 0;
+                                z-index: 9999;
+                                pointer-events: none;
+                              `}
+                            />
                           </MainContainer>
                         )}
                       </div>
