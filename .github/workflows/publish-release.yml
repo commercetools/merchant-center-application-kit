@@ -18,13 +18,13 @@ jobs:
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
-        uses: tibdex/github-app-token@v2.1.0
+        uses: tibdex/github-app-token@0af3325639c0a60612b2eeaf010f0f88e468e800 # v2.1.0
         with:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           # Pass a personal access token (using our `ct-changesets` app) to be able to trigger other workflows
 
@@ -34,7 +34,7 @@ jobs:
 
       # Ensure we are using valid node version for npm trusted publising AFTER checkout
       # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24.15.0"
           registry-url: "https://registry.npmjs.org"
@@ -53,7 +53,7 @@ jobs:
       # This must run AFTER the CI action to override the Node setup with registry config
       # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
       - name: Setup npm registry for publishing
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "24.15.0"
           registry-url: "https://registry.npmjs.org"
@@ -67,7 +67,7 @@ jobs:
 
       - name: Creating release pull request or publishing release to npm registry
         id: changesets
-        uses: changesets/action@v1.7.0
+        uses: changesets/action@e87c8ed249971350e47fab7515075f44eb134e5b # v1.7.0
         with:
           publish: pnpm changeset publish
           version: pnpm changeset:version-and-format
