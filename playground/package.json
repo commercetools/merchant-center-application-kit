@@ -79,7 +79,7 @@
     "ts-node": "catalog:build",
     "typescript": "catalog:build"
   },
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@11.14.0",
   "engines": {
     "node": ">=22",
     "pnpm": ">=11"
