@@ -162,7 +162,7 @@ const FakeSaveToolbar = ({
       pointerEvents="auto"
       data-testid="fake-save-toolbar"
     >
-      <Button variant="secondary" onPress={onCancel}>
+      <Button variant="subtle" onPress={onCancel}>
         Cancel
       </Button>
       <Button variant="solid" onPress={onSave}>
@@ -186,7 +186,7 @@ const ToolbarDemo = () => {
     <>
       <MainContent>
         {!showToolbar && (
-          <Button variant="secondary" onPress={() => setShowToolbar(true)}>
+          <Button variant="subtle" onPress={() => setShowToolbar(true)}>
             Show toolbar
           </Button>
         )}
