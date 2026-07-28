@@ -104,6 +104,7 @@ export const ModalContent = styled(Content, {
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   outline: 0;
   z-index: inherit;
+  overflow: hidden;
 
   &[data-state='open'] {
     animation: ${({ size }) => getContentShowAnimation(size)} 300ms ease
