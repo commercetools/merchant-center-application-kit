@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 27.9.0
+
+### Minor Changes
+
+- [#4037](https://github.com/commercetools/merchant-center-application-kit/pull/4037) [`1c22248`](https://github.com/commercetools/merchant-center-application-kit/commit/1c2224895cfbabf27670d0b5f4db8c5052705f28) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Add a portal target (`mc-main-container-portal`) inside `MainContainer` so that fixed-position components like `SaveToolbar` can portal into the MC content area and automatically constrain their width to the main pane, excluding the agent side panel.
+
 ## 27.8.0
 
 ## 27.7.1
