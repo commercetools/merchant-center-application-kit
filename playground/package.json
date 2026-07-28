@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "catalog:build",
-    "@commercetools-docs/ui-kit": "catalog:",
+    "@commercetools-docs/ui-kit": "catalog:apps",
     "@commercetools-frontend/actions-global": "workspace:^",
     "@commercetools-frontend/application-components": "workspace:^",
     "@commercetools-frontend/application-shell": "workspace:^",
@@ -51,16 +51,16 @@
     "@flopflip/react-broadcast": "catalog:flopflip",
     "apollo-link-rest": "catalog:apollo",
     "graphql": "catalog:apollo",
-    "graphql-anywhere": "catalog:",
+    "graphql-anywhere": "catalog:apps",
     "moment": "catalog:",
     "moment-timezone": "catalog:",
     "prop-types": "catalog:react",
-    "qs": "catalog:",
+    "qs": "catalog:apps",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "react-intl": "catalog:react",
     "react-router-dom": "catalog:react",
-    "vercel": "catalog:"
+    "vercel": "catalog:apps"
   },
   "devDependencies": {
     "@commercetools-backend/express": "workspace:^",
@@ -71,17 +71,17 @@
     "@types/jest": "catalog:test",
     "@types/node": "catalog:",
     "@types/testing-library__jest-dom": "catalog:test",
-    "@vercel/node": "catalog:",
-    "dotenv-flow": "catalog:",
+    "@vercel/node": "catalog:apps",
+    "dotenv-flow": "catalog:apps",
     "express": "catalog:",
     "jest": "catalog:test",
     "msw": "catalog:test",
     "ts-node": "catalog:build",
     "typescript": "catalog:build"
   },
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@11.14.0",
   "engines": {
     "node": ">=22",
-    "pnpm": ">=8"
+    "pnpm": ">=11"
   }
 }
