@@ -1,0 +1,14 @@
+# Glossary
+
+Use precise wording for {{ROTATION_TITLE}} components. Mixing them up sends the
+responder to the wrong service. Extend this file as the system grows.
+
+## Components
+
+{{COMPONENTS}}
+
+## Related
+
+- For the full component map see [[architecture-overview]].
+
+Extend this file as new component names appear.

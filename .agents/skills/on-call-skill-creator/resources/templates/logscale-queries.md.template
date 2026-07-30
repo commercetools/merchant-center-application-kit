@@ -1,0 +1,53 @@
+# Curated LogScale queries — `humio-packages` catalog
+
+commercetools keeps saved LogScale queries, dashboards, and alert definitions in
+`commercetools/humio-packages`. Prefer these over hand writing a query.
+
+- Repo. `commercetools/humio-packages` (private, use `gh`).
+- LogScale org. `ctp-eu` at `https://cloud.humio.com/ctp-eu`.
+- This rotation package. `{{LOGSCALE_PACKAGE}}`.
+
+## Fetch the live set
+
+```bash
+gh api repos/commercetools/humio-packages/contents/{{LOGSCALE_PACKAGE}}/queries --jq '.[].name'
+gh api "repos/commercetools/humio-packages/contents/{{LOGSCALE_PACKAGE}}/queries/<file>.yaml" -H "Accept: application/vnd.github.raw"
+```
+
+Fetch the exact `queryString` live before presenting it. The catalog below is a
+fast reference, not the source of truth.
+
+## Field conventions
+
+| Field | Use |
+|---|---|
+| `#environment` | `prod` |
+| `#cloud_provider.account` | environment selector, parameterized as `?account` |
+| `#cloud_provider.service` | `k8s` or `loadbalancer` |
+| `kubernetes.pod_namespace` | the rotation namespace |
+| `kubernetes.container_name` | the service container, exclude `vault-agent-init` |
+| `logLevel` | `error` |
+| `http.status_code` | `>= 500` |
+| `duration` | request duration in seconds |
+
+`?account` is a parameter. Substitute the concrete account for the environment.
+See Environments in `runbook-sources.md`. `*-production-*` matches all prod.
+
+## Query catalog
+
+{{QUERY_CATALOG}}
+
+## Alerts
+
+The alert definitions in `{{LOGSCALE_PACKAGE}}/alerts` are what fired. When an alert
+name is the input, the alert `queryString` is the most precise starting point.
+Note the routing. Some alerts go to PagerDuty, some to incident.io.
+
+## Build a runnable search URL
+
+```
+https://cloud.humio.com/ctp-eu/search?query=<URL-encoded queryString>&start=15m&live=false&tz=Europe/Berlin
+```
+
+Set `start` to the incident window. Substitute `?account`. Presenting the URL plus
+the raw query is the answer. Executing it is out of scope.

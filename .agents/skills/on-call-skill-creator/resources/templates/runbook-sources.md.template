@@ -1,0 +1,80 @@
+# Runbook sources and matching reference
+
+Authoritative reference for the `on-call-{{ROTATION}}` skill. Update this file when
+runbooks move. The workflow reads from here so it stays stable.
+
+## Confluence access
+
+- **Site:** `commercetools.atlassian.net`
+- **cloudId:** `{{CLOUD_ID}}`
+- If a call fails with an auth error, refresh with `getAccessibleAtlassianResources`.
+
+## Index pages
+
+Enumerate every run with `getConfluencePageDescendants` (`depth: 2`, generous
+`limit`). Never body-fetch these. They time out.
+
+{{RUNBOOK_INDEXES_DETAIL}}
+
+## Standing dashboards
+
+Golden signals dashboards. Surface the one for the incident service. Set
+`var-cloud` and the time range to the incident.
+
+{{DASHBOARDS}}
+
+## Environments
+
+The environment maps to a single cloud id, used in three places. The dashboard
+`var-cloud`, the Prometheus datasource UID, and the LogScale `?account`.
+
+{{ENV_TABLE}}
+
+Refresh ids with `grafana_list_datasources(type=prometheus)` if one looks stale.
+
+## Dependencies and upstream status
+
+Decide "is it us or upstream?" and surface the relevant status page. Choose by the
+cloud of the environment and by the dependency.
+
+- AWS envs. https://health.aws.amazon.com/health/status
+- GCP envs. https://status.cloud.google.com
+{{DEPENDENCIES}}
+
+## Service repositories
+
+For recent-changes correlation, prefer the `Github repo` field in the matched
+runbook. Use this map as the fallback. All under the `commercetools` org.
+
+{{SERVICE_REPOS}}
+
+## Runbook taxonomy
+
+- **`Diagnostic: <Service> <Signal>`** are the symptom entry points. Titles track
+  alert names.
+- **`Action: <Remediation>`** are the fixes a Diagnostic links to.
+- Legacy free-form titles. Match on keywords when the modern naming is absent.
+
+Skip category container pages and reference docs.
+
+## Service vocabulary
+
+{{SERVICE_VOCAB}}
+
+## Signal vocabulary
+
+| Signal | Triggers in the symptom |
+|---|---|
+| Elevated Error Rate | error rate, 5xx, 500s, failing requests |
+| Elevated Latency | latency, slow, p95, timeouts |
+| Nodejs Event Loop Lag | event loop, lag, CPU pegged |
+| Pod Elevated Number Of Restarts | restarts, crashloop |
+| Memory Pressure | memory, OOM, OOMKilled |
+| 502 / load balancer | 502, bad gateway |
+
+## What to extract when summarizing a runbook
+
+- Metadata. Owner, Service, Github repo, Approximate Runtime, Prerequisites.
+- The standing dashboard for the service plus any dashboard linked in the steps.
+- Humio / LogScale queries. Link and raw text.
+- Linked `Action:` runbooks and sibling `Diagnostic:` pages.

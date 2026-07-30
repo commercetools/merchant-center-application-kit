@@ -1,0 +1,34 @@
+{
+  "execution": {
+    "timestamp": "2026-01-29T14:30:22Z",
+    "input_file": "~/Downloads/alerts.json",
+    "work_dir": "/path/to/clone-dir/20260129-143022",
+    "commented_on_prs": true,
+    "summary_generated": true
+  },
+  "tasks": [
+    {
+      "subject": "Review Renovate PR for @remix-run/router security fix",
+      "description": "PR #123 in NebulaTerra/modular-store\n\nVulnerability: @remix-run/router Package Vulnerabilities\n- Orca Score: 3.2 (Medium)\n- Created: 2026-01-15T13:24:19+00:00\n- Affected in: ./InStore_Cart/package-lock.json\n- Orca Dashboard: https://eu.app.orcasecurity.io/alerts/orca-10390471\n\nAction: Review the PR, validate dependency changes, merge if tests pass.",
+      "pr_url": "https://github.com/NebulaTerra/modular-store/pull/123",
+      "orca_issues": [
+        {
+          "package": "@remix-run/router",
+          "alert_id": "orca-10390471",
+          "orca_link": "https://eu.app.orcasecurity.io/alerts/orca-10390471"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_alerts": 150,
+    "total_tasks": 15,
+    "prs_commented": 15,
+    "by_severity": {
+      "critical": 2,
+      "high": 5,
+      "medium": 8,
+      "low": 0
+    }
+  }
+}

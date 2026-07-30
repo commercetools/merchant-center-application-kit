@@ -1,40 +1,119 @@
 {
   "version": 1,
   "skills": {
+    "agent-restore-context": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/agent-restore-context/SKILL.md",
+      "computedHash": "1f4e26744547f31912552bbce5c99f28958e2a4f2dcb057864afc500bc1a30a3"
+    },
+    "agent-restore-context-setup": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/agent-restore-context-setup/SKILL.md",
+      "computedHash": "3a5050bd8f95d2939de716b131135c86ef905cdc939fd0390574970cb817ea95"
+    },
+    "grafana-dashboard": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/grafana-dashboard/SKILL.md",
+      "computedHash": "f577ac2f5aa3902a65e56a709c4be08742ac875bb47ef3fe118796c33f712b93"
+    },
+    "jira-implement-task": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/jira-implement-task/SKILL.md",
+      "computedHash": "be9e804c16446497340e6097a547362f93377e784cd060a463b95ce2ef3f52cc"
+    },
+    "label-cloud-resources": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/label-cloud-resources/SKILL.md",
+      "computedHash": "6f967541d412a2f0c05964575485ac59d30ce7a3ada01badcd678ea6e9f3e972"
+    },
+    "on-call-merchant-center": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/on-call-merchant-center/SKILL.md",
+      "computedHash": "535a5bdf223770ed5616b1d1025d6515592538dfdd74bbb27e71f2178713bb5b"
+    },
+    "on-call-skill-creator": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/on-call-skill-creator/SKILL.md",
+      "computedHash": "afb71cc12fc6d9dd7e72a67600ae25a462794362924d3d805ceb7c03779cda6b"
+    },
+    "orca-review": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/orca-review/SKILL.md",
+      "computedHash": "ee5e683fd43982e5e3bf161fee1b326bfc381c5bfb6d035fd42b9ee7bf821f67"
+    },
     "pr-review-navigator": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "7e07bd27b2019b6f8b40458f0e9d68f33f5aa35501c42aef7d05147b7b6722ae"
+      "skillPath": "skills/pr-review-navigator/SKILL.md",
+      "computedHash": "f89489e9f6b328effacbb05852519e642986fd7bed652ebbfa5830ef71b20c8b"
+    },
+    "production-readiness-report": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/production-readiness-report/SKILL.md",
+      "computedHash": "a767c253e451221bd023a33b36652657f4d8c211834359899d007ecca23fe5df"
+    },
+    "production-readiness-review": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/production-readiness-review/SKILL.md",
+      "computedHash": "03a6de83458aeba3519957e53806818b7f605dda28d8e8c72ad4af74a884ddc8"
+    },
+    "prometheus-monitoring-migration": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/prometheus-monitoring-migration/SKILL.md",
+      "computedHash": "277d4d0f2b553ae7d3e143e7dccb88a116040e2452650249ef79c2439cd58f29"
     },
     "remember": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "6c90f38c7dc90853cde33e54c78ace5486f66862b139bd2d9c6082b88a70a3e3"
+      "skillPath": "skills/remember/SKILL.md",
+      "computedHash": "3498ae3be3e77bc67fd008f0fae2ca376325b7ef362d5f2bbf8e9b5c8a9e6a79"
     },
     "renovate-migrate": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "9abfafafee247f87f3528fc197f36c49c42e0c625c0bd3ff2a7d20f5f40ca284"
+      "skillPath": "skills/renovate-migrate/SKILL.md",
+      "computedHash": "3163e2637d809d550701f3ef7398e82363ee4cc5e4f8dcb06ab167585a2abe83"
     },
     "renovate-review": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "fcbfd6b908e152a680d4a1404d072e0788a83e97251688e719b8569b39cf0a14"
+      "skillPath": "skills/renovate-review/SKILL.md",
+      "computedHash": "a43502c721eec607d594323707a9c1a4bd7d67bcf725719aa6efe5b2a6aa8939"
     },
     "repo-healthcheck-node": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "88439b482c743721e7e3c546125257973987cbd43e5b784169bf7f689aecdfce"
+      "skillPath": "skills/repo-healthcheck-node/SKILL.md",
+      "computedHash": "5caa1ca2f1e165610af8499d78a9a61edafbb8908f9086da0bbaba96cd81490a"
     },
     "repo-maintenance-node": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "9c4dd7478e45279f51380e471132debcf0f6d2e687b7293d54e58f0908cb61dd"
+      "skillPath": "skills/repo-maintenance-node/SKILL.md",
+      "computedHash": "f293326074b7094a03d9c3ca9d99a5a2121b1f4afe5c8342aad8f20b2b4b246c"
     },
     "security-auditor": {
       "source": "commercetools/agent-skills",
       "sourceType": "github",
-      "computedHash": "8243178ee8b26923ef5b125ff12f7d7c5bbb7e5f5eefdfff1237554b7cd18951"
+      "skillPath": "skills/security-auditor/SKILL.md",
+      "computedHash": "fb7f81f96ee3d358e51254879a03d6cd095b829fba0d4b93bae8bcb2859e2e7e"
+    },
+    "ticket-context-page": {
+      "source": "commercetools/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ticket-context-page/SKILL.md",
+      "computedHash": "30a0f809efa1dc9d663d50d021976e6bf2191c9e0557d2d9fb443fe7235e0a6a"
     }
   }
 }
