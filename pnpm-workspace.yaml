@@ -20,6 +20,18 @@ confirmModulesPurge: false
 # state (every entry is in use today); guards against silent rot over time.
 cleanupUnusedCatalogs: true
 
+# Explicit cooldown — pins the v11 default so local installs and future pnpm upgrades
+# can't silently bypass the 24h publish window. First-party scopes are excluded.
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - '@commercetools*'
+
+# Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
+blockExoticSubdeps: true
+
+# Fail loudly when an unlisted dep carries a build script instead of silently skipping it.
+strictDepBuilds: true
+
 # Explicit allowlist of packages permitted to run lifecycle scripts (preinstall,
 # install, postinstall) during `pnpm install`. In pnpm v11, packages not listed
 # here are blocked by default (strictDepBuilds). Audit any new dep that carries

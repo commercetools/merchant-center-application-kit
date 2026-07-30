@@ -93,6 +93,12 @@ This package contains React components to perform requests in a declarative way.
 
 Once it's done, you can run `pnpm run test` (`pnpm run test --watch`) to test your changes.
 
+## Dependencies & supply chain security
+
+Dependency management in this repository follows the Merchant Center supply chain security baseline: a pnpm publish cooldown (`minimumReleaseAge`), build-script allowlists, SHA-pinned GitHub Actions, and centralized Renovate configuration. Before adding, updating, or overriding a dependency — or when a `minimumReleaseAge` cooldown or `pnpm audit --fix` blocks you — follow the baseline and override procedures:
+
+[Supply Chain Security — Baseline & Override Procedures](https://commercetools.atlassian.net/wiki/spaces/MCF/pages/3580231746/Supply+Chain+Security+-+Baseline+Override+Procedures)
+
 ## Developing locally
 
 To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `pnpm build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
