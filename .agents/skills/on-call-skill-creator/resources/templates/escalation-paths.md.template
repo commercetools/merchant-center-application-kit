@@ -1,0 +1,29 @@
+# Escalation paths (incident.io)
+
+Find the escalation path and current on-call for a service, so the engineer can
+trigger it. Data comes from the incident.io catalog through the `incident-io` MCP.
+See also [[incident-process]].
+
+Requires the **incident-io MCP**. If it is not connected, name the likely path
+from the mapping below and tell the engineer to escalate in Slack.
+
+## Process
+
+1. **Identify the service.** Use [[glossary]] and [[architecture-overview]].
+2. **Look up the service.** `catalog_entry_list(catalog_type_id: 'Custom["Service"]',
+   search: "<service>")`. Read the `Escalation Path` attribute.
+3. **Fall back if empty.** Use the owning Team path or the rotation default
+   **{{ESCALATION_DEFAULT}}**.
+4. **Show who is on call.** `escalation_path_show(<id>)`.
+5. **Trigger.** The MCP does not create escalations. Trigger in Slack with
+   `/inc escalate`. Hand over the path name, the short id, and who is on call. This
+   stays a human action.
+
+## Known mapping
+
+{{ESCALATION_MAPPING}}
+
+## Tools used (read only)
+
+`catalog_type_list`, `catalog_entry_list`, `catalog_entry_show`,
+`escalation_path_list`, `escalation_path_show`, `escalation_show`, `schedule_show`.

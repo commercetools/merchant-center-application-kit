@@ -2,8 +2,11 @@
 name: renovate-review
 description: Review Renovate dependency upgrade PRs to assess safety and effort. Use when reviewing PRs from Renovate bot that update NPM dependencies.
 disable-model-invocation: false
-argument-hint: '[pr-number] [--comment]'
+argument-hint: '[pr-number] [--comment] [--label]'
 allowed-tools: Bash, Grep, Glob, Read, WebFetch
+scope:
+  - dependencies
+  - review
 ---
 
 # Renovate Dependency Upgrade Review
@@ -14,6 +17,7 @@ Review a Renovate PR to assess the safety and effort required to merge a depende
 
 - `pr-number` (required): The PR number to review
 - `--comment` (optional): Post the assessment as a PR comment. If omitted, only output the review locally.
+- `--label` (optional): Apply a `🤖 Risk: <Level>` label to the PR matching the assessed risk. If omitted, no labels are changed.
 
 ## Process
 
@@ -109,9 +113,52 @@ Create a markdown comment with the following structure:
 <!-- Or "None" if no changes needed -->
 
 </details>
+
+<!-- claude-skill:renovate-review:cost -->
 ```
 
-### 5. Post the Comment (if `--comment` flag provided)
+Always end the comment with the `<!-- claude-skill:renovate-review:cost -->`
+marker on its own final line. It is a hidden anchor: after the run, the wrapper
+action locates this comment by the marker and appends a run-metadata footer
+(model, token usage, cost) in its place. Keep it last and do not add content
+after it, or the footer will overwrite that content.
+
+### 5. Apply the Risk Label (if `--label` flag provided) — do this BEFORE the comment
+
+**This label is the automerge gate.** The `approve` job fires only on `🤖 Risk: Low`, so a PR you assessed as Low will not merge unless this label is actually applied. Treat applying it as the primary output of the review, not a trailing afterthought:
+
+- Apply the label **before** posting the comment (step 6). The comment is explanatory; the label is the functional side effect.
+- **Never skip this step when `--label` is set**, no matter how long the preceding analysis was. A missing label silently stalls the whole pipeline (a perfect review that never merges).
+
+Only run this step if the `--label` flag was included. It is independent of `--comment` (label-only, comment-only, or both are all valid).
+
+Labels follow the repo convention `🤖 Risk: <Level>` (mirroring `🤖 Type: Dependencies`), where `<Level>` is the title-cased risk: `Low`, `Medium`, or `High`.
+
+1. Ensure the three risk labels exist, creating them idempotently with colors (green / amber / red). `--force` updates an existing label rather than failing:
+
+   ```bash
+   gh label create "🤖 Risk: Low"    --color 0E8A16 --description "Renovate upgrade: low risk" --force
+   gh label create "🤖 Risk: Medium" --color FBCA04 --description "Renovate upgrade: medium risk" --force
+   gh label create "🤖 Risk: High"   --color D93F0B --description "Renovate upgrade: high risk" --force
+   ```
+
+2. Risk is mutually exclusive, so strip any existing `🤖 Risk:` label before adding the current one. This keeps re-runs (e.g. after a force-push) truthful. Query the labels actually on the PR and remove only those, then add the assessed level:
+
+   ```bash
+   # Remove any risk labels currently on the PR.
+   # Pipe into `while read` (not a `for` over $(...)) so label names
+   # containing spaces, like "🤖 Risk: Low", are not word-split.
+   gh pr view <pr-number> --json labels \
+     --jq '.labels[].name | select(startswith("🤖 Risk:"))' \
+   | while IFS= read -r existing; do
+       gh pr edit <pr-number> --remove-label "$existing"
+     done
+
+   # Add the assessed level (Low | Medium | High)
+   gh pr edit <pr-number> --add-label "🤖 Risk: <Level>"
+   ```
+
+### 6. Post the Comment (if `--comment` flag provided)
 
 Only post the comment to the PR if the `--comment` flag was included in the arguments.
 
@@ -122,6 +169,17 @@ gh pr comment <pr-number> --body "<assessment>"
 ```
 
 If `--comment` is NOT provided, skip this step and only display the assessment locally.
+
+### 7. Verify the side effects landed
+
+Before reporting the review as complete, confirm every requested side effect actually happened. This closing check is mandatory — it catches the common case where the analysis and comment succeed but the label was never applied.
+
+```bash
+gh pr view <pr-number> --json labels --jq '[.labels[].name | select(startswith("🤖 Risk:"))]'
+```
+
+- With `--label`: the output must contain **exactly one** `🤖 Risk: <Level>` entry, matching your assessment. If it is empty or wrong, re-run step 5 now — a missing label silently blocks automerge.
+- With `--comment`: confirm your comment is present on the PR.
 
 ## Rating Guidelines
 

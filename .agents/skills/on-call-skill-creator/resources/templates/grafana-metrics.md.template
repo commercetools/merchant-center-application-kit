@@ -1,0 +1,32 @@
+# Live severity via the Grafana MCP (`agatha-mcp`)
+
+Confirm how bad it is with real numbers rather than only linking a dashboard.
+Guard on availability. If the `agatha-mcp` tools are not connected, skip this and
+link the standing dashboard.
+
+## Principle: reuse curated panel queries
+
+Do not hand-write PromQL. The standing dashboards hold the right recording-rule
+query per signal. Pull the panel query and run it for the affected environment.
+
+## Standing dashboards
+
+{{DASHBOARDS}}
+
+## Workflow
+
+1. `grafana_get_dashboard_panel_queries(uid=<dashboard>)`. Returns panels with
+   `title`, `query`, and `datasource` (often `${cloud}`).
+2. Pick the panel whose **title matches the signal**. Error rate, latency, event
+   loop lag, pod restarts, memory, LB 5xx.
+3. `grafana_query_prometheus` with `datasourceUid` set to the environment cloud id
+   (see Environments in `runbook-sources.md`). Instant for now. A short range for
+   the trend.
+4. Report the current value, whether it breaches the alert threshold, and roughly
+   when it started. `grafana_get_panel_image` renders a snapshot.
+
+## Guardrails
+
+- If a query errors or returns no data, say so. Never invent a number.
+- Keep ranges short. This runs during an incident.
+- Match by panel title at runtime. Do not hardcode recording-rule names.

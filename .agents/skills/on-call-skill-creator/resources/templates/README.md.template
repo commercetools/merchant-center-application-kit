@@ -1,0 +1,102 @@
+# on-call-{{ROTATION}}
+
+Helps an on-call engineer respond to a {{ROTATION_TITLE}} production symptom or
+alert. It finds the right runbook, confirms severity, checks recent changes, and
+hands over the LogScale query. Output is a short checklist. The persona is
+{{PERSONA}}.
+
+## When to use it
+
+You are on call for {{ROTATION_TITLE}} and you are paged, or you have a symptom, or
+you want to know which runbook covers it.
+
+```
+/on-call-{{ROTATION}} <symptom-or-alert>
+```
+
+## What it does NOT do
+
+- It never runs operational commands. It suggests `kubectl`, `helm`, `vault`, and
+  cloud CLIs. A human runs them.
+- It never runs LogScale queries. It hands you the query and a URL.
+
+## Prerequisites
+
+| Requirement | Used for | Notes |
+|---|---|---|
+| **Atlassian MCP** (`atlassian`) | Reading Confluence runbooks | Tools under `mcp__claude_ai_Atlassian__*` or `mcp__claude_ai_Atlassian_Rovo__*`. |
+| **Grafana MCP** (`agatha-mcp`) | Live severity metrics | Expected. Falls back to a dashboard link. |
+| **incident.io MCP** (`incident-io`) | Escalation and on-call lookup | Read only. It identifies. Triggering is in Slack. |
+| **`gh` CLI** authenticated | Curated queries and recent changes | Access to `humio-packages` and the service repos. |
+| **Grafana and LogScale access** | Dashboards and queries | Grafana and `cloud.humio.com`. |
+
+Install and authenticate the MCP servers before your shift. In Claude Code you add
+a server and sign in with `/mcp`.
+
+## Prime for fast response
+
+Pre approve the read only tools so the skill does not prompt mid incident. Add to
+`~/.claude/settings.json`.
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "mcp__claude_ai_Atlassian__getConfluencePageDescendants",
+      "mcp__claude_ai_Atlassian__getConfluencePage",
+      "mcp__claude_ai_Atlassian__getAccessibleAtlassianResources",
+      "mcp__claude_ai_Atlassian_Rovo__getConfluencePageDescendants",
+      "mcp__claude_ai_Atlassian_Rovo__getConfluencePage",
+      "mcp__claude_ai_Atlassian_Rovo__getAccessibleAtlassianResources",
+      "mcp__agatha-mcp__grafana_get_dashboard_panel_queries",
+      "mcp__agatha-mcp__grafana_query_prometheus",
+      "mcp__agatha-mcp__grafana_get_dashboard_summary",
+      "mcp__agatha-mcp__grafana_list_datasources",
+      "mcp__agatha-mcp__grafana_get_panel_image",
+      "mcp__incident-io__catalog_type_list",
+      "mcp__incident-io__catalog_entry_list",
+      "mcp__incident-io__catalog_entry_show",
+      "mcp__incident-io__escalation_path_list",
+      "mcp__incident-io__escalation_path_show",
+      "mcp__incident-io__escalation_show",
+      "mcp__incident-io__schedule_show",
+      "Bash(gh api:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh release list:*)"
+    ]
+  }
+}
+```
+
+Every entry is read only. Bash is scoped to `gh`. The list does not grant plain
+`Bash` or the whole Atlassian server.
+
+### Never run operational commands
+
+The skill suggests `kubectl`, `helm`, `vault`, and cloud CLIs. It never runs them.
+For a hard backstop add a global deny. Note it blocks the command in every session.
+
+```json
+{ "permissions": { "deny": ["Bash(kubectl:*)", "Bash(helm:*)", "Bash(vault:*)", "Bash(gcloud:*)", "Bash(gsutil:*)", "Bash(aws:*)"] } }
+```
+
+## Scope
+
+Services in scope: {{SERVICES_LIST}}. Environments follow the table in
+`resources/runbook-sources.md`.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `SKILL.md` | The skill definition and workflow. |
+| `resources/runbook-sources.md` | Indexes, dashboards, environments, repos, vocab. |
+| `resources/glossary.md` | Precise component wording. |
+| `resources/grafana-metrics.md` | Live severity via the Grafana MCP. |
+| `resources/logscale-queries.md` | The `humio-packages` query catalog. |
+| `resources/logscale-syntax.md` | LogScale query language. |
+| `resources/escalation-paths.md` | Escalation lookup via incident.io. |
+| `resources/incident-process.md` | The org incident process. |
+| `resources/rotation-and-rules.md` | The rotation. Shift, handover, roles. |
+| `resources/architecture-*.md` | System knowledge, if provided. |

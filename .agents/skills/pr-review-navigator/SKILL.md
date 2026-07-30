@@ -1,9 +1,12 @@
 ---
 name: pr-review-navigator
-description: Generate AI-assisted navigation aids to help humans start reviewing a pull request more efficiently.
+description: Generate AI-assisted navigation aids to help humans start reviewing a pull request more efficiently. Use when starting a PR review to get oriented on large or unfamiliar changes.
 disable-model-invocation: false
 argument-hint: '[pr-number] [--comment]'
 allowed-tools: Bash, Grep, Glob, Read
+scope:
+  - github
+  - review
 ---
 
 # PR Review Navigator
@@ -64,6 +67,7 @@ Create a `flowchart TB` showing:
 - Test files connected to implementation files they test
 - Subgraphs grouped by architectural layer
 - Color coding: unit tests green (`fill:#e8f5e9`), integration tests blue (`fill:#e3f2fd`, dashed border)
+- Skip changes that are PURE wiring and contain no logic.
 
 Node format: `["① filename.ext<br/><i>one-liner</i>"]`
 

@@ -1,0 +1,32 @@
+# A day in the rotation and rules of play
+
+Source. Fetch for the full text:
+{{ROTATION_RULES_SOURCE}}
+
+On-call, your first duty is being available for incidents and improving
+observability. Not your team's tasks.
+
+## Shift and handover
+
+{{SHIFT_RULES}}
+
+## Slack channels
+
+{{SLACK_CHANNELS}}
+
+## Roles during an incident
+
+- You are the **Incident Manager**. Investigate, resolve, escalate for help.
+- Support is the **Incident Communicator**.
+- Roles are assumed in incident.io through Slack or the web.
+- In the incident channel type `/inc` to see commands.
+- Escalate to other rotations through incident.io. See [[incident-process]] and
+  [[escalation-paths]].
+
+## In-hours tasks
+
+{{IN_HOURS_TASKS}}
+
+## Weekend only shift
+
+{{WEEKEND_RULE}}

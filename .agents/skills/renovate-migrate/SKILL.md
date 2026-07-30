@@ -4,6 +4,9 @@ description: Perform migrations for Renovate dependency upgrades based on breaki
 disable-model-invocation: false
 argument-hint: '[pr-number] [--comment] [--push]'
 allowed-tools: Bash, Grep, Glob, Read, Edit, Write, WebFetch
+scope:
+  - dependencies
+  - migration
 ---
 
 # Renovate Dependency Migration
@@ -78,7 +81,58 @@ Example commit messages:
 - `refactor: migrate lodash to v5 - replace _.pluck with _.map`
 - `refactor: migrate react-query to v5 - update useQuery options`
 
-#### Commit Command
+#### How to Commit
+
+Branches that require verified signatures reject commits pushed from CI with plain `git`, because runner commits are unsigned. Match the mechanism to the environment:
+
+- **CI (verified via the GitHub CLI)**: create the commit through the API with `gh` — no extra tooling or MCP server. The GraphQL `createCommitOnBranch` mutation writes directly to the PR branch and GitHub **signs** the commit, so it lands as **verified** with no separate push. Target the PR head branch explicitly (never the base branch):
+
+```bash
+REPO="<owner>/<repo>"        # e.g. commercetools/merchant-center-services
+BRANCH="<pr-head-branch>"    # the PR's head ref (gh pr view <pr> --json headRefName -q .headRefName)
+
+# Current tip of the branch — required guard. Re-read before every commit.
+HEAD_OID=$(gh api "repos/$REPO/git/ref/heads/$BRANCH" --jq .object.sha)
+
+gh api graphql -f query='
+  mutation ($input: CreateCommitOnBranchInput!) {
+    createCommitOnBranch(input: $input) { commit { oid } }
+  }' -F input="$(jq -n \
+    --arg repo "$REPO" --arg branch "$BRANCH" --arg oid "$HEAD_OID" \
+    --arg headline "refactor: migrate <package> to v<version> - <change>" \
+    --arg path "<changed-file>" --arg contents "$(base64 -w0 <changed-file>)" \
+    '{branch:{repositoryNameWithOwner:$repo,branchName:$branch},
+      message:{headline:$headline},
+      expectedHeadOid:$oid,
+      fileChanges:{additions:[{path:$path,contents:$contents}]}}')"
+```
+
+Add one `additions` entry per modified file (`contents` base64-encoded); list removed files under `fileChanges:{deletions:[{path:...}]}`. For multiple commits, re-read `HEAD_OID` before each — the tip moves with every API commit.
+
+**Guard against empty or garbled content.** `createCommitOnBranch` commits exactly the `contents` you send, decoupled from the working tree, so a bad base64 string lands silently as a corrupt commit (e.g. a 0-byte file) while local verification still passes. Protect every commit on both sides.
+
+Before encoding, refuse to commit a missing or empty file:
+
+```bash
+for f in <changed-file> ...; do
+  [ -s "$f" ] || { echo "refusing to commit empty file: $f" >&2; exit 1; }
+done
+```
+
+After the mutation, read each file back at the new commit and confirm its blob hash matches the working tree — `git hash-object` produces the same SHA GitHub stores, so this is an exact content check:
+
+```bash
+NEW_OID=$(gh api "repos/$REPO/git/ref/heads/$BRANCH" --jq .object.sha)
+for f in <changed-file> ...; do
+  remote_sha=$(gh api "repos/$REPO/contents/$f?ref=$NEW_OID" --jq .sha)
+  [ "$remote_sha" = "$(git hash-object "$f")" ] \
+    || { echo "commit content mismatch for $f — aborting" >&2; exit 1; }
+done
+```
+
+Only report the migration as successful once this check passes. If it fails, the committed content is wrong: report a failure rather than a misleading success.
+
+- **Local / interactive**: commit with git as usual:
 
 ```bash
 git add <specific-files>
@@ -121,20 +175,21 @@ Create a summary of all changes made:
 
 </details>
 
-Run `git log --oneline -n <count>` to review, then `git push` when ready.
+Run `git log --oneline -n <count>` to review, then publish the commits when ready (see step 6).
 ```
 
 ### 6. Push Changes (if `--push` flag provided)
 
-Only push to remote if the `--push` flag was included in the arguments.
+Only publish to the remote if the `--push` flag was included in the arguments.
 
-If `--push` is provided:
+- **CI**: `createCommitOnBranch` (step 3) already wrote the verified commits to the PR branch through the API, so there is no separate push step. The migration is published once those commits are created. Only run `createCommitOnBranch` when `--push` is provided; without it, make the edits and report the summary without writing to the remote.
+- **Local / interactive**: push with git:
 
 ```bash
 git push
 ```
 
-If `--push` is NOT provided, skip this step and only keep changes local.
+If `--push` is NOT provided, skip publishing and only keep changes local.
 
 ### 7. Post Summary Comment (if `--comment` flag provided)
 
@@ -151,6 +206,7 @@ If `--comment` is NOT provided, skip this step and only display the summary loca
 ## Important Notes
 
 - **Push behavior**: Only push to remote if `--push` flag is provided. Otherwise, only commit locally.
+- **Verified commits in CI**: On protected branches requiring verified signatures, create commits through the GitHub API with `gh` (`createCommitOnBranch`), targeting the PR head branch. GitHub signs API commits, so they pass branch protection. Plain `git commit`/`git push` from a runner is unsigned and gets rejected.
 - **Small commits**: Each commit should address one specific change.
 - **Verify as you go**: Run typecheck after each significant change if possible.
 - **Preserve behavior**: Migrations should not change application behavior, only update API usage.
