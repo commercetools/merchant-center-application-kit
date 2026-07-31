@@ -182,7 +182,7 @@
     "yaml": "catalog:"
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=24",
     "npm": ">=6",
     "pnpm": ">=11"
   },
