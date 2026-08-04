@@ -1,0 +1,15 @@
+/* Ports `visual-testing-app/src/globals.css`, minus its `height: 100vh`. */
+
+/* Required: `resets.css` sets `font-family: var(--font-family)` with no inline fallback. */
+@import '@commercetools-uikit/design-system/materials/custom-properties.css';
+@import '@commercetools-uikit/design-system/materials/resets.css';
+
+html,
+body {
+  font-size: var(--font-size-30);
+}
+
+/* Modals autofocus their close button; Percy's baselines show no ring. */
+:focus-visible {
+  outline: none;
+}
