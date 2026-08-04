@@ -41,6 +41,8 @@
     "playground:build": "pnpm --filter @commercetools-local/playground run build",
     "playground:start": "pnpm --filter @commercetools-local/playground run start",
     "playground:start:prod:local": "pnpm --filter @commercetools-local/playground run start:prod:local",
+    "storybook:start": "pnpm --filter @commercetools-local/storybook run start",
+    "storybook:build": "pnpm --filter @commercetools-local/storybook run build",
     "visual-testing-app:start": "pnpm --filter @commercetools-local/visual-testing-app run start",
     "visual-testing-app:build": "pnpm --filter @commercetools-local/visual-testing-app run build",
     "visual-testing-app:preview": "pnpm --filter @commercetools-local/visual-testing-app run preview",
