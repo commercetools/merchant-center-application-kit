@@ -15,7 +15,7 @@ const appFlags = {
   [featureFlags.CUSTOM_VIEWS]: { value: true },
 };
 
-// The Percy app's `application.tsx` and `index.tsx` combined, plus `Suite`'s `IntlProvider`.
+// The providers the app shell mounts around every Merchant Center view.
 export const withProvidersDecorator: Decorator = (Story, { parameters }) => (
   <ApolloProvider client={apolloClient}>
     <TestProviderFlopFlip flags={appFlags}>

@@ -8,6 +8,11 @@ import { withProvidersDecorator } from '../src/decorators/providers-decorator';
 // No viewport is pinned: Chromatic's default is intentional, not an oversight.
 const preview: Preview = {
   decorators: [withPaddingDecorator, withProvidersDecorator],
+  parameters: {
+    // Groups the families together; `includeNames` extends the sort to each component's states,
+    // which otherwise keep their declaration order.
+    options: { storySort: { method: 'alphabetical', includeNames: true } },
+  },
 };
 
 export default preview;
