@@ -1,11 +1,12 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '@/storybook-helpers';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  InfoPageBody,
+  CUSTOM_VIEW_LOCATORS,
+  VisualSpecGroup,
   longSubtitle,
   longTitle,
-} from '../../info-page-fixtures';
+} from '@/storybook-helpers';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { InfoPageBody } from '../../info-page-fixtures';
 import InfoDetailPage from './info-detail-page';
 
 // `PageWrapper` is `height: 100%`, so each state needs a bounded ancestor. Measured
