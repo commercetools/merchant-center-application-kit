@@ -34,17 +34,13 @@ export default meta;
 
 type Story = StoryObj<typeof Drawer>;
 
-// Order and names follow the six `pages` entries in `drawer.visualroute.tsx`.
+// Full-viewport overlays can't share a frame, so one export per state.
 
 export const SmallWithoutControls: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => <DrawerSpec hideControls />,
 };
 
 export const SmallWithLongTitle: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => (
     <DrawerSpec
       title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
@@ -54,14 +50,10 @@ export const SmallWithLongTitle: Story = {
 };
 
 export const Small: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => <DrawerSpec />,
 };
 
 export const Large: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => <DrawerSpec size={20} />,
 };
 
@@ -81,15 +73,10 @@ const DrawerWithInfoDialog = () => {
   );
 };
 
-// Percy's name says large but `size` is 30; kept literal for the parity mapping.
-export const LargeWithInfoDialog: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
+export const XLargeWithInfoDialog: Story = {
   render: () => <DrawerWithInfoDialog />,
 };
 
 export const XLarge: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => <DrawerSpec size={30} />,
 };
