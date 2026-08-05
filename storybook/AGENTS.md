@@ -11,17 +11,16 @@ Internal Storybook that hosts the visual regression tests Chromatic screenshots.
 - **Stories are colocated in `packages/*`**, not here. This workspace holds only the Storybook config, decorators and shared helpers. The one exception is `application-icons`, which reads SVGs out of `packages/assets` and so has no owning component package.
 - **Every story is captured.** Chromatic's capture-by-default stands, because every story here exists to be snapshotted. Opt one out with `chromatic: { disableSnapshot: true }`. There are no tags or parameters to set.
 - **Two decorators, both global.** `providers-decorator` supplies the stack these components assume (Apollo with a seeded cache, FlopFlip, react-intl, a `MemoryRouter`, plus `ThemeProvider` and `PortalsContainer`). `padding-decorator` adds 1rem, because Chromatic crops to rendered content and edge-painted focus rings would clip.
-- **`VisualSpec` and `VisualSpecGroup`** (`src/helpers/`) wrap each captured state, imported via the `@/storybook-helpers` alias. Picking the wrong one is the most common way a story renders wrong — see below.
+- **`VisualSpec` and `VisualSpecGroup`** (`src/helpers/`) wrap each captured state, imported via the `@/storybook-helpers` alias. Picking the wrong one is the most common way a story renders wrong.
 - Chromatic runs against the **`app-kit-components`** project. The Cypress playground suite is a separate Chromatic project and does not involve this workspace.
 
 ## How To Work Here
 
-| Task              | Command                                                       | Notes                                       |
-| ----------------- | ------------------------------------------------------------- | ------------------------------------------- |
-| Start dev server  | `pnpm storybook:start` (from root)                            | Port 6006; collides with ui-kit's Storybook |
-| Start on any port | `pnpm --dir storybook exec storybook dev -p 6010`             | Use when 6006 is taken                      |
-| Build             | `pnpm storybook:build` (from root)                            | What Chromatic builds in CI                 |
-| Run Chromatic     | `pnpm --dir storybook exec chromatic --project-token=<token>` | Add `--dry-run` to build without publishing |
+| Task          | Command                                                       |
+| ------------- | ------------------------------------------------------------- |
+| Dev server    | `pnpm storybook:start` — port 6006                            |
+| Build         | `pnpm storybook:build` — this is what Chromatic builds in CI  |
+| Run Chromatic | `pnpm --dir storybook exec chromatic --project-token=<token>` |
 
 ### Adding a VRT story
 
@@ -38,8 +37,7 @@ Colocate `<component>.stories.tsx` next to the component source in `packages/*`,
 `VisualSpec`'s box is a flex item, so it shrink-wraps, and any child at
 `width: 100%` resolves against that shrunk width. A full-width page container comes
 out ~590px instead of filling the frame, and a dialog's `getParentSelector` target
-comes out **0px wide and captures nothing**. When in doubt for a page component,
-use `VisualSpecGroup`.
+comes out **0px wide and captures nothing**.
 
 ## Gotchas
 
