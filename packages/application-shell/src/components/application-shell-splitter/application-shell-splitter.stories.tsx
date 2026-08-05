@@ -196,10 +196,6 @@ const Frame = ({ children }: { children: ReactNode }) => (
 
 const meta: Meta = {
   title: 'Application Shell/ShellSplitter',
-  parameters: {
-    // The only route with a viewport override; the source spec passed both widths.
-    chromatic: { viewports: [1024, 1600] },
-  },
 };
 
 export default meta;
