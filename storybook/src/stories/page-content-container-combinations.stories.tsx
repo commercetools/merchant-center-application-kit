@@ -5,7 +5,6 @@ import {
   PageContentWide,
   PageContentFull,
 } from '@commercetools-frontend/application-components';
-import { VisualSpecGroup } from '../helpers';
 
 // Not colocated: this exercises three containers together, so it belongs to no one component.
 
@@ -24,8 +23,17 @@ const Box = ({ size = 'm' }: { size?: 's' | 'm' | 'l' }) => (
   </div>
 );
 
+// `overflow` makes this a scroll container for the sticky `2/1` column, so it
+// doesn't chase the scroll.
 const TestWrapper = ({ children }: { children: ReactNode }) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '24px',
+      overflow: 'hidden',
+    }}
+  >
     {children}
   </div>
 );
@@ -42,101 +50,89 @@ type Story = StoryObj;
 
 export const CombinationA: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationA">
-      <TestWrapper>
-        <PageContentNarrow>
-          <Box />
-        </PageContentNarrow>
-        <PageContentFull>
-          <Box />
-        </PageContentFull>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentNarrow>
+        <Box />
+      </PageContentNarrow>
+      <PageContentFull>
+        <Box />
+      </PageContentFull>
+    </TestWrapper>
   ),
 };
 
 export const CombinationB: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationB">
-      <TestWrapper>
-        <PageContentWide>
-          <Box />
-        </PageContentWide>
-        <PageContentFull>
-          <Box />
-        </PageContentFull>
-        <PageContentWide columns="1/1">
-          <Box />
-          <Box />
-        </PageContentWide>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentWide>
+        <Box />
+      </PageContentWide>
+      <PageContentFull>
+        <Box />
+      </PageContentFull>
+      <PageContentWide columns="1/1">
+        <Box />
+        <Box />
+      </PageContentWide>
+    </TestWrapper>
   ),
 };
 
 export const CombinationC: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationC">
-      <TestWrapper>
-        <PageContentWide columns="2/1">
-          <Box size="l" />
-          <Box />
-        </PageContentWide>
-        <PageContentWide columns="1/1">
-          <Box />
-          <Box />
-        </PageContentWide>
-        <PageContentFull>
-          <Box />
-        </PageContentFull>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentWide columns="2/1">
+        <Box size="l" />
+        <Box />
+      </PageContentWide>
+      <PageContentWide columns="1/1">
+        <Box />
+        <Box />
+      </PageContentWide>
+      <PageContentFull>
+        <Box />
+      </PageContentFull>
+    </TestWrapper>
   ),
 };
 
 export const CombinationD: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationD">
-      <TestWrapper>
-        <PageContentNarrow>
-          <Box />
-        </PageContentNarrow>
-        <PageContentWide>
-          <Box />
-        </PageContentWide>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentNarrow>
+        <Box />
+      </PageContentNarrow>
+      <PageContentWide>
+        <Box />
+      </PageContentWide>
+    </TestWrapper>
   ),
 };
 
 export const CombinationE: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationE">
-      <TestWrapper>
-        <PageContentWide columns="1/1">
-          <Box />
-          <Box />
-        </PageContentWide>
-        <PageContentWide>
-          <Box />
-        </PageContentWide>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentWide columns="1/1">
+        <Box />
+        <Box />
+      </PageContentWide>
+      <PageContentWide>
+        <Box />
+      </PageContentWide>
+    </TestWrapper>
   ),
 };
 
 export const CombinationF: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerCombination_combinationF">
-      <TestWrapper>
-        <PageContentWide columns="2/1">
-          <Box />
-          <Box />
-        </PageContentWide>
-        <PageContentWide>
-          <Box />
-        </PageContentWide>
-      </TestWrapper>
-    </VisualSpecGroup>
+    <TestWrapper>
+      <PageContentWide columns="2/1">
+        <Box />
+        <Box />
+      </PageContentWide>
+      <PageContentWide>
+        <Box />
+      </PageContentWide>
+    </TestWrapper>
   ),
 };

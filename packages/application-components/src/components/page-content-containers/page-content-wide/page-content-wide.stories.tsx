@@ -1,6 +1,11 @@
-import { VisualSpecGroup } from '@/storybook-helpers';
+import type { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import PageContentWide from './page-content-wide';
+
+// Scroll container for the sticky `2/1` column, so it doesn't chase the scroll.
+const Frame = ({ children }: { children: ReactNode }) => (
+  <div style={{ overflow: 'hidden' }}>{children}</div>
+);
 
 const Box = ({ size = 'm' }: { size?: 's' | 'm' | 'l' }) => (
   <div
@@ -30,89 +35,89 @@ type Story = StoryObj<typeof PageContentWide>;
 
 export const SingleColumn: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_singleColumn">
+    <Frame>
       <PageContentWide>
         <Box />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsHalfBigGap: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsHalfBigGap">
+    <Frame>
       <PageContentWide columns="1/1">
         <Box size="l" />
         <Box size="l" />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsHalfSmallGap: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsHalfSmallGap">
+    <Frame>
       <PageContentWide columns="1/1" gapSize="10">
         <Box size="s" />
         <Box />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsTwoThirdsBigGap: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsTwoThirdsBigGap">
+    <Frame>
       <PageContentWide columns="2/1">
         <Box size="l" />
         <Box size="s" />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsTwoThirdsSmallGap: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsTwoThirdsSmallGap">
+    <Frame>
       <PageContentWide columns="2/1" gapSize="10">
         <Box size="l" />
         <Box size="s" />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const SingleColumnSeveralChildren: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_singleColumnSeveralChildren">
+    <Frame>
       <PageContentWide>
         <Box />
         <Box />
         <Box />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsWithOneChild: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsWithOneChild">
+    <Frame>
       <PageContentWide columns="1/1">
         <Box />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };
 
 export const TwoColumnsWithSeveralChildren: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerWide_twoColumnsWithSeveralChildren">
+    <Frame>
       <PageContentWide columns="2/1">
         <Box />
         <Box />
         <Box />
         <Box />
       </PageContentWide>
-    </VisualSpecGroup>
+    </Frame>
   ),
 };

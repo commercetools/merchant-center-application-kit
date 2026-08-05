@@ -35,6 +35,7 @@ const GroupLabel = styled.div`
   font-weight: ${designTokens.fontWeight600};
   color: ${designTokens.colorSolid};
   margin-bottom: ${designTokens.spacing20};
+  text-decoration: underline;
 `;
 
 type TVisualSpecProps = {

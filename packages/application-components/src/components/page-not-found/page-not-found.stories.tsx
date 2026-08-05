@@ -1,4 +1,3 @@
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import PageNotFound from './page-not-found';
 
@@ -11,10 +10,6 @@ export default meta;
 
 type Story = StoryObj<typeof PageNotFound>;
 
-export const AllVariants: Story = {
-  render: () => (
-    <VisualSpecGroup label="PageNotFound">
-      <PageNotFound />
-    </VisualSpecGroup>
-  ),
+export const Default: Story = {
+  render: () => <PageNotFound />,
 };

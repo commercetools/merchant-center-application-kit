@@ -31,13 +31,17 @@ Colocate `<component>.stories.tsx` next to the component source in `packages/*`,
 
 | Helper            | Layout                                   | Use for                                          |
 | ----------------- | ---------------------------------------- | ------------------------------------------------ |
-| `VisualSpec`      | Label beside content, box shrinks to fit | Small inline elements — stamps, badges, buttons  |
+| `VisualSpec`      | Label beside content, box shrinks to fit | Small inline elements: stamps, badges, buttons   |
 | `VisualSpecGroup` | Label above, children stretch full width | Anything page-sized, full-width, or portal-based |
 
 `VisualSpec`'s box is a flex item, so it shrink-wraps, and any child at
 `width: 100%` resolves against that shrunk width. A full-width page container comes
 out ~590px instead of filling the frame, and a dialog's `getParentSelector` target
 comes out **0px wide and captures nothing**.
+
+3. Name the export for what it captures. Several states sharing one snapshot go in
+   `AllVariants`; otherwise use one descriptively named export per state. A lone state
+   needs no helper, since the label would only repeat the story name.
 
 ## Gotchas
 

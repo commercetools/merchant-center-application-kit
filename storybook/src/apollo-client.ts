@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { v4 as uuidv4 } from 'uuid';
 import FetchCustomViewsQuery from '../../packages/application-components/src/components/custom-views/custom-views-selector/fetch-custom-views-by-locator.settings.graphql';
-import { CUSTOM_VIEW_LOCATORS } from './constants';
+import { CUSTOM_VIEW_LOCATORS } from './helpers/constants';
 
 export const customView1 = {
   id: uuidv4(),

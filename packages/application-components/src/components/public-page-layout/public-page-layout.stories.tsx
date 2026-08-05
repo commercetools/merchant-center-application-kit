@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/doors-closed.svg';
 import Card from '@commercetools-uikit/card';
@@ -32,99 +31,96 @@ export default meta;
 
 type Story = StoryObj<typeof PublicPageLayout>;
 
-export const AllVariants: Story = {
+// `min-height: 100vh` on the layout, so one export per state.
+
+export const Default: Story = {
   render: () => (
-    <>
-      <VisualSpecGroup label="PublicPageLayout">
-        <PublicPageLayout>
-          <Card>
-            {
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur lorem donec.'
-            }
-          </Card>
-        </PublicPageLayout>
-      </VisualSpecGroup>
-      <VisualSpecGroup label="PublicPageLayout with long legal message">
-        <PublicPageLayout legalMessage="Lea nuestra Política de privacidad y nuestros Términos del servicio.">
-          <Card>
-            {
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur lorem donec.'
-            }
-          </Card>
-        </PublicPageLayout>
-      </VisualSpecGroup>
-    </>
+    <PublicPageLayout>
+      <Card>
+        {
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur lorem donec.'
+        }
+      </Card>
+    </PublicPageLayout>
+  ),
+};
+
+export const WithLongLegalMessage: Story = {
+  render: () => (
+    <PublicPageLayout legalMessage="Lea nuestra Política de privacidad y nuestros Términos del servicio.">
+      <Card>
+        {
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur lorem donec.'
+        }
+      </Card>
+    </PublicPageLayout>
   ),
 };
 
 export const PublicPageForm: Story = {
   render: () => (
-    <VisualSpecGroup label="PublicPageForm">
-      <PublicPageLayout
-        welcomeMessage="Welcome to the Merchant Center"
-        legalMessage={<LegalMessage />}
-      >
-        <Card>
-          <Spacings.Stack>
-            <Text.Headline as="h2">{'Login'}</Text.Headline>
-            <Text.Body>{'The login form'}</Text.Body>
-          </Spacings.Stack>
-        </Card>
-      </PublicPageLayout>
-    </VisualSpecGroup>
+    <PublicPageLayout
+      welcomeMessage="Welcome to the Merchant Center"
+      legalMessage={<LegalMessage />}
+    >
+      <Card>
+        <Spacings.Stack>
+          <Text.Headline as="h2">{'Login'}</Text.Headline>
+          <Text.Body>{'The login form'}</Text.Body>
+        </Spacings.Stack>
+      </Card>
+    </PublicPageLayout>
   ),
 };
 
 export const PublicPageFormWide: Story = {
   render: () => (
-    <VisualSpecGroup label="PublicPageFormWide">
-      <PublicPageLayout
-        welcomeMessage="Welcome to the Merchant Center"
-        legalMessage={<LegalMessage />}
-        contentScale="wide"
-      >
-        <Card insetScale="none">
+    <PublicPageLayout
+      welcomeMessage="Welcome to the Merchant Center"
+      legalMessage={<LegalMessage />}
+      contentScale="wide"
+    >
+      <Card insetScale="none">
+        <div
+          css={css`
+            display: flex;
+            > * + * {
+              padding: ${customProperties.spacingM};
+            }
+          `}
+        >
           <div
             css={css`
-              display: flex;
-              > * + * {
-                padding: ${customProperties.spacingM};
-              }
+              width: calc(${customProperties.constraint15} / 2);
             `}
           >
             <div
-              css={css`
-                width: calc(${customProperties.constraint15} / 2);
-              `}
+              style={{
+                backgroundColor: customProperties.colorNeutral95,
+                borderTopLeftRadius: customProperties.borderRadius6,
+                borderBottomLeftRadius: customProperties.borderRadius6,
+              }}
             >
-              <div
-                style={{
-                  backgroundColor: customProperties.colorNeutral95,
-                  borderTopLeftRadius: customProperties.borderRadius6,
-                  borderBottomLeftRadius: customProperties.borderRadius6,
-                }}
-              >
-                <Spacings.Inset>
-                  <Spacings.Inline alignItems="center" justifyContent="center">
-                    <img width="100%" src={DoorsClosedSvg} alt="" />
-                  </Spacings.Inline>
-                </Spacings.Inset>
-              </div>
-            </div>
-
-            <div
-              css={css`
-                width: calc(${customProperties.constraint15} / 2);
-              `}
-            >
-              <Spacings.Stack>
-                <Text.Headline as="h2">{'Login'}</Text.Headline>
-                <Text.Body>{'The login form'}</Text.Body>
-              </Spacings.Stack>
+              <Spacings.Inset>
+                <Spacings.Inline alignItems="center" justifyContent="center">
+                  <img width="100%" src={DoorsClosedSvg} alt="" />
+                </Spacings.Inline>
+              </Spacings.Inset>
             </div>
           </div>
-        </Card>
-      </PublicPageLayout>
-    </VisualSpecGroup>
+
+          <div
+            css={css`
+              width: calc(${customProperties.constraint15} / 2);
+            `}
+          >
+            <Spacings.Stack>
+              <Text.Headline as="h2">{'Login'}</Text.Headline>
+              <Text.Body>{'The login form'}</Text.Body>
+            </Spacings.Stack>
+          </div>
+        </div>
+      </Card>
+    </PublicPageLayout>
   ),
 };
