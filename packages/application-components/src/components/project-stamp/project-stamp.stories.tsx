@@ -11,8 +11,6 @@ export default meta;
 type Story = StoryObj;
 
 export const AllVariants: Story = {
-  tags: ['vrt'],
-  parameters: { chromatic: { disableSnapshot: false } },
   render: () => (
     <>
       <VisualSpec label="Production project stamp">
