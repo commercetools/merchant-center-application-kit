@@ -46,7 +46,6 @@ type TVisualSpecGroupProps = {
   children?: ReactNode;
 };
 
-// Chromatic replacement for the Percy app's `Spec`; kept identical to ui-kit's helper.
 const VisualSpec = ({ label, backgroundColor, children }: TVisualSpecProps) => (
   <SpecRow>
     <Box backgroundColor={backgroundColor}>{children}</Box>

@@ -1,8 +1,6 @@
 name: Chromatic
 
-# Visual regression testing. Ported from commercetools/ui-kit; see that repo's
-# chromatic.yml for the shape and commercetools/nimbus docs/chromatic-ci.md for
-# the runbook (triggers, baselines, gating, the manual button).
+# Visual regression testing: builds the storybook workspace and sends it to Chromatic.
 on:
   # Manual full build: TurboSnap off, gate bypassed.
   workflow_dispatch:
