@@ -2519,9 +2519,6 @@ importers:
       '@commercetools-uikit/text-field':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
-      '@commercetools-uikit/text-input':
-        specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@testing-library/dom':
         specifier: catalog:test
         version: 10.4.1

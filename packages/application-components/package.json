@@ -75,7 +75,6 @@
     "@apollo/client": "catalog:apollo",
     "@commercetools-uikit/link": "catalog:repo",
     "@commercetools-uikit/text-field": "catalog:repo",
-    "@commercetools-uikit/text-input": "catalog:repo",
     "@testing-library/dom": "catalog:test",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",
