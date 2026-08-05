@@ -1,11 +1,11 @@
 import type { ComponentProps, ReactNode } from 'react';
-import { CUSTOM_VIEW_LOCATORS } from '@/storybook-helpers';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  InfoPageBody,
+  CUSTOM_VIEW_LOCATORS,
   longSubtitle,
   longTitle,
-} from '../../info-page-fixtures';
+} from '@/storybook-helpers';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { InfoPageBody } from '../../info-page-fixtures';
 import InfoModalPage from './info-modal-page';
 
 const InfoModalPageSpec = ({

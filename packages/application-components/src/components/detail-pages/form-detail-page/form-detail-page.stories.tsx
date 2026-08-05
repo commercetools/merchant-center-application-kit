@@ -1,13 +1,13 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '@/storybook-helpers';
+import {
+  CUSTOM_VIEW_LOCATORS,
+  VisualSpecGroup,
+  longSubtitle,
+  longTitle,
+} from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FormPageEmailField, FormPageValues } from '../../form-page-fixtures';
 import FormDetailPage from './form-detail-page';
-
-const longTitle =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
-const longSubtitle =
-  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 
 // `PageWrapper` is `height: 100%`, so each state needs a bounded ancestor. Measured
 // against the tallest content in each state so none of them scroll.
