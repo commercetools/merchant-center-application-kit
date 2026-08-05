@@ -23,10 +23,12 @@ const config: StorybookConfig = {
   // Storybook builds its own `iframe.html`, so `visual-testing-app/index.html`'s fonts don't carry over.
   previewHead: (head) => `
     ${head}
-    <!-- \`custom-views-selector/index.ts\` lazy-resolves to a null component unless \`window.app\`
-         exists. The MC injects it via \`mc-html-template\`; nothing does so here. -->
+    <!-- Runtime globals the MC injects via \`mc-html-template\` and Storybook doesn't.
+         Without \`app\`, \`custom-views-selector/index.ts\` lazy-resolves to a null component;
+         without \`process\`, \`use-custom-views-connector\` throws reading \`process.env\`. -->
     <script>
       window.app = { applicationName: 'storybook', mcApiUrl: 'http://localhost:8080' };
+      window.process = window.process || { env: {} };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,9 +48,6 @@ const config: StorybookConfig = {
       'msw/browser': resolve(__dirname, '../src/stubs/msw.ts'),
       'msw/core/http': resolve(__dirname, '../src/stubs/msw.ts'),
     };
-
-    // `packages/*` read `process.env.*` at runtime, but Vite only substitutes `NODE_ENV`.
-    viteConfig.define = { ...viteConfig.define, 'process.env': '({})' };
 
     viteConfig.plugins?.push(
       // `apollo-client.ts` imports a `.graphql` document.
