@@ -25,6 +25,8 @@ cleanupUnusedCatalogs: true
 minimumReleaseAge: 1440
 minimumReleaseAgeExclude:
   - '@commercetools*'
+  # Renovate security update: postcss@8.5.10
+  - postcss@8.5.10
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -311,7 +313,7 @@ catalogs:
     '@emotion/babel-preset-css-prop': ^11.12.0
 
     # PostCSS
-    postcss: 8.5.6
+    postcss: 8.5.10
     postcss-custom-media: 8.0.2
     postcss-custom-properties: 12.1.4
     postcss-import: 14.1.0
