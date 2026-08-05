@@ -216,10 +216,10 @@
     "string": "Assistance"
   },
   "NavBar.MenuExpander.collapseMenu": {
-    "string": "Collapse menu"
+    "string": "Réduire le menu"
   },
   "NavBar.MenuExpander.expandMenu": {
-    "string": "Expand menu"
+    "string": "Agrandir le menu"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
