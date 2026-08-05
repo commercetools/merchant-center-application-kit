@@ -1,4 +1,3 @@
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import PageContentNarrow from './page-content-narrow';
 
@@ -26,12 +25,10 @@ export default meta;
 
 type Story = StoryObj<typeof PageContentNarrow>;
 
-export const AllVariants: Story = {
+export const Default: Story = {
   render: () => (
-    <VisualSpecGroup label="PageContentContainerNarrow">
-      <PageContentNarrow>
-        <Box />
-      </PageContentNarrow>
-    </VisualSpecGroup>
+    <PageContentNarrow>
+      <Box />
+    </PageContentNarrow>
   ),
 };

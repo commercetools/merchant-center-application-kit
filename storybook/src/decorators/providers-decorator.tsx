@@ -16,11 +16,12 @@ const appFlags = {
 };
 
 // The Percy app's `application.tsx` and `index.tsx` combined, plus `Suite`'s `IntlProvider`.
-export const withProvidersDecorator: Decorator = (Story) => (
+export const withProvidersDecorator: Decorator = (Story, { parameters }) => (
   <ApolloProvider client={apolloClient}>
     <TestProviderFlopFlip flags={appFlags}>
       <IntlProvider locale="en">
-        <MemoryRouter>
+        {/* Stories whose content is route-driven pin their entry via `parameters.initialEntries`. */}
+        <MemoryRouter initialEntries={parameters.initialEntries}>
           {/* Defines app-kit's own tokens, e.g. `--margin-for-page-content`, which have no inline fallback. */}
           <ThemeProvider
             theme="default"

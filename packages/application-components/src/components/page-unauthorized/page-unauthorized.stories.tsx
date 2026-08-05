@@ -1,4 +1,3 @@
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import PageUnauthorized from './page-unauthorized';
 
@@ -11,10 +10,6 @@ export default meta;
 
 type Story = StoryObj<typeof PageUnauthorized>;
 
-export const AllVariants: Story = {
-  render: () => (
-    <VisualSpecGroup label="PageUnauthorized">
-      <PageUnauthorized />
-    </VisualSpecGroup>
-  ),
+export const Default: Story = {
+  render: () => <PageUnauthorized />,
 };
