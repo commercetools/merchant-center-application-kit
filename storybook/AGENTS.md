@@ -50,3 +50,5 @@ comes out **0px wide and captures nothing**.
 - `globals.css` must import `custom-properties.css`. `resets.css` sets `font-family: var(--font-family)` with no inline fallback, so without it everything renders in the browser's default serif.
 - app-kit's own tokens (`--margin-for-page-content` and friends) are defined by the `ThemeProvider` in `providers-decorator`, and have **no** inline fallbacks. Remove it and page layouts lose their padding silently.
 - No viewport is pinned. Chromatic's default applies, deliberately.
+- `main.ts` shims `window.app` and `process.env`, two runtime globals the MC injects and Storybook doesn't. Reasons are in place; without them the Custom Views selector renders nothing, silently.
+- Modal-page stories need `shouldDelayOnClose={false}`. `ModalPage` defaults it to `true`, which unmounts the modal via internal state before `onClose` runs, so a no-op handler won't keep it open and nothing re-opens it.

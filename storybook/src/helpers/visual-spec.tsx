@@ -24,7 +24,7 @@ const Label = styled.div`
 const GroupContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${designTokens.spacing40};
+  margin-bottom: ${designTokens.spacing30};
   /* Scroll container for sticky descendants, so they don't chase the scroll while browsing. */
   overflow: hidden;
 `;
