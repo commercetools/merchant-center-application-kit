@@ -96,6 +96,7 @@ cypress/videos
 
 # Storybook
 storybook/storybook-static
+storybook/build-storybook.log
 
 # Gatsby
 .cache
