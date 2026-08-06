@@ -201,8 +201,8 @@ catalogs:
       specifier: 1.2.0
       version: 1.2.0
     postcss:
-      specifier: 8.5.10
-      version: 8.5.10
+      specifier: 8.5.12
+      version: 8.5.12
     postcss-custom-media:
       specifier: 8.0.2
       version: 8.0.2
@@ -1234,7 +1234,7 @@ importers:
         version: 1.18.8
       autoprefixer:
         specifier: 'catalog:'
-        version: 10.4.22(postcss@8.5.10)
+        version: 10.4.22(postcss@8.5.12)
       babel-plugin-import-graphql:
         specifier: catalog:build
         version: 2.8.1(graphql-tag@2.12.6(graphql@16.11.0))(graphql@16.11.0)
@@ -1282,7 +1282,7 @@ importers:
         version: 8.0.6(typescript@5.9.2)
       jest-preview:
         specifier: catalog:test
-        version: 0.3.2(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
+        version: 0.3.2(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
       jest-puppeteer:
         specifier: catalog:test
         version: 8.0.6(puppeteer@20.9.0(supports-color@8.1.1)(typescript@5.9.2))(typescript@5.9.2)
@@ -1303,10 +1303,10 @@ importers:
         version: 11.2.6
       postcss:
         specifier: catalog:build
-        version: 8.5.10
+        version: 8.5.12
       postcss-load-config:
         specifier: 'catalog:'
-        version: 3.1.4(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
+        version: 3.1.4(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
       prettier:
         specifier: catalog:lint
         version: 2.8.8
@@ -3409,11 +3409,11 @@ importers:
         version: 1.0.0(@jest/test-result@30.2.0)(jest-runner@30.2.0)
       postcss-load-config:
         specifier: 'catalog:'
-        version: 3.1.4(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.17)(typescript@5.9.2))
+        version: 3.1.4(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.17)(typescript@5.9.2))
     devDependencies:
       postcss:
         specifier: catalog:build
-        version: 8.5.10
+        version: 8.5.12
       stylelint:
         specifier: catalog:lint
         version: 14.16.1(supports-color@8.1.1)
@@ -3626,7 +3626,7 @@ importers:
         version: 3.11.0(@swc/helpers@0.5.23)(vite@6.4.2(@types/node@22.19.17)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.1))
       autoprefixer:
         specifier: 'catalog:'
-        version: 10.4.22(postcss@8.5.10)
+        version: 10.4.22(postcss@8.5.12)
       babel-loader:
         specifier: catalog:build
         version: 8.4.1(@babel/core@7.29.0)(webpack@5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23)))
@@ -3704,22 +3704,22 @@ importers:
         version: 10.2.0
       postcss:
         specifier: catalog:build
-        version: 8.5.10
+        version: 8.5.12
       postcss-custom-media:
         specifier: catalog:build
-        version: 8.0.2(postcss@8.5.10)
+        version: 8.0.2(postcss@8.5.12)
       postcss-custom-properties:
         specifier: catalog:build
-        version: 12.1.4(postcss@8.5.10)
+        version: 12.1.4(postcss@8.5.12)
       postcss-import:
         specifier: catalog:build
-        version: 14.1.0(postcss@8.5.10)
+        version: 14.1.0(postcss@8.5.12)
       postcss-loader:
         specifier: catalog:build
-        version: 6.2.1(postcss@8.5.10)(webpack@5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23)))
+        version: 6.2.1(postcss@8.5.12)(webpack@5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23)))
       postcss-reporter:
         specifier: catalog:build
-        version: 7.1.0(postcss@8.5.10)
+        version: 7.1.0(postcss@8.5.12)
       prettier:
         specifier: catalog:lint
         version: 2.8.8
@@ -15660,10 +15660,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.10:
-    resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.12:
     resolution: {integrity: sha512-W62t/Se6rA0Az3DfCL0AqJwXuKwBeYg6nOaIgzP+xZ7N5BFCI7DYi1qs6ygUYT6rvfi6t9k65UMLJC+PHZpDAA==}
     engines: {node: ^10 || ^12 || >=14}
@@ -26741,14 +26737,14 @@ snapshots:
 
   auto-bind@4.0.0: {}
 
-  autoprefixer@10.4.22(postcss@8.5.10):
+  autoprefixer@10.4.22(postcss@8.5.12):
     dependencies:
       browserslist: 4.28.1
       caniuse-lite: 1.0.30001764
       fraction.js: 5.3.4
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.10
+      postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -31210,7 +31206,7 @@ snapshots:
     optionalDependencies:
       jest-resolve: 30.2.0
 
-  jest-preview@0.3.2(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
+  jest-preview@0.3.2(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
     dependencies:
       '@svgr/core': 6.5.1
       camelcase: 6.3.0
@@ -31220,8 +31216,8 @@ snapshots:
       connect: 3.7.0
       find-node-modules: 2.1.3
       open: 8.4.2
-      postcss-import: 14.1.0(postcss@8.5.10)
-      postcss-load-config: 4.0.2(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
+      postcss-import: 14.1.0(postcss@8.5.12)
+      postcss-load-config: 4.0.2(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2))
       sirv: 2.0.4
       slash: 3.0.0
       string-hash: 1.1.3
@@ -33183,14 +33179,14 @@ snapshots:
       postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
-  postcss-custom-media@8.0.2(postcss@8.5.10):
+  postcss-custom-media@8.0.2(postcss@8.5.12):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
-  postcss-custom-properties@12.1.4(postcss@8.5.10):
+  postcss-custom-properties@12.1.4(postcss@8.5.12):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
   postcss-discard-comments@7.0.7(postcss@8.5.12):
@@ -33210,42 +33206,42 @@ snapshots:
     dependencies:
       postcss: 8.5.12
 
-  postcss-import@14.1.0(postcss@8.5.10):
+  postcss-import@14.1.0(postcss@8.5.12):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.11
 
-  postcss-load-config@3.1.4(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
+  postcss-load-config@3.1.4(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       ts-node: 10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)
 
-  postcss-load-config@3.1.4(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.17)(typescript@5.9.2)):
+  postcss-load-config@3.1.4(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.17)(typescript@5.9.2)):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       ts-node: 10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.17)(typescript@5.9.2)
 
-  postcss-load-config@4.0.2(postcss@8.5.10)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
+  postcss-load-config@4.0.2(postcss@8.5.12)(ts-node@10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.8.1
     optionalDependencies:
-      postcss: 8.5.10
+      postcss: 8.5.12
       ts-node: 10.9.2(@swc/core@1.15.1(@swc/helpers@0.5.23))(@types/node@22.19.11)(typescript@5.9.2)
 
-  postcss-loader@6.2.1(postcss@8.5.10)(webpack@5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23))):
+  postcss-loader@6.2.1(postcss@8.5.12)(webpack@5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23))):
     dependencies:
       cosmiconfig: 7.1.0
       klona: 2.0.6
-      postcss: 8.5.10
+      postcss: 8.5.12
       semver: 7.7.4
       webpack: 5.105.1(@swc/core@1.15.1(@swc/helpers@0.5.23))
 
@@ -33375,10 +33371,10 @@ snapshots:
       postcss: 8.5.12
       postcss-value-parser: 4.2.0
 
-  postcss-reporter@7.1.0(postcss@8.5.10):
+  postcss-reporter@7.1.0(postcss@8.5.12):
     dependencies:
       picocolors: 1.1.1
-      postcss: 8.5.10
+      postcss: 8.5.12
       thenby: 1.3.4
 
   postcss-resolve-nested-selector@0.1.6: {}
@@ -33413,12 +33409,6 @@ snapshots:
       postcss-selector-parser: 7.1.1
 
   postcss-value-parser@4.2.0: {}
-
-  postcss@8.5.10:
-    dependencies:
-      nanoid: 3.3.11
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
 
   postcss@8.5.12:
     dependencies:
