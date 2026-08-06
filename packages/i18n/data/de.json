@@ -219,7 +219,7 @@
     "string": "Menü ausblenden"
   },
   "NavBar.MenuExpander.expandMenu": {
-    "string": "Menü erweitern"
+    "string": "Menü einblenden"
   },
   "Notification.hideNotification": {
     "developer_comment": "Label for button to hide notification",
