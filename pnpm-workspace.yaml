@@ -504,41 +504,41 @@ catalogs:
     publint: ^0.3.21
 
     # @commercetools-uikit/* (cross-repo dep cohort — moves with ui-kit releases)
-    '@commercetools-uikit/accessible-button': ^20.4.0
-    '@commercetools-uikit/accessible-hidden': ^20.4.0
-    '@commercetools-uikit/avatar': ^20.4.0
-    '@commercetools-uikit/card': ^20.4.0
-    '@commercetools-uikit/checkbox-input': ^20.4.0
-    '@commercetools-uikit/constraints': ^20.4.0
-    '@commercetools-uikit/data-table': ^20.4.0
-    '@commercetools-uikit/date-time-input': ^20.4.0
-    '@commercetools-uikit/design-system': ^20.4.0
-    '@commercetools-uikit/flat-button': ^20.4.0
-    '@commercetools-uikit/grid': ^20.4.0
-    '@commercetools-uikit/hooks': ^20.4.0
-    '@commercetools-uikit/i18n': ^20.4.0
-    '@commercetools-uikit/icon-button': ^20.4.0
-    '@commercetools-uikit/icons': ^20.4.0
-    '@commercetools-uikit/label': ^20.4.0
-    '@commercetools-uikit/link': ^20.4.0
-    '@commercetools-uikit/loading-spinner': ^20.4.0
-    '@commercetools-uikit/localized-text-field': ^20.4.0
-    '@commercetools-uikit/localized-text-input': ^20.4.0
-    '@commercetools-uikit/messages': ^20.4.0
-    '@commercetools-uikit/multiline-text-field': ^20.4.0
-    '@commercetools-uikit/notifications': ^20.4.0
-    '@commercetools-uikit/pagination': ^20.4.0
-    '@commercetools-uikit/primary-button': ^20.4.0
-    '@commercetools-uikit/secondary-button': ^20.4.0
-    '@commercetools-uikit/secondary-icon-button': ^20.4.0
-    '@commercetools-uikit/select-field': ^20.4.0
-    '@commercetools-uikit/select-input': ^20.4.0
-    '@commercetools-uikit/spacings': ^20.4.0
-    '@commercetools-uikit/stamp': ^20.4.0
-    '@commercetools-uikit/text': ^20.4.0
-    '@commercetools-uikit/text-field': ^20.4.0
-    '@commercetools-uikit/text-input': ^20.4.0
-    '@commercetools-uikit/utils': ^20.4.0
+    '@commercetools-uikit/accessible-button': ^20.6.7
+    '@commercetools-uikit/accessible-hidden': ^20.6.7
+    '@commercetools-uikit/avatar': ^20.6.7
+    '@commercetools-uikit/card': ^20.6.7
+    '@commercetools-uikit/checkbox-input': ^20.6.7
+    '@commercetools-uikit/constraints': ^20.6.7
+    '@commercetools-uikit/data-table': ^20.6.7
+    '@commercetools-uikit/date-time-input': ^20.6.7
+    '@commercetools-uikit/design-system': ^20.6.7
+    '@commercetools-uikit/flat-button': ^20.6.7
+    '@commercetools-uikit/grid': ^20.6.7
+    '@commercetools-uikit/hooks': ^20.6.7
+    '@commercetools-uikit/i18n': ^20.6.7
+    '@commercetools-uikit/icon-button': ^20.6.7
+    '@commercetools-uikit/icons': ^20.6.7
+    '@commercetools-uikit/label': ^20.6.7
+    '@commercetools-uikit/link': ^20.6.7
+    '@commercetools-uikit/loading-spinner': ^20.6.7
+    '@commercetools-uikit/localized-text-field': ^20.6.7
+    '@commercetools-uikit/localized-text-input': ^20.6.7
+    '@commercetools-uikit/messages': ^20.6.7
+    '@commercetools-uikit/multiline-text-field': ^20.6.7
+    '@commercetools-uikit/notifications': ^20.6.7
+    '@commercetools-uikit/pagination': ^20.6.7
+    '@commercetools-uikit/primary-button': ^20.6.7
+    '@commercetools-uikit/secondary-button': ^20.6.7
+    '@commercetools-uikit/secondary-icon-button': ^20.6.7
+    '@commercetools-uikit/select-field': ^20.6.7
+    '@commercetools-uikit/select-input': ^20.6.7
+    '@commercetools-uikit/spacings': ^20.6.7
+    '@commercetools-uikit/stamp': ^20.6.7
+    '@commercetools-uikit/text': ^20.6.7
+    '@commercetools-uikit/text-field': ^20.6.7
+    '@commercetools-uikit/text-input': ^20.6.7
+    '@commercetools-uikit/utils': ^20.6.7
 
   test:
     # Jest core (versions move together)
