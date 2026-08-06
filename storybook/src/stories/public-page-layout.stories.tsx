@@ -1,12 +1,12 @@
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PublicPageLayout } from '@commercetools-frontend/application-components';
 import DoorsClosedSvg from '@commercetools-frontend/assets/images/doors-closed.svg';
 import Card from '@commercetools-uikit/card';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Link from '@commercetools-uikit/link';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import PublicPageLayout from './public-page-layout';
 
 const LegalMessage = () => (
   <Text.Body tone="inverted">

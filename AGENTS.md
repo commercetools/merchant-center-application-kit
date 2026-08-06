@@ -101,10 +101,11 @@ number and bump together.
 
 #### Adding a visual regression test
 
-Colocate a `<component>.stories.tsx` next to the component source in
-`packages/*`. Chromatic captures every story by default, so there is nothing to
-opt into. Run `pnpm storybook:start` to check it renders. See
-`storybook/AGENTS.md` for the full procedure.
+Stories live in `storybook/src/stories/`, never next to the component, so that
+published packages carry no test scaffolding. Import the component from its
+public entrypoint rather than a deep path. Chromatic captures every story by
+default, so there is nothing to opt into. Run `pnpm storybook:start` to check it
+renders. See `storybook/AGENTS.md` for the full procedure.
 
 ## Boundaries
 

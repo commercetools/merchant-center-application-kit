@@ -24,18 +24,28 @@ const Label = styled.div`
 const GroupContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${designTokens.spacing30};
-  /* Scroll container for sticky descendants, so they don't chase the scroll while browsing. */
+  margin-bottom: ${designTokens.spacing50};
+`;
+
+/* Bounds each state, so trailing space inside a short one reads as part of that state
+   rather than as a gap. Also the scroll container for sticky descendants. */
+const GroupBody = styled.div`
+  border: 1px solid ${designTokens.colorNeutral90};
+  border-radius: ${designTokens.borderRadius6};
   overflow: hidden;
 `;
 
+/* A chip rather than a heading, so it reads as a marker and never as component chrome. */
 const GroupLabel = styled.div`
+  align-self: flex-start;
   font-family: ${designTokens.fontFamily};
-  font-size: ${designTokens.fontSize40};
+  font-size: ${designTokens.fontSize20};
   font-weight: ${designTokens.fontWeight600};
-  color: ${designTokens.colorSolid};
+  color: ${designTokens.colorAccent};
+  background-color: ${designTokens.colorAccent90};
+  border-radius: ${designTokens.borderRadius4};
+  padding: ${designTokens.spacing10} ${designTokens.spacing20};
   margin-bottom: ${designTokens.spacing20};
-  text-decoration: underline;
 `;
 
 type TVisualSpecProps = {
@@ -58,11 +68,10 @@ const VisualSpec = ({ label, backgroundColor, children }: TVisualSpecProps) => (
 
 VisualSpec.displayName = 'VisualSpec';
 
-// Heading over a run of `VisualSpec`s sharing an axis, so their labels don't repeat it.
 export const VisualSpecGroup = ({ label, children }: TVisualSpecGroupProps) => (
   <GroupContainer>
     <GroupLabel>{label}</GroupLabel>
-    {children}
+    <GroupBody>{children}</GroupBody>
   </GroupContainer>
 );
 

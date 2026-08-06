@@ -1,10 +1,10 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { CustomFormMainPage } from '@commercetools-frontend/application-components';
 import { RevertIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
-import CustomFormMainPage from './custom-form-main-page';
+import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '../helpers';
 
 // `PageWrapper` is `height: 100%`, so each state needs a bounded ancestor. Measured
 // per state so none of them scroll.

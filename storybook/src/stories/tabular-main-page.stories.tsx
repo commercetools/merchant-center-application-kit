@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { TabularMainPage } from '@commercetools-frontend/application-components';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
   BinLinearIcon,
@@ -13,8 +13,8 @@ import {
   TabularPageContent,
   TabularPageCustomTitleRow,
   TabularPageTabControls,
-} from '../../tabular-page-fixtures';
-import TabularMainPage from './tabular-main-page';
+} from '../fixtures/tabular-page';
+import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '../helpers';
 
 const routePath = '/tabular-main-page';
 

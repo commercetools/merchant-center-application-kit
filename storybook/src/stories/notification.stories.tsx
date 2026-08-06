@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import Notification from './notification';
+import { Notification } from '@commercetools-frontend/react-notifications';
+import { VisualSpecGroup } from '../helpers';
 
 // `SIDE` notifications `float: right`, which a flex parent ignores; `flow-root` restores
 // the float and contains it, so the row keeps the card's height.

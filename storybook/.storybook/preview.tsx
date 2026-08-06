@@ -3,14 +3,12 @@ import '../src/globals.css';
 import { withPaddingDecorator } from '../src/decorators/padding-decorator';
 import { withProvidersDecorator } from '../src/decorators/providers-decorator';
 
-// Every story here exists to be snapshotted, so Chromatic's capture-by-default
-// stands. Opt one out with `chromatic: { disableSnapshot: true }`.
-// No viewport is pinned: Chromatic's default is intentional, not an oversight.
+// No viewport is pinned, and capture-by-default stands. Both deliberate.
 const preview: Preview = {
   decorators: [withPaddingDecorator, withProvidersDecorator],
   parameters: {
-    // Groups the families together; `includeNames` extends the sort to each component's states,
-    // which otherwise keep their declaration order.
+    // `includeNames` also sorts each component's states, which otherwise keep
+    // their declaration order.
     options: { storySort: { method: 'alphabetical', includeNames: true } },
   },
 };

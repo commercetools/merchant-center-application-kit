@@ -1,13 +1,13 @@
 import type { ComponentProps } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { FormDetailPage } from '@commercetools-frontend/application-components';
+import { FormPageEmailField, FormPageValues } from '../fixtures/form-page';
 import {
   CUSTOM_VIEW_LOCATORS,
   VisualSpecGroup,
   longSubtitle,
   longTitle,
-} from '@/storybook-helpers';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormPageEmailField, FormPageValues } from '../../form-page-fixtures';
-import FormDetailPage from './form-detail-page';
+} from '../helpers';
 
 // `PageWrapper` is `height: 100%`, so each state needs a bounded ancestor. Measured
 // against the tallest content in each state so none of them scroll.

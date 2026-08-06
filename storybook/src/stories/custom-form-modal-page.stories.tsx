@@ -1,14 +1,14 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 import IconButton from '@commercetools-uikit/icon-button';
 import {
   BinLinearIcon,
   FlameIcon,
   SearchIcon,
 } from '@commercetools-uikit/icons';
-import { FormPageEmailField, FormPageValues } from '../../form-page-fixtures';
-import CustomFormModalPage from './custom-form-modal-page';
+import { FormPageEmailField, FormPageValues } from '../fixtures/form-page';
+import { CUSTOM_VIEW_LOCATORS } from '../helpers';
 
 const CustomFormModalPageSpec = (
   props: Partial<ComponentProps<typeof CustomFormModalPage>>

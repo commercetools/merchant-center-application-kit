@@ -1,9 +1,9 @@
-import { VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Formik } from 'formik';
+import { FormDialog } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
-import FormDialog from './form-dialog';
+import { VisualSpecGroup } from '../helpers';
 
 type TExampleProps = {
   portalId: string;

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import PageContentWide from './page-content-wide';
+import { PageContentWide } from '@commercetools-frontend/application-components';
 
 // Scroll container for the sticky `2/1` column, so it doesn't chase the scroll.
 const Frame = ({ children }: { children: ReactNode }) => (

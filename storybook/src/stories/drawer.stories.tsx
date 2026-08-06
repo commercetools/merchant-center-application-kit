@@ -1,9 +1,11 @@
 import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useHistory } from 'react-router-dom';
-import useModalState from '../../hooks/use-modal-state';
-import InfoDialog from '../dialogs/info-dialog';
-import Drawer from './drawer';
+import {
+  Drawer,
+  InfoDialog,
+  useModalState,
+} from '@commercetools-frontend/application-components';
 
 const routePath = '/drawer';
 

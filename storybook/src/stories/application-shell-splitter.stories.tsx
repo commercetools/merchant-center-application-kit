@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { VisualSpecGroup } from '@/storybook-helpers';
 import {
   Box,
   Button,
@@ -17,9 +16,10 @@ import {
 } from '@commercetools/nimbus';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { createPortal } from 'react-dom';
+import { REGIONS } from '@commercetools-frontend/application-shell';
+import type { TApplicationShellSplitterValue } from '@commercetools-frontend/application-shell';
 import { MC_MAIN_CONTAINER_PORTAL_ID } from '@commercetools-frontend/constants';
-import { REGIONS } from '../../constants';
-import type { TApplicationShellSplitterValue } from './application-shell-splitter';
+import { VisualSpecGroup } from '../helpers';
 
 // Every shell needs its own portal target, so they can't share one id.
 let shellCounter = 0;
@@ -188,8 +188,7 @@ const ToolbarDemo = () => {
   );
 };
 
-// `Splitter.Root` is `height: 100%`, so each state needs a bounded ancestor. Tall
-// enough to show the panes, the handle and the sticky toolbar, and no taller.
+// `Splitter.Root` is `height: 100%`, so each state needs a bounded ancestor.
 const Frame = ({ children }: { children: ReactNode }) => (
   <div style={{ height: '200px' }}>{children}</div>
 );

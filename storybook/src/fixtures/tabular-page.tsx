@@ -1,11 +1,9 @@
 import { useId, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { TabHeader } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
-import TabHeader from './tab-header';
-
-// Story-only scaffolding, shared by the three tabular page stories.
 
 type TTabularPageFixtureProps = {
   basePath: string;

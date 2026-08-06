@@ -5,7 +5,6 @@ import Grid from '@commercetools-uikit/grid';
 import InlineSvg from '@commercetools-uikit/icons/inline-svg';
 import { VisualSpecGroup } from '../helpers';
 
-// Not colocated: the icons are SVG files in `packages/assets`, not a component.
 const svgIconsModules = import.meta.glob<string>(
   '../../../packages/assets/application-icons/*.svg',
   { query: '?raw', import: 'default', eager: true }

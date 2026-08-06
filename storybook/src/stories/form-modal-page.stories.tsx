@@ -1,12 +1,8 @@
 import type { ComponentProps } from 'react';
-import {
-  CUSTOM_VIEW_LOCATORS,
-  longSubtitle,
-  longTitle,
-} from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormPageEmailField, FormPageValues } from '../../form-page-fixtures';
-import FormModalPage from './form-modal-page';
+import { FormModalPage } from '@commercetools-frontend/application-components';
+import { FormPageEmailField, FormPageValues } from '../fixtures/form-page';
+import { CUSTOM_VIEW_LOCATORS, longSubtitle, longTitle } from '../helpers';
 
 const FormModalPageSpec = (
   props: Partial<ComponentProps<typeof FormModalPage>>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import PageUnauthorized from './page-unauthorized';
+import { PageUnauthorized } from '@commercetools-frontend/application-components';
 
 const meta: Meta<typeof PageUnauthorized> = {
   title: 'Application Components/PageUnauthorized',

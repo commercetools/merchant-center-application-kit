@@ -6,8 +6,6 @@ import {
   PageContentFull,
 } from '@commercetools-frontend/application-components';
 
-// Not colocated: this exercises three containers together, so it belongs to no one component.
-
 const Box = ({ size = 'm' }: { size?: 's' | 'm' | 'l' }) => (
   <div
     style={{

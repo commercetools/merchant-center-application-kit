@@ -4,19 +4,7 @@
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
     "skipLibCheck": true,
     // Allow tsc to resolve dependencies of `@types` packages in the way pnpm sets up the `node_modules`.
-    "preserveSymlinks": false,
-    // Stories are colocated in `packages/*`, which are published and must not
-    // depend on the private `storybook` workspace. Mirrors the Vite alias in
-    // `storybook/.storybook/main.ts`.
-    "paths": {
-      "@/storybook-helpers": ["./storybook/src/helpers"],
-      // Colocated stories import `Meta`/`StoryObj` as types only, so nothing
-      // resolves this at runtime — but tsc and eslint still have to, and pnpm
-      // keeps the package in the `storybook` workspace where it's declared.
-      "@storybook/react-vite": [
-        "./storybook/node_modules/@storybook/react-vite"
-      ]
-    }
+    "preserveSymlinks": false
   },
   "include": [
     "packages",
