@@ -2,8 +2,6 @@ import type { ReactNode } from 'react';
 import { Formik, useFormikContext } from 'formik';
 import TextField from '@commercetools-uikit/text-field';
 
-// Story-only scaffolding shared by the form detail and modal page stories.
-
 type TFormValues = {
   email: string;
 };

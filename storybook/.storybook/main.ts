@@ -4,12 +4,8 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import react from '@vitejs/plugin-react';
 
 const config: StorybookConfig = {
-  // Anchored to the literal `src` so the glob can't descend into pnpm's nested symlinks.
-  stories: [
-    '../../packages/*/src/**/*.stories.@(ts|tsx)',
-    // `application-icons` reads SVGs from `packages/assets`, not a component package.
-    '../src/**/*.stories.@(ts|tsx)',
-  ],
+  // Stories live here so the published packages carry no test scaffolding.
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
 
   framework: {
     name: '@storybook/react-vite',
@@ -20,7 +16,8 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
 
-  // Storybook builds its own `iframe.html`, so `visual-testing-app/index.html`'s fonts don't carry over.
+  // Storybook generates `iframe.html`, so anything the components need at the
+  // document level has to be injected here.
   previewHead: (head) => `
     ${head}
     <!-- Runtime globals the MC injects via \`mc-html-template\` and Storybook doesn't.
@@ -42,11 +39,14 @@ const config: StorybookConfig = {
     viteConfig.resolve = viteConfig.resolve || {};
     viteConfig.resolve.alias = {
       ...viteConfig.resolve.alias,
-      // Published `packages/*` must not depend on this private workspace; root tsconfig `paths` mirrors it.
-      '@/storybook-helpers': resolve(__dirname, '../src/helpers'),
       // Reason in `src/stubs/msw.ts`.
       'msw/browser': resolve(__dirname, '../src/stubs/msw.ts'),
       'msw/core/http': resolve(__dirname, '../src/stubs/msw.ts'),
+      // Reason in `src/stubs/supported-locales.ts`.
+      '../supported-locales': resolve(
+        __dirname,
+        '../src/stubs/supported-locales.ts'
+      ),
     };
 
     viteConfig.plugins?.push(

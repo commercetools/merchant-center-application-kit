@@ -1,7 +1,5 @@
 import Text from '@commercetools-uikit/text';
 
-// Story-only scaffolding shared by the info detail and modal page stories.
-
 export const InfoPageBody = () => (
   <>
     <Text.Body>

@@ -1,6 +1,6 @@
-import { VisualSpec } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import ProjectStamp from './project-stamp';
+import { ProjectStamp } from '@commercetools-frontend/application-components';
+import { VisualSpec } from '../helpers';
 
 const meta: Meta = {
   title: 'Application Components/ProjectStamp',

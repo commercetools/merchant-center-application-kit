@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import PageContentFull from './page-content-full';
+import { PageContentNarrow } from '@commercetools-frontend/application-components';
 
 const Box = () => (
   <div
@@ -12,23 +12,23 @@ const Box = () => (
       justifyContent: 'center',
     }}
   >
-    <h3>{'Page content container full width'}</h3>
+    <h2>{'Page content container narrow'}</h2>
   </div>
 );
 
-const meta: Meta<typeof PageContentFull> = {
-  title: 'Application Components/PageContentContainerFull',
-  component: PageContentFull,
+const meta: Meta<typeof PageContentNarrow> = {
+  title: 'Application Components/PageContentContainerNarrow',
+  component: PageContentNarrow,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof PageContentFull>;
+type Story = StoryObj<typeof PageContentNarrow>;
 
 export const Default: Story = {
   render: () => (
-    <PageContentFull>
+    <PageContentNarrow>
       <Box />
-    </PageContentFull>
+    </PageContentNarrow>
   ),
 };

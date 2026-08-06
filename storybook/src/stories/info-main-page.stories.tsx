@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react';
-import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { InfoMainPage } from '@commercetools-frontend/application-components';
 import Spacings from '@commercetools-uikit/spacings';
 import TextField from '@commercetools-uikit/text-field';
-import InfoMainPage from './info-main-page';
+import { CUSTOM_VIEW_LOCATORS, VisualSpecGroup } from '../helpers';
 
 // `PageWrapper` is `height: 100%`, so each state needs a bounded ancestor. Measured
 // per state so none of them scroll.

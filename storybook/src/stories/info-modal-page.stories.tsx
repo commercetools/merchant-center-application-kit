@@ -1,12 +1,8 @@
 import type { ComponentProps, ReactNode } from 'react';
-import {
-  CUSTOM_VIEW_LOCATORS,
-  longSubtitle,
-  longTitle,
-} from '@/storybook-helpers';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { InfoPageBody } from '../../info-page-fixtures';
-import InfoModalPage from './info-modal-page';
+import { InfoModalPage } from '@commercetools-frontend/application-components';
+import { InfoPageBody } from '../fixtures/info-page';
+import { CUSTOM_VIEW_LOCATORS, longSubtitle, longTitle } from '../helpers';
 
 const InfoModalPageSpec = ({
   children = <InfoPageBody />,
