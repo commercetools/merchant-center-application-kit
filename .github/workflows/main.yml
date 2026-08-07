@@ -362,7 +362,7 @@ jobs:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
           # Opts this suite alone into Chromatic archiving.
           CHROMATIC_VRT: 'true'
-          # Cypress passes this to Electron and Chromatic parses the same string, so the
+          # Cy passes this to Electron and Chromatic parses the same string, so the
           # port is arbitrary but shared. Ignored for `--browser chrome`.
           ELECTRON_EXTRA_LAUNCH_ARGS: --remote-debugging-port=9222
           CYPRESS_CI: 'true'
