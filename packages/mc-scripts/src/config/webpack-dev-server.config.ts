@@ -49,7 +49,6 @@ const createWebpackDevServerConfig = async ({
     },
     host,
     hot: true,
-    https: false,
     port,
     setupMiddlewares(middlewares, devServer) {
       if (!devServer) {

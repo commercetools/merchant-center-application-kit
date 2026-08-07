@@ -46,6 +46,8 @@ minimumReleaseAgeExclude:
   - vite@6.4.3
   # Renovate security update: yaml@2.8.3
   - yaml@2.8.3
+  # Renovate security update: webpack-dev-server@5.2.6
+  - webpack-dev-server@5.2.6
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -355,7 +357,7 @@ catalogs:
     # Webpack + loaders/plugins (mc-scripts / mc-html-template)
     webpack: 5.105.1
     webpack-bundle-analyzer: 4.10.2
-    webpack-dev-server: 4.15.2
+    webpack-dev-server: 5.2.6
     webpackbar: 5.0.2
     browserslist: ^4.28.1
     css-loader: 6.11.0
