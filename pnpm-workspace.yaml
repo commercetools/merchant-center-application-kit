@@ -214,6 +214,7 @@ catalog:
   autoprefixer: ^10.4.15
   buffer: 6.0.3
   chalk: 4.1.2
+  chromatic: ^17.7.2
   cldr: 7.9.0
   commander: ^13.1.0
   common-tags: 1.8.2
@@ -223,7 +224,7 @@ catalog:
   cosmiconfig-typescript-loader: 6.1.0
   create-jest-runner: 1.0.0
   cross-env: 7.0.3
-  cypress: 14.5.4
+  cypress: 15.20.0
   debounce-async: 0.0.2
   deep-diff: 1.0.2
   dompurify: ^3.0.0
@@ -608,7 +609,8 @@ catalogs:
     sentry-testkit: 6.2.2
     wait-for-expect: 3.0.2
 
-    # E2E / visual regression (Cypress + Puppeteer + Percy)
+    # E2E / visual regression (Cypress + Puppeteer + Percy + Chromatic)
+    '@chromatic-com/cypress': 0.13.1
     '@cypress/code-coverage': ^3.14.5
     '@faker-js/faker': 8.4.1
     '@percy/cli': 1.31.1

@@ -8,6 +8,7 @@
     "moduleResolution": "nodenext",
     "types": [
       "cypress",
+      "@chromatic-com/cypress",
       "@commercetools-frontend/cypress/add-commands",
       "@percy/cypress",
       "@testing-library/cypress",
