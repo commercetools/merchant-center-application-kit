@@ -80,8 +80,7 @@ async function run() {
 
   ['SIGINT', 'SIGTERM'].forEach((sig) => {
     process.on(sig, () => {
-      devServer.close();
-      process.exit();
+      devServer.stop().finally(() => process.exit());
     });
   });
 }
