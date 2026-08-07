@@ -37,7 +37,7 @@
     "winston": "catalog:"
   },
   "devDependencies": {
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "@types/express": "catalog:",
     "express": "catalog:",
     "typescript": "catalog:build"

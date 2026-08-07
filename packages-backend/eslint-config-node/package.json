@@ -35,7 +35,7 @@
     "eslint": "catalog:peer"
   },
   "devDependencies": {
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "eslint": "catalog:lint"
   },
   "engines": {

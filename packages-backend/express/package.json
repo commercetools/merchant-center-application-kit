@@ -26,7 +26,7 @@
     "jose": "catalog:"
   },
   "devDependencies": {
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "msw": "catalog:test",
     "typescript": "catalog:build"
   },

@@ -46,7 +46,7 @@
     "uuid": "catalog:"
   },
   "devDependencies": {
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "cypress": "catalog:"
   },
   "peerDependencies": {
