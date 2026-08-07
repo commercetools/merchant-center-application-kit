@@ -37,7 +37,7 @@
     "uglifycss": "catalog:build"
   },
   "devDependencies": {
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "@types/serialize-javascript": "catalog:",
     "html-webpack-plugin": "catalog:build",
     "webpack": "catalog:build"

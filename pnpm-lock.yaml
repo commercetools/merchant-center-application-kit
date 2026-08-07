@@ -324,9 +324,9 @@ catalogs:
     '@tsconfig/cypress':
       specifier: ^1.0.1
       version: 1.0.4
-    '@tsconfig/node22':
-      specifier: ^22.0.0
-      version: 22.0.2
+    '@tsconfig/node24':
+      specifier: ^24.0.0
+      version: 24.0.4
     '@types/babel__core':
       specifier: ^7.20.1
       version: 7.20.5
@@ -2239,9 +2239,9 @@ importers:
         specifier: catalog:build
         version: 5.9.2
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2267,9 +2267,9 @@ importers:
         specifier: 'catalog:'
         version: 5.10.0
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       msw:
         specifier: catalog:test
         version: 1.3.5(@types/node@22.19.11)(typescript@5.9.2)
@@ -2310,9 +2310,9 @@ importers:
         specifier: 'catalog:'
         version: 3.17.0
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/express':
         specifier: 'catalog:'
         version: 4.17.25
@@ -3083,9 +3083,9 @@ importers:
       '@emotion/react':
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.0.0)
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/jscodeshift':
         specifier: 'catalog:'
         version: 0.12.0
@@ -3154,9 +3154,9 @@ importers:
         specifier: 'catalog:'
         version: 2.8.3
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/prettier':
         specifier: 'catalog:'
         version: 2.7.3
@@ -3191,9 +3191,9 @@ importers:
         specifier: 'catalog:'
         version: 14.0.0
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       cypress:
         specifier: 'catalog:'
         version: 14.5.4
@@ -3500,9 +3500,9 @@ importers:
       '@commercetools-frontend/application-config':
         specifier: workspace:^
         version: link:../application-config
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/connect':
         specifier: 'catalog:'
         version: 3.4.38
@@ -3534,9 +3534,9 @@ importers:
         specifier: catalog:build
         version: 0.0.29
     devDependencies:
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/serialize-javascript':
         specifier: 'catalog:'
         version: 5.0.4
@@ -3787,9 +3787,9 @@ importers:
       '@commercetools/nimbus':
         specifier: catalog:nimbus
         version: 3.2.0(@chakra-ui/react@3.36.0(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@commercetools/nimbus-icons@3.2.0(typescript@5.9.2))(@commercetools/nimbus-tokens@3.2.0)(@storybook/icons@2.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@2.8.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.9.2)
-      '@tsconfig/node22':
+      '@tsconfig/node24':
         specifier: 'catalog:'
-        version: 22.0.2
+        version: 24.0.4
       '@types/fs-extra':
         specifier: 'catalog:'
         version: 11.0.4
@@ -8954,8 +8954,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@tsconfig/node22@22.0.2':
-    resolution: {integrity: sha512-Kmwj4u8sDRDrMYRoN9FDEcXD8UpBSaPQQ24Gz+Gamqfm7xxn+GBR7ge/Z7pK8OXNGyUzbSwJj+TH6B+DS/epyA==}
+  '@tsconfig/node24@24.0.4':
+    resolution: {integrity: sha512-2A933l5P5oCbv6qSxHs7ckKwobs8BDAe9SJ/Xr2Hy+nDlwmLE1GhFh/g/vXGRZWgxBg9nX/5piDtHR9Dkw/XuA==}
 
   '@tybys/wasm-util@0.10.2':
     resolution: {integrity: sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg==}
@@ -25051,7 +25051,7 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsconfig/node22@22.0.2': {}
+  '@tsconfig/node24@24.0.4': {}
 
   '@tybys/wasm-util@0.10.2':
     dependencies:

@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/application-config": "workspace:^",
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "@types/connect": "catalog:",
     "connect": "catalog:"
   },

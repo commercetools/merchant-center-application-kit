@@ -127,7 +127,7 @@
   "devDependencies": {
     "@commercetools/composable-commerce-test-data": "catalog:",
     "@commercetools/nimbus": "catalog:nimbus",
-    "@tsconfig/node22": "catalog:",
+    "@tsconfig/node24": "catalog:",
     "@types/fs-extra": "catalog:",
     "@types/lodash": "catalog:",
     "@types/moment-locales-webpack-plugin": "catalog:",
