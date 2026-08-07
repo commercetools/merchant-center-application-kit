@@ -36,35 +36,43 @@ describe('when user is authenticated', () => {
   });
 });
 
-describe('navigation menu', () => {
-  beforeEach(() => {
-    cy.viewport(1250, 800);
-    cy.loginToMerchantCenter({
-      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
-      initialRoute: URL_APP_KIT_PLAYGROUND,
+// Viewports are set via Cypress config rather than cy.viewport(), because Chromatic
+// re-renders the archive server-side and only reads the config value.
+describe(
+  'navigation menu',
+  { viewportWidth: 1250, viewportHeight: 800 },
+  () => {
+    beforeEach(() => {
+      cy.loginToMerchantCenter({
+        entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+        initialRoute: URL_APP_KIT_PLAYGROUND,
+      });
     });
-  });
-  it('should stay collapsed for small viewports', () => {
-    cy.viewport(900, 800);
-    cy.findAllByText('Initial').should('exist');
-    cy.findByText('Custom Views:').should('be.visible');
-    cy.percySnapshot(
-      // @ts-ignore
-      cy.state('runnable').fullTitle(),
-      { widths: [900] }
+    it(
+      'should stay collapsed for small viewports',
+      { viewportWidth: 900, viewportHeight: 800 },
+      () => {
+        cy.findAllByText('Initial').should('exist');
+        cy.findByText('Custom Views:').should('be.visible');
+        cy.percySnapshot(
+          // @ts-ignore
+          cy.state('runnable').fullTitle(),
+          { widths: [900] }
+        );
+      }
     );
-  });
-  it('should expand menu when clicking on the expand button', () => {
-    cy.findAllByText('Initial').should('exist');
-    cy.findByTestId('menu-expander').click();
-    cy.window().then((win) =>
-      expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
-    );
-    cy.percySnapshot();
-  });
-  it('should show submenu on hover', () => {
-    cy.findAllByText('Initial').should('exist');
-    cy.showNavigationSubmenuItems('State Machines');
-    cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
-  });
-});
+    it('should expand menu when clicking on the expand button', () => {
+      cy.findAllByText('Initial').should('exist');
+      cy.findByTestId('menu-expander').click();
+      cy.window().then((win) =>
+        expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
+      );
+      cy.percySnapshot();
+    });
+    it('should show submenu on hover', () => {
+      cy.findAllByText('Initial').should('exist');
+      cy.showNavigationSubmenuItems('State Machines');
+      cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
+    });
+  }
+);

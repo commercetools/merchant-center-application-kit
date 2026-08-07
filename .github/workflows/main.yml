@@ -305,7 +305,9 @@ jobs:
   test_playground:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 15
+    # Raised from 15 for the Percy/Chromatic parallel run: both wait for network idle
+    # at capture time, and that cost is additive across every test.
+    timeout-minutes: 25
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
@@ -343,7 +345,10 @@ jobs:
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          # The cypress version lives in pnpm-workspace.yaml's catalog, so hashing
+          # package.json alone never invalidates this on an upgrade.
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json',
+            'pnpm-workspace.yaml') }}
 
       - name: Installing Cypress binary
         run: pnpm cypress install && pnpm cypress cache list
@@ -355,6 +360,9 @@ jobs:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
+          # Chromatic archives the DOM over the devtools protocol, which Electron only
+          # exposes when given a debugging port. The plugin errors out without it.
+          ELECTRON_EXTRA_LAUNCH_ARGS: --remote-debugging-port=9222
           CYPRESS_CI: 'true'
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
@@ -363,6 +371,13 @@ jobs:
           APP_ID: ${{ secrets.APP_ID_PLAYGROUND }}
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
+
+      # Separate step: the archives are already on disk, so this needs neither the
+      # playground server nor Cypress.
+      - name: Upload Cypress archives to Chromatic
+        run: pnpm chromatic --cypress
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_TOKEN_E2E_PLAYGROUND }}
 
       - name: Move Cypress coverage files
         run: |

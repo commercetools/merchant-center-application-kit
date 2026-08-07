@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { installPlugin } from '@chromatic-com/cypress';
 import { defineConfig } from 'cypress';
 import {
   customViewConfig,
@@ -14,6 +15,9 @@ export default defineConfig({
     async setupNodeEvents(on, cypressConfig) {
       // Add coverage task
       require('@cypress/code-coverage/task')(on, cypressConfig);
+      // Chromatic VRT archiving. Only registers handlers, so it can run before the
+      // config below is rebuilt.
+      installPlugin(on, cypressConfig);
       // Load the config
       if (!process.env.CI) {
         const envPath = path.join(__dirname, 'cypress/.env');

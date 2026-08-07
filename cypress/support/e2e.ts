@@ -19,5 +19,9 @@ import './commands';
 // Add coverage support
 import '@cypress/code-coverage/support';
 
+// Chromatic VRT. Archives on the browser side; the Node half is installPlugin in
+// cypress.config.ts.
+import '@chromatic-com/cypress/support';
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

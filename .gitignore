@@ -98,6 +98,9 @@ cypress/videos
 storybook/storybook-static
 storybook/build-storybook.log
 
+# Chromatic E2E archives, written during `cypress run`
+chromatic-archives
+
 # Gatsby
 .cache
 public
