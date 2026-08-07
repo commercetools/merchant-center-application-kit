@@ -94,6 +94,9 @@ public
 cypress/screenshots
 cypress/videos
 
+# Chromatic E2E archives, written during `cypress run`
+chromatic-archives
+
 # Gatsby
 .cache
 public

@@ -19,5 +19,10 @@ import './commands';
 // Add coverage support
 import '@cypress/code-coverage/support';
 
+// Must match the installPlugin gate in cypress.config.ts; these hooks need its task.
+if (Cypress.env('CHROMATIC_VRT')) {
+  require('@chromatic-com/cypress/support');
+}
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

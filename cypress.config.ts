@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { installPlugin } from '@chromatic-com/cypress';
 import { defineConfig } from 'cypress';
 import {
   customViewConfig,
@@ -14,6 +15,10 @@ export default defineConfig({
     async setupNodeEvents(on, cypressConfig) {
       // Add coverage task
       require('@cypress/code-coverage/task')(on, cypressConfig);
+      // Only the playground archives; support/e2e.ts gates on the same flag.
+      if (process.env.CHROMATIC_VRT) {
+        installPlugin(on, cypressConfig);
+      }
       // Load the config
       if (!process.env.CI) {
         const envPath = path.join(__dirname, 'cypress/.env');
@@ -31,6 +36,7 @@ export default defineConfig({
 
       return Object.assign({}, cypressConfig, {
         env: Object.assign({}, cypressConfig.env, {
+          CHROMATIC_VRT: process.env.CHROMATIC_VRT,
           LOGIN_USER: process.env.CYPRESS_LOGIN_USER,
           LOGIN_PASSWORD: process.env.CYPRESS_LOGIN_PASSWORD,
           PROJECT_KEY: process.env.CYPRESS_PROJECT_KEY,
