@@ -35,8 +35,8 @@ catalogs:
       specifier: 4.2.8
       version: 4.2.8
     qs:
-      specifier: 6.14.0
-      version: 6.14.0
+      specifier: 6.15.2
+      version: 6.15.2
     vercel:
       specifier: 24.2.5
       version: 24.2.5
@@ -4260,7 +4260,7 @@ importers:
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
       apollo-link-rest:
         specifier: catalog:apollo
-        version: 0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.14.0)
+        version: 0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.15.2)
       graphql:
         specifier: catalog:apollo
         version: 16.11.0
@@ -4278,7 +4278,7 @@ importers:
         version: 15.8.1
       qs:
         specifier: catalog:apps
-        version: 6.14.0
+        version: 6.15.2
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -15853,6 +15853,10 @@ packages:
     resolution: {integrity: sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==}
     engines: {node: '>=0.6'}
 
+  qs@6.15.2:
+    resolution: {integrity: sha512-Rzq0KEyX/w/tEybncDgdkZrJgVUsUMk3xjh3t5bv3S1HTAtg+uOYt72+ZfwiQwKdysThkTBdL/rTi6HDmX9Ddw==}
+    engines: {node: '>=0.6'}
+
   qss@2.0.3:
     resolution: {integrity: sha512-j48ZBT5IZbSqJiSU8EX4XrN8nXiflHvmMvv2XpFc31gh7n6EpSs75bNr6+oj3FOLWyT8m09pTmqLNl34L7/uPQ==}
     engines: {node: '>=4'}
@@ -26584,11 +26588,11 @@ snapshots:
     dependencies:
       '@apollo/client': 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
-  apollo-link-rest@0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.14.0):
+  apollo-link-rest@0.9.0(@apollo/client@3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(graphql@16.11.0)(qs@6.15.2):
     dependencies:
       '@apollo/client': 3.13.9(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.11.0)(ws@8.18.3))(graphql@16.11.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       graphql: 16.11.0
-      qs: 6.14.0
+      qs: 6.15.2
 
   apollo-utilities@1.3.4(graphql@16.11.0):
     dependencies:
@@ -33645,6 +33649,10 @@ snapshots:
     dependencies:
       side-channel: 1.1.0
 
+  qs@6.15.2:
+    dependencies:
+      side-channel: 1.1.0
+
   qss@2.0.3: {}
 
   quansync@0.2.11: {}
@@ -34914,7 +34922,7 @@ snapshots:
       oxc-parser: 0.127.0
       oxc-resolver: 11.20.0
       recast: 0.23.11
-      semver: 7.7.4
+      semver: 7.8.5
       use-sync-external-store: 1.6.0(react@19.0.0)
       ws: 8.18.3
     optionalDependencies:
@@ -34941,7 +34949,7 @@ snapshots:
       oxc-parser: 0.127.0
       oxc-resolver: 11.20.0
       recast: 0.23.11
-      semver: 7.7.4
+      semver: 7.8.5
       use-sync-external-store: 1.6.0(react@19.0.0)
       ws: 8.18.3
     optionalDependencies:
@@ -35554,7 +35562,7 @@ snapshots:
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.4
+      semver: 7.8.5
       typescript: 5.9.2
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -35574,7 +35582,7 @@ snapshots:
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.4
+      semver: 7.8.5
       typescript: 5.9.2
       yargs-parser: 21.1.1
     optionalDependencies:

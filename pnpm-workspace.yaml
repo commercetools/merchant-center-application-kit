@@ -29,6 +29,8 @@ minimumReleaseAgeExclude:
   - postcss@8.5.10 || 8.5.12 || 8.5.18
   # Renovate security update: sharp@0.35.0
   - sharp@0.35.0
+  # Renovate security update: qs@6.15.2
+  - qs@6.15.2
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -263,7 +265,7 @@ catalogs:
     '@vercel/node': 5.5.5
     dotenv-flow: 4.1.0
     graphql-anywhere: 4.2.8
-    qs: 6.14.0
+    qs: 6.15.2
     vercel: 24.2.5
 
   apollo:
