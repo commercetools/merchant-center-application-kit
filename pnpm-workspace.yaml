@@ -44,6 +44,8 @@ minimumReleaseAgeExclude:
   - qs@6.15.2
   # Renovate security update: vite@6.4.3
   - vite@6.4.3
+  # Renovate security update: yaml@2.8.3
+  - yaml@2.8.3
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
