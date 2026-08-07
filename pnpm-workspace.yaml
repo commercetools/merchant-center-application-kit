@@ -48,6 +48,8 @@ minimumReleaseAgeExclude:
   - yaml@2.8.3
   # Renovate security update: webpack-dev-server@5.2.6
   - webpack-dev-server@5.2.6
+  # Renovate security update: @babel/core@7.29.6
+  - "@babel/core@7.29.6"
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
