@@ -47,6 +47,11 @@ minimumReleaseAgeExclude:
   # Renovate security update: yaml@2.8.3
   - yaml@2.8.3
 
+# Explicit minimumReleaseAge already makes pnpm hard-fail on a no-mature-match; true keeps that (no silent fall-back or auto-exclude).
+minimumReleaseAgeStrict: true
+# Deliberate tightening: enforce the gate even when registry metadata omits a publish time, so a time-less mirror can't waive the cooldown.
+minimumReleaseAgeIgnoreMissingTime: false
+
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
 
