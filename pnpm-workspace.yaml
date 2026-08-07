@@ -37,6 +37,8 @@ minimumReleaseAgeExclude:
   - sharp@0.35.0
   # Renovate security update: qs@6.15.2
   - qs@6.15.2
+  # Renovate security update: vite@6.4.3
+  - vite@6.4.3
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
