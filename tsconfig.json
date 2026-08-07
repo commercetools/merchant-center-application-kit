@@ -9,6 +9,7 @@
   "include": [
     "packages",
     "packages-backend",
+    "storybook",
     "visual-testing-app",
     "website-components-playground"
   ],

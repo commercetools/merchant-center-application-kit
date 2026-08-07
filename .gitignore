@@ -94,6 +94,10 @@ public
 cypress/screenshots
 cypress/videos
 
+# Storybook
+storybook/storybook-static
+storybook/build-storybook.log
+
 # Gatsby
 .cache
 public
