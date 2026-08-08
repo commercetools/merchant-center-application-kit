@@ -614,7 +614,7 @@ catalogs:
     '@percy/cli': 1.31.1
     '@percy/core': 1.31.1
     '@percy/cypress': 3.1.6
-    '@percy/puppeteer': 2.0.2
+    '@percy/puppeteer': 2.0.3
     jest-environment-puppeteer: 8.0.6
     jest-puppeteer: 8.0.6
     start-server-and-test: 2.0.13
