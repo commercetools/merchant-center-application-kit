@@ -613,7 +613,7 @@ catalogs:
     '@faker-js/faker': 8.4.1
     '@percy/cli': 1.31.1
     '@percy/core': 1.31.1
-    '@percy/cypress': 3.1.6
+    '@percy/cypress': 3.1.9
     '@percy/puppeteer': 2.0.2
     jest-environment-puppeteer: 8.0.6
     jest-puppeteer: 8.0.6
