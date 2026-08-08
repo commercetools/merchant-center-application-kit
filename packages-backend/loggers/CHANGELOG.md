@@ -1,5 +1,7 @@
 # @commercetools-backend/loggers
 
+## 27.9.1
+
 ## 27.9.0
 
 ## 27.8.0

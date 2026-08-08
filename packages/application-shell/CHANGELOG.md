@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.9.1
+
+### Patch Changes
+
+- [#4064](https://github.com/commercetools/merchant-center-application-kit/pull/4064) [`3386d86`](https://github.com/commercetools/merchant-center-application-kit/commit/3386d861ac755ee239d4b1a210946df5bb964ee6) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Security and dependency maintenance pass (Phase 1).
+
+  Patched several medium-severity CVEs: `postcss`, `vite`, `@babel/core`, `yaml`, `js-yaml`, `qs`, `sharp`, and `webpack-dev-server`. Upgraded `webpack-dev-server` from v4 to v5, which required removing the deprecated `https: false` option (HTTP is the v5 default) and updating the shutdown handler from the removed `close()` to `stop()`. Also updated `@commercetools-uikit/*` to `^20.6.7` and replaced `@tsconfig/node22` with `@tsconfig/node24`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.9.1
+  - @commercetools-frontend/application-components@27.9.1
+  - @commercetools-frontend/application-config@27.9.1
+  - @commercetools-frontend/application-shell-connectors@27.9.1
+  - @commercetools-frontend/assets@27.9.1
+  - @commercetools-frontend/browser-history@27.9.1
+  - @commercetools-frontend/constants@27.9.1
+  - @commercetools-frontend/i18n@27.9.1
+  - @commercetools-frontend/l10n@27.9.1
+  - @commercetools-frontend/notifications@27.9.1
+  - @commercetools-frontend/permissions@27.9.1
+  - @commercetools-frontend/react-notifications@27.9.1
+  - @commercetools-frontend/sdk@27.9.1
+  - @commercetools-frontend/sentry@27.9.1
+  - @commercetools-frontend/url-utils@27.9.1
+
 ## 27.9.0
 
 ### Minor Changes
