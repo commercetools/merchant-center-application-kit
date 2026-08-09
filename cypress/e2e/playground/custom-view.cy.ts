@@ -1,6 +1,7 @@
 import {
   ENTRY_POINT_APP_KIT_PLAYGROUND,
   URL_APP_KIT_PLAYGROUND,
+  URL_DEMO_CUSTOM_VIEW,
 } from '../../support/urls';
 
 describe('Custom View: Notifications inside iframe', () => {
@@ -28,5 +29,24 @@ describe('Custom View: Notifications inside iframe', () => {
       });
 
     cy.percySnapshot();
+  });
+});
+
+// Chromatic archives the top-level document only, so the iframe above snapshots blank.
+// Visiting the same view unframed is the only way to cover it visually.
+describe('Custom View: Notifications unframed', () => {
+  beforeEach(() => {
+    cy.loginToMerchantCenter({
+      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+      initialRoute: URL_APP_KIT_PLAYGROUND,
+    });
+  });
+
+  it('should display a success notification', () => {
+    cy.visit(URL_DEMO_CUSTOM_VIEW);
+
+    cy.findByText(/project channels/i).should('exist');
+    cy.findByRole('button', { name: /Show Success Notification/i }).click();
+    cy.findByText(/Operation completed successfully!/i).should('exist');
   });
 });
