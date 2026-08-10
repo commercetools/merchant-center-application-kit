@@ -510,7 +510,7 @@ catalogs:
 
   repo:
     # Monorepo tooling
-    '@manypkg/cli': 0.25.0
+    '@manypkg/cli': 0.25.1
     '@manypkg/find-root': 2.2.3
     '@manypkg/get-packages': 1.1.3
 
