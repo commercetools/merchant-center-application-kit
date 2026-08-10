@@ -121,7 +121,7 @@ overrides:
   'path-to-regexp@^6': ^8.4.2
   'picomatch@^4': ^4.0.4
   'rollup@^4': ^4.59.0
-  'semver@^6': ^6.3.1
+  'semver@^6': ^7.8.5
   svgo: '>=2.8.1'
   systeminformation: '>=5.31.0'
   tar-fs: '>=3.1.1'
