@@ -367,7 +367,7 @@ catalogs:
     css-loader: 6.11.0
     css-minimizer-webpack-plugin: ^8.0.0
     dotenv-expand: 8.0.3
-    html-webpack-plugin: 5.6.3
+    html-webpack-plugin: 5.6.8
     json-loader: 0.5.7
     mini-css-extract-plugin: 2.9.4
     moment-locales-webpack-plugin: 1.2.0
