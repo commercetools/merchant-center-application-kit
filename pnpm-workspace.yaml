@@ -346,7 +346,7 @@ catalogs:
     postcss-reporter: 7.1.0
 
     # TypeScript
-    typescript: 5.9.2
+    typescript: 5.9.3
     ts-node: 10.9.2
 
     # Vite / Rollup
