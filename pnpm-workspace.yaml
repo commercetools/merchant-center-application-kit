@@ -240,7 +240,7 @@ catalog:
   history-query-enhancer: 1.0.4
   is-retina: 1.0.3
   jose: ^5.10.0
-  jscodeshift: 0.16.1
+  jscodeshift: 17.4.0
   jsdom: ^21.1.2
   json-schema-to-typescript: 15.0.4
   jwt-decode: 4.0.0
