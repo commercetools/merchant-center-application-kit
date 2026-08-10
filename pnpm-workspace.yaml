@@ -404,9 +404,9 @@ catalogs:
   formatjs:
     # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
     # parser ship together on majors.
-    '@formatjs/cli': 6.7.2
+    '@formatjs/cli': 6.16.16
     '@formatjs/cli-lib': ^6.3.8
-    '@formatjs/icu-messageformat-parser': 2.11.2
+    '@formatjs/icu-messageformat-parser': 2.11.4
     '@formatjs/intl-getcanonicallocales': ^2.2.1
     '@formatjs/intl-listformat': ^7.4.1
     '@formatjs/intl-locale': ^3.3.3
