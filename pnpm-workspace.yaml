@@ -389,7 +389,7 @@ catalogs:
     uglifycss: 0.0.29
 
     # Library publish toolchain
-    '@preconstruct/cli': 2.8.12
+    '@preconstruct/cli': 2.8.13
 
   flopflip:
     # @flopflip/* feature-flag framework — pinned in lockstep at one version.
