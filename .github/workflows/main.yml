@@ -307,6 +307,12 @@ jobs:
 
     timeout-minutes: 15
 
+    permissions:
+      contents: read
+      # The skip path posts "UI Tests: app-kit-e2e-playground" itself, so the required
+      # check still reports when Chromatic doesn't run.
+      statuses: write
+
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
     env:
       # prevents extra Cypress installation progress messages
@@ -318,8 +324,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          # We need to fetch the full history to get the correct coverage data.
-          fetch-depth: 2
+          # Full history, not just 2: the gate below decides whether a required status
+          # check gets posted, so an inaccurate diff would be a false pass.
+          fetch-depth: 0
+
+      # Gate: upload to Chromatic only when files affecting rendered output change.
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
+        with:
+          # push: diff newest commit. PR: diff whole PR (base...head).
+          since_last_remote_commit: ${{ github.event_name == 'push' }}
+          files: |
+            packages/**
+            playground/**
+            cypress/**
+            cypress.config.ts
+            # Dep bumps surface via the lockfile.
+            pnpm-lock.yaml
 
       - name: Installing dependencies and building packages
         uses: ./.github/actions/ci
@@ -373,10 +395,29 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       # The archives are on disk, so this needs neither the server nor Cypress.
+      # Visual diffs are gated by the required "UI Tests: app-kit-e2e-playground" check,
+      # not by failing this job, which would also skip the coverage steps below.
       - name: Upload Cypress archives to Chromatic
-        run: pnpm chromatic --cypress
+        if:
+          steps.changed-files.outputs.any_changed == 'true' && github.head_ref !=
+          'changeset-release/main'
+        run: pnpm chromatic --cypress --exit-zero-on-changes
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_TOKEN_E2E_PLAYGROUND }}
+
+      # Chromatic didn't run, so post its required check ourselves or the PR waits forever.
+      - name: No UI changes detected
+        if:
+          steps.changed-files.outputs.any_changed != 'true' || github.head_ref ==
+          'changeset-release/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "::notice::No UI-affecting changes detected. Skipping the Chromatic upload."
+          gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" \
+            -f state=success \
+            -f context='UI Tests: app-kit-e2e-playground' \
+            -f description='No UI-affecting changes; Chromatic skipped'
 
       - name: Move Cypress coverage files
         run: |
