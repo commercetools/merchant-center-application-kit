@@ -25,8 +25,8 @@ jobs:
 
     permissions:
       contents: read
-      # The skip path posts a passing "UI Tests" status so a required check
-      # still reports when Chromatic doesn't run.
+      # The skip path posts a passing "UI Tests: app-kit-components" status so a
+      # required check still reports when Chromatic doesn't run.
       statuses: write
 
     steps:
@@ -54,6 +54,8 @@ jobs:
             storybook/chromatic.config.json
 
       # Post the passing status ourselves, so a required check still reports.
+      # Chromatic suffixes its contexts with the project name once a repo has
+      # more than one linked project, so this must match that exact string.
       - name: No UI changes detected
         if:
           (steps.changed-files.outputs.any_changed != 'true' || github.head_ref
@@ -65,7 +67,7 @@ jobs:
           echo "::notice::No UI-affecting changes detected. Skipping the Chromatic visual regression build."
           gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" \
             -f state=success \
-            -f context='UI Tests' \
+            -f context='UI Tests: app-kit-components' \
             -f description='No UI-affecting changes; Chromatic skipped'
 
       # Stories import workspace packages by name, so those build first.
@@ -79,7 +81,7 @@ jobs:
         if: (steps.changed-files.outputs.any_changed == 'true' ||
           github.event_name == 'workflow_dispatch') && github.head_ref !=
           'changeset-release/main'
-        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
         with:
           # Per-surface name; the Cypress project's token lives in main.yml's test_playground.
           projectToken: ${{ secrets.CHROMATIC_TOKEN_UI_COMPONENTS }}

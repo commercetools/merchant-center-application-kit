@@ -217,7 +217,6 @@ catalog:
   autoprefixer: ^10.4.15
   buffer: 6.0.3
   chalk: 4.1.2
-  chromatic: ^17.7.2
   cldr: 7.9.0
   commander: ^13.1.0
   common-tags: 1.8.2

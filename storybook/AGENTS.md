@@ -1,6 +1,7 @@
 # storybook
 
-See root `AGENTS.md` for monorepo-wide context.
+See root `AGENTS.md` for monorepo-wide context, and `docs/chromatic-components.md` for how
+Chromatic runs in CI and gates merges.
 
 ## Purpose
 
@@ -26,7 +27,7 @@ gives a permalink per branch.
 | ------------- | ------------------------------------------------------------ |
 | Dev server    | `pnpm storybook:start` — port 6006                           |
 | Build         | `pnpm storybook:build` — this is what Chromatic builds in CI |
-| Browse hosted | TODO: paste the Chromatic permalink for `main`               |
+| Browse hosted | <https://main--6a7214131a71921f118f4b58.chromatic.com>       |
 
 **Don't run Chromatic locally.** A local run publishes into the same project and lands
 in its build history, where it can take a baseline that no PR reviewed. Debug against

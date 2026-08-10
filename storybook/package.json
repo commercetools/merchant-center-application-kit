@@ -36,7 +36,6 @@
     "@types/react-dom": "catalog:react",
     "@types/react-router-dom": "catalog:react",
     "@vitejs/plugin-react": "catalog:build",
-    "chromatic": "catalog:",
     "formik": "catalog:react",
     "graphql": "catalog:apollo",
     "react": "catalog:react",
