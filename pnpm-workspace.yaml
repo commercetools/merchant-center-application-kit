@@ -509,7 +509,7 @@ catalogs:
     # React-bound utilities
     '@radix-ui/react-dialog': 1.1.23
     '@react-hook/latest': 1.0.3
-    '@react-hook/resize-observer': 1.2.6
+    '@react-hook/resize-observer': 2.0.2
     classnames: ^2.3.2
     downshift: 9.4.0
     formik: 2.4.9
