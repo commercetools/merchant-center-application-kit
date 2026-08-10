@@ -112,7 +112,7 @@ overrides:
   '@isaacs/brace-expansion': '>=5.0.1'
   '@remix-run/router': '>=1.23.2'
   '@xmldom/xmldom': '>=0.8.13'
-  fflate: 0.8.2
+  fflate: 0.8.3
   immutable: '>=3.8.3'
   lodash-es: '>=4.17.21'
   'minimatch@^3': ^3.1.4
