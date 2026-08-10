@@ -19,6 +19,11 @@
     {
       "matchPackageNames": ["nwsapi"],
       "allowedVersions": "<=2.2.7"
+    },
+    {
+      "description": "pnpm is pinned to 11.14.0 via packageManager. This is a proactive/precautionary hold: pnpm 11.19.0 through at least the current latest 11.20.0 has a regression (pnpm/pnpm#13618) where a workspace dependency with peerDependencies is left as a symlink escaping the deploy directory instead of being packed in when running `pnpm deploy --legacy`, which would break a Docker `COPY` of the deploy output with a dangling symlink. We have not confirmed this repo uses `pnpm deploy --legacy` in any Docker build today, so this rule is precautionary rather than a fix for a known break. The fix (pnpm/pnpm#13755) has merged upstream but has not shipped in a published pnpm release yet. Hold here until a release containing that fix is out, then remove this rule.",
+      "matchPackageNames": ["pnpm"],
+      "enabled": false
     }
   ],
   "rebaseWhen": "never"
