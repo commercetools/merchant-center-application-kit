@@ -286,7 +286,7 @@ catalogs:
     '@vercel/node': 5.5.5
     dotenv-flow: 4.1.0
     graphql-anywhere: 4.2.8
-    qs: 6.15.2
+    qs: 6.15.3
     vercel: 24.2.5
 
   apollo:
