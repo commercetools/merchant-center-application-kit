@@ -85,7 +85,7 @@ overrides:
   '@types/eslint': ^8.2.2
   '@types/node': ^22.13.2
   '@types/react': ^19.0.3
-  '@types/react-dom': 19.1.7
+  '@types/react-dom': 19.2.4
   '@types/react-router': 5.1.20
   '@types/webpack-env': ^1.18.8
   '@typescript-eslint/eslint-plugin': ^8.0.0
@@ -94,8 +94,8 @@ overrides:
   diff: 4.0.4
   js-yaml: 3.15.1
   node-forge: 1.4.0
-  react: 19.0.0
-  react-dom: 19.0.0
+  react: 19.2.8
+  react-dom: 19.2.8
   tar: '>=7.5.11'
   test-exclude: ^7.0.1
   flat-cache>rimraf: ^5.0.10
@@ -471,12 +471,12 @@ catalogs:
 
   react:
     # React core
-    react: 19.0.0
-    react-dom: 19.0.0
+    react: 19.2.8
+    react-dom: 19.2.8
 
     # @types (must match runtime major)
     '@types/react': ^19.0.3
-    '@types/react-dom': ^19.0.2
+    '@types/react-dom': ^19.2.4
     '@types/prop-types': ^15.7.5
 
     # React Router (5.x)
