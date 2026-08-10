@@ -13,18 +13,25 @@ describe('when user is authenticated', () => {
       initialRoute: URL_APP_KIT_PLAYGROUND,
     });
   });
-  it('should log out with reason "user"', () => {
-    cy.findByRole('button', { name: /open user settings menu/i }).click();
+  // Asserts an href, not a rendering. Percy never snapshotted it.
+  it(
+    'should log out with reason "user"',
+    {
+      expose: { disableAutoSnapshot: true },
+    },
+    () => {
+      cy.findByRole('button', { name: /open user settings menu/i }).click();
 
-    const queryParams = encode({
-      reason: LOGOUT_REASONS.USER,
-    });
-    cy.findByRole('link', { name: /logout/i }).should(
-      'have.attr',
-      'href',
-      `/logout?${queryParams}`
-    );
-  });
+      const queryParams = encode({
+        reason: LOGOUT_REASONS.USER,
+      });
+      cy.findByRole('link', { name: /logout/i }).should(
+        'have.attr',
+        'href',
+        `/logout?${queryParams}`
+      );
+    }
+  );
   describe('when navigating to an unknown route', () => {
     it('should render a not found page', () => {
       cy.visit(`${URL_BASE}/a-non-existing-route`);
@@ -36,8 +43,7 @@ describe('when user is authenticated', () => {
   });
 });
 
-// Viewports are set via Cypress config rather than cy.viewport(), because Chromatic
-// re-renders the archive server-side and only reads the config value.
+// Chromatic reads the config viewport, not cy.viewport().
 describe(
   'navigation menu',
   { viewportWidth: 1250, viewportHeight: 800 },

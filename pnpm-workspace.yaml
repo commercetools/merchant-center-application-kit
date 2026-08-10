@@ -355,7 +355,7 @@ catalogs:
     ts-node: 10.9.2
 
     # Vite / Rollup
-    vite: ~6.4.3
+    vite: ~6.4.2
     '@vitejs/plugin-react': 4.7.0
     '@vitejs/plugin-react-swc': 3.11.0
     '@rollup/plugin-graphql': 2.0.5

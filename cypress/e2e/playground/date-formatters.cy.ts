@@ -3,8 +3,7 @@ import {
   URL_APP_KIT_PLAYGROUND_DATE_FORMATTERS,
 } from '../../support/urls';
 
-// Nine locale cards stack well past a standard viewport, and the snapshot is clipped to
-// it, so this view needs a taller one than the rest of the suite.
+// Nine locale cards run past the default viewport, and snapshots clip to it.
 describe('Date formatters', { viewportHeight: 1600 }, () => {
   beforeEach(() => {
     cy.loginToMerchantCenter({

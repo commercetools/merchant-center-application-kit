@@ -48,8 +48,8 @@ export default defineConfig({
       });
     },
     baseUrl: 'http://localhost:3001',
-    // Chromatic re-renders archives at the config viewport, and the shell's
-    // `html, body { height: 100vh }` stops it detecting a natural page height.
+    // Chromatic re-renders at the config viewport, and the shell's `height: 100vh`
+    // stops it detecting a natural page height.
     viewportWidth: 1024,
     viewportHeight: 1024,
   },

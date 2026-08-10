@@ -343,8 +343,8 @@ jobs:
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.cache/Cypress
-          # The cypress version lives in pnpm-workspace.yaml's catalog, so hashing
-          # package.json alone never invalidates this on an upgrade.
+          # The cypress version lives in the catalog, so package.json alone never
+          # invalidates this.
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json',
             'pnpm-workspace.yaml') }}
 
@@ -360,8 +360,8 @@ jobs:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
           # Opts this suite alone into Chromatic archiving.
           CHROMATIC_VRT: 'true'
-          # Cy passes this to Electron and Chromatic parses the same string, so the
-          # port is arbitrary but shared. Ignored for `--browser chrome`.
+          # Cypress passes this to Electron and Chromatic parses the same string, so
+          # the port is arbitrary but shared. Ignored for `--browser chrome`.
           ELECTRON_EXTRA_LAUNCH_ARGS: --remote-debugging-port=9222
           CYPRESS_CI: 'true'
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
@@ -372,8 +372,7 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
-      # Separate step: the archives are already on disk, so this needs neither the
-      # playground server nor Cypress.
+      # The archives are on disk, so this needs neither the server nor Cypress.
       - name: Upload Cypress archives to Chromatic
         run: pnpm chromatic --cypress
         env:
