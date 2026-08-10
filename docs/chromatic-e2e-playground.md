@@ -5,13 +5,14 @@ screenshot; if one differs from the approved baseline, the PR is blocked until s
 reviews it.
 
 This covers the **e2e playground** only. `application-components` is a separate Chromatic
-project with its own Storybook-based setup.
+project with its own Storybook-based setup, documented in `docs/chromatic-components.md`.
 
-|                   |                                 |
-| ----------------- | ------------------------------- |
-| Chromatic project | `app-kit-e2e-playground`        |
-| CI job            | `test_playground` in `main.yml` |
-| Snapshots         | 11                              |
+|                   |                                                      |
+| ----------------- | ---------------------------------------------------- |
+| Chromatic project | `app-kit-e2e-playground`                             |
+| CI job            | `test_playground` in `main.yml`                      |
+| Snapshots         | 11                                                   |
+| Hosted Storybook  | https://main--6a72232dda895583557c8a27.chromatic.com |
 
 ## How it works
 
@@ -25,9 +26,9 @@ Two things follow, and most surprises trace back to them:
 - Anything set at browser **runtime** rather than in **config** doesn't carry across.
 
 Snapshots are automatic: one per test, at the end. There are no per-snapshot calls in the
-specs.
+specs, and every upload compares all 11.
 
-## Two checks on a PR
+## Checks on a PR
 
 | Check                              | Goes red when                               |
 | ---------------------------------- | ------------------------------------------- |
@@ -37,21 +38,20 @@ specs.
 They're independent on purpose. A visual change fails only the Chromatic check, so the
 e2e tests and coverage upload still report their own result.
 
+Chromatic also posts `Test suite publish: app-kit-e2e-playground`, which links to the
+uploaded archive. It reports the upload, not the comparison.
+
 **To unblock a red `UI Tests`:** open the build in Chromatic, look at the diff, and accept
 it (intended change) or deny it (a bug). Accepting makes it the new baseline.
 
 ## Running it locally
 
-```bash
-# Needs the playground running on :3001
-CHROMATIC_VRT=true \
-ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 \
-  pnpm test:e2e:playground
+**Don't.** `pnpm chromatic --cypress` publishes into the same project and lands in its build
+history, where it can take a baseline that no PR reviewed. Leave it to CI.
 
-CHROMATIC_PROJECT_TOKEN=<token> pnpm chromatic --cypress
-```
+## How CI turns archiving on
 
-Both env vars are required:
+Two env vars on the Cypress step, both required:
 
 - **`CHROMATIC_VRT`** opts this suite in. `cypress.config.ts` and `cypress/support/e2e.ts`
   are shared by all three Cypress suites, and only the playground archives. Without it you
@@ -73,8 +73,10 @@ which stops Chromatic detecting a natural page height. Content taller than the v
 cut off silently, so if you add to a snapshotted page, check the result.
 
 **The upload is skipped when nothing visual changed.** Only `packages/`, `playground/`,
-`cypress/`, `cypress.config.ts` and `pnpm-lock.yaml` trigger it. When skipped, the workflow
-posts a passing `UI Tests` status itself, so the required check still reports.
+`cypress/`, `cypress.config.ts` and `pnpm-lock.yaml` trigger it. It's also skipped on
+`changeset-release/main` whatever that PR touches, since a version bump changes no
+rendering. When skipped, the workflow posts a passing `UI Tests: app-kit-e2e-playground`
+status itself, so the required check still reports.
 
 **Two tests deliberately produce no screenshot** (`expose: { disableAutoSnapshot: true }`).
 They still run and still assert:
