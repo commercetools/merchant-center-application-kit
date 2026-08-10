@@ -120,7 +120,7 @@ overrides:
   'minimatch@^4': ^4.2.5
   'minimatch@^9': ^9.0.7
   'minimatch@^10': ^10.2.3
-  'path-to-regexp@^6': ^8.4.2
+  'path-to-regexp@^6': ^6.3.0
   'picomatch@^4': ^4.0.4
   'rollup@^4': ^4.59.0
   'semver@^6': ^7.8.5
