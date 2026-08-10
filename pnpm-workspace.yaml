@@ -169,7 +169,7 @@ overrides:
 catalog:
   '@commercetools-community-kit/i18n': ^0.3.0
   '@commercetools/api-request-builder': 6.0.0
-  '@commercetools/composable-commerce-test-data': 13.12.0
+  '@commercetools/composable-commerce-test-data': 13.13.1
   '@commercetools/http-user-agent': 3.0.0
   '@commercetools/sdk-client': 3.0.0
   '@commercetools/sdk-middleware-correlation-id': 3.0.0
