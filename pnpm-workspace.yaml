@@ -252,7 +252,7 @@ catalog:
   moment-timezone: ^0.6.0
   node-fetch: 2.7.0
   omit-empty-es: 1.2.0
-  open: ^10.1.0
+  open: ^11.0.0
   postcss-load-config: 3.1.4
   prompts: ^2.4.2
   puppeteer: 20.9.0
