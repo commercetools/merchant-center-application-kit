@@ -392,7 +392,7 @@ catalogs:
     '@svgr/plugin-svgo': 6.5.1
     '@svgr/webpack': ^6.5.1
     terser-webpack-plugin: ^5.5.0
-    thread-loader: 3.0.4
+    thread-loader: 4.0.4
     uglify-js: 3.19.3
     uglifycss: 0.0.29
 
