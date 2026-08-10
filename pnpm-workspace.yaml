@@ -181,9 +181,9 @@ catalog:
   '@graphql-codegen/typescript': 2.8.8
   '@graphql-codegen/typescript-graphql-files-modules': 2.2.1
   '@graphql-codegen/typescript-operations': 2.5.13
-  '@sentry/browser': 8.55.0
-  '@sentry/react': 8.55.0
-  '@sentry/types': 8.55.0
+  '@sentry/browser': 8.55.2
+  '@sentry/react': 8.55.2
+  '@sentry/types': 8.55.2
   '@tsconfig/cypress': ^1.0.1
   '@tsconfig/node24': ^24.0.0
   '@types/babel__core': ^7.20.1
