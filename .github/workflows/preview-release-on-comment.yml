@@ -17,7 +17,7 @@ jobs:
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
-        uses: tibdex/github-app-token@0af3325639c0a60612b2eeaf010f0f88e468e800 # v2.1.0
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         with:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
