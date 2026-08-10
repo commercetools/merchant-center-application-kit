@@ -234,7 +234,7 @@ catalog:
   fast-safe-stringify: 2.1.1
   find-up: 5.0.0
   fs-extra: 11.4.0
-  fuse.js: 6.6.2
+  fuse.js: 7.5.0
   glob: ^10.5.0
   graphql-request: 5.2.0
   history-query-enhancer: 1.0.4
