@@ -272,7 +272,7 @@ catalog:
   triple-beam: 1.4.1
   unfetch: 4.2.0
   url: ^0.11.0
-  uuid: 14.0.0
+  uuid: 14.0.1
   wait-for-observables: 1.0.3
   winston: 3.17.0
   yaml: ^2.6.1
