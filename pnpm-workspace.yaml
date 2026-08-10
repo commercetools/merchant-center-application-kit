@@ -219,7 +219,7 @@ catalog:
   common-tags: 1.8.2
   connect: ^3.7.0
   core-js: ^3.32.2
-  cosmiconfig: 9.0.0
+  cosmiconfig: 9.0.2
   cosmiconfig-typescript-loader: 6.1.0
   create-jest-runner: 1.0.0
   cross-env: 7.0.3
