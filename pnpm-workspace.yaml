@@ -384,7 +384,7 @@ catalogs:
     react-refresh: 0.18.0
     serialize-javascript: 7.0.7
     style-loader: 3.3.4
-    svg-url-loader: 7.1.1
+    svg-url-loader: 8.1.0
     '@svgr/babel-preset': ^6.5.1
     '@svgr/cli': 6.5.1
     '@svgr/core': ^6.5.1
