@@ -33,12 +33,10 @@ const defaultOptions: TWebpackConfigOptions<'development'> = {
 // Whether or not `react-refresh` is enabled, `react-refresh` is not 100% stable at this time,
 // which is why it's disabled by default.
 const hasReactRefresh = process.env.FAST_REFRESH === 'true';
-const webpackDevClientEntry = require.resolve(
-  'react-dev-utils/webpackHotDevClient'
-);
-const reactRefreshOverlayEntry = require.resolve(
-  'react-dev-utils/refreshOverlayInterop'
-);
+const webpackDevClientEntry =
+  require.resolve('react-dev-utils/webpackHotDevClient');
+const reactRefreshOverlayEntry =
+  require.resolve('react-dev-utils/refreshOverlayInterop');
 
 /**
  * This is a factory function to create the default webpack config
@@ -113,9 +111,7 @@ function createWebpackConfigForDevelopment(
 
     entry: {
       app: [
-        require.resolve(
-          '@commercetools-frontend/mc-scripts/application-runtime'
-        ),
+        require.resolve('@commercetools-frontend/mc-scripts/application-runtime'),
         !mergedOptions.toggleFlags.disableCoreJs &&
           require.resolve('core-js/stable'),
         // When using the experimental `react-refresh` integration,
@@ -186,9 +182,8 @@ function createWebpackConfigForDevelopment(
         new HtmlWebpackPlugin({
           inject: false,
           filename: paths.appIndexHtml,
-          template: require.resolve(
-            '@commercetools-frontend/mc-html-template/webpack'
-          ),
+          template:
+            require.resolve('@commercetools-frontend/mc-html-template/webpack'),
         }),
       mergedOptions.toggleFlags.generateIndexHtml &&
         new LocalHtmlWebpackPlugin(),
@@ -230,9 +225,7 @@ function createWebpackConfigForDevelopment(
                 babelrc: false,
                 presets: [
                   [
-                    require.resolve(
-                      '@commercetools-frontend/babel-preset-mc-app'
-                    ),
+                    require.resolve('@commercetools-frontend/babel-preset-mc-app'),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
                       disableCoreJs: mergedOptions.toggleFlags.disableCoreJs,
@@ -444,9 +437,7 @@ function createWebpackConfigForDevelopment(
                 compact: false,
                 presets: [
                   [
-                    require.resolve(
-                      '@commercetools-frontend/babel-preset-mc-app'
-                    ),
+                    require.resolve('@commercetools-frontend/babel-preset-mc-app'),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
                     },

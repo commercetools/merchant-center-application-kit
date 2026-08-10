@@ -89,9 +89,11 @@ const getStylesForCloseIcon = (props: StyleProps): SerializedStyles => css`
     width: 16px;
     height: 16px;
   }
-  ${props.domain !== NOTIFICATION_DOMAINS.SIDE
-    ? '& svg { fill: ' + designTokens.colorSurface + '; }'
-    : ''}
+  ${
+    props.domain !== NOTIFICATION_DOMAINS.SIDE
+      ? '& svg { fill: ' + designTokens.colorSurface + '; }'
+      : ''
+  }
 `;
 
 const getStylesForContent = (props: StyleProps): SerializedStyles => {
@@ -104,9 +106,9 @@ const getStylesForContent = (props: StyleProps): SerializedStyles => {
     flex-grow: 1;
     padding: ${`0 ${designTokens.spacingM}`};
     margin: 0;
-    font-size: ${props.domain === NOTIFICATION_DOMAINS.SIDE
-      ? '1rem'
-      : 'inherit'};
+    font-size: ${
+      props.domain === NOTIFICATION_DOMAINS.SIDE ? '1rem' : 'inherit'
+    };
 
     color: ${fontColor};
     p {
@@ -132,9 +134,9 @@ const getStylesForNotification = (props: StyleProps): SerializedStyles => {
     ${baseStyles};
     animation: ${showNotificationAnimation} 0.3s forwards;
     text-align: center;
-    background-color: ${props.fixed
-      ? 'transparent'
-      : getColorByType(props.type)};
+    background-color: ${
+      props.fixed ? 'transparent' : getColorByType(props.type)
+    };
 
     > * + * {
       margin-left: ${designTokens.spacingS};

@@ -37,17 +37,16 @@ const getDoesGraphQLTargetSupportTokenRetry = (
   const graphQLTarget = (context.headers?.[
     SUPPORTED_HEADERS.X_GRAPHQL_TARGET
   ] || context.headers?.[SUPPORTED_HEADERS.X_GRAPHQL_TARGET.toLowerCase()]) as
-    | TTokenRetryGraphQlTarget
-    | undefined;
+    TTokenRetryGraphQlTarget | undefined;
 
   return Boolean(
     graphQLTarget &&
-      [
-        GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-        GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
-        GRAPHQL_TARGETS.SETTINGS_SERVICE,
-        GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-      ].includes(graphQLTarget)
+    [
+      GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+      GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
+      GRAPHQL_TARGETS.SETTINGS_SERVICE,
+      GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+    ].includes(graphQLTarget)
   );
 };
 

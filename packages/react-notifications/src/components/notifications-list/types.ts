@@ -6,8 +6,6 @@ import type {
 
 export type TAppState = {
   notifications: (
-    | TAppNotificationGlobal
-    | TAppNotificationPage
-    | TAppNotificationSide
+    TAppNotificationGlobal | TAppNotificationPage | TAppNotificationSide
   )[];
 };

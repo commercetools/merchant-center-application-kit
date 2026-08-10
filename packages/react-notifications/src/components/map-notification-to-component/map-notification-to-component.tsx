@@ -8,9 +8,7 @@ import type {
 export type Props = {
   mapNotificationToComponent: (
     notification:
-      | TAppNotificationGlobal
-      | TAppNotificationPage
-      | TAppNotificationSide
+      TAppNotificationGlobal | TAppNotificationPage | TAppNotificationSide
   ) => ElementType | null;
   children: ReactNode;
 };
@@ -18,9 +16,7 @@ export type Props = {
 const Context = createContext<
   (
     notification:
-      | TAppNotificationGlobal
-      | TAppNotificationPage
-      | TAppNotificationSide
+      TAppNotificationGlobal | TAppNotificationPage | TAppNotificationSide
   ) => ElementType | null
 >(() => null);
 

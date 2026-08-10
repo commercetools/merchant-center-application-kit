@@ -248,11 +248,9 @@ type MenuItemProps = {
   isMenuOpen: boolean;
   onClick: MouseEventHandler<HTMLElement>;
   onMouseEnter?:
-    | MouseEventHandler<HTMLElement>
-    | FocusEventHandler<HTMLElement>;
+    MouseEventHandler<HTMLElement> | FocusEventHandler<HTMLElement>;
   onMouseLeave?:
-    | MouseEventHandler<HTMLElement>
-    | FocusEventHandler<HTMLElement>;
+    MouseEventHandler<HTMLElement> | FocusEventHandler<HTMLElement>;
   children: ReactNode;
   identifier?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void;

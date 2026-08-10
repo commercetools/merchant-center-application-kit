@@ -46,7 +46,7 @@ const getUserAgent = () => {
       // version: apolloVersion,
       libraryName: [
         typeof window !== 'undefined'
-          ? window.app?.applicationName ?? 'unknown-application-name'
+          ? (window.app?.applicationName ?? 'unknown-application-name')
           : undefined,
         'application-shell',
       ]

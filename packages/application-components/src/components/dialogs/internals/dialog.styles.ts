@@ -79,12 +79,14 @@ export const getModalContentStyles = (props: StyleProps): SerializedStyles => {
     outline: none;
     position: relative;
     pointer-events: none;
-    z-index: ${typeof props.zIndex === 'number'
-      ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
-        // We're assigning value 1 unit higher than the overlay to ensure the content is on top.
-        // It's safe to do that since the modal is topmost in the stacking layer.
-        `${props.zIndex + 1} !important`
-      : 'auto'};
+    z-index: ${
+      typeof props.zIndex === 'number'
+        ? // Use `!important` to overwrite the default value assigned by the Stacking Layer System.
+          // We're assigning value 1 unit higher than the overlay to ensure the content is on top.
+          // It's safe to do that since the modal is topmost in the stacking layer.
+          `${props.zIndex + 1} !important`
+        : 'auto'
+    };
 
     ${gridStyle};
   `;
