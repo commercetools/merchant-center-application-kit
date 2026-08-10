@@ -370,7 +370,7 @@ catalogs:
     webpack: 5.105.1
     webpack-bundle-analyzer: 4.10.2
     webpack-dev-server: 5.2.6
-    webpackbar: 5.0.2
+    webpackbar: 7.0.0
     browserslist: ^4.28.1
     css-loader: 6.11.0
     css-minimizer-webpack-plugin: ^8.0.0
