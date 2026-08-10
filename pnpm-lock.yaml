@@ -587,7 +587,11 @@ catalogs:
       version: 3.19.0
     yaml:
       specifier: ^2.6.1
+<<<<<<< HEAD
       version: 2.8.1
+=======
+      version: 2.9.0
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
   flopflip:
     '@flopflip/combine-adapters':
       specifier: 15.1.11
@@ -26772,7 +26776,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/scope-manager': 8.55.0
       '@typescript-eslint/types': 8.55.0
+<<<<<<< HEAD
       '@typescript-eslint/typescript-estree': 8.55.0(supports-color@8.1.1)(typescript@5.9.3)
+=======
+      '@typescript-eslint/typescript-estree': 8.55.0(typescript@5.9.2)
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
       '@typescript-eslint/visitor-keys': 8.55.0
       debug: 4.4.3(supports-color@8.1.1)
       eslint: 9.39.2(jiti@2.6.1)(supports-color@8.1.1)
@@ -26780,7 +26788,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@typescript-eslint/project-service@8.55.0(supports-color@8.1.1)(typescript@5.9.3)':
+=======
+  '@typescript-eslint/project-service@8.55.0(typescript@5.9.2)':
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.55.0(typescript@5.9.3)
       '@typescript-eslint/types': 8.55.0
@@ -26801,8 +26813,13 @@ snapshots:
   '@typescript-eslint/type-utils@8.55.0(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/types': 8.55.0
+<<<<<<< HEAD
       '@typescript-eslint/typescript-estree': 8.55.0(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/utils': 8.55.0(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+=======
+      '@typescript-eslint/typescript-estree': 8.55.0(typescript@5.9.2)
+      '@typescript-eslint/utils': 8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
       debug: 4.4.3(supports-color@8.1.1)
       eslint: 9.39.2(jiti@2.6.1)(supports-color@8.1.1)
       ts-api-utils: 2.4.0(typescript@5.9.3)
@@ -26812,10 +26829,17 @@ snapshots:
 
   '@typescript-eslint/types@8.55.0': {}
 
+<<<<<<< HEAD
   '@typescript-eslint/typescript-estree@8.55.0(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/project-service': 8.55.0(supports-color@8.1.1)(typescript@5.9.3)
       '@typescript-eslint/tsconfig-utils': 8.55.0(typescript@5.9.3)
+=======
+  '@typescript-eslint/typescript-estree@8.55.0(typescript@5.9.2)':
+    dependencies:
+      '@typescript-eslint/project-service': 8.55.0(typescript@5.9.2)
+      '@typescript-eslint/tsconfig-utils': 8.55.0(typescript@5.9.2)
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
       '@typescript-eslint/types': 8.55.0
       '@typescript-eslint/visitor-keys': 8.55.0
       debug: 4.4.3(supports-color@8.1.1)
@@ -26832,9 +26856,15 @@ snapshots:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.2(jiti@2.6.1)(supports-color@8.1.1))
       '@typescript-eslint/scope-manager': 8.55.0
       '@typescript-eslint/types': 8.55.0
+<<<<<<< HEAD
       '@typescript-eslint/typescript-estree': 8.55.0(supports-color@8.1.1)(typescript@5.9.3)
       eslint: 9.39.2(jiti@2.6.1)(supports-color@8.1.1)
       typescript: 5.9.3
+=======
+      '@typescript-eslint/typescript-estree': 8.55.0(typescript@5.9.2)
+      eslint: 9.39.2(jiti@2.6.1)
+      typescript: 5.9.2
+>>>>>>> 35568a7e0 (chore(chromatic): fix dep issues)
     transitivePeerDependencies:
       - supports-color
 
