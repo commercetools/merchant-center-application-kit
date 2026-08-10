@@ -32,9 +32,8 @@ type TSetupFlopFlipProviderProps = {
   shouldDeferAdapterConfiguration?: boolean;
 };
 
-type TLaunchDarklyUserCustomFields = {
+type TLaunchDarklyUserCustomFieldsBase = {
   kind: 'user';
-  key?: string;
   project: string;
   id: string;
   team: string[];
@@ -42,6 +41,13 @@ type TLaunchDarklyUserCustomFields = {
   subgroup: string;
   cloudEnvironment: string;
 };
+// The LaunchDarkly client-side SDK requires a context to either provide a
+// `key` (non-anonymous) or be marked as `anonymous: true` (in which case the
+// SDK generates a key for it). A context can never satisfy both branches at
+// once, so we model this as a union rather than making `key` optional.
+type TLaunchDarklyUserCustomFields =
+  | (TLaunchDarklyUserCustomFieldsBase & { key: string })
+  | (TLaunchDarklyUserCustomFieldsBase & { anonymous: true });
 type THttpAdapterUserCustomFields = {
   user: {
     key?: string;
@@ -67,13 +73,12 @@ type TParsedHttpAdapterFlags = Record<
 // is no need to be concerned about security.
 const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 
-function getUserContextForLaunchDarklyAdapter(
+export function getUserContextForLaunchDarklyAdapter(
   user?: TSetupFlopFlipProviderProps['user'],
   projectKey?: string
 ): TLaunchDarklyUserCustomFields {
-  return {
-    kind: 'user',
-    key: user?.id,
+  const base = {
+    kind: 'user' as const,
     project: projectKey ?? '',
     id: user?.launchdarklyTrackingId ?? '',
     team: user?.launchdarklyTrackingTeam ?? [],
@@ -81,6 +86,8 @@ function getUserContextForLaunchDarklyAdapter(
     subgroup: user?.launchdarklyTrackingSubgroup ?? '',
     cloudEnvironment: user?.launchdarklyTrackingCloudEnvironment ?? '',
   };
+
+  return user?.id ? { ...base, key: user.id } : { ...base, anonymous: true };
 }
 
 type TFetchedFlags = {
@@ -157,9 +164,10 @@ export const SetupFlopFlipProvider = (props: TSetupFlopFlipProviderProps) => {
           // of the application config.
           // This is mostly useful for internal usage on our staging environments.
           clientSideId: props.ldClientSideId ?? ldClientSideIdProduction,
-          clientOptions: {
-            sendEventsOnlyForVariation: true,
-          },
+          // `sendEventsOnlyForVariation` was removed in @launchdarkly/js-client-sdk v4
+          // (formerly launchdarkly-js-client-sdk v3). It is no longer needed: as of v4,
+          // `allFlags` no longer sends analytics events by default, which is exactly the
+          // behavior this option used to opt into.
         },
         flags,
         context: getUserContextForLaunchDarklyAdapter(

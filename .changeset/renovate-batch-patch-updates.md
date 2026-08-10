@@ -19,6 +19,17 @@
 
 Batch-consolidated patch/minor Renovate dependency updates (rate-limited dashboard backlog, ~116 items reviewed).
 
+The `@flopflip/*` 15.1.7 → 15.1.11 bump pulls in `@launchdarkly/js-client-sdk` v4 as a
+transitive dependency, replacing the unscoped `launchdarkly-js-client-sdk` v3. This is a
+breaking change for `SetupFlopFlipProvider` in `application-shell`:
+
+- The LaunchDarkly user context type now requires either a `key` or `anonymous: true`,
+  never an optional `key`. `getUserContextForLaunchDarklyAdapter` now returns an
+  anonymous context when there's no authenticated user, instead of a context with an
+  undefined `key`.
+- `sdk.clientOptions.sendEventsOnlyForVariation` was removed; the new SDK's `allFlags`
+  no longer sends analytics events by default, which was the entire point of that option.
+
 Bumped the following, each a real `dependencies` entry (not `devDependencies`) of the listed package(s), so each gets a version bump here:
 
 - `@flopflip/*` (combine-adapters, http-adapter, launchdarkly-adapter, memory-adapter, react-broadcast, types) 15.1.7 → 15.1.11 — `application-shell` (all six), `application-components` (`react-broadcast`)
@@ -27,7 +38,7 @@ Bumped the following, each a real `dependencies` entry (not `devDependencies`) o
 - `semver` 7.7.2 → 7.8.5, `uuid` 14.0.0 → 14.0.1 — `cypress`
 - `@rollup/pluginutils` 5.2.0 → 5.4.0, `graphql` 16.11.0 → 16.14.2, `html-webpack-plugin` 5.6.3 → 5.6.8, `mini-css-extract-plugin` 2.9.4 → 2.10.2, `postcss` 8.5.23 → 8.5.26, `react-refresh` 0.17.0 → 0.18.0, `webpack` 5.105.1 → 5.109.2 — `mc-scripts`
 - `graphql` 16.11.0 → 16.14.2, `uuid` 14.0.0 → 14.0.1 — `application-shell-connectors`
-- `babel-jest` 30.2.0 → 30.4.1, `babel-preset-jest` 30.2.0 → 30.4.0, `cosmiconfig` 9.0.0 → 9.0.2, `graphql` 16.11.0 → 16.14.2, `jest-environment-jsdom` 30.2.0 → 30.4.1, `jest-mock` 30.2.0 → 30.4.1 — `jest-preset-mc-app`
+- `cosmiconfig` 9.0.0 → 9.0.2, `graphql` 16.11.0 → 16.14.2 — `jest-preset-mc-app` (the `jest`/`babel-jest`/`babel-preset-jest`/`jest-environment-jsdom`/`jest-mock` bump was reverted; see the pnpm-regression/typecheck fix commits on this branch for why)
 - `@types/react-dom` ^19.0.2 → ^19.2.4 — `react-notifications`, `application-shell` (also `@reduxjs/toolkit` 2.9.0 → 2.12.0, `graphql` 16.11.0 → 16.14.2, `uuid` 14.0.0 → 14.0.1)
 - `typescript` 5.9.2 → 5.9.3 — `eslint-config-mc-app`, `eslint-config-node`
 - `semver` 7.7.2 → 7.8.5 — `create-mc-app`

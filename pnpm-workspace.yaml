@@ -568,12 +568,19 @@ catalogs:
 
   test:
     # Jest core (versions move together)
-    jest: 30.4.2
-    jest-each: 30.4.1
-    jest-environment-jsdom: 30.4.1
-    jest-mock: 30.4.1
-    babel-jest: 30.4.1
-    babel-preset-jest: 30.4.0
+    # Held back from 30.4.x: jest-runtime 30.4 calls a jest-mock ModuleMocker
+    # API (`clearMocksOnScope`) that a stale jest-environment-node@29.x
+    # elsewhere in the tree doesn't implement, and separately,
+    # `require.resolve(request, { paths })` starts running through
+    # moduleNameMapper in 30.4 where 30.2 did not — both break real test
+    # suites in this repo. Revisit once a jest-mock/jest-environment-node
+    # patch lands upstream for the first issue.
+    jest: 30.2.0
+    jest-each: 30.2.0
+    jest-environment-jsdom: 30.2.0
+    jest-mock: 30.2.0
+    babel-jest: 30.2.0
+    babel-preset-jest: 30.2.0
     '@jest/types': 29.6.3
     '@types/jest': ^29.5.14
 

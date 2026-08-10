@@ -246,16 +246,10 @@ const ApolloProviderWrapper = (props: TApolloProviderWrapperProps) => {
     );
   }
   return (
-    <ApolloMockProvider
-      mocks={props.mocks}
-      // The `addTypename` field is a private field of the cache in TS
-      // but we should be able to still access it.
-      // This is to ensure the `addTypename` behavior is the same between the
-      // Apollo cache and the mocked provider.
-      // @ts-expect-error
-      addTypename={apolloClient.cache.addTypename ?? true}
-      cache={apolloClient.cache}
-    >
+    // The `addTypename` prop was removed in @apollo/client v3.14. `MockedProvider`
+    // now always behaves as if `addTypename` were `true`, which matches the
+    // fallback behavior this wrapper used previously.
+    <ApolloMockProvider mocks={props.mocks} cache={apolloClient.cache}>
       {/* eslint-disable-next-line testing-library/no-node-access */}
       {props.children}
     </ApolloMockProvider>
