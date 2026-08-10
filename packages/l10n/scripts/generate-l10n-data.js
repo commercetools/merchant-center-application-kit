@@ -15,7 +15,16 @@ const prettier = require('prettier');
 const supportedLocales = require('../supported-locales');
 const parseUnhandledTimeZones = require('./parse-unhandled-time-zones');
 
-const prettierConfig = prettier.resolveConfig.sync();
+// Prettier v3's config resolution and formatting APIs are async-only
+// (no more `.sync()` variants), so the config is memoized as a promise
+// and awaited wherever formatting happens.
+let prettierConfigPromise;
+const getPrettierConfig = () => {
+  if (!prettierConfigPromise) {
+    prettierConfigPromise = prettier.resolveConfig();
+  }
+  return prettierConfigPromise;
+};
 
 const doesFileExist = (filePath) => {
   try {
@@ -353,9 +362,13 @@ function readTimeZoneTranslationFiles(sourceFilePath) {
   return JSON.parse(fs.readFileSync(sourceFilePath, { encoding: 'utf8' }));
 }
 
-function writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations) {
+async function writeTimeZoneTranslationFiles(
+  sourceFilePath,
+  updatedTranslations
+) {
   const json = JSON.stringify(updatedTranslations, null, 2);
-  const formatted = prettier.format(json, {
+  const prettierConfig = await getPrettierConfig();
+  const formatted = await prettier.format(json, {
     ...prettierConfig,
     parser: 'json',
   });
@@ -424,7 +437,7 @@ function throwIfIncludedTimeZoneIsNotTranslated(
   }
 }
 
-function writeTranslatedTimeZonesForLocale(
+async function writeTranslatedTimeZonesForLocale(
   sourceFilePath,
   newTranslations,
   key
@@ -443,7 +456,7 @@ function writeTranslatedTimeZonesForLocale(
           : newTranslations[timeZoneId],
       };
     }, {});
-  writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations);
+  await writeTimeZoneTranslationFiles(sourceFilePath, updatedTranslations);
   console.log(
     `[${key}]: writing ${
       Object.keys(newTranslations).length
@@ -508,10 +521,12 @@ async function updateTimeZoneData(key) {
           path.join(dataFolderPath, `${locale}.json`)
         ),
       ];
-      translationFilePaths.map((sourceFilePath) =>
-        writeTranslatedTimeZonesForLocale(sourceFilePath, TRANSLATE, key)
+      await Promise.all(
+        translationFilePaths.map((sourceFilePath) =>
+          writeTranslatedTimeZonesForLocale(sourceFilePath, TRANSLATE, key)
+        )
       );
-      writeTimeZoneTranslationFiles(
+      await writeTimeZoneTranslationFiles(
         translationsMapFilePath,
         sortTranslationsMap(translationsMap)
       );
@@ -524,7 +539,7 @@ async function updateTimeZoneData(key) {
     // Given timezones were excluded the file with the exclusion list needs to be written to disk.
     if (EXCLUDE.length) {
       // Write timezones to be excluded to translation map
-      writeTimeZoneTranslationFiles(
+      await writeTimeZoneTranslationFiles(
         translationsMapFilePath,
         sortTranslationsMap(translationsMap)
       );

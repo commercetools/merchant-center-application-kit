@@ -8,7 +8,7 @@ import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { wordify, resolveFilePathByExtension } from '../utils';
 
-function replaceApplicationInfoInApplicationConfig(
+async function replaceApplicationInfoInApplicationConfig(
   filePath: string,
   options: TCliTaskOptions
 ) {
@@ -69,10 +69,12 @@ function replaceApplicationInfoInApplicationConfig(
   });
 
   if (result?.code) {
-    const prettierConfig = prettier.resolveConfig.sync(
+    // Prettier v3's config resolution and formatting APIs are async-only
+    // (no more `.sync()` variants).
+    const prettierConfig = await prettier.resolveConfig(
       options.projectDirectoryPath
     );
-    const formattedData = prettier.format(
+    const formattedData = await prettier.format(
       result.code + os.EOL,
       prettierConfig ?? undefined
     );
@@ -96,14 +98,14 @@ function getApplicationConfigName(options: TCliTaskOptions) {
 function updateApplicationConfig(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating application config file',
-    task: () => {
+    task: async () => {
       const configPath = resolveFilePathByExtension(
         path.join(
           options.projectDirectoryPath,
           getApplicationConfigName(options)
         )
       );
-      replaceApplicationInfoInApplicationConfig(configPath, options);
+      await replaceApplicationInfoInApplicationConfig(configPath, options);
     },
   };
 }
