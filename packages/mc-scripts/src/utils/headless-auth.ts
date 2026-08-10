@@ -1,4 +1,4 @@
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import type { TMcCliAuthToken } from '../types';
 import CredentialsStorage from './credentials-storage';
 

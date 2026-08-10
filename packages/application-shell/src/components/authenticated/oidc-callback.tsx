@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { decode } from 'qss';
 import { useLocation } from 'react-router-dom';
 import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';

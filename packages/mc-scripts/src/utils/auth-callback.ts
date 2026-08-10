@@ -1,6 +1,6 @@
 import http from 'node:http';
 import { exit } from 'node:process';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import type { TMcCliAuthToken } from '../types';
 
 type TAuthCallbackServerOptions = {
