@@ -509,7 +509,7 @@ catalogs:
     '@react-hook/latest': 1.0.3
     '@react-hook/resize-observer': 1.2.6
     classnames: ^2.3.2
-    downshift: 6.1.12
+    downshift: 9.4.0
     formik: 2.4.9
     prop-types: 15.8.1
     raf-schd: ^4.0.3
