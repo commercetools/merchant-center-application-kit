@@ -283,7 +283,7 @@ catalogs:
     # (playground). Never reference these from published packages in packages/*
     # or packages-backend/*; use catalog: (default) for shared deps instead.
     '@commercetools-docs/ui-kit': 24.11.0
-    '@vercel/node': 5.5.5
+    '@vercel/node': 5.9.7
     dotenv-flow: 4.1.0
     graphql-anywhere: 4.2.8
     qs: 6.15.3
