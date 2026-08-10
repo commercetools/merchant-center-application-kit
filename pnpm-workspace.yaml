@@ -50,8 +50,6 @@ minimumReleaseAgeExclude:
   - webpack-dev-server@5.2.6
   # Renovate security update: @babel/core@7.29.6
   - "@babel/core@7.29.6"
-  # Renovate security update: js-yaml@3.15.0 || 3.15.1
-  - js-yaml@3.15.0 || 3.15.1
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -93,7 +91,7 @@ overrides:
   '@typescript-eslint/parser': ^8.0.0
   browserslist: ^4.28.1
   diff: 4.0.4
-  js-yaml: 3.15.1
+  js-yaml: 5.2.3
   node-forge: 1.4.0
   react: 19.2.8
   react-dom: 19.2.8
