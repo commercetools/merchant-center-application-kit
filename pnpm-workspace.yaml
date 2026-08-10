@@ -73,6 +73,7 @@ allowBuilds:
   esbuild: true
   jest-preview: true
   msw: true
+  protobufjs: true
   puppeteer: true
   sharp: true
   unrs-resolver: true
