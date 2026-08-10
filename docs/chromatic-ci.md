@@ -24,7 +24,7 @@ Two things follow, and most surprises trace back to them:
 - Anything the archive misses is simply absent from the screenshot.
 - Anything set at browser **runtime** rather than in **config** doesn't carry across.
 
-Snapshots are automatic — one per test, at the end. There are no per-snapshot calls in the
+Snapshots are automatic: one per test, at the end. There are no per-snapshot calls in the
 specs.
 
 ## Two checks on a PR
@@ -70,7 +70,7 @@ describe('nav menu', { viewportWidth: 1250, viewportHeight: 800 }, () => {
 
 **Screenshots clip to the viewport.** The app shell sets `html, body { height: 100vh }`,
 which stops Chromatic detecting a natural page height. Content taller than the viewport is
-cut off silently — if you add to a snapshotted page, check the result.
+cut off silently, so if you add to a snapshotted page, check the result.
 
 **The upload is skipped when nothing visual changed.** Only `packages/`, `playground/`,
 `cypress/`, `cypress.config.ts` and `pnpm-lock.yaml` trigger it. When skipped, the workflow
@@ -79,8 +79,8 @@ posts a passing `UI Tests` status itself, so the required check still reports.
 **Two tests deliberately produce no screenshot** (`expose: { disableAutoSnapshot: true }`).
 They still run and still assert:
 
-- `should log out with reason "user"` — asserts an `href`, nothing visual.
-- The Custom View iframe test — Chromatic can't archive iframe content, so it came out
+- `should log out with reason "user"`, which asserts an `href` and nothing visual.
+- The Custom View iframe test. Chromatic cannot archive iframe content, so it came out
   blank. Nothing visually covers the Custom View today.
 
 ## Adding a test
@@ -99,7 +99,7 @@ it('name', { expose: { disableAutoSnapshot: true } }, () => {
 `UI Tests: app-kit-e2e-playground` is a required status check on `main`
 (Settings → Branches). Two things to know if you ever touch that config:
 
-- Require the **check**, not the `test_playground` job — the job stays green on visual
+- Require the **check**, not the `test_playground` job, since the job stays green on visual
   changes by design.
 - Use the full namespaced name. Bare `UI Tests` isn't a check this repo posts, and
   requiring it would block every PR.
