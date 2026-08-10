@@ -256,7 +256,7 @@ catalog:
   postcss-load-config: 3.1.4
   prompts: ^2.4.2
   puppeteer: 20.9.0
-  qss: 2.0.3
+  qss: 3.0.0
   querystring-es3: ^0.2.1
   replace: 1.2.2
   reselect: 4.1.8
