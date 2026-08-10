@@ -362,7 +362,7 @@ function loadDotEnvFiles(globalOptions: TCliGlobalOptions) {
       path.join(applicationDirectory, dotenvFile)
     );
     if (doesFileExist(dotenvFilePath)) {
-      dotenvExpand.expand(dotenv.config({ path: dotenvFilePath }));
+      dotenvExpand.expand(dotenv.config({ path: dotenvFilePath, quiet: true }));
     }
   });
 }
