@@ -174,4 +174,5 @@ Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
 - [Custom Applications docs](https://docs.commercetools.com/merchant-center-customizations/custom-applications) — how downstream consumers use this kit.
 - [MC Proxy Router architecture](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router) — explains the multi-SPA hosting model.
 - `CONTRIBUTING.md` in repo root — release process, GraphQL schema setup, local development workflow.
+- `docs/chromatic-ci.md` — visual regression testing for the e2e playground: CI flow, merge gating, viewport rules.
 - Individual package READMEs in `packages/` — per-package API documentation.
