@@ -621,7 +621,7 @@ catalogs:
 
     # Sentry test harness
     sentry-testkit: 6.4.1
-    wait-for-expect: 3.0.2
+    wait-for-expect: 4.0.0
 
     # E2E / visual regression (Cypress + Puppeteer + Percy)
     '@cypress/code-coverage': ^3.14.5
