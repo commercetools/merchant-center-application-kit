@@ -30,6 +30,15 @@ breaking change for `SetupFlopFlipProvider` in `application-shell`:
 - `sdk.clientOptions.sendEventsOnlyForVariation` was removed; the new SDK's `allFlags`
   no longer sends analytics events by default, which was the entire point of that option.
 
+`@commercetools/composable-commerce-test-data` 13.12.0 → 13.13.1 pulling in
+`@faker-js/faker` v10 (which dropped its CJS build) was previously allowlisted in the
+root `jest.test.config.js`'s `transformIgnorePatterns`, but `jest-preset-mc-app`'s own
+preset — the one actually consumed by the standalone starter templates
+(`application-templates/starter{,-typescript}`, `custom-views-templates/starter{,-typescript}`)
+— has its own separate `transformIgnorePatterns` and was missed, so their CI jobs kept
+failing with `Cannot use import statement outside a module`. Added `@faker-js/faker`
+to that preset's allowlist too.
+
 Bumped the following, each a real `dependencies` entry (not `devDependencies`) of the listed package(s), so each gets a version bump here:
 
 - `@flopflip/*` (combine-adapters, http-adapter, launchdarkly-adapter, memory-adapter, react-broadcast, types) 15.1.7 → 15.1.11 — `application-shell` (all six), `application-components` (`react-broadcast`)

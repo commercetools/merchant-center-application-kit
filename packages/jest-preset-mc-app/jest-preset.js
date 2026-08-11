@@ -42,7 +42,10 @@ module.exports = {
     url: 'https://mc.europe-west1.gcp.commercetools.com/',
   },
   testPathIgnorePatterns: ['node_modules', 'cypress'],
-  transformIgnorePatterns: ['node_modules/(?!(uuid|\\.pnpm))'],
+  // `uuid` and `@faker-js/faker` ship ESM-only builds; allowlist them (plus
+  // pnpm's `.pnpm` nesting segment) so Babel still transforms them instead of
+  // Jest choking on their `import` syntax.
+  transformIgnorePatterns: ['node_modules/(?!(uuid|@faker-js/faker|\\.pnpm))'],
   testRegex: '\\.spec\\.jsx?$',
   transform: {
     '^.+\\.(js|jsx|mjs|ts|tsx)$': defaultTransformBabelJest,
