@@ -5,8 +5,7 @@ export type Json = { [key: string]: unknown };
 export type THttpMethod = 'GET' | 'POST' | 'DELETE' | 'HEAD';
 
 export type TForwardToAudiencePolicy =
-  | 'forward-url-full-path'
-  | 'forward-url-origin';
+  'forward-url-full-path' | 'forward-url-origin';
 
 export type TForwardToExchangeTokenClaim = 'permissions';
 
@@ -31,8 +30,7 @@ export interface TSdkActionPayloadForService extends TSdkActionPayloadBase {
   options: Json;
 }
 export type TSdkActionPayload =
-  | TSdkActionPayloadForUri
-  | TSdkActionPayloadForService;
+  TSdkActionPayloadForUri | TSdkActionPayloadForService;
 
 export type TSdkActionGetForUri = {
   type: 'SDK';
@@ -73,8 +71,7 @@ export type TSdkActionDeleteForService = {
   [key: string]: unknown;
 };
 export type TSdkActionDelete =
-  | TSdkActionDeleteForUri
-  | TSdkActionDeleteForService;
+  TSdkActionDeleteForUri | TSdkActionDeleteForService;
 
 export type TSdkActionHeadForUri = {
   type: 'SDK';
@@ -89,7 +86,4 @@ export type TSdkActionHeadForService = {
 export type TSdkActionHead = TSdkActionHeadForUri | TSdkActionHeadForService;
 
 export type TSdkAction =
-  | TSdkActionGet
-  | TSdkActionPost
-  | TSdkActionDelete
-  | TSdkActionHead;
+  TSdkActionGet | TSdkActionPost | TSdkActionDelete | TSdkActionHead;

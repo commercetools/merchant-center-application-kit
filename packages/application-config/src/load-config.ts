@@ -103,9 +103,8 @@ const loadConfig = async (
     'custom-application-config'
   );
   const customViewExplorer = await createExplorerFor('custom-view-config');
-  const customApplicationConfigFile = await customApplicationExplorer.search(
-    applicationPath
-  );
+  const customApplicationConfigFile =
+    await customApplicationExplorer.search(applicationPath);
   const customViewConfigFile = await customViewExplorer.search(applicationPath);
   if (
     (!customApplicationConfigFile || !customApplicationConfigFile.config) &&

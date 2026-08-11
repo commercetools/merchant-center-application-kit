@@ -21,8 +21,7 @@ declare let window: ApplicationWindow;
 export type THeaders = Record<string, string>;
 
 export type TForwardToAudiencePolicy =
-  | 'forward-url-full-path'
-  | 'forward-url-origin';
+  'forward-url-full-path' | 'forward-url-origin';
 
 export type TForwardToExchangeTokenClaim = 'permissions';
 
@@ -140,7 +139,7 @@ const getUserAgent = () => {
       name: 'unknown-http-client',
       libraryName:
         typeof window !== 'undefined'
-          ? window.app?.applicationName ?? 'unknown-application-name'
+          ? (window.app?.applicationName ?? 'unknown-application-name')
           : undefined,
     });
   }

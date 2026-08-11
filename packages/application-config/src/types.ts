@@ -62,7 +62,7 @@ export type CustomViewData = {
 
 // The object result after processing the config file
 export type ApplicationRuntimeConfig<
-  AdditionalEnvironmentProperties extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {},
 > = {
   data: CustomApplicationData | CustomViewData;
   env: AdditionalEnvironmentProperties & ApplicationWindow['app'];
@@ -93,12 +93,12 @@ array = split(items, ',');
 */
 export type Split<
   S extends string,
-  Delimiter extends string
+  Delimiter extends string,
 > = S extends `${infer Head}${Delimiter}${infer Tail}`
   ? [Head, ...Split<Tail, Delimiter>]
   : S extends Delimiter
-  ? []
-  : [S];
+    ? []
+    : [S];
 
 /**
 Step by step takes the first item in an array literal, formats it and adds it to a string literal, and then recursively appends the remainder.
@@ -108,18 +108,18 @@ source: https://github.com/sindresorhus/type-fest/blob/fedbc441a314c1f9f5f6225c9
 */
 type InnerCamelCaseStringArray<
   Parts extends readonly unknown[],
-  PreviousPart
+  PreviousPart,
 > = Parts extends [`${infer FirstPart}`, ...infer RemainingParts]
   ? FirstPart extends undefined
     ? ''
     : FirstPart extends ''
-    ? InnerCamelCaseStringArray<RemainingParts, PreviousPart>
-    : `${PreviousPart extends ''
-        ? FirstPart
-        : Capitalize<FirstPart>}${InnerCamelCaseStringArray<
-        RemainingParts,
-        FirstPart
-      >}`
+      ? InnerCamelCaseStringArray<RemainingParts, PreviousPart>
+      : `${PreviousPart extends ''
+          ? FirstPart
+          : Capitalize<FirstPart>}${InnerCamelCaseStringArray<
+          RemainingParts,
+          FirstPart
+        >}`
   : '';
 
 /**
@@ -130,7 +130,7 @@ source: https://github.com/sindresorhus/type-fest/blob/fedbc441a314c1f9f5f6225c9
 */
 type CamelCaseStringArray<Parts extends readonly string[]> = Parts extends [
   `${infer FirstPart}`,
-  ...infer RemainingParts
+  ...infer RemainingParts,
 ]
   ? Uncapitalize<`${FirstPart}${InnerCamelCaseStringArray<
       RemainingParts,

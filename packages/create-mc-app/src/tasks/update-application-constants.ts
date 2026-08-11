@@ -8,7 +8,7 @@ import { applicationTypes } from '../constants';
 import type { TCliTaskOptions } from '../types';
 import { resolveFilePathByExtension } from '../utils';
 
-function replaceEntryPointUriPathInConstants(
+async function replaceEntryPointUriPathInConstants(
   filePath: string,
   options: TCliTaskOptions
 ) {
@@ -34,11 +34,13 @@ function replaceEntryPointUriPathInConstants(
     retainLines: true,
   });
   if (result?.code) {
-    const prettierConfig = prettier.resolveConfig.sync(
+    // Prettier v3's config resolution and formatting APIs are async-only
+    // (no more `.sync()` variants).
+    const prettierConfig = await prettier.resolveConfig(
       options.projectDirectoryPath
     );
 
-    const formattedData = prettier.format(
+    const formattedData = await prettier.format(
       result.code + os.EOL,
       prettierConfig ?? undefined
     );
@@ -52,11 +54,14 @@ function updateApplicationConstants(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating application constants',
     enabled: options.applicationType === applicationTypes['custom-application'],
-    task: () => {
+    task: async () => {
       const applicationConstantsPath = resolveFilePathByExtension(
         path.join(options.projectDirectoryPath, 'src/constants')
       );
-      replaceEntryPointUriPathInConstants(applicationConstantsPath, options);
+      await replaceEntryPointUriPathInConstants(
+        applicationConstantsPath,
+        options
+      );
     },
   };
 }

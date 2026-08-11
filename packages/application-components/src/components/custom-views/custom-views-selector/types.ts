@@ -5,8 +5,7 @@ export type TCustomViewLocatorCodeLocationDescriptor = {
   search?: string;
 };
 export type TCustomViewLocatorCode =
-  | string
-  | TCustomViewLocatorCodeLocationDescriptor;
+  string | TCustomViewLocatorCodeLocationDescriptor;
 
 export type TCustomViewSelectorProps = {
   onCustomViewsResolved?: (customViews: CustomViewData[]) => void;

@@ -10,7 +10,6 @@ const setCachedApolloClient = (
   cachedApolloClient = apolloClient;
 };
 const getCachedApolloClient = ():
-  | ApolloClient<NormalizedCacheObject>
-  | undefined => cachedApolloClient;
+  ApolloClient<NormalizedCacheObject> | undefined => cachedApolloClient;
 
 export { setCachedApolloClient, getCachedApolloClient };

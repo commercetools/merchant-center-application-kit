@@ -2,14 +2,7 @@ declare module '@commercetools/sdk-client' {
   export type Json = { [key: string]: unknown };
   export type Headers = { [key: string]: string };
   export type MethodType =
-    | 'GET'
-    | 'POST'
-    | 'DELETE'
-    | 'HEAD'
-    | 'OPTIONS'
-    | 'PUT'
-    | 'PATCH'
-    | 'TRACE';
+    'GET' | 'POST' | 'DELETE' | 'HEAD' | 'OPTIONS' | 'PUT' | 'PATCH' | 'TRACE';
   export type ClientRequest = {
     uri: string;
     method: MethodType;

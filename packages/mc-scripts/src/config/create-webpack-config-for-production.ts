@@ -165,9 +165,7 @@ function createWebpackConfigForProduction(
     // In production, we only want to load the polyfills and the app code.
     entry: {
       app: [
-        require.resolve(
-          '@commercetools-frontend/mc-scripts/application-runtime'
-        ),
+        require.resolve('@commercetools-frontend/mc-scripts/application-runtime'),
         !mergedOptions.toggleFlags.disableCoreJs &&
           require.resolve('core-js/stable'),
         mergedOptions.entryPoint,
@@ -221,9 +219,8 @@ function createWebpackConfigForProduction(
         new HtmlWebpackPlugin({
           inject: false,
           filename: 'index.html.template',
-          template: require.resolve(
-            '@commercetools-frontend/mc-html-template/webpack'
-          ),
+          template:
+            require.resolve('@commercetools-frontend/mc-html-template/webpack'),
         }),
       mergedOptions.toggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
         new MiniCssExtractPlugin({
@@ -252,9 +249,7 @@ function createWebpackConfigForProduction(
                 babelrc: false,
                 presets: [
                   [
-                    require.resolve(
-                      '@commercetools-frontend/babel-preset-mc-app'
-                    ),
+                    require.resolve('@commercetools-frontend/babel-preset-mc-app'),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
                       disableCoreJs: mergedOptions.toggleFlags.disableCoreJs,
@@ -482,9 +477,7 @@ function createWebpackConfigForProduction(
                 compact: false,
                 presets: [
                   [
-                    require.resolve(
-                      '@commercetools-frontend/babel-preset-mc-app'
-                    ),
+                    require.resolve('@commercetools-frontend/babel-preset-mc-app'),
                     {
                       runtime: hasJsxRuntime() ? 'automatic' : 'classic',
                     },
@@ -512,9 +505,7 @@ function createWebpackConfigForProduction(
         !(process.env.DISABLE_I18N_MESSAGE_COMPILATION === 'true') && {
           test: /i18n\/data\/.*\.json$/,
           use: [
-            require.resolve(
-              '@commercetools-frontend/mc-scripts/webpack-loaders/i18n-message-compilation-loader'
-            ),
+            require.resolve('@commercetools-frontend/mc-scripts/webpack-loaders/i18n-message-compilation-loader'),
           ],
         },
       ].filter(Boolean),

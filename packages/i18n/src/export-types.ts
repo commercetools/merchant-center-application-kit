@@ -9,12 +9,10 @@ export type TMessageStructuredJson = {
 };
 
 export type TMessageTranslations =
-  | Record<string, string>
-  | Record<string, MessageFormatElement[]>;
+  Record<string, string> | Record<string, MessageFormatElement[]>;
 
 export type TMergedMessages =
-  | TMessageTranslations
-  | Record<string, TMessageStructuredJson>;
+  TMessageTranslations | Record<string, TMessageStructuredJson>;
 
 export type TI18NImportData = {
   default: TMergedMessages;

@@ -7,8 +7,8 @@ import NotificationsPlayground from './components/notifications-playground';
 import StateMachinesDetails from './components/state-machines-details';
 import StateMachinesList from './components/state-machines-list';
 
-const SplitterDemo = lazy(() =>
-  import('./components/splitter-demo/splitter-demo')
+const SplitterDemo = lazy(
+  () => import('./components/splitter-demo/splitter-demo')
 );
 
 const ApplicationRoutes = () => {

@@ -20,8 +20,7 @@ export type Props = {
   // therefore causing flashing of translated content on subsequent re-renders.
   locale?: string;
   applicationMessages:
-    | { [locale: string]: TMessageTranslations }
-    | TMessageTranslationsAsync;
+    { [locale: string]: TMessageTranslations } | TMessageTranslationsAsync;
   children: (state: TRenderFunctionResult) => ReactNode;
 };
 

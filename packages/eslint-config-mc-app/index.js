@@ -108,9 +108,7 @@ module.exports = [
         requireConfigFile: false,
         babelOptions: {
           presets: [
-            require.resolve(
-              '@commercetools-frontend/babel-preset-mc-app/production'
-            ),
+            require.resolve('@commercetools-frontend/babel-preset-mc-app/production'),
           ],
         },
       },

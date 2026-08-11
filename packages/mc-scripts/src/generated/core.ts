@@ -299,9 +299,7 @@ export type TLocalizedString = {
 };
 
 export type TMediaContainer =
-  | TAwsContainer
-  | TAzureBlobStorageContainer
-  | TPublicContainer;
+  TAwsContainer | TAzureBlobStorageContainer | TPublicContainer;
 
 export type TMessagesConfiguration = {
   __typename?: 'MessagesConfiguration';
