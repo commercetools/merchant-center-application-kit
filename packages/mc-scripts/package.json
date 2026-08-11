@@ -121,8 +121,7 @@
     "vite-bundle-analyzer": "catalog:build",
     "webpack": "catalog:build",
     "webpack-bundle-analyzer": "catalog:build",
-    "webpack-dev-server": "catalog:build",
-    "webpackbar": "catalog:build"
+    "webpack-dev-server": "catalog:build"
   },
   "devDependencies": {
     "@commercetools/composable-commerce-test-data": "catalog:",
