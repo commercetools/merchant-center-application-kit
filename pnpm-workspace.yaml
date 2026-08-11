@@ -360,7 +360,16 @@ catalogs:
     vite-bundle-analyzer: 0.23.0
 
     # Webpack + loaders/plugins (mc-scripts / mc-html-template)
-    webpack: 5.109.2
+    # Held back from 5.109.x: webpack's ProgressPlugin now defers option
+    # schema validation until compiler.hooks.validate instead of validating
+    # synchronously in the constructor. webpackbar@5.0.2 (unmaintained)
+    # overwrites `this.options` with its own name/color/reporters/reporter
+    # keys right after calling super() — those keys aren't in webpack's
+    # ProgressPlugin schema, so the deferred validation now fails with
+    # "Invalid options object" and breaks every mc-scripts dev build.
+    # Revisit once webpackbar is fixed/replaced or dropped in favor of
+    # webpack's built-in progress bar.
+    webpack: 5.105.1
     webpack-bundle-analyzer: 4.10.2
     webpack-dev-server: 5.2.6
     webpackbar: 5.0.2
