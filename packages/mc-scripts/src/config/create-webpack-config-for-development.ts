@@ -5,7 +5,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 import type { XastElement, PluginInfo } from 'svgo';
 import webpack, { type Configuration } from 'webpack';
-import WebpackBar from 'webpackbar';
 import type {
   TWebpackConfigToggleFlagsForDevelopment,
   TWebpackConfigOptions,
@@ -162,7 +161,11 @@ function createWebpackConfigForDevelopment(
 
     plugins: [
       loadNimbusWebpackPlugin({ cwd: paths.appRoot }),
-      new WebpackBar(),
+      // Colored progress bar in interactive terminals, plain percentage
+      // lines otherwise (e.g. CI logs). Replaces `webpackbar`, which is
+      // unmaintained and broke on webpack's newer, deferred ProgressPlugin
+      // option validation.
+      new webpack.ProgressPlugin({ progressBar: 'auto' }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
