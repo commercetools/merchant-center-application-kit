@@ -20,6 +20,11 @@ const defaultConfig = {
     /.*"importFrom" and "exportTo" will be removed in a future version of postcss-custom-properties.*/,
     /.*Browserslist: caniuse-lite is outdated.*/,
     /.*Browserslist: browsers data \(caniuse-lite\) is \d+ months old.*/,
+    // @apollo/client v3.14 deprecated `onCompleted`/`onError` on `useQuery`
+    // (recommends deriving state from `data`/`error` in a `useEffect`
+    // instead). Silenced pending a migration of existing `onCompleted`/
+    // `onError` usages (e.g. `am-i-logged-in.tsx`); the options still work.
+    /.*go\.apollo\.dev\/c\/err#.*(onCompleted|onError).*/,
   ],
   notThrowWarnings: [
     /.*@commercetools-frontend\/permissions.*/,

@@ -48,8 +48,11 @@ module.exports = {
         'packages/eslint-config-mc-app/index.spec.js',
       ],
       transformIgnorePatterns: [
-        // Transpile local symlinked packages and ESM-only deps (uuid).
-        'node_modules/(?!\\.pnpm/uuid@)(?!(@commercetools-[frontend|backend]+|uuid)/)',
+        // Transpile local symlinked packages and ESM-only deps (uuid,
+        // @faker-js/faker — the latter is pulled in transitively by
+        // @commercetools/composable-commerce-test-data and dropped its
+        // CommonJS build starting with v10).
+        'node_modules/(?!\\.pnpm/(uuid@|@faker-js\\+faker@))(?!(@commercetools-[frontend|backend]+|uuid|@faker-js/faker)/)',
       ],
       testEnvironment: 'jsdom',
     },

@@ -20,7 +20,7 @@ async function loadMomentLocales(locale: string): Promise<void> {
   const lowercaseLocale = locale.toLowerCase();
 
   switch (lowercaseLocale) {
-
+  
     case 'de':
       await import('moment/dist/locale/de');
       break;
@@ -183,6 +183,11 @@ async function loadMomentLocales(locale: string): Promise<void> {
     case 'en-gm':
       await import('moment/dist/locale/en-gb');
       await defineLocaleIfNeeded('en-gm', 'en-gb');
+      break;
+
+    case 'en-gs':
+      await import('moment/dist/locale/en-gb');
+      await defineLocaleIfNeeded('en-gs', 'en-gb');
       break;
 
     case 'en-gy':

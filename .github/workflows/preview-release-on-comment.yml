@@ -17,7 +17,7 @@ jobs:
       # Get GitHub token via the CT Changesets App
       - name: Generate GitHub token (via CT Changesets App)
         id: generate_github_token
-        uses: tibdex/github-app-token@0af3325639c0a60612b2eeaf010f0f88e468e800 # v2.1.0
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         with:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
@@ -36,7 +36,7 @@ jobs:
       # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: "24.15.0"
+          node-version: "24.19.0"
           registry-url: "https://registry.npmjs.org"
 
       # Ensure npm >=11.5.1 for OIDC support (npm@12 has a broken sigstore dependency)
@@ -55,7 +55,7 @@ jobs:
       - name: Setup npm registry for publishing
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: "24.15.0"
+          node-version: "24.19.0"
           registry-url: "https://registry.npmjs.org"
 
       - name: Publishing preview releases to npm registry

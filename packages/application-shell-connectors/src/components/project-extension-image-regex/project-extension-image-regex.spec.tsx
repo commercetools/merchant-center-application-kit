@@ -75,7 +75,9 @@ const renderTestComponent = ({
     return render(<Component />);
   }
   return render(
-    <ApolloMockProvider mocks={mocks} addTypename={true}>
+    // `addTypename` was removed in @apollo/client v3.14; `MockedProvider` now
+    // always behaves as if it were `true`.
+    <ApolloMockProvider mocks={mocks}>
       <ProjectExtensionProviderForImageRegex skip={skipQuery}>
         <Component />
       </ProjectExtensionProviderForImageRegex>
