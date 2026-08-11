@@ -23,7 +23,7 @@ if (
   process.exit(0);
 }
 
-const { packages } = getPackagesSync();
+const { packages } = getPackagesSync(process.cwd());
 const templateFolderByApplicationType =
   applicationType === 'custom-application'
     ? 'application-templates'

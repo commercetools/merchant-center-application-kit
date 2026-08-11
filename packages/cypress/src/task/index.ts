@@ -40,7 +40,7 @@ const loadEnvironmentVariables = (
       return mergedEnvs;
     }
 
-    const env = require('dotenv').config({ path: envPath });
+    const env = require('dotenv').config({ path: envPath, quiet: true });
     if (env.error) {
       console.error(`Failed to load environment variables from ${envPath}`);
       return mergedEnvs;

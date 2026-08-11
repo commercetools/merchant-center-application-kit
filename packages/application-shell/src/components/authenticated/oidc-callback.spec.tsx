@@ -21,7 +21,7 @@ describe('failed OIDC authentication', () => {
         disableRoutePermissionCheck: true,
       });
       await screen.findByText('Authentication error');
-      screen.getByText('Invalid token specified');
+      screen.getByText('Invalid token specified: must be a string');
     });
   });
 });
