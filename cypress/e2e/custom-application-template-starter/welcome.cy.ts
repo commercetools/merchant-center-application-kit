@@ -16,8 +16,5 @@ describe('Welcome', () => {
     );
     cy.findByText('Processing...').should('not.exist');
     cy.findByText('Fetching channels').should('exist');
-    // FIXME: somehow some styles are not correctly applied when Percy takes the screenshot,
-    // even though when starting the app locally everything looks fine.
-    // cy.percySnapshot();
   });
 });

@@ -71,33 +71,6 @@ jobs:
         env:
           CI: true
 
-  test_visual:
-    runs-on: ubuntu-latest
-
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-
-      - name: Installing dependencies and building packages
-        uses: ./.github/actions/ci
-
-      - name: Building Visual Regression Tests application for UI components
-        run: pnpm visual-testing-app:build
-
-      # Explicitly install the Chrome binary in case it's not available yet.
-      # This workaround is based on the suggestions from https://github.com/puppeteer/puppeteer/issues/9533.
-      - name: Installing Chrome via Puppeteer
-        run: pnpm -C node_modules/puppeteer run postinstall
-        env:
-          PUPPETEER_DOWNLOAD_BASE_URL: https://storage.googleapis.com/chrome-for-testing-public
-
-      - name: Running Visual Regression Tests for UI components
-        run: pnpm vrt:components
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
-
   test_custom_app_starter_js_template:
     runs-on: ubuntu-latest
 
@@ -374,11 +347,10 @@ jobs:
 
       - name: Running End-to-End tests for Playground application
         run: |
-          pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm percy exec -- pnpm test:e2e:playground'
+          pnpm start-server-and-test 'pnpm playground:start:prod:local' http-get://127.0.0.1:3001 'pnpm test:e2e:playground'
         env:
           NODE_ENV: test
           CYPRESS_COVERAGE: 'true'
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
           # Opts this suite alone into Chromatic archiving.
           CHROMATIC_VRT: 'true'
           # Cypress passes this to Electron and Chromatic parses the same string, so

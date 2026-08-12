@@ -17,7 +17,6 @@ describe('State machines', () => {
     });
     cy.findAllByText('Initial').should('exist');
     cy.findByText('Processing...').should('not.exist');
-    cy.percySnapshot();
   });
   it('should render list view and go to details page', () => {
     // Go to details page
@@ -25,6 +24,5 @@ describe('State machines', () => {
     cy.url().should('include', URL_APP_KIT_PLAYGROUND_STATE_MACHINES_ID);
     cy.findByText('LineItemState').should('exist');
     cy.findByText('Processing...').should('not.exist');
-    cy.percySnapshot();
   });
 });

@@ -10,7 +10,6 @@
       "cypress",
       "@chromatic-com/cypress",
       "@commercetools-frontend/cypress/add-commands",
-      "@percy/cypress",
       "@testing-library/cypress",
       "@types/node"
     ]

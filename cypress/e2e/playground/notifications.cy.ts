@@ -22,8 +22,6 @@ describe('Notifications', () => {
     cy.findByLabelText('Side notification').click();
     cy.findByLabelText('Side notification').click();
     cy.findAllByText('ok').should('have.length', 2);
-
-    cy.percySnapshot();
   });
 
   it('should adjust layout for modals when notifications are open', () => {
@@ -45,7 +43,6 @@ describe('Notifications', () => {
     cy.findByText('hello').should('exist');
     cy.findAllByText('oops').should('have.length', 2);
     cy.findAllByText('ok').should('have.length', 2);
-    cy.percySnapshot();
   });
 });
 
@@ -63,13 +60,11 @@ describe('Stacking layers', () => {
     cy.findByLabelText('Open modal 4').should('be.visible').click();
 
     cy.findByLabelText('Open dialog 5').should('be.visible').click();
-    cy.percySnapshot();
   });
 
   it('should correctly stack modal pages when opening nested page', () => {
     cy.visit(`${URL_APP_KIT_PLAYGROUND_NOTIFICATIONS}/1/2/3/4/5`);
 
     cy.findByLabelText('Open dialog 6').should('be.visible').click();
-    cy.percySnapshot();
   });
 });

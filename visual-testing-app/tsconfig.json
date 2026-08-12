@@ -1,3 +1,0 @@
-{
-  "extends": "@commercetools-frontend/application-config/tsconfig-mc-app.json"
-}

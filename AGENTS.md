@@ -128,9 +128,8 @@ for Storybook, `docs/chromatic-e2e-playground.md` for the Cypress playground.
   `@commercetools-backend/*`, and `@commercetools-applications/*` packages are
   published to npm. Breaking changes require major version bumps and migration
   guides in `<package>/migrations/vN.md`.
-- **Internal-only**: `playground`, `storybook`, `visual-testing-app`,
-  `website-components-playground`, `@commercetools-local/*` packages are
-  workspace-only and not published.
+- **Internal-only**: `playground`, `storybook`, `website-components-playground`,
+  `@commercetools-local/*` packages are workspace-only and not published.
 - **Upstream boundary**: the Merchant Center host (proxy router, API gateway)
   and commercetools Composable Commerce APIs are external. This repo provides
   the client-side SDK and shell — it does not own the APIs themselves.

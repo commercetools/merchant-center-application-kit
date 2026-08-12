@@ -38,7 +38,6 @@ describe('when user is authenticated', () => {
       cy.findByText('We could not find what you are looking for').should(
         'exist'
       );
-      cy.percySnapshot();
     });
   });
 });
@@ -60,11 +59,6 @@ describe(
       () => {
         cy.findAllByText('Initial').should('exist');
         cy.findByText('Custom Views:').should('be.visible');
-        cy.percySnapshot(
-          // @ts-ignore
-          cy.state('runnable').fullTitle(),
-          { widths: [900] }
-        );
       }
     );
     it('should expand menu when clicking on the expand button', () => {
@@ -73,7 +67,6 @@ describe(
       cy.window().then((win) =>
         expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
       );
-      cy.percySnapshot();
     });
     it('should show submenu on hover', () => {
       cy.findAllByText('Initial').should('exist');

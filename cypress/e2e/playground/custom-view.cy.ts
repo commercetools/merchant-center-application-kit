@@ -34,8 +34,6 @@ describe('Custom View: Notifications inside iframe', () => {
           }).click();
           cy.findByText(/Operation completed successfully!/i).should('exist');
         });
-
-      cy.percySnapshot();
     }
   );
 });

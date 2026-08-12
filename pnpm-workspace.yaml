@@ -5,7 +5,6 @@ packages:
   - custom-views-templates/*
   - playground
   - storybook
-  - visual-testing-app
   - website-components-playground
 
 # `prefer`, not `strict`: pnpm's strict mode requires the requested version to be
@@ -66,7 +65,6 @@ strictDepBuilds: true
 # build scripts and add it here before merging.
 allowBuilds:
   '@commercetools/nimbus': true
-  '@percy/core': true
   '@swc/core': true
   core-js: true
   core-js-pure: true
@@ -154,7 +152,7 @@ overrides:
 #   react      — react framework and react-bound libraries (router, redux, intl)
 #   repo       — monorepo plumbing & cross-repo cohorts (@manypkg, @commercetools-uikit,
 #                changesets, husky, commitlint, publint, attw)
-#   test       — jest, testing library, msw, percy, puppeteer-based runners
+#   test       — jest, testing library, msw, cypress-based runners
 #
 # Entries inside each named catalog are grouped by sub-cohort (separator
 # comments + blank lines) rather than alphabetized. Keep new entries in
@@ -623,16 +621,10 @@ catalogs:
     sentry-testkit: 6.4.1
     wait-for-expect: 4.0.0
 
-    # E2E / visual regression (Cypress + Puppeteer + Percy + Chromatic)
+    # E2E / visual regression (Cypress + Chromatic)
     '@chromatic-com/cypress': 0.13.1
     '@cypress/code-coverage': ^3.14.5
     '@faker-js/faker': 8.4.1
-    '@percy/cli': 1.32.6
-    '@percy/core': 1.32.6
-    '@percy/cypress': 3.1.9
-    '@percy/puppeteer': 2.0.3
-    jest-environment-puppeteer: 8.0.6
-    jest-puppeteer: 8.0.6
     start-server-and-test: 2.1.5
 
   nimbus:

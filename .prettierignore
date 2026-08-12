@@ -8,7 +8,6 @@ packages/application-config/src/schema.ts
 packages/i18n/src/moment-locales.ts
 **/types/generated/
 schemas/
-.percy.yml
 .cache
 .yarn
 .vercel
