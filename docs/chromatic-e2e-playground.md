@@ -78,6 +78,9 @@ cut off silently, so if you add to a snapshotted page, check the result.
 rendering. When skipped, the workflow posts a passing `UI Tests: app-kit-e2e-playground`
 status itself, so the required check still reports.
 
+Draft PRs do upload, unlike the Storybook surface, which skips them. The e2e tests run on
+drafts either way, so the upload adds little beyond snapshot quota.
+
 **Two tests deliberately produce no screenshot** (`expose: { disableAutoSnapshot: true }`).
 They still run and still assert:
 

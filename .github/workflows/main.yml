@@ -323,7 +323,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          # Full history, not just 2: the gate below decides whether a required status
+          # Full history: the gate below decides whether a required status
           # check gets posted, so an inaccurate diff would be a false pass.
           fetch-depth: 0
 
@@ -394,8 +394,8 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       # The archives are on disk, so this needs neither the server nor Cypress.
-      # `--exit-zero-on-changes` leaves the diff to the required "UI Tests" check;
-      # failing here would skip the coverage steps below with it.
+      # `--exit-zero-on-changes` leaves the verdict to the required
+      # "UI Tests: app-kit-e2e-playground" check; failing here would skip coverage too.
       - name: Upload Cypress archives to Chromatic
         if:
           steps.changed-files.outputs.any_changed == 'true' && github.head_ref !=

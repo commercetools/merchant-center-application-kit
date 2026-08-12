@@ -58,6 +58,7 @@ symlinks so packages can be consumed without building.
 | ---------------------- | ---------------------------------------------------- | ----------------------------------------------------------------- |
 | Tests (single package) | `pnpm --filter @commercetools-frontend/FOO run test` | Uses jest.test.config.js; test files are `*.spec.{js,jsx,ts,tsx}` |
 | Tests (all)            | `pnpm test`                                          | Runs all unit/component tests                                     |
+| E2E (playground)       | `pnpm test:e2e:playground`                           | Needs the playground served on :3001 and `cypress/.env`           |
 | Typecheck              | `pnpm typecheck`                                     | Runs two passes: main tsconfig + tsconfig.test.json               |
 | Lint (JS + CSS)        | `pnpm lint`                                          | Uses jest-runner-eslint and jest-stylelint-runner                 |
 | Build packages         | `pnpm build`                                         | Required before playground or template testing                    |
@@ -98,6 +99,17 @@ number and bump together.
 2. Run `pnpm playground:start` in another terminal.
    The playground app consumes built package output, not source — you must
    build first.
+
+#### Running or changing an e2e test
+
+Specs live in `cypress/e2e/`, one directory per suite; the playground suite is the one
+CI gates on. They drive a real Merchant Center login, so they need
+`cypress/.env` (`CYPRESS_LOGIN_USER`, `CYPRESS_LOGIN_PASSWORD`, `CYPRESS_PROJECT_KEY`)
+and the playground running on :3001 via `pnpm playground:start:prod:local`.
+
+Playground tests also produce Chromatic screenshots, so a layout change to a page
+under test shows up as a visual diff to accept. See
+`docs/chromatic-e2e-playground.md` before changing viewports or adding a spec.
 
 #### Adding a visual regression test
 
