@@ -99,13 +99,24 @@ number and bump together.
    The playground app consumes built package output, not source — you must
    build first.
 
+#### Adding a visual regression test
+
+Stories live in `storybook/src/stories/`, never next to the component, so that
+published packages carry no test scaffolding. Import the component from its
+public entrypoint rather than a deep path. Chromatic captures every story by
+default, so there is nothing to opt into. Run `pnpm storybook:start` to check it
+renders. See `storybook/AGENTS.md` for the full procedure.
+
+Chromatic runs as two projects: `docs/chromatic-components.md` covers the
+Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
+
 ## Boundaries
 
 - **Published packages** (semver obligations): all `@commercetools-frontend/*`,
   `@commercetools-backend/*`, and `@commercetools-applications/*` packages are
   published to npm. Breaking changes require major version bumps and migration
   guides in `<package>/migrations/vN.md`.
-- **Internal-only**: `playground`, `visual-testing-app`,
+- **Internal-only**: `playground`, `storybook`, `visual-testing-app`,
   `website-components-playground`, `@commercetools-local/*` packages are
   workspace-only and not published.
 - **Upstream boundary**: the Merchant Center host (proxy router, API gateway)

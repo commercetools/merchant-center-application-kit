@@ -1,0 +1,97 @@
+name: Chromatic
+
+on:
+  # Manual full build: TurboSnap off, gate bypassed.
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: chromatic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    # Skip draft PRs; always allow push and manual runs.
+    if: github.event.pull_request.draft == false || github.event_name !=
+      'pull_request'
+
+    permissions:
+      contents: read
+      # For the status the skip path posts below.
+      statuses: write
+
+    steps:
+      # Full history: Chromatic needs it to find the baseline build to diff against.
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+
+      # Gate: run only when files that affect rendered output change (a manual
+      # dispatch bypasses it via the step `if:` conditions below).
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
+        with:
+          # push: diff newest commit. PR: diff whole PR (base...head).
+          since_last_remote_commit: ${{ github.event_name == 'push' }}
+          files: |
+            packages/**
+            storybook/**
+            # Dep bumps surface via the lockfile; a lockfile change forces a full
+            # snapshot (TurboSnap can't scope it).
+            pnpm-lock.yaml
+          files_ignore: |
+            storybook/chromatic.config.json
+
+      # A required check has to report even when Chromatic doesn't run. Chromatic
+      # suffixes its contexts per project once a repo links more than one, so the
+      # context below must match that string exactly.
+      - name: No UI changes detected
+        if:
+          (steps.changed-files.outputs.any_changed != 'true' || github.head_ref
+          == 'changeset-release/main') && github.event_name !=
+          'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "::notice::No UI-affecting changes detected. Skipping the Chromatic visual regression build."
+          gh api --method POST "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha || github.sha }}" \
+            -f state=success \
+            -f context='UI Tests: app-kit-components' \
+            -f description='No UI-affecting changes; Chromatic skipped'
+
+      # Stories import workspace packages by name, so those build first.
+      - name: Installing dependencies and building packages
+        if: (steps.changed-files.outputs.any_changed == 'true' ||
+          github.event_name == 'workflow_dispatch') && github.head_ref !=
+          'changeset-release/main'
+        uses: ./.github/actions/ci
+
+      - name: Run Chromatic
+        if: (steps.changed-files.outputs.any_changed == 'true' ||
+          github.event_name == 'workflow_dispatch') && github.head_ref !=
+          'changeset-release/main'
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
+        with:
+          # Per-project token; the Cypress project's lives in main.yml's test_playground.
+          projectToken: ${{ secrets.CHROMATIC_TOKEN_UI_COMPONENTS }}
+          workingDir: storybook
+          storybookBaseDir: storybook
+          # The workspace's own script, not the root wrapper: `pnpm run <script> -- <args>`
+          # swallows the `--output-dir` Chromatic appends, so the upload would be empty.
+          buildScriptName: build
+          zip: true
+          # TurboSnap: snapshot only diff-affected stories (full on dispatch).
+          onlyChanged: ${{ github.event_name != 'workflow_dispatch' }}
+          # Return once Storybook is uploaded; Chromatic tests on its servers and
+          # posts the status check when done. Avoids timeouts on full builds.
+          exitOnceUploaded: true
