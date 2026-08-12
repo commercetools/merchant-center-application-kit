@@ -1,18 +1,18 @@
 # Chromatic Visual Regression Testing (E2E Playground)
 
-Catches unintended visual changes in the Cypress e2e playground. Every test produces a
-screenshot; if one differs from the approved baseline, the PR is blocked until someone
-reviews it.
+Catches unintended visual changes in the Cypress e2e playground. Each test produces a
+screenshot unless it opts out; if one differs from the approved baseline, the PR is
+blocked until someone reviews it.
 
 This covers the **e2e playground** only. `application-components` is a separate Chromatic
 project with its own Storybook-based setup, documented in `docs/chromatic-components.md`.
 
-|                   |                                                      |
-| ----------------- | ---------------------------------------------------- |
-| Chromatic project | `app-kit-e2e-playground`                             |
-| CI job            | `test_playground` in `main.yml`                      |
-| Snapshots         | 11                                                   |
-| Hosted Storybook  | https://main--6a72232dda895583557c8a27.chromatic.com |
+|                     |                                                      |
+| ------------------- | ---------------------------------------------------- |
+| Chromatic project   | `app-kit-e2e-playground`                             |
+| CI job              | `test_playground` in `main.yml`                      |
+| Specs               | `cypress/e2e/playground/`                            |
+| Chromatic permalink | https://main--6a72232dda895583557c8a27.chromatic.com |
 
 ## How it works
 
@@ -26,7 +26,7 @@ Two things follow, and most surprises trace back to them:
 - Anything set at browser **runtime** rather than in **config** doesn't carry across.
 
 Snapshots are automatic: one per test, at the end. There are no per-snapshot calls in the
-specs, and every upload compares all 11.
+specs, and every upload compares all of them.
 
 ## Checks on a PR
 

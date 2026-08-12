@@ -13,7 +13,7 @@ describe('when user is authenticated', () => {
       initialRoute: URL_APP_KIT_PLAYGROUND,
     });
   });
-  // Asserts an href, not a rendering. Percy never snapshotted it.
+  // Asserts an href, not a rendering, so there's nothing to snapshot.
   it(
     'should log out with reason "user"',
     {

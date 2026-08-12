@@ -12,7 +12,6 @@ describe('Custom View: Notifications inside iframe', () => {
   });
 
   // Chromatic archives the top-level document only, so the iframe snapshots blank.
-  // Percy still covers this; the visual check is lost when Percy goes.
   it(
     'should open the Demo Custom View and display a success notification triggered from within the iframe',
     {

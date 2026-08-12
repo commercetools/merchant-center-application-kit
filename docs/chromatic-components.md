@@ -5,7 +5,7 @@ screenshotted; if one differs from the approved baseline, the build reports a vi
 for someone to review.
 
 This covers the **Storybook** surface only. The Cypress e2e playground is a separate
-Chromatic project, wired up in `main.yml`'s `test_playground` job.
+Chromatic project, documented in `docs/chromatic-e2e-playground.md`.
 
 |                   |                                                      |
 | ----------------- | ---------------------------------------------------- |

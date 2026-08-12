@@ -107,8 +107,8 @@ public entrypoint rather than a deep path. Chromatic captures every story by
 default, so there is nothing to opt into. Run `pnpm storybook:start` to check it
 renders. See `storybook/AGENTS.md` for the full procedure.
 
-Chromatic runs as two projects: `docs/chromatic-components.md` covers the
-Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
+Chromatic runs as two projects, one per surface: `docs/chromatic-components.md`
+for Storybook, `docs/chromatic-e2e-playground.md` for the Cypress playground.
 
 ## Boundaries
 
@@ -174,5 +174,5 @@ Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
 - [Custom Applications docs](https://docs.commercetools.com/merchant-center-customizations/custom-applications) — how downstream consumers use this kit.
 - [MC Proxy Router architecture](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router) — explains the multi-SPA hosting model.
 - `CONTRIBUTING.md` in repo root — release process, GraphQL schema setup, local development workflow.
-- `docs/chromatic-e2e-playground.md` - visual regression testing for the e2e playground: CI flow, merge gating, viewport rules.
+- `docs/chromatic-components.md` and `docs/chromatic-e2e-playground.md` - visual regression testing per surface: CI flow, merge gating, viewport rules.
 - Individual package READMEs in `packages/` — per-package API documentation.

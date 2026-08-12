@@ -309,8 +309,7 @@ jobs:
 
     permissions:
       contents: read
-      # The skip path posts "UI Tests: app-kit-e2e-playground" itself, so the required
-      # check still reports when Chromatic doesn't run.
+      # For the status the skip path posts below.
       statuses: write
 
     # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
@@ -395,8 +394,8 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       # The archives are on disk, so this needs neither the server nor Cypress.
-      # Visual diffs are gated by the required "UI Tests: app-kit-e2e-playground" check,
-      # not by failing this job, which would also skip the coverage steps below.
+      # `--exit-zero-on-changes` leaves the diff to the required "UI Tests" check;
+      # failing here would skip the coverage steps below with it.
       - name: Upload Cypress archives to Chromatic
         if:
           steps.changed-files.outputs.any_changed == 'true' && github.head_ref !=
