@@ -58,6 +58,7 @@ symlinks so packages can be consumed without building.
 | ---------------------- | ---------------------------------------------------- | ----------------------------------------------------------------- |
 | Tests (single package) | `pnpm --filter @commercetools-frontend/FOO run test` | Uses jest.test.config.js; test files are `*.spec.{js,jsx,ts,tsx}` |
 | Tests (all)            | `pnpm test`                                          | Runs all unit/component tests                                     |
+| E2E (playground)       | `pnpm test:e2e:playground`                           | Needs the playground served on :3001 and `cypress/.env`           |
 | Typecheck              | `pnpm typecheck`                                     | Runs two passes: main tsconfig + tsconfig.test.json               |
 | Lint (JS + CSS)        | `pnpm lint`                                          | Uses jest-runner-eslint and jest-stylelint-runner                 |
 | Build packages         | `pnpm build`                                         | Required before playground or template testing                    |
@@ -99,6 +100,17 @@ number and bump together.
    The playground app consumes built package output, not source — you must
    build first.
 
+#### Running or changing an e2e test
+
+Specs live in `cypress/e2e/`, one directory per suite; the playground suite is the one
+CI gates on. They drive a real Merchant Center login, so they need
+`cypress/.env` (`CYPRESS_LOGIN_USER`, `CYPRESS_LOGIN_PASSWORD`, `CYPRESS_PROJECT_KEY`)
+and the playground running on :3001 via `pnpm playground:start:prod:local`.
+
+Playground tests also produce Chromatic screenshots, so a layout change to a page
+under test shows up as a visual diff to accept. See
+`docs/chromatic-e2e-playground.md` before changing viewports or adding a spec.
+
 #### Adding a visual regression test
 
 Stories live in `storybook/src/stories/`, never next to the component, so that
@@ -107,8 +119,8 @@ public entrypoint rather than a deep path. Chromatic captures every story by
 default, so there is nothing to opt into. Run `pnpm storybook:start` to check it
 renders. See `storybook/AGENTS.md` for the full procedure.
 
-Chromatic runs as two projects: `docs/chromatic-components.md` covers the
-Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
+Chromatic runs as two projects, one per surface: `docs/chromatic-components.md`
+for Storybook, `docs/chromatic-e2e-playground.md` for the Cypress playground.
 
 ## Boundaries
 
@@ -174,4 +186,5 @@ Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
 - [Custom Applications docs](https://docs.commercetools.com/merchant-center-customizations/custom-applications) — how downstream consumers use this kit.
 - [MC Proxy Router architecture](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-proxy-router) — explains the multi-SPA hosting model.
 - `CONTRIBUTING.md` in repo root — release process, GraphQL schema setup, local development workflow.
+- `docs/chromatic-components.md` and `docs/chromatic-e2e-playground.md` - visual regression testing per surface: CI flow, merge gating, viewport rules.
 - Individual package READMEs in `packages/` — per-package API documentation.

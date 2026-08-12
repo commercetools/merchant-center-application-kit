@@ -11,22 +11,31 @@ describe('Custom View: Notifications inside iframe', () => {
     });
   });
 
-  it('should open the Demo Custom View and display a success notification triggered from within the iframe', () => {
-    cy.findByRole('button', { name: /Demo Custom View/i })
-      .should('be.visible')
-      .click();
+  // Chromatic archives the top-level document only, so the iframe snapshots blank.
+  it(
+    'should open the Demo Custom View and display a success notification triggered from within the iframe',
+    {
+      expose: { disableAutoSnapshot: true },
+    },
+    () => {
+      cy.findByRole('button', { name: /Demo Custom View/i })
+        .should('be.visible')
+        .click();
 
-    cy.get('iframe[title="Custom View: Demo Custom View"]').should('exist');
+      cy.get('iframe[title="Custom View: Demo Custom View"]').should('exist');
 
-    cy.get('iframe[title="Custom View: Demo Custom View"]')
-      .its('0.contentDocument.body')
-      .should('not.be.empty')
-      .then(cy.wrap)
-      .within(() => {
-        cy.findByRole('button', { name: /Show Success Notification/i }).click();
-        cy.findByText(/Operation completed successfully!/i).should('exist');
-      });
+      cy.get('iframe[title="Custom View: Demo Custom View"]')
+        .its('0.contentDocument.body')
+        .should('not.be.empty')
+        .then(cy.wrap)
+        .within(() => {
+          cy.findByRole('button', {
+            name: /Show Success Notification/i,
+          }).click();
+          cy.findByText(/Operation completed successfully!/i).should('exist');
+        });
 
-    cy.percySnapshot();
-  });
+      cy.percySnapshot();
+    }
+  );
 });

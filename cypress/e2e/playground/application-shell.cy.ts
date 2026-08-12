@@ -13,18 +13,25 @@ describe('when user is authenticated', () => {
       initialRoute: URL_APP_KIT_PLAYGROUND,
     });
   });
-  it('should log out with reason "user"', () => {
-    cy.findByRole('button', { name: /open user settings menu/i }).click();
+  // Asserts an href, not a rendering, so there's nothing to snapshot.
+  it(
+    'should log out with reason "user"',
+    {
+      expose: { disableAutoSnapshot: true },
+    },
+    () => {
+      cy.findByRole('button', { name: /open user settings menu/i }).click();
 
-    const queryParams = encode({
-      reason: LOGOUT_REASONS.USER,
-    });
-    cy.findByRole('link', { name: /logout/i }).should(
-      'have.attr',
-      'href',
-      `/logout?${queryParams}`
-    );
-  });
+      const queryParams = encode({
+        reason: LOGOUT_REASONS.USER,
+      });
+      cy.findByRole('link', { name: /logout/i }).should(
+        'have.attr',
+        'href',
+        `/logout?${queryParams}`
+      );
+    }
+  );
   describe('when navigating to an unknown route', () => {
     it('should render a not found page', () => {
       cy.visit(`${URL_BASE}/a-non-existing-route`);
@@ -36,35 +43,42 @@ describe('when user is authenticated', () => {
   });
 });
 
-describe('navigation menu', () => {
-  beforeEach(() => {
-    cy.viewport(1250, 800);
-    cy.loginToMerchantCenter({
-      entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
-      initialRoute: URL_APP_KIT_PLAYGROUND,
+// Chromatic reads the config viewport, not cy.viewport().
+describe(
+  'navigation menu',
+  { viewportWidth: 1250, viewportHeight: 800 },
+  () => {
+    beforeEach(() => {
+      cy.loginToMerchantCenter({
+        entryPointUriPath: ENTRY_POINT_APP_KIT_PLAYGROUND,
+        initialRoute: URL_APP_KIT_PLAYGROUND,
+      });
     });
-  });
-  it('should stay collapsed for small viewports', () => {
-    cy.viewport(900, 800);
-    cy.findAllByText('Initial').should('exist');
-    cy.findByText('Custom Views:').should('be.visible');
-    cy.percySnapshot(
-      // @ts-ignore
-      cy.state('runnable').fullTitle(),
-      { widths: [900] }
+    it(
+      'should stay collapsed for small viewports',
+      { viewportWidth: 900, viewportHeight: 800 },
+      () => {
+        cy.findAllByText('Initial').should('exist');
+        cy.findByText('Custom Views:').should('be.visible');
+        cy.percySnapshot(
+          // @ts-ignore
+          cy.state('runnable').fullTitle(),
+          { widths: [900] }
+        );
+      }
     );
-  });
-  it('should expand menu when clicking on the expand button', () => {
-    cy.findAllByText('Initial').should('exist');
-    cy.findByTestId('menu-expander').click();
-    cy.window().then((win) =>
-      expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
-    );
-    cy.percySnapshot();
-  });
-  it('should show submenu on hover', () => {
-    cy.findAllByText('Initial').should('exist');
-    cy.showNavigationSubmenuItems('State Machines');
-    cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
-  });
-});
+    it('should expand menu when clicking on the expand button', () => {
+      cy.findAllByText('Initial').should('exist');
+      cy.findByTestId('menu-expander').click();
+      cy.window().then((win) =>
+        expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
+      );
+      cy.percySnapshot();
+    });
+    it('should show submenu on hover', () => {
+      cy.findAllByText('Initial').should('exist');
+      cy.showNavigationSubmenuItems('State Machines');
+      cy.findByRole('link', { name: 'Echo Server' }).should('be.visible');
+    });
+  }
+);

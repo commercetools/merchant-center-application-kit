@@ -5,7 +5,7 @@ screenshotted; if one differs from the approved baseline, the build reports a vi
 for someone to review.
 
 This covers the **Storybook** surface only. The Cypress e2e playground is a separate
-Chromatic project, wired up in `main.yml`'s `test_playground` job.
+Chromatic project, documented in `docs/chromatic-e2e-playground.md`.
 
 |                   |                                                      |
 | ----------------- | ---------------------------------------------------- |
@@ -25,6 +25,8 @@ green long before the comparison is done. The verdict arrives later, as a status
 **TurboSnap** (`onlyChanged`) narrows each run to the stories the diff can affect, so a
 typical PR snapshots a handful rather than the whole library. A manual `workflow_dispatch`
 run turns it off and snapshots everything, which is the way to re-baseline deliberately.
+It's set in `chromatic.yml` only, since it has to vary by event; keep it out of
+`chromatic.config.json` or the file's static value can win and quietly re-enable it.
 
 ## Checks on a PR
 
@@ -45,10 +47,12 @@ A diff only reaches Chromatic if it touches `packages/` (where the components li
 `storybook/`, or `pnpm-lock.yaml`. Anything else, a docs edit or a CI tweak, skips the build.
 
 The two other skips are draft PRs and `changeset-release/main`, the release bot's branch.
+Drafts are skipped here but not on the e2e surface, where the tests run regardless and the
+upload rides along.
 
-`storybook/chromatic.config.json` is the one exception inside those paths, since it changes no
-rendered output. A lockfile change always counts, because a dependency bump can alter
-rendering and TurboSnap can't scope it.
+`storybook/chromatic.config.json`, which mirrors the build settings the workflow passes, is
+the one exception inside those paths, since it changes no rendered output. A lockfile change
+always counts, because a dependency bump can alter rendering and TurboSnap can't scope it.
 
 When skipped, the workflow posts a passing `UI Tests: app-kit-components` status itself, so a
 required check still reports rather than leaving the PR waiting forever.
@@ -59,8 +63,8 @@ Don't. A local run publishes into the same project and lands in its build histor
 can take a baseline that no PR reviewed. Debug against `pnpm storybook:start` and let the PR
 build do the comparison.
 
-There is no `chromatic` dependency in this workspace. The CLI ships
-bundled inside `chromaui/action`.
+There is no `chromatic` dependency in this workspace; the CLI ships bundled inside
+`chromaui/action`. The one at the repo root belongs to the Cypress surface.
 
 ## Merge gating
 
