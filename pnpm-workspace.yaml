@@ -304,26 +304,26 @@ catalogs:
 
   build:
     # Babel
-    '@babel/cli': ^7.22.15
-    '@babel/core': ^7.22.17
-    '@babel/preset-env': ^7.22.15
-    '@babel/preset-react': ^7.22.15
-    '@babel/preset-typescript': ^7.22.15
-    '@babel/register': ^7.22.15
-    '@babel/runtime': ^7.22.15
-    '@babel/runtime-corejs3': ^7.22.15
-    '@babel/plugin-proposal-do-expressions': ^7.22.5
-    '@babel/plugin-proposal-export-default-from': ^7.22.17
-    '@babel/plugin-transform-class-properties': ^7.22.5
-    '@babel/plugin-transform-destructuring': ^7.22.15
-    '@babel/plugin-transform-export-namespace-from': ^7.22.11
-    '@babel/plugin-transform-logical-assignment-operators': ^7.22.11
-    '@babel/plugin-transform-object-rest-spread': ^7.22.15
-    '@babel/plugin-transform-private-methods': ^7.22.5
-    '@babel/plugin-transform-private-property-in-object': ^7.22.11
-    '@babel/plugin-transform-regenerator': ^7.22.10
-    '@babel/plugin-transform-runtime': ^7.22.15
-    babel-loader: 8.4.1
+    '@babel/cli': ^8.0.0
+    '@babel/core': ^8.0.0
+    '@babel/preset-env': ^8.0.0
+    '@babel/preset-react': ^8.0.0
+    '@babel/preset-typescript': ^8.0.0
+    '@babel/register': ^8.0.0
+    '@babel/runtime': ^8.0.0
+    '@babel/runtime-corejs3': ^8.0.0
+    '@babel/plugin-proposal-do-expressions': ^8.0.0
+    '@babel/plugin-proposal-export-default-from': ^8.0.0
+    '@babel/plugin-transform-class-properties': ^8.0.0
+    '@babel/plugin-transform-destructuring': ^8.0.0
+    '@babel/plugin-transform-export-namespace-from': ^8.0.0
+    '@babel/plugin-transform-logical-assignment-operators': ^8.0.0
+    '@babel/plugin-transform-object-rest-spread': ^8.0.0
+    '@babel/plugin-transform-private-methods': ^8.0.0
+    '@babel/plugin-transform-private-property-in-object': ^8.0.0
+    '@babel/plugin-transform-regenerator': ^8.0.0
+    '@babel/plugin-transform-runtime': ^8.0.0
+    babel-loader: 10.1.1
     babel-plugin-dev-expression: ^0.2.3
     babel-plugin-formatjs: ^10.5.25
     babel-plugin-import-graphql: ^2.8.1
@@ -424,7 +424,7 @@ catalogs:
     # ESLint
     eslint: ^9.0.0
     eslint-formatter-pretty: 4.1.0
-    '@babel/eslint-parser': ^7.22.15
+    '@babel/eslint-parser': ^8.0.0
 
     # typescript-eslint
     '@typescript-eslint/eslint-plugin': ^8.55.0
