@@ -15,7 +15,7 @@ Shared higher-level UI components (modal pages, detail pages, main pages, dialog
 - **CSS file in published output**: `materials/media-queries.css` is included in the `files` array and published to npm.
 - **Single preconstruct entry point**: `./index.ts`.
 - **GraphQL**: Contains one `.settings.graphql` file for Custom Views selector. Generated types in `src/types/generated/`.
-- **Visual coverage lives elsewhere**: 26 of the repo's stories cover this package, but they are in `storybook/src/stories/` and import through the public entrypoint. Changing a component here can change a Chromatic snapshot with nothing in this directory to hint at it. See `storybook/AGENTS.md`.
+- **Visual coverage lives elsewhere**: most of the repo's stories cover this package, but they live in `storybook/src/stories/` and import through the public entrypoint. Changing a component here can change a Chromatic snapshot with nothing in this directory to hint at it. See `storybook/AGENTS.md` and `docs/chromatic-components.md`.
 
 ## How To Work Here
 

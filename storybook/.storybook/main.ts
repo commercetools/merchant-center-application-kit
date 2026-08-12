@@ -16,8 +16,6 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
 
-  // Storybook generates `iframe.html`, so anything the components need at the
-  // document level has to be injected here.
   previewHead: (head) => `
     ${head}
     <!-- Runtime globals the MC injects via \`mc-html-template\` and Storybook doesn't.

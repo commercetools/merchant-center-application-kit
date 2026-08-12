@@ -5,13 +5,13 @@ screenshotted; if one differs from the approved baseline, the build reports a vi
 for someone to review.
 
 This covers the **Storybook** surface only. The Cypress e2e playground is a separate
-Chromatic project with its own setup.
+Chromatic project, wired up in `main.yml`'s `test_playground` job.
 
 |                   |                                                      |
 | ----------------- | ---------------------------------------------------- |
 | Chromatic project | `app-kit-components`                                 |
 | CI workflow       | `.github/workflows/chromatic.yml`                    |
-| Stories           | 67, across 27 files                                  |
+| Stories           | `storybook/src/stories/`                             |
 | Hosted Storybook  | https://main--6a7214131a71921f118f4b58.chromatic.com |
 
 ## How it works
@@ -23,8 +23,8 @@ The job exits as soon as the upload finishes (`exitOnceUploaded: true`), which i
 green long before the comparison is done. The verdict arrives later, as a status check.
 
 **TurboSnap** (`onlyChanged`) narrows each run to the stories the diff can affect, so a
-typical PR snapshots a handful rather than all 67. A manual `workflow_dispatch` run turns it
-off and snapshots everything, which is the way to re-baseline deliberately.
+typical PR snapshots a handful rather than the whole library. A manual `workflow_dispatch`
+run turns it off and snapshots everything, which is the way to re-baseline deliberately.
 
 ## Checks on a PR
 
@@ -64,9 +64,8 @@ bundled inside `chromaui/action`.
 
 ## Merge gating
 
-`UI Tests: app-kit-components` is a required status check on `main` (Settings → Branches), so
-a snapshot change nobody has accepted blocks the merge. `percy/app-kit-components` is required
-alongside it until Percy is torn down.
+`UI Tests: app-kit-components` is a required status check on `main` (Settings → Branches),
+so a snapshot change nobody has accepted blocks the merge.
 
 Two things to know if you ever touch that config:
 

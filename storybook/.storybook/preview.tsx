@@ -3,7 +3,6 @@ import '../src/globals.css';
 import { withPaddingDecorator } from '../src/decorators/padding-decorator';
 import { withProvidersDecorator } from '../src/decorators/providers-decorator';
 
-// No viewport is pinned, and capture-by-default stands. Both deliberate.
 const preview: Preview = {
   decorators: [withPaddingDecorator, withProvidersDecorator],
   parameters: {

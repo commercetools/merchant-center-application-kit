@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { v4 as uuidv4 } from 'uuid';
+// Not public API: the cache below must be seeded with the same query
+// `use-custom-views-connector.ts` reads with, or the cache-only read misses.
 import FetchCustomViewsQuery from '../../packages/application-components/src/components/custom-views/custom-views-selector/fetch-custom-views-by-locator.settings.graphql';
 import { CUSTOM_VIEW_LOCATORS } from './helpers/constants';
 

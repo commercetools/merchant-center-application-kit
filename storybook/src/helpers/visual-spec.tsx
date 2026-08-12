@@ -2,12 +2,15 @@ import type { ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { designTokens } from '@commercetools-uikit/design-system';
 
+/* `flex-start`, not the default `stretch`, or the box stops shrink-wrapping and
+   this helper loses the one thing that distinguishes it from `VisualSpecGroup`. */
 const SpecRow = styled.div`
   display: flex;
-  align-items: center;
-  gap: ${designTokens.spacing30};
+  flex-direction: column;
+  align-items: flex-start;
+  gap: ${designTokens.spacing20};
   /* Absorbs a small height change so it doesn't shift every state below it. */
-  min-height: 56px;
+  min-height: 96px;
 `;
 
 const Box = styled.div<{ backgroundColor?: string }>`
@@ -15,10 +18,19 @@ const Box = styled.div<{ backgroundColor?: string }>`
     props.backgroundColor ?? designTokens.colorSurface};
 `;
 
+/* Gray, not a tinted family: a colored chip next to a component reads as part of
+   that component's state. */
 const Label = styled.div`
   font-family: ${designTokens.fontFamily};
   font-size: ${designTokens.fontSize30};
   color: ${designTokens.colorSolid};
+  background-color: ${designTokens.colorNeutral90};
+  border-radius: ${designTokens.borderRadius4};
+  padding: ${designTokens.spacing10} ${designTokens.spacing20};
+
+  &::after {
+    content: ':';
+  }
 `;
 
 const GroupContainer = styled.div`
@@ -36,15 +48,8 @@ const GroupBody = styled.div`
 `;
 
 /* A chip rather than a heading, so it reads as a marker and never as component chrome. */
-const GroupLabel = styled.div`
+const GroupLabel = styled(Label)`
   align-self: flex-start;
-  font-family: ${designTokens.fontFamily};
-  font-size: ${designTokens.fontSize20};
-  font-weight: ${designTokens.fontWeight600};
-  color: ${designTokens.colorAccent};
-  background-color: ${designTokens.colorAccent90};
-  border-radius: ${designTokens.borderRadius4};
-  padding: ${designTokens.spacing10} ${designTokens.spacing20};
   margin-bottom: ${designTokens.spacing20};
 `;
 
@@ -61,8 +66,8 @@ type TVisualSpecGroupProps = {
 
 const VisualSpec = ({ label, backgroundColor, children }: TVisualSpecProps) => (
   <SpecRow>
-    <Box backgroundColor={backgroundColor}>{children}</Box>
     <Label>{label}</Label>
+    <Box backgroundColor={backgroundColor}>{children}</Box>
   </SpecRow>
 );
 

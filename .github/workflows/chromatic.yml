@@ -25,8 +25,7 @@ jobs:
 
     permissions:
       contents: read
-      # The skip path posts a passing "UI Tests: app-kit-components" status so a
-      # required check still reports when Chromatic doesn't run.
+      # For the status the skip path posts below.
       statuses: write
 
     steps:
@@ -53,9 +52,9 @@ jobs:
           files_ignore: |
             storybook/chromatic.config.json
 
-      # Post the passing status ourselves, so a required check still reports.
-      # Chromatic suffixes its contexts with the project name once a repo has
-      # more than one linked project, so this must match that exact string.
+      # A required check has to report even when Chromatic doesn't run. Chromatic
+      # suffixes its contexts per project once a repo links more than one, so the
+      # context below must match that string exactly.
       - name: No UI changes detected
         if:
           (steps.changed-files.outputs.any_changed != 'true' || github.head_ref
@@ -83,12 +82,12 @@ jobs:
           'changeset-release/main'
         uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
         with:
-          # Per-surface name; the Cypress project's token lives in main.yml's test_playground.
+          # Per-project token; the Cypress project's lives in main.yml's test_playground.
           projectToken: ${{ secrets.CHROMATIC_TOKEN_UI_COMPONENTS }}
-          # Not a root wrapper script: `pnpm run <script> -- <args>` swallows the
-          # `--output-dir` Chromatic appends, so it would upload an empty directory.
           workingDir: storybook
           storybookBaseDir: storybook
+          # The workspace's own script, not the root wrapper: `pnpm run <script> -- <args>`
+          # swallows the `--output-dir` Chromatic appends, so the upload would be empty.
           buildScriptName: build
           zip: true
           # TurboSnap: snapshot only diff-affected stories (full on dispatch).

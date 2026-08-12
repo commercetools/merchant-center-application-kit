@@ -1,4 +1,4 @@
 # Claude Code Configuration
 
-Read `AGENTS.md` for full project context. This package is part of the monorepo
-— see the root `AGENTS.md` for monorepo-wide commands and conventions.
+Read `AGENTS.md` for full project context, `docs/chromatic-components.md` for how
+Chromatic runs in CI, and the root `AGENTS.md` for monorepo-wide conventions.

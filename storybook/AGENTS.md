@@ -25,13 +25,12 @@ gives a permalink per branch.
 
 | Task          | Command                                                      |
 | ------------- | ------------------------------------------------------------ |
-| Dev server    | `pnpm storybook:start` — port 6006                           |
-| Build         | `pnpm storybook:build` — this is what Chromatic builds in CI |
+| Dev server    | `pnpm storybook:start` (port 6006)                           |
+| Build         | `pnpm storybook:build`, which is what Chromatic builds in CI |
 | Browse hosted | <https://main--6a7214131a71921f118f4b58.chromatic.com>       |
 
-**Don't run Chromatic locally.** A local run publishes into the same project and lands
-in its build history, where it can take a baseline that no PR reviewed. Debug against
-`pnpm storybook:start` and let the PR build do the comparison.
+**Don't run Chromatic locally.** Debug against `pnpm storybook:start` and let the PR
+build do the comparison; reason in `docs/chromatic-components.md`.
 
 ### Adding a VRT story
 
@@ -43,7 +42,7 @@ public entrypoint (`@commercetools-frontend/*`), never a deep path. Then:
 
 | Helper            | Layout                                   | Use for                                          |
 | ----------------- | ---------------------------------------- | ------------------------------------------------ |
-| `VisualSpec`      | Label beside content, box shrinks to fit | Small inline elements: stamps, badges, buttons   |
+| `VisualSpec`      | Label above, box shrinks to fit          | Small inline elements: stamps, badges, buttons   |
 | `VisualSpecGroup` | Label above, children stretch full width | Anything page-sized, full-width, or portal-based |
 
 `VisualSpec`'s box is a flex item, so it shrink-wraps, and any child at
@@ -57,10 +56,9 @@ comes out **0px wide and captures nothing**.
 
 ## Gotchas
 
-- `src/stubs/supported-locales.ts` exists because `packages/l10n` reads its locale list through `babel-plugin-preval`, which Vite doesn't run, so the import lands on a CJS file with no default export and the `application-shell` barrel fails to load.
-- `src/stubs/msw.ts` exists because Storybook 9.1 injects a module mocker that imports `msw/browser`, which msw v1 doesn't have. Delete it when msw reaches v2.
+- `src/stubs/` replaces two modules Vite can't resolve: `packages/l10n`'s locale list, without which the `application-shell` barrel fails to load, and `msw/browser`, which Storybook's module mocker imports and msw v1 doesn't ship. Reasons in each stub, aliases in `.storybook/main.ts`.
 - `globals.css` must import `custom-properties.css`. `resets.css` sets `font-family: var(--font-family)` with no inline fallback, so without it everything renders in the browser's default serif.
 - app-kit's own tokens (`--margin-for-page-content` and friends) are defined by the `ThemeProvider` in `providers-decorator`, and have **no** inline fallbacks. Remove it and page layouts lose their padding silently.
 - No viewport is pinned. Chromatic's default applies, deliberately.
-- `main.ts` shims `window.app` and `process.env`, two runtime globals the MC injects and Storybook doesn't. Reasons are in place; without them the Custom Views selector renders nothing, silently.
+- `main.ts` shims `window.app` and `process.env`, two runtime globals the MC injects and Storybook doesn't. Without them the Custom Views selector renders nothing, silently.
 - Modal-page stories need `shouldDelayOnClose={false}`. `ModalPage` defaults it to `true`, which unmounts the modal via internal state before `onClose` runs, so a no-op handler won't keep it open and nothing re-opens it.

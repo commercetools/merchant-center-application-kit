@@ -107,6 +107,9 @@ public entrypoint rather than a deep path. Chromatic captures every story by
 default, so there is nothing to opt into. Run `pnpm storybook:start` to check it
 renders. See `storybook/AGENTS.md` for the full procedure.
 
+Chromatic runs as two projects: `docs/chromatic-components.md` covers the
+Storybook surface, `docs/chromatic-e2e-playground.md` the Cypress playground.
+
 ## Boundaries
 
 - **Published packages** (semver obligations): all `@commercetools-frontend/*`,
