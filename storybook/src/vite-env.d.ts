@@ -1,2 +1,2 @@
-// Types `import.meta.glob`, which `application-icons.stories.tsx` uses to load the SVGs.
+// `application-icons.stories.tsx` needs these types for `import.meta.glob`.
 /// <reference types="vite/client" />

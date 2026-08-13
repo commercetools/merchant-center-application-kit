@@ -17,7 +17,7 @@ describe('State machines', () => {
     });
     cy.findAllByText('Initial').should('exist');
     cy.findByText('Processing...').should('not.exist');
-    // Gates the Chromatic archive on the async custom views query.
+    // be.visible, not exist: the bar renders collapsed until its query resolves.
     cy.findByText('Custom Views:').should('be.visible');
   });
   it('should render list view and go to details page', () => {
@@ -26,7 +26,7 @@ describe('State machines', () => {
     cy.url().should('include', URL_APP_KIT_PLAYGROUND_STATE_MACHINES_ID);
     cy.findByText('LineItemState').should('exist');
     cy.findByText('Processing...').should('not.exist');
-    // The details modal has no selector; this waits on the list page behind it.
+    // The details modal has no bar; this waits on the list page behind it.
     cy.findByText('Custom Views:').should('be.visible');
   });
 });

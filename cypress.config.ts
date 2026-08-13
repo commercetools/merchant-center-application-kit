@@ -7,6 +7,11 @@ import {
 } from '@commercetools-frontend/cypress/task';
 
 export default defineConfig({
+  // Chromatic's archiver drops off-origin responses. Without the shell's fonts it
+  // re-renders in a fallback face, and the shifted metrics diff every snapshot.
+  expose: {
+    assetDomains: ['fonts.googleapis.com', 'fonts.gstatic.com'],
+  },
   retries: 1,
   video: false,
   e2e: {
