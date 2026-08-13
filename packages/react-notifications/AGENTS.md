@@ -14,6 +14,7 @@ React components for rendering notification UI (global, page, and side domains),
 - Depends on `@commercetools-uikit/*` components for styled notification rendering and `@emotion/react` + `@emotion/styled` for CSS-in-JS.
 - Uses `moment` and `moment-timezone` for timestamp formatting in error notifications.
 - Peer-depends on `react-router-dom` v5 and `react-intl` v7.
+- **Visual coverage lives elsewhere, on two surfaces**: `notification.stories.tsx` covers the global, page and side domains in `storybook/src/stories/`, and the Cypress playground snapshots notifications stacked over modal pages. A rendering change can move a Chromatic snapshot in either project with nothing in this directory to hint at it. See `docs/chromatic-components.md` and `docs/chromatic-e2e-playground.md`.
 
 ## How To Work Here
 

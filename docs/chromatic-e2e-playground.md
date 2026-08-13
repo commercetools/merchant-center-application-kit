@@ -11,22 +11,26 @@ project with its own Storybook-based setup, documented in `docs/chromatic-compon
 | ------------------- | ---------------------------------------------------- |
 | Chromatic project   | `app-kit-e2e-playground`                             |
 | CI job              | `test_playground` in `main.yml`                      |
+| Repo secret         | `CHROMATIC_TOKEN_E2E_PLAYGROUND`                     |
 | Specs               | `cypress/e2e/playground/`                            |
 | Chromatic permalink | https://main--6a72232dda895583557c8a27.chromatic.com |
 
 ## How it works
 
 Chromatic does **not** screenshot your browser. During the Cypress run it captures the DOM
-and every asset, writes them to `chromatic-archives/`, and a later CI step uploads that
-archive. Chromatic then re-renders it on its own servers and compares against the baseline.
+and the assets it's allowed to keep, writes them to `chromatic-archives/`, and a later CI
+step uploads that archive. Chromatic then re-renders it on its own servers and compares
+against the baseline.
 
-Two things follow, and most surprises trace back to them:
+Three things follow, and most surprises trace back to them:
 
-- Anything the archive misses is simply absent from the screenshot.
+- The archiver keeps same-origin responses plus whatever `expose.assetDomains` names in
+  `cypress.config.ts`. The shell loads its fonts off-origin, so those domains are listed.
+- What it cannot archive at all, iframes above all, is simply absent from the screenshot.
 - Anything set at browser **runtime** rather than in **config** doesn't carry across.
 
-Snapshots are automatic: one per test, at the end. There are no per-snapshot calls in the
-specs, and every upload compares all of them.
+Snapshots are automatic: one per test, serialized from the live DOM in an `afterEach`.
+There are no per-snapshot calls in the specs, and every upload compares all of them.
 
 ## Checks on a PR
 
@@ -60,6 +64,11 @@ Two env vars on the Cypress step, both required:
   Without it the run fails with _"Please provide a port number"_.
 
 ## Gotchas
+
+**Assert `be.visible`, not `exist`, on anything async.** The archive is the DOM as it stands
+when the test body ends, so assertions are the only thing making it wait.
+`CustomViewsSelector` renders its markup immediately and collapses to `height: 0` until its
+query resolves, so `exist` passes at first paint and captures an empty bar, test still green.
 
 **`cy.viewport()` does nothing for screenshots.** Chromatic reads the Cypress **config**
 viewport, so set it on the `describe`/`it` instead:

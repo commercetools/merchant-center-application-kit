@@ -11,6 +11,7 @@ Chromatic project, documented in `docs/chromatic-e2e-playground.md`.
 | ----------------- | ---------------------------------------------------- |
 | Chromatic project | `app-kit-components`                                 |
 | CI workflow       | `.github/workflows/chromatic.yml`                    |
+| Repo secret       | `CHROMATIC_TOKEN_UI_COMPONENTS`                      |
 | Stories           | `storybook/src/stories/`                             |
 | Hosted Storybook  | https://main--6a7214131a71921f118f4b58.chromatic.com |
 

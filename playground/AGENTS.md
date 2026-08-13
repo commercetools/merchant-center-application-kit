@@ -15,6 +15,7 @@ Internal Custom Application used for local development testing of the applicatio
 - The echo server view requires a local Express server (`pnpm start:server`) and an HTTPS tunnel (e.g. ngrok) — see `README.md` for env var setup.
 - Configured via `custom-application-config.mjs` (not the standard `.env` + JSON config pattern).
 - Deployed to Vercel for preview environments (`vercel.json` present); Vercel build runs `pnpm run -w build && pnpm build`.
+- **This app is what the e2e Chromatic snapshots capture.** The playground specs in `cypress/e2e/playground/` screenshot these routes running, so changing a view here moves a snapshot in the `app-kit-e2e-playground` project with nothing in this directory to hint at it. See `docs/chromatic-e2e-playground.md`.
 
 ## How To Work Here
 
