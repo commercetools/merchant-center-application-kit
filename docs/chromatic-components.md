@@ -26,8 +26,9 @@ green long before the comparison is done. The verdict arrives later, as a status
 **TurboSnap** (`onlyChanged`) narrows each run to the stories the diff can affect, so a
 typical PR snapshots a handful rather than the whole library. A manual `workflow_dispatch`
 run turns it off and snapshots everything, which is the way to re-baseline deliberately.
-It's set in `chromatic.yml` only, since it has to vary by event; keep it out of
-`chromatic.config.json` or the file's static value can win and quietly re-enable it.
+Every setting lives in `chromatic.yml`, and there is deliberately no
+`chromatic.config.json`. A static `onlyChanged` in one can win over the workflow and
+quietly re-enable TurboSnap on the very dispatch run meant to re-baseline everything.
 
 ## Checks on a PR
 
@@ -51,9 +52,8 @@ The two other skips are draft PRs and `changeset-release/main`, the release bot'
 Drafts are skipped here but not on the e2e surface, where the tests run regardless and the
 upload rides along.
 
-`storybook/chromatic.config.json`, which mirrors the build settings the workflow passes, is
-the one exception inside those paths, since it changes no rendered output. A lockfile change
-always counts, because a dependency bump can alter rendering and TurboSnap can't scope it.
+A lockfile change always counts, because a dependency bump can alter rendering and
+TurboSnap can't scope it.
 
 When skipped, the workflow posts a passing `UI Tests: app-kit-components` status itself, so a
 required check still reports rather than leaving the PR waiting forever.
