@@ -67,6 +67,8 @@ describe(
       cy.window().then((win) =>
         expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
       );
+      // Gates the Chromatic archive on the async custom views query.
+      cy.findByText('Custom Views:').should('be.visible');
     });
     it('should show submenu on hover', () => {
       cy.findAllByText('Initial').should('exist');
