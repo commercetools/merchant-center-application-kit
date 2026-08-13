@@ -7,10 +7,13 @@ import {
 } from '@commercetools-frontend/cypress/task';
 
 export default defineConfig({
-  // Chromatic's archiver drops off-origin responses unless they're named here, and
-  // the shell loads its fonts off-origin.
   expose: {
+    // Chromatic's archiver drops off-origin responses unless they're named here, and
+    // the shell loads its fonts off-origin.
     assetDomains: ['fonts.googleapis.com', 'fonts.gstatic.com'],
+    // Notifications animate `max-height`, so a mid-animation capture shifts everything
+    // below them. Ending the animation first makes the frame deterministic.
+    pauseAnimationAtEnd: true,
   },
   retries: 1,
   video: false,
