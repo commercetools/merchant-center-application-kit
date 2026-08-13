@@ -394,15 +394,23 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
 
       # The archives are on disk, so this needs neither the server nor Cypress.
-      # `--exit-zero-on-changes` leaves the verdict to the required
-      # "UI Tests: app-kit-e2e-playground" check; failing here would skip coverage too.
+      # Use the official Action rather than the bare CLI: on a PR the checkout
+      # is a detached HEAD, so the bare CLI can't resolve the branch, warns
+      # "Pull request status updates likely won't work properly", and never
+      # posts the "UI Tests: app-kit-e2e-playground" status back — leaving that
+      # required check pending forever even though the Chromatic build passed.
+      # The Action forwards the workflow's PR/branch context so it reports back.
+      # `exitZeroOnChanges` leaves the verdict to that required check; failing
+      # here would skip coverage too.
       - name: Upload Cypress archives to Chromatic
         if:
           steps.changed-files.outputs.any_changed == 'true' && github.head_ref !=
           'changeset-release/main'
-        run: pnpm chromatic --cypress --exit-zero-on-changes
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_TOKEN_E2E_PLAYGROUND }}
+        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v18.0.1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_TOKEN_E2E_PLAYGROUND }}
+          cypress: true
+          exitZeroOnChanges: true
 
       # Chromatic didn't run, so post its required check ourselves or the PR waits forever.
       - name: No UI changes detected
