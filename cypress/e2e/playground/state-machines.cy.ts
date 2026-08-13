@@ -27,6 +27,6 @@ describe('State machines', () => {
     cy.findByText('LineItemState').should('exist');
     cy.findByText('Processing...').should('not.exist');
     // The details modal has no selector; this waits on the list page behind it.
-    cy.findByText('Custom Views:').should('exist');
+    cy.findByText('Custom Views:').should('be.visible');
   });
 });

@@ -43,8 +43,10 @@ describe('Notifications', () => {
     cy.findByText('hello').should('exist');
     cy.findAllByText('oops').should('have.length', 2);
     cy.findAllByText('ok').should('have.length', 2);
-    // Gates the Chromatic archive on the async custom views query.
-    cy.findAllByText('Custom Views:').should('exist');
+    // Gates the archive on the top page's async custom views query.
+    cy.findByLabelText('Modal page 2').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
   });
 });
 
@@ -61,16 +63,24 @@ describe('Stacking layers', () => {
     cy.findByLabelText('Open modal 3').should('be.visible').click();
     cy.findByLabelText('Open modal 4').should('be.visible').click();
 
+    // Gates the archive on the top page's async custom views query.
+    cy.findByLabelText('Modal page 4').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
+
     cy.findByLabelText('Open dialog 5').should('be.visible').click();
-    // Gates the Chromatic archive on the async custom views query.
-    cy.findAllByText('Custom Views:').should('exist');
   });
 
   it('should correctly stack modal pages when opening nested page', () => {
     cy.visit(`${URL_APP_KIT_PLAYGROUND_NOTIFICATIONS}/1/2/3/4/5`);
 
+    // The deep link mounts all five pages at once, so this has to name the top
+    // one: an outer page's bar rendering first would satisfy a looser check
+    // while the only one on screen is still loading.
+    cy.findByLabelText('Modal page 5').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
+
     cy.findByLabelText('Open dialog 6').should('be.visible').click();
-    // Gates the Chromatic archive on the async custom views query.
-    cy.findAllByText('Custom Views:').should('exist');
   });
 });
