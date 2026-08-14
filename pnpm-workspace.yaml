@@ -230,7 +230,7 @@ catalog:
   cypress: 15.20.0
   debounce-async: 0.0.2
   deep-diff: 1.0.2
-  dompurify: ^3.0.0
+  dompurify: ^3.4.13
   dotenv: 17.4.2
   execa: 5.1.1
   express: ^4.21.2
