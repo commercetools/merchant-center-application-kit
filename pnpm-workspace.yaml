@@ -382,7 +382,7 @@ catalogs:
     '@pmmmwh/react-refresh-webpack-plugin': 0.6.2
     react-dev-utils: 12.0.1
     react-refresh: 0.18.0
-    serialize-javascript: 7.0.7
+    serialize-javascript: 7.1.0
     style-loader: 3.3.4
     svg-url-loader: 8.1.0
     '@svgr/babel-preset': ^6.5.1
@@ -587,7 +587,7 @@ catalogs:
     jest-environment-jsdom: 30.2.0
     jest-mock: 30.2.0
     babel-jest: 30.4.1
-    babel-preset-jest: 30.2.0
+    babel-preset-jest: 30.4.0
     '@jest/types': 29.6.3
     '@types/jest': ^29.5.14
 
@@ -636,5 +636,5 @@ catalogs:
     start-server-and-test: 2.1.5
 
   nimbus:
-    '@commercetools/nimbus': 3.4.0
+    '@commercetools/nimbus': 3.5.0
     '@commercetools/nimbus-icons': ^3.2.0
