@@ -3,6 +3,24 @@ import {
   ENTRY_POINT_APP_KIT_PLAYGROUND,
 } from '../../support/urls';
 
+// The reveal animation drives a ResizeObserver whose fractional height is interpolated
+// into the portals container's `top` calc. Archiving mid-animation freezes a subpixel
+// offset into the snapshot, which rounds differently every build.
+const waitForNotificationsToSettle = () => {
+  [
+    '#notifications-global',
+    '#notifications-page',
+    '#notifications-side',
+  ].forEach((selector) => {
+    cy.get(selector).should(($el) => {
+      const running = $el[0]
+        .getAnimations({ subtree: true })
+        .filter((animation) => animation.playState === 'running');
+      expect(running).to.have.length(0);
+    });
+  });
+};
+
 describe('Notifications', () => {
   beforeEach(() => {
     cy.loginToMerchantCenter({
@@ -23,7 +41,7 @@ describe('Notifications', () => {
     cy.findByLabelText('Side notification').click();
     cy.findAllByText('ok').should('have.length', 2);
 
-    cy.percySnapshot();
+    waitForNotificationsToSettle();
   });
 
   it('should adjust layout for modals when notifications are open', () => {
@@ -45,7 +63,12 @@ describe('Notifications', () => {
     cy.findByText('hello').should('exist');
     cy.findAllByText('oops').should('have.length', 2);
     cy.findAllByText('ok').should('have.length', 2);
-    cy.percySnapshot();
+    // be.visible, not exist: the bar renders collapsed until its query resolves.
+    cy.findByLabelText('Modal page 2').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
+
+    waitForNotificationsToSettle();
   });
 });
 
@@ -62,14 +85,21 @@ describe('Stacking layers', () => {
     cy.findByLabelText('Open modal 3').should('be.visible').click();
     cy.findByLabelText('Open modal 4').should('be.visible').click();
 
+    cy.findByLabelText('Modal page 4').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
+
     cy.findByLabelText('Open dialog 5').should('be.visible').click();
-    cy.percySnapshot();
   });
 
   it('should correctly stack modal pages when opening nested page', () => {
     cy.visit(`${URL_APP_KIT_PLAYGROUND_NOTIFICATIONS}/1/2/3/4/5`);
 
+    // Five of these mount at once here, so scope to the one on screen.
+    cy.findByLabelText('Modal page 5').within(() => {
+      cy.findByText('Custom Views:').should('be.visible');
+    });
+
     cy.findByLabelText('Open dialog 6').should('be.visible').click();
-    cy.percySnapshot();
   });
 });

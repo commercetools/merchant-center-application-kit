@@ -49,9 +49,6 @@ jobs:
             # Dep bumps surface via the lockfile; a lockfile change forces a full
             # snapshot (TurboSnap can't scope it).
             pnpm-lock.yaml
-          files_ignore: |
-            # Build settings only, so a change here renders nothing differently.
-            storybook/chromatic.config.json
 
       # A required check has to report even when Chromatic doesn't run. Chromatic
       # suffixes its contexts per project once a repo links more than one, so the

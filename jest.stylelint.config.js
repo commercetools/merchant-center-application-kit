@@ -15,8 +15,6 @@ module.exports = {
     '.vercel',
     '.spec.js',
     '.vercel',
-    '.visualspec.js',
-    '.visualroute.js',
     'packages/jest-stylelint-runner/',
     'test-utils',
   ],

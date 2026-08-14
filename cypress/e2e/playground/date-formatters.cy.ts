@@ -14,6 +14,5 @@ describe('Date formatters', { viewportHeight: 1600 }, () => {
   it('should render date formatters view', () => {
     // This is the latest locale formats card loaded in the view
     cy.findByText(/fr-FR/i);
-    cy.percySnapshot();
   });
 });

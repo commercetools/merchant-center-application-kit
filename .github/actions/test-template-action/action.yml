@@ -127,8 +127,7 @@ runs:
         ENABLE_EXPERIMENTAL_VITE_BUNDLER: 'true'
         CTP_INITIAL_PROJECT_KEY: ${{ inputs.cypress-project-key }}
 
-    # Explicitly install the Chrome binary in case it's not available yet.
-    # Same workaround as the visual-regression-tests job uses — the CI
+    # Explicitly install the Chrome binary in case it's not available yet. The CI
     # composite action's `pnpm install` sets PUPPETEER_DOWNLOAD_BASE_URL but
     # puppeteer's postinstall doesn't always land Chrome in the cache dir
     # that `puppeteer.launch()` looks in. See

@@ -10,9 +10,6 @@
     "packages/**/*.spec.tsx",
     "packages-backend/**/*.spec.ts",
     "packages-backend/**/*.spec.tsx",
-    "visual-testing-app/**/*.visualspec.ts",
-    "visual-testing-app/**/*.spec.ts",
-    "visual-testing-app/**/*.spec.tsx",
     "packages/application-components/src/components/dialogs/internals/dialog-test-utils.tsx",
     "@types-extensions/**/*.d.ts"
   ],

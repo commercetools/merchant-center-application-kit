@@ -12,7 +12,6 @@ const config: Config = {
     'application-templates/',
     'custom-views-templates/',
     'playground/',
-    'visual-testing-app/',
   ],
   testMatch: ['**/*.spec.js', '**/*.spec.ts'],
   watchPlugins: ['jest-watch-typeahead/filename'],

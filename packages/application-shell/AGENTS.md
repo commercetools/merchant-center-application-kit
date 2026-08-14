@@ -13,6 +13,7 @@ Runtime shell that bootstraps every Merchant Center customization — provides a
 - **Three preconstruct entry points**: `./index.ts` (main shell + re-exports from connectors and flopflip), `./ssr/index.ts` (permission formatters for server-side use), `./test-utils/index.ts` (full-stack test harness wrapping Apollo, Redux, IntlProvider, Router, flopflip, and permissions).
 - **Re-exports**: The main entry re-exports `useMcQuery`, `useMcMutation`, and other Apollo hooks from `application-shell-connectors`, plus `entryPointUriPathToPermissionKeys` from `application-config/ssr`, plus all flopflip toggle APIs. Consumers typically import everything from this package rather than from the underlying packages directly.
 - **GraphQL files**: Contains `.mc.graphql`, `.settings.graphql`, and `.proxy.graphql` files for shell-internal queries (user, project, navbar, feature flags). Generated types live in `src/types/generated/`.
+- **Visual coverage lives elsewhere, on two surfaces**: `ShellSplitter` has stories in `storybook/src/stories/`, and the Cypress playground snapshots the running shell (navigation menu, routing, not-found). A chrome or layout change can move a Chromatic snapshot in either project with nothing in this directory to hint at it. See `docs/chromatic-components.md` and `docs/chromatic-e2e-playground.md`.
 
 ## How To Work Here
 

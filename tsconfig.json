@@ -10,13 +10,11 @@
     "packages",
     "packages-backend",
     "storybook",
-    "visual-testing-app",
     "website-components-playground"
   ],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
-    "**/*.visualspec.ts",
     "**/test/**",
     "packages/application-components/src/components/dialogs/internals/dialog-test-utils.tsx"
   ],

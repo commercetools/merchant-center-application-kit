@@ -1,7 +1,0 @@
-@import '@commercetools-uikit/design-system/materials/resets.css';
-
-html,
-body {
-  font-size: var(--font-size-30);
-  height: 100vh;
-}

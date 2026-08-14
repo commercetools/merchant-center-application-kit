@@ -75,7 +75,6 @@ ignore:
   - "examples"
   - "website"
   - "website-components-playground"
-  - "visual-testing-app"
   - "test-data"
   - "graphql-test-utils"
   - "custom-views-templates/"
