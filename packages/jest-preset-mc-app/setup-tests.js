@@ -22,3 +22,10 @@ Object.defineProperty(window, 'TextDecoder', {
   writable: true,
   value: util.TextDecoder,
 });
+
+if (!window.matchMedia) {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: util.matchMedia,
+  });
+}
