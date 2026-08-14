@@ -1090,6 +1090,7 @@ describe('processing a config with file path variable placeholders', () => {
         servedByProxy: false,
         __DEVELOPMENT__: {
           accountLinks: undefined,
+          mcIdentityLoginModeOverride: undefined,
           menuLinks: {
             icon: expect.stringContaining('<svg'),
             defaultLabel: 'Avengers',
