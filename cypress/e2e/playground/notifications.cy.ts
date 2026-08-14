@@ -3,6 +3,24 @@ import {
   ENTRY_POINT_APP_KIT_PLAYGROUND,
 } from '../../support/urls';
 
+// The reveal animation drives a ResizeObserver whose fractional height is interpolated
+// into the portals container's `top` calc. Archiving mid-animation freezes a subpixel
+// offset into the snapshot, which rounds differently every build.
+const waitForNotificationsToSettle = () => {
+  [
+    '#notifications-global',
+    '#notifications-page',
+    '#notifications-side',
+  ].forEach((selector) => {
+    cy.get(selector).should(($el) => {
+      const running = $el[0]
+        .getAnimations({ subtree: true })
+        .filter((animation) => animation.playState === 'running');
+      expect(running).to.have.length(0);
+    });
+  });
+};
+
 describe('Notifications', () => {
   beforeEach(() => {
     cy.loginToMerchantCenter({
@@ -22,6 +40,8 @@ describe('Notifications', () => {
     cy.findByLabelText('Side notification').click();
     cy.findByLabelText('Side notification').click();
     cy.findAllByText('ok').should('have.length', 2);
+
+    waitForNotificationsToSettle();
   });
 
   it('should adjust layout for modals when notifications are open', () => {
@@ -47,6 +67,8 @@ describe('Notifications', () => {
     cy.findByLabelText('Modal page 2').within(() => {
       cy.findByText('Custom Views:').should('be.visible');
     });
+
+    waitForNotificationsToSettle();
   });
 });
 
