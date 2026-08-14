@@ -413,13 +413,13 @@ catalogs:
     # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
     # parser ship together on majors.
     '@formatjs/cli': 6.16.16
-    '@formatjs/cli-lib': ^6.3.8
-    '@formatjs/icu-messageformat-parser': 2.11.4
-    '@formatjs/intl-getcanonicallocales': ^2.2.1
-    '@formatjs/intl-listformat': ^7.4.1
-    '@formatjs/intl-locale': ^3.3.3
-    '@formatjs/intl-numberformat': ^8.7.1
-    '@formatjs/intl-pluralrules': ^5.2.5
+    '@formatjs/cli-lib': ^9.0.0
+    '@formatjs/icu-messageformat-parser': 3.5.16
+    '@formatjs/intl-getcanonicallocales': ^3.0.0
+    '@formatjs/intl-listformat': ^8.0.0
+    '@formatjs/intl-locale': ^5.0.0
+    '@formatjs/intl-numberformat': ^9.0.0
+    '@formatjs/intl-pluralrules': ^6.0.0
 
   lint:
     # ESLint
@@ -466,7 +466,7 @@ catalogs:
     # React stack
     react: '19.x'
     react-dom: '19.x'
-    react-intl: '7.x'
+    react-intl: '10.x'
     react-router-dom: '5.x'
     react-redux: '7.x || 9.x'
     redux: '4.x || 5.x'
@@ -502,7 +502,7 @@ catalogs:
     redux-thunk: 3.1.0
 
     # i18n (react-intl) — formatjs runtime/cli lives in `catalog:formatjs`
-    react-intl: ^7.1.4
+    react-intl: ^10.0.0
 
     # React-bound utilities
     '@radix-ui/react-dialog': 1.1.23
