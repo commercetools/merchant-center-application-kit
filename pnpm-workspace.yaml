@@ -628,5 +628,5 @@ catalogs:
     start-server-and-test: 2.1.5
 
   nimbus:
-    '@commercetools/nimbus': 3.5.0
+    '@commercetools/nimbus': 3.5.1
     '@commercetools/nimbus-icons': ^3.2.0
