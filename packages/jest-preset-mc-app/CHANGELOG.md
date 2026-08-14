@@ -1,5 +1,18 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 27.9.2
+
+### Patch Changes
+
+- [#4084](https://github.com/commercetools/merchant-center-application-kit/pull/4084) [`dfc3f1c`](https://github.com/commercetools/merchant-center-application-kit/commit/dfc3f1cf4773f6e2b4c667bb4544d0dc5614c826) Thanks [@renovate](https://github.com/apps/renovate)! - Update `babel-jest` and `babel-preset-jest`, update
+  `@commercetools/nimbus` from 3.4.0 to 3.5.0, and provide a
+  `window.matchMedia` fallback for jsdom compatibility.
+
+  Update `serialize-javascript` to 7.1.0.
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@27.9.2
+
 ## 27.9.1
 
 ### Patch Changes

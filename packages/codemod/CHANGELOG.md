@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 27.9.2
+
 ## 27.9.1
 
 ### Patch Changes

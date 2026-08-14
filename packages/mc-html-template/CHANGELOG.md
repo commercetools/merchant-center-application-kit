@@ -1,5 +1,21 @@
 # @commercetools-frontend/mc-html-template
 
+## 27.9.2
+
+### Patch Changes
+
+- [#4094](https://github.com/commercetools/merchant-center-application-kit/pull/4094) [`cea3fe3`](https://github.com/commercetools/merchant-center-application-kit/commit/cea3fe3f76e8189204c912cb5596cbce9304dbbc) Thanks [@nima-ct](https://github.com/nima-ct)! - Allow LaunchDarkly SDK v4 clientsdk connections in the default CSP so feature flag initialization is not blocked.
+
+- [#4084](https://github.com/commercetools/merchant-center-application-kit/pull/4084) [`dfc3f1c`](https://github.com/commercetools/merchant-center-application-kit/commit/dfc3f1cf4773f6e2b4c667bb4544d0dc5614c826) Thanks [@renovate](https://github.com/apps/renovate)! - Update `babel-jest` and `babel-preset-jest`, update
+  `@commercetools/nimbus` from 3.4.0 to 3.5.0, and provide a
+  `window.matchMedia` fallback for jsdom compatibility.
+
+  Update `serialize-javascript` to 7.1.0.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@27.9.2
+  - @commercetools-frontend/constants@27.9.2
+
 ## 27.9.1
 
 ### Patch Changes
