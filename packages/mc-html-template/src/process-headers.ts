@@ -92,6 +92,7 @@ const processHeaders = (
       'connect-src': [
         "'self'",
         'app.launchdarkly.com',
+        'clientsdk.launchdarkly.com',
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
         'app.getsentry.com',
