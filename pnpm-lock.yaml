@@ -1045,6 +1045,7 @@ overrides:
   flat-cache>rimraf: ^5.0.10
   webpack-dev-server>rimraf: ^5.0.10
   react-dev-utils>fork-ts-checker-webpack-plugin: ^9.1.0
+  jest-environment-puppeteer>jest-environment-node: 30.4.1
   lodash: 4.18.1
   picomatch@^2: ^4.0.5
   flatted: '>=3.4.2'
