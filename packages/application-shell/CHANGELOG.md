@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.9.3
+
+### Patch Changes
+
+- [#4070](https://github.com/commercetools/merchant-center-application-kit/pull/4070) [`021b05c`](https://github.com/commercetools/merchant-center-application-kit/commit/021b05c1a68ae31e6eb3cdf2ee1addf569c0b114) Thanks [@renovate](https://github.com/apps/renovate)! - Force update `@flopflip/*` packages from 15.1.11 to 15.1.12.
+
+  The one-time `minimumReleaseAgeExclude` entries in `pnpm-workspace.yaml` should be removed after merge.
+
+- Updated dependencies [[`021b05c`](https://github.com/commercetools/merchant-center-application-kit/commit/021b05c1a68ae31e6eb3cdf2ee1addf569c0b114)]:
+  - @commercetools-frontend/application-components@27.9.3
+  - @commercetools-frontend/actions-global@27.9.3
+  - @commercetools-frontend/application-config@27.9.3
+  - @commercetools-frontend/application-shell-connectors@27.9.3
+  - @commercetools-frontend/assets@27.9.3
+  - @commercetools-frontend/browser-history@27.9.3
+  - @commercetools-frontend/constants@27.9.3
+  - @commercetools-frontend/i18n@27.9.3
+  - @commercetools-frontend/l10n@27.9.3
+  - @commercetools-frontend/notifications@27.9.3
+  - @commercetools-frontend/permissions@27.9.3
+  - @commercetools-frontend/react-notifications@27.9.3
+  - @commercetools-frontend/sdk@27.9.3
+  - @commercetools-frontend/sentry@27.9.3
+  - @commercetools-frontend/url-utils@27.9.3
+
 ## 27.9.2
 
 ### Patch Changes
