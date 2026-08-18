@@ -403,12 +403,12 @@ catalogs:
   flopflip:
     # @flopflip/* feature-flag framework — pinned in lockstep at one version.
     # `react-broadcast` is the React binding; the rest are runtime + adapters.
-    '@flopflip/combine-adapters': 15.1.11
-    '@flopflip/http-adapter': 15.1.11
-    '@flopflip/launchdarkly-adapter': 15.1.11
-    '@flopflip/memory-adapter': 15.1.11
-    '@flopflip/react-broadcast': 15.1.11
-    '@flopflip/types': 15.1.11
+    '@flopflip/combine-adapters': 15.1.12
+    '@flopflip/http-adapter': 15.1.12
+    '@flopflip/launchdarkly-adapter': 15.1.12
+    '@flopflip/memory-adapter': 15.1.12
+    '@flopflip/react-broadcast': 15.1.12
+    '@flopflip/types': 15.1.12
 
   formatjs:
     # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
