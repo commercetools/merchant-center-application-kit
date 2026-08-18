@@ -52,6 +52,18 @@ minimumReleaseAgeExclude:
   - "@babel/core@7.29.6"
   # Renovate security update: js-yaml@3.15.0 || 3.15.1
   - js-yaml@3.15.0 || 3.15.1
+  # Renovate one-time bypass: @flopflip 15.1.12
+  - '@flopflip/combine-adapters@15.1.12'
+  - '@flopflip/http-adapter@15.1.12'
+  - '@flopflip/launchdarkly-adapter@15.1.12'
+  - '@flopflip/memory-adapter@15.1.12'
+  - '@flopflip/react-broadcast@15.1.12'
+  - '@flopflip/types@15.1.12'
+  - '@flopflip/adapter-utilities@15.1.12'
+  - '@flopflip/cache@15.1.12'
+  - '@flopflip/localstorage-cache@15.1.12'
+  - '@flopflip/react@15.1.12'
+  - '@flopflip/sessionstorage-cache@15.1.12'
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -403,12 +415,12 @@ catalogs:
   flopflip:
     # @flopflip/* feature-flag framework — pinned in lockstep at one version.
     # `react-broadcast` is the React binding; the rest are runtime + adapters.
-    '@flopflip/combine-adapters': 15.1.11
-    '@flopflip/http-adapter': 15.1.11
-    '@flopflip/launchdarkly-adapter': 15.1.11
-    '@flopflip/memory-adapter': 15.1.11
-    '@flopflip/react-broadcast': 15.1.11
-    '@flopflip/types': 15.1.11
+    '@flopflip/combine-adapters': 15.1.12
+    '@flopflip/http-adapter': 15.1.12
+    '@flopflip/launchdarkly-adapter': 15.1.12
+    '@flopflip/memory-adapter': 15.1.12
+    '@flopflip/react-broadcast': 15.1.12
+    '@flopflip/types': 15.1.12
 
   formatjs:
     # @formatjs/* i18n ecosystem — published from one monorepo; cli + polyfills +
