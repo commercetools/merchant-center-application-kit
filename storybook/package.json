@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/storybook",
-  "version": "27.9.2",
+  "version": "27.9.3",
   "description": "Storybook host for the Chromatic visual regression tests",
   "private": true,
   "scripts": {

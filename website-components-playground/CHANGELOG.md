@@ -1,5 +1,16 @@
 # @commercetools-website/components-playground
 
+## 27.9.3
+
+### Patch Changes
+
+- Updated dependencies [[`021b05c`](https://github.com/commercetools/merchant-center-application-kit/commit/021b05c1a68ae31e6eb3cdf2ee1addf569c0b114)]:
+  - @commercetools-frontend/application-components@27.9.3
+  - @commercetools-frontend/browser-history@27.9.3
+  - @commercetools-frontend/constants@27.9.3
+  - @commercetools-frontend/i18n@27.9.3
+  - @commercetools-frontend/l10n@27.9.3
+
 ## 27.9.2
 
 ### Patch Changes
