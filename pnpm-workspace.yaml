@@ -52,18 +52,6 @@ minimumReleaseAgeExclude:
   - "@babel/core@7.29.6"
   # Renovate security update: js-yaml@3.15.0 || 3.15.1
   - js-yaml@3.15.0 || 3.15.1
-  # Renovate one-time bypass: @flopflip 15.1.12
-  - '@flopflip/combine-adapters@15.1.12'
-  - '@flopflip/http-adapter@15.1.12'
-  - '@flopflip/launchdarkly-adapter@15.1.12'
-  - '@flopflip/memory-adapter@15.1.12'
-  - '@flopflip/react-broadcast@15.1.12'
-  - '@flopflip/types@15.1.12'
-  - '@flopflip/adapter-utilities@15.1.12'
-  - '@flopflip/cache@15.1.12'
-  - '@flopflip/localstorage-cache@15.1.12'
-  - '@flopflip/react@15.1.12'
-  - '@flopflip/sessionstorage-cache@15.1.12'
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
