@@ -5,6 +5,15 @@ on:
     types: [opened, synchronize, labeled]
     branches:
       - main
+    # Renovate applies the same '🤖 Type: Dependencies' label to every
+    # manager (npm, github-actions, docker, ...), but the changeset action
+    # only ever reacts to npm/pnpm manifest changes. Restrict the trigger to
+    # those paths so non-npm dependency PRs don't get a spurious "no
+    # changeset added" comment for something that was never applicable.
+    paths:
+      - '**/package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
 
 permissions:
   contents: read
