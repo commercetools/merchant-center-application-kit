@@ -5,6 +5,30 @@ on:
     types: [opened, synchronize, labeled]
     branches:
       - main
+    # Only run when npm/pnpm manifest files change — non-npm dependency PRs
+    # (GitHub Actions, Docker, etc.) don't need a changeset and shouldn't
+    # get a false "no changeset" warning.
+    paths:
+      - '**/package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+  # Other repos in the org can call this workflow via:
+  #   uses: commercetools/merchant-center-application-kit/.github/workflows/renovate-changeset.yml@main
+  #   secrets: inherit
+  # The calling repo defines its own pull_request_target trigger with
+  # appropriate paths/branches filters.
+  workflow_call:
+    inputs:
+      package-dirs:
+        description: 'Comma-separated workspace package directories to scan'
+        required: false
+        type: string
+        default: 'packages,packages-backend'
+    secrets:
+      CT_CHANGESETS_APP_ID:
+        required: true
+      CT_CHANGESETS_APP_PEM:
+        required: true
 
 permissions:
   contents: read
@@ -28,42 +52,38 @@ jobs:
           client-id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private-key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      # This action talks entirely to the GitHub API (reads PR files/commits
-      # and writes the changeset via the Contents API) - no checkout needed.
+      # Checkout THIS repo to access the script. Under pull_request_target
+      # the default ref is the base branch (main) — safe, never the PR head.
+      # For workflow_call from other repos, `repository` ensures we checkout
+      # this repo (where the script lives), not the calling repo.
+      # SECURITY: Do NOT add ref: pointing to the PR head here.
+      - name: Checkout script
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: commercetools/merchant-center-application-kit
+          sparse-checkout: .github/actions/renovate-changeset
+          sparse-checkout-cone-mode: false
+
+      # Replacement for mscharley/dependency-changesets-action, which has a
+      # bug parsing single-quoted YAML keys in pnpm-workspace.yaml diffs
+      # (https://github.com/mscharley/dependency-changesets-action/issues/691).
+      # This script talks entirely to the GitHub API — no checkout of PR
+      # content is needed, only the script itself (checked out above).
       - name: Add changeset for dependency update
         id: add_changeset
-        uses: mscharley/dependency-changesets-action@874dac2372a085cb94f750e8bdf5b1173a838a75 # v1.2.5
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
-          token: ${{ steps.generate_github_token.outputs.token }}
-          # Renovate's default commit prefix is "chore(deps): ...", which
-          # conventional-commit parsing treats as a non-releasable change
-          # (only fix/feat/breaking map to a bump type). Disable it so every
-          # dependency update gets a patch-level changeset instead of being
-          # silently skipped.
-          use-conventional-commits: false
-          commit-message: "chore(deps): add changeset for dependency update"
-          author-name: "github-actions[bot]"
-          author-email: "41898282+github-actions[bot]@users.noreply.github.com"
-
-      # `created-changeset` only reflects whether *this run* wrote a new
-      # file - on a later `synchronize` (e.g. Renovate rebasing) the action
-      # may leave an already-present changeset alone and report `false`,
-      # which would otherwise flip the sticky comment back to a false
-      # "not added" warning. Check the PR's actual file list instead, so the
-      # message reflects current state rather than this run's action alone.
-      - name: Check whether the PR has a changeset
-        id: check_changeset
-        env:
-          GH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-        run: |
-          has_changeset=$(gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" \
-            --paginate --jq '[.[] | select(.filename | test("^\\.changeset/.*\\.md$")) | select(.filename != ".changeset/README.md") | select(.status != "removed")] | length > 0')
-          echo "has_changeset=$has_changeset" >> "$GITHUB_OUTPUT"
+          github-token: ${{ steps.generate_github_token.outputs.token }}
+          script: |
+            const { run } = require('./.github/actions/renovate-changeset/add-changeset.js');
+            const packageDirs = ('${{ inputs.package-dirs }}' || 'packages,packages-backend')
+              .split(',').map(s => s.trim());
+            await run({ github, context, core }, { packageDirs });
 
       # Sticky so repeated `synchronize` events (e.g. Renovate rebasing the
       # PR) update the same comment instead of piling up new ones.
       - name: Comment on PR (changeset added)
-        if: steps.check_changeset.outputs.has_changeset == 'true'
+        if: steps.add_changeset.outputs.has_changeset == 'true'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
@@ -72,7 +92,7 @@ jobs:
             ✅ A changeset was automatically added for this dependency update.
 
       - name: Comment on PR (changeset not added)
-        if: steps.check_changeset.outputs.has_changeset == 'false'
+        if: steps.add_changeset.outputs.has_changeset == 'false'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
