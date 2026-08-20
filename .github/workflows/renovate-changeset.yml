@@ -5,6 +5,14 @@ on:
     types: [opened, synchronize, labeled]
     branches:
       - main
+    # Only run when npm/pnpm manifest files change — the changeset action
+    # only reacts to these, so non-npm dependency PRs (GitHub Actions,
+    # Docker, etc.) don't need it and shouldn't get a false "no changeset"
+    # warning.
+    paths:
+      - '**/package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
 
 permissions:
   contents: read
@@ -28,42 +36,176 @@ jobs:
           client-id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private-key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      # This action talks entirely to the GitHub API (reads PR files/commits
-      # and writes the changeset via the Contents API) - no checkout needed.
+      # Inline replacement for mscharley/dependency-changesets-action, which
+      # has a bug parsing single-quoted YAML keys in pnpm-workspace.yaml
+      # diffs (https://github.com/mscharley/dependency-changesets-action/issues/691).
+      # This repo's pnpm catalogs use single-quoted scoped package names
+      # (pnpm's default), so the upstream action silently no-ops.
+      #
+      # This script talks entirely to the GitHub API (reads PR files/commits
+      # and writes the changeset via the Contents API) — no checkout needed.
       - name: Add changeset for dependency update
         id: add_changeset
-        uses: mscharley/dependency-changesets-action@874dac2372a085cb94f750e8bdf5b1173a838a75 # v1.2.5
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
-          token: ${{ steps.generate_github_token.outputs.token }}
-          # Renovate's default commit prefix is "chore(deps): ...", which
-          # conventional-commit parsing treats as a non-releasable change
-          # (only fix/feat/breaking map to a bump type). Disable it so every
-          # dependency update gets a patch-level changeset instead of being
-          # silently skipped.
-          use-conventional-commits: false
-          commit-message: "chore(deps): add changeset for dependency update"
-          author-name: "github-actions[bot]"
-          author-email: "41898282+github-actions[bot]@users.noreply.github.com"
+          github-token: ${{ steps.generate_github_token.outputs.token }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            const ref = context.payload.pull_request.head.ref;
 
-      # `created-changeset` only reflects whether *this run* wrote a new
-      # file - on a later `synchronize` (e.g. Renovate rebasing) the action
-      # may leave an already-present changeset alone and report `false`,
-      # which would otherwise flip the sticky comment back to a false
-      # "not added" warning. Check the PR's actual file list instead, so the
-      # message reflects current state rather than this run's action alone.
-      - name: Check whether the PR has a changeset
-        id: check_changeset
-        env:
-          GH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-        run: |
-          has_changeset=$(gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" \
-            --paginate --jq '[.[] | select(.filename | test("^\\.changeset/.*\\.md$")) | select(.filename != ".changeset/README.md") | select(.status != "removed")] | length > 0')
-          echo "has_changeset=$has_changeset" >> "$GITHUB_OUTPUT"
+            // 1. Check if changeset already exists in the PR
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner, repo, pull_number: prNumber,
+            });
+
+            const hasExistingChangeset = files.some(f =>
+              f.filename.startsWith('.changeset/') &&
+              f.filename.endsWith('.md') &&
+              f.filename !== '.changeset/README.md' &&
+              f.status !== 'removed'
+            );
+
+            if (hasExistingChangeset) {
+              core.info('Changeset already exists in the PR');
+              core.setOutput('has_changeset', 'true');
+              return;
+            }
+
+            // 2. Find changed dependencies from pnpm-workspace.yaml and package.json diffs
+            const changedDeps = new Map(); // name → version
+
+            for (const file of files) {
+              if (!file.patch) continue;
+
+              // Parse pnpm-workspace.yaml catalog changes
+              if (file.filename === 'pnpm-workspace.yaml' || file.filename.endsWith('/pnpm-workspace.yaml')) {
+                for (const line of file.patch.split('\n')) {
+                  if (!line.startsWith('+') || line.startsWith('+++')) continue;
+                  // Handle single-quoted, double-quoted, and unquoted YAML keys:
+                  //   +    '@scope/pkg': 3.5.1
+                  //   +    "@scope/pkg": "^3.5.1"
+                  //   +    pkg-name: 1.2.3
+                  const m = line.match(/^\+\s*['"]?([^\s'"]+?)['"]?:\s+['"]?([^\s'"]+?)['"]?\s*$/);
+                  if (!m) continue;
+                  const [, name, value] = m;
+                  // Only match dependency specifiers (start with digit or range prefix),
+                  // skip YAML structure keys like `catalogs:`, `nimbus:`, or `true`/`false`.
+                  if (/^[\d^~>=<*]/.test(value)) {
+                    changedDeps.set(name, value.replace(/^[\^~>=<]+/, ''));
+                  }
+                }
+              }
+
+              // Parse package.json dependency changes
+              if (file.filename === 'package.json' || file.filename.endsWith('/package.json')) {
+                for (const line of file.patch.split('\n')) {
+                  if (!line.startsWith('+') || line.startsWith('+++')) continue;
+                  const m = line.match(/^\+\s*"([^"]+)":\s*"([^"]+)"/);
+                  if (!m) continue;
+                  const [, name, value] = m;
+                  if (/^[\d^~>=<*]/.test(value)) {
+                    changedDeps.set(name, value.replace(/^[\^~>=<]+/, ''));
+                  }
+                }
+              }
+            }
+
+            if (changedDeps.size === 0) {
+              core.info('No dependency version changes detected in PR diff');
+              core.setOutput('has_changeset', 'false');
+              return;
+            }
+
+            core.info(`Changed deps: ${[...changedDeps.entries()].map(([k, v]) => `${k}@${v}`).join(', ')}`);
+
+            // 3. Find published workspace packages that consume the changed dependencies
+            const packageDirs = ['packages', 'packages-backend'];
+            const affectedPackages = new Set();
+
+            for (const dir of packageDirs) {
+              let entries;
+              try {
+                const { data } = await github.rest.repos.getContent({ owner, repo, path: dir, ref });
+                entries = Array.isArray(data) ? data : [];
+              } catch {
+                continue;
+              }
+
+              for (const entry of entries) {
+                if (entry.type !== 'dir') continue;
+                try {
+                  const { data: pkgData } = await github.rest.repos.getContent({
+                    owner, repo, path: `${dir}/${entry.name}/package.json`, ref,
+                  });
+                  const pkg = JSON.parse(Buffer.from(pkgData.content, 'base64').toString());
+                  if (pkg.private) continue;
+
+                  const allDeps = {
+                    ...pkg.dependencies,
+                    ...pkg.devDependencies,
+                    ...pkg.peerDependencies,
+                  };
+
+                  for (const depName of changedDeps.keys()) {
+                    if (allDeps[depName]) {
+                      affectedPackages.add(pkg.name);
+                      break;
+                    }
+                  }
+                } catch {
+                  continue;
+                }
+              }
+            }
+
+            if (affectedPackages.size === 0) {
+              core.info('No published workspace packages are affected');
+              core.setOutput('has_changeset', 'false');
+              return;
+            }
+
+            core.info(`Affected packages: ${[...affectedPackages].join(', ')}`);
+
+            // 4. Generate changeset content
+            const frontmatter = [...affectedPackages].sort().map(p => `'${p}': patch`).join('\n');
+            const depList = [...changedDeps.entries()].map(([k, v]) => `\`${k}\` to \`${v}\``).join(', ');
+            const content = `---\n${frontmatter}\n---\n\nUpdate dependency ${depList}.\n`;
+
+            // 5. Commit changeset via Contents API
+            const changesetPath = `.changeset/dependencies-GH-${prNumber}.md`;
+            try {
+              await github.rest.repos.createOrUpdateFileContents({
+                owner, repo,
+                path: changesetPath,
+                message: 'chore(deps): add changeset for dependency update',
+                content: Buffer.from(content).toString('base64'),
+                branch: ref,
+                committer: {
+                  name: 'github-actions[bot]',
+                  email: '41898282+github-actions[bot]@users.noreply.github.com',
+                },
+                author: {
+                  name: 'github-actions[bot]',
+                  email: '41898282+github-actions[bot]@users.noreply.github.com',
+                },
+              });
+              core.info(`Created changeset: ${changesetPath}`);
+              core.setOutput('has_changeset', 'true');
+            } catch (err) {
+              // 409/422 = race with a concurrent run that already created the file
+              if (err.status === 409 || err.status === 422) {
+                core.info(`Changeset already created by a concurrent run (${err.status})`);
+                core.setOutput('has_changeset', 'true');
+              } else {
+                throw err;
+              }
+            }
 
       # Sticky so repeated `synchronize` events (e.g. Renovate rebasing the
       # PR) update the same comment instead of piling up new ones.
       - name: Comment on PR (changeset added)
-        if: steps.check_changeset.outputs.has_changeset == 'true'
+        if: steps.add_changeset.outputs.has_changeset == 'true'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
@@ -72,7 +214,7 @@ jobs:
             ✅ A changeset was automatically added for this dependency update.
 
       - name: Comment on PR (changeset not added)
-        if: steps.check_changeset.outputs.has_changeset == 'false'
+        if: steps.add_changeset.outputs.has_changeset == 'false'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
