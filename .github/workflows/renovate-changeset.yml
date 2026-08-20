@@ -1,0 +1,81 @@
+name: Add changeset to Renovate PR
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  renovate-changeset:
+    if: >
+      github.event.pull_request.user.login == 'renovate[bot]' &&
+      contains(github.event.pull_request.labels.*.name, '🤖 Type: Dependencies')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # Get GitHub token via the CT Changesets App so the resulting push
+      # re-triggers required status checks (the default GITHUB_TOKEN cannot).
+      - name: Generate GitHub token (via CT Changesets App)
+        id: generate_github_token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.CT_CHANGESETS_APP_ID }}
+          private-key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
+
+      # This action talks entirely to the GitHub API (reads PR files/commits
+      # and writes the changeset via the Contents API) - no checkout needed.
+      - name: Add changeset for dependency update
+        id: add_changeset
+        uses: mscharley/dependency-changesets-action@874dac2372a085cb94f750e8bdf5b1173a838a75 # v1.2.5
+        with:
+          token: ${{ steps.generate_github_token.outputs.token }}
+          # Renovate's default commit prefix is "chore(deps): ...", which
+          # conventional-commit parsing treats as a non-releasable change
+          # (only fix/feat/breaking map to a bump type). Disable it so every
+          # dependency update gets a patch-level changeset instead of being
+          # silently skipped.
+          use-conventional-commits: false
+          commit-message: "chore(deps): add changeset for dependency update"
+          author-name: "github-actions[bot]"
+          author-email: "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # `created-changeset` only reflects whether *this run* wrote a new
+      # file - on a later `synchronize` (e.g. Renovate rebasing) the action
+      # may leave an already-present changeset alone and report `false`,
+      # which would otherwise flip the sticky comment back to a false
+      # "not added" warning. Check the PR's actual file list instead, so the
+      # message reflects current state rather than this run's action alone.
+      - name: Check whether the PR has a changeset
+        id: check_changeset
+        env:
+          GH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+        run: |
+          has_changeset=$(gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" \
+            --paginate --jq '[.[] | select(.filename | test("^\\.changeset/.*\\.md$")) | select(.filename != ".changeset/README.md") | select(.status != "removed")] | length > 0')
+          echo "has_changeset=$has_changeset" >> "$GITHUB_OUTPUT"
+
+      # Sticky so repeated `synchronize` events (e.g. Renovate rebasing the
+      # PR) update the same comment instead of piling up new ones.
+      - name: Comment on PR (changeset added)
+        if: steps.check_changeset.outputs.has_changeset == 'true'
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          header: renovate-changeset
+          message: |
+            ✅ A changeset was automatically added for this dependency update.
+
+      - name: Comment on PR (changeset not added)
+        if: steps.check_changeset.outputs.has_changeset == 'false'
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          header: renovate-changeset
+          message: |
+            ⚠️ No changeset was automatically added for this dependency update. Please add one manually if this change should be released.
