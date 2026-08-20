@@ -228,7 +228,7 @@ catalog:
   cosmiconfig-typescript-loader: 6.3.0
   create-jest-runner: 1.0.0
   cross-env: 10.1.0
-  cypress: 15.20.0
+  cypress: 15.20.1
   debounce-async: 0.0.2
   deep-diff: 1.0.2
   dompurify: ^3.0.0
