@@ -24,7 +24,6 @@ export type { TApplicationShellSplitterValue } from './components/application-sh
 export { default as getPreviousProjectKey } from './utils/get-previous-project-key';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';
-export { default as useMainContainerPortal } from './hooks/use-main-container-portal';
 
 export {
   buildApiUrl,
