@@ -27,5 +27,8 @@
     }
   ],
   "rebaseWhen": "never",
-  "gitIgnoredAuthors": ["41898282+github-actions[bot]@users.noreply.github.com"]
+  "gitIgnoredAuthors": [
+    "41898282+github-actions[bot]@users.noreply.github.com",
+    "145970804+ct-changesets[bot]@users.noreply.github.com"
+  ]
 }
