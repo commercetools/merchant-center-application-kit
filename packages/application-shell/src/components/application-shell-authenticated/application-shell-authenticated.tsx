@@ -432,17 +432,23 @@ export const ApplicationShellAuthenticated = (
                                 </Route>
                               </Switch>
                             </div>
-                            <div
-                              id={MC_MAIN_CONTAINER_PORTAL_ID}
-                              css={css`
-                                position: sticky;
-                                bottom: 0;
-                                z-index: 9999;
-                                pointer-events: none;
-                              `}
-                            />
                           </MainContainer>
                         )}
+                        {/* Portal target for SaveToolbar. Placed outside
+                            <MainContainer> so overflow:hidden (applied when
+                            a modal opens) does not clip the sticky toolbar.
+                            Shares MainContainer's grid cell and sticks to
+                            the bottom via align-self: end. */}
+                        <div
+                          id={MC_MAIN_CONTAINER_PORTAL_ID}
+                          css={css`
+                            grid-column: 2/3;
+                            grid-row: 3/4;
+                            align-self: end;
+                            z-index: 9999;
+                            pointer-events: none;
+                          `}
+                        />
                       </div>
                     </ApplicationShellSplitter>
                   </SetupFlopFlipProvider>
