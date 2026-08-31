@@ -434,23 +434,24 @@ export const ApplicationShellAuthenticated = (
                             </div>
                           </MainContainer>
                         )}
-                        {/* Portal target for SaveToolbar. Placed outside
-                            <MainContainer> so overflow:hidden (applied when
-                            a modal opens) does not clip the sticky toolbar.
-                            Shares MainContainer's grid cell and sticks to
-                            the bottom via align-self: end. */}
-                        <div
-                          id={MC_MAIN_CONTAINER_PORTAL_ID}
-                          css={css`
-                            grid-column: 2/3;
-                            grid-row: 3/4;
-                            align-self: end;
-                            z-index: 9999;
-                            pointer-events: none;
-                          `}
-                        />
                       </div>
                     </ApplicationShellSplitter>
+                    {/* Portal target for SaveToolbar. Placed outside
+                        <ApplicationShellSplitter> so it is not trapped in
+                        the splitter's stacking context. Uses position:fixed
+                        to overlay the bottom of the viewport, above the
+                        modal portals container (z-index 10001 > 10000). */}
+                    <div
+                      id={MC_MAIN_CONTAINER_PORTAL_ID}
+                      css={css`
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        z-index: 10001;
+                        pointer-events: none;
+                      `}
+                    />
                   </SetupFlopFlipProvider>
                 </ConfigureIntlProvider>
               )}
