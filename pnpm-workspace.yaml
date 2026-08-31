@@ -620,7 +620,7 @@ catalogs:
     wait-for-expect: 4.0.0
 
     # E2E / visual regression (Cypress + Chromatic)
-    '@chromatic-com/cypress': 0.13.1
+    '@chromatic-com/cypress': 0.13.2
     '@cypress/code-coverage': ^3.14.5
     '@faker-js/faker': 8.4.1
     start-server-and-test: 2.1.5
