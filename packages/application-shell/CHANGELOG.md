@@ -1,5 +1,28 @@
 # @commercetools-frontend/application-shell
 
+## 27.9.4
+
+### Patch Changes
+
+- [#4120](https://github.com/commercetools/merchant-center-application-kit/pull/4120) [`54ea699`](https://github.com/commercetools/merchant-center-application-kit/commit/54ea699e7df7a2919cb70cdcbb037f083c6c6468) Thanks [@tylermorrisford](https://github.com/tylermorrisford)! - Move the SaveToolbar portal target outside `<MainContainer>` so it is not clipped by `overflow: hidden` when a modal opens. The portal target now occupies the same grid cell as MainContainer via `grid-column: 2/3; grid-row: 3/4; align-self: end`, keeping it visually at the bottom of the content area without being a child of the element that gets clipped.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.9.4
+  - @commercetools-frontend/application-components@27.9.4
+  - @commercetools-frontend/application-config@27.9.4
+  - @commercetools-frontend/application-shell-connectors@27.9.4
+  - @commercetools-frontend/assets@27.9.4
+  - @commercetools-frontend/browser-history@27.9.4
+  - @commercetools-frontend/constants@27.9.4
+  - @commercetools-frontend/i18n@27.9.4
+  - @commercetools-frontend/l10n@27.9.4
+  - @commercetools-frontend/notifications@27.9.4
+  - @commercetools-frontend/permissions@27.9.4
+  - @commercetools-frontend/react-notifications@27.9.4
+  - @commercetools-frontend/sdk@27.9.4
+  - @commercetools-frontend/sentry@27.9.4
+  - @commercetools-frontend/url-utils@27.9.4
+
 ## 27.9.3
 
 ### Patch Changes
