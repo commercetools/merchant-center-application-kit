@@ -1,5 +1,19 @@
 # @commercetools-frontend/application-components
 
+## 27.9.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.9.4
+  - @commercetools-frontend/application-config@27.9.4
+  - @commercetools-frontend/application-shell-connectors@27.9.4
+  - @commercetools-frontend/assets@27.9.4
+  - @commercetools-frontend/constants@27.9.4
+  - @commercetools-frontend/i18n@27.9.4
+  - @commercetools-frontend/l10n@27.9.4
+  - @commercetools-frontend/sentry@27.9.4
+
 ## 27.9.3
 
 ### Patch Changes

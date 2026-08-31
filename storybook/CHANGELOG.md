@@ -1,5 +1,16 @@
 # @commercetools-local/storybook
 
+## 27.9.4
+
+### Patch Changes
+
+- Updated dependencies [[`54ea699`](https://github.com/commercetools/merchant-center-application-kit/commit/54ea699e7df7a2919cb70cdcbb037f083c6c6468)]:
+  - @commercetools-frontend/application-shell@27.9.4
+  - @commercetools-frontend/application-components@27.9.4
+  - @commercetools-frontend/assets@27.9.4
+  - @commercetools-frontend/constants@27.9.4
+  - @commercetools-frontend/react-notifications@27.9.4
+
 ## 27.9.3
 
 ### Patch Changes
