@@ -186,6 +186,9 @@ describe('run', () => {
   function createGithub({ files, contents }) {
     return {
       paginate: jest.fn(async () => files),
+      graphql: jest.fn(async () => ({
+        createCommitOnBranch: { commit: { oid: 'newsha' } },
+      })),
       rest: {
         pulls: {
           listFiles: jest.fn(),
@@ -199,7 +202,6 @@ describe('run', () => {
             err.status = 404;
             throw err;
           }),
-          createOrUpdateFileContents: jest.fn(async () => ({})),
         },
       },
     };
@@ -210,7 +212,7 @@ describe('run', () => {
       payload: {
         pull_request: {
           number: prNumber,
-          head: { ref },
+          head: { ref, sha: 'headsha123' },
         },
       },
       repo: { owner, repo },
@@ -237,7 +239,7 @@ describe('run', () => {
     await run({ github, context, core });
 
     expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
-    expect(github.rest.repos.createOrUpdateFileContents).not.toHaveBeenCalled();
+    expect(github.graphql).not.toHaveBeenCalled();
   });
 
   it('sets has_changeset=false when no dependency changes are detected', async () => {
@@ -251,7 +253,7 @@ describe('run', () => {
     await run({ github, context, core });
 
     expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'false');
-    expect(github.rest.repos.createOrUpdateFileContents).not.toHaveBeenCalled();
+    expect(github.graphql).not.toHaveBeenCalled();
   });
 
   it('creates a changeset when a workspace package consumes the changed dep', async () => {
@@ -278,18 +280,85 @@ describe('run', () => {
 
     await run({ github, context, core });
 
-    expect(github.rest.repos.createOrUpdateFileContents).toHaveBeenCalledWith(
+    expect(github.graphql).toHaveBeenCalledWith(
+      expect.stringContaining('createCommitOnBranch'),
       expect.objectContaining({
-        owner,
-        repo,
-        path: `.changeset/dependencies-GH-${prNumber}.md`,
-        branch: ref,
+        input: expect.objectContaining({
+          branch: {
+            repositoryNameWithOwner: `${owner}/${repo}`,
+            branchName: ref,
+          },
+          expectedHeadOid: 'headsha123',
+          fileChanges: {
+            additions: [
+              expect.objectContaining({
+                path: `.changeset/dependencies-GH-${prNumber}.md`,
+              }),
+            ],
+          },
+        }),
       })
     );
+
+    // Assert what actually gets committed — the decoded file body and the
+    // commit message — not just the path. This is the surface the PR changes,
+    // so a dropped `contents` or `headline` must fail a test.
+    const { input } = github.graphql.mock.calls[0][1];
+    expect(input.message.headline).toBe(
+      'chore(deps): add changeset for dependency update'
+    );
+    const committedContent = Buffer.from(
+      input.fileChanges.additions[0].contents,
+      'base64'
+    ).toString();
+    expect(committedContent).toBe(
+      "---\n'@commercetools-frontend/some-pkg': patch\n---\n\nUpdate dependency `some-dep` to `1.2.3`.\n"
+    );
+
     expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
   });
 
-  it('handles a 409 race condition from createOrUpdateFileContents gracefully', async () => {
+  it('treats a concurrent run that already added the changeset as success', async () => {
+    const pkgJson = {
+      name: '@commercetools-frontend/some-pkg',
+      dependencies: { 'some-dep': '^1.0.0' },
+    };
+    const depFiles = [
+      {
+        filename: 'pnpm-workspace.yaml',
+        patch: `@@ -1,3 +1,3 @@\n+    'some-dep': 1.2.3`,
+      },
+    ];
+    const github = createGithub({
+      files: depFiles,
+      contents: {
+        packages: [{ type: 'dir', name: 'some-pkg' }],
+        'packages/some-pkg/package.json': {
+          content: Buffer.from(JSON.stringify(pkgJson)).toString('base64'),
+        },
+      },
+    });
+    // Step 1 sees no changeset; the post-failure re-check sees one that a
+    // concurrent run committed while our expectedHeadOid went stale.
+    github.paginate = jest
+      .fn()
+      .mockResolvedValueOnce(depFiles)
+      .mockResolvedValueOnce([
+        ...depFiles,
+        { filename: '.changeset/dependencies-GH-123.md', status: 'added' },
+      ]);
+    github.graphql = jest.fn(async () => {
+      throw new Error('expectedHeadOid mismatch: branch head moved');
+    });
+    const context = createContext();
+    const core = createCore();
+
+    await run({ github, context, core });
+
+    expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
+  });
+
+  it('re-throws when the commit fails and no changeset is present', async () => {
     const pkgJson = {
       name: '@commercetools-frontend/some-pkg',
       dependencies: { 'some-dep': '^1.0.0' },
@@ -308,17 +377,15 @@ describe('run', () => {
         },
       },
     });
-    github.rest.repos.createOrUpdateFileContents = jest.fn(async () => {
-      const err = new Error('Conflict');
-      err.status = 409;
-      throw err;
+    github.graphql = jest.fn(async () => {
+      throw new Error('Resource not accessible by integration');
     });
     const context = createContext();
     const core = createCore();
 
-    await run({ github, context, core });
-
-    expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
+    await expect(run({ github, context, core })).rejects.toThrow(
+      'Resource not accessible by integration'
+    );
   });
 
   it('respects a custom packageDirs option', async () => {
@@ -345,7 +412,7 @@ describe('run', () => {
 
     await run({ github, context, core }, { packageDirs: ['custom-dir'] });
 
-    expect(github.rest.repos.createOrUpdateFileContents).toHaveBeenCalled();
+    expect(github.graphql).toHaveBeenCalled();
     expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
   });
 });
