@@ -299,6 +299,22 @@ describe('run', () => {
         }),
       })
     );
+
+    // Assert what actually gets committed — the decoded file body and the
+    // commit message — not just the path. This is the surface the PR changes,
+    // so a dropped `contents` or `headline` must fail a test.
+    const { input } = github.graphql.mock.calls[0][1];
+    expect(input.message.headline).toBe(
+      'chore(deps): add changeset for dependency update'
+    );
+    const committedContent = Buffer.from(
+      input.fileChanges.additions[0].contents,
+      'base64'
+    ).toString();
+    expect(committedContent).toBe(
+      "---\n'@commercetools-frontend/some-pkg': patch\n---\n\nUpdate dependency `some-dep` to `1.2.3`.\n"
+    );
+
     expect(core.setOutput).toHaveBeenCalledWith('has_changeset', 'true');
   });
 

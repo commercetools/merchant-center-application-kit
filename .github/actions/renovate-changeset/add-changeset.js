@@ -112,6 +112,20 @@ function hasChangesetFile(files) {
 }
 
 /**
+ * Lists every file on a PR, paginating through all pages.
+ *
+ * @param {{github: object, owner: string, repo: string, prNumber: number}} params
+ * @returns {Promise<Array<{filename: string, status?: string, patch?: string}>>}
+ */
+function listPrFiles({ github, owner, repo, prNumber }) {
+  return github.paginate(github.rest.pulls.listFiles, {
+    owner,
+    repo,
+    pull_number: prNumber,
+  });
+}
+
+/**
  * Main entry point invoked by `actions/github-script`. Checks whether a
  * changeset already exists on the PR, and if not, detects changed
  * dependencies and, for any affected published workspace packages, commits a
@@ -128,11 +142,7 @@ async function run({ github, context, core }, opts = {}) {
   const ref = context.payload.pull_request.head.ref;
 
   // 1. Check if changeset already exists in the PR
-  const files = await github.paginate(github.rest.pulls.listFiles, {
-    owner,
-    repo,
-    pull_number: prNumber,
-  });
+  const files = await listPrFiles({ github, owner, repo, prNumber });
 
   if (hasChangesetFile(files)) {
     core.info('Changeset already exists in the PR');
@@ -257,11 +267,16 @@ async function run({ github, context, core }, opts = {}) {
     // the changeset and moved the branch head, making createCommitOnBranch
     // reject our now-stale expectedHeadOid. If a changeset is present after the
     // failure, that race already did the work; otherwise re-throw.
-    const currentFiles = await github.paginate(github.rest.pulls.listFiles, {
-      owner,
-      repo,
-      pull_number: prNumber,
-    });
+    //
+    // Guard the recovery re-list: if it throws too (transient API/rate-limit
+    // error), surface the original commit failure rather than the misleading
+    // secondary listFiles error.
+    let currentFiles;
+    try {
+      currentFiles = await listPrFiles({ github, owner, repo, prNumber });
+    } catch {
+      throw err;
+    }
     if (hasChangesetFile(currentFiles)) {
       core.info('Changeset already created by a concurrent run');
       core.setOutput('has_changeset', 'true');
