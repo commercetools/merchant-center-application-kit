@@ -237,8 +237,8 @@
 }
 
 /*
-  Reduced motion neutralises the animation, NOT the transition. Setting
-  `navigation: none` would give these users the blank screen back — the
+  Reduced motion neutralises the animation, NOT the transition. Switching the
+  navigation off entirely would give these users the blank screen back: the
   no-blank-screen benefit comes from the browser holding the old snapshot,
   which survives a near-instant animation.
 */
