@@ -25,9 +25,24 @@ function webpackHtmlTemplate(templateParams: TemplateParameter) {
       fileName.replace(/^\//, '')
   );
 
+  // Emitted as non-blocking preloads rather than stylesheets, so app CSS does
+  // not block first paint (and therefore does not block the loading skeleton).
+  // `html-scripts/loading-screen.js` upgrades each one to `rel="stylesheet"`
+  // once it has loaded, and gates `window.onAppLoaded()` on the `data-mc-css`
+  // ones so the application is never revealed unstyled.
+  //
+  // That upgrade lives in the inline loading-screen script rather than an
+  // `onload` handler attribute because the production CSP allows neither
+  // 'unsafe-inline' nor 'unsafe-hashes' in `script-src`, and CSP script hashes
+  // do not cover event-handler attributes.
+  //
+  // Unlike the Vite path -- which has to identify Vite's own injected tags
+  // inside already-assembled HTML -- this function knows exactly which chunks
+  // are CSS, so no matching is involved and no other link in the template can
+  // be affected.
   const cssImports = cssChunks.map(
     (chunkPath) =>
-      `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'>`
+      `<link rel="preload" as="style" data-mc-css href="__CDN_URL__${chunkPath}">`
   );
   const scriptImports = scriptChunks.map(
     (chunkPath) => `<script src="__CDN_URL__${chunkPath}" defer></script>`
