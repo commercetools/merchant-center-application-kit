@@ -13,6 +13,7 @@ import { loadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
 import pluginChunkCycleCheck from '../vite-plugins/vite-plugin-chunk-cycle-check';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
+import pluginNonBlockingCss from '../vite-plugins/vite-plugin-non-blocking-css';
 import pluginPostCleanup from '../vite-plugins/vite-plugin-post-cleanup';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 
@@ -129,6 +130,10 @@ async function run() {
       }),
       pluginDynamicBaseAssetsGlobals(),
       pluginI18nMessageCompilation(),
+      // Rewrite Vite's render-blocking stylesheet links into preloads that
+      // `loading-screen.js` upgrades once loaded, so app CSS no longer blocks
+      // first paint. Must stay after Vite's own `vite:build-html`.
+      pluginNonBlockingCss(),
       // Fail the build if the emitted chunk graph contains circular imports.
       // Chunk cycles are silent at build time but crash at runtime with TDZ
       // errors (historical "aM is undefined" from the icons/app-shell split).
