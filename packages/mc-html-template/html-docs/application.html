@@ -63,10 +63,31 @@
     __APPLICATION_SCRIPT_IMPORTS__
 
     <!-- Fonts -->
+    <!--
+      Open Sans is preloaded instead of linked as a stylesheet so it does not
+      block first paint. `loading-screen.js` upgrades it to rel="stylesheet"
+      once loaded. That upgrade lives in the (CSP-hashed) inline script rather
+      than an inline `onload` handler attribute, which the production CSP
+      blocks:
+      script hashes do not cover event-handler attributes.
+
+      The Inter link below is deliberately NOT converted. NimbusProvider
+      renders a byte-identical stylesheet link itself, and React 19 dedupes
+      hoisted stylesheets by matching link[rel="stylesheet"][href]. Changing
+      the rel would miss that match and Nimbus would inject its own blocking
+      stylesheet at mount instead - later than today, not earlier.
+    -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
