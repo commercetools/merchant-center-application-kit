@@ -1,20 +1,37 @@
 import type { Plugin } from 'vite';
+import {
+  generateTemplate,
+  replaceHtmlPlaceholders,
+} from '@commercetools-frontend/mc-html-template';
 import pluginNonBlockingCss from './vite-plugin-non-blocking-css';
 
 /**
  * Invokes the `transformIndexHtml` hook. The cast is needed because Vite types
  * the hook's `this` as PluginContext, which this implementation does not use,
  * and because only the two context fields below are relevant here.
+ *
+ * `emittedCss` stands in for the CSS assets Vite put in the output bundle; the
+ * plugin only rewrites links whose href matches one of them.
  */
-const transform = (plugin: Plugin, html: string, isBuild: boolean) => {
+const transform = (
+  plugin: Plugin,
+  html: string,
+  isBuild: boolean,
+  emittedCss: string[] = ['app-shell.css', 'index.css']
+) => {
   const hook = plugin.transformIndexHtml;
 
   if (typeof hook !== 'function') {
     throw new Error('transformIndexHtml is not a function');
   }
 
+  const bundle = emittedCss.reduce<Record<string, unknown>>(
+    (acc, fileName) => Object.assign(acc, { [fileName]: { fileName } }),
+    { 'index.js': { fileName: 'index.js' } }
+  );
+
   return (hook as (html: string, ctx: { bundle?: unknown }) => string)(html, {
-    bundle: isBuild ? {} : undefined,
+    bundle: isBuild ? bundle : undefined,
   });
 };
 
@@ -77,7 +94,8 @@ describe('vite-plugin-non-blocking-css', () => {
       const result = transform(
         pluginNonBlockingCss(),
         '<link rel="stylesheet" href="__CDN_URL__app-shell.a1b2c3.css">',
-        true
+        true,
+        ['app-shell.a1b2c3.css']
       );
 
       expect(result).toContain('href="__CDN_URL__app-shell.a1b2c3.css"');
@@ -119,6 +137,99 @@ describe('vite-plugin-non-blocking-css', () => {
         '<link rel="preconnect" href="https://fonts.googleapis.com">';
 
       expect(transform(pluginNonBlockingCss(), html, true)).toBe(html);
+    });
+  });
+
+  describe('links it must not touch: real template output', () => {
+    // The regression these tests exist for: the plugin used to rewrite every
+    // rel="stylesheet" tag in the document, which on a real build also hit the
+    // Inter/Nimbus font link and the <noscript> fallback. Both then wrongly
+    // gained data-mc-css and started gating app reveal on Google Fonts.
+    const buildRealTemplateHtml = () =>
+      replaceHtmlPlaceholders(
+        generateTemplate({
+          cssImports: ['<link rel="stylesheet" href="app-shell.css">'],
+        }),
+        {
+          env: {
+            applicationName: 'harness',
+            entryPointUriPath: 'harness',
+            cdnUrl: 'http://localhost:3001/',
+            env: 'test',
+            frontendHost: 'localhost:3001',
+            location: 'gcp-eu',
+            mcApiUrl: 'https://mc-api.example.com',
+            revision: '',
+            servedByProxy: false,
+          } as never,
+          headers: { 'Content-Security-Policy': "default-src 'none'" } as never,
+        }
+      );
+
+    it('should leave the Inter/Nimbus font link blocking and unmarked', () => {
+      const result = transform(
+        pluginNonBlockingCss(),
+        buildRealTemplateHtml(),
+        true,
+        ['app-shell.css']
+      );
+      // Scoped to the Inter tag alone: a wider window would swallow the
+      // adjacent app stylesheet, which is legitimately marked.
+      const interTag = result
+        .split('<link')
+        .find((tag) => tag.includes('family=Inter')) as string;
+
+      expect(interTag).toBeDefined();
+      expect(interTag).toContain('rel="stylesheet"');
+      expect(interTag).toContain('data-nimbus-fonts=""');
+      expect(interTag).not.toContain('data-mc-css');
+    });
+
+    it('should leave the noscript Open Sans fallback a real stylesheet', () => {
+      const result = transform(
+        pluginNonBlockingCss(),
+        buildRealTemplateHtml(),
+        true,
+        ['app-shell.css']
+      );
+      const noscript = result.slice(
+        result.indexOf('<noscript>'),
+        result.indexOf('</noscript>')
+      );
+
+      expect(noscript).toContain('rel="stylesheet"');
+      expect(noscript).not.toContain('data-mc-css');
+    });
+
+    it('should never mark a fonts.googleapis.com href as app CSS', () => {
+      const result = transform(
+        pluginNonBlockingCss(),
+        buildRealTemplateHtml(),
+        true,
+        ['app-shell.css']
+      );
+
+      result
+        .split('<link')
+        .filter((tag) => tag.includes('data-mc-css'))
+        .forEach((tag) => expect(tag).not.toContain('fonts.googleapis.com'));
+    });
+
+    it('should still rewrite the emitted app stylesheet in the same document', () => {
+      const result = transform(
+        pluginNonBlockingCss(),
+        buildRealTemplateHtml(),
+        true,
+        ['app-shell.css']
+      );
+
+      expect(result).toContain('as="style" data-mc-css');
+    });
+
+    it('should rewrite nothing when the bundle emitted no CSS', () => {
+      const html = '<link rel="stylesheet" href="app-shell.css">';
+
+      expect(transform(pluginNonBlockingCss(), html, true, [])).toBe(html);
     });
   });
 

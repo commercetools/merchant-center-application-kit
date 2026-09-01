@@ -200,9 +200,14 @@
       window.performance.mark('mc:skeleton-visible');
 
       if (window.performance.measure) {
-        // Omitting `end`/`duration` measures from the time origin
+        // Distinct name on purpose: sharing it with the mark would make
+        // `getEntriesByName('mc:skeleton-visible')` return two entries of
+        // different entryType, and a consumer indexing [0] would read whichever
+        // sorted first. Omitting `end`/`duration` measures from the time origin
         // (navigationStart) to now.
-        window.performance.measure('mc:skeleton-visible', { start: 0 });
+        window.performance.measure('mc:skeleton-visible:duration', {
+          start: 0,
+        });
       }
     } catch (error) {
       // Instrumentation is best-effort.
@@ -233,7 +238,20 @@
   // invisible: before this gate existed `onAppLoaded` removed the loader
   // unconditionally, so an unbounded wait would be a new availability
   // regression. Degrade to visible-but-unstyled instead.
+  //
+  // Upgrading the stragglers first matters: a link left as `rel="preload"` would
+  // never apply its CSS even if the response arrives later, so zeroing the
+  // counter alone would trade a temporarily unstyled app for a permanently
+  // unstyled one. `false` skips the decrement, since the counter is zeroed next.
   setTimeout(function releaseStylesheetGate() {
+    const pendingEls = document.querySelectorAll(
+      'link[rel="preload"][as="style"]'
+    );
+
+    for (let index = 0; index < pendingEls.length; index += 1) {
+      upgradeStylesheetPreload(pendingEls[index], false);
+    }
+
     window.__CSS_REMAINING__ = 0;
     removeAppLoaderWhenReady();
   }, LONG_LOADING_DELAY);

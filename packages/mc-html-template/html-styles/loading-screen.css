@@ -60,6 +60,18 @@
    applies before any design-system stylesheet has loaded.
    ========================================================================== */
 
+/*
+  The app's own resets.css used to supply this render-blocking. Now that app CSS
+  is a preload, this inlined stylesheet has to stand alone at first paint or the
+  100vw/100vh skeleton renders inside the UA's default body margin. Left
+  unlayered so it wins over resets.css's @layer copy of the identical value.
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .loading-skeleton {
   display: grid;
   grid-template-rows: auto 56px 1fr;

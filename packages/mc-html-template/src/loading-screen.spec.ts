@@ -62,6 +62,11 @@ const loadingScreen = () =>
   document.querySelector('.loading-screen') as HTMLElement;
 const appLoader = () => document.querySelector('#app-loader');
 
+// `onAppLoaded` is assigned onto `window` by the script under test, so it is not
+// on the global Window type.
+const callOnAppLoaded = () =>
+  (window as unknown as { onAppLoaded: () => void }).onAppLoaded();
+
 const addPreload = (attrs: Record<string, string>) => {
   const linkEl = document.createElement('link');
   Object.keys(attrs).forEach((name) => linkEl.setAttribute(name, attrs[name]));
@@ -102,10 +107,15 @@ const removePerformanceShim = () =>
     delete (window.performance as unknown as Record<string, unknown>)[method];
   });
 
-/** Pretends the given hrefs already finished loading, per Resource Timing. */
+/**
+ * Pretends the given absolute hrefs already finished loading, per Resource
+ * Timing. Matched exactly, because the real `getEntriesByName` does exact
+ * string matching on the resolved absolute URL - a substring stub would let the
+ * fast path pass here while missing in a browser.
+ */
 const stubCompletedResources = (hrefs: string[]) =>
   perf.getEntriesByName.mockImplementation((name: string) =>
-    hrefs.some((href) => name.indexOf(href) !== -1) ? [{ responseEnd: 12 }] : []
+    hrefs.indexOf(name) !== -1 ? [{ responseEnd: 12 }] : []
   );
 
 beforeEach(() => {
@@ -279,8 +289,9 @@ describe('mc:skeleton-visible mark', () => {
     bootLoadingScreen();
 
     expect(perf.mark).toHaveBeenCalledWith('mc:skeleton-visible');
-    // Measured from the time origin, i.e. navigationStart.
-    expect(perf.measure).toHaveBeenCalledWith('mc:skeleton-visible', {
+    // Measured from the time origin, i.e. navigationStart, under a name of its
+    // own so getEntriesByName('mc:skeleton-visible') returns only the mark.
+    expect(perf.measure).toHaveBeenCalledWith('mc:skeleton-visible:duration', {
       start: 0,
     });
   });
@@ -303,7 +314,7 @@ describe('mc:skeleton-visible mark', () => {
       href: 'https://cdn.example.com/app-shell.css',
       'data-mc-css': '',
     });
-    stubCompletedResources(['app-shell.css']);
+    stubCompletedResources(['https://cdn.example.com/app-shell.css']);
 
     expect(() => bootLoadingScreen()).not.toThrow();
 
@@ -380,7 +391,7 @@ describe('stylesheet preload upgrade', () => {
       href: 'https://cdn.example.com/app-shell.css',
       'data-mc-css': '',
     });
-    stubCompletedResources(['app-shell.css']);
+    stubCompletedResources(['https://cdn.example.com/app-shell.css']);
 
     bootLoadingScreen();
 
@@ -449,7 +460,7 @@ describe('onAppLoaded reveal gate', () => {
   it('should remove the loader immediately when no app CSS is pending', () => {
     bootLoadingScreen();
 
-    window.onAppLoaded();
+    callOnAppLoaded();
 
     expect(appLoader()).toBeNull();
   });
@@ -469,7 +480,7 @@ describe('onAppLoaded reveal gate', () => {
     });
 
     bootLoadingScreen();
-    window.onAppLoaded();
+    callOnAppLoaded();
 
     expect(appLoader()).not.toBeNull();
 
@@ -488,9 +499,47 @@ describe('onAppLoaded reveal gate', () => {
     });
 
     bootLoadingScreen();
-    window.onAppLoaded();
+    callOnAppLoaded();
 
     expect(appLoader()).toBeNull();
+  });
+
+  it('should upgrade straggler preloads when the deadline fires', () => {
+    // Zeroing the counter alone would leave the link as rel="preload" forever,
+    // so its CSS could never apply even if the response arrived later.
+    const linkEl = addPreload({
+      rel: 'preload',
+      as: 'style',
+      href: 'https://cdn.example.com/slow.css',
+      'data-mc-css': '',
+    });
+
+    bootLoadingScreen();
+    expect(linkEl.rel).toBe('preload');
+
+    jest.advanceTimersByTime(2000);
+
+    expect(linkEl.rel).toBe('stylesheet');
+    expect(linkEl.getAttribute('data-mc-upgraded')).toBe('');
+  });
+
+  it('should not double-release when a stylesheet loads after the deadline', () => {
+    const linkEl = addPreload({
+      rel: 'preload',
+      as: 'style',
+      href: 'https://cdn.example.com/late.css',
+      'data-mc-css': '',
+    });
+
+    bootLoadingScreen();
+    jest.advanceTimersByTime(2000);
+    linkEl.dispatchEvent(new Event('load'));
+
+    // The data-mc-upgraded guard makes the late event a no-op, so the counter
+    // cannot be driven negative.
+    expect((window as { __CSS_REMAINING__?: number }).__CSS_REMAINING__).toBe(
+      0
+    );
   });
 
   it('should reveal the app anyway when a stylesheet never resolves', () => {
@@ -505,7 +554,7 @@ describe('onAppLoaded reveal gate', () => {
     });
 
     bootLoadingScreen();
-    window.onAppLoaded();
+    callOnAppLoaded();
 
     expect(appLoader()).not.toBeNull();
 

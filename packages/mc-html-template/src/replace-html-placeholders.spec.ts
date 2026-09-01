@@ -95,10 +95,17 @@ describe('replaceHtmlPlaceholders', () => {
 
       // Attribute order and line wrapping are prettier's, so assert on the
       // attributes present in the tag rather than an exact one-line shape.
-      const tag = html.slice(
-        html.indexOf('<link', html.indexOf('rel="preload"') - 200),
-        html.indexOf('<noscript>')
-      );
+      // Anchored on the family so the assertion keeps pointing at Open Sans
+      // once other rel="preload" links exist earlier in the document.
+      const tag = html
+        .split('<link')
+        .find(
+          (candidate) =>
+            candidate.includes('family=Open+Sans') &&
+            candidate.includes('rel="preload"')
+        ) as string;
+
+      expect(tag).toBeDefined();
 
       expect(tag).toContain('rel="preload"');
       expect(tag).toContain('as="style"');
@@ -140,6 +147,16 @@ describe('replaceHtmlPlaceholders', () => {
     });
   });
 
+  describe('first-paint self-sufficiency', () => {
+    it('should reset the body margin itself, since app CSS is now a preload', () => {
+      // resets.css used to supply this render-blocking; a 100vw/100vh skeleton
+      // inside the UA default margin would overflow and shift.
+      const html = compile();
+
+      expect(html).toMatch(/html,\s*body\s*\{[^}]*margin:\s*0/);
+    });
+  });
+
   describe('view transitions', () => {
     it('should inject the loading screen styles outside #app-loader', () => {
       // `onAppLoaded()` removes #app-loader, and the @view-transition opt-in must
@@ -165,8 +182,14 @@ describe('replaceHtmlPlaceholders', () => {
   });
 
   describe('layout constants (drift alarm)', () => {
-    // Duplicated from packages/application-shell/src/constants.ts. If those
-    // change, the skeleton shifts layout at handoff and this test should fail.
+    // These literals are duplicated from packages/application-shell/src/constants.ts
+    // (DIMENSIONS.header, NAVBAR.widthLeftNavigation*) and the UI Kit's
+    // --color-primary-10. This test pins the values currently baked into
+    // loading-screen.css against an accidental edit HERE; it canNOT detect a
+    // change to constants.ts, because mc-html-template has no import path to
+    // application-shell and this CSS is inlined before any JS module loads.
+    // Cross-package drift remains a manual three-way responsibility, shared with
+    // navbar-skeleton.styles.tsx which also hardcodes these widths.
     it.each([
       ['header height', '56px'],
       ['navbar collapsed width', '80px'],
