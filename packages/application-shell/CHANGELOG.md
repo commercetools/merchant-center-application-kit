@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.9.5
+
+### Patch Changes
+
+- [#4127](https://github.com/commercetools/merchant-center-application-kit/pull/4127) [`7d9240e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d9240eb34fdf710697cd8c08cdc19374808ca16) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `@commercetools/nimbus` to `3.5.1`.
+
+- [#4136](https://github.com/commercetools/merchant-center-application-kit/pull/4136) [`97782cd`](https://github.com/commercetools/merchant-center-application-kit/commit/97782cd86976d8f3e883f2b02e45fcc0cb6ae599) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Move the SaveToolbar portal target (`#mc-main-container-portal`) from the authenticated shell grid into the splitter async wrapper, outside `Suspense` and `Splitter.Main`. This ensures the portal target escapes `container-type: inline-size` on `Splitter.Main` so `position: fixed` content spans both splitter panes, and sits at `z-index: 10001` above the modal portals container (`z-index: 10000`).
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.9.5
+  - @commercetools-frontend/application-components@27.9.5
+  - @commercetools-frontend/application-config@27.9.5
+  - @commercetools-frontend/application-shell-connectors@27.9.5
+  - @commercetools-frontend/assets@27.9.5
+  - @commercetools-frontend/browser-history@27.9.5
+  - @commercetools-frontend/constants@27.9.5
+  - @commercetools-frontend/i18n@27.9.5
+  - @commercetools-frontend/l10n@27.9.5
+  - @commercetools-frontend/notifications@27.9.5
+  - @commercetools-frontend/permissions@27.9.5
+  - @commercetools-frontend/react-notifications@27.9.5
+  - @commercetools-frontend/sdk@27.9.5
+  - @commercetools-frontend/sentry@27.9.5
+  - @commercetools-frontend/url-utils@27.9.5
+
 ## 27.9.4
 
 ### Patch Changes
