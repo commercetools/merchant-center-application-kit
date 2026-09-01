@@ -1,5 +1,7 @@
 import { type ReactNode, lazy, Suspense } from 'react';
+import { css } from '@emotion/react';
 import { useHistory } from 'react-router-dom';
+import { MC_MAIN_CONTAINER_PORTAL_ID } from '@commercetools-frontend/constants';
 
 const Passthrough = ({ children }: { children: ReactNode }) => <>{children}</>;
 
@@ -29,14 +31,31 @@ const ApplicationShellSplitterWrapper = (
   const history = useHistory();
 
   return (
-    <Suspense fallback={props.children}>
-      <LazyApplicationShellSplitter
-        locale={props.locale}
-        navigate={history.push}
-      >
-        {props.children}
-      </LazyApplicationShellSplitter>
-    </Suspense>
+    <>
+      <Suspense fallback={props.children}>
+        <LazyApplicationShellSplitter
+          locale={props.locale}
+          navigate={history.push}
+        >
+          {props.children}
+        </LazyApplicationShellSplitter>
+      </Suspense>
+      {/* Portal target for SaveToolbar. Rendered outside Suspense so it
+          exists in both the Nimbus and Passthrough paths, and outside
+          Splitter.Main so container-type:inline-size does not trap
+          position:fixed. z-index 10001 beats the modal portals
+          container (z-index 10000). */}
+      <div
+        id={MC_MAIN_CONTAINER_PORTAL_ID}
+        css={css`
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 10001;
+        `}
+      />
+    </>
   );
 };
 
