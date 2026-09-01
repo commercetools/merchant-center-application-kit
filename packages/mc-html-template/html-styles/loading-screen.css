@@ -48,3 +48,203 @@
   transform-origin: 20px 20px 0;
   animation: loading-spinner-animation 0.5s infinite linear;
 }
+
+/* ==========================================================================
+   Authenticated loading skeleton (FEC-1298)
+
+   Mirrors the real app chrome so there is no layout shift when React mounts.
+   Values are duplicated from packages/application-shell/src/constants.ts
+   (DIMENSIONS.header, NAVBAR.widthLeftNavigation*) and from the UI Kit design
+   system (--color-primary-10, --color-surface). They are hardcoded rather than
+   referenced because this stylesheet is inlined into the HTML document and
+   applies before any design-system stylesheet has loaded.
+   ========================================================================== */
+
+.loading-skeleton {
+  display: grid;
+  grid-template-rows: auto 56px 1fr;
+  grid-template-columns: min-content 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loading-skeleton--hidden {
+  display: none;
+}
+
+.loading-skeleton__sr-only {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+/* --- Sidebar: spans the header and content rows, as `aside` does in
+       application-shell-authenticated.tsx (grid-column 1/2, grid-row 2/4). --- */
+
+.loading-skeleton__sidebar {
+  display: flex;
+  flex-direction: column;
+  grid-row: 2 / 4;
+  grid-column: 1 / 2;
+  width: 80px;
+  background: hsl(240, 66%, 19%);
+}
+
+.loading-skeleton--menu-expanded .loading-skeleton__sidebar {
+  width: 256px;
+}
+
+/* Routes that render no navbar (/account, /login, /logout) collapse the first
+   grid column to zero, matching AppBar's offsetLeft of 0px. */
+.loading-skeleton--no-navbar .loading-skeleton__sidebar {
+  display: none;
+}
+
+.loading-skeleton__navbar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  height: 56px;
+}
+
+.loading-skeleton__navbar-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 16px;
+}
+
+.loading-skeleton__navbar-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+}
+
+.loading-skeleton--menu-expanded .loading-skeleton__navbar-footer {
+  padding: 16px 58px;
+}
+
+.loading-skeleton__navbar-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: calc(100% - 2 * 16px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.loading-skeleton__group {
+  width: 100%;
+}
+
+.loading-skeleton__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  height: 48px;
+}
+
+.loading-skeleton--menu-expanded .loading-skeleton__item--narrow {
+  padding: 12px 28px;
+}
+
+.loading-skeleton__icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* The real NavBarSkeleton renders MenuItemTitle only when expanded. */
+.loading-skeleton__title {
+  display: none;
+  flex: 1;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.loading-skeleton--menu-expanded .loading-skeleton__title {
+  display: block;
+}
+
+.loading-skeleton__expander {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Header: mirrors AppBar (colorSurface + shadow + 40px inline padding). --- */
+
+.loading-skeleton__header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  padding: 0 40px;
+  background: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.loading-skeleton__header-placeholder {
+  width: 120px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* --- Content: intentionally empty per the ticket. Centres the reused
+       long-loading notice where users see it today. --- */
+
+.loading-skeleton__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+/* ==========================================================================
+   Cross-document view transitions (FEC-1298)
+
+   Opts the document in so cross-app navigation crossfades instead of flashing
+   a blank page. This rule must remain in the document after `onAppLoaded()`
+   removes #app-loader, which is why __LOADING_SCREEN_CSS__ is injected into
+   <head> rather than inside the loader element.
+
+   No `view-transition-name` is set: a name must exist on both the outgoing and
+   incoming documents to morph an element, and on the outgoing page the skeleton
+   is already gone while the real NavBar/AppBar are unnamed. Naming skeleton
+   elements alone would imply behaviour it cannot produce.
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+/*
+  Reduced motion neutralises the animation, NOT the transition. Setting
+  `navigation: none` would give these users the blank screen back — the
+  no-blank-screen benefit comes from the browser holding the old snapshot,
+  which survives a near-instant animation.
+*/
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1ms;
+  }
+}

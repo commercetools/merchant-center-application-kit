@@ -100,7 +100,10 @@ function DemoCustomView() {
     window.app.customViewId = CUSTOM_VIEW_ID;
     window.app.__DEVELOPMENT__.customViewConfig = DEMO_CUSTOM_VIEW;
     window.app.__DEVELOPMENT__.customViewHostUrl = window.location.href;
-    document.querySelector('.loading-screen').remove();
+    // Remove the whole #app-loader, not just .loading-screen: since FEC-1298
+    // the loader also contains a 100vh authenticated skeleton sibling, so
+    // removing only .loading-screen would leave this view pushed below the fold.
+    window.onAppLoaded();
     setIsLoading(false);
   }, []);
 

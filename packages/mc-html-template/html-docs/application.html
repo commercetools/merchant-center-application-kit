@@ -76,15 +76,118 @@
 
     __APPLICATION_CSS_IMPORTS__
 
+    <!--
+      Loading screen styles.
+      NOTE: these live in <head>, NOT inside #app-loader. `onAppLoaded()`
+      removes #app-loader entirely, and the `@view-transition` opt-in below
+      must still be in the document at navigation time (long after React
+      mounted) or cross-document view transitions silently never fire.
+    -->
+    __LOADING_SCREEN_CSS__
+
     <title>Merchant Center</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="app-loader">
-      <!-- Loading screen styles -->
-      __LOADING_SCREEN_CSS__
+      <!--
+        Authenticated variant: static app-chrome skeleton, revealed
+        immediately (no 250ms delay) by loading-screen.js when a cached
+        session is present. Mirrors NavBarSkeleton + AppBar so there is no
+        layout shift when React chrome mounts.
+      -->
+      <div
+        class="loading-skeleton loading-skeleton--hidden"
+        role="status"
+        aria-busy="true"
+      >
+        <span class="loading-skeleton__sr-only">Loading Merchant Center</span>
 
+        <div class="loading-skeleton__sidebar" aria-hidden="true">
+          <div class="loading-skeleton__navbar-header">
+            <div class="loading-skeleton__item loading-skeleton__item--narrow">
+              <div class="loading-skeleton__icon"></div>
+              <div class="loading-skeleton__title"></div>
+            </div>
+          </div>
+          <div class="loading-skeleton__navbar-body">
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+          </div>
+          <div class="loading-skeleton__navbar-footer">
+            <div class="loading-skeleton__expander"></div>
+          </div>
+        </div>
+
+        <div class="loading-skeleton__header" aria-hidden="true">
+          <div class="loading-skeleton__header-placeholder"></div>
+        </div>
+
+        <div class="loading-skeleton__content">
+          <p class="long-loading-notice long-loading-notice--hidden">
+            Sorry, this is taking an unusually long time.
+          </p>
+        </div>
+      </div>
+
+      <!-- Unauthenticated variant: unchanged bare spinner. -->
       <div class="loading-screen loading-screen--hidden">
         <svg class="loading-spinner" viewBox="0 0 40 40">
           <path
