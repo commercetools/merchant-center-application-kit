@@ -1,5 +1,20 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.9.5
+
+### Patch Changes
+
+- [#4127](https://github.com/commercetools/merchant-center-application-kit/pull/4127) [`7d9240e`](https://github.com/commercetools/merchant-center-application-kit/commit/7d9240eb34fdf710697cd8c08cdc19374808ca16) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency `@commercetools/nimbus` to `3.5.1`.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.9.5
+  - @commercetools-frontend/application-config@27.9.5
+  - @commercetools-frontend/assets@27.9.5
+  - @commercetools-frontend/babel-preset-mc-app@27.9.5
+  - @commercetools-frontend/constants@27.9.5
+  - @commercetools-frontend/mc-dev-authentication@27.9.5
+  - @commercetools-frontend/mc-html-template@27.9.5
+
 ## 27.9.4
 
 ### Patch Changes
