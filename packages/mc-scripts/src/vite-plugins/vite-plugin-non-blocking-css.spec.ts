@@ -166,7 +166,7 @@ describe('vite-plugin-non-blocking-css', () => {
         }
       );
 
-    it('should leave the Inter/Nimbus font link blocking and unmarked', () => {
+    it('should leave the Inter/Nimbus font link untouched and unmarked', () => {
       const result = transform(
         pluginNonBlockingCss(),
         buildRealTemplateHtml(),
@@ -180,7 +180,8 @@ describe('vite-plugin-non-blocking-css', () => {
         .find((tag) => tag.includes('family=Inter')) as string;
 
       expect(interTag).toBeDefined();
-      expect(interTag).toContain('rel="stylesheet"');
+      // Inter is a preload in the template now, but it is a FONT: the plugin
+      // must not claim it as app CSS or it would gate app reveal on Google.
       expect(interTag).toContain('data-nimbus-fonts=""');
       expect(interTag).not.toContain('data-mc-css');
     });

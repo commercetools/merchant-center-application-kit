@@ -71,11 +71,20 @@
       blocks:
       script hashes do not cover event-handler attributes.
 
-      The Inter link below is deliberately NOT converted. NimbusProvider
-      renders a byte-identical stylesheet link itself, and React 19 dedupes
-      hoisted stylesheets by matching link[rel="stylesheet"][href]. Changing
-      the rel would miss that match and Nimbus would inject its own blocking
-      stylesheet at mount instead - later than today, not earlier.
+      Inter is converted too. NimbusProvider renders a byte-identical
+      stylesheet link of its own, and React 19 dedupes hoisted stylesheets by
+      matching link[rel="stylesheet"][href] - which a preload does not match.
+      Nimbus therefore has to be told to stand down, via its `loadFonts={false}`
+      prop; `data-nimbus-fonts` is kept on both tags as the marker it uses to
+      recognise a host-owned font link.
+
+      Where a host still mounts NimbusProvider with the default `loadFonts`,
+      Nimbus injects its own stylesheet at mount. That is not a regression: the
+      href is identical, so the request is already warm from this preload and
+      first paint is not blocked either way.
+
+      `precedence` is dropped: React only ever reads the `data-precedence`
+      attribute it sets itself, so on a static tag it was inert.
     -->
     <link
       rel="preload"
@@ -89,11 +98,18 @@
       />
     </noscript>
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
       data-nimbus-fonts=""
-      precedence="default"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+        data-nimbus-fonts=""
+      />
+    </noscript>
 
     __APPLICATION_CSS_IMPORTS__
 

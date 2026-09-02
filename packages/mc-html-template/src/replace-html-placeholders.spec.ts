@@ -123,21 +123,57 @@ describe('replaceHtmlPlaceholders', () => {
       expect(noscript).toContain('rel="stylesheet"');
     });
 
-    it('should leave the Inter/Nimbus link blocking and fully attributed', () => {
-      // NimbusProvider renders a byte-identical link and React 19 dedupes by
-      // matching link[rel="stylesheet"][href]. Converting this would make Nimbus
-      // inject its own blocking stylesheet at mount instead.
+    it('should preload Inter too, keeping the Nimbus marker', () => {
+      // Nimbus is told to stand down via its `loadFonts={false}` prop; the
+      // marker is what lets it recognise a host-owned font link.
       const html = compile();
-      const interLink = html.slice(
-        html.indexOf(
-          '<link\n      href="https://fonts.googleapis.com/css2?family=Inter'
-        ),
-        html.indexOf('__APPLICATION_CSS_IMPORTS__')
-      );
+      const interTag = html
+        .split('<link')
+        .find(
+          (candidate) =>
+            candidate.includes('family=Inter') &&
+            candidate.includes('rel="preload"')
+        ) as string;
 
-      expect(interLink).toContain('rel="stylesheet"');
-      expect(interLink).toContain('data-nimbus-fonts=""');
-      expect(interLink).toContain('precedence="default"');
+      expect(interTag).toBeDefined();
+      expect(interTag).toContain('as="style"');
+      expect(interTag).toContain('data-nimbus-fonts=""');
+    });
+
+    it('should provide a noscript stylesheet fallback for Inter', () => {
+      const html = compile();
+      // Match the block bodies, not `split('<noscript>')` -- that would leave
+      // the Inter preload sitting in the chunk before its own noscript.
+      const noscripts = (
+        html.match(/<noscript>[\s\S]*?<\/noscript>/g) ?? []
+      ).filter((block) => block.includes('family=Inter'));
+
+      expect(noscripts).toHaveLength(1);
+      expect(noscripts[0]).toContain('rel="stylesheet"');
+    });
+
+    it('should leave no render-blocking font stylesheet outside noscript', () => {
+      // The whole point: neither font may block first paint.
+      const html = compile();
+      const outsideNoscript = html.replace(
+        /<noscript>[\s\S]*?<\/noscript>/g,
+        ''
+      );
+      const blocking = outsideNoscript
+        .split('<link')
+        .filter(
+          (tag) =>
+            tag.includes('fonts.googleapis.com/css2') &&
+            tag.includes('rel="stylesheet"')
+        );
+
+      expect(blocking).toHaveLength(0);
+    });
+
+    it('should drop the inert precedence attribute', () => {
+      // React only reads the `data-precedence` attribute it sets itself, so on
+      // a static tag `precedence` never did anything.
+      expect(compile()).not.toContain('precedence=');
     });
 
     it('should not use an inline onload handler anywhere', () => {
