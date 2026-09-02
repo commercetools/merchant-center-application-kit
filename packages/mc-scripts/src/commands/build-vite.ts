@@ -19,6 +19,10 @@ import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
 async function run() {
   const DEFAULT_PORT = parseInt(String(process.env.HTTP_PORT), 10) || 3001;
 
+  const analyzeOutput = process.env.ANALYZE_BUNDLE_OUTPUT;
+  const shouldAnalyze =
+    process.env.ANALYZE_BUNDLE === 'true' || Boolean(analyzeOutput);
+
   // Ensure the `/public` folder exists.
   fs.mkdirSync(paths.appBuild, { recursive: true });
 
@@ -133,8 +137,17 @@ async function run() {
       // Chunk cycles are silent at build time but crash at runtime with TDZ
       // errors (historical "aM is undefined" from the icons/app-shell split).
       pluginChunkCycleCheck(),
-      process.env.ANALYZE_BUNDLE === 'true' &&
-        analyzer({ defaultSizes: 'stat', openAnalyzer: true }),
+
+      shouldAnalyze &&
+        analyzer(
+          analyzeOutput
+            ? {
+                analyzerMode: 'json',
+                defaultSizes: 'gzip',
+                fileName: analyzeOutput,
+              }
+            : { defaultSizes: 'gzip', openAnalyzer: true }
+        ),
       process.env.ANALYZE_BUNDLE_TREE === 'true' &&
         (visualizer({ open: true, template: 'network' }) as PluginOption),
     ],
