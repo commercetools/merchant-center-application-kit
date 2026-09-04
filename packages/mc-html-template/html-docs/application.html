@@ -64,27 +64,15 @@
 
     <!-- Fonts -->
     <!--
-      Open Sans is preloaded instead of linked as a stylesheet so it does not
-      block first paint. `loading-screen.js` upgrades it to rel="stylesheet"
-      once loaded. That upgrade lives in the (CSP-hashed) inline script rather
-      than an inline `onload` handler attribute, which the production CSP
-      blocks:
-      script hashes do not cover event-handler attributes.
+      Preloaded rather than linked as stylesheets so they don't block first
+      paint; loading-screen.js upgrades them once loaded (not via an inline
+      `onload` attribute, which the production CSP blocks).
 
-      Inter is converted too. NimbusProvider renders a byte-identical
-      stylesheet link of its own, and React 19 dedupes hoisted stylesheets by
-      matching link[rel="stylesheet"][href] - which a preload does not match.
-      Nimbus therefore has to be told to stand down, via its `loadFonts={false}`
-      prop; `data-nimbus-fonts` is kept on both tags as the marker it uses to
-      recognise a host-owned font link.
-
-      Where a host still mounts NimbusProvider with the default `loadFonts`,
-      Nimbus injects its own stylesheet at mount. That is not a regression: the
-      href is identical, so the request is already warm from this preload and
-      first paint is not blocked either way.
-
-      `precedence` is dropped: React only ever reads the `data-precedence`
-      attribute it sets itself, so on a static tag it was inert.
+      Inter also needs NimbusProvider's `loadFonts={false}`: React 19 dedupes
+      stylesheets by href, and a preload doesn't match. Left on the default is
+      harmless, since the identical href just resolves from this preload
+      instead of a second request. `data-nimbus-fonts` marks the tag for
+      Nimbus to recognise.
     -->
     <link
       rel="preload"
@@ -114,11 +102,9 @@
     __APPLICATION_CSS_IMPORTS__
 
     <!--
-      Loading screen styles.
-      NOTE: these live in <head>, NOT inside #app-loader. `onAppLoaded()`
-      removes #app-loader entirely, and the `@view-transition` opt-in below
-      must still be in the document at navigation time (long after React
-      mounted) or cross-document view transitions silently never fire.
+      Lives in <head>, not inside #app-loader: onAppLoaded() removes that
+      element, and the @view-transition rule here must still be in the
+      document when the user navigates away.
     -->
     __LOADING_SCREEN_CSS__
 
@@ -128,12 +114,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="app-loader">
-      <!--
-        Authenticated variant: static app-chrome skeleton, revealed
-        immediately (no 250ms delay) by loading-screen.js when a cached
-        session is present. Mirrors NavBarSkeleton + AppBar so there is no
-        layout shift when React chrome mounts.
-      -->
+      <!-- Authenticated: revealed immediately, mirrors the real app chrome. -->
       <div
         class="loading-skeleton loading-skeleton--hidden"
         role="status"
@@ -224,7 +205,7 @@
         </div>
       </div>
 
-      <!-- Unauthenticated variant: unchanged bare spinner. -->
+      <!-- Unauthenticated: unchanged spinner. -->
       <div class="loading-screen loading-screen--hidden">
         <svg class="loading-spinner" viewBox="0 0 40 40">
           <path

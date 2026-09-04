@@ -1,18 +1,12 @@
-// Drives the loading screen shown before React mounts:
-// - reveals either the authenticated app-chrome skeleton or the bare spinner
-// - upgrades non-blocking stylesheet preloads once they have loaded
-// - exposes `window.onAppLoaded`, which ConfigureIntlProvider calls when React
-//   is ready, and which removes the loader
-//
 // Needs to be compatible with all browsers supported without transpilation:
 // this file is inlined into the HTML document verbatim (only minified).
 (function initLoadingScreen() {
   const SPINNER_SHOW_DELAY = 250;
   const LONG_LOADING_DELAY = 2000;
-  // Mirrors WINDOW_SIZES.WIDE in packages/application-shell/src/constants.ts.
+  // Mirrors WINDOW_SIZES.WIDE in application-shell/src/constants.ts.
   const WIDE_VIEWPORT = 1200;
-  // Mirrors `staticUrlPathsInPositionOfProjectKey` in
-  // packages/application-shell-connectors: the shell renders no NavBar here.
+  // Mirrors `staticUrlPathsInPositionOfProjectKey`: the shell renders no
+  // NavBar on these routes.
   const NAVBARLESS_ROUTES = ['login', 'logout', 'account'];
 
   function readStorage(key) {
@@ -25,13 +19,9 @@
     }
   }
 
-  /* ---------------------------------------------------------------- *
-   * Loader removal, gated on our own stylesheets                     *
-   * ---------------------------------------------------------------- */
-
-  // Count of app stylesheets (marked `data-mc-css` by the build) that have not
-  // finished loading. React must not be revealed while any is outstanding or
-  // the app flashes unstyled.
+  // Count of app stylesheets (marked `data-mc-css` by the build) still
+  // pending. The app must not be revealed while this is above zero, or it
+  // flashes unstyled.
   window.__CSS_REMAINING__ = 0;
 
   let isAppReady = false;
@@ -50,16 +40,11 @@
     }
   }
 
-  // Assigning global callback used by ConfigureIntlProvider to remove the
-  // loading screen.
+  // Called by ConfigureIntlProvider once React is ready.
   window.onAppLoaded = function onAppLoaded() {
     isAppReady = true;
     removeAppLoaderWhenReady();
   };
-
-  /* ---------------------------------------------------------------- *
-   * Non-blocking stylesheet preloads                                 *
-   * ---------------------------------------------------------------- */
 
   function upgradeStylesheetPreload(linkEl, isCounted) {
     if (linkEl.getAttribute('data-mc-upgraded') !== null) {
@@ -76,15 +61,10 @@
   }
 
   function hasAlreadyLoaded(linkEl) {
-    // `linkEl.sheet` is always null on a preload - a preload has no associated
-    // stylesheet - so completion is detected through Resource Timing, which is
-    // populated for cross-origin responses without Timing-Allow-Origin.
-    //
-    // This matters more than it looks: this script is a parser-inserted classic
-    // script, so it is deferred while a script-blocking stylesheet is
-    // outstanding (Inter still is). By the time it runs, same-origin preloads
-    // started at parse time have usually already fired `load`, so relying on
-    // the event alone would leave them unupgraded forever.
+    // `linkEl.sheet` is always null on a preload, so completion is detected via
+    // Resource Timing instead. This matters: this script can run late enough
+    // (deferred behind another blocking stylesheet) that the `load` event on a
+    // fast preload has already fired and would otherwise be missed forever.
     if (!window.performance || !window.performance.getEntriesByName) {
       return false;
     }
@@ -101,30 +81,27 @@
   }
 
   function upgradeStylesheetPreloads() {
-    // Scoped to `as="style"` on purpose: other preload types share this
-    // document. FEC-1301 adds `as="fetch"` prefetch hints and Vite already
-    // emits `rel="modulepreload"`; rewriting either would break them.
+    // Scoped to `as="style"`: other preload types (e.g. `as="fetch"` prefetch
+    // hints, `rel="modulepreload"`) share this document and must not be touched.
     const linkEls = document.querySelectorAll(
       'link[rel="preload"][as="style"]'
     );
 
     for (let index = 0; index < linkEls.length; index += 1) {
       const linkEl = linkEls[index];
-      // Only app CSS gates the reveal. Fonts use `display=swap`, so gating on a
-      // third-party font request would delay the app for no visual benefit.
+      // Only app CSS gates the reveal; fonts already use `display=swap`.
       const isCounted = linkEl.getAttribute('data-mc-css') !== null;
 
       if (isCounted) {
         window.__CSS_REMAINING__ += 1;
       }
 
-      // Listeners are attached before the already-loaded check so a response
-      // arriving mid-loop cannot be missed.
+      // Attached before the already-loaded check, so a response arriving
+      // mid-loop cannot be missed.
       linkEl.addEventListener('load', function onStylesheetLoad() {
         upgradeStylesheetPreload(linkEl, isCounted);
       });
       linkEl.addEventListener('error', function onStylesheetError() {
-        // A failed stylesheet must never hold the app hostage.
         upgradeStylesheetPreload(linkEl, isCounted);
       });
 
@@ -133,10 +110,6 @@
       }
     }
   }
-
-  /* ---------------------------------------------------------------- *
-   * Variant selection                                                *
-   * ---------------------------------------------------------------- */
 
   function getFirstPathSegment() {
     return (window.location.pathname.split('/')[1] || '').toLowerCase();
@@ -160,10 +133,9 @@
   }
 
   function isNavbarExpanded() {
-    // Two inputs, not one: `useNavbarStateManager` resets `isMenuOpen` to false
-    // at or below WINDOW_SIZES.WIDE regardless of the persisted flag, so
-    // mirroring only the flag would jump 176px when React restores a collapsed
-    // navbar.
+    // Both checks matter: React collapses the navbar below WIDE_VIEWPORT
+    // regardless of the persisted flag, so honouring the flag alone would
+    // cause a layout jump on mount.
     return (
       readStorage('isForcedMenuOpen') === 'true' &&
       window.innerWidth > WIDE_VIEWPORT
@@ -189,9 +161,7 @@
   }
 
   function markSkeletonVisible() {
-    // Part of FEC-1297's `mc:*` mark set, emitted here because the skeleton is
-    // the only thing that knows when it actually became visible. Kept in its own
-    // try/catch so instrumentation can never prevent the stylesheet upgrade.
+    // Own try/catch so instrumentation can never block the stylesheet upgrade.
     try {
       if (!window.performance || !window.performance.mark) {
         return;
@@ -200,11 +170,9 @@
       window.performance.mark('mc:skeleton-visible');
 
       if (window.performance.measure) {
-        // Distinct name on purpose: sharing it with the mark would make
-        // `getEntriesByName('mc:skeleton-visible')` return two entries of
-        // different entryType, and a consumer indexing [0] would read whichever
-        // sorted first. Omitting `end`/`duration` measures from the time origin
-        // (navigationStart) to now.
+        // Named separately from the mark, or getEntriesByName would return two
+        // entries of different entryType. Omitting end/duration measures from
+        // the time origin to now.
         window.performance.measure('mc:skeleton-visible:duration', {
           start: 0,
         });
@@ -216,9 +184,8 @@
 
   function scheduleLongLoadingNotice(containerEl) {
     setTimeout(function showLongLoadingNotice() {
-      // Both variants carry a notice, but only the revealed one may be
-      // unhidden - an unscoped lookup would hit the skeleton's copy first and
-      // leave unauthenticated users without theirs.
+      // Scoped to the revealed container: both variants carry a notice, and an
+      // unscoped lookup would always hit the skeleton's copy first.
       const noticeEl =
         containerEl && containerEl.querySelector('.long-loading-notice');
 
@@ -228,21 +195,13 @@
     }, LONG_LOADING_DELAY);
   }
 
-  /* ---------------------------------------------------------------- *
-   * Run                                                              *
-   * ---------------------------------------------------------------- */
-
   upgradeStylesheetPreloads();
 
-  // Hard deadline. A stylesheet that never resolves must not leave the app
-  // invisible: before this gate existed `onAppLoaded` removed the loader
-  // unconditionally, so an unbounded wait would be a new availability
-  // regression. Degrade to visible-but-unstyled instead.
-  //
-  // Upgrading the stragglers first matters: a link left as `rel="preload"` would
-  // never apply its CSS even if the response arrives later, so zeroing the
-  // counter alone would trade a temporarily unstyled app for a permanently
-  // unstyled one. `false` skips the decrement, since the counter is zeroed next.
+  // Hard deadline so a stylesheet that never resolves can't leave the app
+  // invisible; it degrades to visible-but-unstyled instead. Upgrades the
+  // stragglers before zeroing the counter, or their CSS would never apply even
+  // once the response does arrive. `false` skips the decrement, since the
+  // counter is zeroed right after.
   setTimeout(function releaseStylesheetGate() {
     const pendingEls = document.querySelectorAll(
       'link[rel="preload"][as="style"]'

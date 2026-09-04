@@ -50,22 +50,17 @@
 }
 
 /* ==========================================================================
-   Authenticated loading skeleton (FEC-1298)
+   Authenticated loading skeleton
 
    Mirrors the real app chrome so there is no layout shift when React mounts.
-   Values are duplicated from packages/application-shell/src/constants.ts
-   (DIMENSIONS.header, NAVBAR.widthLeftNavigation*) and from the UI Kit design
-   system (--color-primary-10, --color-surface). They are hardcoded rather than
-   referenced because this stylesheet is inlined into the HTML document and
-   applies before any design-system stylesheet has loaded.
+   Values are duplicated from application-shell/src/constants.ts (DIMENSIONS,
+   NAVBAR) and the UI Kit design system, hardcoded because this stylesheet is
+   inlined and applies before any design-system stylesheet has loaded.
    ========================================================================== */
 
-/*
-  The app's own resets.css used to supply this render-blocking. Now that app CSS
-  is a preload, this inlined stylesheet has to stand alone at first paint or the
-  100vw/100vh skeleton renders inside the UA's default body margin. Left
-  unlayered so it wins over resets.css's @layer copy of the identical value.
-*/
+/* App CSS is now a preload rather than render-blocking, so this stylesheet
+   needs its own reset or the skeleton renders inside the UA's default body
+   margin. Left unlayered so it wins over resets.css's @layer copy. */
 html,
 body {
   margin: 0;
@@ -93,9 +88,7 @@ body {
   white-space: nowrap;
 }
 
-/* --- Sidebar: spans the header and content rows, as `aside` does in
-       application-shell-authenticated.tsx (grid-column 1/2, grid-row 2/4). --- */
-
+/* Spans the header and content rows, matching the real `aside` element. */
 .loading-skeleton__sidebar {
   display: flex;
   flex-direction: column;
@@ -109,8 +102,8 @@ body {
   width: 256px;
 }
 
-/* Routes that render no navbar (/account, /login, /logout) collapse the first
-   grid column to zero, matching AppBar's offsetLeft of 0px. */
+/* Routes with no navbar collapse the first grid column, matching AppBar's
+   offsetLeft of 0px. */
 .loading-skeleton--no-navbar .loading-skeleton__sidebar {
   display: none;
 }
@@ -199,8 +192,7 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* --- Header: mirrors AppBar (colorSurface + shadow + 40px inline padding). --- */
-
+/* Mirrors AppBar's surface colour, shadow and inline padding. */
 .loading-skeleton__header {
   display: flex;
   justify-content: flex-end;
@@ -219,9 +211,7 @@ body {
   background: rgba(0, 0, 0, 0.08);
 }
 
-/* --- Content: intentionally empty per the ticket. Centres the reused
-       long-loading notice where users see it today. --- */
-
+/* Intentionally empty; centres the reused long-loading notice. */
 .loading-skeleton__content {
   display: flex;
   justify-content: center;
@@ -231,29 +221,20 @@ body {
 }
 
 /* ==========================================================================
-   Cross-document view transitions (FEC-1298)
+   Cross-document view transitions
 
    Opts the document in so cross-app navigation crossfades instead of flashing
-   a blank page. This rule must remain in the document after `onAppLoaded()`
-   removes #app-loader, which is why __LOADING_SCREEN_CSS__ is injected into
-   <head> rather than inside the loader element.
-
-   No `view-transition-name` is set: a name must exist on both the outgoing and
-   incoming documents to morph an element, and on the outgoing page the skeleton
-   is already gone while the real NavBar/AppBar are unnamed. Naming skeleton
-   elements alone would imply behaviour it cannot produce.
+   a blank page. No `view-transition-name` here: a name must exist on both the
+   outgoing and incoming documents to morph an element, and the skeleton is
+   already gone by the time the outgoing page navigates away.
    ========================================================================== */
 
 @view-transition {
   navigation: auto;
 }
 
-/*
-  Reduced motion neutralises the animation, NOT the transition. Switching the
-  navigation off entirely would give these users the blank screen back: the
-  no-blank-screen benefit comes from the browser holding the old snapshot,
-  which survives a near-instant animation.
-*/
+/* Neutralises the animation, not the transition: switching navigation off
+   would bring back the blank screen these users are meant to avoid. */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
   ::view-transition-new(root) {
