@@ -143,10 +143,10 @@ async function run() {
           analyzeOutput
             ? {
                 analyzerMode: 'json',
-                defaultSizes: 'gzip',
+                defaultSizes: 'stat',
                 fileName: analyzeOutput,
               }
-            : { defaultSizes: 'gzip', openAnalyzer: true }
+            : { defaultSizes: 'stat', openAnalyzer: true }
         ),
       process.env.ANALYZE_BUNDLE_TREE === 'true' &&
         (visualizer({ open: true, template: 'network' }) as PluginOption),
