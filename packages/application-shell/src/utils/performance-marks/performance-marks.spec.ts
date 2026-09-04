@@ -92,9 +92,6 @@ describe('markOnce', () => {
     expect(mark).not.toHaveBeenCalled();
   });
 
-  // Timing instrumentation is observational. Callers invoke `markOnce` from
-  // `useEffect`, where a throw surfaces as an uncaught React error and can
-  // break shell mount.
   it('swallows errors thrown by the Performance API', () => {
     const { default: markOnce, PERFORMANCE_MARKS } = loadModule();
     const throwingMeasure = jest.fn(() => {
@@ -139,9 +136,6 @@ describe('PERFORMANCE_MARKS', () => {
   it('holds the six canonical names from FEC-1297', () => {
     const { PERFORMANCE_MARKS } = loadModule();
 
-    // `mc:skeleton-visible` has no emitter in this package. FEC-1298 emits it
-    // by hand in `mc-html-template/html-scripts/loading-screen.js`, because
-    // that file is untranspiled ES5 with no module system.
     expect(Object.values(PERFORMANCE_MARKS)).toEqual([
       'mc:skeleton-visible',
       'mc:shell-chrome-mounted',

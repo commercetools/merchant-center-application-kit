@@ -45,16 +45,6 @@ jest.mock('../application-shell-provider/utils', () => ({
   getBrowserHistory: jest.fn(),
 }));
 
-// The test environment's `performance` has no `mark`/`measure`, so `markOnce`
-// would bail on its availability guard and emit nothing. These are added rather
-// than replacing the global so `performance.now` (used by React's scheduler)
-// keeps working.
-//
-// Names accumulate in a plain array at module scope, deliberately never
-// cleared. `markOnce` dedupes on a module-scoped `Set` that lives for the whole
-// test file, so only the first shell render in this file emits anything. An
-// array that outlives `beforeEach` makes the assertion independent of which
-// test happens to render first.
 const emittedPerformanceMarks = [];
 Object.defineProperty(globalThis.performance, 'mark', {
   configurable: true,
@@ -147,9 +137,7 @@ const renderApp = (ui, options = {}) => {
   const getByLeftNavigation = () => screen.getByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
-    // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
-    // which seems not stable enough, we wait to find the "navigation" role, which is present
-    // when the navbar is loaded.
+
     await screen.findByRole('navigation');
   };
 
@@ -1557,19 +1545,6 @@ describe('when user is not ct staff', () => {
 });
 
 describe('FEC-1297 loading performance marks', () => {
-  // Guards the wiring in `application-shell-authenticated.tsx`. The mark
-  // utility and the `<PerformanceMark />` component have their own unit specs,
-  // but nothing else asserts that the shell actually places them, so a refactor
-  // that dropped or relocated one would silently stop the metric.
-  //
-  // Asserted in one test on purpose. Split across two, the second would only
-  // read `emittedPerformanceMarks` and would pass on an empty array whenever
-  // this one was filtered out with `-t`, proving nothing.
-  //
-  // The duplicate-count check below is a thin guard: `markOnce` makes duplicate
-  // emission impossible from inside this package, and its own spec covers that
-  // directly. It exists to catch a future caller that bypasses `markOnce` and
-  // calls `performance.mark` in the shell itself.
   it('emits every shell-owned mc:* mark exactly once during an authenticated load', async () => {
     const { waitForLeftNavigationToBeLoaded } = renderApp();
     await waitForLeftNavigationToBeLoaded();
