@@ -23,6 +23,8 @@ export { REGIONS } from './constants';
 export type { TApplicationShellSplitterValue } from './components/application-shell-splitter/application-shell-splitter';
 export { default as getPreviousProjectKey } from './utils/get-previous-project-key';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
+export { PERFORMANCE_MARKS } from './utils/performance-marks';
+export type { TPerformanceMark } from './utils/performance-marks';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';
 
 export {

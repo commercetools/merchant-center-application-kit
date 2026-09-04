@@ -45,6 +45,20 @@ jest.mock('../application-shell-provider/utils', () => ({
   getBrowserHistory: jest.fn(),
 }));
 
+const emittedPerformanceMarks = [];
+Object.defineProperty(globalThis.performance, 'mark', {
+  configurable: true,
+  writable: true,
+  value: (name) => {
+    emittedPerformanceMarks.push(name);
+  },
+});
+Object.defineProperty(globalThis.performance, 'measure', {
+  configurable: true,
+  writable: true,
+  value: () => {},
+});
+
 const createTestProps = (props) => ({
   environment: {
     applicationName: 'my-app',
@@ -123,9 +137,7 @@ const renderApp = (ui, options = {}) => {
   const getByLeftNavigation = () => screen.getByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
-    // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
-    // which seems not stable enough, we wait to find the "navigation" role, which is present
-    // when the navbar is loaded.
+
     await screen.findByRole('navigation');
   };
 
@@ -1529,5 +1541,34 @@ describe('when user is not ct staff', () => {
         STORAGE_KEYS.ACTIVE_USER_LANGUAGE
       );
     });
+  });
+});
+
+describe('FEC-1297 loading performance marks', () => {
+  it('emits every shell-owned mc:* mark exactly once during an authenticated load', async () => {
+    const { waitForLeftNavigationToBeLoaded } = renderApp();
+    await waitForLeftNavigationToBeLoaded();
+
+    // `mc:skeleton-visible` is deliberately absent: FEC-1298 emits it from
+    // `mc-html-template`'s inline loading-screen script, not from this package.
+    expect(emittedPerformanceMarks).toEqual(
+      expect.arrayContaining([
+        'mc:intl-ready',
+        'mc:shell-chrome-mounted',
+        'mc:hydration-user',
+        'mc:hydration-project',
+        'mc:content-rendered',
+      ])
+    );
+    expect(emittedPerformanceMarks).not.toContain('mc:skeleton-visible');
+
+    const counts = emittedPerformanceMarks.reduce(
+      (acc, name) => ({ ...acc, [name]: (acc[name] ?? 0) + 1 }),
+      {}
+    );
+    const duplicated = Object.entries(counts).filter(([, count]) => count > 1);
+
+    // Names the offenders on failure, rather than just reporting a count.
+    expect(duplicated).toEqual([]);
   });
 });

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -6,6 +6,7 @@ import type {
   TFetchProjectQuery,
   TFetchProjectQueryVariables,
 } from '../../types/generated/mc';
+import { markOnce, PERFORMANCE_MARKS } from '../../utils';
 import ProjectQuery from './fetch-project.mc.graphql';
 
 type RenderFnArgs = {
@@ -33,6 +34,13 @@ const FetchProject = (props: TFetchProjectProps) => {
     },
     skip: props.skip === true,
   });
+
+  useEffect(() => {
+    if (!loading && data?.project) {
+      markOnce(PERFORMANCE_MARKS.HYDRATION_PROJECT);
+    }
+  }, [loading, data?.project]);
+
   return (
     <>
       {props.children({
