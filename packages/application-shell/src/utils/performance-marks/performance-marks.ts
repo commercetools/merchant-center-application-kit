@@ -10,8 +10,6 @@ export const PERFORMANCE_MARKS = {
 export type TPerformanceMark =
   (typeof PERFORMANCE_MARKS)[keyof typeof PERFORMANCE_MARKS];
 
-// Excludes `mc:skeleton-visible`, which FEC-1298 emits from mc-html-template's
-// inline script. `alreadyMarked` cannot see marks made outside this module.
 export type TShellPerformanceMark = Exclude<
   TPerformanceMark,
   typeof PERFORMANCE_MARKS.SKELETON_VISIBLE
@@ -25,8 +23,7 @@ const markOnce = (performanceMark: TShellPerformanceMark) => {
 
   try {
     performance.mark(performanceMark);
-    // Between the two calls: a failed `mark` should retry, a failed `measure`
-    // must not emit a second entry.
+
     alreadyMarked.add(performanceMark);
     performance.measure(`${performanceMark}:from-nav`, {
       start: 0,

@@ -43,9 +43,6 @@ describe('markOnce', () => {
     });
   });
 
-  // This guard is what makes the marks correct despite the shell subtree
-  // mounting twice on a cold load (the Suspense fallback in
-  // application-shell-splitter.async.tsx renders the same children).
   it('keeps the first write and ignores repeat calls for the same mark', () => {
     const { default: markOnce, PERFORMANCE_MARKS } = loadModule();
 
@@ -78,10 +75,6 @@ describe('markOnce', () => {
     expect(measure).not.toHaveBeenCalled();
   });
 
-  // `performance.measure`'s options-object form is newer than `mark`
-  // (Safari 14.1+, Chrome 78+) and is a DOM API, so core-js does not polyfill
-  // it. Marking without being able to measure would leave a mark the harness
-  // cannot turn into a duration, so neither call should happen.
   it('does not mark when `measure` is unavailable', () => {
     const { default: markOnce, PERFORMANCE_MARKS } = loadModule();
     setPerformance({ mark });

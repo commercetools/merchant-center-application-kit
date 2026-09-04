@@ -2,11 +2,6 @@ import { render } from '@testing-library/react';
 import { markOnce, PERFORMANCE_MARKS } from '../../utils';
 import PerformanceMark from './performance-mark';
 
-// `markOnce` is mocked so each test is independent. The real `markOnce` keeps
-// its dedupe `Set` at module scope, and resetting that per test is not possible
-// from here without also resetting React. The dedupe behaviour is covered
-// directly in `utils/performance-marks/performance-marks.spec.ts`; this file
-// only checks that the component calls it correctly.
 jest.mock('../../utils', () => ({
   ...jest.requireActual('../../utils'),
   markOnce: jest.fn(),
@@ -56,11 +51,6 @@ describe('PerformanceMark', () => {
     expect(markOnceMock).toHaveBeenNthCalledWith(2, 'mc:hydration-project');
   });
 
-  // The shell subtree this component lives in mounts twice on a cold load: the
-  // Suspense fallback in `application-shell-splitter.async.tsx` is
-  // `props.children`, the same subtree that later renders inside the resolved
-  // splitter. The component calls `markOnce` on each mount by design; keeping
-  // only the first write is `markOnce`'s job, verified in its own spec.
   it('calls markOnce on every mount and lets it deduplicate', () => {
     const mark = PERFORMANCE_MARKS.SHELL_CHROME_MOUNTED;
 
