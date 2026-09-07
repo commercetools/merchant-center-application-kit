@@ -13,6 +13,7 @@ import { loadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
 import pluginChunkCycleCheck from '../vite-plugins/vite-plugin-chunk-cycle-check';
 import pluginDynamicBaseAssetsGlobals from '../vite-plugins/vite-plugin-dynamic-base-assets-globals';
 import pluginI18nMessageCompilation from '../vite-plugins/vite-plugin-i18n-message-compilation';
+import pluginModulePreloadShellChunks from '../vite-plugins/vite-plugin-modulepreload-shell-chunks';
 import pluginNonBlockingCss from '../vite-plugins/vite-plugin-non-blocking-css';
 import pluginPostCleanup from '../vite-plugins/vite-plugin-post-cleanup';
 import pluginSvgr from '../vite-plugins/vite-plugin-svgr';
@@ -142,6 +143,7 @@ async function run() {
       // Chunk cycles are silent at build time but crash at runtime with TDZ
       // errors (historical "aM is undefined" from the icons/app-shell split).
       pluginChunkCycleCheck(),
+      pluginModulePreloadShellChunks(),
 
       shouldAnalyze &&
         analyzer(
