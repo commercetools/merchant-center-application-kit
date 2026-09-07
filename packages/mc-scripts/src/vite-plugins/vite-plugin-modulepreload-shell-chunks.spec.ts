@@ -46,7 +46,10 @@ const getResolveDependencies = (plugin: Plugin) => {
     throw new Error('plugin.config must be a function for this test');
   }
   const partial = (
-    configHook as unknown as (this: unknown) => {
+    configHook as unknown as (
+      this: unknown,
+      config: unknown
+    ) => {
       build: {
         modulePreload: {
           resolveDependencies: (
@@ -57,7 +60,7 @@ const getResolveDependencies = (plugin: Plugin) => {
         };
       };
     }
-  ).call({});
+  ).call({}, {});
   return partial.build.modulePreload.resolveDependencies;
 };
 
@@ -103,6 +106,17 @@ describe('resolveShellChunks', () => {
       'navbar-a.js': { name: 'navbar-a.esm' },
       'de-locale.js': { name: 'de' },
       'product-page.js': { name: 'product-page' },
+    });
+
+    expect(resolveShellChunks(bundle, ['navbar']).fileNames).toEqual([
+      'navbar-a.js',
+    ]);
+  });
+
+  it('does not match a chunk that merely contains a root name', () => {
+    const bundle = makeBundle({
+      'navbar-a.js': { name: 'navbar-a.esm' },
+      'legacy-navbar-b.js': { name: 'legacy-navbar-b.esm' },
     });
 
     expect(resolveShellChunks(bundle, ['navbar']).fileNames).toEqual([
@@ -232,6 +246,21 @@ describe('pluginModulePreloadShellChunks', () => {
         hostType: 'html',
       })
     ).toEqual(['vendor.js']);
+  });
+
+  it('leaves modulePreload alone when a consumer disabled it', () => {
+    const plugin = pluginModulePreloadShellChunks({ roots: ['navbar'] });
+    const configHook = plugin.config;
+    if (typeof configHook !== 'function') {
+      throw new Error('plugin.config must be a function for this test');
+    }
+
+    expect(
+      (configHook as unknown as (this: unknown, c: unknown) => unknown).call(
+        {},
+        { build: { modulePreload: false } }
+      )
+    ).toBeUndefined();
   });
 
   it('fails the build when only some roots resolve', () => {
