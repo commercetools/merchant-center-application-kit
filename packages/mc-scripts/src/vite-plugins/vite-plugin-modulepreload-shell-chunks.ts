@@ -28,10 +28,14 @@ type Options = {
   onMissing?: 'error' | 'warn';
 };
 
+// `application-shell-splitter` is deliberately absent. It is a root of the
+// same wave, but it alone is ~1.2MB (Nimbus/chakra bindings) and pulls a
+// further ~172KB `runtime` chunk, which would put ~1.5MB of high-priority
+// preload in parallel with the 2.3MB entry that is the real critical path.
+// Preloading it is a separate decision that needs a throttled measurement.
 const DEFAULT_ROOTS = [
   'navbar',
   'project-container',
-  'application-shell-splitter',
   'user-settings-menu',
   'use-applications-menu',
   'requests-in-flight-loader',
@@ -109,7 +113,11 @@ function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
   return {
     name: 'vite-plugin-modulepreload-shell-chunks',
     apply: 'build',
-    config() {
+    config(config) {
+      // Vite's config merge would turn an explicit `false` back into an
+      // object, silently re-enabling preloading the consumer switched off.
+      if (config.build?.modulePreload === false) return;
+
       return {
         build: {
           modulePreload: {
@@ -140,10 +148,10 @@ function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
     generateBundle(_options, bundle) {
       resolved = resolveShellChunks(bundle as MinimalBundle, roots);
 
-      // No roots at all means this is not an ApplicationShell app (a Custom
-      // View mounts `CustomViewShell` and never reaches these modules), and
-      // `mc-scripts` is a published package shared by those builds. Only a
-      // partial match indicates a chunk actually moved.
+      // A partial match is the signal that a chunk moved: the shell is present
+      // but one name no longer resolves. Resolving nothing at all is not that
+      // signal, so it stays silent rather than failing a build whose entry
+      // never reaches these modules.
       if (
         resolved.missingRoots.length === 0 ||
         resolved.matchedRoots.length === 0
