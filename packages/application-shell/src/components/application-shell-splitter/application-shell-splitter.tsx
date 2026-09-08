@@ -1,4 +1,5 @@
 import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
+import { css } from '@emotion/react';
 import type { NimbusRouterConfig } from '@commercetools/nimbus';
 import {
   NimbusProvider,
@@ -6,6 +7,7 @@ import {
   Region,
   useResponsiveSplitterSizes,
 } from '@commercetools/nimbus';
+import { MC_MAIN_CONTAINER_PORTAL_ID } from '@commercetools-frontend/constants';
 import { REGIONS } from '../../constants';
 
 /**
@@ -40,6 +42,28 @@ const OVERLAY_THRESHOLD = 1408;
 const SPLITTER_ROOT_ID = 'mc-shell-splitter';
 const SPLITTER_MAIN_ID = 'mc-shell-splitter-main';
 const SPLITTER_ASIDE_ID = 'mc-shell-splitter-aside';
+
+// `relative` so the empty #mc-main-container-portal div below sizes to
+// Splitter.Main, not the window.
+// `isolate` so the bar can sit on the
+// form, not on the AI chat.
+const splitterMainStyle = {
+  position: 'relative',
+  isolation: 'isolate',
+} as const;
+
+// Stretch the empty portal div over Splitter.Main so the save bar
+// matches that space, not the window or the chat.
+// `inset: 0` covers the page so `pointer-events: none` lets clicks reach what is under it.
+// `z-index: 10001` is the same as the no-splitter fallback and sits above `#portals-container` (10000).
+const portalInMainPaneCss = css`
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translateZ(0);
+`;
 
 const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
   const [open, setOpen] = useState(false);
@@ -89,8 +113,17 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
         collapsedSize={0}
         collapsed={!open}
       >
-        <Splitter.Main id={SPLITTER_MAIN_ID} containerType="inline-size">
+        <Splitter.Main
+          id={SPLITTER_MAIN_ID}
+          containerType="inline-size"
+          style={splitterMainStyle}
+        >
           {props.children}
+          <div
+            id={MC_MAIN_CONTAINER_PORTAL_ID}
+            data-testid={MC_MAIN_CONTAINER_PORTAL_ID}
+            css={portalInMainPaneCss}
+          />
         </Splitter.Main>
         <Splitter.Handle aria-label="Resize side panel" />
         <Splitter.Aside id={SPLITTER_ASIDE_ID}>

@@ -19,8 +19,9 @@ ApplicationShellAuthenticated
   └─ ApplicationShellSplitter (lazy-loaded)
      └─ NimbusProvider
         └─ Splitter.Root (collapsed by default)
-           ├─ Splitter.Main (containerType: inline-size)
-           │  └─ {children} (the entire shell grid)
+           ├─ Splitter.Main (containerType: inline-size, position: relative)
+           │  ├─ {children} (nav, header, and the page)
+           │  └─ #mc-main-container-portal (empty div the save bar draws into)
            ├─ Splitter.Handle
            └─ Splitter.Aside
               └─ Region (name=REGIONS.MC_RIGHT_PANEL)
@@ -31,7 +32,17 @@ ApplicationShellAuthenticated
 If `@commercetools/nimbus` is not installed, the dynamic `import()` fails and
 the `.catch()` returns a passthrough component that renders `{children}`
 directly. The `Suspense` fallback also renders `{children}`, so there is no
-visible flash during chunk loading.
+visible flash during chunk loading. Both of those paths now also render
+`#mc-main-container-portal` (fixed to the window), since the portal is no
+longer a sibling of the splitter.
+
+### SaveToolbar portal
+
+The empty `#mc-main-container-portal` `div` is where Merchant Center draws
+the Cancel/Save bar. With the splitter, that `div` is inside `Splitter.Main`
+(see the tree), so the bar stays as wide as the main column when the AI
+chat opens. Without the splitter, the fallback path pins the same `div` to
+the window (see above).
 
 ## Consumer API
 
