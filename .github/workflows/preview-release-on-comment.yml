@@ -62,14 +62,12 @@ jobs:
         run: |
           PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///' | sed -e 's/[^a-zA-Z0-9-]/-/g')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
-          # Rebuild after version bump to ensure preconstruct dev proxies
-          # (created during postinstall) are overwritten with real builds.
-          pnpm build
           pnpm changeset publish --tag ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
           BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+          SKIP_POSTINSTALL_DEV_SETUP: '1'
 
       - name: Post workflow result on PR as a comment
         if: always()
