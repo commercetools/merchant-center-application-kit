@@ -62,6 +62,9 @@ jobs:
         run: |
           PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///' | sed -e 's/[^a-zA-Z0-9-]/-/g')
           pnpm changeset version --snapshot ${PREVIEW_TAG}
+          # Rebuild to ensure preconstruct dev proxies from the initial install
+          # are overwritten with real builds before publishing.
+          pnpm build
           pnpm changeset publish --tag ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
