@@ -8,22 +8,33 @@ async function getPublicPackagesNames() {
     .map((pkg) => pkg.packageJson.name);
 }
 
-async function getLatestReleaseCandidate(packageName, distTag) {
-  const response = await fetch(`https://registry.npmjs.org/${packageName}`);
-  const packageDetails = await response.json();
+async function getLatestReleaseCandidate(packageName, distTag, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+    const packageDetails = await response.json();
 
-  const filteredVersions = Object.entries(packageDetails.time)
-    .filter(([version]) => version.includes(distTag))
-    .sort(
-      ([, dateTimeA], [, dateTimeB]) =>
-        new Date(dateTimeB).getTime() - new Date(dateTimeA).getTime()
-    );
+    const filteredVersions = Object.entries(packageDetails.time)
+      .filter(([version]) => version.includes(distTag))
+      .sort(
+        ([, dateTimeA], [, dateTimeB]) =>
+          new Date(dateTimeB).getTime() - new Date(dateTimeA).getTime()
+      );
 
-  if (filteredVersions.length === 0) {
-    throw new Error(`No release candidate found with dist-tag ${distTag}`);
+    if (filteredVersions.length > 0) {
+      return filteredVersions[0][0];
+    }
+
+    if (attempt < retries) {
+      console.log(
+        `No version found for ${packageName} with dist-tag ${distTag}, retrying in 5s (attempt ${attempt}/${retries})...`
+      );
+      await new Promise((resolve) => setTimeout(resolve, 5_000));
+    }
   }
 
-  return filteredVersions[0][0];
+  throw new Error(
+    `No release candidate found with dist-tag ${distTag} for ${packageName} after ${retries} attempts`
+  );
 }
 
 // Get the NPM dist-tag parameter

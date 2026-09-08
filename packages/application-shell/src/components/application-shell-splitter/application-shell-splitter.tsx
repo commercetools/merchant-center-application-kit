@@ -43,26 +43,11 @@ const SPLITTER_ROOT_ID = 'mc-shell-splitter';
 const SPLITTER_MAIN_ID = 'mc-shell-splitter-main';
 const SPLITTER_ASIDE_ID = 'mc-shell-splitter-aside';
 
-// `relative` so the empty #mc-main-container-portal div below sizes to
-// Splitter.Main, not the window.
-// `isolate` so the bar can sit on the
-// form, not on the AI chat.
-const splitterMainStyle = {
-  position: 'relative',
-  isolation: 'isolate',
-} as const;
-
-// Stretch the empty portal div over Splitter.Main so the save bar
-// matches that space, not the window or the chat.
-// `inset: 0` covers the page so `pointer-events: none` lets clicks reach what is under it.
-// `z-index: 10001` is the same as the no-splitter fallback and sits above `#portals-container` (10000).
+// Minimal portal target: just stacking order above #portals-container (10000).
+// Collapses to 0×0 so it doesn't overlay content or block interactions.
 const portalInMainPaneCss = css`
   position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
   z-index: 10001;
-  transform: translateZ(0);
 `;
 
 const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
@@ -113,11 +98,7 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
         collapsedSize={0}
         collapsed={!open}
       >
-        <Splitter.Main
-          id={SPLITTER_MAIN_ID}
-          containerType="inline-size"
-          style={splitterMainStyle}
-        >
+        <Splitter.Main id={SPLITTER_MAIN_ID} containerType="inline-size">
           {props.children}
           <div
             id={MC_MAIN_CONTAINER_PORTAL_ID}
