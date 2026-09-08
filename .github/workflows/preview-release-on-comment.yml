@@ -65,7 +65,11 @@ jobs:
           # Rebuild to ensure preconstruct dev proxies from the initial install
           # are overwritten with real builds before publishing.
           pnpm build
+          # Publish all public packages at the snapshot version. changeset publish
+          # only publishes packages explicitly listed in a changeset; force-publish
+          # the rest so fixed-group consumers can install the full set.
           pnpm changeset publish --tag ${PREVIEW_TAG}
+          node ./scripts/publish-all-snapshot-packages.mjs ${PREVIEW_TAG}
           node ./scripts/update-npm-tag.mjs ${PREVIEW_TAG}
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
