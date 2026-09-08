@@ -232,6 +232,7 @@ export const ApplicationShellAuthenticated = (
                           display: grid;
                           grid-template-rows: auto ${DIMENSIONS.header} 1fr;
                           grid-template-columns: min-content 1fr;
+                          container-type: inline-size;
                         `}
                       >
                         <div

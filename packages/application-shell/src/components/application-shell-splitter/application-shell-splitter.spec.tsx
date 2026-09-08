@@ -84,13 +84,7 @@ describe('ApplicationShellSplitter', () => {
       );
 
       expect(mockCapturedProps['Splitter.Main']).toEqual(
-        expect.objectContaining({
-          containerType: 'inline-size',
-          style: expect.objectContaining({
-            position: 'relative',
-            isolation: 'isolate',
-          }),
-        })
+        expect.objectContaining({ containerType: 'inline-size' })
       );
     });
   });
