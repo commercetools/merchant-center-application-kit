@@ -25,6 +25,19 @@ describe('ApplicationShellSplitterWrapper', () => {
       expect(source).toContain('children');
     });
 
+    it('source keeps a SaveToolbar portal in the passthrough and Suspense fallback', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const source = fs.readFileSync(
+        path.join(__dirname, 'application-shell-splitter.async.tsx'),
+        'utf8'
+      );
+
+      expect(source).toContain('FallbackSaveToolbarPortal');
+      expect(source).toContain('MC_MAIN_CONTAINER_PORTAL_ID');
+      expect(source).toContain('position: fixed');
+    });
+
     it('source gates the splitter on `hasNimbus`, falling back to passthrough', () => {
       const fs = require('fs');
       const path = require('path');
