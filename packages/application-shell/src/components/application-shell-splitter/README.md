@@ -21,7 +21,7 @@ ApplicationShellAuthenticated
         └─ Splitter.Root (collapsed by default)
            ├─ Splitter.Main (containerType: inline-size, position: relative)
            │  ├─ {children} (nav, header, and the page)
-           │  └─ #mc-main-container-portal (empty div the save bar draws into)
+           │  └─ #mc-main-container-portal (0-height Box, position: absolute)
            ├─ Splitter.Handle
            └─ Splitter.Aside
               └─ Region (name=REGIONS.MC_RIGHT_PANEL)
@@ -38,11 +38,20 @@ longer a sibling of the splitter.
 
 ### SaveToolbar portal
 
-The empty `#mc-main-container-portal` `div` is where Merchant Center draws
-the Cancel/Save bar. With the splitter, that `div` is inside `Splitter.Main`
-(see the tree), so the bar stays as wide as the main column when the AI
-chat opens. Without the splitter, the fallback path pins the same `div` to
-the window (see above).
+The empty `#mc-main-container-portal` `Box` is where Merchant Center draws
+the Cancel/Save bar (`SaveToolbar` / `SaveToolbarSteps`). It lives inside
+`Splitter.Main` as a 0-height strip (`position: absolute`, `left` / `right` /
+`bottom: 0`, `height: 0`). `position: relative` on Main is the containing
+block so that strip is as wide as the main column, not the window.
+`transform: translateZ(0)` traps the bar's `position: fixed` to that box.
+`overflow: hidden` on Main clips the bar's slide-in (`bottom: -57px`) so
+the window does not grow.
+
+`containerType: inline-size` is for `PortalsContainer` (`100cqw` modals and
+dropdowns), not the save bar.
+
+Without the splitter, the fallback path still renders the same id as a
+`div` pinned to the bottom of the window.
 
 ## Consumer API
 

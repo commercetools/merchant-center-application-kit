@@ -9,6 +9,15 @@ let mockHookOptions: Record<string, unknown> = {};
 jest.mock('@commercetools/nimbus', () => {
   return {
     NimbusProvider: ({ children }: { children: unknown }) => <>{children}</>,
+    Box: (p: { children?: unknown }) => {
+      const { children, ...rest } = p as Record<string, unknown>;
+      mockCapturedProps['Box'] = rest;
+      return (
+        <div data-testid={rest['data-testid'] as string}>
+          {children as never}
+        </div>
+      );
+    },
     Splitter: {
       Root: (p: { children: unknown }) => {
         const { children, ...rest } = p as Record<string, unknown>;
@@ -86,11 +95,13 @@ describe('ApplicationShellSplitter', () => {
       expect(mockCapturedProps['Splitter.Main']).toEqual(
         expect.objectContaining({
           containerType: 'inline-size',
-          style: expect.objectContaining({
-            position: 'relative',
-            isolation: 'isolate',
-          }),
+          position: 'relative',
+          overflow: 'hidden',
         })
+      );
+      expect(mockCapturedProps['Splitter.Main']).not.toHaveProperty('style');
+      expect(mockCapturedProps['Splitter.Main']).not.toHaveProperty(
+        'isolation'
       );
     });
   });
@@ -107,6 +118,27 @@ describe('ApplicationShellSplitter', () => {
       expect(getByTestId('splitter-main')).toContainElement(portal);
       expect(getByTestId('splitter-root')).toContainElement(portal);
       expect(getByTestId('splitter-aside')).not.toContainElement(portal);
+    });
+
+    it('sizes the portal as a 0-height strip with a fixed containing block', () => {
+      render(
+        <ApplicationShellSplitter {...defaultProps}>
+          <div>content</div>
+        </ApplicationShellSplitter>
+      );
+
+      expect(mockCapturedProps['Box']).toEqual(
+        expect.objectContaining({
+          id: MC_MAIN_CONTAINER_PORTAL_ID,
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 0,
+          zIndex: 10001,
+          transform: 'translateZ(0)',
+        })
+      );
     });
   });
 
