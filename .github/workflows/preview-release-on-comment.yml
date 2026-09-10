@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 jobs:
-  release:
+  publish-preview:
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -22,14 +22,37 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      - name: Get branch of PR
-        uses: xt0rted/pull-request-comment-branch@e8b8daa837e8ea7331c0003c9c316a64c6d8b0b1 # v3
-        id: comment-branch
+      - name: Get PR branch
+        id: pr
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const branch = pr.data.head.ref;
+            const sanitized = branch.replace(/[^a-zA-Z0-9-]/g, '-').slice(0, 40);
+            core.setOutput('ref', branch);
+            core.setOutput('sha', pr.data.head.sha);
+            core.setOutput('tag', sanitized);
+
+      - name: React to comment
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket',
+            });
 
       - name: Checkout PR branch
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ steps.pr.outputs.ref }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
       # Ensure we are using valid node version for npm trusted publishing AFTER checkout
@@ -63,15 +86,44 @@ jobs:
       # resolves issue_comment-triggered workflow YAML from the default
       # branch, but scripts come from the checkout.
       - name: Publishing preview releases to npm registry
+        id: publish
         run: ./scripts/preview-publish.sh
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
-          BRANCH_NAME: ${{ steps.comment-branch.outputs.head_ref }}
+          BRANCH_NAME: ${{ steps.pr.outputs.ref }}
 
-      - name: Post workflow result on PR as a comment
-        if: always()
-        run: |
-          gh issue comment ${{ github.event.issue.number }} \
-            --body "Release workflow ${{ job.status == 'success' && 'succeeded ✅' || 'failed ❌' }}\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment with install instructions
+        if: success()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            const version = '${{ steps.publish.outputs.version }}';
+            const sha = '${{ steps.pr.outputs.sha }}'.slice(0, 7);
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                `### 🚀 Preview published`,
+                '',
+                `**Version:** \`${version}\``,
+                `**Commit:** \`${sha}\``,
+                '',
+                '```bash',
+                `pnpm add @commercetools-frontend/application-shell@${version}`,
+                `pnpm add @commercetools-frontend/mc-scripts@${version}`,
+                '```',
+              ].join('\n'),
+            });
+
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `### ❌ Preview publish failed\n\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
+            });

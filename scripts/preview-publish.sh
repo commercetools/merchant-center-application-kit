@@ -9,7 +9,7 @@
 # keeping the logic here avoids the "fixes on the PR never run" trap.
 #
 # Required env vars:
-#   BRANCH_NAME  — the PR head ref (e.g. preview/save-toolbar-cqw-v2)
+#   BRANCH_NAME  — the PR head ref (any branch with an open PR)
 #   GITHUB_TOKEN — used by publish-all-snapshot-packages.mjs and update-npm-tag.mjs
 #
 # This script sets SKIP_POSTINSTALL_DEV_SETUP=1 for its own duration so
@@ -41,6 +41,10 @@ pnpm build
 # changeset publish only covers packages with an explicit changeset.
 # publish-all-snapshot-packages.mjs force-publishes the remaining public
 # packages so fixed-group consumers can install the full matching set.
-pnpm changeset publish --tag "${PREVIEW_TAG}"
+pnpm changeset publish --tag "${PREVIEW_TAG}" 2>&1 | tee /tmp/publish-output.txt
 node ./scripts/publish-all-snapshot-packages.mjs "${PREVIEW_TAG}"
 node ./scripts/update-npm-tag.mjs "${PREVIEW_TAG}"
+
+# ── Extract published version for workflow output ────────────────────
+VERSION=$(grep -oP '@commercetools-frontend/application-shell@\K[^\s]+' /tmp/publish-output.txt | head -1)
+echo "version=${VERSION}" >> "$GITHUB_OUTPUT"

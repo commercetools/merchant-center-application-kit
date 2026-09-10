@@ -1,7 +1,7 @@
 name: Release
 # Entry workflow that coordinates release processes:
 # - Publishes official releases when code is pushed to main, adhering to the single workflow, npm trusted publishing/OIDC pattern
-# - Publishes preview releases when triggered via PR comment with [preview_deployment]
+# - Publishes preview releases when triggered via PR comment with [publish-preview]
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     secrets: inherit
 
   publish-preview:
-    if: github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '[preview_deployment]')
+    if: github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, '[publish-preview]')
     uses: ./.github/workflows/preview-release-on-comment.yml
     permissions:
       id-token: write
