@@ -264,6 +264,15 @@ export type ApplicationRuntimeEnvironment = {
   mcApiUrl: string;
   frontendHost: string;
   servedByProxy: boolean;
+  /**
+   * Identifies the deployed *content* for client-side cache keys, so a cache
+   * can be invalidated exactly when a deploy changes what it cached.
+   *
+   * Not a deploy or commit identifier -- `revision` remains that, and is what
+   * error reporting uses. Internal and unstable: not part of the supported
+   * custom application or Custom View API.
+   */
+  buildFingerprint?: string;
   // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
   ldClientSideId?: string;
   trackingSentry?: string;
