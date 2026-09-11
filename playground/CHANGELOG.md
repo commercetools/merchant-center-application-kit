@@ -1,5 +1,22 @@
 # playground
 
+## 27.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.10.0
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-shell@27.10.0
+  - @commercetools-frontend/application-shell-connectors@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/browser-history@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/i18n@27.10.0
+  - @commercetools-frontend/l10n@27.10.0
+  - @commercetools-frontend/permissions@27.10.0
+  - @commercetools-frontend/sdk@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes
