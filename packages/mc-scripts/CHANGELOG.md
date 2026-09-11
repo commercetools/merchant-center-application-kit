@@ -1,5 +1,24 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.10.0
+
+### Minor Changes
+
+- [#4141](https://github.com/commercetools/merchant-center-application-kit/pull/4141) [`1743846`](https://github.com/commercetools/merchant-center-application-kit/commit/1743846454818ad4784a3d573c36a75c6377ab03) Thanks [@kterry1](https://github.com/kterry1)! - Add `ANALYZE_BUNDLE_OUTPUT=<path>` to write the bundle analysis to a JSON file
+  instead of opening the browser report. Setting it implies `ANALYZE_BUNDLE=true`,
+  so it can be used on its own. Leaving it unset keeps the existing behaviour.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-config@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/babel-preset-mc-app@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/mc-dev-authentication@27.10.0
+  - @commercetools-frontend/mc-html-template@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes
