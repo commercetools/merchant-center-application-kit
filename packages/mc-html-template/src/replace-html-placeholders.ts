@@ -4,7 +4,7 @@ import type { THttpSecurityHeaders } from '@commercetools-frontend/constants';
 import htmlScripts from /* preval */ './load-html-scripts';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlStyles from /* preval */ './load-html-styles';
-import sanitizeAppEnvironment from './utils/sanitize-app-environment';
+import createApplicationEnvironmentScript from './utils/create-application-environment-script';
 
 type TReplaceHtmlPlaceholdersOptions = {
   env: ApplicationRuntimeConfig['env'];
@@ -35,7 +35,7 @@ const replaceHtmlPlaceholders = (
     )
     .replace(
       new RegExp('__APPLICATION_ENVIRONMENT__', 'g'),
-      `<script>window.app = ${sanitizeAppEnvironment(options.env)};</script>`
+      `<script>${createApplicationEnvironmentScript(options.env)}</script>`
     )
     .replace(
       new RegExp('__LOADING_SCREEN_JS__', 'g'),
