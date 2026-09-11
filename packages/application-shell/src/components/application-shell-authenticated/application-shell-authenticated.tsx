@@ -28,7 +28,7 @@ import {
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS, NAVBAR } from '../../constants';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-import { getPreviousProjectKey } from '../../utils';
+import { getPreviousProjectKey, PERFORMANCE_MARKS } from '../../utils';
 import AppBar from '../app-bar';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
@@ -38,6 +38,7 @@ import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
+import PerformanceMark from '../performance-mark';
 import ProjectContainer from '../project-container';
 import RedirectToLogout from '../redirect-to-logout';
 import RedirectToProjectCreate from '../redirect-to-project-create';
@@ -213,6 +214,9 @@ export const ApplicationShellAuthenticated = (
                   // is not loaded.
                   {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
+                  {/* Not inside `ConfigureIntlProvider`, which also renders on
+                  unauthenticated, Custom View and error surfaces. */}
+                  <PerformanceMark mark={PERFORMANCE_MARKS.INTL_READY} />
                   <SetupFlopFlipProvider
                     user={normalizedUser}
                     projectKey={projectKeyFromUrl}
@@ -221,6 +225,9 @@ export const ApplicationShellAuthenticated = (
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <ApplicationShellSplitter locale={locale ?? 'en'}>
+                      <PerformanceMark
+                        mark={PERFORMANCE_MARKS.SHELL_CHROME_MOUNTED}
+                      />
                       <ThemeSwitcher />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -318,6 +325,9 @@ export const ApplicationShellAuthenticated = (
                           </MainContainer>
                         ) : (
                           <MainContainer role="main">
+                            <PerformanceMark
+                              mark={PERFORMANCE_MARKS.CONTENT_RENDERED}
+                            />
                             <div ref={notificationsPageRef}>
                               <NotificationsList domain={DOMAINS.PAGE} />
                             </div>

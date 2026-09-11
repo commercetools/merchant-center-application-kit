@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
 import { useMcQuery } from '@commercetools-frontend/application-shell-connectors';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -6,6 +6,7 @@ import type {
   TFetchLoggedInUserQuery,
   TFetchLoggedInUserQueryVariables,
 } from '../../types/generated/mc';
+import { markOnce, PERFORMANCE_MARKS } from '../../utils';
 import LoggedInUserQuery from './fetch-user.mc.graphql';
 
 type RenderFnArgs = {
@@ -27,6 +28,13 @@ const FetchUser = (props: TFetchUserProps) => {
       enableSentryErrorReporting: true,
     },
   });
+
+  useEffect(() => {
+    if (!loading && data?.user) {
+      markOnce(PERFORMANCE_MARKS.HYDRATION_USER);
+    }
+  }, [loading, data?.user]);
+
   return (
     <>
       {props.children({ isLoading: loading, user: data && data.user, error })}
