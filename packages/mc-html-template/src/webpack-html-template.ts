@@ -25,9 +25,12 @@ function webpackHtmlTemplate(templateParams: TemplateParameter) {
       fileName.replace(/^\//, '')
   );
 
+  // Non-blocking preloads rather than stylesheets, so app CSS doesn't block
+  // first paint. `loading-screen.js` upgrades each one to `rel="stylesheet"`
+  // once loaded and gates `window.onAppLoaded()` on the `data-mc-css` ones.
   const cssImports = cssChunks.map(
     (chunkPath) =>
-      `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'>`
+      `<link rel="preload" as="style" data-mc-css href="__CDN_URL__${chunkPath}">`
   );
   const scriptImports = scriptChunks.map(
     (chunkPath) => `<script src="__CDN_URL__${chunkPath}" defer></script>`
