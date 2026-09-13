@@ -85,7 +85,7 @@ overrides:
   '@types/eslint': ^8.2.2
   '@types/node': ^22.13.2
   '@types/react': ^19.0.3
-  '@types/react-dom': 19.2.4
+  '@types/react-dom': 19.2.5
   '@types/react-router': 5.1.20
   '@types/webpack-env': ^1.18.8
   '@typescript-eslint/eslint-plugin': ^8.0.0
