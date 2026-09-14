@@ -63,18 +63,50 @@
     __APPLICATION_SCRIPT_IMPORTS__
 
     <!-- Fonts -->
+    <!--
+      Preloaded rather than linked as stylesheets so they don't block first
+      paint; loading-screen.js upgrades them once loaded (not via an inline
+      `onload` attribute, which the production CSP blocks).
+
+      Inter also needs NimbusProvider's `loadFonts={false}`: React 19 dedupes
+      stylesheets by href, and a preload doesn't match. Left on the default is
+      harmless, since the identical href just resolves from this preload
+      instead of a second request. `data-nimbus-fonts` marks the tag for
+      Nimbus to recognise.
+    -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
       data-nimbus-fonts=""
-      precedence="default"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+        data-nimbus-fonts=""
+      />
+    </noscript>
 
     __APPLICATION_CSS_IMPORTS__
+
+    <!--
+      Lives in <head>, not inside #app-loader: onAppLoaded() removes that
+      element, and the @view-transition rule here must still be in the
+      document when the user navigates away.
+    -->
+    __LOADING_SCREEN_CSS__
 
     <title>Merchant Center</title>
   </head>
@@ -82,9 +114,98 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="app-loader">
-      <!-- Loading screen styles -->
-      __LOADING_SCREEN_CSS__
+      <!-- Authenticated: revealed immediately, mirrors the real app chrome. -->
+      <div
+        class="loading-skeleton loading-skeleton--hidden"
+        role="status"
+        aria-busy="true"
+      >
+        <span class="loading-skeleton__sr-only">Loading Merchant Center</span>
 
+        <div class="loading-skeleton__sidebar" aria-hidden="true">
+          <div class="loading-skeleton__navbar-header">
+            <div class="loading-skeleton__item loading-skeleton__item--narrow">
+              <div class="loading-skeleton__icon"></div>
+              <div class="loading-skeleton__title"></div>
+            </div>
+          </div>
+          <div class="loading-skeleton__navbar-body">
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+            <div class="loading-skeleton__group">
+              <div class="loading-skeleton__item loading-skeleton__item--wide">
+                <div class="loading-skeleton__icon"></div>
+                <div class="loading-skeleton__title"></div>
+              </div>
+            </div>
+          </div>
+          <div class="loading-skeleton__navbar-footer">
+            <div class="loading-skeleton__expander"></div>
+          </div>
+        </div>
+
+        <div class="loading-skeleton__header" aria-hidden="true">
+          <div class="loading-skeleton__header-placeholder"></div>
+        </div>
+
+        <div class="loading-skeleton__content">
+          <p class="long-loading-notice long-loading-notice--hidden">
+            Sorry, this is taking an unusually long time.
+          </p>
+        </div>
+      </div>
+
+      <!-- Unauthenticated: unchanged spinner. -->
       <div class="loading-screen loading-screen--hidden">
         <svg class="loading-spinner" viewBox="0 0 40 40">
           <path
