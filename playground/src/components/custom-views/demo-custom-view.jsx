@@ -100,10 +100,10 @@ function DemoCustomView() {
     window.app.customViewId = CUSTOM_VIEW_ID;
     window.app.__DEVELOPMENT__.customViewConfig = DEMO_CUSTOM_VIEW;
     window.app.__DEVELOPMENT__.customViewHostUrl = window.location.href;
-    // Removes the whole #app-loader: it also contains a 100vh skeleton
-    // sibling now, so removing only .loading-screen would leave this view
-    // pushed below the fold.
-    window.onAppLoaded();
+    // Signals the inline loading script, which removes the whole #app-loader
+    // once app CSS has settled. Guarded like `configure-intl-provider`,
+    // since the script does not run in every host.
+    if (window.onAppLoaded) window.onAppLoaded();
     setIsLoading(false);
   }, []);
 

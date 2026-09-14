@@ -5,9 +5,10 @@
   const LONG_LOADING_DELAY = 2000;
   // Mirrors WINDOW_SIZES.WIDE in application-shell/src/constants.ts.
   const WIDE_VIEWPORT = 1200;
-  // Mirrors `staticUrlPathsInPositionOfProjectKey`: the shell renders no
-  // NavBar on these routes.
-  const NAVBARLESS_ROUTES = ['login', 'logout', 'account'];
+  // Mirrors `staticUrlPathsInPositionOfProjectKey` in
+  // `selectProjectKeyFromUrl`, which the shell's NavBar gate depends on.
+  // Matching is case-sensitive there, so it must be here too.
+  const PROJECT_KEYLESS_SEGMENTS = ['login', 'logout', 'account'];
 
   function readStorage(key) {
     try {
@@ -111,8 +112,17 @@
     }
   }
 
-  function getFirstPathSegment() {
-    return (window.location.pathname.split('/')[1] || '').toLowerCase();
+  // Reimplements `selectProjectKeyFromUrl`, because the shell renders the
+  // NavBar on a truthy project key rather than on a route allowlist. Deriving
+  // the same value is what keeps the skeleton from painting a sidebar the
+  // shell then removes: on `/` the key is empty, so there is no NavBar.
+  function selectProjectKeyFromPath(segments) {
+    const candidate =
+      segments[1] === 'custom-views' ? segments[4] : segments[1];
+
+    return PROJECT_KEYLESS_SEGMENTS.indexOf(candidate) === -1
+      ? candidate
+      : undefined;
   }
 
   // Returns null when the bare spinner should be shown instead of the skeleton.
@@ -121,15 +131,15 @@
       return null;
     }
 
-    const segment = getFirstPathSegment();
+    const segments = window.location.pathname.split('/');
 
     // Custom Views mount their own shell inside a host application and never
     // render the app chrome, so the skeleton would be wrong there.
-    if (segment === 'custom-views') {
+    if (segments[1] === 'custom-views') {
       return null;
     }
 
-    return { hasNavbar: NAVBARLESS_ROUTES.indexOf(segment) === -1 };
+    return { hasNavbar: Boolean(selectProjectKeyFromPath(segments)) };
   }
 
   function isNavbarExpanded() {
@@ -170,10 +180,12 @@
       window.performance.mark('mc:skeleton-visible');
 
       if (window.performance.measure) {
-        // Named separately from the mark, or getEntriesByName would return two
-        // entries of different entryType. Omitting end/duration measures from
-        // the time origin to now.
-        window.performance.measure('mc:skeleton-visible:duration', {
+        // Suffixed rather than reusing the mark name, or getEntriesByName
+        // would return two entries of different entryType. `:from-nav`
+        // matches the convention the shell's performance-marks module uses,
+        // so one query shape reads every mark. Omitting end/duration
+        // measures from the time origin to now.
+        window.performance.measure('mc:skeleton-visible:from-nav', {
           start: 0,
         });
       }

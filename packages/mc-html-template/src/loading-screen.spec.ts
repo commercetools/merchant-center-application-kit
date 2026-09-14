@@ -211,7 +211,7 @@ describe('session gate', () => {
 describe('route gate', () => {
   beforeEach(() => window.localStorage.setItem('isAuthenticated', 'true'));
 
-  it.each(['/account/profile', '/login', '/logout'])(
+  it.each(['/', '/account/profile', '/login', '/logout'])(
     'should suppress the sidebar on %s, where the shell renders no NavBar',
     (pathname) => {
       setUrl(pathname);
@@ -220,6 +220,17 @@ describe('route gate', () => {
 
       expect(skeleton().classList).toContain('loading-skeleton--no-navbar');
       expect(skeleton().classList).not.toContain('loading-skeleton--hidden');
+    }
+  );
+
+  it.each(['/Account/profile', '/my-project-key/products'])(
+    'should show the sidebar on %s, where the shell renders a NavBar',
+    (pathname) => {
+      setUrl(pathname);
+
+      bootLoadingScreen();
+
+      expect(skeleton().classList).not.toContain('loading-skeleton--no-navbar');
     }
   );
 
@@ -282,18 +293,30 @@ describe('viewport gate', () => {
   });
 });
 
+// The inline script cannot import, so it hardcodes this name. The shell's
+// `performance-marks` module declares the same string and assumes this script
+// emits it; pinning it here makes a rename on either side fail loudly instead
+// of silently orphaning the mark.
+const SKELETON_VISIBLE_MARK = 'mc:skeleton-visible';
+
 describe('mc:skeleton-visible mark', () => {
+  it('should emit exactly the name the shell expects', () => {
+    expect(scriptSource).toContain(`'${SKELETON_VISIBLE_MARK}'`);
+    expect(scriptSource).toContain(`'${SKELETON_VISIBLE_MARK}:from-nav'`);
+  });
+
   it('should emit the mark on the authenticated path', () => {
     window.localStorage.setItem('isAuthenticated', 'true');
 
     bootLoadingScreen();
 
-    expect(perf.mark).toHaveBeenCalledWith('mc:skeleton-visible');
+    expect(perf.mark).toHaveBeenCalledWith(SKELETON_VISIBLE_MARK);
     // Measured from the time origin, i.e. navigationStart, under a name of its
     // own so getEntriesByName('mc:skeleton-visible') returns only the mark.
-    expect(perf.measure).toHaveBeenCalledWith('mc:skeleton-visible:duration', {
-      start: 0,
-    });
+    expect(perf.measure).toHaveBeenCalledWith(
+      `${SKELETON_VISIBLE_MARK}:from-nav`,
+      { start: 0 }
+    );
   });
 
   it('should not emit the mark on the spinner path', () => {
