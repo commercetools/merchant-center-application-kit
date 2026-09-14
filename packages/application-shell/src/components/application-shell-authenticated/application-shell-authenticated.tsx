@@ -214,7 +214,8 @@ export const ApplicationShellAuthenticated = (
                   // is not loaded.
                   {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
-                  {/* Not inside `ConfigureIntlProvider`, which also renders on
+                  {/* Marked here rather than inside the `ConfigureIntlProvider`
+                  implementation, because that component also renders on the
                   unauthenticated, Custom View and error surfaces. */}
                   <PerformanceMark mark={PERFORMANCE_MARKS.INTL_READY} />
                   <SetupFlopFlipProvider
@@ -225,6 +226,9 @@ export const ApplicationShellAuthenticated = (
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <ApplicationShellSplitter locale={locale ?? 'en'}>
+                      {/* The splitter's Suspense fallback renders these same
+                      children, so this mark is written on the fallback pass and
+                      does not wait for the lazy chunk to download. */}
                       <PerformanceMark
                         mark={PERFORMANCE_MARKS.SHELL_CHROME_MOUNTED}
                       />
