@@ -1,7 +1,10 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Compiler } from 'webpack';
 import { processConfig } from '@commercetools-frontend/application-config';
-import { replaceHtmlPlaceholders } from '@commercetools-frontend/mc-html-template';
+import {
+  replaceHtmlPlaceholders,
+  DEVELOPMENT_FINGERPRINT,
+} from '@commercetools-frontend/mc-html-template';
 
 class LocalHtmlWebpackPlugin {
   apply(compiler: Compiler) {
@@ -27,7 +30,12 @@ class LocalHtmlWebpackPlugin {
             );
 
             data.html = replaceHtmlPlaceholders(data.html, {
-              env: enhancedLocalEnv,
+              env: {
+                ...enhancedLocalEnv,
+                // This path never reaches `compileHtml`, so nothing else would
+                // set it and consumers would read `undefined`.
+                buildFingerprint: DEVELOPMENT_FINGERPRINT,
+              },
             });
 
             cb(null, data);

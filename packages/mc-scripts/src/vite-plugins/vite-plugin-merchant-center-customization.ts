@@ -4,6 +4,7 @@ import { createMcDevAuthenticationMiddleware } from '@commercetools-frontend/mc-
 import {
   replaceHtmlPlaceholders,
   processHeaders,
+  DEVELOPMENT_FINGERPRINT,
 } from '@commercetools-frontend/mc-html-template';
 
 const vitePluginCustomApplication = (
@@ -35,10 +36,12 @@ const vitePluginCustomApplication = (
      * @type {import('vite').IndexHtmlTransformHook}
      */
     transformIndexHtml(rawHtml, _ctx) {
-      const compiledHeaders = processHeaders(applicationConfig);
       const enhancedLocalEnv = Object.assign(
         {},
         applicationConfig.env,
+        // This path never reaches `compileHtml`, so nothing else would set it
+        // and consumers would read `undefined`.
+        { buildFingerprint: DEVELOPMENT_FINGERPRINT },
         // Now that the app config is defined as a `env.json`, when we start the FE app
         // to point to the local backend API by passing the `MC_API_URL` env does not
         // work anymore). To make it work again, we can override the `env.json` config
@@ -50,6 +53,14 @@ const vitePluginCustomApplication = (
             }
           : {}
       );
+
+      // Hash the env that actually gets injected. Passing `applicationConfig`
+      // here instead made the CSP hash miss the injected script whenever
+      // `MC_API_URL` was set.
+      const compiledHeaders = processHeaders({
+        ...applicationConfig,
+        env: enhancedLocalEnv,
+      });
 
       // Resolve the placeholders of the `index.html` (template) file, before serving it.
       const html = replaceHtmlPlaceholders(rawHtml, {
