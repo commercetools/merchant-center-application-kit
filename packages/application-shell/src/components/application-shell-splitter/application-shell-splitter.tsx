@@ -1,11 +1,13 @@
 import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 import type { NimbusRouterConfig } from '@commercetools/nimbus';
 import {
+  Box,
   NimbusProvider,
   Splitter,
   Region,
   useResponsiveSplitterSizes,
 } from '@commercetools/nimbus';
+import { MC_MAIN_CONTAINER_PORTAL_ID } from '@commercetools-frontend/constants';
 import { REGIONS } from '../../constants';
 
 /**
@@ -89,8 +91,24 @@ const ApplicationShellSplitter = (props: TApplicationShellSplitterProps) => {
         collapsedSize={0}
         collapsed={!open}
       >
-        <Splitter.Main id={SPLITTER_MAIN_ID} containerType="inline-size">
+        <Splitter.Main
+          id={SPLITTER_MAIN_ID}
+          containerType="inline-size"
+          position="relative" // so #mc-main-container-portal (position: absolute) sizes to Splitter.Main
+          overflow="hidden" // fixes SaveToolbar to not grow the window when it slides in.
+        >
           {props.children}
+          <Box
+            id={MC_MAIN_CONTAINER_PORTAL_ID}
+            data-testid={MC_MAIN_CONTAINER_PORTAL_ID}
+            position="absolute"
+            left={0}
+            right={0}
+            bottom={0}
+            height={0}
+            zIndex={10001}
+            transform="translateZ(0)"
+          />
         </Splitter.Main>
         <Splitter.Handle aria-label="Resize side panel" />
         <Splitter.Aside id={SPLITTER_ASIDE_ID}>
