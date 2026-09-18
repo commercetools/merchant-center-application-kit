@@ -55,6 +55,7 @@ const useIsAuthorized = ({
   demandedDataFences,
   selectDataFenceData,
   shouldMatchSomePermissions = false,
+  isUserAdminOfCurrentProject,
   projectPermissions,
 }: {
   demandedPermissions: TPermissionName[];
@@ -62,6 +63,7 @@ const useIsAuthorized = ({
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions?: TProjectPermissions;
 }): boolean => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
@@ -104,10 +106,7 @@ const useIsAuthorized = ({
     (applicationContext) =>
       applicationContext.user?.isAdminOfAnyOrganization ?? false
   );
-  const isUserAdminOfCurrentProject = useApplicationContext(
-    (applicationContext) =>
-      applicationContext.project?.isUserAdminOfCurrentProject ?? false
-  );
+
   const actualPermissions =
     useApplicationContext<TNormalizedPermissions | null>(
       (applicationContext) =>
@@ -127,7 +126,7 @@ const useIsAuthorized = ({
     return isAdminOfAnyOrganization;
   }
   if (hasDemandedAdministratorOfCurrentProjectPermission) {
-    return isUserAdminOfCurrentProject;
+    return isUserAdminOfCurrentProject ?? false;
   }
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized

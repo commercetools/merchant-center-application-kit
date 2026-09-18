@@ -101,6 +101,7 @@ type ApplicationMenuProps = {
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions: TProjectPermissions;
   handleToggleItem: () => void;
   applicationLocale: string;
@@ -316,6 +317,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       permissions={props.menu.permissions}
       actionRights={props.menu.actionRights ?? undefined}
       dataFences={props.menu.dataFences ?? undefined}
+      isUserAdminOfCurrentProject={props.isUserAdminOfCurrentProject}
       projectPermissions={props.projectPermissions}
     >
       <MenuItem
@@ -383,6 +385,9 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   permissions={submenu.permissions}
                   actionRights={submenu.actionRights ?? undefined}
                   dataFences={submenu.dataFences ?? undefined}
+                  isUserAdminOfCurrentProject={
+                    props.isUserAdminOfCurrentProject
+                  }
                   projectPermissions={props.projectPermissions}
                 >
                   <SublistItem
@@ -508,6 +513,9 @@ const NavBar = (props: TNavbarProps) => {
                         handleToggleItem={() => handleToggleItem(itemIndex)}
                         isMenuOpen={isMenuOpen}
                         shouldCloseMenuFly={shouldCloseMenuFly}
+                        isUserAdminOfCurrentProject={
+                          props.project?.isUserAdminOfCurrentProject
+                        }
                         projectPermissions={projectPermissions}
                         applicationLocale={applicationLocale}
                         projectKey={props.projectKey}

@@ -343,6 +343,7 @@ MenuItemLink.displayName = 'MenuItemLink';
 
 type RestrictedMenuItemProps = {
   featureToggle?: string;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions: TProjectPermissions;
   keyOfMenuItem: string;
   permissions: string[];
@@ -383,6 +384,7 @@ const RestrictedMenuItem = ({
         }}
         // Always check that some of the given permissions match.
         shouldMatchSomePermissions={true}
+        isUserAdminOfCurrentProject={props.isUserAdminOfCurrentProject}
         projectPermissions={props.projectPermissions}
       >
         {props.children}

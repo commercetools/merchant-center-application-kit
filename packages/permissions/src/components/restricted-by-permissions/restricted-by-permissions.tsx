@@ -44,6 +44,7 @@ type Props = {
   dataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   unauthorizedComponent?: ComponentType;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions?: TProjectPermissions;
   render?: TRenderProp;
   children?: TRenderProp | ReactNode;
@@ -64,6 +65,7 @@ const RestrictedByPermissions = (props: Props) => {
       demandedActionRights={props.actionRights}
       demandedDataFences={props.dataFences}
       selectDataFenceData={props.selectDataFenceData}
+      isUserAdminOfCurrentProject={props.isUserAdminOfCurrentProject}
       projectPermissions={props.projectPermissions}
       render={(isAuthorized: boolean) => {
         if (typeof props.children === 'function')
