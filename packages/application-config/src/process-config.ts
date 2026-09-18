@@ -99,8 +99,8 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
       '/login/authorize',
     ].join(''),
     initialProjectKey:
-      // For the `account` application, we should unset the projectKey.
-      entryPointUriPath === 'account'
+      // For project-keyless applications, we should unset the projectKey.
+      entryPointUriPath === 'account' || entryPointUriPath === 'agent-sphere'
         ? undefined
         : appConfig.env.development.initialProjectKey,
     ...(appConfig.env.development?.teamId && {

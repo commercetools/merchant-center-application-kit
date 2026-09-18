@@ -22,7 +22,7 @@ type TApplicationPageTitleProps = {
 };
 
 const maxTitleCharLength = 24;
-const staticPaths = ['account', 'login'];
+const staticPaths = ['account', 'agent-sphere', 'login'];
 
 const getPageTitle = (pathname: string, additionalParts: string[]) => {
   const [, projectKeyOrStaticPath, entryPointUriPath] = pathname.split('/');

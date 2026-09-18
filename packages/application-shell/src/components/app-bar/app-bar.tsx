@@ -13,7 +13,7 @@ import UserSettingsMenu from '../user-settings-menu';
 
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
-  projectKeyFromUrl?: string;
+  projectKey?: string;
 };
 
 const AppBar = (props: Props) => {
@@ -61,9 +61,9 @@ const AppBar = (props: Props) => {
               }
               // The `<ProjectSwitcher>` should be rendered only if the
               // user is fetched and the user has projects while the app runs in an project context.
-              if (props.user.projects.total > 0 && props.projectKeyFromUrl) {
+              if (props.user.projects.total > 0 && props.projectKey) {
                 const selectedProject = props.user.projects.results.find(
-                  (project) => project.key === props.projectKeyFromUrl
+                  (project) => project.key === props.projectKey
                 );
                 return (
                   <div
@@ -88,7 +88,7 @@ const AppBar = (props: Props) => {
                       // the dropdown will still be rendered but no project will be selected.
                       // This is fine becase the user has still the possibility to "switch"
                       // to a project.
-                      projectKey={props.projectKeyFromUrl || previousProjectKey}
+                      projectKey={props.projectKey || previousProjectKey}
                     />
                   </div>
                 );

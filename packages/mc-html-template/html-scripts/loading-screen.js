@@ -8,7 +8,16 @@
   // Mirrors `staticUrlPathsInPositionOfProjectKey` in
   // `selectProjectKeyFromUrl`, which the shell's NavBar gate depends on.
   // Matching is case-sensitive there, so it must be here too.
-  const PROJECT_KEYLESS_SEGMENTS = ['login', 'logout', 'account'];
+  const PROJECT_KEYLESS_SEGMENTS = [
+    'login',
+    'logout',
+    'account',
+    'agent-sphere',
+  ];
+  // Mirrors `PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT` in
+  // `application-shell/src/constants.ts`: these paths carry no project key, but
+  // the shell resolves one from storage and does render the NavBar.
+  const PROJECT_KEYLESS_SEGMENTS_WITH_NAVBAR = ['agent-sphere'];
 
   function readStorage(key) {
     try {
@@ -115,7 +124,9 @@
   // Reimplements `selectProjectKeyFromUrl`, because the shell renders the
   // NavBar on a truthy project key rather than on a route allowlist. Deriving
   // the same value is what keeps the skeleton from painting a sidebar the
-  // shell then removes: on `/` the key is empty, so there is no NavBar.
+  // shell then removes: on `/` the key is empty, so there is no NavBar. The
+  // exception is `PROJECT_KEYLESS_SEGMENTS_WITH_NAVBAR`, where the shell
+  // resolves the key from storage instead of from the URL.
   function selectProjectKeyFromPath(segments) {
     const candidate =
       segments[1] === 'custom-views' ? segments[4] : segments[1];
@@ -139,7 +150,11 @@
       return null;
     }
 
-    return { hasNavbar: Boolean(selectProjectKeyFromPath(segments)) };
+    const hasNavbar =
+      Boolean(selectProjectKeyFromPath(segments)) ||
+      PROJECT_KEYLESS_SEGMENTS_WITH_NAVBAR.indexOf(segments[1]) !== -1;
+
+    return { hasNavbar: hasNavbar };
   }
 
   function isNavbarExpanded() {

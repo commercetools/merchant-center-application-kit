@@ -82,7 +82,7 @@ const ProjectContainer = (props: TProjectContainerProps) => {
   if (hasNoProjects) {
     return (
       <Switch>
-        <Route path="/account">{props.render?.()}</Route>
+        <Route path={['/account', '/agent-sphere']}>{props.render?.()}</Route>
         <Route>
           <RedirectToProjectCreate />
         </Route>

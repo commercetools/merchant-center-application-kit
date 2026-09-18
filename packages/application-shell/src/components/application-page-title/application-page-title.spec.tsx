@@ -30,6 +30,8 @@ describe.each`
   ${`/account/organizations/<id>/custom-applications`}                               | ${`account - Merchant Center`}
   ${`/account/organizations/<id>/custom-applications/owned/<id>`}                    | ${`account - Merchant Center`}
   ${`/account/organizations/<id>/custom-applications/installations/<id>`}            | ${`account - Merchant Center`}
+  ${`/agent-sphere`}                                                                 | ${`agent-sphere - Merchant Center`}
+  ${`/agent-sphere/conversations`}                                                   | ${`agent-sphere - Merchant Center`}
   ${`/login`}                                                                        | ${`login - Merchant Center`}
   ${`/login/new`}                                                                    | ${`login - Merchant Center`}
   ${`/login/sso`}                                                                    | ${`login - Merchant Center`}

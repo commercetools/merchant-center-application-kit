@@ -18,6 +18,11 @@ export const NAVBAR = {
   widthLeftNavigationWhenExpanded: '256px',
 } as const;
 
+// Top-level paths that carry no `projectKey` in the URL but still run within a
+// project context. The project key is resolved from the previously used project
+// instead, so that the NavBar and the project data can be rendered there.
+export const PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT = ['agent-sphere'];
+
 export const WINDOW_SIZES = {
   STANDARD: 1024,
   WIDE: 1200,

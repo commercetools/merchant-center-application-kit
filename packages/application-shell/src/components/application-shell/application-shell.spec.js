@@ -343,6 +343,50 @@ describe.each`
         });
       }
     });
+
+    describe('when user navigates to "/agent-sphere" route', () => {
+      if (renderNodeAsChildren) {
+        it('should trigger a page reload when this is not the agent-sphere application (when served by proxy)', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            environment: { servedByProxy: true },
+            disableRoutePermissionCheck: true,
+          });
+          await screen.findByText('OK');
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await waitFor(() => {
+            expect(location.reload).toHaveBeenCalled();
+          });
+        });
+        it('should render the application when this is the agent-sphere application', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            environment: { entryPointUriPath: 'agent-sphere' },
+            disableRoutePermissionCheck: true,
+          });
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await screen.findByText('OK');
+          expect(location.reload).not.toHaveBeenCalled();
+        });
+      } else {
+        it('should render using the "render" prop', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            disableRoutePermissionCheck: true,
+          });
+          await screen.findByText('OK');
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await screen.findByText('OK');
+          expect(location.reload).not.toHaveBeenCalled();
+        });
+      }
+    });
   }
 );
 
@@ -359,6 +403,22 @@ describe('when route does not contain a project key (e.g. /account)', () => {
       expect(history.location.pathname).toBe('/account');
     });
     expect(queryByLeftNavigation()).not.toBeInTheDocument();
+    await screen.findByText('OK');
+  });
+});
+describe('when route is project-keyless but still in a project context (e.g. /agent-sphere)', () => {
+  it('should render NavBar using the previously used project', async () => {
+    const { history, findByLeftNavigation } = renderApp(null, {
+      disableRoutePermissionCheck: true,
+    });
+    await screen.findByText('OK');
+    await act(async () => {
+      history.push('/agent-sphere');
+    });
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/agent-sphere');
+    });
+    expect(await findByLeftNavigation()).toBeInTheDocument();
     await screen.findByText('OK');
   });
 });

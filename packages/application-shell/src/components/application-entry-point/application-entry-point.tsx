@@ -5,6 +5,7 @@ import { PageUnauthorized } from '@commercetools-frontend/application-components
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
+import { PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT } from '../../constants';
 import RouteCatchAll from '../route-catch-all';
 
 type TApplicationEntryPointProps = {
@@ -45,12 +46,19 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
   // users to do so on their own.
   if (props.children) {
     const entryPointUriPath = props.environment.entryPointUriPath;
+    // Applications like `agent-sphere` run in a project context but do not
+    // carry the `projectKey` in the URL, so their routes live at the root.
+    const isProjectKeylessApplication =
+      PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT.includes(entryPointUriPath);
     return (
       <Switch>
         {
           // For development, it's useful to redirect to the actual
-          // application routes when you open the browser at http://localhost:3001
-          process.env.NODE_ENV === 'production' ? null : (
+          // application routes when you open the browser at http://localhost:3001.
+          // For project-keyless applications this must be skipped, as `/:projectKey`
+          // would match their own entry point route.
+          process.env.NODE_ENV === 'production' ||
+          isProjectKeylessApplication ? null : (
             <Route
               exact={true}
               path="/:projectKey"
@@ -61,7 +69,13 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
             />
           )
         }
-        <Route path={`/:projectKey/${entryPointUriPath}`}>
+        <Route
+          path={
+            isProjectKeylessApplication
+              ? `/${entryPointUriPath}`
+              : `/:projectKey/${entryPointUriPath}`
+          }
+        >
           <ApplicationRoute {...props} />
         </Route>
         {/* Catch-all route */}

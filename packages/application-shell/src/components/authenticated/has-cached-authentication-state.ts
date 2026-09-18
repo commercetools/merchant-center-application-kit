@@ -23,7 +23,7 @@ const hasCachedAuthenticationState = (): boolean => {
         // THEN we assume that the application does not need a project context.
         // GIVEN The application is not requesting a project key,
         // THEN we remove the cached project key.
-        // This is the case of an application like `account`.
+        // This is the case of a project-keyless application like `account` or `agent-sphere`.
         if (!window.app.__DEVELOPMENT__?.oidc?.initialProjectKey) {
           oidcStorage.removeActiveProjectKey();
         }

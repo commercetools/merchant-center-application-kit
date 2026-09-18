@@ -135,7 +135,10 @@ function loginByForm(commandOptions: CommandLoginOptions) {
     { log: false }
   ).then((appConfig: ApplicationRuntimeEnvironment) => {
     let initialUriPath = `/${projectKey}/${commandOptions.entryPointUriPath}`;
-    if (commandOptions.entryPointUriPath === 'account') {
+    if (
+      commandOptions.entryPointUriPath === 'account' ||
+      commandOptions.entryPointUriPath === 'agent-sphere'
+    ) {
       initialUriPath = `/${commandOptions.entryPointUriPath}`;
     }
 
