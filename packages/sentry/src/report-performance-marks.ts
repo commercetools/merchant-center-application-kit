@@ -14,7 +14,8 @@ export function addPerformanceMeasurementsToTransaction(
   // The document's `mc:*` measures describe the original page load. Navigation
   // transactions belong to SPA route changes and must not repeat them.
   if (event.contexts?.trace?.op !== 'pageload') return event;
-  if (!performance?.getEntriesByType) return event;
+  if (typeof performance === 'undefined' || !performance.getEntriesByType)
+    return event;
 
   try {
     const markMeasures = performance
