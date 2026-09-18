@@ -62,6 +62,10 @@ type TApplicationContextUser = Pick<
   | 'businessRole'
   | 'projects'
 > & {
+  /**
+   * Indicates whether the user is an admin of at least one organization.
+   */
+  isAdminOfAnyOrganization: boolean;
   locale: string;
   timeZone: string;
   idTokenUserInfo?: Omit<TIdTokenUserInfo, 'additionalClaims'> & {
@@ -84,6 +88,8 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     firstName: user.firstName,
     lastName: user.lastName,
     businessRole: user.businessRole,
+    // @ts-expect-error: this field is not yet available in the API
+    isAdminOfAnyOrganization: user.isAdminOfAnyOrganization ?? false,
     // NOTE: this is an alias for the original field `user.language` but it's actually
     // a locale (language + country).
     locale: user.language,

@@ -60,6 +60,39 @@ const TestComponent = (props: TestProps) => {
   );
 };
 
+const createUser = (isAdminOfAnyOrganization: boolean) => ({
+  id: 'u1',
+  email: 'foo@bar.com',
+  createdAt: '2020-01-01T12:29:33.916Z',
+  firstName: 'foo',
+  lastName: 'bar',
+  language: 'en',
+  numberFormat: 'en',
+  defaultProjectKey: undefined,
+  timeZone: undefined,
+  businessRole: undefined,
+  projects: {
+    total: 1,
+    results: [
+      {
+        key: 'p1',
+        name: 'P1 ',
+        expiry: { isActive: false },
+        suspension: { isActive: false },
+        isProductionProject: false,
+      },
+    ],
+  },
+  gravatarHash: 'xxx',
+  launchdarklyTrackingGroup: 'commercetools',
+  launchdarklyTrackingSubgroup: 'dev',
+  launchdarklyTrackingId: '111',
+  launchdarklyTrackingTeam: undefined,
+  launchdarklyTrackingCloudEnvironment: 'ctp_production_gcp_europe-west1_v1',
+  // Field is not yet available in the generated API types.
+  isAdminOfAnyOrganization,
+});
+
 const render = ({
   demandedPermissions,
   demandedActionRights,
@@ -69,6 +102,8 @@ const render = ({
   allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
   allAppliedActionRights = [],
   allAppliedDataFences = [],
+  isAdminOfAnyOrganization,
+  isUserAdminOfCurrentProject,
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
@@ -78,9 +113,16 @@ const render = ({
   allAppliedActionRights?: TAllAppliedActionRight[];
   allAppliedDataFences?: TAllAppliedDataFence[];
   shouldMatchSomePermissions?: boolean;
+  isAdminOfAnyOrganization?: boolean;
+  isUserAdminOfCurrentProject?: boolean;
 }) =>
   rtlRender(
     <ApplicationContextProvider
+      user={
+        typeof isAdminOfAnyOrganization === 'boolean'
+          ? createUser(isAdminOfAnyOrganization)
+          : undefined
+      }
       project={{
         key: 'test-with-big-data',
         version: 43,
@@ -102,6 +144,7 @@ const render = ({
           reason: undefined,
         },
         isProductionProject: false,
+        isUserAdminOfCurrentProject,
         allAppliedPermissions,
         allAppliedActionRights,
         allAppliedDataFences,
@@ -671,6 +714,98 @@ describe('data fences', () => {
   });
 });
 
+describe('administrator permission', () => {
+  describe('when the user is an admin of any organization', () => {
+    it('should indicate being authorized', () => {
+      render({
+        demandedPermissions: ['Administrator'],
+        allAppliedPermissions: [],
+        isAdminOfAnyOrganization: true,
+      });
+
+      expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
+    });
+  });
+  describe('when the user is not an admin of any organization', () => {
+    it('should indicate not being authorized', () => {
+      render({
+        demandedPermissions: ['Administrator'],
+        allAppliedPermissions: [],
+        isAdminOfAnyOrganization: false,
+      });
+
+      expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+  describe('when no user is present', () => {
+    it('should indicate not being authorized', () => {
+      render({
+        demandedPermissions: ['Administrator'],
+        allAppliedPermissions: [],
+      });
+
+      expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+  describe('when combined with other demanded permissions', () => {
+    it('should still authorize based on the admin flag only', () => {
+      render({
+        demandedPermissions: ['Administrator', 'ManageOrders'],
+        allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+        isAdminOfAnyOrganization: true,
+      });
+
+      expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
+    });
+  });
+});
+
+describe('administrator of current project permission', () => {
+  describe('when the user is an admin of the current project', () => {
+    it('should indicate being authorized', () => {
+      render({
+        demandedPermissions: ['AdministratorOfCurrentProject'],
+        allAppliedPermissions: [],
+        isUserAdminOfCurrentProject: true,
+      });
+
+      expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
+    });
+  });
+  describe('when the user is not an admin of the current project', () => {
+    it('should indicate not being authorized', () => {
+      render({
+        demandedPermissions: ['AdministratorOfCurrentProject'],
+        allAppliedPermissions: [],
+        isUserAdminOfCurrentProject: false,
+      });
+
+      expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+  describe('when the admin flag is not present on the project', () => {
+    it('should indicate not being authorized', () => {
+      render({
+        demandedPermissions: ['AdministratorOfCurrentProject'],
+        allAppliedPermissions: [],
+      });
+
+      expect(screen.getByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+  describe('when combined with other demanded permissions', () => {
+    it('should still authorize based on the project admin flag only', () => {
+      render({
+        demandedPermissions: ['AdministratorOfCurrentProject', 'ManageOrders'],
+        allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+        isUserAdminOfCurrentProject: true,
+      });
+
+      expect(screen.getByText('Is authorized: Yes')).toBeInTheDocument();
+    });
+  });
+});
+
 describe('warnings', () => {
   beforeEach(() => {
     mocked(warning).mockClear();
@@ -741,6 +876,70 @@ describe('warnings', () => {
         false,
         expect.stringContaining(
           "It is recommended not to use 'shouldMatchSomePermissions'"
+        )
+      );
+    });
+  });
+  describe('when Administrator is combined with other permissions', () => {
+    it('should warn that Administrator must be demanded alone', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['Administrator', 'ManageOrders'],
+        isAdminOfAnyOrganization: true,
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          'When demanding the "Administrator" permission, no other permissions must be demanded.'
+        )
+      );
+    });
+  });
+  describe('when Administrator is demanded alone', () => {
+    it('should not warn about combining Administrator with other permissions', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['Administrator'],
+        isAdminOfAnyOrganization: true,
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        true,
+        expect.stringContaining(
+          'When demanding the "Administrator" permission, no other permissions must be demanded.'
+        )
+      );
+    });
+  });
+  describe('when AdministratorOfCurrentProject is combined with other permissions', () => {
+    it('should warn that AdministratorOfCurrentProject must be demanded alone', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['AdministratorOfCurrentProject', 'ManageOrders'],
+        isUserAdminOfCurrentProject: true,
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          'When demanding the "AdministratorOfCurrentProject" permission, no other permissions must be demanded.'
+        )
+      );
+    });
+  });
+  describe('when AdministratorOfCurrentProject is demanded alone', () => {
+    it('should not warn about combining AdministratorOfCurrentProject with other permissions', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['AdministratorOfCurrentProject'],
+        isUserAdminOfCurrentProject: true,
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        true,
+        expect.stringContaining(
+          'When demanding the "AdministratorOfCurrentProject" permission, no other permissions must be demanded.'
         )
       );
     });
