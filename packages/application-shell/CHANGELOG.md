@@ -1,5 +1,43 @@
 # @commercetools-frontend/application-shell
 
+## 27.10.0
+
+### Minor Changes
+
+- [#4144](https://github.com/commercetools/merchant-center-application-kit/pull/4144) [`4a3fa2f`](https://github.com/commercetools/merchant-center-application-kit/commit/4a3fa2fd218f816e19812fd2c8b1c199807c5b31) Thanks [@kterry1](https://github.com/kterry1)! - Emit canonical `mc:*` performance marks for the application loading sequence, and export
+  `PERFORMANCE_MARKS` along with the `TPerformanceMark` type so consumers can read the mark names
+  rather than hardcoding them.
+
+  Five marks are emitted: `mc:shell-chrome-mounted`, `mc:intl-ready`, `mc:content-rendered`,
+  `mc:hydration-user`, and `mc:hydration-project`. Each also produces a `<name>:from-nav` measure
+  from the navigation origin. `mc:skeleton-visible` is listed in `PERFORMANCE_MARKS` as the canonical
+  name but is emitted separately from `mc-html-template`, because that file is untranspiled ES5 with
+  no module system.
+
+  Marks are recorded only once per name, and the first write wins. This matters because the shell
+  subtree mounts twice on a cold load: the Suspense fallback for the lazily loaded splitter renders
+  the same children, so a naive mount effect would record chunk-load latency instead of when the
+  chrome actually appeared.
+
+### Patch Changes
+
+- Updated dependencies [[`d3a87b2`](https://github.com/commercetools/merchant-center-application-kit/commit/d3a87b26150754d03555ed9dec7d6f2a0e3f6011)]:
+  - @commercetools-frontend/sentry@27.10.0
+  - @commercetools-frontend/actions-global@27.10.0
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-config@27.10.0
+  - @commercetools-frontend/application-shell-connectors@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/browser-history@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/i18n@27.10.0
+  - @commercetools-frontend/l10n@27.10.0
+  - @commercetools-frontend/notifications@27.10.0
+  - @commercetools-frontend/permissions@27.10.0
+  - @commercetools-frontend/react-notifications@27.10.0
+  - @commercetools-frontend/sdk@27.10.0
+  - @commercetools-frontend/url-utils@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes

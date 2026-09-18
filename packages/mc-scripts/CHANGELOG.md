@@ -1,5 +1,43 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.10.0
+
+### Minor Changes
+
+- [#4138](https://github.com/commercetools/merchant-center-application-kit/pull/4138) [`c7143c7`](https://github.com/commercetools/merchant-center-application-kit/commit/c7143c7c6e3bc29b147d9ecb251ea223d0695005) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - Show an application-chrome skeleton while the Merchant Center loads, instead of a bare spinner on a blank page.
+
+  Authenticated users now see the real chrome layout — header bar, dark sidebar and content area — from first paint, with no 250ms delay. The skeleton is sized from the same constants the React chrome uses, and honours the persisted pinned-menu state, so nothing shifts when React mounts. Unauthenticated users keep the existing spinner unchanged.
+
+  Neither webfont is render-blocking any more, and nor is the application's own CSS on either build. They are loaded as preloads and upgraded once ready, from the loading-screen script rather than an inline `onload` attribute, which the Merchant Center's Content Security Policy does not allow. Because the loading screen's own script no longer waits behind a blocking stylesheet, the skeleton appears considerably earlier on a cold cache. The application is never revealed before its own stylesheets have applied, and never held back by a stylesheet that fails or stalls.
+
+  Cross-app navigation opts in to cross-document view transitions where the browser supports them, so it crossfades instead of flashing a blank page. Users who prefer reduced motion keep the benefit without the animation.
+
+  Two notes for anyone upgrading. `window.onAppLoaded()` no longer removes the
+  loading element synchronously in every case: when the application's own
+  stylesheets are still loading it defers removal until they resolve, bounded by a
+  two-second deadline after which the application is revealed regardless. Callers
+  that assumed the element was gone the moment the call returned should check that
+  assumption. And the two packages now share a build-time marker attribute, so they
+  are expected to be upgraded together — the repository already versions them in
+  lockstep, but a project pinning them independently should keep them aligned.
+
+  If your application renders `NimbusProvider` itself, pass `loadFonts={false}` so it does not add a second Inter stylesheet — the document now owns font loading, and the `data-nimbus-fonts` marker is kept on the link for that purpose. Leaving it on the default is harmless: the URL is identical, so the extra link resolves from the already-warm request rather than blocking anything.
+
+- [#4141](https://github.com/commercetools/merchant-center-application-kit/pull/4141) [`1743846`](https://github.com/commercetools/merchant-center-application-kit/commit/1743846454818ad4784a3d573c36a75c6377ab03) Thanks [@kterry1](https://github.com/kterry1)! - Add `ANALYZE_BUNDLE_OUTPUT=<path>` to write the bundle analysis to a JSON file
+  instead of opening the browser report. Setting it implies `ANALYZE_BUNDLE=true`,
+  so it can be used on its own. Leaving it unset keeps the existing behaviour.
+
+### Patch Changes
+
+- Updated dependencies [[`c7143c7`](https://github.com/commercetools/merchant-center-application-kit/commit/c7143c7c6e3bc29b147d9ecb251ea223d0695005)]:
+  - @commercetools-frontend/mc-html-template@27.10.0
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-config@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/babel-preset-mc-app@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/mc-dev-authentication@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes
