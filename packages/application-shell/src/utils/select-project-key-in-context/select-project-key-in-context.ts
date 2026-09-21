@@ -15,7 +15,9 @@ const selectProjectKeyInContext = ({
   defaultProjectKeyOfUser,
 }: TSelectProjectKeyInContextOptions) => {
   const projectKeyFromUrl = selectProjectKeyFromUrl(pathname);
-  if (projectKeyFromUrl) return projectKeyFromUrl;
+  if (projectKeyFromUrl) {
+    return projectKeyFromUrl;
+  }
 
   const [, topLevelPath] = pathname.split('/');
   if (isProjectKeylessApplicationEntryPointInProjectContext(topLevelPath)) {

@@ -8,6 +8,7 @@ import {
   type ApplicationRuntimeEnvironmentForDevelopment,
   type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  STATIC_URL_PATHS,
   isProjectKeylessApplicationEntryPoint,
 } from '@commercetools-frontend/constants';
 import { LOADED_CONFIG_TYPES } from './constants';
@@ -97,7 +98,7 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
       mcApiUrl.hostname === 'localhost'
         ? mcApiUrl.origin.replace(mcApiUrl.port, String(developmentPort))
         : mcApiUrl.origin.replace('mc-api', 'mc'),
-      '/login/authorize',
+      `/${STATIC_URL_PATHS.LOGIN}/authorize`,
     ].join(''),
     initialProjectKey:
       // For project-keyless applications, we should unset the projectKey.

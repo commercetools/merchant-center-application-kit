@@ -88,12 +88,14 @@ const AppBar = (props: Props) => {
                       // the dropdown will still be rendered but no project will be selected.
                       // This is fine becase the user has still the possibility to "switch"
                       // to a project.
-                      projectKey={props.projectKey || previousProjectKey}
+                      projectKey={props.projectKey}
                     />
                   </div>
                 );
               }
-              if (!props.user.defaultProjectKey) return null;
+              if (!props.user.defaultProjectKey) {
+                return null;
+              }
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
             {/* This node is used by a react portal */}

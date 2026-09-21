@@ -20,6 +20,9 @@ import {
 import {
   DOMAINS,
   LOGOUT_REASONS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
+  STATIC_URL_PATHS,
   isProjectKeylessApplicationEntryPointInProjectContext,
 } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -385,11 +388,23 @@ export const ApplicationShellAuthenticated = (
                                 <Route
                                   path="/profile"
                                   render={() => (
-                                    <Redirect to="/account/profile" />
+                                    <Redirect
+                                      to={`/${STATIC_URL_PATHS.ACCOUNT}/profile`}
+                                    />
                                   )}
                                 />
 
-                                <Route path="/account">
+                                <Route
+                                  path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.filter(
+                                    (entryPointUriPath) =>
+                                      !isProjectKeylessApplicationEntryPointInProjectContext(
+                                        entryPointUriPath
+                                      )
+                                  ).map(
+                                    (entryPointUriPath) =>
+                                      `/${entryPointUriPath}`
+                                  )}
+                                >
                                   {
                                     /**
                                      * In case the AppShell uses the `render` function, we assume it's one of two cases:
@@ -407,7 +422,12 @@ export const ApplicationShellAuthenticated = (
                                     )
                                   }
                                 </Route>
-                                <Route path="/agent-sphere">
+                                <Route
+                                  path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT.map(
+                                    (entryPointUriPath) =>
+                                      `/${entryPointUriPath}`
+                                  )}
+                                >
                                   {isProjectKeylessApplicationEntryPointInProjectContext(
                                     applicationEnvironment.entryPointUriPath
                                   ) ? (

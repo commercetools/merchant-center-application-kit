@@ -1,6 +1,9 @@
 import { JSX } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import {
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+  type ApplicationWindow,
+} from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { SuspendedRoute } from '../suspended-route';
 import AmILoggedIn from './am-i-logged-in';
@@ -37,25 +40,32 @@ const Authenticated = (props: TAuthenticatedProps) => {
 };
 Authenticated.displayName = 'Authenticated';
 
-const AuthenticationRoutes = (props: TAuthenticatedProps) => (
-  <Switch>
-    <SuspendedRoute path={`/account/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <SuspendedRoute path={`/:projectKey/:identifier/oidc/callback`}>
-      <OidcCallback
-        locale={props.locale}
-        applicationMessages={props.applicationMessages}
-      />
-    </SuspendedRoute>
-    <Route>
-      <Authenticated {...props} />
-    </Route>
-  </Switch>
-);
+const AuthenticationRoutes = (props: TAuthenticatedProps) => {
+  const oidcCallback = (
+    <OidcCallback
+      locale={props.locale}
+      applicationMessages={props.applicationMessages}
+    />
+  );
+
+  return (
+    <Switch>
+      <SuspendedRoute
+        path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.map(
+          (entryPointUriPath) => `/${entryPointUriPath}/oidc/callback`
+        )}
+      >
+        {oidcCallback}
+      </SuspendedRoute>
+      <SuspendedRoute path={`/:projectKey/:identifier/oidc/callback`}>
+        {oidcCallback}
+      </SuspendedRoute>
+      <Route>
+        <Authenticated {...props} />
+      </Route>
+    </Switch>
+  );
+};
 AuthenticationRoutes.displayName = 'AuthenticationRoutes';
 
 export default AuthenticationRoutes;
