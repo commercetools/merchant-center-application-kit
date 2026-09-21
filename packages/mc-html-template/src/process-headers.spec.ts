@@ -88,11 +88,14 @@ describe('csp', () => {
     };
 
     const processedApplicationConfig = processHeaders(testApplicationConfig);
+    const csp = processedApplicationConfig['Content-Security-Policy'] ?? '';
+    const scriptHashToken = /'sha256-[A-Za-z0-9+/=]+'/g;
 
+    expect(csp.match(scriptHashToken)).toHaveLength(3);
     expect(
-      processedApplicationConfig['Content-Security-Policy']
+      csp.replace(scriptHashToken, "'sha256-<hash>'")
     ).toMatchInlineSnapshot(
-      `"default-src 'none'; script-src 'self' 'sha256-DZsEqKCSo73EfOLCqyToPvDJQmLK/0eH0mjyH5sLLAI=' 'sha256-5kzN9QxmTvcO/1/aYsVEo7hnWU50vwMjy6wviGxCOA0=' 'sha256-K4tyBnwnqF68wrXckWx1ce5+E4534Hv/ZdQEZLf+Z7Y='; connect-src 'self' app.launchdarkly.com clientsdk.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; frame-src 'self'; upgrade-insecure-requests "`
+      `"default-src 'none'; script-src 'self' 'sha256-<hash>' 'sha256-<hash>' 'sha256-<hash>'; connect-src 'self' app.launchdarkly.com clientsdk.launchdarkly.com clientstream.launchdarkly.com events.launchdarkly.com app.getsentry.com *.sentry.io https://example.com; img-src * data:; style-src 'self' fonts.googleapis.com data: 'unsafe-inline'; font-src 'self' fonts.gstatic.com data:; frame-src 'self'; upgrade-insecure-requests "`
     );
   });
 });
