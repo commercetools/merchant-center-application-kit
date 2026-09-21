@@ -3,6 +3,7 @@ import {
   type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
   GRAPHQL_TARGETS,
+  isProjectKeylessApplicationEntryPoint,
 } from '@commercetools-frontend/constants';
 import { HTTP_STATUS_CODES } from '../constants';
 
@@ -136,8 +137,7 @@ function loginByForm(commandOptions: CommandLoginOptions) {
   ).then((appConfig: ApplicationRuntimeEnvironment) => {
     let initialUriPath = `/${projectKey}/${commandOptions.entryPointUriPath}`;
     if (
-      commandOptions.entryPointUriPath === 'account' ||
-      commandOptions.entryPointUriPath === 'agent-sphere'
+      isProjectKeylessApplicationEntryPoint(commandOptions.entryPointUriPath)
     ) {
       initialUriPath = `/${commandOptions.entryPointUriPath}`;
     }

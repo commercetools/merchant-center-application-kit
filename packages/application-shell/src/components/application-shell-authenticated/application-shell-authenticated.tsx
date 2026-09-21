@@ -17,7 +17,11 @@ import {
   selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  DOMAINS,
+  LOGOUT_REASONS,
+  isProjectKeylessApplicationEntryPointInProjectContext,
+} from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
@@ -25,11 +29,7 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import {
-  DIMENSIONS,
-  NAVBAR,
-  PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT,
-} from '../../constants';
+import { DIMENSIONS, NAVBAR } from '../../constants';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import {
   getPreviousProjectKey,
@@ -408,7 +408,7 @@ export const ApplicationShellAuthenticated = (
                                   }
                                 </Route>
                                 <Route path="/agent-sphere">
-                                  {PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT.includes(
+                                  {isProjectKeylessApplicationEntryPointInProjectContext(
                                     applicationEnvironment.entryPointUriPath
                                   ) ? (
                                     <ApplicationEntryPoint

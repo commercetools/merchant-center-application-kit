@@ -8,6 +8,7 @@ import {
   type ApplicationRuntimeEnvironmentForDevelopment,
   type ApplicationRuntimeEnvironment,
   CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH,
+  isProjectKeylessApplicationEntryPoint,
 } from '@commercetools-frontend/constants';
 import { LOADED_CONFIG_TYPES } from './constants';
 import loadConfig from './load-config';
@@ -100,7 +101,7 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
     ].join(''),
     initialProjectKey:
       // For project-keyless applications, we should unset the projectKey.
-      entryPointUriPath === 'account' || entryPointUriPath === 'agent-sphere'
+      isProjectKeylessApplicationEntryPoint(entryPointUriPath)
         ? undefined
         : appConfig.env.development.initialProjectKey,
     ...(appConfig.env.development?.teamId && {

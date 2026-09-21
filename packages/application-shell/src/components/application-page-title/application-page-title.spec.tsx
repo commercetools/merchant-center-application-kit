@@ -37,6 +37,7 @@ describe.each`
   ${`/login/sso`}                                                                    | ${`login - Merchant Center`}
   ${`/login/forgot`}                                                                 | ${`login - Merchant Center`}
   ${`/login/choose`}                                                                 | ${`login - Merchant Center`}
+  ${`/logout`}                                                                       | ${`logout - Merchant Center`}
 `(`when location is "$route"`, ({ route, title }) => {
   it('should render default page title', async () => {
     render(

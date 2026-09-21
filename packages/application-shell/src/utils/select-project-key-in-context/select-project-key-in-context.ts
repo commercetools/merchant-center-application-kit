@@ -1,5 +1,5 @@
 import { selectProjectKeyFromUrl } from '@commercetools-frontend/application-shell-connectors';
-import { PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT } from '../../constants';
+import { isProjectKeylessApplicationEntryPointInProjectContext } from '@commercetools-frontend/constants';
 import getPreviousProjectKey from '../get-previous-project-key';
 
 type TSelectProjectKeyInContextOptions = {
@@ -18,7 +18,7 @@ const selectProjectKeyInContext = ({
   if (projectKeyFromUrl) return projectKeyFromUrl;
 
   const [, topLevelPath] = pathname.split('/');
-  if (PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT.includes(topLevelPath)) {
+  if (isProjectKeylessApplicationEntryPointInProjectContext(topLevelPath)) {
     return getPreviousProjectKey(defaultProjectKeyOfUser);
   }
 

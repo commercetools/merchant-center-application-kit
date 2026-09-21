@@ -5,17 +5,18 @@
   const LONG_LOADING_DELAY = 2000;
   // Mirrors WINDOW_SIZES.WIDE in application-shell/src/constants.ts.
   const WIDE_VIEWPORT = 1200;
-  // Mirrors `staticUrlPathsInPositionOfProjectKey` in
-  // `selectProjectKeyFromUrl`, which the shell's NavBar gate depends on.
-  // Matching is case-sensitive there, so it must be here too.
+  // Mirrors `STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY` in
+  // `@commercetools-frontend/constants`. Matching is case-sensitive there,
+  // so it must be here too. This file is inlined without transpilation and
+  // cannot import that package.
   const PROJECT_KEYLESS_SEGMENTS = [
     'login',
     'logout',
     'account',
     'agent-sphere',
   ];
-  // Mirrors `PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT` in
-  // `application-shell/src/constants.ts`: these paths carry no project key, but
+  // Mirrors `PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT` in
+  // `@commercetools-frontend/constants`: these paths carry no project key, but
   // the shell resolves one from storage and does render the NavBar.
   const PROJECT_KEYLESS_SEGMENTS_WITH_NAVBAR = ['agent-sphere'];
 

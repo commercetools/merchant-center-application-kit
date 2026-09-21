@@ -5,7 +5,11 @@ import { useIntl } from 'react-intl';
 import { Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS, STORAGE_KEYS } from '@commercetools-frontend/constants';
+import {
+  DOMAINS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+  STORAGE_KEYS,
+} from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { CONTAINERS, SUSPENSION_REASONS } from '../../constants';
 import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
@@ -82,7 +86,13 @@ const ProjectContainer = (props: TProjectContainerProps) => {
   if (hasNoProjects) {
     return (
       <Switch>
-        <Route path={['/account', '/agent-sphere']}>{props.render?.()}</Route>
+        <Route
+          path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.map(
+            (entryPointUriPath) => `/${entryPointUriPath}`
+          )}
+        >
+          {props.render?.()}
+        </Route>
         <Route>
           <RedirectToProjectCreate />
         </Route>

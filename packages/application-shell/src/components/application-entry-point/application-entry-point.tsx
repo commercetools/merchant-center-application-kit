@@ -4,8 +4,8 @@ import invariant from 'tiny-invariant';
 import { PageUnauthorized } from '@commercetools-frontend/application-components';
 import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/application-config/ssr';
 import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
+import { isProjectKeylessApplicationEntryPointInProjectContext } from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
-import { PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT } from '../../constants';
 import RouteCatchAll from '../route-catch-all';
 
 type TApplicationEntryPointProps = {
@@ -49,7 +49,7 @@ const ApplicationEntryPoint = (props: TApplicationEntryPointProps) => {
     // Applications like `agent-sphere` run in a project context but do not
     // carry the `projectKey` in the URL, so their routes live at the root.
     const isProjectKeylessApplication =
-      PROJECT_KEYLESS_PATHS_IN_PROJECT_CONTEXT.includes(entryPointUriPath);
+      isProjectKeylessApplicationEntryPointInProjectContext(entryPointUriPath);
     return (
       <Switch>
         {
