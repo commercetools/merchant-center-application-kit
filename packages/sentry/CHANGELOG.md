@@ -1,5 +1,21 @@
 # @commercetools-frontend/sentry
 
+## 27.10.0
+
+### Minor Changes
+
+- [#4153](https://github.com/commercetools/merchant-center-application-kit/pull/4153) [`d3a87b2`](https://github.com/commercetools/merchant-center-application-kit/commit/d3a87b26150754d03555ed9dec7d6f2a0e3f6011) Thanks [@kterry1](https://github.com/kterry1)! - Attach the `mc:*` loading performance marks to sampled `pageload` transactions as Sentry
+  measurements, via a `beforeSendTransaction` hook. Measurement keys are the mark names with colons
+  replaced by dots (`mc.intl-ready`), since Sentry does not allow colons in measurement names; the
+  raw mark names and durations are also mirrored onto the trace data. Navigation transactions are
+  left untouched, and the sample rate is unchanged at 5%.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/browser-history@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes
