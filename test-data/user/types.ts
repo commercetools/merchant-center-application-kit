@@ -22,6 +22,7 @@ type TBaseUser = {
   launchdarklyTrackingTenant: string;
   launchdarklyTrackingCloudEnvironment: string;
   defaultProjectKey: string;
+  isAdminOfAnyOrganization: boolean;
   businessRole: string | undefined;
   idTokenUserInfo?: {
     iss: string;

@@ -88,7 +88,6 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
     firstName: user.firstName,
     lastName: user.lastName,
     businessRole: user.businessRole,
-    // @ts-expect-error: this field is not yet available in the API
     isAdminOfAnyOrganization: user.isAdminOfAnyOrganization ?? false,
     // NOTE: this is an alias for the original field `user.language` but it's actually
     // a locale (language + country).
