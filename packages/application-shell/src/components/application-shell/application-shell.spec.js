@@ -1380,6 +1380,8 @@ describe('navbar menu links interactions', () => {
                 navBarGroups: [
                   ApplicationNavbarMenuGroupMock.random()
                     .key('2')
+                    .label(null)
+                    .isNew(null)
                     .items(
                       ApplicationNavbarMenuMock.buildList(1, {
                         labelAllLocales: [
