@@ -21,6 +21,7 @@ const User = new Factory()
   .attr('launchdarklyTrackingTeam', () => [faker.word.sample()])
   .attr('launchdarklyTrackingCloudEnvironment', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
+  .attr('isAdminOfAnyOrganization', () => false)
   .attr('businessRole', () => faker.person.jobDescriptor())
   .attr('idTokenUserInfo', () => null)
   .attr('projects', () => ({

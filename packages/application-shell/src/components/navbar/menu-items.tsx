@@ -343,6 +343,7 @@ MenuItemLink.displayName = 'MenuItemLink';
 
 type RestrictedMenuItemProps = {
   featureToggle?: string;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions: TProjectPermissions;
   keyOfMenuItem: string;
   permissions: string[];
@@ -383,6 +384,7 @@ const RestrictedMenuItem = ({
         }}
         // Always check that some of the given permissions match.
         shouldMatchSomePermissions={true}
+        isUserAdminOfCurrentProject={props.isUserAdminOfCurrentProject}
         projectPermissions={props.projectPermissions}
       >
         {props.children}
@@ -393,10 +395,13 @@ const RestrictedMenuItem = ({
 
   if (props.featureToggle) {
     // A regular short-lived feature toggle
-    if (flagVariation === true) return permissionsWrapper;
-    // A long-lived feature toggle with `{ value: boolean, string: reason }`
-    if (isLongLivedFlag(flagVariation) && flagVariation.value === true)
+    if (flagVariation === true) {
       return permissionsWrapper;
+    }
+    // A long-lived feature toggle with `{ value: boolean, string: reason }`
+    if (isLongLivedFlag(flagVariation) && flagVariation.value === true) {
+      return permissionsWrapper;
+    }
 
     return null;
   }
