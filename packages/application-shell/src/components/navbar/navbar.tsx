@@ -27,8 +27,9 @@ import type {
 } from '@commercetools-frontend/application-shell-connectors';
 import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
 import {
-  SUPPORT_PORTAL_URL,
   NO_VALUE_FALLBACK,
+  SUPPORT_PORTAL_URL,
+  isProjectKeylessApplicationEntryPoint,
 } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
@@ -113,13 +114,21 @@ type ApplicationMenuProps = {
   pointerEvent?: string;
 };
 
+const getNavbarItemPath = (projectKey: string, uriPath: string) => {
+  const [topLevelPath] = uriPath.split('/');
+  if (isProjectKeylessApplicationEntryPoint(topLevelPath)) {
+    return `/${uriPath}`;
+  }
+  return `/${projectKey}/${uriPath}`;
+};
+
 const getIsSubmenuRouteActive = (
   uriPath: ApplicationMenuProps['menu']['submenu'][number]['uriPath'],
   props: ApplicationMenuProps
 ) =>
   Boolean(
     matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${uriPath}`,
+      path: getNavbarItemPath(props.projectKey, uriPath),
       exact: true,
       strict: false,
     })
@@ -283,7 +292,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${props.menu.uriPath}`,
+      path: getNavbarItemPath(props.projectKey, props.menu.uriPath),
       exact: false,
       strict: false,
     })
@@ -338,7 +347,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         )}
       >
         <MenuItemLink
-          linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
+          linkTo={getNavbarItemPath(props.projectKey, props.menu.uriPath)}
           useFullRedirectsForLinks={props.useFullRedirectsForLinks}
           onClick={props.onMenuItemClick}
           ariaLabel={getMenuAccessibleLabel(
@@ -395,7 +404,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   >
                     <Text>
                       <MenuItemLink
-                        linkTo={`/${props.projectKey}/${submenu.uriPath}`}
+                        linkTo={getNavbarItemPath(
+                          props.projectKey,
+                          submenu.uriPath
+                        )}
                         // We want to use an exact matching strategy to avoid multiple
                         // links matching sub-routes.
                         exactMatch
