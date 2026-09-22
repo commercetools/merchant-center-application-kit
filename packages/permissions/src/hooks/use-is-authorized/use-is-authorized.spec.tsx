@@ -43,6 +43,7 @@ type TestProps = {
   demandedDataFences?: TDemandedDataFence[];
   shouldMatchSomePermissions: boolean;
   selectDataFenceData?: TSelectDataFenceData;
+  isUserAdminOfCurrentProject?: boolean;
 };
 
 const TestComponent = (props: TestProps) => {
@@ -52,6 +53,7 @@ const TestComponent = (props: TestProps) => {
     shouldMatchSomePermissions: props.shouldMatchSomePermissions,
     demandedDataFences: props.demandedDataFences,
     selectDataFenceData: props.selectDataFenceData,
+    isUserAdminOfCurrentProject: props.isUserAdminOfCurrentProject,
   });
   return (
     <ul>
@@ -144,7 +146,6 @@ const render = ({
           reason: undefined,
         },
         isProductionProject: false,
-        isUserAdminOfCurrentProject,
         allAppliedPermissions,
         allAppliedActionRights,
         allAppliedDataFences,
@@ -175,6 +176,7 @@ const render = ({
         demandedDataFences={demandedDataFences}
         selectDataFenceData={selectDataFenceData}
         shouldMatchSomePermissions={shouldMatchSomePermissions}
+        isUserAdminOfCurrentProject={isUserAdminOfCurrentProject}
       />
     </ApplicationContextProvider>
   );
