@@ -27,7 +27,10 @@ import {
   isProjectKeylessApplicationEntryPointInProjectContext,
 } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import {
+  AsyncLocaleData,
+  mapLocaleToIntlLocale,
+} from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import {
   reportErrorToSentry,
@@ -221,19 +224,34 @@ export const ApplicationShellAuthenticated = (
             `isLoading` prop to decide what to render.
           */}
             <AsyncLocaleData
-              locale={normalizedUser?.language}
+              // Parse-time hint so the catalogue load does not wait on
+              // `FetchLoggedInUser`. `user.language` replaces it on arrival.
+              locale={normalizedUser?.language ?? getBrowserLocale(window)}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
                 <ConfigureIntlProvider
-                  // We do not want to pass the language as long as the locale data
-                  // is not loaded.
-                  {...(isLoadingLocaleData ? {} : { locale, messages })}
+                  // Not before the locale data is loaded, and not before the
+                  // user is known: an early locale fires `hideAppLoader` and
+                  // swaps the skeleton for a spinner.
+                  {...(isLoadingLocaleData || isLoadingUser
+                    ? {}
+                    : { locale, messages })}
                 >
                   {/* Marked here rather than inside the `ConfigureIntlProvider`
                   implementation, because that component also renders on the
                   unauthenticated, Custom View and error surfaces. */}
                   <PerformanceMark mark={PERFORMANCE_MARKS.INTL_READY} />
+                  {normalizedUser?.language ? (
+                    <PerformanceMark
+                      mark={
+                        mapLocaleToIntlLocale(getBrowserLocale(window)) ===
+                        mapLocaleToIntlLocale(normalizedUser.language)
+                          ? PERFORMANCE_MARKS.LOCALE_HINT_HIT
+                          : PERFORMANCE_MARKS.LOCALE_HINT_MISS
+                      }
+                    />
+                  ) : null}
                   <SetupFlopFlipProvider
                     user={normalizedUser}
                     projectKey={projectKeyInContext}

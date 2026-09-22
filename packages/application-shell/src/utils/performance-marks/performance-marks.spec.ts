@@ -126,7 +126,7 @@ describe('markOnce', () => {
 });
 
 describe('PERFORMANCE_MARKS', () => {
-  it('holds the six canonical names from FEC-1297', () => {
+  it('holds the six canonical names from FEC-1297, plus the locale-hint pair from FEC-1351', () => {
     const { PERFORMANCE_MARKS } = loadModule();
 
     expect(Object.values(PERFORMANCE_MARKS)).toEqual([
@@ -136,6 +136,8 @@ describe('PERFORMANCE_MARKS', () => {
       'mc:content-rendered',
       'mc:hydration-user',
       'mc:hydration-project',
+      'mc:locale-hint-hit',
+      'mc:locale-hint-miss',
     ]);
   });
 

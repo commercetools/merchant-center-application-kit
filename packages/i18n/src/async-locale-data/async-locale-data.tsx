@@ -1,4 +1,4 @@
-import { useEffect, ReactNode, useCallback } from 'react';
+import { useEffect, ReactNode, useCallback, useRef } from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TMessageTranslations } from '../export-types';
 import loadI18n from '../load-i18n';
@@ -61,20 +61,40 @@ const useAsyncLocaleData = ({
     loader: loadApplicationMessages,
   });
 
-  // Merge the loaded messages into one
+  const isPairConsistent =
+    Boolean(messagesFromKitResult.loadedLocale) &&
+    messagesFromKitResult.loadedLocale ===
+      applicationMessagesResult.loadedLocale;
+
+  // Keep serving the previous pair during a locale change. Reporting "loading"
+  // instead would withhold the locale from `ConfigureIntlProvider`, which
+  // returns null and would unmount the shell behind a blank page.
+  const lastConsistentPair = useRef<{
+    locale?: string;
+    messages?: TMessageTranslations;
+  }>({});
+
+  if (isPairConsistent) {
+    lastConsistentPair.current = {
+      locale: messagesFromKitResult.loadedLocale,
+      messages: mergeMessages(
+        messagesFromKitResult.messages ?? {},
+        applicationMessagesResult.messages ?? {}
+      ),
+    };
+  }
+
   return {
     isLoading:
       messagesFromKitResult.isLoading || applicationMessagesResult.isLoading,
-    messages: mergeMessages(
-      messagesFromKitResult.messages ?? {},
-      applicationMessagesResult.messages ?? {}
-    ),
+    locale: lastConsistentPair.current.locale,
+    messages: lastConsistentPair.current.messages ?? {},
     error: messagesFromKitResult.error ?? applicationMessagesResult.error,
   };
 };
 
 const AsyncLocaleData = (props: Props) => {
-  const { isLoading, messages, error } = useAsyncLocaleData(props);
+  const { isLoading, locale, messages, error } = useAsyncLocaleData(props);
 
   useEffect(() => {
     if (error) reportErrorToSentry(error, {});
@@ -84,7 +104,7 @@ const AsyncLocaleData = (props: Props) => {
     <>
       {props.children({
         isLoading,
-        locale: isLoading ? undefined : props.locale,
+        locale,
         messages: error ? undefined : messages,
       })}
     </>

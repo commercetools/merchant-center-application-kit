@@ -8,6 +8,9 @@ export type TState = {
   isLoading: boolean;
   messages?: TMessageTranslations;
   error?: Error;
+  // The locale `messages` belong to. Lags behind the requested locale while a
+  // second load is in flight.
+  loadedLocale?: string;
 };
 export type THookOptions = {
   locale?: string;
@@ -32,7 +35,7 @@ const useAsyncIntlMessages = ({ locale, loader }: THookOptions): TState => {
       try {
         if (!_isUnmounting) {
           const messages = await loader(_locale);
-          setState({ isLoading: false, messages });
+          setState({ isLoading: false, messages, loadedLocale: _locale });
         }
       } catch (error) {
         if (error instanceof Error) {

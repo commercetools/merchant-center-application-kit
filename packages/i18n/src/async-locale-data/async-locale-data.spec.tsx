@@ -1,5 +1,5 @@
 import { mocked } from 'jest-mock';
-import { render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TMessageTranslations } from '../export-types';
 import loadI18n from '../load-i18n';
@@ -92,6 +92,53 @@ describe('rendering', () => {
         expect(container).toHaveTextContent('Locale: en-CA');
       });
       expect(container).toHaveTextContent('Messages: New title en');
+    });
+  });
+
+  describe('when the locale changes after a successful load', () => {
+    let resolveSecondLoad: (messages: TMessageTranslations) => void;
+    beforeEach(() => {
+      mocked(loadI18n).mockClear();
+      mocked(loadI18n).mockImplementation(
+        jest.fn((locale: string) => {
+          if (locale === 'de') return Promise.resolve({ title: 'Titel de' });
+          return new Promise<TMessageTranslations>((resolve) => {
+            resolveSecondLoad = resolve;
+          });
+        })
+      );
+      props = createTestProps({
+        locale: 'de',
+        applicationMessages: {
+          de: { 'CustomApp.title': 'Custom title de' },
+          en: { 'CustomApp.title': 'Custom title en' },
+        },
+      });
+    });
+
+    it('should keep rendering the previously loaded pair until the new one resolves', async () => {
+      const { container, rerender } = render(<AsyncLocaleData {...props} />);
+      await waitFor(() => {
+        expect(container).toHaveTextContent('Locale: de');
+      });
+      expect(container).toHaveTextContent('Messages: Custom title de');
+
+      rerender(<AsyncLocaleData {...props} locale="en" />);
+
+      // The reported locale must not move ahead of the messages, and a falsy
+      // locale here would unmount the authenticated shell.
+      expect(container).not.toHaveTextContent('Locale: en');
+      expect(container).toHaveTextContent('Locale: de');
+      expect(container).toHaveTextContent('Messages: Custom title de');
+
+      await act(async () => {
+        resolveSecondLoad({ title: 'Title en' });
+      });
+
+      await waitFor(() => {
+        expect(container).toHaveTextContent('Locale: en');
+      });
+      expect(container).toHaveTextContent('Messages: Custom title en');
     });
   });
 
