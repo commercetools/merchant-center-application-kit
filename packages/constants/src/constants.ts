@@ -279,6 +279,50 @@ export interface ApplicationWindow extends Window {
 // Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
 export const CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH = '@@custom-view-host@@';
 
+export const STATIC_URL_PATHS = {
+  LOGIN: 'login',
+  LOGOUT: 'logout',
+  ACCOUNT: 'account',
+  AGENT_SPHERE: 'agent-sphere',
+} as const;
+
+type TStaticUrlPath = (typeof STATIC_URL_PATHS)[keyof typeof STATIC_URL_PATHS];
+
+const includesStaticUrlPath = (
+  list: readonly TStaticUrlPath[],
+  value: string
+): value is TStaticUrlPath => (list as readonly string[]).includes(value);
+
+/** First URL segment is never a `:projectKey`. */
+export const STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY = [
+  STATIC_URL_PATHS.LOGIN,
+  STATIC_URL_PATHS.LOGOUT,
+  STATIC_URL_PATHS.ACCOUNT,
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isStaticUrlPathInPositionOfProjectKey = (value: string) =>
+  includesStaticUrlPath(STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY, value);
+
+/** Apps whose `entryPointUriPath` is the first URL segment (no `/:projectKey` prefix). */
+export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS = [
+  STATIC_URL_PATHS.ACCOUNT,
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isProjectKeylessApplicationEntryPoint = (value: string) =>
+  includesStaticUrlPath(PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS, value);
+
+/** Subset that still loads a project (navbar, FetchProject from storage). */
+export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT = [
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isProjectKeylessApplicationEntryPointInProjectContext = (
+  value: string
+) =>
+  includesStaticUrlPath(
+    PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
+    value
+  );
+
 export const SUPPORTED_HEADERS = {
   ACCEPT: 'Accept',
   ACCEPT_VERSION: 'Accept-version',

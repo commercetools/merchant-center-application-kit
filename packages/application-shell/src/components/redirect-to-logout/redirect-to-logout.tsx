@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import {
   LOGOUT_REASONS,
+  STATIC_URL_PATHS,
   type ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import useIsServedByProxy from '../../hooks/use-is-served-by-proxy';
@@ -28,7 +29,7 @@ const RedirectToLogout = (props: Props) => {
 
   return (
     <Redirector
-      to="logout"
+      to={STATIC_URL_PATHS.LOGOUT}
       origin={mcOrigin}
       location={location}
       queryParams={{

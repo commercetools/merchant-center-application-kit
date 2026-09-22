@@ -13,6 +13,7 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,
+  STATIC_URL_PATHS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import AccessibleHidden from '@commercetools-uikit/accessible-hidden';
@@ -243,7 +244,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           >
             <Link
               css={getUserSettingsMenuItemLinkStyles()}
-              to={`/account/${menu.uriPath}`}
+              to={`/${STATIC_URL_PATHS.ACCOUNT}/${menu.uriPath}`}
               onClick={() => props.downshiftProps.toggleMenu()}
               data-user-settings-menu
               ref={menuElementRef}
@@ -291,7 +292,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           css={getUserSettingsMenuItemLinkStyles()}
           // NOTE: we want to redirect to a new page so that the
           // server can remove things like cookie for access token.
-          href={`/logout?reason=${LOGOUT_REASONS.USER}`}
+          href={`/${STATIC_URL_PATHS.LOGOUT}?reason=${LOGOUT_REASONS.USER}`}
           data-test="logout-button"
           data-user-settings-menu
         >

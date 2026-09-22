@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { isStaticUrlPathInPositionOfProjectKey } from '@commercetools-frontend/constants';
 
 type TApplicationPageTitleProps = {
   /**
@@ -22,7 +23,6 @@ type TApplicationPageTitleProps = {
 };
 
 const maxTitleCharLength = 24;
-const staticPaths = ['account', 'login'];
 
 const getPageTitle = (pathname: string, additionalParts: string[]) => {
   const [, projectKeyOrStaticPath, entryPointUriPath] = pathname.split('/');
@@ -37,7 +37,7 @@ const getPageTitle = (pathname: string, additionalParts: string[]) => {
     ].join('...');
   });
 
-  if (staticPaths.includes(projectKeyOrStaticPath)) {
+  if (isStaticUrlPathInPositionOfProjectKey(projectKeyOrStaticPath)) {
     return [
       ...(customTitleParts || []),
       projectKeyOrStaticPath,

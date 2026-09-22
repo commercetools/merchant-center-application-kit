@@ -3,6 +3,7 @@ import type { Server } from 'node:http';
 import process from 'node:process';
 import chalk from 'chalk';
 import { processConfig } from '@commercetools-frontend/application-config';
+import { STATIC_URL_PATHS } from '@commercetools-frontend/constants';
 import pkgJson from '../../package.json';
 import type { TCliCommandLoginOptions } from '../types';
 import { createAuthCallbackServer } from '../utils/auth-callback';
@@ -294,7 +295,7 @@ async function run(options: TCliCommandLoginOptions) {
   const state = generateRandomHash();
   const nonce = generateRandomHash();
 
-  const authUrl = new URL('/login/authorize', mcApiUrl);
+  const authUrl = new URL(`/${STATIC_URL_PATHS.LOGIN}/authorize`, mcApiUrl);
   authUrl.searchParams.set('response_type', 'id_token');
   authUrl.searchParams.set('response_mode', 'query');
   authUrl.searchParams.set('client_id', `__local:${clientIdentifier}`);

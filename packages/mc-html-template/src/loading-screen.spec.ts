@@ -223,7 +223,13 @@ describe('route gate', () => {
     }
   );
 
-  it.each(['/Account/profile', '/my-project-key/products'])(
+  it.each([
+    '/Account/profile',
+    '/my-project-key/products',
+    // No project key in the URL, but the shell resolves one from storage.
+    '/agent-sphere',
+    '/agent-sphere/conversations',
+  ])(
     'should show the sidebar on %s, where the shell renders a NavBar',
     (pathname) => {
       setUrl(pathname);

@@ -11,6 +11,7 @@ import type { TFlags } from '@flopflip/types';
 import { Switch } from 'react-router-dom';
 import type { Dispatch } from 'redux';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { STATIC_URL_PATHS } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
 import version from '../../version';
@@ -85,7 +86,7 @@ const ApplicationShell = (props: TApplicationShellProps) => {
           if (isAuthenticated) {
             return (
               <Switch>
-                <SuspendedRoute path="/logout">
+                <SuspendedRoute path={`/${STATIC_URL_PATHS.LOGOUT}`}>
                   <RedirectToLogout />
                 </SuspendedRoute>
                 <SuspendedRoute>
