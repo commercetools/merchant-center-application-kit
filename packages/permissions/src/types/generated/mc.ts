@@ -10,11 +10,115 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTime: any;
+};
+
+export enum TAiUsageAnalyticsAggregation {
+  Count = 'COUNT',
+  CountDistinct = 'COUNT_DISTINCT',
+  Max = 'MAX',
+  Min = 'MIN',
+  Sum = 'SUM'
+}
+
+export type TAiUsageAnalyticsCounterBreakdownItem = {
+  __typename?: 'AIUsageAnalyticsCounterBreakdownItem';
+  key: Scalars['ID'];
+  value: Scalars['Float'];
+};
+
+export type TAiUsageAnalyticsCounterInput = {
+  aggregation: TAiUsageAnalyticsAggregation;
+  groupBy?: InputMaybe<TAiUsageAnalyticsGroupDimension>;
+  key: Scalars['String'];
+  measure: TAiUsageAnalyticsMeasure;
+};
+
+export type TAiUsageAnalyticsCounterResult = {
+  __typename?: 'AIUsageAnalyticsCounterResult';
+  aggregation: TAiUsageAnalyticsAggregation;
+  breakdown?: Maybe<Array<TAiUsageAnalyticsCounterBreakdownItem>>;
+  groupBy?: Maybe<TAiUsageAnalyticsGroupDimension>;
+  key: Scalars['String'];
+  measure: TAiUsageAnalyticsMeasure;
+  value?: Maybe<Scalars['Float']>;
+};
+
+export enum TAiUsageAnalyticsGroupDimension {
+  Agent = 'AGENT'
+}
+
+export enum TAiUsageAnalyticsMeasure {
+  Requests = 'REQUESTS',
+  Tokens = 'TOKENS',
+  TokensIn = 'TOKENS_IN',
+  TokensOut = 'TOKENS_OUT'
+}
+
+export type TAiUsageAnalyticsPeriodInput = {
+  from: Scalars['DateTime'];
+  to: Scalars['DateTime'];
+};
+
+export type TAiUsageAnalyticsResult = {
+  __typename?: 'AIUsageAnalyticsResult';
+  /**
+   * The counters data for the given project keys and organization id.
+   * The counters are used to aggregate the data by a specific dimension.
+   * For example, the total number of requests, the total number of tokens, the total number of tokens in, the total number of tokens out,
+   * the total number of latency, etc.
+   */
+  counters: Array<TAiUsageAnalyticsCounterResult>;
+  /**
+   * The existence of the AI usage analytics feature. If there is no data for the given project keys and organization id,
+   * the existence will be `false`.
+   */
+  exists: Scalars['Boolean'];
+  /** The time series data for the given project keys and organization id. */
+  timeSeries: Array<TAiUsageAnalyticsTimeSeriesGroup>;
+};
+
+
+export type TAiUsageAnalyticsResult_CountersArgs = {
+  counters: Array<TAiUsageAnalyticsCounterInput>;
+  period: TAiUsageAnalyticsPeriodInput;
+};
+
+
+export type TAiUsageAnalyticsResult_TimeSeriesArgs = {
+  groupBy?: InputMaybe<TAiUsageAnalyticsGroupDimension>;
+  interval?: InputMaybe<TAiUsageAnalyticsTimeInterval>;
+  measure: TAiUsageAnalyticsMeasure;
+  period: TAiUsageAnalyticsPeriodInput;
+};
+
+export enum TAiUsageAnalyticsTimeInterval {
+  Day = 'DAY',
+  Month = 'MONTH',
+  Week = 'WEEK'
+}
+
+export type TAiUsageAnalyticsTimeSeriesGroup = {
+  __typename?: 'AIUsageAnalyticsTimeSeriesGroup';
+  key: Scalars['ID'];
+  points: Array<TAiUsageAnalyticsTimeSeriesPoint>;
+};
+
+export type TAiUsageAnalyticsTimeSeriesPoint = {
+  __typename?: 'AIUsageAnalyticsTimeSeriesPoint';
+  timestamp: Scalars['DateTime'];
+  value: Scalars['Float'];
 };
 
 export type TAdditionalUserInfo = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+};
+
+export type TAgentCapability = {
+  __typename?: 'AgentCapability';
+  agentId: Scalars['String'];
+  requiredOAuthScopes: Array<Scalars['String']>;
 };
 
 export type TAllPermissionsForAllApplications = {
@@ -86,6 +190,16 @@ export type TDeleteAccountRequest = {
 export type TDeletedUser = {
   __typename?: 'DeletedUser';
   id: Scalars['String'];
+};
+
+export type TExportOrganizationMembersResult = {
+  __typename?: 'ExportOrganizationMembersResult';
+  /**
+   * The exported organization members as a CSV document. One row per user
+   * (deduplicated across teams), listing the user's email, the teams they belong
+   * to, and their last login timestamp in ISO 8601 UTC.
+   */
+  result: Scalars['String'];
 };
 
 export type TFeature = {
@@ -276,6 +390,7 @@ export type TOAuthClient = {
   createdAt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   lastUsedAt?: Maybe<Scalars['String']>;
+  mcpScopes: Array<Scalars['String']>;
   name: Scalars['String'];
   ownerId: Scalars['ID'];
   permissions: Array<TProjectPermission>;
@@ -422,6 +537,12 @@ export enum TProjectSuspensionReason {
 
 export type TQuery = {
   __typename?: 'Query';
+  agentRequiredCapabilities: Array<TAgentCapability>;
+  /**
+   * Returns the AI usage analytics for the given project key and organization id.
+   * Only administrators of the organization may call this query.
+   */
+  aiUsageAnalytics: TAiUsageAnalyticsResult;
   allFeatures: Array<TFeature>;
   allImpliedOAuthScopes: Array<Scalars['String']>;
   allSupportedActionRights?: Maybe<Array<TSupportedActionRight>>;
@@ -431,6 +552,11 @@ export type TQuery = {
   allSupportedResources?: Maybe<Array<TSupportedResource>>;
   allSupportedStoreScopes?: Maybe<Array<TSupportedStoreScope>>;
   amILoggedIn: Scalars['Boolean'];
+  /**
+   * Exports every member of every team in the given organization as a CSV
+   * document. Only administrators of the organization may call this query.
+   */
+  exportOrganizationMembers: TExportOrganizationMembersResult;
   invitation?: Maybe<TInvitationQueryResult>;
   me?: Maybe<TUser>;
   oAuthClient?: Maybe<TOAuthClient>;
@@ -444,9 +570,25 @@ export type TQuery = {
 };
 
 
+export type TQuery_AgentRequiredCapabilitiesArgs = {
+  projectKey: Scalars['String'];
+};
+
+
+export type TQuery_AiUsageAnalyticsArgs = {
+  organizationId: Scalars['ID'];
+  projectKey: Scalars['String'];
+};
+
+
 export type TQuery_AllImpliedOAuthScopesArgs = {
   onlyConfiguredOnTrustedClient?: InputMaybe<Scalars['Boolean']>;
   resourceAccessPermissions: Array<Scalars['String']>;
+};
+
+
+export type TQuery_ExportOrganizationMembersArgs = {
+  organizationId: Scalars['ID'];
 };
 
 
@@ -634,6 +776,7 @@ export type TUser = TMetaData & {
   gravatarHash: Scalars['String'];
   id: Scalars['ID'];
   idTokenUserInfo?: Maybe<TIdTokenUserInfo>;
+  isAdminOfAnyOrganization: Scalars['Boolean'];
   language: Scalars['String'];
   lastModifiedAt: Scalars['String'];
   lastName: Scalars['String'];
@@ -693,7 +836,7 @@ export type TFetchProjectQuery = { __typename?: 'Query', project?: { __typename?
 export type TFetchLoggedInUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, createdAt: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingCloudEnvironment: string, defaultProjectKey?: string | null, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat?: number | null, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
+export type TFetchLoggedInUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, createdAt: string, gravatarHash: string, firstName: string, lastName: string, language: string, numberFormat: string, timeZone?: string | null, launchdarklyTrackingId: string, launchdarklyTrackingGroup: string, launchdarklyTrackingSubgroup?: string | null, launchdarklyTrackingTeam?: Array<string> | null, launchdarklyTrackingCloudEnvironment: string, defaultProjectKey?: string | null, isAdminOfAnyOrganization: boolean, businessRole?: string | null, projects: { __typename?: 'ProjectQueryResult', total: number, results: Array<{ __typename?: 'Project', name: string, key: string, isProductionProject: boolean, suspension: { __typename?: 'ProjectSuspension', isActive: boolean }, expiry: { __typename?: 'ProjectExpiry', isActive: boolean } }> }, idTokenUserInfo?: { __typename?: 'IdTokenUserInfo', iss: string, sub: string, aud: string, exp: number, iat?: number | null, email?: string | null, name?: string | null, additionalClaims?: string | null } | null } | null };
 
 export type TFetchUserProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
