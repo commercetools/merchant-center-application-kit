@@ -177,6 +177,7 @@ export const GRAPHQL_TARGETS = {
   PLATFORM_INSIGHTS: 'platform-insights',
   STORES_INDEXER: 'stores-indexer',
   AGENTIC_CHANNELS_SERVICE: 'agentic-channels',
+  AGENT_REGISTRY: 'agent-registry',
 } as const;
 export type TGraphQLTargets =
   (typeof GRAPHQL_TARGETS)[keyof typeof GRAPHQL_TARGETS];
