@@ -13,7 +13,6 @@ type NavbarGroupHeaderProps = {
 const GroupLabel = styled.div`
   font-size: ${uiKitDesignTokens.fontSize10};
   font-weight: ${uiKitDesignTokens.fontWeight600};
-  line-height: ${uiKitDesignTokens.lineHeight30};
   letter-spacing: 1px;
   text-transform: uppercase;
   color: ${uiKitDesignTokens.colorSurface};
