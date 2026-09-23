@@ -2,6 +2,7 @@ import Ajv, { ValidateFunction, type ErrorObject } from 'ajv';
 import {
   ENTRY_POINT_URI_PATH_REGEX,
   PERMISSION_GROUP_NAME_REGEX,
+  isProjectKeylessApplicationEntryPointInProjectContext,
 } from '@commercetools-frontend/constants';
 import customApplicationSchemaJson from '../custom-application.schema.json';
 import customViewSchemaJson from '../custom-view.schema.json';
@@ -77,13 +78,44 @@ export const validateConfig = (
   }
 };
 
+const ENTRY_POINT_URI_PATH_ERROR_MESSAGE =
+  'Invalid "entryPointUriPath". The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscores and hyphens are also not allowed. Values under a project-keyless-in-project-context prefix (e.g. "agent-sphere/registry") must use that prefix followed by a single slash and a valid segment.';
+
+/**
+ * Resolves the segment that must match `ENTRY_POINT_URI_PATH_REGEX`.
+ * Entry points under `PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT`
+ * may be prefixed (e.g. `agent-sphere/registry`); only the right-hand segment is validated.
+ */
+const getEntryPointUriPathSegmentToValidate = (entryPointUriPath: string) => {
+  if (!entryPointUriPath.includes('/')) {
+    return entryPointUriPath;
+  }
+
+  const segments = entryPointUriPath.split('/');
+  if (segments.length !== 2 || !segments[1]) {
+    return null;
+  }
+
+  const [prefix, rightHandSegment] = segments;
+  if (!isProjectKeylessApplicationEntryPointInProjectContext(prefix)) {
+    return null;
+  }
+
+  return rightHandSegment;
+};
+
 export const validateEntryPointUriPath = (
   config: JSONSchemaForCustomApplicationConfigurationFiles
 ) => {
-  if (!config.entryPointUriPath.match(ENTRY_POINT_URI_PATH_REGEX)) {
-    throw new Error(
-      'Invalid "entryPointUriPath". The value may be between 2 and 64 characters and only contain alphanumeric lowercase characters, non-consecutive underscores and hyphens. Leading and trailing underscores and hyphens are also not allowed.'
-    );
+  const segmentToValidate = getEntryPointUriPathSegmentToValidate(
+    config.entryPointUriPath
+  );
+
+  if (
+    !segmentToValidate ||
+    !segmentToValidate.match(ENTRY_POINT_URI_PATH_REGEX)
+  ) {
+    throw new Error(ENTRY_POINT_URI_PATH_ERROR_MESSAGE);
   }
 };
 

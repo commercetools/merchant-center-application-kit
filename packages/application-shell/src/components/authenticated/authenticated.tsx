@@ -2,6 +2,7 @@ import { JSX } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import {
   PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
   type ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -40,6 +41,17 @@ const Authenticated = (props: TAuthenticatedProps) => {
 };
 Authenticated.displayName = 'Authenticated';
 
+const projectKeylessOidcCallbackPaths = [
+  ...PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.map(
+    (entryPointUriPath) => `/${entryPointUriPath}/oidc/callback`
+  ),
+  // Nested apps under a project-keyless-in-project-context prefix
+  // (e.g. `/agent-sphere/registry/oidc/callback`).
+  ...PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT.map(
+    (entryPointUriPath) => `/${entryPointUriPath}/:app/oidc/callback`
+  ),
+];
+
 const AuthenticationRoutes = (props: TAuthenticatedProps) => {
   const oidcCallback = (
     <OidcCallback
@@ -50,11 +62,7 @@ const AuthenticationRoutes = (props: TAuthenticatedProps) => {
 
   return (
     <Switch>
-      <SuspendedRoute
-        path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.map(
-          (entryPointUriPath) => `/${entryPointUriPath}/oidc/callback`
-        )}
-      >
+      <SuspendedRoute path={projectKeylessOidcCallbackPaths}>
         {oidcCallback}
       </SuspendedRoute>
       <SuspendedRoute path={`/:projectKey/:identifier/oidc/callback`}>

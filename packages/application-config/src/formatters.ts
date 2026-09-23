@@ -30,6 +30,7 @@ type TImplicitCustomApplicationPermissionKeys<
  * The function formats the `entryPointUriPath` to a resource access key.
  * It makes the first character of the string and the next character after a special character an uppercase.
  * It replaces hyphen(-) with a forward slash(/) if the hyphen(-) is followed by a number.
+ * Path separators (`/`) are treated like hyphens (omitted, next segment PascalCased).
  *
  * @example
  * - avengers --> Avengers
@@ -37,6 +38,7 @@ type TImplicitCustomApplicationPermissionKeys<
  * - the_avengers --> The_Avengers
  * - avengers-01 --> Avengers/01
  * - avengers_01 --> Avengers_01
+ * - new-avengers/team --> NewAvengersTeam
  */
 const formatEntryPointUriPathToResourceAccessKey = (
   entryPointUriPath: string
@@ -48,8 +50,8 @@ const formatEntryPointUriPathToResourceAccessKey = (
     .map(upperFirst)
     // Join the words by an underscore.
     .join('_')
-    // Each word is split by a hyphen.
-    .split('-')
+    // Each word is split by a hyphen or path separator.
+    .split(/[-/]/)
     .map((word, i) => {
       // Regex below checking if the character is numeric.
       // If the word after the hyphen is numeric, replace the hyphen with a forward slash.
