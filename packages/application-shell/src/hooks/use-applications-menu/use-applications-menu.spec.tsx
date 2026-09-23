@@ -106,12 +106,22 @@ const createTestNavBarMenuGroupJsonConfig = (
   uriPath: string,
   props: Partial<MenuLoaderResult<'navBarGroups'>[number]['items'][number]> = {}
 ) => ({
+  __typename: 'NavbarMenuGroup',
   key: '2',
+  label: null,
+  isNew: null,
   items: [
     {
+      __typename: 'NavbarMenu',
       uriPath,
       key: uriPath,
-      labelAllLocales: [{ locale: 'en', value: upperFirst(uriPath) }],
+      labelAllLocales: [
+        {
+          __typename: 'LocalizedField',
+          locale: 'en',
+          value: upperFirst(uriPath),
+        },
+      ],
       icon: 'UserFilledIcon',
       permissions: [],
       dataFences: [],
@@ -120,10 +130,15 @@ const createTestNavBarMenuGroupJsonConfig = (
       menuVisibility: `hide${upperFirst(uriPath)}`,
       submenu: [
         {
+          __typename: 'BaseMenu',
           uriPath: `${uriPath}/new`,
           key: `${uriPath}-new`,
           labelAllLocales: [
-            { locale: 'en', value: `${upperFirst(uriPath)} new` },
+            {
+              __typename: 'LocalizedField',
+              locale: 'en',
+              value: `${upperFirst(uriPath)} new`,
+            },
           ],
           menuVisibility: `hide${upperFirst(uriPath)}New`,
           permissions: [],
@@ -178,6 +193,7 @@ const createGraphqlResponse = (
   custom: Partial<TFetchApplicationsMenuQuery> = {}
 ) => ({
   applicationsMenu: {
+    __typename: 'ApplicationsMenu',
     appBar: [],
     navBarGroups: [createTestNavBarMenuGroupJsonConfig('orders')],
   },

@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/runtime": "catalog:build",
     "@babel/runtime-corejs3": "catalog:build",
+    "@commercetools/nimbus": "catalog:nimbus",
     "@commercetools-frontend/actions-global": "workspace:^",
     "@commercetools-frontend/application-components": "workspace:^",
     "@commercetools-frontend/application-config": "workspace:^",
@@ -103,7 +104,6 @@
     "uuid": "catalog:"
   },
   "devDependencies": {
-    "@commercetools/nimbus": "catalog:nimbus",
     "@apollo/client": "catalog:apollo",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",

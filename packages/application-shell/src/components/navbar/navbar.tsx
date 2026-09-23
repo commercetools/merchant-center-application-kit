@@ -61,6 +61,7 @@ import {
 } from './menu-items';
 import { SublistItem, SafeArea } from './menu-items.styles';
 import messages from './messages';
+import NavbarGroupHeader from './navbar-group-header';
 import NavBarSkeleton from './navbar-skeleton';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 import useNavbarStateManager, {
@@ -513,6 +514,12 @@ const NavBar = (props: TNavbarProps) => {
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
                 <div key={navbarMenuGroup.key}>
+                  {navbarMenuGroup.label && isMenuOpen && (
+                    <NavbarGroupHeader
+                      label={navbarMenuGroup.label}
+                      isNew={navbarMenuGroup.isNew ?? undefined}
+                    />
+                  )}
                   {navbarMenuGroup.items.map((menu) => {
                     const menuType = 'scrollable';
                     const itemIndex = `${menuType}-${menu.key}`;
