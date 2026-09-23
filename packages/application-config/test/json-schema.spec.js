@@ -36,7 +36,8 @@ describe.each`
   ${'avengers01'}
   ${'avengers-01'}
   ${'avengers_01'}
-  ${'new-avengers/team'}
+  ${'agent-sphere/registry'}
+  ${'agent-sphere/insights'}
 `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
   it(`should validate "${entryPointUriPath}" correctly`, () => {
     expect(() =>
@@ -103,8 +104,10 @@ describe('invalid configurations', () => {
     ${'_avengers-'}
     ${'the-_avengers'}
     ${'the_-avengers'}
-    ${'new-avengers/team/one'}
+    ${'agent-sphere/'}
+    ${'agent-sphere/foo/bar'}
     ${'account/profile'}
+    ${'foo/bar'}
   `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
     it(`should validate "${entryPointUriPath}" wrong value`, () => {
       expect(() =>
