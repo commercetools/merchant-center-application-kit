@@ -78,7 +78,7 @@ describe(
     it('should display menu group label with isNew badge', () => {
       cy.findByTestId('menu-expander').click();
       cy.findByText('Menu group').should('be.visible');
-      cy.findByText('NEW').should('be.visible');
+      cy.findByText('New').should('be.visible');
     });
   }
 );
