@@ -230,6 +230,11 @@ export type ApplicationOidcForDevelopmentConfig = {
     manage: string[];
   }[];
 };
+/** Development-only navbar group header for the local menuLinks cache. */
+export type ApplicationNavBarGroupForDevelopmentConfig = {
+  label?: string;
+  isNew?: boolean;
+};
 export type CustomViewData = {
   id: string;
   defaultLabel: string;
@@ -245,6 +250,7 @@ export type CustomViewData = {
 export type ApplicationRuntimeEnvironmentForDevelopment = {
   oidc?: ApplicationOidcForDevelopmentConfig;
   menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+  menuGroup?: ApplicationNavBarGroupForDevelopmentConfig;
   customViewHostUrl?: string;
   customViewConfig?: CustomViewData;
   mcIdentityLoginModeOverride?: 'legacy';

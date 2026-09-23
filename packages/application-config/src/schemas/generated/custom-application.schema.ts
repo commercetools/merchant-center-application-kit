@@ -68,6 +68,13 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
        * Set to 'legacy' to use legacy login mode for development, sending x-mc-identity-login-mode-override header instead of cookies
        */
       mcIdentityLoginModeOverride?: 'legacy';
+      /**
+       * Optional navbar group header used when rendering menuLinks in local development
+       */
+      menuGroup?: {
+        label?: string;
+        isNew?: boolean;
+      };
     };
     production: {
       /**

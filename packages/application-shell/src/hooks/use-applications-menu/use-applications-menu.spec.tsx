@@ -48,6 +48,14 @@ const NavBarTest = (props: Config) => {
             );
             return (
               <ul key={menu.uriPath}>
+                {applicationsMenuGroup.label ? (
+                  <li>
+                    <p>{`Group: ${applicationsMenuGroup.label}`}</p>
+                    <p>{`Group isNew: ${String(
+                      Boolean(applicationsMenuGroup.isNew)
+                    )}`}</p>
+                  </li>
+                ) : null}
                 <li>
                   <label>{localizedLabels?.[userLocale]}</label>
                   <p>{`Path: ${menu.uriPath}`}</p>
@@ -243,6 +251,25 @@ describe('for local development', () => {
         expect(screen.getByText('Add avenger')).toBeInTheDocument();
         expect(screen.getByText('Path: avengers')).toBeInTheDocument();
         expect(screen.getByText('Sub-path: avengers/new')).toBeInTheDocument();
+        expect(screen.queryByText(/^Group:/)).not.toBeInTheDocument();
+      });
+
+      it('should use the configured menu group label and isNew flag', async () => {
+        const environment = createTestEnvironment({
+          __DEVELOPMENT__: {
+            menuLinks: createTestNavBarMenuLinksConfig(),
+            menuGroup: {
+              label: 'Agent Sphere',
+              isNew: false,
+            },
+          },
+        });
+        renderApp(<NavBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
+        await screen.findByText('Avengers');
+        expect(screen.getByText('Group: Agent Sphere')).toBeInTheDocument();
+        expect(screen.getByText('Group isNew: false')).toBeInTheDocument();
       });
     });
   });
