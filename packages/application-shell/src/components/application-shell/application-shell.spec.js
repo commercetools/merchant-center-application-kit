@@ -444,6 +444,18 @@ describe('when user first visits "/" with a project-keyless application', () => 
     });
     await screen.findByText('OK');
   });
+
+  it('should redirect to a prefixed agent-sphere entry point', async () => {
+    const { history } = renderApp(null, {
+      environment: { entryPointUriPath: 'agent-sphere/registry' },
+      disableRoutePermissionCheck: true,
+    });
+    await waitFor(() => {
+      // Redirect "/" -> "/agent-sphere/registry"
+      expect(history.location.pathname).toBe('/agent-sphere/registry');
+    });
+    await screen.findByText('OK');
+  });
 });
 describe('when loading user fails with an unknown graphql error', () => {
   beforeEach(() => {

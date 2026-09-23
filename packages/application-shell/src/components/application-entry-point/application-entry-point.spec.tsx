@@ -27,6 +27,32 @@ describe('ApplicationEntryPoint', () => {
 
       await screen.findByText('Agent Sphere');
     });
+
+    it('should render a prefixed agent-sphere application at its entry point', async () => {
+      renderApp(<p>Agent Sphere Registry</p>, {
+        disableRoutePermissionCheck: true,
+        environment: {
+          entryPointUriPath: 'agent-sphere/registry',
+        },
+        route: '/agent-sphere/registry',
+        project: null,
+      });
+
+      await screen.findByText('Agent Sphere Registry');
+    });
+
+    it('should render a prefixed agent-sphere application at nested routes', async () => {
+      renderApp(<p>Agent Sphere Registry</p>, {
+        disableRoutePermissionCheck: true,
+        environment: {
+          entryPointUriPath: 'agent-sphere/registry',
+        },
+        route: '/agent-sphere/registry/details',
+        project: null,
+      });
+
+      await screen.findByText('Agent Sphere Registry');
+    });
   });
 
   describe('when the application is project-scoped', () => {

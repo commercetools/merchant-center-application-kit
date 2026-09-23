@@ -36,6 +36,7 @@ describe.each`
   ${'avengers01'}
   ${'avengers-01'}
   ${'avengers_01'}
+  ${'new-avengers/team'}
 `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
   it(`should validate "${entryPointUriPath}" correctly`, () => {
     expect(() =>
@@ -102,6 +103,8 @@ describe('invalid configurations', () => {
     ${'_avengers-'}
     ${'the-_avengers'}
     ${'the_-avengers'}
+    ${'new-avengers/team/one'}
+    ${'account/profile'}
   `('validating "entryPointUriPath"', ({ entryPointUriPath }) => {
     it(`should validate "${entryPointUriPath}" wrong value`, () => {
       expect(() =>
@@ -109,7 +112,7 @@ describe('invalid configurations', () => {
           ...fixtureConfigSimple,
           entryPointUriPath,
         })
-      ).toThrow(/The value may be between 2 and 64 characters/);
+      ).toThrow(/Invalid "entryPointUriPath"/);
     });
   });
   it('should validate that "cloudIdentifier" is defined', () => {

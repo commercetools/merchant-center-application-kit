@@ -145,4 +145,30 @@ describe('when the menu item belongs to a project-keyless application', () => {
       'page'
     );
   });
+
+  it('should link to prefixed agent-sphere entry points without the project key', async () => {
+    const registryMenu = createTestMenu({
+      key: 'agent-sphere-registry',
+      uriPath: 'agent-sphere/registry',
+      labelAllLocales: [{ locale: 'en', value: 'Registry' }],
+      submenu: [
+        {
+          key: 'agent-sphere-registry-details',
+          uriPath: 'agent-sphere/registry/details',
+          labelAllLocales: [{ locale: 'en', value: 'Details' }],
+          permissions: [],
+        },
+      ],
+    });
+
+    renderApplicationMenu({ menu: registryMenu }, '/agent-sphere/registry');
+
+    expect(
+      await screen.findByRole('link', { name: 'Registry' })
+    ).toHaveAttribute('href', '/agent-sphere/registry');
+    expect(await findSubmenuLink('Details')).toHaveAttribute(
+      'href',
+      '/agent-sphere/registry/details'
+    );
+  });
 });

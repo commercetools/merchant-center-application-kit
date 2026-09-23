@@ -293,6 +293,9 @@ const includesStaticUrlPath = (
   value: string
 ): value is TStaticUrlPath => (list as readonly string[]).includes(value);
 
+/** First path segment of an entry point or URL path (e.g. `agent-sphere/registry` → `agent-sphere`). */
+const topLevelPathSegment = (value: string) => value.split('/')[0] ?? value;
+
 /** First URL segment is never a `:projectKey`. */
 export const STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY = [
   STATIC_URL_PATHS.LOGIN,
@@ -301,7 +304,10 @@ export const STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY = [
   STATIC_URL_PATHS.AGENT_SPHERE,
 ] as const;
 export const isStaticUrlPathInPositionOfProjectKey = (value: string) =>
-  includesStaticUrlPath(STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY, value);
+  includesStaticUrlPath(
+    STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY,
+    topLevelPathSegment(value)
+  );
 
 /** Apps whose `entryPointUriPath` is the first URL segment (no `/:projectKey` prefix). */
 export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS = [
@@ -309,7 +315,10 @@ export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS = [
   STATIC_URL_PATHS.AGENT_SPHERE,
 ] as const;
 export const isProjectKeylessApplicationEntryPoint = (value: string) =>
-  includesStaticUrlPath(PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS, value);
+  includesStaticUrlPath(
+    PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+    topLevelPathSegment(value)
+  );
 
 /** Subset that still loads a project (navbar, FetchProject from storage). */
 export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT = [
@@ -320,7 +329,7 @@ export const isProjectKeylessApplicationEntryPointInProjectContext = (
 ) =>
   includesStaticUrlPath(
     PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
-    value
+    topLevelPathSegment(value)
   );
 
 export const SUPPORTED_HEADERS = {
