@@ -1,5 +1,18 @@
 # @commercetools-frontend/cypress
 
+## 27.11.0
+
+### Minor Changes
+
+- [#4156](https://github.com/commercetools/merchant-center-application-kit/pull/4156) [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82) Thanks [@emmenko](https://github.com/emmenko)! - Support routing for new top-level route
+
+### Patch Changes
+
+- Updated dependencies [[`6a1ca10`](https://github.com/commercetools/merchant-center-application-kit/commit/6a1ca10f4260ba5226de69ebadc6743b283ef201), [`c1ecd22`](https://github.com/commercetools/merchant-center-application-kit/commit/c1ecd225a7b4914c772cf4d95fe77f8352c89272), [`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82), [`ef83662`](https://github.com/commercetools/merchant-center-application-kit/commit/ef83662fc98931ec5477bc1e278a5423f2f237fc)]:
+  - @commercetools-frontend/application-shell@27.11.0
+  - @commercetools-frontend/application-config@27.11.0
+  - @commercetools-frontend/constants@27.11.0
+
 ## 27.10.0
 
 ### Patch Changes
