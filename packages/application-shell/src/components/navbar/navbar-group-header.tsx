@@ -11,11 +11,12 @@ type NavbarGroupHeaderProps = {
 };
 
 const GroupLabel = styled.div`
-  font-size: ${uiKitDesignTokens.fontSize20};
-  font-weight: ${uiKitDesignTokens.fontWeight700};
-  letter-spacing: 0.5px;
+  font-size: ${uiKitDesignTokens.fontSize10};
+  font-weight: ${uiKitDesignTokens.fontWeight600};
+  line-height: ${uiKitDesignTokens.lineHeight30};
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: ${uiKitDesignTokens.colorNeutral60};
+  color: ${uiKitDesignTokens.colorSurface};
   padding: ${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing40} 0;
 `;
 
@@ -24,7 +25,7 @@ const NavbarGroupHeader = ({ label, isNew }: NavbarGroupHeaderProps) => {
 
   return (
     <GroupLabel>
-      <Spacings.Inline scale="s" alignItems="center">
+      <Spacings.Inline scale="m" alignItems="center">
         <span>{label}</span>
         {isNew && (
           <Badge colorPalette="primary" size="2xs">
