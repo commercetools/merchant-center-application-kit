@@ -1,5 +1,40 @@
 # @commercetools-frontend/application-shell
 
+## 27.11.0
+
+### Minor Changes
+
+- [#4162](https://github.com/commercetools/merchant-center-application-kit/pull/4162) [`6a1ca10`](https://github.com/commercetools/merchant-center-application-kit/commit/6a1ca10f4260ba5226de69ebadc6743b283ef201) Thanks [@emmenko](https://github.com/emmenko)! - Allow to render links with no project context
+
+- [#4159](https://github.com/commercetools/merchant-center-application-kit/pull/4159) [`c1ecd22`](https://github.com/commercetools/merchant-center-application-kit/commit/c1ecd225a7b4914c772cf4d95fe77f8352c89272) Thanks [@kark](https://github.com/kark)! - Add navbar group labels and "New" badges for application grouping
+
+- [#4164](https://github.com/commercetools/merchant-center-application-kit/pull/4164) [`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343) Thanks [@emmenko](https://github.com/emmenko)! - Support special entry points format with prefix
+
+- [#4155](https://github.com/commercetools/merchant-center-application-kit/pull/4155) [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for new menu item permissions `Administrator` and `AdministratorOfCurrentProject`.
+
+- [#4156](https://github.com/commercetools/merchant-center-application-kit/pull/4156) [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82) Thanks [@emmenko](https://github.com/emmenko)! - Support routing for new top-level route
+
+### Patch Changes
+
+- [#4163](https://github.com/commercetools/merchant-center-application-kit/pull/4163) [`ef83662`](https://github.com/commercetools/merchant-center-application-kit/commit/ef83662fc98931ec5477bc1e278a5423f2f237fc) Thanks [@emmenko](https://github.com/emmenko)! - Hide project switcher when not in a project context. Fix root path redirect when app is a project-keyless route.
+
+- Updated dependencies [[`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82)]:
+  - @commercetools-frontend/application-config@27.11.0
+  - @commercetools-frontend/constants@27.11.0
+  - @commercetools-frontend/application-shell-connectors@27.11.0
+  - @commercetools-frontend/permissions@27.11.0
+  - @commercetools-frontend/actions-global@27.11.0
+  - @commercetools-frontend/application-components@27.11.0
+  - @commercetools-frontend/assets@27.11.0
+  - @commercetools-frontend/browser-history@27.11.0
+  - @commercetools-frontend/i18n@27.11.0
+  - @commercetools-frontend/l10n@27.11.0
+  - @commercetools-frontend/notifications@27.11.0
+  - @commercetools-frontend/react-notifications@27.11.0
+  - @commercetools-frontend/sdk@27.11.0
+  - @commercetools-frontend/sentry@27.11.0
+  - @commercetools-frontend/url-utils@27.11.0
+
 ## 27.10.0
 
 ### Minor Changes

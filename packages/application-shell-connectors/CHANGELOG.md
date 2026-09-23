@@ -1,5 +1,21 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 27.11.0
+
+### Minor Changes
+
+- [#4155](https://github.com/commercetools/merchant-center-application-kit/pull/4155) [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for new menu item permissions `Administrator` and `AdministratorOfCurrentProject`.
+
+- [#4156](https://github.com/commercetools/merchant-center-application-kit/pull/4156) [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82) Thanks [@emmenko](https://github.com/emmenko)! - Support routing for new top-level route
+
+### Patch Changes
+
+- Updated dependencies [[`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82)]:
+  - @commercetools-frontend/application-config@27.11.0
+  - @commercetools-frontend/constants@27.11.0
+  - @commercetools-frontend/browser-history@27.11.0
+  - @commercetools-frontend/sentry@27.11.0
+
 ## 27.10.0
 
 ### Patch Changes
