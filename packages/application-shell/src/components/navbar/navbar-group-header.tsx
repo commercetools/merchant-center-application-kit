@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Badge } from '@commercetools/nimbus';
 import { useIntl } from 'react-intl';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
-import Spacings from '@commercetools-uikit/spacings';
+import { NAVBAR } from '../../constants';
 import messages from './messages';
 
 type NavbarGroupHeaderProps = {
@@ -17,7 +17,16 @@ const GroupLabel = styled.div`
   letter-spacing: 1px;
   text-transform: uppercase;
   color: ${uiKitDesignTokens.colorSurface};
-  padding: ${uiKitDesignTokens.spacing20} ${uiKitDesignTokens.spacing40} 0;
+  height: ${NAVBAR.itemSize};
+  width: calc(
+    ${NAVBAR.sublistIndentationWhenExpanded} - 2 *
+      ${uiKitDesignTokens.spacing25}
+  );
+  padding: ${uiKitDesignTokens.spacing30};
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: ${uiKitDesignTokens.spacing30};
 `;
 
 const NavbarGroupHeader = ({ label, isNew }: NavbarGroupHeaderProps) => {
@@ -25,14 +34,12 @@ const NavbarGroupHeader = ({ label, isNew }: NavbarGroupHeaderProps) => {
 
   return (
     <GroupLabel>
-      <Spacings.Inline scale="m" alignItems="center">
-        <span>{label}</span>
-        {isNew && (
-          <Badge colorPalette="primary" size="2xs">
-            {intl.formatMessage(messages['NavBar.Group.badge.new'])}
-          </Badge>
-        )}
-      </Spacings.Inline>
+      <span>{label}</span>
+      {isNew && (
+        <Badge colorPalette="primary" size="2xs">
+          {intl.formatMessage(messages['NavBar.Group.badge.new'])}
+        </Badge>
+      )}
     </GroupLabel>
   );
 };
