@@ -245,7 +245,7 @@ afterAll(() => mockServer.close());
 
 describe.each`
   renderNodeAsChildren | route
-  ${false}             | ${'/'}
+  ${false}             | ${'/test-1/avengers'}
   ${true}              | ${'/test-1/avengers'}
 `(
   'when rendering (as children: $renderNodeAsChildren)',
@@ -430,6 +430,19 @@ describe('when user first visits "/" with no projectKey defined in localStorage'
       expect(history.location.pathname).toBe(`/test-1`);
     });
     expect(getByLeftNavigation()).toBeInTheDocument();
+  });
+});
+describe('when user first visits "/" with a project-keyless application', () => {
+  it('should redirect to the entry point instead of to a project', async () => {
+    const { history } = renderApp(null, {
+      environment: { entryPointUriPath: 'agent-sphere' },
+      disableRoutePermissionCheck: true,
+    });
+    await waitFor(() => {
+      // Redirect "/" -> "/agent-sphere"
+      expect(history.location.pathname).toBe('/agent-sphere');
+    });
+    await screen.findByText('OK');
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {

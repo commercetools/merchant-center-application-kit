@@ -23,6 +23,7 @@ import {
   PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
   PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
   STATIC_URL_PATHS,
+  isProjectKeylessApplicationEntryPoint,
   isProjectKeylessApplicationEntryPointInProjectContext,
 } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
@@ -455,6 +456,8 @@ export const ApplicationShellAuthenticated = (
                                 {/* Project routes */}
                                 <Route exact={true} path="/">
                                   {(() => {
+                                    const entryPointUriPath =
+                                      applicationEnvironment.entryPointUriPath;
                                     const previousProjectKey =
                                       getPreviousProjectKey(
                                         normalizedUser?.defaultProjectKey ??
@@ -463,12 +466,26 @@ export const ApplicationShellAuthenticated = (
 
                                     /**
                                      * NOTE:
+                                     *   Given the application does not run on a `/:projectKey` route
+                                     *   (e.g. `agent-sphere`), the application redirects to its own
+                                     *   entry point instead of to a project.
                                      *   Given the user has not been loaded a loading spinner is shown.
                                      *   Given the user was not working on a project previously nor has a default
                                      *   project, the user will be prompted to create one.
                                      *   Given the user was working on a project previously or has a default
                                      *   project, the application will redirect to that project.
                                      */
+                                    if (
+                                      isProjectKeylessApplicationEntryPoint(
+                                        entryPointUriPath
+                                      )
+                                    ) {
+                                      return (
+                                        <Redirect
+                                          to={`/${entryPointUriPath}`}
+                                        />
+                                      );
+                                    }
                                     if (!normalizedUser)
                                       return <ApplicationLoader />;
                                     if (!previousProjectKey)

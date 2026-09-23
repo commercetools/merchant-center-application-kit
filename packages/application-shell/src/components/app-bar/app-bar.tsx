@@ -1,5 +1,10 @@
 import { css } from '@emotion/react';
+import { useLocation } from 'react-router-dom';
 import { ProjectStamp } from '@commercetools-frontend/application-components';
+import {
+  isProjectKeylessApplicationEntryPointInProjectContext,
+  isStaticUrlPathInPositionOfProjectKey,
+} from '@commercetools-frontend/constants';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -16,7 +21,14 @@ type Props = {
   projectKey?: string;
 };
 
+const isStaticRouteWithoutProjectContext = (topLevelPath: string) =>
+  Boolean(topLevelPath) &&
+  isStaticUrlPathInPositionOfProjectKey(topLevelPath) &&
+  !isProjectKeylessApplicationEntryPointInProjectContext(topLevelPath);
+
 const AppBar = (props: Props) => {
+  const { pathname } = useLocation();
+  const [, topLevelPath] = pathname.split('/');
   const previousProjectKey = getPreviousProjectKey(
     props.user?.defaultProjectKey ?? undefined
   );
@@ -60,8 +72,14 @@ const AppBar = (props: Props) => {
                 return <LoadingPlaceholder shape="rect" size="s" />;
               }
               // The `<ProjectSwitcher>` should be rendered only if the
-              // user is fetched and the user has projects while the app runs in an project context.
-              if (props.user.projects.total > 0 && props.projectKey) {
+              // user is fetched and the user has projects while the app runs in a
+              // project context. Static routes like `/account` have no project
+              // context, even when a previously used project key is available.
+              if (
+                props.user.projects.total > 0 &&
+                props.projectKey &&
+                !isStaticRouteWithoutProjectContext(topLevelPath)
+              ) {
                 const selectedProject = props.user.projects.results.find(
                   (project) => project.key === props.projectKey
                 );
