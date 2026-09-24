@@ -1,5 +1,31 @@
 # @commercetools-frontend/application-shell
 
+## 27.11.2
+
+### Patch Changes
+
+- [#4168](https://github.com/commercetools/merchant-center-application-kit/pull/4168) [`896ce3b`](https://github.com/commercetools/merchant-center-application-kit/commit/896ce3b587c1111b831c979e7510883e52d6abfd) Thanks [@kark](https://github.com/kark)! - Fix custom applications merging into correct navbar group and preserve group properties
+
+  - Merge custom applications into group 3 (commerce) instead of group 2
+  - Preserve navbar group label and isNew properties when merging custom applications
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.11.2
+  - @commercetools-frontend/application-components@27.11.2
+  - @commercetools-frontend/application-config@27.11.2
+  - @commercetools-frontend/application-shell-connectors@27.11.2
+  - @commercetools-frontend/assets@27.11.2
+  - @commercetools-frontend/browser-history@27.11.2
+  - @commercetools-frontend/constants@27.11.2
+  - @commercetools-frontend/i18n@27.11.2
+  - @commercetools-frontend/l10n@27.11.2
+  - @commercetools-frontend/notifications@27.11.2
+  - @commercetools-frontend/permissions@27.11.2
+  - @commercetools-frontend/react-notifications@27.11.2
+  - @commercetools-frontend/sdk@27.11.2
+  - @commercetools-frontend/sentry@27.11.2
+  - @commercetools-frontend/url-utils@27.11.2
+
 ## 27.11.1
 
 ### Patch Changes

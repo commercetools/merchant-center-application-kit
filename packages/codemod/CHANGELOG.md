@@ -1,5 +1,7 @@
 # @commercetools-frontend/codemod
 
+## 27.11.2
+
 ## 27.11.1
 
 ## 27.11.0
