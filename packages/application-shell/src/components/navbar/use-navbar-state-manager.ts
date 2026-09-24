@@ -288,17 +288,18 @@ const useNavbarStateManager = (props: HookProps) => {
   const allApplicationsNavbarMenuGroups: TNavbarMenuGroup[] = (
     applicationsNavBarMenuGroups || []
   )
-    .map((navbarMenuGroup) =>
-      navbarMenuGroup.key === '3' && allCustomApplicationsNavbarMenu.length > 0
-        ? {
-            ...navbarMenuGroup,
-            items: [
-              ...navbarMenuGroup.items,
-              ...allCustomApplicationsNavbarMenu,
-            ],
-          }
-        : navbarMenuGroup
-    )
+    .map((navbarMenuGroup) => {
+      if (
+        navbarMenuGroup.key === '2' &&
+        allCustomApplicationsNavbarMenu.length > 0
+      ) {
+        return {
+          ...navbarMenuGroup,
+          items: [...navbarMenuGroup.items, ...allCustomApplicationsNavbarMenu],
+        };
+      }
+      return navbarMenuGroup;
+    })
     .sort(
       (navBarMenuGroupA, navBarMenuGroupB) =>
         Number(navBarMenuGroupA?.key) - Number(navBarMenuGroupB?.key)
