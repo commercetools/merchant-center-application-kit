@@ -291,7 +291,7 @@ const useNavbarStateManager = (props: HookProps) => {
     .map((navbarMenuGroup) =>
       navbarMenuGroup.key === '2' && allCustomApplicationsNavbarMenu.length > 0
         ? {
-            key: navbarMenuGroup.key,
+            ...navbarMenuGroup,
             items: [
               ...navbarMenuGroup.items,
               ...allCustomApplicationsNavbarMenu,
