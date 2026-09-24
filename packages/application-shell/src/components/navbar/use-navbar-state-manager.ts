@@ -33,6 +33,7 @@ import nonNullable from './non-nullable';
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
   project: TFetchProjectQuery['project'];
+  projectKey: string;
 };
 export type TMousePosition = {
   clientX: number;
@@ -109,6 +110,9 @@ const useNavbarStateManager = (props: HookProps) => {
     skip: !props.project || !props.environment.servedByProxy,
     context: {
       target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
+      // Explicit project key is required when the URL has no `/:projectKey`
+      // segment (e.g. `/agent-sphere`); harmless otherwise.
+      projectKey: props.projectKey,
     },
     fetchPolicy: 'cache-and-network',
   });
