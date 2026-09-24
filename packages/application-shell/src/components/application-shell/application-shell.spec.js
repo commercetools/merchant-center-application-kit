@@ -1404,7 +1404,7 @@ describe('navbar menu links interactions', () => {
                 appBar: ApplicationAppbarMenuMock.buildList(1),
                 navBarGroups: [
                   ApplicationNavbarMenuGroupMock.random()
-                    .key('2')
+                    .key('3')
                     .label(null)
                     .isNew(null)
                     .items(

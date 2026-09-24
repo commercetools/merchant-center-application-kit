@@ -79,8 +79,8 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
       navBarGroups: menuLinks
         ? [
             {
-              // for development, the navBarGroup key is set to '2' since all Custom Applications belong to the second Navbar group.
-              key: '2',
+              // for development, the navBarGroup key is set to '3' since all Custom Applications belong to the commerce Navbar group.
+              key: '3',
               label: menuGroup?.label ?? null,
               isNew: menuGroup?.isNew ?? null,
               items: [
