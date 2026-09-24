@@ -56,13 +56,18 @@ describe('when the route is a static path without a project context', () => {
   });
 });
 
-describe('when the route is a static path that still has a project context', () => {
-  it('should render the project switcher on /agent-sphere', async () => {
-    renderAppBar({ route: '/agent-sphere' });
+describe('when the route is agent-sphere (project-keyless but in project context)', () => {
+  it.each(['/agent-sphere', '/agent-sphere/registry'])(
+    'should not render the project switcher or back-to-project on %s',
+    async (route) => {
+      renderAppBar({ route });
 
-    expect(await screen.findByLabelText('Projects')).toBeInTheDocument();
-    expect(screen.queryByText('Back to project')).not.toBeInTheDocument();
-  });
+      // Wait for the app bar to finish rendering the authenticated user.
+      expect(await screen.findByText('SC')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Projects')).not.toBeInTheDocument();
+      expect(screen.queryByText('Back to project')).not.toBeInTheDocument();
+    }
+  );
 });
 
 describe('when the route is project-scoped', () => {
