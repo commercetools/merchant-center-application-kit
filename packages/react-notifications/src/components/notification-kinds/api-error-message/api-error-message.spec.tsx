@@ -212,6 +212,54 @@ describe('render', () => {
     renderMessage(<ApiErrorMessage error={error} />);
     expect(screen.getByText(/Default message/i)).toBeInTheDocument();
   });
+  it('should show translated message for API Error extensions nested under `extensions`', () => {
+    const error = {
+      extensions: {
+        code: 'InvalidInput',
+        errorByExtension: {
+          id: 'some-id',
+        },
+        localizedMessage: {
+          en: 'Custom Message',
+          es: 'Mensaje personal',
+        },
+      },
+      message: 'Default message',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText(/Custom Message/i)).toBeInTheDocument();
+  });
+  it('should show "untranslated" message for API Error extensions nested under `extensions`', () => {
+    const error = {
+      extensions: {
+        code: 'InvalidInput',
+        errorByExtension: {
+          id: 'some-id',
+        },
+        localizedMessage: {
+          es: 'Mensaje personal',
+        },
+      },
+      message: 'Default message',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(screen.getByText(/Default message/i)).toBeInTheDocument();
+  });
+  it('should show the raw message when a nested API Error extension has no `localizedMessage`', () => {
+    const error = {
+      extensions: {
+        code: 'InvalidField',
+        errorByExtension: {
+          id: 'some-id',
+        },
+      },
+      message: 'The SKU is not registered in the ERP system.',
+    };
+    renderMessage(<ApiErrorMessage error={error} />);
+    expect(
+      screen.getByText(/The SKU is not registered in the ERP system/i)
+    ).toBeInTheDocument();
+  });
   it('should show message for ExtensionNoResponse', () => {
     const error = {
       extensions: { code: 'ExtensionNoResponse' },
