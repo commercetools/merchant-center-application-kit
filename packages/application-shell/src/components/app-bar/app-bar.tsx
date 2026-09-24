@@ -21,11 +21,6 @@ type Props = {
   projectKey?: string;
 };
 
-const isStaticRouteWithoutProjectContext = (topLevelPath: string) =>
-  Boolean(topLevelPath) &&
-  isStaticUrlPathInPositionOfProjectKey(topLevelPath) &&
-  !isProjectKeylessApplicationEntryPointInProjectContext(topLevelPath);
-
 const AppBar = (props: Props) => {
   const { pathname } = useLocation();
   const [, topLevelPath] = pathname.split('/');
@@ -71,14 +66,12 @@ const AppBar = (props: Props) => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
               }
-              // The `<ProjectSwitcher>` should be rendered only if the
-              // user is fetched and the user has projects while the app runs in a
-              // project context. Static routes like `/account` have no project
-              // context, even when a previously used project key is available.
+              // Project switcher only on project-scoped routes (`/:projectKey/...`).
+              // Static first segments (`/account`, `/agent-sphere`, …) never show it.
               if (
                 props.user.projects.total > 0 &&
                 props.projectKey &&
-                !isStaticRouteWithoutProjectContext(topLevelPath)
+                !isStaticUrlPathInPositionOfProjectKey(topLevelPath)
               ) {
                 const selectedProject = props.user.projects.results.find(
                   (project) => project.key === props.projectKey
@@ -110,6 +103,15 @@ const AppBar = (props: Props) => {
                     />
                   </div>
                 );
+              }
+              // Agent Sphere still runs in a project context (navbar), so there is
+              // nothing to "go back" to — leave the slot empty.
+              if (
+                isProjectKeylessApplicationEntryPointInProjectContext(
+                  topLevelPath
+                )
+              ) {
+                return null;
               }
               if (!props.user.defaultProjectKey) {
                 return null;
