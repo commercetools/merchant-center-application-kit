@@ -26,6 +26,7 @@ export { default as setupGlobalErrorListener } from './utils/setup-global-error-
 export { PERFORMANCE_MARKS } from './utils/performance-marks';
 export type { TPerformanceMark } from './utils/performance-marks';
 export { default as useRoutesCreator } from './hooks/use-routes-creator';
+export { default as selectProjectKeyInContext } from './utils/select-project-key-in-context';
 
 export {
   buildApiUrl,
