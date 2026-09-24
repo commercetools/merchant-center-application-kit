@@ -143,6 +143,8 @@ const getRuntimeEnvironmentConfigForDevelopment = ({
       ...configurationData.mainMenuLink,
       submenuLinks: configurationData.submenuLinks,
     },
+    menuGroup: (appConfig as JSONSchemaForCustomApplicationConfigurationFiles)
+      .env.development.menuGroup,
     // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
     accountLinks: appConfig.accountLinks,
     mcIdentityLoginModeOverride: (

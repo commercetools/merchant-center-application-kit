@@ -68,6 +68,7 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
 ): TFetchApplicationsMenuQuery => {
   const entryPointUriPath = applicationConfig.entryPointUriPath;
   const menuLinks = applicationConfig.__DEVELOPMENT__?.menuLinks;
+  const menuGroup = applicationConfig.__DEVELOPMENT__?.menuGroup;
   // @ts-expect-error: the `accountLinks` is not explicitly typed as it's only used by the account app.
   const accountLinks = (applicationConfig.__DEVELOPMENT__?.accountLinks! ??
     []) as ApplicationMenuLinksForDevelopmentConfig['submenuLinks'];
@@ -80,8 +81,8 @@ const mapApplicationMenuConfigToGraqhQLQueryResult = (
             {
               // for development, the navBarGroup key is set to '2' since all Custom Applications belong to the second Navbar group.
               key: '2',
-              label: 'Menu group',
-              isNew: true,
+              label: menuGroup?.label ?? null,
+              isNew: menuGroup?.isNew ?? null,
               items: [
                 {
                   __typename: 'NavbarMenu',
