@@ -1,12 +1,14 @@
 import type { TransactionEvent } from '@sentry/types';
-
-const MEASURE_SUFFIX = ':from-nav';
+import {
+  PERFORMANCE_MARK_PREFIX,
+  PERFORMANCE_MEASURE_SUFFIX,
+} from '@commercetools-frontend/constants';
 
 // Sentry measurement names may not contain colons (Relay restricts them to
 // alphanumerics, `-`, `_`, `.`), so `mc:intl-ready:from-nav` becomes
 // `mc.intl-ready`.
 const toMeasurementKey = (measureName: string) =>
-  measureName.slice(0, -MEASURE_SUFFIX.length).replace(/:/g, '.');
+  measureName.slice(0, -PERFORMANCE_MEASURE_SUFFIX.length).replace(/:/g, '.');
 
 export function addPerformanceMeasurementsToTransaction(
   event: TransactionEvent
@@ -22,7 +24,8 @@ export function addPerformanceMeasurementsToTransaction(
       .getEntriesByType('measure')
       .filter(
         (entry) =>
-          entry.name.startsWith('mc:') && entry.name.endsWith(MEASURE_SUFFIX)
+          entry.name.startsWith(PERFORMANCE_MARK_PREFIX) &&
+          entry.name.endsWith(PERFORMANCE_MEASURE_SUFFIX)
       );
 
     for (const entry of markMeasures) {
@@ -36,7 +39,8 @@ export function addPerformanceMeasurementsToTransaction(
       }
       event.contexts.trace.data = {
         ...event.contexts.trace.data,
-        [entry.name.slice(0, -MEASURE_SUFFIX.length)]: entry.duration,
+        [entry.name.slice(0, -PERFORMANCE_MEASURE_SUFFIX.length)]:
+          entry.duration,
       };
     }
   } catch {
