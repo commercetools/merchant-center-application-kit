@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.11.4
+
+### Patch Changes
+
+- [#4172](https://github.com/commercetools/merchant-center-application-kit/pull/4172) [`66af660`](https://github.com/commercetools/merchant-center-application-kit/commit/66af6604cfaa2167dbf835e08806b06ed0599e8c) Thanks [@emmenko](https://github.com/emmenko)! - Ensure `x-project-key` is sent when loading project extensions
+
+- [#4174](https://github.com/commercetools/merchant-center-application-kit/pull/4174) [`fed46c2`](https://github.com/commercetools/merchant-center-application-kit/commit/fed46c247394d44c06d0f0c8693749949f8e2465) Thanks [@emmenko](https://github.com/emmenko)! - Project switcher should stay hidden on routes without project context
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.11.4
+  - @commercetools-frontend/application-components@27.11.4
+  - @commercetools-frontend/application-config@27.11.4
+  - @commercetools-frontend/application-shell-connectors@27.11.4
+  - @commercetools-frontend/assets@27.11.4
+  - @commercetools-frontend/browser-history@27.11.4
+  - @commercetools-frontend/constants@27.11.4
+  - @commercetools-frontend/i18n@27.11.4
+  - @commercetools-frontend/l10n@27.11.4
+  - @commercetools-frontend/notifications@27.11.4
+  - @commercetools-frontend/permissions@27.11.4
+  - @commercetools-frontend/react-notifications@27.11.4
+  - @commercetools-frontend/sdk@27.11.4
+  - @commercetools-frontend/sentry@27.11.4
+  - @commercetools-frontend/url-utils@27.11.4
+
 ## 27.11.3
 
 ### Patch Changes

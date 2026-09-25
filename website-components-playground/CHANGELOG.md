@@ -1,5 +1,16 @@
 # @commercetools-website/components-playground
 
+## 27.11.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.11.4
+  - @commercetools-frontend/browser-history@27.11.4
+  - @commercetools-frontend/constants@27.11.4
+  - @commercetools-frontend/i18n@27.11.4
+  - @commercetools-frontend/l10n@27.11.4
+
 ## 27.11.3
 
 ### Patch Changes
