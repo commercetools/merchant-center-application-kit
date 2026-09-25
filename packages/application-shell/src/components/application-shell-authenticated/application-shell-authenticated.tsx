@@ -226,7 +226,14 @@ export const ApplicationShellAuthenticated = (
             <AsyncLocaleData
               // Parse-time hint so the catalogue load does not wait on
               // `FetchLoggedInUser`. `user.language` replaces it on arrival.
-              locale={normalizedUser?.language ?? getBrowserLocale(window)}
+              // The hint is mapped to a catalogue locale first: unlike
+              // `user.language` it is an arbitrary BCP-47 tag, and reporting
+              // one (`en-US`) next to the catalogue it resolves to (`en`)
+              // makes react-intl miss every message.
+              locale={
+                normalizedUser?.language ??
+                mapLocaleToIntlLocale(getBrowserLocale(window))
+              }
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
