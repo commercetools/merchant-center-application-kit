@@ -1,6 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import {
+  PERFORMANCE_MARKS,
+  PERFORMANCE_MEASURE_SUFFIX,
+} from '@commercetools-frontend/constants';
 import generateTemplate from './generate-template';
 import replaceHtmlPlaceholders from './replace-html-placeholders';
 
@@ -299,16 +303,17 @@ describe('viewport gate', () => {
   });
 });
 
-// The inline script cannot import, so it hardcodes this name. The shell's
-// `performance-marks` module declares the same string and assumes this script
-// emits it; pinning it here makes a rename on either side fail loudly instead
-// of silently orphaning the mark.
-const SKELETON_VISIBLE_MARK = 'mc:skeleton-visible';
+// The inline script cannot import, so it hardcodes this name. Building the
+// expectation from the shared constants makes a rename on either side fail
+// loudly instead of silently orphaning the mark.
+const SKELETON_VISIBLE_MARK = PERFORMANCE_MARKS.SKELETON_VISIBLE;
 
 describe('mc:skeleton-visible mark', () => {
   it('should emit exactly the name the shell expects', () => {
     expect(scriptSource).toContain(`'${SKELETON_VISIBLE_MARK}'`);
-    expect(scriptSource).toContain(`'${SKELETON_VISIBLE_MARK}:from-nav'`);
+    expect(scriptSource).toContain(
+      `'${SKELETON_VISIBLE_MARK}${PERFORMANCE_MEASURE_SUFFIX}'`
+    );
   });
 
   it('should emit the mark on the authenticated path', () => {
@@ -320,7 +325,7 @@ describe('mc:skeleton-visible mark', () => {
     // Measured from the time origin, i.e. navigationStart, under a name of its
     // own so getEntriesByName('mc:skeleton-visible') returns only the mark.
     expect(perf.measure).toHaveBeenCalledWith(
-      `${SKELETON_VISIBLE_MARK}:from-nav`,
+      `${SKELETON_VISIBLE_MARK}${PERFORMANCE_MEASURE_SUFFIX}`,
       { start: 0 }
     );
   });
