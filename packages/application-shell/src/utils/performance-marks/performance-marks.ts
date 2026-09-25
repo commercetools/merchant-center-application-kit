@@ -5,6 +5,11 @@ export const PERFORMANCE_MARKS = {
   CONTENT_RENDERED: 'mc:content-rendered',
   HYDRATION_USER: 'mc:hydration-user',
   HYDRATION_PROJECT: 'mc:hydration-project',
+  // Whether the parse-time locale hint resolved to the same catalogue as
+  // `user.language`. Both map through `mapLocaleToIntlLocale`, so only a
+  // bucket crossing is a miss.
+  LOCALE_HINT_HIT: 'mc:locale-hint-hit',
+  LOCALE_HINT_MISS: 'mc:locale-hint-miss',
 } as const;
 
 export type TPerformanceMark =
