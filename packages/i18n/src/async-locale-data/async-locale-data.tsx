@@ -61,10 +61,14 @@ const useAsyncLocaleData = ({
     loader: loadApplicationMessages,
   });
 
+  // Both loaders must have settled on the locale currently being asked for.
+  // Comparing them to each other instead would also accept two loaders that
+  // agree on a locale nobody asked for any more, and would never recover once
+  // one of them stopped advancing.
   const isPairConsistent =
-    Boolean(messagesFromKitResult.loadedLocale) &&
-    messagesFromKitResult.loadedLocale ===
-      applicationMessagesResult.loadedLocale;
+    Boolean(locale) &&
+    messagesFromKitResult.loadedLocale === locale &&
+    applicationMessagesResult.loadedLocale === locale;
 
   // Keep serving the previous pair during a locale change. Reporting "loading"
   // instead would withhold the locale from `ConfigureIntlProvider`, which
@@ -76,7 +80,7 @@ const useAsyncLocaleData = ({
 
   if (isPairConsistent) {
     lastConsistentPair.current = {
-      locale: messagesFromKitResult.loadedLocale,
+      locale,
       messages: mergeMessages(
         messagesFromKitResult.messages ?? {},
         applicationMessagesResult.messages ?? {}

@@ -53,6 +53,29 @@ describe('rendering', () => {
       });
       expect(reportErrorToSentry).toHaveBeenCalledWith(error, {});
     });
+
+    // The assertion above passes whether or not a locale is reported, because
+    // `ChildComponent` needs both halves to render anything. This one pins the
+    // locale itself: without it the consumer receives `undefined` forever and
+    // `ConfigureIntlProvider` renders null, blanking the shell.
+    it('should still report the requested locale so the consumer can degrade', async () => {
+      const results: TRenderFunctionResult[] = [];
+      render(
+        <AsyncLocaleData
+          {...createTestProps({
+            children: (result: TRenderFunctionResult) => {
+              results.push(result);
+              return null;
+            },
+          })}
+        />
+      );
+
+      await waitFor(() => {
+        expect(results[results.length - 1].isLoading).toBe(false);
+      });
+      expect(results[results.length - 1].locale).toBe('en-US');
+    });
   });
 
   describe('if there is no error', () => {

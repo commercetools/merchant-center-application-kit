@@ -39,7 +39,10 @@ const useAsyncIntlMessages = ({ locale, loader }: THookOptions): TState => {
         }
       } catch (error) {
         if (error instanceof Error) {
-          setState({ isLoading: false, error });
+          // Carry the locale on the error path too. The pair check below is
+          // keyed on it, so omitting it here means a failed load can never
+          // satisfy the check and the consumer never receives a locale again.
+          setState({ isLoading: false, error, loadedLocale: _locale });
         }
       }
     }
