@@ -416,3 +416,20 @@ export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';
+
+// Loading performance marks, written by application-shell and read by sentry.
+// mc-html-template's inline script cannot import and keeps its own copy of the
+// skeleton mark, pinned to these values by its spec.
+export const PERFORMANCE_MARK_PREFIX = 'mc:';
+export const PERFORMANCE_MEASURE_SUFFIX = ':from-nav';
+export const PERFORMANCE_MARKS = {
+  SKELETON_VISIBLE: `${PERFORMANCE_MARK_PREFIX}skeleton-visible`,
+  SHELL_CHROME_MOUNTED: `${PERFORMANCE_MARK_PREFIX}shell-chrome-mounted`,
+  INTL_READY: `${PERFORMANCE_MARK_PREFIX}intl-ready`,
+  CONTENT_RENDERED: `${PERFORMANCE_MARK_PREFIX}content-rendered`,
+  HYDRATION_USER: `${PERFORMANCE_MARK_PREFIX}hydration-user`,
+  HYDRATION_PROJECT: `${PERFORMANCE_MARK_PREFIX}hydration-project`,
+} as const;
+
+export type TPerformanceMark =
+  (typeof PERFORMANCE_MARKS)[keyof typeof PERFORMANCE_MARKS];

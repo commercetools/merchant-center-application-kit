@@ -1,14 +1,12 @@
-export const PERFORMANCE_MARKS = {
-  SKELETON_VISIBLE: 'mc:skeleton-visible',
-  SHELL_CHROME_MOUNTED: 'mc:shell-chrome-mounted',
-  INTL_READY: 'mc:intl-ready',
-  CONTENT_RENDERED: 'mc:content-rendered',
-  HYDRATION_USER: 'mc:hydration-user',
-  HYDRATION_PROJECT: 'mc:hydration-project',
-} as const;
+import {
+  PERFORMANCE_MARKS,
+  PERFORMANCE_MEASURE_SUFFIX,
+  type TPerformanceMark,
+} from '@commercetools-frontend/constants';
 
-export type TPerformanceMark =
-  (typeof PERFORMANCE_MARKS)[keyof typeof PERFORMANCE_MARKS];
+export { PERFORMANCE_MARKS };
+
+export type { TPerformanceMark };
 
 export type TShellPerformanceMark = Exclude<
   TPerformanceMark,
@@ -25,7 +23,7 @@ const markOnce = (performanceMark: TShellPerformanceMark) => {
     performance.mark(performanceMark);
 
     alreadyMarked.add(performanceMark);
-    performance.measure(`${performanceMark}:from-nav`, {
+    performance.measure(`${performanceMark}${PERFORMANCE_MEASURE_SUFFIX}`, {
       start: 0,
       end: performanceMark,
     });

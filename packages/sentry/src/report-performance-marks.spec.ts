@@ -1,4 +1,8 @@
 import type { TransactionEvent } from '@sentry/types';
+import {
+  PERFORMANCE_MARKS,
+  PERFORMANCE_MEASURE_SUFFIX,
+} from '@commercetools-frontend/constants';
 import { addPerformanceMeasurementsToTransaction } from './report-performance-marks';
 
 const originalPerformance = globalThis.performance;
@@ -39,6 +43,26 @@ describe('addPerformanceMeasurementsToTransaction', () => {
 
   afterEach(() => {
     setPerformance(originalPerformance);
+  });
+
+  it('attaches a measurement for every mark the shell and template emit', () => {
+    setPerformance({
+      getEntriesByType: jest.fn(() =>
+        Object.values(PERFORMANCE_MARKS).map((mark, index) =>
+          measureEntry(`${mark}${PERFORMANCE_MEASURE_SUFFIX}`, index + 1)
+        )
+      ),
+    });
+
+    const event = addPerformanceMeasurementsToTransaction(
+      createPageloadEvent()
+    );
+
+    expect(Object.keys(event.measurements ?? {}).sort()).toEqual(
+      Object.values(PERFORMANCE_MARKS)
+        .map((mark) => mark.replace(/:/g, '.'))
+        .sort()
+    );
   });
 
   it('attaches every mc:* measure to a pageload transaction', () => {
