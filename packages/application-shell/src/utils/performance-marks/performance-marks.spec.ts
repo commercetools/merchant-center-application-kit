@@ -126,7 +126,7 @@ describe('markOnce', () => {
 });
 
 describe('PERFORMANCE_MARKS', () => {
-  it('holds the six canonical names from FEC-1297, plus the locale-hint pair from FEC-1351', () => {
+  it('holds every shell mark in order, with the locale-hint pair last', () => {
     const { PERFORMANCE_MARKS } = loadModule();
 
     expect(Object.values(PERFORMANCE_MARKS)).toEqual([

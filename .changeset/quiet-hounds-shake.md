@@ -3,6 +3,6 @@
 '@commercetools-frontend/i18n': minor
 ---
 
-Start the i18n catalogue load from the browser locale at parse time, instead of waiting for `FetchLoggedInUser` to resolve `user.language`. Measured on integration, the user query plus the commit that follows it costs a median of 285 ms, and the catalogue load can now overlap it. `user.language` remains authoritative and replaces the hint when it arrives.
+The translation catalogue now starts loading as soon as the app boots, seeded from the browser locale, instead of waiting for the logged-in user query to resolve `user.language`. The user's own language still wins and replaces the guess as soon as it arrives. You get a faster first render with no change on your side.
 
-`AsyncLocaleData` now reports the locale its loaded messages actually belong to, rather than the requested locale. Previously a locale change reported the new locale next to the previous locale's messages, which rendered wrong-language text and untranslated ids until the second catalogue resolved.
+If you consume `AsyncLocaleData` or `useAsyncLocaleData` directly, note one contract change: `locale` now reports the locale of the messages you were handed, not the one you asked for. Previously the two could disagree during a language switch, so you could render the new locale's name next to the previous locale's strings.
