@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Badge } from '@commercetools/nimbus';
+import { Badge, NimbusProvider } from '@commercetools/nimbus';
 import { useIntl } from 'react-intl';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
@@ -28,16 +28,28 @@ const GroupLabel = styled.div`
   gap: ${uiKitDesignTokens.spacing30};
 `;
 
+/**
+ * Whether `@commercetools/nimbus` actually resolved at build time. When an app
+ * has not installed Nimbus, the mc-scripts bundler fallback stubs the import to
+ * an empty module, so the bindings above are `undefined`.
+ */
+const hasNimbus = typeof NimbusProvider !== 'undefined';
+
 const NavbarGroupHeader = ({ label, isNew }: NavbarGroupHeaderProps) => {
   const intl = useIntl();
 
   return (
     <GroupLabel>
       <span>{label}</span>
-      {isNew && (
-        <Badge colorPalette="primary" size="2xs">
-          {intl.formatMessage(messages['NavBar.Group.badge.new'])}
-        </Badge>
+      {/* The NavBar also renders while the lazy splitter chunk (which owns the
+          shell's NimbusProvider) is still loading, so the badge brings its
+          own provider. Nimbus supports nested providers. */}
+      {isNew && hasNimbus && (
+        <NimbusProvider locale={intl.locale} loadFonts={false}>
+          <Badge colorPalette="primary" size="2xs">
+            {intl.formatMessage(messages['NavBar.Group.badge.new'])}
+          </Badge>
+        </NimbusProvider>
       )}
     </GroupLabel>
   );
