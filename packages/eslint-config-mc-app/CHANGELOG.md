@@ -1,5 +1,12 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 27.12.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/babel-preset-mc-app@27.12.0
+
 ## 27.11.4
 
 ### Patch Changes

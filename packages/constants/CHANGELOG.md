@@ -1,5 +1,11 @@
 # @commercetools-frontend/constants
 
+## 27.12.0
+
+### Minor Changes
+
+- [#4176](https://github.com/commercetools/merchant-center-application-kit/pull/4176) [`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1) Thanks [@kterry1](https://github.com/kterry1)! - Export `PERFORMANCE_MARKS`, `PERFORMANCE_MARK_PREFIX` and `PERFORMANCE_MEASURE_SUFFIX` from `@commercetools-frontend/constants`, so `application-shell` and `sentry` share one definition of the `mc:*` loading performance marks. The inline loading-screen script in `mc-html-template` cannot import and keeps its own copy of the skeleton mark, pinned to these constants by its spec. `application-shell` still exports `PERFORMANCE_MARKS` and `TPerformanceMark`, now re-exported from `constants`.
+
 ## 27.11.4
 
 ## 27.11.3
