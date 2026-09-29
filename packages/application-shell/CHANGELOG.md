@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.12.0
+
+### Patch Changes
+
+- [#4180](https://github.com/commercetools/merchant-center-application-kit/pull/4180) [`4e3ecea`](https://github.com/commercetools/merchant-center-application-kit/commit/4e3eceae1d7a32f129c571216b0dbe50677e29ae) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Fix Merchant Center applications sometimes crashing to a blank page when the navigation menu shows a group marked as "New", most often right after switching from another application. Unexpected errors in the application shell now show the unexpected error page and are reported to Sentry, instead of leaving a blank page with only a misleading `[React Intl] Could not find required intl object` error in the console.
+
+- [#4176](https://github.com/commercetools/merchant-center-application-kit/pull/4176) [`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1) Thanks [@kterry1](https://github.com/kterry1)! - Export `PERFORMANCE_MARKS`, `PERFORMANCE_MARK_PREFIX` and `PERFORMANCE_MEASURE_SUFFIX` from `@commercetools-frontend/constants`, so `application-shell` and `sentry` share one definition of the `mc:*` loading performance marks. The inline loading-screen script in `mc-html-template` cannot import and keeps its own copy of the skeleton mark, pinned to these constants by its spec. `application-shell` still exports `PERFORMANCE_MARKS` and `TPerformanceMark`, now re-exported from `constants`.
+
+- Updated dependencies [[`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1)]:
+  - @commercetools-frontend/constants@27.12.0
+  - @commercetools-frontend/sentry@27.12.0
+  - @commercetools-frontend/actions-global@27.12.0
+  - @commercetools-frontend/application-components@27.12.0
+  - @commercetools-frontend/application-config@27.12.0
+  - @commercetools-frontend/application-shell-connectors@27.12.0
+  - @commercetools-frontend/assets@27.12.0
+  - @commercetools-frontend/browser-history@27.12.0
+  - @commercetools-frontend/i18n@27.12.0
+  - @commercetools-frontend/l10n@27.12.0
+  - @commercetools-frontend/notifications@27.12.0
+  - @commercetools-frontend/permissions@27.12.0
+  - @commercetools-frontend/react-notifications@27.12.0
+  - @commercetools-frontend/sdk@27.12.0
+  - @commercetools-frontend/url-utils@27.12.0
+
 ## 27.11.4
 
 ### Patch Changes
