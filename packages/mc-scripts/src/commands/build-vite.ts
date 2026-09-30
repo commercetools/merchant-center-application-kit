@@ -8,6 +8,7 @@ import { analyzer } from 'vite-bundle-analyzer';
 import { packageLocation as applicationStaticAssetsPath } from '@commercetools-frontend/assets';
 import { generateTemplate } from '@commercetools-frontend/mc-html-template';
 import paths from '../config/paths';
+import isCustomView from '../utils/is-custom-view';
 import nonNullable from '../utils/non-nullable';
 import { loadNimbusVitePlugin } from '../utils/try-load-nimbus-plugins';
 import pluginChunkCycleCheck from '../vite-plugins/vite-plugin-chunk-cycle-check';
@@ -39,6 +40,10 @@ async function run() {
   });
   // Write `index.html` (template) into the `/public` folder.
   fs.writeFileSync(paths.appIndexHtml, html, { encoding: 'utf8' });
+
+  // Resolved once here rather than inside the plugin list, which is built
+  // synchronously. Only reads which config file is present.
+  const isCustomViewBuild = await isCustomView();
 
   await build({
     root: paths.appRoot,
@@ -143,7 +148,11 @@ async function run() {
       // Chunk cycles are silent at build time but crash at runtime with TDZ
       // errors (historical "aM is undefined" from the icons/app-shell split).
       pluginChunkCycleCheck(),
-      pluginModulePreloadShellChunks(),
+
+      // Custom Views import from the same package, so their builds emit these
+      // chunks and would carry ~128KB of preload hints for a navbar and
+      // project container `CustomViewShell` never renders.
+      !isCustomViewBuild && pluginModulePreloadShellChunks(),
 
       shouldAnalyze &&
         analyzer(

@@ -20,6 +20,12 @@ the same wave: it alone is ~1.2MB and pulls a further ~172KB, which would put
 real critical path. Including it needs a throttled measurement first. With it
 out, the preload set is ~128KB.
 
+Custom Views skip this entirely. They import from the same package, so their
+builds emit these chunks too, but `CustomViewShell` never renders the navbar or
+project container — the hints would be ~128KB of preload for modules the page
+does not use. The build decides from which configuration file is present, so
+nothing is needed on your side.
+
 If a shell chunk is renamed or de-lazied so that only _some_ prefixes resolve,
 the build logs a warning and continues with a smaller preload set. Those
 modules then load a round trip later, as they did before this change — nothing
