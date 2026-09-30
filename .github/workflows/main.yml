@@ -333,6 +333,40 @@ jobs:
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
 
+      # The shell-chunk modulepreload hints are emitted through
+      # `build.modulePreload.resolveDependencies` precisely so they render
+      # through `renderBuiltUrl` and pick up the CDN prefix; tags injected by a
+      # `transformIndexHtml` hook would ship without it. Both properties were
+      # only ever checked by hand, and the plugin relies on Vite-internal hook
+      # ordering, so a silent regression is the realistic failure.
+      - name: Asserting the shell chunks are preloaded
+        run: |
+          html=playground/public/index.html
+          test -f "$html" || { echo "::error::$html not found"; exit 1; }
+
+          # Keep in step with DEFAULT_ROOTS in
+          # packages/mc-scripts/src/vite-plugins/vite-plugin-modulepreload-shell-chunks.ts
+          for root in navbar project-container user-settings-menu \
+                      use-applications-menu requests-in-flight-loader; do
+            grep -q "rel=\"modulepreload\"[^>]*href=\"[^\"]*${root}" "$html" || {
+              echo "::error::no modulepreload tag for shell chunk '${root}' in $html"
+              exit 1
+            }
+          done
+
+          # `__CDN_URL__` is substituted by `replace-html-placeholders` before
+          # the artifact lands, so assert the prefix survived in either shape
+          # rather than the placeholder itself: an absolute URL when a CDN is
+          # configured, the untouched placeholder when one is not. A bare
+          # relative filename means the tags bypassed `renderBuiltUrl`.
+          grep -o 'rel="modulepreload"[^>]*href="[^"]*navbar[^"]*"' "$html" \
+            | grep -qE 'href="(__CDN_URL__|[a-z]+://)' || {
+              echo "::error::modulepreload hrefs lost their CDN prefix in $html"
+              exit 1
+            }
+
+          echo "All shell chunks preloaded with a prefixed href."
+
       # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
       # https://github.com/marketplace/actions/cypress-io#custom-install
       - name: Restoring Cypress cache
