@@ -164,6 +164,10 @@ describe('resolveShellChunks', () => {
 });
 
 describe('pluginModulePreloadShellChunks', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   const shellBundle = makeBundle({
     'navbar-a.js': { name: 'navbar-a.esm', imports: ['avatar-b.js'] },
     'avatar-b.js': { name: 'avatar-b.esm' },
@@ -239,6 +243,7 @@ describe('pluginModulePreloadShellChunks', () => {
 
   it('returns the original list when the bundle was never seen', () => {
     const plugin = pluginModulePreloadShellChunks({ roots: ['navbar'] });
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
 
     expect(
       getResolveDependencies(plugin)('index.js', ['vendor.js'], {
@@ -246,6 +251,46 @@ describe('pluginModulePreloadShellChunks', () => {
         hostType: 'html',
       })
     ).toEqual(['vendor.js']);
+  });
+
+  // The HTML host asking before `generateBundle` ran means the ordering this
+  // plugin depends on has changed. Without a signal every hint just vanishes.
+  it('warns when the HTML host asks before the bundle was seen', () => {
+    const plugin = pluginModulePreloadShellChunks({ roots: ['navbar'] });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+    getResolveDependencies(plugin)('index.js', [], {
+      hostId: 'index.html',
+      hostType: 'html',
+    });
+
+    expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining('vite-plugin-modulepreload-shell-chunks')
+    );
+  });
+
+  it('stays silent for a dynamic import before the bundle was seen', () => {
+    const plugin = pluginModulePreloadShellChunks({ roots: ['navbar'] });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+    expect(
+      getResolveDependencies(plugin)('route.js', ['route-dep.js'], {
+        hostId: 'route.js',
+        hostType: 'js',
+      })
+    ).toEqual(['route-dep.js']);
+    expect(warn).not.toHaveBeenCalled();
+  });
+
+  it('warns once even when the HTML host asks repeatedly', () => {
+    const plugin = pluginModulePreloadShellChunks({ roots: ['navbar'] });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const resolve = getResolveDependencies(plugin);
+
+    resolve('index.js', [], { hostId: 'index.html', hostType: 'html' });
+    resolve('index.js', [], { hostId: 'index.html', hostType: 'html' });
+
+    expect(warn).toHaveBeenCalledTimes(1);
   });
 
   it('leaves modulePreload alone when a consumer disabled it', () => {
@@ -263,9 +308,36 @@ describe('pluginModulePreloadShellChunks', () => {
     ).toBeUndefined();
   });
 
-  it('fails the build when only some roots resolve', () => {
+  it('warns by default when only some roots resolve, so a consumer build survives', () => {
     const plugin = pluginModulePreloadShellChunks({
       roots: ['navbar', 'missing-thing'],
+    });
+
+    const ctx = triggerGenerateBundle(plugin, shellBundle);
+    expect(ctx.warn).toHaveBeenCalledWith(
+      expect.stringContaining('missing-thing')
+    );
+    expect(ctx.error).not.toHaveBeenCalled();
+  });
+
+  it('still resolves the roots that matched after a partial miss', () => {
+    const plugin = pluginModulePreloadShellChunks({
+      roots: ['navbar', 'missing-thing'],
+    });
+    triggerGenerateBundle(plugin, shellBundle);
+
+    expect(
+      getResolveDependencies(plugin)('index.js', [], {
+        hostId: 'index.html',
+        hostType: 'html',
+      })
+    ).toEqual(['avatar-b.js', 'navbar-a.js']);
+  });
+
+  it('fails the build on a partial miss when a caller opts into error', () => {
+    const plugin = pluginModulePreloadShellChunks({
+      roots: ['navbar', 'missing-thing'],
+      onMissing: 'error',
     });
 
     expect(() => triggerGenerateBundle(plugin, shellBundle)).toThrow(
@@ -276,6 +348,7 @@ describe('pluginModulePreloadShellChunks', () => {
   it('names the roots that did resolve, so the diagnosis is actionable', () => {
     const plugin = pluginModulePreloadShellChunks({
       roots: ['navbar', 'missing-thing'],
+      onMissing: 'error',
     });
 
     expect(() => triggerGenerateBundle(plugin, shellBundle)).toThrow(/navbar/);

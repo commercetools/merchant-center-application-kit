@@ -20,10 +20,7 @@ the same wave: it alone is ~1.2MB and pulls a further ~172KB, which would put
 real critical path. Including it needs a throttled measurement first. With it
 out, the preload set is ~128KB.
 
-Note for Custom Views: they import from the same package, so their builds emit
-these chunks too and their `index.html` will carry the tags, even though
-`CustomViewShell` never renders the navbar or project container. Custom
-applications mount `ApplicationShell` and do use them. If a shell chunk is
-renamed or de-lazied so that only _some_ prefixes resolve, the build fails
-rather than silently losing the optimisation; that check is on by default and
-configurable via the plugin's `onMissing` option.
+If a shell chunk is renamed or de-lazied so that only _some_ prefixes resolve,
+the build logs a warning and continues with a smaller preload set. Those
+modules then load a round trip later, as they did before this change — nothing
+breaks at runtime.

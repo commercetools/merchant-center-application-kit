@@ -21,9 +21,13 @@ type Options = {
   roots?: string[];
   /**
    * What to do when only *some* roots resolve.
-   * - `'error'` (default) — fail the build. A partial match means the shell
-   *   exists but a chunk moved, which silently disables the optimisation.
-   * - `'warn'` — log to stderr and continue.
+   * - `'warn'` (default) — log and continue. A partial match means a chunk
+   *   moved, which degrades the optimisation but breaks nothing at runtime.
+   *   It defaults to warning because `build-vite.ts` constructs this plugin
+   *   with no options, so a consumer of the published package can reach
+   *   neither this option nor `roots` and would have no way past a failure.
+   * - `'error'` — fail the build. For callers that do pass options and want
+   *   a renamed chunk to be loud.
    */
   onMissing?: 'error' | 'warn';
 };
@@ -106,9 +110,10 @@ export function resolveShellChunks(
  */
 function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
   const roots = options.roots ?? DEFAULT_ROOTS;
-  const onMissing = options.onMissing ?? 'error';
+  const onMissing = options.onMissing ?? 'warn';
 
   let resolved: ResolvedShellChunks | null = null;
+  let hasWarnedAboutOrdering = false;
 
   return {
     name: 'vite-plugin-modulepreload-shell-chunks',
@@ -129,7 +134,29 @@ function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
               // Vite calls this once for the entry HTML and once per dynamic
               // import. Appending for `js` too would bake the shell graph into
               // every `__vitePreload` dependency array in the bundle.
-              if (hostType !== 'html' || !resolved) return deps;
+              if (hostType !== 'html') return deps;
+
+              // Reaching the HTML host with nothing resolved means
+              // `generateBundle` has not run yet, i.e. the plugin ordering
+              // below inverted. Every hint would silently disappear, so say
+              // so. `console.warn` rather than `this.warn`: this is a plain
+              // callback in the returned config, not a Rollup plugin hook,
+              // so there is no plugin context here.
+              if (!resolved) {
+                if (!hasWarnedAboutOrdering) {
+                  hasWarnedAboutOrdering = true;
+                  // eslint-disable-next-line no-console
+                  console.warn(
+                    `vite-plugin-modulepreload-shell-chunks: the entry HTML ` +
+                      `asked for its preload dependencies before the bundle ` +
+                      `was analysed, so no shell chunks were preloaded. This ` +
+                      `plugin relies on its \`generateBundle\` running before ` +
+                      `\`vite:build-html\`'s, which is Vite-internal ordering ` +
+                      `— a Vite upgrade may have changed it.`
+                  );
+                }
+                return deps;
+              }
 
               const merged = new Set([...deps, ...resolved.fileNames]);
               // Every shell chunk statically imports the entry, because
@@ -142,9 +169,10 @@ function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
         },
       };
     },
-    // Runs before `vite:build-html`'s own `generateBundle`, which is where
-    // `resolveDependencies` is invoked, so `resolved` is always populated by
-    // the time the hook above reads it.
+    // Expected to run before `vite:build-html`'s own `generateBundle`, which
+    // is where `resolveDependencies` is invoked. That ordering is internal to
+    // Vite rather than a contract, so the hook above warns instead of
+    // assuming it held.
     generateBundle(_options, bundle) {
       resolved = resolveShellChunks(bundle as MinimalBundle, roots);
 
@@ -160,14 +188,13 @@ function pluginModulePreloadShellChunks(options: Options = {}): Plugin {
       }
 
       const message =
-        `Expected shell chunks were not emitted: ${resolved.missingRoots.join(
-          ', '
-        )}.\n` +
+        `vite-plugin-modulepreload-shell-chunks: expected shell chunks were ` +
+        `not emitted: ${resolved.missingRoots.join(', ')}.\n` +
         `Other shell chunks resolved (${resolved.matchedRoots.join(
           ', '
-        )}), so these were likely renamed or re-split ` +
-        `rather than legitimately absent. Update the \`roots\` option of ` +
-        `\`vite-plugin-modulepreload-shell-chunks\`.`;
+        )}), so these were likely renamed or re-split rather than ` +
+        `legitimately absent. Those modules are no longer preloaded, so the ` +
+        `page still works but loads them a round trip later.`;
 
       if (onMissing === 'error') {
         this.error(message);
