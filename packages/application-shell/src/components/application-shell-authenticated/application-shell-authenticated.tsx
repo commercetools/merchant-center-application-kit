@@ -124,6 +124,25 @@ export const MainContainer = styled.main`
 export const ApplicationShellAuthenticated = (
   props: TApplicationShellAuthenticationProps
 ) => {
+  /*
+    Catalogue locale guessed from the browser, so the i18n load can start
+    before `FetchLoggedInUser` resolves `user.language`.
+
+    Mapped from `navigator.language` directly rather than from
+    `getBrowserLocale`: that helper runs `getSupportedLocale`, which tests
+    `browserLocale.startsWith(supportedLocale)`, and the supported list carries
+    `fr-FR` — so `fr`, `fr-CA`, `fr-CH` and `fr-BE` all fail it and come back
+    as `en`. Mapping its output would hint the English catalogue to French
+    browsers and count them as misses in the hit/miss marks.
+
+    Mapping is required either way: an unmapped tag (`en-US`) reported next to
+    the catalogue it resolves to (`en`) makes react-intl miss every message.
+
+    Computed per render rather than at module scope: it is two string
+    operations, and a module-scope constant is evaluated at import, which no
+    test can set up for.
+  */
+  const localeHint = mapLocaleToIntlLocale(window.navigator?.language ?? 'en');
   const applicationEnvironment = useApplicationContext(
     (context) => context.environment
   ) as TApplicationContext<{}>['environment'];
@@ -230,10 +249,7 @@ export const ApplicationShellAuthenticated = (
               // `user.language` it is an arbitrary BCP-47 tag, and reporting
               // one (`en-US`) next to the catalogue it resolves to (`en`)
               // makes react-intl miss every message.
-              locale={
-                normalizedUser?.language ??
-                mapLocaleToIntlLocale(getBrowserLocale(window))
-              }
+              locale={normalizedUser?.language ?? localeHint}
               applicationMessages={props.applicationMessages}
             >
               {({ isLoading: isLoadingLocaleData, locale, messages }) => (
@@ -252,7 +268,7 @@ export const ApplicationShellAuthenticated = (
                   {normalizedUser?.language ? (
                     <PerformanceMark
                       mark={
-                        mapLocaleToIntlLocale(getBrowserLocale(window)) ===
+                        localeHint ===
                         mapLocaleToIntlLocale(normalizedUser.language)
                           ? PERFORMANCE_MARKS.LOCALE_HINT_HIT
                           : PERFORMANCE_MARKS.LOCALE_HINT_MISS
