@@ -205,9 +205,9 @@ body {
 }
 
 .loading-skeleton__header-placeholder {
-  width: 120px;
-  height: 18px;
-  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background: rgba(0, 0, 0, 0.08);
 }
 
