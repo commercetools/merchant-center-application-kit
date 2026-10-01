@@ -52,6 +52,8 @@ minimumReleaseAgeExclude:
   - "@babel/core@7.29.6"
   # Renovate security update: js-yaml@3.15.0 || 3.15.1
   - js-yaml@3.15.0 || 3.15.1
+  # Renovate security update: moment@2.31.0
+  - moment@2.31.0
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
