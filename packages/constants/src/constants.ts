@@ -370,6 +370,10 @@ export const STORAGE_KEYS = {
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   LOGIN_STRATEGY: 'loginStrategy',
   ACTIVE_USER_LANGUAGE: 'activeUserLanguage',
+  // Last known `user.language`, used only to guess the locale before
+  // `FetchLoggedInUser` resolves. Distinct from ACTIVE_USER_LANGUAGE, which is
+  // the staff-bar override.
+  LAST_USER_LANGUAGE: 'lastUserLanguage',
 } as const;
 
 export const HTTP_SECURITY_HEADER_KEYS = {
