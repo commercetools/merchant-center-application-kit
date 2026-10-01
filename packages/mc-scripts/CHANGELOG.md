@@ -1,5 +1,28 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.12.1
+
+### Patch Changes
+
+- [#4181](https://github.com/commercetools/merchant-center-application-kit/pull/4181) [`2349e54`](https://github.com/commercetools/merchant-center-application-kit/commit/2349e545deac80ebce7ce0a64a72f8c5f2bc5791) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - Fix the Content-Security-Policy hash for the injected application environment
+  script on the local dev server. The plugin hashed the app config's own `env`
+  while injecting a copy overridden from `MC_API_URL`, so `script-src` listed a
+  hash for a script that was never served and the browser blocked the only script
+  that defines `window.app`.
+
+  Only reachable when the dev server runs outside `env: 'development'` — where
+  the CSP carries real hashes rather than `'unsafe-inline'` — so in practice the
+  prod-local dev server with `MC_API_URL` set.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.12.1
+  - @commercetools-frontend/application-config@27.12.1
+  - @commercetools-frontend/assets@27.12.1
+  - @commercetools-frontend/babel-preset-mc-app@27.12.1
+  - @commercetools-frontend/constants@27.12.1
+  - @commercetools-frontend/mc-dev-authentication@27.12.1
+  - @commercetools-frontend/mc-html-template@27.12.1
+
 ## 27.12.0
 
 ### Patch Changes

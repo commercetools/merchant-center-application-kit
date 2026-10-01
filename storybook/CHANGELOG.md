@@ -1,5 +1,16 @@
 # @commercetools-local/storybook
 
+## 27.12.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.12.1
+  - @commercetools-frontend/application-shell@27.12.1
+  - @commercetools-frontend/assets@27.12.1
+  - @commercetools-frontend/constants@27.12.1
+  - @commercetools-frontend/react-notifications@27.12.1
+
 ## 27.12.0
 
 ### Patch Changes
