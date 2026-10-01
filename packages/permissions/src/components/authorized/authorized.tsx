@@ -40,6 +40,7 @@ type Props = {
   demandedDataFences?: TDemandedDataFence[];
   shouldMatchSomePermissions?: boolean;
   selectDataFenceData?: TSelectDataFenceData;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions?: TProjectPermissions;
   render: (isAuthorized: boolean) => ReactNode;
   children?: never;
@@ -55,6 +56,7 @@ const Authorized = ({
     demandedDataFences: props.demandedDataFences,
     selectDataFenceData: props.selectDataFenceData,
     shouldMatchSomePermissions: shouldMatchSomePermissions,
+    isUserAdminOfCurrentProject: props.isUserAdminOfCurrentProject,
     projectPermissions: props.projectPermissions,
   });
 

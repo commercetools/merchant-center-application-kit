@@ -69,19 +69,20 @@ export type TNavbarMenu = {
 
 export type TNavbarMenuGroup = {
   __typename?: 'NavbarMenuGroup';
+  isNew?: Maybe<Scalars['Boolean']>;
   items: Array<TNavbarMenu>;
   key: Scalars['String'];
+  label?: Maybe<Scalars['String']>;
 };
 
 export type TQuery = {
   __typename?: 'Query';
+  /** @deprecated Not needed anymore. Use response of allFeatures query instead. */
   allFeatureToggles: Array<Scalars['String']>;
   applicationsMenu: TApplicationsMenu;
 };
 
-
-
 export type TFetchApplicationsMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }>, navBarGroups: Array<{ __typename?: 'NavbarMenuGroup', key: string, items: Array<{ __typename?: 'NavbarMenu', key: string, uriPath: string, icon: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, menuVisibility?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null }> }> }> } };
+export type TFetchApplicationsMenuQuery = { __typename?: 'Query', applicationsMenu: { __typename?: 'ApplicationsMenu', appBar: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }> }>, navBarGroups: Array<{ __typename?: 'NavbarMenuGroup', key: string, label?: string | null, isNew?: boolean | null, items: Array<{ __typename?: 'NavbarMenu', key: string, uriPath: string, icon: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null, submenu: Array<{ __typename?: 'BaseMenu', key: string, uriPath: string, featureToggle?: string | null, permissions: Array<string>, labelAllLocales: Array<{ __typename?: 'LocalizedField', locale: string, value: string }>, actionRights?: Array<{ __typename?: 'ActionRight', group: string, name: string }> | null, dataFences?: Array<{ __typename?: 'DataFence', group: string, name: string, type: string }> | null }> }> }> } };

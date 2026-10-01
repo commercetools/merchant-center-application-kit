@@ -2677,6 +2677,9 @@ importers:
       '@commercetools-uikit/text':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools/nimbus':
+        specifier: catalog:nimbus
+        version: 3.5.1(@chakra-ui/react@3.36.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@commercetools/nimbus-icons@3.5.1(supports-color@8.1.1)(typescript@5.9.3))(@commercetools/nimbus-tokens@3.5.1)(@storybook/icons@2.0.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@8.1.1)
       '@emotion/react':
         specifier: catalog:build
         version: 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
@@ -2804,9 +2807,6 @@ importers:
       '@apollo/client':
         specifier: catalog:apollo
         version: 3.14.1(@types/react@19.2.4)(graphql-ws@6.0.6(graphql@16.14.2)(ws@8.18.3))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools/nimbus':
-        specifier: catalog:nimbus
-        version: 3.5.1(@chakra-ui/react@3.36.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@commercetools/nimbus-icons@3.5.1(supports-color@8.1.1)(typescript@5.9.3))(@commercetools/nimbus-tokens@3.5.1)(@storybook/icons@2.0.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(slate-history@0.115.0(slate@0.123.0))(slate-hyperscript@0.115.0(slate@0.123.0))(slate-react@0.123.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(slate-dom@0.124.1(slate@0.123.0))(slate@0.123.0))(slate@0.123.0)(storybook@10.4.4(@testing-library/dom@10.4.1)(@types/react@19.2.4)(prettier@3.8.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@8.1.1)
       '@testing-library/react':
         specifier: catalog:test
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.4(@types/react@19.2.4))(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)

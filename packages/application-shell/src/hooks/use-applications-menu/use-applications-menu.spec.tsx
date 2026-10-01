@@ -48,6 +48,14 @@ const NavBarTest = (props: Config) => {
             );
             return (
               <ul key={menu.uriPath}>
+                {applicationsMenuGroup.label ? (
+                  <li>
+                    <p>{`Group: ${applicationsMenuGroup.label}`}</p>
+                    <p>{`Group isNew: ${String(
+                      Boolean(applicationsMenuGroup.isNew)
+                    )}`}</p>
+                  </li>
+                ) : null}
                 <li>
                   <label>{localizedLabels?.[userLocale]}</label>
                   <p>{`Path: ${menu.uriPath}`}</p>
@@ -106,12 +114,22 @@ const createTestNavBarMenuGroupJsonConfig = (
   uriPath: string,
   props: Partial<MenuLoaderResult<'navBarGroups'>[number]['items'][number]> = {}
 ) => ({
+  __typename: 'NavbarMenuGroup',
   key: '2',
+  label: null,
+  isNew: null,
   items: [
     {
+      __typename: 'NavbarMenu',
       uriPath,
       key: uriPath,
-      labelAllLocales: [{ locale: 'en', value: upperFirst(uriPath) }],
+      labelAllLocales: [
+        {
+          __typename: 'LocalizedField',
+          locale: 'en',
+          value: upperFirst(uriPath),
+        },
+      ],
       icon: 'UserFilledIcon',
       permissions: [],
       dataFences: [],
@@ -120,10 +138,15 @@ const createTestNavBarMenuGroupJsonConfig = (
       menuVisibility: `hide${upperFirst(uriPath)}`,
       submenu: [
         {
+          __typename: 'BaseMenu',
           uriPath: `${uriPath}/new`,
           key: `${uriPath}-new`,
           labelAllLocales: [
-            { locale: 'en', value: `${upperFirst(uriPath)} new` },
+            {
+              __typename: 'LocalizedField',
+              locale: 'en',
+              value: `${upperFirst(uriPath)} new`,
+            },
           ],
           menuVisibility: `hide${upperFirst(uriPath)}New`,
           permissions: [],
@@ -178,6 +201,7 @@ const createGraphqlResponse = (
   custom: Partial<TFetchApplicationsMenuQuery> = {}
 ) => ({
   applicationsMenu: {
+    __typename: 'ApplicationsMenu',
     appBar: [],
     navBarGroups: [createTestNavBarMenuGroupJsonConfig('orders')],
   },
@@ -227,6 +251,25 @@ describe('for local development', () => {
         expect(screen.getByText('Add avenger')).toBeInTheDocument();
         expect(screen.getByText('Path: avengers')).toBeInTheDocument();
         expect(screen.getByText('Sub-path: avengers/new')).toBeInTheDocument();
+        expect(screen.queryByText(/^Group:/)).not.toBeInTheDocument();
+      });
+
+      it('should use the configured menu group label and isNew flag', async () => {
+        const environment = createTestEnvironment({
+          __DEVELOPMENT__: {
+            menuLinks: createTestNavBarMenuLinksConfig(),
+            menuGroup: {
+              label: 'Agent Sphere',
+              isNew: false,
+            },
+          },
+        });
+        renderApp(<NavBarTest environment={environment} />, {
+          disableRoutePermissionCheck: true,
+        });
+        await screen.findByText('Avengers');
+        expect(screen.getByText('Group: Agent Sphere')).toBeInTheDocument();
+        expect(screen.getByText('Group isNew: false')).toBeInTheDocument();
       });
     });
   });

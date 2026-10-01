@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "27.9.6",
+  "version": "27.12.0",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/runtime": "catalog:build",
     "@babel/runtime-corejs3": "catalog:build",
+    "@commercetools/nimbus": "catalog:nimbus",
     "@commercetools-frontend/actions-global": "workspace:^",
     "@commercetools-frontend/application-components": "workspace:^",
     "@commercetools-frontend/application-config": "workspace:^",
@@ -103,7 +104,6 @@
     "uuid": "catalog:"
   },
   "devDependencies": {
-    "@commercetools/nimbus": "catalog:nimbus",
     "@apollo/client": "catalog:apollo",
     "@testing-library/react": "catalog:test",
     "@types/jest": "catalog:test",

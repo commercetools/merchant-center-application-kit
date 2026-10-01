@@ -1,5 +1,65 @@
 # @commercetools-frontend/permissions
 
+## 27.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1)]:
+  - @commercetools-frontend/sentry@27.12.0
+  - @commercetools-frontend/application-shell-connectors@27.12.0
+
+## 27.11.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@27.11.4
+  - @commercetools-frontend/sentry@27.11.4
+
+## 27.11.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@27.11.3
+  - @commercetools-frontend/sentry@27.11.3
+
+## 27.11.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@27.11.2
+  - @commercetools-frontend/sentry@27.11.2
+
+## 27.11.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@27.11.1
+  - @commercetools-frontend/sentry@27.11.1
+
+## 27.11.0
+
+### Minor Changes
+
+- [#4155](https://github.com/commercetools/merchant-center-application-kit/pull/4155) [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for new menu item permissions `Administrator` and `AdministratorOfCurrentProject`.
+
+### Patch Changes
+
+- Updated dependencies [[`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82)]:
+  - @commercetools-frontend/application-shell-connectors@27.11.0
+  - @commercetools-frontend/sentry@27.11.0
+
+## 27.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`d3a87b2`](https://github.com/commercetools/merchant-center-application-kit/commit/d3a87b26150754d03555ed9dec7d6f2a0e3f6011)]:
+  - @commercetools-frontend/sentry@27.10.0
+  - @commercetools-frontend/application-shell-connectors@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes

@@ -55,6 +55,7 @@ const useIsAuthorized = ({
   demandedDataFences,
   selectDataFenceData,
   shouldMatchSomePermissions = false,
+  isUserAdminOfCurrentProject,
   projectPermissions,
 }: {
   demandedPermissions: TPermissionName[];
@@ -62,6 +63,7 @@ const useIsAuthorized = ({
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions?: TProjectPermissions;
 }): boolean => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
@@ -85,6 +87,26 @@ const useIsAuthorized = ({
     )}.`
   );
 
+  // Check first if we need an "admin" permission check
+  const hasDemandedAdministratorPermission =
+    demandedPermissions.includes('Administrator');
+  useWarning(
+    !hasDemandedAdministratorPermission || demandedPermissions.length === 1,
+    `@commercetools-frontend/permissions: When demanding the "Administrator" permission, no other permissions must be demanded.`
+  );
+  const hasDemandedAdministratorOfCurrentProjectPermission =
+    demandedPermissions.includes('AdministratorOfCurrentProject');
+  useWarning(
+    !hasDemandedAdministratorOfCurrentProjectPermission ||
+      demandedPermissions.length === 1,
+    `@commercetools-frontend/permissions: When demanding the "AdministratorOfCurrentProject" permission, no other permissions must be demanded.`
+  );
+
+  const isAdminOfAnyOrganization = useApplicationContext(
+    (applicationContext) =>
+      applicationContext.user?.isAdminOfAnyOrganization ?? false
+  );
+
   const actualPermissions =
     useApplicationContext<TNormalizedPermissions | null>(
       (applicationContext) =>
@@ -99,6 +121,13 @@ const useIsAuthorized = ({
     (applicationContext) =>
       projectPermissions?.dataFences ?? applicationContext.dataFences
   );
+
+  if (hasDemandedAdministratorPermission) {
+    return isAdminOfAnyOrganization;
+  }
+  if (hasDemandedAdministratorOfCurrentProjectPermission) {
+    return isUserAdminOfCurrentProject ?? false;
+  }
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized
   if (!actualPermissions && !actualDataFences) return false;

@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { PageContentNarrow } from '@commercetools-frontend/application-components';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import {
+  STATIC_URL_PATHS,
+  type ApplicationWindow,
+} from '@commercetools-frontend/constants';
 import { ContentNotification } from '@commercetools-uikit/notifications';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
@@ -15,7 +18,7 @@ export const RedirectToProjectCreate = () => {
 
   useEffect(() => {
     if (servedByProxy === true) {
-      location.replace('/account/projects/new');
+      location.replace(`/${STATIC_URL_PATHS.ACCOUNT}/projects/new`);
       return;
     }
   }, [servedByProxy]);

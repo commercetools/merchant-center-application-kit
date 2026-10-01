@@ -1,5 +1,10 @@
 import { css } from '@emotion/react';
+import { useLocation } from 'react-router-dom';
 import { ProjectStamp } from '@commercetools-frontend/application-components';
+import {
+  isProjectKeylessApplicationEntryPointInProjectContext,
+  isStaticUrlPathInPositionOfProjectKey,
+} from '@commercetools-frontend/constants';
 import { designTokens as uikitDesignTokens } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
 import { CONTAINERS, DIMENSIONS } from '../../constants';
@@ -13,10 +18,12 @@ import UserSettingsMenu from '../user-settings-menu';
 
 type Props = {
   user: TFetchLoggedInUserQuery['user'];
-  projectKeyFromUrl?: string;
+  projectKey?: string;
 };
 
 const AppBar = (props: Props) => {
+  const { pathname } = useLocation();
+  const [, topLevelPath] = pathname.split('/');
   const previousProjectKey = getPreviousProjectKey(
     props.user?.defaultProjectKey ?? undefined
   );
@@ -59,11 +66,15 @@ const AppBar = (props: Props) => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
               }
-              // The `<ProjectSwitcher>` should be rendered only if the
-              // user is fetched and the user has projects while the app runs in an project context.
-              if (props.user.projects.total > 0 && props.projectKeyFromUrl) {
+              // Project switcher only on project-scoped routes (`/:projectKey/...`).
+              // Static first segments (`/account`, `/agent-sphere`, …) never show it.
+              if (
+                props.user.projects.total > 0 &&
+                props.projectKey &&
+                !isStaticUrlPathInPositionOfProjectKey(topLevelPath)
+              ) {
                 const selectedProject = props.user.projects.results.find(
-                  (project) => project.key === props.projectKeyFromUrl
+                  (project) => project.key === props.projectKey
                 );
                 return (
                   <div
@@ -88,12 +99,23 @@ const AppBar = (props: Props) => {
                       // the dropdown will still be rendered but no project will be selected.
                       // This is fine becase the user has still the possibility to "switch"
                       // to a project.
-                      projectKey={props.projectKeyFromUrl || previousProjectKey}
+                      projectKey={props.projectKey}
                     />
                   </div>
                 );
               }
-              if (!props.user.defaultProjectKey) return null;
+              // Agent Sphere still runs in a project context (navbar), so there is
+              // nothing to "go back" to — leave the slot empty.
+              if (
+                isProjectKeylessApplicationEntryPointInProjectContext(
+                  topLevelPath
+                )
+              ) {
+                return null;
+              }
+              if (!props.user.defaultProjectKey) {
+                return null;
+              }
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
             {/* This node is used by a react portal */}

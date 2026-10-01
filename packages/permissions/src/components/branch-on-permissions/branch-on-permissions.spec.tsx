@@ -23,6 +23,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         defaultProjectKey: undefined,
         timeZone: undefined,
         businessRole: undefined,
+        isAdminOfAnyOrganization: false,
         projects: {
           total: 1,
           results: [

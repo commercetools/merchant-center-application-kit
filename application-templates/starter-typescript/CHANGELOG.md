@@ -1,5 +1,152 @@
 # merchant-center-application-template-starter-typescript
 
+## 27.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`4e3ecea`](https://github.com/commercetools/merchant-center-application-kit/commit/4e3eceae1d7a32f129c571216b0dbe50677e29ae), [`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1)]:
+  - @commercetools-frontend/application-shell@27.12.0
+  - @commercetools-frontend/constants@27.12.0
+  - @commercetools-frontend/actions-global@27.12.0
+  - @commercetools-frontend/application-components@27.12.0
+  - @commercetools-frontend/application-config@27.12.0
+  - @commercetools-frontend/application-shell-connectors@27.12.0
+  - @commercetools-frontend/assets@27.12.0
+  - @commercetools-frontend/babel-preset-mc-app@27.12.0
+  - @commercetools-frontend/eslint-config-mc-app@27.12.0
+  - @commercetools-frontend/i18n@27.12.0
+  - @commercetools-frontend/jest-preset-mc-app@27.12.0
+  - @commercetools-frontend/l10n@27.12.0
+  - @commercetools-frontend/mc-dev-authentication@27.12.0
+  - @commercetools-frontend/mc-scripts@27.12.0
+  - @commercetools-frontend/permissions@27.12.0
+
+## 27.11.4
+
+### Patch Changes
+
+- Updated dependencies [[`66af660`](https://github.com/commercetools/merchant-center-application-kit/commit/66af6604cfaa2167dbf835e08806b06ed0599e8c), [`fed46c2`](https://github.com/commercetools/merchant-center-application-kit/commit/fed46c247394d44c06d0f0c8693749949f8e2465)]:
+  - @commercetools-frontend/application-shell@27.11.4
+  - @commercetools-frontend/actions-global@27.11.4
+  - @commercetools-frontend/application-components@27.11.4
+  - @commercetools-frontend/application-config@27.11.4
+  - @commercetools-frontend/application-shell-connectors@27.11.4
+  - @commercetools-frontend/assets@27.11.4
+  - @commercetools-frontend/babel-preset-mc-app@27.11.4
+  - @commercetools-frontend/constants@27.11.4
+  - @commercetools-frontend/eslint-config-mc-app@27.11.4
+  - @commercetools-frontend/i18n@27.11.4
+  - @commercetools-frontend/jest-preset-mc-app@27.11.4
+  - @commercetools-frontend/l10n@27.11.4
+  - @commercetools-frontend/mc-dev-authentication@27.11.4
+  - @commercetools-frontend/mc-scripts@27.11.4
+  - @commercetools-frontend/permissions@27.11.4
+
+## 27.11.3
+
+### Patch Changes
+
+- Updated dependencies [[`c7651fe`](https://github.com/commercetools/merchant-center-application-kit/commit/c7651fe69a74b5b6b13703543714a3b4a04a5cdb)]:
+  - @commercetools-frontend/application-shell@27.11.3
+  - @commercetools-frontend/actions-global@27.11.3
+  - @commercetools-frontend/application-components@27.11.3
+  - @commercetools-frontend/application-config@27.11.3
+  - @commercetools-frontend/application-shell-connectors@27.11.3
+  - @commercetools-frontend/assets@27.11.3
+  - @commercetools-frontend/babel-preset-mc-app@27.11.3
+  - @commercetools-frontend/constants@27.11.3
+  - @commercetools-frontend/eslint-config-mc-app@27.11.3
+  - @commercetools-frontend/i18n@27.11.3
+  - @commercetools-frontend/jest-preset-mc-app@27.11.3
+  - @commercetools-frontend/l10n@27.11.3
+  - @commercetools-frontend/mc-dev-authentication@27.11.3
+  - @commercetools-frontend/mc-scripts@27.11.3
+  - @commercetools-frontend/permissions@27.11.3
+
+## 27.11.2
+
+### Patch Changes
+
+- Updated dependencies [[`896ce3b`](https://github.com/commercetools/merchant-center-application-kit/commit/896ce3b587c1111b831c979e7510883e52d6abfd)]:
+  - @commercetools-frontend/application-shell@27.11.2
+  - @commercetools-frontend/actions-global@27.11.2
+  - @commercetools-frontend/application-components@27.11.2
+  - @commercetools-frontend/application-config@27.11.2
+  - @commercetools-frontend/application-shell-connectors@27.11.2
+  - @commercetools-frontend/assets@27.11.2
+  - @commercetools-frontend/babel-preset-mc-app@27.11.2
+  - @commercetools-frontend/constants@27.11.2
+  - @commercetools-frontend/eslint-config-mc-app@27.11.2
+  - @commercetools-frontend/i18n@27.11.2
+  - @commercetools-frontend/jest-preset-mc-app@27.11.2
+  - @commercetools-frontend/l10n@27.11.2
+  - @commercetools-frontend/mc-dev-authentication@27.11.2
+  - @commercetools-frontend/mc-scripts@27.11.2
+  - @commercetools-frontend/permissions@27.11.2
+
+## 27.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`0e20dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/0e20dd5d1b9e1c839d5d4d3c331cf838f64507d7), [`56a7c12`](https://github.com/commercetools/merchant-center-application-kit/commit/56a7c126c11edc6e080f6ce76934d1ce8faa7aff)]:
+  - @commercetools-frontend/application-config@27.11.1
+  - @commercetools-frontend/application-shell@27.11.1
+  - @commercetools-frontend/constants@27.11.1
+  - @commercetools-frontend/actions-global@27.11.1
+  - @commercetools-frontend/application-components@27.11.1
+  - @commercetools-frontend/application-shell-connectors@27.11.1
+  - @commercetools-frontend/assets@27.11.1
+  - @commercetools-frontend/babel-preset-mc-app@27.11.1
+  - @commercetools-frontend/eslint-config-mc-app@27.11.1
+  - @commercetools-frontend/i18n@27.11.1
+  - @commercetools-frontend/jest-preset-mc-app@27.11.1
+  - @commercetools-frontend/l10n@27.11.1
+  - @commercetools-frontend/mc-dev-authentication@27.11.1
+  - @commercetools-frontend/mc-scripts@27.11.1
+  - @commercetools-frontend/permissions@27.11.1
+
+## 27.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`6a1ca10`](https://github.com/commercetools/merchant-center-application-kit/commit/6a1ca10f4260ba5226de69ebadc6743b283ef201), [`c1ecd22`](https://github.com/commercetools/merchant-center-application-kit/commit/c1ecd225a7b4914c772cf4d95fe77f8352c89272), [`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82), [`ef83662`](https://github.com/commercetools/merchant-center-application-kit/commit/ef83662fc98931ec5477bc1e278a5423f2f237fc)]:
+  - @commercetools-frontend/application-shell@27.11.0
+  - @commercetools-frontend/application-config@27.11.0
+  - @commercetools-frontend/constants@27.11.0
+  - @commercetools-frontend/application-shell-connectors@27.11.0
+  - @commercetools-frontend/permissions@27.11.0
+  - @commercetools-frontend/mc-scripts@27.11.0
+  - @commercetools-frontend/actions-global@27.11.0
+  - @commercetools-frontend/application-components@27.11.0
+  - @commercetools-frontend/assets@27.11.0
+  - @commercetools-frontend/babel-preset-mc-app@27.11.0
+  - @commercetools-frontend/eslint-config-mc-app@27.11.0
+  - @commercetools-frontend/i18n@27.11.0
+  - @commercetools-frontend/jest-preset-mc-app@27.11.0
+  - @commercetools-frontend/l10n@27.11.0
+  - @commercetools-frontend/mc-dev-authentication@27.11.0
+
+## 27.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`4a3fa2f`](https://github.com/commercetools/merchant-center-application-kit/commit/4a3fa2fd218f816e19812fd2c8b1c199807c5b31), [`c7143c7`](https://github.com/commercetools/merchant-center-application-kit/commit/c7143c7c6e3bc29b147d9ecb251ea223d0695005), [`1743846`](https://github.com/commercetools/merchant-center-application-kit/commit/1743846454818ad4784a3d573c36a75c6377ab03)]:
+  - @commercetools-frontend/application-shell@27.10.0
+  - @commercetools-frontend/mc-scripts@27.10.0
+  - @commercetools-frontend/actions-global@27.10.0
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-config@27.10.0
+  - @commercetools-frontend/application-shell-connectors@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/babel-preset-mc-app@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/eslint-config-mc-app@27.10.0
+  - @commercetools-frontend/i18n@27.10.0
+  - @commercetools-frontend/jest-preset-mc-app@27.10.0
+  - @commercetools-frontend/l10n@27.10.0
+  - @commercetools-frontend/mc-dev-authentication@27.10.0
+  - @commercetools-frontend/permissions@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes

@@ -98,6 +98,9 @@ jobs:
           pnpm changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          # Versioning re-runs the install, whose postinstall would flip the
+          # built package output back to `preconstruct dev` stubs.
+          SKIP_POSTINSTALL_DEV_SETUP: true
 
       - name: Building Playground application
         if: steps.changesets.outputs.published != 'true' && github.ref == 'refs/heads/main'

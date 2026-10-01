@@ -129,6 +129,7 @@ describe('mapUserToApplicationContextUser', () => {
       locale: expect.any(String),
       timeZone: expect.any(String),
       businessRole: expect.any(String),
+      isAdminOfAnyOrganization: expect.any(Boolean),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([
@@ -147,6 +148,7 @@ describe('mapUserToApplicationContextUser', () => {
       locale: expect.any(String),
       timeZone: expect.any(String),
       businessRole: expect.any(String),
+      isAdminOfAnyOrganization: expect.any(Boolean),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([
@@ -181,6 +183,7 @@ describe('mapUserToApplicationContextUser', () => {
       locale: expect.any(String),
       timeZone: expect.any(String),
       businessRole: expect.any(String),
+      isAdminOfAnyOrganization: expect.any(Boolean),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([
@@ -214,6 +217,7 @@ describe('mapUserToApplicationContextUser', () => {
       locale: expect.any(String),
       timeZone: expect.any(String),
       businessRole: expect.any(String),
+      isAdminOfAnyOrganization: expect.any(Boolean),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([
@@ -247,6 +251,7 @@ describe('mapUserToApplicationContextUser', () => {
       locale: expect.any(String),
       timeZone: expect.any(String),
       businessRole: expect.any(String),
+      isAdminOfAnyOrganization: expect.any(Boolean),
       projects: expect.objectContaining({
         total: 1,
         results: expect.arrayContaining([

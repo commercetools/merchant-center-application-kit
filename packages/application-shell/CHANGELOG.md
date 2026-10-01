@@ -1,5 +1,202 @@
 # @commercetools-frontend/application-shell
 
+## 27.12.0
+
+### Patch Changes
+
+- [#4180](https://github.com/commercetools/merchant-center-application-kit/pull/4180) [`4e3ecea`](https://github.com/commercetools/merchant-center-application-kit/commit/4e3eceae1d7a32f129c571216b0dbe50677e29ae) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Fix Merchant Center applications sometimes crashing to a blank page when the navigation menu shows a group marked as "New", most often right after switching from another application. Unexpected errors in the application shell now show the unexpected error page and are reported to Sentry, instead of leaving a blank page with only a misleading `[React Intl] Could not find required intl object` error in the console.
+
+- [#4176](https://github.com/commercetools/merchant-center-application-kit/pull/4176) [`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1) Thanks [@kterry1](https://github.com/kterry1)! - Export `PERFORMANCE_MARKS`, `PERFORMANCE_MARK_PREFIX` and `PERFORMANCE_MEASURE_SUFFIX` from `@commercetools-frontend/constants`, so `application-shell` and `sentry` share one definition of the `mc:*` loading performance marks. The inline loading-screen script in `mc-html-template` cannot import and keeps its own copy of the skeleton mark, pinned to these constants by its spec. `application-shell` still exports `PERFORMANCE_MARKS` and `TPerformanceMark`, now re-exported from `constants`.
+
+- Updated dependencies [[`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1)]:
+  - @commercetools-frontend/constants@27.12.0
+  - @commercetools-frontend/sentry@27.12.0
+  - @commercetools-frontend/actions-global@27.12.0
+  - @commercetools-frontend/application-components@27.12.0
+  - @commercetools-frontend/application-config@27.12.0
+  - @commercetools-frontend/application-shell-connectors@27.12.0
+  - @commercetools-frontend/assets@27.12.0
+  - @commercetools-frontend/browser-history@27.12.0
+  - @commercetools-frontend/i18n@27.12.0
+  - @commercetools-frontend/l10n@27.12.0
+  - @commercetools-frontend/notifications@27.12.0
+  - @commercetools-frontend/permissions@27.12.0
+  - @commercetools-frontend/react-notifications@27.12.0
+  - @commercetools-frontend/sdk@27.12.0
+  - @commercetools-frontend/url-utils@27.12.0
+
+## 27.11.4
+
+### Patch Changes
+
+- [#4172](https://github.com/commercetools/merchant-center-application-kit/pull/4172) [`66af660`](https://github.com/commercetools/merchant-center-application-kit/commit/66af6604cfaa2167dbf835e08806b06ed0599e8c) Thanks [@emmenko](https://github.com/emmenko)! - Ensure `x-project-key` is sent when loading project extensions
+
+- [#4174](https://github.com/commercetools/merchant-center-application-kit/pull/4174) [`fed46c2`](https://github.com/commercetools/merchant-center-application-kit/commit/fed46c247394d44c06d0f0c8693749949f8e2465) Thanks [@emmenko](https://github.com/emmenko)! - Project switcher should stay hidden on routes without project context
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.11.4
+  - @commercetools-frontend/application-components@27.11.4
+  - @commercetools-frontend/application-config@27.11.4
+  - @commercetools-frontend/application-shell-connectors@27.11.4
+  - @commercetools-frontend/assets@27.11.4
+  - @commercetools-frontend/browser-history@27.11.4
+  - @commercetools-frontend/constants@27.11.4
+  - @commercetools-frontend/i18n@27.11.4
+  - @commercetools-frontend/l10n@27.11.4
+  - @commercetools-frontend/notifications@27.11.4
+  - @commercetools-frontend/permissions@27.11.4
+  - @commercetools-frontend/react-notifications@27.11.4
+  - @commercetools-frontend/sdk@27.11.4
+  - @commercetools-frontend/sentry@27.11.4
+  - @commercetools-frontend/url-utils@27.11.4
+
+## 27.11.3
+
+### Patch Changes
+
+- [#4170](https://github.com/commercetools/merchant-center-application-kit/pull/4170) [`c7651fe`](https://github.com/commercetools/merchant-center-application-kit/commit/c7651fe69a74b5b6b13703543714a3b4a04a5cdb) Thanks [@emmenko](https://github.com/emmenko)! - Restore menu group position for backwards compat
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.11.3
+  - @commercetools-frontend/application-components@27.11.3
+  - @commercetools-frontend/application-config@27.11.3
+  - @commercetools-frontend/application-shell-connectors@27.11.3
+  - @commercetools-frontend/assets@27.11.3
+  - @commercetools-frontend/browser-history@27.11.3
+  - @commercetools-frontend/constants@27.11.3
+  - @commercetools-frontend/i18n@27.11.3
+  - @commercetools-frontend/l10n@27.11.3
+  - @commercetools-frontend/notifications@27.11.3
+  - @commercetools-frontend/permissions@27.11.3
+  - @commercetools-frontend/react-notifications@27.11.3
+  - @commercetools-frontend/sdk@27.11.3
+  - @commercetools-frontend/sentry@27.11.3
+  - @commercetools-frontend/url-utils@27.11.3
+
+## 27.11.2
+
+### Patch Changes
+
+- [#4168](https://github.com/commercetools/merchant-center-application-kit/pull/4168) [`896ce3b`](https://github.com/commercetools/merchant-center-application-kit/commit/896ce3b587c1111b831c979e7510883e52d6abfd) Thanks [@kark](https://github.com/kark)! - Fix custom applications merging into correct navbar group and preserve group properties
+
+  - Merge custom applications into group 3 (commerce) instead of group 2
+  - Preserve navbar group label and isNew properties when merging custom applications
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.11.2
+  - @commercetools-frontend/application-components@27.11.2
+  - @commercetools-frontend/application-config@27.11.2
+  - @commercetools-frontend/application-shell-connectors@27.11.2
+  - @commercetools-frontend/assets@27.11.2
+  - @commercetools-frontend/browser-history@27.11.2
+  - @commercetools-frontend/constants@27.11.2
+  - @commercetools-frontend/i18n@27.11.2
+  - @commercetools-frontend/l10n@27.11.2
+  - @commercetools-frontend/notifications@27.11.2
+  - @commercetools-frontend/permissions@27.11.2
+  - @commercetools-frontend/react-notifications@27.11.2
+  - @commercetools-frontend/sdk@27.11.2
+  - @commercetools-frontend/sentry@27.11.2
+  - @commercetools-frontend/url-utils@27.11.2
+
+## 27.11.1
+
+### Patch Changes
+
+- [#4165](https://github.com/commercetools/merchant-center-application-kit/pull/4165) [`0e20dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/0e20dd5d1b9e1c839d5d4d3c331cf838f64507d7) Thanks [@emmenko](https://github.com/emmenko)! - Configure menu group for local development
+
+- [#4166](https://github.com/commercetools/merchant-center-application-kit/pull/4166) [`56a7c12`](https://github.com/commercetools/merchant-center-application-kit/commit/56a7c126c11edc6e080f6ce76934d1ce8faa7aff) Thanks [@emmenko](https://github.com/emmenko)! - Export function `selectProjectKeyInContext`
+
+- Updated dependencies [[`0e20dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/0e20dd5d1b9e1c839d5d4d3c331cf838f64507d7)]:
+  - @commercetools-frontend/application-config@27.11.1
+  - @commercetools-frontend/constants@27.11.1
+  - @commercetools-frontend/actions-global@27.11.1
+  - @commercetools-frontend/application-components@27.11.1
+  - @commercetools-frontend/application-shell-connectors@27.11.1
+  - @commercetools-frontend/assets@27.11.1
+  - @commercetools-frontend/browser-history@27.11.1
+  - @commercetools-frontend/i18n@27.11.1
+  - @commercetools-frontend/l10n@27.11.1
+  - @commercetools-frontend/notifications@27.11.1
+  - @commercetools-frontend/permissions@27.11.1
+  - @commercetools-frontend/react-notifications@27.11.1
+  - @commercetools-frontend/sdk@27.11.1
+  - @commercetools-frontend/sentry@27.11.1
+  - @commercetools-frontend/url-utils@27.11.1
+
+## 27.11.0
+
+### Minor Changes
+
+- [#4162](https://github.com/commercetools/merchant-center-application-kit/pull/4162) [`6a1ca10`](https://github.com/commercetools/merchant-center-application-kit/commit/6a1ca10f4260ba5226de69ebadc6743b283ef201) Thanks [@emmenko](https://github.com/emmenko)! - Allow to render links with no project context
+
+- [#4159](https://github.com/commercetools/merchant-center-application-kit/pull/4159) [`c1ecd22`](https://github.com/commercetools/merchant-center-application-kit/commit/c1ecd225a7b4914c772cf4d95fe77f8352c89272) Thanks [@kark](https://github.com/kark)! - Add navbar group labels and "New" badges for application grouping
+
+- [#4164](https://github.com/commercetools/merchant-center-application-kit/pull/4164) [`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343) Thanks [@emmenko](https://github.com/emmenko)! - Support special entry points format with prefix
+
+- [#4155](https://github.com/commercetools/merchant-center-application-kit/pull/4155) [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f) Thanks [@emmenko](https://github.com/emmenko)! - Add support for new menu item permissions `Administrator` and `AdministratorOfCurrentProject`.
+
+- [#4156](https://github.com/commercetools/merchant-center-application-kit/pull/4156) [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82) Thanks [@emmenko](https://github.com/emmenko)! - Support routing for new top-level route
+
+### Patch Changes
+
+- [#4163](https://github.com/commercetools/merchant-center-application-kit/pull/4163) [`ef83662`](https://github.com/commercetools/merchant-center-application-kit/commit/ef83662fc98931ec5477bc1e278a5423f2f237fc) Thanks [@emmenko](https://github.com/emmenko)! - Hide project switcher when not in a project context. Fix root path redirect when app is a project-keyless route.
+
+- Updated dependencies [[`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`ee91114`](https://github.com/commercetools/merchant-center-application-kit/commit/ee911142849a4bf872c3f8924e145ddfc319588f), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82)]:
+  - @commercetools-frontend/application-config@27.11.0
+  - @commercetools-frontend/constants@27.11.0
+  - @commercetools-frontend/application-shell-connectors@27.11.0
+  - @commercetools-frontend/permissions@27.11.0
+  - @commercetools-frontend/actions-global@27.11.0
+  - @commercetools-frontend/application-components@27.11.0
+  - @commercetools-frontend/assets@27.11.0
+  - @commercetools-frontend/browser-history@27.11.0
+  - @commercetools-frontend/i18n@27.11.0
+  - @commercetools-frontend/l10n@27.11.0
+  - @commercetools-frontend/notifications@27.11.0
+  - @commercetools-frontend/react-notifications@27.11.0
+  - @commercetools-frontend/sdk@27.11.0
+  - @commercetools-frontend/sentry@27.11.0
+  - @commercetools-frontend/url-utils@27.11.0
+
+## 27.10.0
+
+### Minor Changes
+
+- [#4144](https://github.com/commercetools/merchant-center-application-kit/pull/4144) [`4a3fa2f`](https://github.com/commercetools/merchant-center-application-kit/commit/4a3fa2fd218f816e19812fd2c8b1c199807c5b31) Thanks [@kterry1](https://github.com/kterry1)! - Emit canonical `mc:*` performance marks for the application loading sequence, and export
+  `PERFORMANCE_MARKS` along with the `TPerformanceMark` type so consumers can read the mark names
+  rather than hardcoding them.
+
+  Five marks are emitted: `mc:shell-chrome-mounted`, `mc:intl-ready`, `mc:content-rendered`,
+  `mc:hydration-user`, and `mc:hydration-project`. Each also produces a `<name>:from-nav` measure
+  from the navigation origin. `mc:skeleton-visible` is listed in `PERFORMANCE_MARKS` as the canonical
+  name but is emitted separately from `mc-html-template`, because that file is untranspiled ES5 with
+  no module system.
+
+  Marks are recorded only once per name, and the first write wins. This matters because the shell
+  subtree mounts twice on a cold load: the Suspense fallback for the lazily loaded splitter renders
+  the same children, so a naive mount effect would record chunk-load latency instead of when the
+  chrome actually appeared.
+
+### Patch Changes
+
+- Updated dependencies [[`d3a87b2`](https://github.com/commercetools/merchant-center-application-kit/commit/d3a87b26150754d03555ed9dec7d6f2a0e3f6011)]:
+  - @commercetools-frontend/sentry@27.10.0
+  - @commercetools-frontend/actions-global@27.10.0
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/application-config@27.10.0
+  - @commercetools-frontend/application-shell-connectors@27.10.0
+  - @commercetools-frontend/assets@27.10.0
+  - @commercetools-frontend/browser-history@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/i18n@27.10.0
+  - @commercetools-frontend/l10n@27.10.0
+  - @commercetools-frontend/notifications@27.10.0
+  - @commercetools-frontend/permissions@27.10.0
+  - @commercetools-frontend/react-notifications@27.10.0
+  - @commercetools-frontend/sdk@27.10.0
+  - @commercetools-frontend/url-utils@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes

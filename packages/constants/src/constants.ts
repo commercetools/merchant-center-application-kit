@@ -230,6 +230,11 @@ export type ApplicationOidcForDevelopmentConfig = {
     manage: string[];
   }[];
 };
+/** Development-only navbar group header for the local menuLinks cache. */
+export type ApplicationNavBarGroupForDevelopmentConfig = {
+  label?: string;
+  isNew?: boolean;
+};
 export type CustomViewData = {
   id: string;
   defaultLabel: string;
@@ -245,6 +250,7 @@ export type CustomViewData = {
 export type ApplicationRuntimeEnvironmentForDevelopment = {
   oidc?: ApplicationOidcForDevelopmentConfig;
   menuLinks?: ApplicationMenuLinksForDevelopmentConfig;
+  menuGroup?: ApplicationNavBarGroupForDevelopmentConfig;
   customViewHostUrl?: string;
   customViewConfig?: CustomViewData;
   mcIdentityLoginModeOverride?: 'legacy';
@@ -278,6 +284,59 @@ export interface ApplicationWindow extends Window {
 
 // Used for Custom Views, as we want to keep the `entryPointUriPath` value required in the runtime config.
 export const CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH = '@@custom-view-host@@';
+
+export const STATIC_URL_PATHS = {
+  LOGIN: 'login',
+  LOGOUT: 'logout',
+  ACCOUNT: 'account',
+  AGENT_SPHERE: 'agent-sphere',
+} as const;
+
+type TStaticUrlPath = (typeof STATIC_URL_PATHS)[keyof typeof STATIC_URL_PATHS];
+
+const includesStaticUrlPath = (
+  list: readonly TStaticUrlPath[],
+  value: string
+): value is TStaticUrlPath => (list as readonly string[]).includes(value);
+
+/** First path segment of an entry point or URL path (e.g. `agent-sphere/registry` → `agent-sphere`). */
+const topLevelPathSegment = (value: string) => value.split('/')[0] ?? value;
+
+/** First URL segment is never a `:projectKey`. */
+export const STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY = [
+  STATIC_URL_PATHS.LOGIN,
+  STATIC_URL_PATHS.LOGOUT,
+  STATIC_URL_PATHS.ACCOUNT,
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isStaticUrlPathInPositionOfProjectKey = (value: string) =>
+  includesStaticUrlPath(
+    STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY,
+    topLevelPathSegment(value)
+  );
+
+/** Apps whose `entryPointUriPath` is the first URL segment (no `/:projectKey` prefix). */
+export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS = [
+  STATIC_URL_PATHS.ACCOUNT,
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isProjectKeylessApplicationEntryPoint = (value: string) =>
+  includesStaticUrlPath(
+    PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+    topLevelPathSegment(value)
+  );
+
+/** Subset that still loads a project (navbar, FetchProject from storage). */
+export const PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT = [
+  STATIC_URL_PATHS.AGENT_SPHERE,
+] as const;
+export const isProjectKeylessApplicationEntryPointInProjectContext = (
+  value: string
+) =>
+  includesStaticUrlPath(
+    PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
+    topLevelPathSegment(value)
+  );
 
 export const SUPPORTED_HEADERS = {
   ACCEPT: 'Accept',
@@ -357,3 +416,20 @@ export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_OIDC = 'oidc';
 export const LOGIN_STRATEGY_SSO = 'sso';
+
+// Loading performance marks, written by application-shell and read by sentry.
+// mc-html-template's inline script cannot import and keeps its own copy of the
+// skeleton mark, pinned to these values by its spec.
+export const PERFORMANCE_MARK_PREFIX = 'mc:';
+export const PERFORMANCE_MEASURE_SUFFIX = ':from-nav';
+export const PERFORMANCE_MARKS = {
+  SKELETON_VISIBLE: `${PERFORMANCE_MARK_PREFIX}skeleton-visible`,
+  SHELL_CHROME_MOUNTED: `${PERFORMANCE_MARK_PREFIX}shell-chrome-mounted`,
+  INTL_READY: `${PERFORMANCE_MARK_PREFIX}intl-ready`,
+  CONTENT_RENDERED: `${PERFORMANCE_MARK_PREFIX}content-rendered`,
+  HYDRATION_USER: `${PERFORMANCE_MARK_PREFIX}hydration-user`,
+  HYDRATION_PROJECT: `${PERFORMANCE_MARK_PREFIX}hydration-project`,
+} as const;
+
+export type TPerformanceMark =
+  (typeof PERFORMANCE_MARKS)[keyof typeof PERFORMANCE_MARKS];

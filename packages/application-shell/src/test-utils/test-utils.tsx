@@ -86,6 +86,7 @@ const defaultUser = {
   timeZone: 'Etc/UTC',
   numberFormat: 'en',
   defaultProjectKey: defaultProject.key,
+  isAdminOfAnyOrganization: true,
   businessRole: 'Other',
   projects: {
     total: 1,

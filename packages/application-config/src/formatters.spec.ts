@@ -12,6 +12,8 @@ describe.each`
   ${'the_avengers'}                        | ${'The_Avengers'}
   ${'avengers-01'}                         | ${'Avengers/01'}
   ${'avengers_01'}                         | ${'Avengers_01'}
+  ${'new-avengers'}                        | ${'NewAvengers'}
+  ${'new-avengers/team'}                   | ${'NewAvengersTeam'}
   ${CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH} | ${''}
 `(
   'formatting the entryPointUriPath "$entryPointUriPath" to a resource access key "$formattedResourceAccessKey"',

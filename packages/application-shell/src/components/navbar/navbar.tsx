@@ -27,8 +27,9 @@ import type {
 } from '@commercetools-frontend/application-shell-connectors';
 import LogoSVG from '@commercetools-frontend/assets/logos/commercetools_small-logo.svg';
 import {
-  SUPPORT_PORTAL_URL,
   NO_VALUE_FALLBACK,
+  SUPPORT_PORTAL_URL,
+  isProjectKeylessApplicationEntryPoint,
 } from '@commercetools-frontend/constants';
 import { SupportIcon } from '@commercetools-uikit/icons';
 import Spacings from '@commercetools-uikit/spacings';
@@ -60,6 +61,7 @@ import {
 } from './menu-items';
 import { SublistItem, SafeArea } from './menu-items.styles';
 import messages from './messages';
+import NavbarGroupHeader from './navbar-group-header';
 import NavBarSkeleton from './navbar-skeleton';
 import { Icon, IconWrapper, ItemIconText, Title } from './shared.styles';
 import useNavbarStateManager, {
@@ -101,6 +103,7 @@ type ApplicationMenuProps = {
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
+  isUserAdminOfCurrentProject?: boolean | null;
   projectPermissions: TProjectPermissions;
   handleToggleItem: () => void;
   applicationLocale: string;
@@ -112,13 +115,21 @@ type ApplicationMenuProps = {
   pointerEvent?: string;
 };
 
+const getNavbarItemPath = (projectKey: string, uriPath: string) => {
+  const [topLevelPath] = uriPath.split('/');
+  if (isProjectKeylessApplicationEntryPoint(topLevelPath)) {
+    return `/${uriPath}`;
+  }
+  return `/${projectKey}/${uriPath}`;
+};
+
 const getIsSubmenuRouteActive = (
   uriPath: ApplicationMenuProps['menu']['submenu'][number]['uriPath'],
   props: ApplicationMenuProps
 ) =>
   Boolean(
     matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${uriPath}`,
+      path: getNavbarItemPath(props.projectKey, uriPath),
       exact: true,
       strict: false,
     })
@@ -282,7 +293,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   const isMainMenuRouteActive = Boolean(
     matchPath(props.location.pathname, {
-      path: `/${props.projectKey}/${props.menu.uriPath}`,
+      path: getNavbarItemPath(props.projectKey, props.menu.uriPath),
       exact: false,
       strict: false,
     })
@@ -316,6 +327,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
       permissions={props.menu.permissions}
       actionRights={props.menu.actionRights ?? undefined}
       dataFences={props.menu.dataFences ?? undefined}
+      isUserAdminOfCurrentProject={props.isUserAdminOfCurrentProject}
       projectPermissions={props.projectPermissions}
     >
       <MenuItem
@@ -336,7 +348,7 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
         )}
       >
         <MenuItemLink
-          linkTo={`/${props.projectKey}/${props.menu.uriPath}`}
+          linkTo={getNavbarItemPath(props.projectKey, props.menu.uriPath)}
           useFullRedirectsForLinks={props.useFullRedirectsForLinks}
           onClick={props.onMenuItemClick}
           ariaLabel={getMenuAccessibleLabel(
@@ -383,6 +395,9 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   permissions={submenu.permissions}
                   actionRights={submenu.actionRights ?? undefined}
                   dataFences={submenu.dataFences ?? undefined}
+                  isUserAdminOfCurrentProject={
+                    props.isUserAdminOfCurrentProject
+                  }
                   projectPermissions={props.projectPermissions}
                 >
                   <SublistItem
@@ -390,7 +405,10 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
                   >
                     <Text>
                       <MenuItemLink
-                        linkTo={`/${props.projectKey}/${submenu.uriPath}`}
+                        linkTo={getNavbarItemPath(
+                          props.projectKey,
+                          submenu.uriPath
+                        )}
                         // We want to use an exact matching strategy to avoid multiple
                         // links matching sub-routes.
                         exactMatch
@@ -450,6 +468,7 @@ const NavBar = (props: TNavbarProps) => {
   } = useNavbarStateManager({
     environment: props.environment,
     project: props.project,
+    projectKey: props.projectKey,
   });
   const useFullRedirectsForLinks = Boolean(
     props.environment.useFullRedirectsForLinks
@@ -496,6 +515,12 @@ const NavBar = (props: TNavbarProps) => {
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
                 <div key={navbarMenuGroup.key}>
+                  {navbarMenuGroup.label && isMenuOpen && (
+                    <NavbarGroupHeader
+                      label={navbarMenuGroup.label}
+                      isNew={navbarMenuGroup.isNew ?? undefined}
+                    />
+                  )}
                   {navbarMenuGroup.items.map((menu) => {
                     const menuType = 'scrollable';
                     const itemIndex = `${menuType}-${menu.key}`;
@@ -508,6 +533,9 @@ const NavBar = (props: TNavbarProps) => {
                         handleToggleItem={() => handleToggleItem(itemIndex)}
                         isMenuOpen={isMenuOpen}
                         shouldCloseMenuFly={shouldCloseMenuFly}
+                        isUserAdminOfCurrentProject={
+                          props.project?.isUserAdminOfCurrentProject
+                        }
                         projectPermissions={projectPermissions}
                         applicationLocale={applicationLocale}
                         projectKey={props.projectKey}

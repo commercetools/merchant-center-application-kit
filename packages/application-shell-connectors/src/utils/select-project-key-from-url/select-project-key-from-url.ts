@@ -1,8 +1,8 @@
-const staticUrlPathsInPositionOfProjectKey = ['login', 'logout', 'account'];
+import { isStaticUrlPathInPositionOfProjectKey } from '@commercetools-frontend/constants';
 
 // Attempt to extract the `:projectKey` from the URL.
-// If the value matches one of the values in the list above,
-// return `undefined` as we're not within a project context.
+// If the value matches one of the static URL paths in the position of the
+// project key, return `undefined` as we're not within a project context.
 export default function selectProjectKeyFromUrl(
   locationPath = window.location.pathname
 ) {
@@ -17,7 +17,7 @@ export default function selectProjectKeyFromUrl(
     possibleProjectKey = pathParts[1];
   }
 
-  return staticUrlPathsInPositionOfProjectKey.includes(possibleProjectKey)
+  return isStaticUrlPathInPositionOfProjectKey(possibleProjectKey)
     ? undefined
     : possibleProjectKey;
 }

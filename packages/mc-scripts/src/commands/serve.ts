@@ -1,6 +1,7 @@
 import http from 'http';
 import sirv from 'sirv';
 import type { ApplicationRuntimeConfig } from '@commercetools-frontend/application-config';
+import { STATIC_URL_PATHS } from '@commercetools-frontend/constants';
 import paths from '../config/paths';
 
 const DEFAULT_PORT = 3001;
@@ -39,12 +40,18 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
     if (handleAuthRoutes && applicationConfig) {
       // Localhost-only: inline replacement for the login/logout UI that
       // `mc-dev-authentication` used to ship as static HTML (#3734).
-      if (isLocalMcApi && request.url?.startsWith('/login/authorize')) {
+      if (
+        isLocalMcApi &&
+        request.url?.startsWith(`/${STATIC_URL_PATHS.LOGIN}/authorize`)
+      ) {
         const redirectTo = new URL(request.url, applicationConfig.env.mcApiUrl);
         response.writeHead(301, { Location: redirectTo.toString() }).end();
         return;
       }
-      if (isLocalMcApi && request.url?.startsWith('/logout')) {
+      if (
+        isLocalMcApi &&
+        request.url?.startsWith(`/${STATIC_URL_PATHS.LOGOUT}`)
+      ) {
         response.end('Please clear your session storage.');
         return;
       }
@@ -54,8 +61,8 @@ async function run(options: RunOptions = {}): Promise<http.Server> {
       // fall back to the SPA — that would mask OAuth callback
       // misconfigurations by rendering the app on a URL the backend owns.
       if (
-        request.url?.startsWith('/login') ||
-        request.url?.startsWith('/logout')
+        request.url?.startsWith(`/${STATIC_URL_PATHS.LOGIN}`) ||
+        request.url?.startsWith(`/${STATIC_URL_PATHS.LOGOUT}`)
       ) {
         response.writeHead(404).end();
         return;

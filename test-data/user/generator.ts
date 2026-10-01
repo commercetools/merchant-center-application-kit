@@ -19,6 +19,7 @@ const generator = Generator<TUser>({
     timeZone: 'Europe/Berlin',
     businessRole: fake((f) => f.person.jobDescriptor()),
     defaultProjectKey: null,
+    isAdminOfAnyOrganization: fake(() => false),
     gravatarHash: fake((f) => f.image.avatar()),
     launchdarklyTrackingId: '',
     launchdarklyTrackingGroup: '',

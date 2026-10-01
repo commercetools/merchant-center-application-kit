@@ -116,6 +116,19 @@
               "description": "Set to 'legacy' to use legacy login mode for development, sending x-mc-identity-login-mode-override header instead of cookies",
               "type": "string",
               "enum": ["legacy"]
+            },
+            "menuGroup": {
+              "description": "Optional navbar group header used when rendering menuLinks in local development",
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "isNew": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false,

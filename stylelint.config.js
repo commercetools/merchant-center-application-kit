@@ -19,7 +19,20 @@ module.exports = {
       true,
       { ignoreProperties: ['composes'] },
     ],
-    'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
+    // stylelint 14.16.1 predates the View Transitions API, so `@view-transition`,
+    // its `navigation` descriptor and the `::view-transition-*` pseudo-elements
+    // are all unknown to it. See packages/mc-html-template/html-styles/loading-screen.css.
+    'at-rule-no-unknown': [true, { ignoreAtRules: ['view-transition'] }],
+    'property-no-unknown': [
+      true,
+      { ignoreProperties: ['composes', 'navigation'] },
+    ],
+    'selector-pseudo-element-no-unknown': [
+      true,
+      {
+        ignorePseudoElements: ['view-transition-old', 'view-transition-new'],
+      },
+    ],
     'declaration-colon-newline-after': null,
     'rule-empty-line-before': null,
     'value-list-comma-newline-after': null,

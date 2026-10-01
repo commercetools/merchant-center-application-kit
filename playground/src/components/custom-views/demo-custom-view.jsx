@@ -100,7 +100,10 @@ function DemoCustomView() {
     window.app.customViewId = CUSTOM_VIEW_ID;
     window.app.__DEVELOPMENT__.customViewConfig = DEMO_CUSTOM_VIEW;
     window.app.__DEVELOPMENT__.customViewHostUrl = window.location.href;
-    document.querySelector('.loading-screen').remove();
+    // Signals the inline loading script, which removes the whole #app-loader
+    // once app CSS has settled. Guarded like `configure-intl-provider`,
+    // since the script does not run in every host.
+    if (window.onAppLoaded) window.onAppLoaded();
     setIsLoading(false);
   }, []);
 

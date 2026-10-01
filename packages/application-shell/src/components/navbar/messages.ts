@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'NavBar.MenuExpander.expandMenu',
     defaultMessage: 'Expand menu',
   },
+  'NavBar.Group.badge.new': {
+    id: 'NavBar.Group.badge.new',
+    defaultMessage: 'New',
+  },
 });

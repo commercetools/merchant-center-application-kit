@@ -21,6 +21,10 @@ const config = {
   env: {
     development: {
       initialProjectKey: '${env:CTP_INITIAL_PROJECT_KEY}',
+      menuGroup: {
+        label: 'Menu group',
+        isNew: true,
+      },
     },
     production: {
       applicationId: '${env:APP_ID}',

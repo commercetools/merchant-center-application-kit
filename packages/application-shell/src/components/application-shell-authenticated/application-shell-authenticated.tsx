@@ -13,12 +13,19 @@ import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PortalsContainer } from '@commercetools-frontend/application-components';
 import {
   ApplicationContextProvider,
-  selectProjectKeyFromUrl,
   useApplicationContext,
   selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  DOMAINS,
+  LOGOUT_REASONS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
+  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
+  STATIC_URL_PATHS,
+  isProjectKeylessApplicationEntryPoint,
+  isProjectKeylessApplicationEntryPointInProjectContext,
+} from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
@@ -28,8 +35,13 @@ import {
 } from '@commercetools-frontend/sentry';
 import { DIMENSIONS, NAVBAR } from '../../constants';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-import { getPreviousProjectKey } from '../../utils';
+import {
+  getPreviousProjectKey,
+  PERFORMANCE_MARKS,
+  selectProjectKeyInContext,
+} from '../../utils';
 import AppBar from '../app-bar';
+import ApplicationEntryPoint from '../application-entry-point';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShellSplitter from '../application-shell-splitter/application-shell-splitter.async';
@@ -38,6 +50,7 @@ import ErrorApologizer from '../error-apologizer';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
+import PerformanceMark from '../performance-mark';
 import ProjectContainer from '../project-container';
 import RedirectToLogout from '../redirect-to-logout';
 import RedirectToProjectCreate from '../redirect-to-project-create';
@@ -174,8 +187,6 @@ export const ApplicationShellAuthenticated = (
           );
         }
 
-        const projectKeyFromUrl = selectProjectKeyFromUrl(location.pathname);
-
         // Check if user is ct staff, and if so get language selected via staff bar from local storage
         const staffBarLanguage =
           user?.launchdarklyTrackingGroup === 'commercetools' ||
@@ -190,6 +201,12 @@ export const ApplicationShellAuthenticated = (
               language: staffBarLanguage ?? user.language,
             }
           : undefined;
+
+        const projectKeyInContext = selectProjectKeyInContext({
+          pathname: location.pathname,
+          defaultProjectKeyOfUser:
+            normalizedUser?.defaultProjectKey ?? undefined,
+        });
 
         return (
           <ApplicationContextProvider
@@ -213,14 +230,24 @@ export const ApplicationShellAuthenticated = (
                   // is not loaded.
                   {...(isLoadingLocaleData ? {} : { locale, messages })}
                 >
+                  {/* Marked here rather than inside the `ConfigureIntlProvider`
+                  implementation, because that component also renders on the
+                  unauthenticated, Custom View and error surfaces. */}
+                  <PerformanceMark mark={PERFORMANCE_MARKS.INTL_READY} />
                   <SetupFlopFlipProvider
                     user={normalizedUser}
-                    projectKey={projectKeyFromUrl}
+                    projectKey={projectKeyInContext}
                     ldClientSideId={applicationEnvironment.ldClientSideId}
                     flags={props.featureFlags}
                     defaultFlags={props.defaultFeatureFlags}
                   >
                     <ApplicationShellSplitter locale={locale ?? 'en'}>
+                      {/* The splitter's Suspense fallback renders these same
+                      children, so this mark is written on the fallback pass and
+                      does not wait for the lazy chunk to download. */}
+                      <PerformanceMark
+                        mark={PERFORMANCE_MARKS.SHELL_CHROME_MOUNTED}
+                      />
                       <ThemeSwitcher />
                       {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
@@ -255,7 +282,7 @@ export const ApplicationShellAuthenticated = (
                         >
                           <AppBar
                             user={normalizedUser}
-                            projectKeyFromUrl={projectKeyFromUrl}
+                            projectKey={projectKeyInContext}
                           />
                         </header>
 
@@ -269,17 +296,13 @@ export const ApplicationShellAuthenticated = (
                           {(() => {
                             // The <NavBar> should only be rendered within a project
                             // context, therefore when there is a `projectKey`.
-                            // If there is no `projectKey` in the URL (e.g. `/account`
-                            // routes), we don't render it.
-                            // NOTE: we also "cache" the `projectKey` in localStorage
-                            // but this should only be used to "re-hydrate" the URL
-                            // location (e.g when you go to `/`, there should be a
-                            // redirect to `/:projectKey`). Therefore, we should not
-                            // rely on the value in localStorage to determine which
-                            // `projectKey` is currently used.
-                            if (!projectKeyFromUrl) return null;
+                            // On `/account` routes there is none, so we don't render it.
+                            // NOTE: for paths that run in a project context without
+                            // carrying the `projectKey` in the URL (e.g. `/agent-sphere`),
+                            // the key is resolved from the previously used project.
+                            if (!projectKeyInContext) return null;
                             return (
-                              <FetchProject projectKey={projectKeyFromUrl}>
+                              <FetchProject projectKey={projectKeyInContext}>
                                 {({ isLoading: isLoadingProject, project }) => {
                                   const isLoading =
                                     isLoadingUser ||
@@ -298,7 +321,7 @@ export const ApplicationShellAuthenticated = (
                                     >
                                       <NavBar
                                         applicationLocale={locale}
-                                        projectKey={projectKeyFromUrl}
+                                        projectKey={projectKeyInContext}
                                         project={project}
                                         environment={applicationEnvironment}
                                         onMenuItemClick={props.onMenuItemClick}
@@ -318,6 +341,9 @@ export const ApplicationShellAuthenticated = (
                           </MainContainer>
                         ) : (
                           <MainContainer role="main">
+                            <PerformanceMark
+                              mark={PERFORMANCE_MARKS.CONTENT_RENDERED}
+                            />
                             <div ref={notificationsPageRef}>
                               <NotificationsList domain={DOMAINS.PAGE} />
                             </div>
@@ -349,12 +375,12 @@ export const ApplicationShellAuthenticated = (
                                 ref={layoutRefs}
                                 offsetTop={DIMENSIONS.header}
                                 offsetLeft={
-                                  projectKeyFromUrl
+                                  projectKeyInContext
                                     ? NAVBAR.widthLeftNavigation
                                     : '0px'
                                 }
                                 offsetLeftOnExpandedMenu={
-                                  projectKeyFromUrl
+                                  projectKeyInContext
                                     ? NAVBAR.widthLeftNavigationWhenExpanded
                                     : '0px'
                                 }
@@ -363,11 +389,23 @@ export const ApplicationShellAuthenticated = (
                                 <Route
                                   path="/profile"
                                   render={() => (
-                                    <Redirect to="/account/profile" />
+                                    <Redirect
+                                      to={`/${STATIC_URL_PATHS.ACCOUNT}/profile`}
+                                    />
                                   )}
                                 />
 
-                                <Route path="/account">
+                                <Route
+                                  path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.filter(
+                                    (entryPointUriPath) =>
+                                      !isProjectKeylessApplicationEntryPointInProjectContext(
+                                        entryPointUriPath
+                                      )
+                                  ).map(
+                                    (entryPointUriPath) =>
+                                      `/${entryPointUriPath}`
+                                  )}
+                                >
                                   {
                                     /**
                                      * In case the AppShell uses the `render` function, we assume it's one of two cases:
@@ -385,9 +423,41 @@ export const ApplicationShellAuthenticated = (
                                     )
                                   }
                                 </Route>
+                                <Route
+                                  path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT.map(
+                                    (entryPointUriPath) =>
+                                      `/${entryPointUriPath}`
+                                  )}
+                                >
+                                  {isProjectKeylessApplicationEntryPointInProjectContext(
+                                    applicationEnvironment.entryPointUriPath
+                                  ) ? (
+                                    <ApplicationEntryPoint
+                                      environment={applicationEnvironment}
+                                      // There is no project in ApplicationContext on this
+                                      // path, so the default View-permission check cannot
+                                      // succeed. Access is gated in the app via a user flag.
+                                      disableRoutePermissionCheck
+                                      render={props.render}
+                                    >
+                                      {props.children}
+                                    </ApplicationEntryPoint>
+                                  ) : props.render ? (
+                                    /**
+                                     * Same as `/account`: a `render` app implements its own
+                                     * catch-all. A `children` Custom Application must reload
+                                     * so the proxy can hand the request to agent-sphere.
+                                     */
+                                    <>{props.render()}</>
+                                  ) : (
+                                    <RouteCatchAll />
+                                  )}
+                                </Route>
                                 {/* Project routes */}
                                 <Route exact={true} path="/">
                                   {(() => {
+                                    const entryPointUriPath =
+                                      applicationEnvironment.entryPointUriPath;
                                     const previousProjectKey =
                                       getPreviousProjectKey(
                                         normalizedUser?.defaultProjectKey ??
@@ -396,12 +466,26 @@ export const ApplicationShellAuthenticated = (
 
                                     /**
                                      * NOTE:
+                                     *   Given the application does not run on a `/:projectKey` route
+                                     *   (e.g. `agent-sphere`), the application redirects to its own
+                                     *   entry point instead of to a project.
                                      *   Given the user has not been loaded a loading spinner is shown.
                                      *   Given the user was not working on a project previously nor has a default
                                      *   project, the user will be prompted to create one.
                                      *   Given the user was working on a project previously or has a default
                                      *   project, the application will redirect to that project.
                                      */
+                                    if (
+                                      isProjectKeylessApplicationEntryPoint(
+                                        entryPointUriPath
+                                      )
+                                    ) {
+                                      return (
+                                        <Redirect
+                                          to={`/${entryPointUriPath}`}
+                                        />
+                                      );
+                                    }
                                     if (!normalizedUser)
                                       return <ApplicationLoader />;
                                     if (!previousProjectKey)

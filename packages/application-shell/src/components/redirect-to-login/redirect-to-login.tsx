@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { oidcStorage } from '@commercetools-frontend/application-shell-connectors';
-import type { ApplicationWindow } from '@commercetools-frontend/constants';
-import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  LOGOUT_REASONS,
+  STATIC_URL_PATHS,
+  type ApplicationWindow,
+} from '@commercetools-frontend/constants';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -97,7 +100,7 @@ const RedirectToLogin = () => {
       : undefined;
 
     redirector({
-      to: 'login',
+      to: STATIC_URL_PATHS.LOGIN,
       origin: mcOrigin,
       location: location,
       queryParams: {

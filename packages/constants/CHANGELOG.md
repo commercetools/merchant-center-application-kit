@@ -1,5 +1,33 @@
 # @commercetools-frontend/constants
 
+## 27.12.0
+
+### Minor Changes
+
+- [#4176](https://github.com/commercetools/merchant-center-application-kit/pull/4176) [`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1) Thanks [@kterry1](https://github.com/kterry1)! - Export `PERFORMANCE_MARKS`, `PERFORMANCE_MARK_PREFIX` and `PERFORMANCE_MEASURE_SUFFIX` from `@commercetools-frontend/constants`, so `application-shell` and `sentry` share one definition of the `mc:*` loading performance marks. The inline loading-screen script in `mc-html-template` cannot import and keeps its own copy of the skeleton mark, pinned to these constants by its spec. `application-shell` still exports `PERFORMANCE_MARKS` and `TPerformanceMark`, now re-exported from `constants`.
+
+## 27.11.4
+
+## 27.11.3
+
+## 27.11.2
+
+## 27.11.1
+
+### Patch Changes
+
+- [#4165](https://github.com/commercetools/merchant-center-application-kit/pull/4165) [`0e20dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/0e20dd5d1b9e1c839d5d4d3c331cf838f64507d7) Thanks [@emmenko](https://github.com/emmenko)! - Configure menu group for local development
+
+## 27.11.0
+
+### Minor Changes
+
+- [#4164](https://github.com/commercetools/merchant-center-application-kit/pull/4164) [`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343) Thanks [@emmenko](https://github.com/emmenko)! - Support special entry points format with prefix
+
+- [#4156](https://github.com/commercetools/merchant-center-application-kit/pull/4156) [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82) Thanks [@emmenko](https://github.com/emmenko)! - Support routing for new top-level route
+
+## 27.10.0
+
 ## 27.9.6
 
 ## 27.9.5

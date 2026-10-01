@@ -9,6 +9,7 @@ import type {
 } from '@sentry/types';
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import { addPerformanceMeasurementsToTransaction } from './report-performance-marks';
 
 declare let window: ApplicationWindow;
 
@@ -113,6 +114,7 @@ export const boot = () => {
       beforeSend(event, _hint) {
         return redactUnsafeEventFields(event) as SentryErrorEvent;
       },
+      beforeSendTransaction: addPerformanceMeasurementsToTransaction,
     });
     const sentryScope = Sentry.getCurrentScope();
     sentryScope.setTag('role', 'frontend');

@@ -12,6 +12,8 @@ query FetchApplicationsMenu {
     }
     navBarGroups {
       key
+      label
+      isNew
       items {
         key
         uriPath

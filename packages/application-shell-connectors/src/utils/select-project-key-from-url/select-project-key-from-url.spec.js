@@ -5,6 +5,8 @@ describe.each`
   ${'/login'}                         | ${undefined}
   ${'/logout'}                        | ${undefined}
   ${'/account'}                       | ${undefined}
+  ${'/agent-sphere'}                  | ${undefined}
+  ${'/agent-sphere/conversations'}    | ${undefined}
   ${'/foo'}                           | ${'foo'}
   ${'/foo/bar'}                       | ${'foo'}
   ${'/foo/bar/123'}                   | ${'foo'}

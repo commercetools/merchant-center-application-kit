@@ -1,5 +1,82 @@
 # @commercetools-website/components-playground
 
+## 27.12.0
+
+### Patch Changes
+
+- Updated dependencies [[`43ed645`](https://github.com/commercetools/merchant-center-application-kit/commit/43ed645d245a5479a55c49a48f5ddb759f1b54d1)]:
+  - @commercetools-frontend/constants@27.12.0
+  - @commercetools-frontend/application-components@27.12.0
+  - @commercetools-frontend/browser-history@27.12.0
+  - @commercetools-frontend/i18n@27.12.0
+  - @commercetools-frontend/l10n@27.12.0
+
+## 27.11.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.11.4
+  - @commercetools-frontend/browser-history@27.11.4
+  - @commercetools-frontend/constants@27.11.4
+  - @commercetools-frontend/i18n@27.11.4
+  - @commercetools-frontend/l10n@27.11.4
+
+## 27.11.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.11.3
+  - @commercetools-frontend/browser-history@27.11.3
+  - @commercetools-frontend/constants@27.11.3
+  - @commercetools-frontend/i18n@27.11.3
+  - @commercetools-frontend/l10n@27.11.3
+
+## 27.11.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.11.2
+  - @commercetools-frontend/browser-history@27.11.2
+  - @commercetools-frontend/constants@27.11.2
+  - @commercetools-frontend/i18n@27.11.2
+  - @commercetools-frontend/l10n@27.11.2
+
+## 27.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`0e20dd5`](https://github.com/commercetools/merchant-center-application-kit/commit/0e20dd5d1b9e1c839d5d4d3c331cf838f64507d7)]:
+  - @commercetools-frontend/constants@27.11.1
+  - @commercetools-frontend/application-components@27.11.1
+  - @commercetools-frontend/browser-history@27.11.1
+  - @commercetools-frontend/i18n@27.11.1
+  - @commercetools-frontend/l10n@27.11.1
+
+## 27.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`fc1906c`](https://github.com/commercetools/merchant-center-application-kit/commit/fc1906c9ef094eb2577d6fd1e47586b6c9bc1343), [`4684a40`](https://github.com/commercetools/merchant-center-application-kit/commit/4684a406fb63d0a9693525d95a4ec3ad3b5a0f82)]:
+  - @commercetools-frontend/constants@27.11.0
+  - @commercetools-frontend/application-components@27.11.0
+  - @commercetools-frontend/browser-history@27.11.0
+  - @commercetools-frontend/i18n@27.11.0
+  - @commercetools-frontend/l10n@27.11.0
+
+## 27.10.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@27.10.0
+  - @commercetools-frontend/browser-history@27.10.0
+  - @commercetools-frontend/constants@27.10.0
+  - @commercetools-frontend/i18n@27.10.0
+  - @commercetools-frontend/l10n@27.10.0
+
 ## 27.9.6
 
 ### Patch Changes

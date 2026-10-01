@@ -45,6 +45,20 @@ jest.mock('../application-shell-provider/utils', () => ({
   getBrowserHistory: jest.fn(),
 }));
 
+const emittedPerformanceMarks = [];
+Object.defineProperty(globalThis.performance, 'mark', {
+  configurable: true,
+  writable: true,
+  value: (name) => {
+    emittedPerformanceMarks.push(name);
+  },
+});
+Object.defineProperty(globalThis.performance, 'measure', {
+  configurable: true,
+  writable: true,
+  value: () => {},
+});
+
 const createTestProps = (props) => ({
   environment: {
     applicationName: 'my-app',
@@ -123,9 +137,7 @@ const renderApp = (ui, options = {}) => {
   const getByLeftNavigation = () => screen.getByTestId('left-navigation');
   const waitForLeftNavigationToBeLoaded = async () => {
     await findByLeftNavigation();
-    // Wait for the loading navbar to disappear. Instead of using `waitForElementToBeRemoved`,
-    // which seems not stable enough, we wait to find the "navigation" role, which is present
-    // when the navbar is loaded.
+
     await screen.findByRole('navigation');
   };
 
@@ -233,7 +245,7 @@ afterAll(() => mockServer.close());
 
 describe.each`
   renderNodeAsChildren | route
-  ${false}             | ${'/'}
+  ${false}             | ${'/test-1/avengers'}
   ${true}              | ${'/test-1/avengers'}
 `(
   'when rendering (as children: $renderNodeAsChildren)',
@@ -331,6 +343,50 @@ describe.each`
         });
       }
     });
+
+    describe('when user navigates to "/agent-sphere" route', () => {
+      if (renderNodeAsChildren) {
+        it('should trigger a page reload when this is not the agent-sphere application (when served by proxy)', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            environment: { servedByProxy: true },
+            disableRoutePermissionCheck: true,
+          });
+          await screen.findByText('OK');
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await waitFor(() => {
+            expect(location.reload).toHaveBeenCalled();
+          });
+        });
+        it('should render the application when this is the agent-sphere application', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            environment: { entryPointUriPath: 'agent-sphere' },
+            disableRoutePermissionCheck: true,
+          });
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await screen.findByText('OK');
+          expect(location.reload).not.toHaveBeenCalled();
+        });
+      } else {
+        it('should render using the "render" prop', async () => {
+          const { history } = renderApp(null, {
+            renderNodeAsChildren,
+            disableRoutePermissionCheck: true,
+          });
+          await screen.findByText('OK');
+          await act(async () => {
+            history.push('/agent-sphere');
+          });
+          await screen.findByText('OK');
+          expect(location.reload).not.toHaveBeenCalled();
+        });
+      }
+    });
   }
 );
 
@@ -350,6 +406,22 @@ describe('when route does not contain a project key (e.g. /account)', () => {
     await screen.findByText('OK');
   });
 });
+describe('when route is project-keyless but still in a project context (e.g. /agent-sphere)', () => {
+  it('should render NavBar using the previously used project', async () => {
+    const { history, findByLeftNavigation } = renderApp(null, {
+      disableRoutePermissionCheck: true,
+    });
+    await screen.findByText('OK');
+    await act(async () => {
+      history.push('/agent-sphere');
+    });
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/agent-sphere');
+    });
+    expect(await findByLeftNavigation()).toBeInTheDocument();
+    await screen.findByText('OK');
+  });
+});
 describe('when user first visits "/" with no projectKey defined in localStorage', () => {
   it('should not render the NavBar first, then redirect to "/:projectKey" and render the NavBar', async () => {
     const { history, getByLeftNavigation } = renderApp();
@@ -358,6 +430,31 @@ describe('when user first visits "/" with no projectKey defined in localStorage'
       expect(history.location.pathname).toBe(`/test-1`);
     });
     expect(getByLeftNavigation()).toBeInTheDocument();
+  });
+});
+describe('when user first visits "/" with a project-keyless application', () => {
+  it('should redirect to the entry point instead of to a project', async () => {
+    const { history } = renderApp(null, {
+      environment: { entryPointUriPath: 'agent-sphere' },
+      disableRoutePermissionCheck: true,
+    });
+    await waitFor(() => {
+      // Redirect "/" -> "/agent-sphere"
+      expect(history.location.pathname).toBe('/agent-sphere');
+    });
+    await screen.findByText('OK');
+  });
+
+  it('should redirect to a prefixed agent-sphere entry point', async () => {
+    const { history } = renderApp(null, {
+      environment: { entryPointUriPath: 'agent-sphere/registry' },
+      disableRoutePermissionCheck: true,
+    });
+    await waitFor(() => {
+      // Redirect "/" -> "/agent-sphere/registry"
+      expect(history.location.pathname).toBe('/agent-sphere/registry');
+    });
+    await screen.findByText('OK');
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -1308,6 +1405,8 @@ describe('navbar menu links interactions', () => {
                 navBarGroups: [
                   ApplicationNavbarMenuGroupMock.random()
                     .key('2')
+                    .label(null)
+                    .isNew(null)
                     .items(
                       ApplicationNavbarMenuMock.buildList(1, {
                         labelAllLocales: [
@@ -1529,5 +1628,34 @@ describe('when user is not ct staff', () => {
         STORAGE_KEYS.ACTIVE_USER_LANGUAGE
       );
     });
+  });
+});
+
+describe('FEC-1297 loading performance marks', () => {
+  it('emits every shell-owned mc:* mark exactly once during an authenticated load', async () => {
+    const { waitForLeftNavigationToBeLoaded } = renderApp();
+    await waitForLeftNavigationToBeLoaded();
+
+    // `mc:skeleton-visible` is deliberately absent: FEC-1298 emits it from
+    // `mc-html-template`'s inline loading-screen script, not from this package.
+    expect(emittedPerformanceMarks).toEqual(
+      expect.arrayContaining([
+        'mc:intl-ready',
+        'mc:shell-chrome-mounted',
+        'mc:hydration-user',
+        'mc:hydration-project',
+        'mc:content-rendered',
+      ])
+    );
+    expect(emittedPerformanceMarks).not.toContain('mc:skeleton-visible');
+
+    const counts = emittedPerformanceMarks.reduce(
+      (acc, name) => ({ ...acc, [name]: (acc[name] ?? 0) + 1 }),
+      {}
+    );
+    const duplicated = Object.entries(counts).filter(([, count]) => count > 1);
+
+    // Names the offenders on failure, rather than just reporting a count.
+    expect(duplicated).toEqual([]);
   });
 });
