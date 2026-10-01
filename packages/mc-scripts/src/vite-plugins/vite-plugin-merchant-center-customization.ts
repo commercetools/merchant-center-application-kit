@@ -35,7 +35,6 @@ const vitePluginCustomApplication = (
      * @type {import('vite').IndexHtmlTransformHook}
      */
     transformIndexHtml(rawHtml, _ctx) {
-      const compiledHeaders = processHeaders(applicationConfig);
       const enhancedLocalEnv = Object.assign(
         {},
         applicationConfig.env,
@@ -50,6 +49,19 @@ const vitePluginCustomApplication = (
             }
           : {}
       );
+
+      // Hash the env that actually gets injected. Hashing `applicationConfig`
+      // instead put a `script-src` entry in the CSP for a script that was
+      // never served whenever `MC_API_URL` overrode `mcApiUrl`, and the
+      // browser then blocked the only script defining `window.app`.
+      //
+      // Only reachable outside `env: 'development'`, where `processHeaders`
+      // emits real hashes rather than `'unsafe-inline'` — in practice the
+      // prod-local dev server.
+      const compiledHeaders = processHeaders({
+        ...applicationConfig,
+        env: enhancedLocalEnv,
+      });
 
       // Resolve the placeholders of the `index.html` (template) file, before serving it.
       const html = replaceHtmlPlaceholders(rawHtml, {
