@@ -8,6 +8,9 @@ export type TState = {
   isLoading: boolean;
   messages?: TMessageTranslations;
   error?: Error;
+  // The locale `messages` belong to. Lags behind the requested locale while a
+  // second load is in flight.
+  loadedLocale?: string;
 };
 export type THookOptions = {
   locale?: string;
@@ -30,14 +33,30 @@ const useAsyncIntlMessages = ({ locale, loader }: THookOptions): TState => {
 
     async function load(_locale: string) {
       try {
-        if (!_isUnmounting) {
-          const messages = await loader(_locale);
-          setState({ isLoading: false, messages });
-        }
+        const messages = await loader(_locale);
+        // Checked after the await, not before it. The cleanup runs on every
+        // `locale` change, not only on unmount, so a load the effect has
+        // already superseded would otherwise still commit its result. Since
+        // `loadedLocale` is the sole gate on reporting any locale, a slow
+        // loader landing an older locale after a newer one could leave the
+        // pair permanently disagreeing with nothing to retrigger it.
+        if (_isUnmounting) return;
+        setState({ isLoading: false, messages, loadedLocale: _locale });
       } catch (error) {
-        if (error instanceof Error) {
-          setState({ isLoading: false, error });
-        }
+        if (_isUnmounting) return;
+        // Carry the locale on the error path too. The pair check below is
+        // keyed on it, so omitting it here means a failed load can never
+        // satisfy the check and the consumer never receives a locale again.
+        //
+        // Every rejection reports, including one that is not an `Error`.
+        // Reporting only `instanceof Error` left anything else — a thrown
+        // string, a rejection with no reason — setting no state at all, so the
+        // hook stayed loading for good and the shell never painted.
+        setState({
+          isLoading: false,
+          error: error instanceof Error ? error : new Error(String(error)),
+          loadedLocale: _locale,
+        });
       }
     }
 

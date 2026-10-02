@@ -3,6 +3,19 @@ import type { TSupportedLocale } from '../supported-locales';
 import supportedLocales from /* preval */ '../supported-locales';
 import type { Currencies, LocalizedString } from './types';
 
+/**
+ * Resolves any BCP-47 tag to the catalogue locale that serves it.
+ *
+ * Prefer this over `getSupportedLocale` when the tag comes from outside the
+ * supported set — a browser tag, say. `getSupportedLocale` tests
+ * `browserLocale.startsWith(supportedLocale)` against a list carrying `fr-FR`,
+ * so `fr`, `fr-CA`, `fr-CH` and `fr-BE` all fail it and degrade to `en`, where
+ * this maps them to the French catalogue they belong to.
+ *
+ * Mapping matters wherever the result is reported as a locale: an unmapped tag
+ * (`en-US`) handed to react-intl next to the catalogue it resolves to (`en`)
+ * makes every message miss.
+ */
 export const mapLocaleToIntlLocale = (locale: string): TSupportedLocale => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
