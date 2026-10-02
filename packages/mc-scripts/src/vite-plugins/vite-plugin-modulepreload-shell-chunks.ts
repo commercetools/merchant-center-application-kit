@@ -37,6 +37,10 @@ type Options = {
 // further ~172KB `runtime` chunk, which would put ~1.5MB of high-priority
 // preload in parallel with the 2.3MB entry that is the real critical path.
 // Preloading it is a separate decision that needs a throttled measurement.
+//
+// When adding, renaming or removing a root here, update the assertion step in
+// `.github/workflows/main.yml` to match — it checks these names by hand, so a
+// drift makes CI pass or fail for the wrong reason.
 const DEFAULT_ROOTS = [
   'navbar',
   'project-container',
@@ -81,6 +85,10 @@ export function resolveShellChunks(
   };
 
   roots.forEach((root) => {
+    // Prefix, not exact: Rollup suffixes chunk names it has to disambiguate,
+    // so `navbar` has to match `navbar2`. The cost is that an app's own chunk
+    // named `navbar-…` would be preloaded too — a few KB of wasted hint on a
+    // page that is about to load the real navbar anyway.
     const hits = chunks.filter((chunk) => chunk.name.startsWith(root));
     if (hits.length === 0) {
       missingRoots.push(root);

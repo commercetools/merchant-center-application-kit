@@ -6,7 +6,7 @@ Emit `<link rel="modulepreload">` for the authenticated shell chunks in the
 built `index.html`, so they are fetched alongside the entry instead of waiting
 for it to execute and discover them. Measured on a Vite-built Merchant Center
 app, the shell chunks finished 455ms after the boot locale chunks, which is the
-delay this removes.
+delay this targets. The after measurement is still to come.
 
 Vite's `build.modulePreload` was already enabled by default, but it only
 preloads the entry's _static_ cross-chunk imports and our entry has none, so no

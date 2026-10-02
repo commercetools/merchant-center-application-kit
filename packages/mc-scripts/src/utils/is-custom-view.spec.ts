@@ -24,6 +24,22 @@ describe('isCustomView', () => {
     await expect(isCustomView()).resolves.toBe(false);
   });
 
+  // Matching against the whole path would read this as a Custom View and
+  // silently strip the optimisation from an app that should get it.
+  it('is false for a Custom Application under a custom-view-ish directory', async () => {
+    mockedGetConfigPath.mockResolvedValue(
+      '/work/custom-view-config-demo/custom-application-config.mjs'
+    );
+    await expect(isCustomView()).resolves.toBe(false);
+  });
+
+  it('is true for a Custom View under a custom-application-ish directory', async () => {
+    mockedGetConfigPath.mockResolvedValue(
+      '/work/custom-application-config-demo/custom-view-config.mjs'
+    );
+    await expect(isCustomView()).resolves.toBe(true);
+  });
+
   it('recognises every extension cosmiconfig searches for', async () => {
     for (const ext of ['js', 'cjs', 'mjs', 'ts']) {
       mockedGetConfigPath.mockResolvedValue(`/app/custom-view-config.${ext}`);

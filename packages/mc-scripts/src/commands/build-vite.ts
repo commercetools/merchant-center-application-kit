@@ -151,7 +151,10 @@ async function run() {
 
       // Custom Views import from the same package, so their builds emit these
       // chunks and would carry ~128KB of preload hints for a navbar and
-      // project container `CustomViewShell` never renders.
+      // project container `CustomViewShell` never renders. Decided from which
+      // config file is present: `getConfigPath` only resolves a path, and
+      // `loadConfig` rejects a project carrying both, so the two cases cannot
+      // overlap and this stays cheap enough for a build-time decision.
       !isCustomViewBuild && pluginModulePreloadShellChunks(),
 
       shouldAnalyze &&
