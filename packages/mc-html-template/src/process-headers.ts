@@ -6,8 +6,8 @@ import {
 } from '@commercetools-frontend/constants';
 // https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros
 import htmlScripts from /* preval */ './load-html-scripts';
+import createApplicationEnvironmentScript from './utils/create-application-environment-script';
 import createAssetHash from './utils/create-asset-hash';
-import sanitizeAppEnvironment from './utils/sanitize-app-environment';
 
 type TDirectiveValue = string | string[] | undefined;
 type TDirective = Record<string, TDirectiveValue>;
@@ -65,9 +65,7 @@ const processHeaders = (
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
   const htmlScriptsHashes = [
     createAssetHash(htmlScripts.loadingScreen),
-    createAssetHash(
-      `window.app = ${sanitizeAppEnvironment(applicationConfig.env)};`
-    ),
+    createAssetHash(createApplicationEnvironmentScript(applicationConfig.env)),
     createAssetHash(htmlScripts.publicPath),
   ];
 
