@@ -96,6 +96,10 @@ body {
   grid-column: 1 / 2;
   width: 80px;
   background: hsl(240, 66%, 19%);
+
+  /* Matches the React <NavBar> on the outgoing page, so the sidebar morphs in
+     place instead of crossfading. See the block at the end of this file. */
+  view-transition-name: mc-sidebar;
 }
 
 .loading-skeleton--menu-expanded .loading-skeleton__sidebar {
@@ -202,6 +206,9 @@ body {
   padding: 0 40px;
   background: #fff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+
+  /* Matches the React <AppBar> on the outgoing page. */
+  view-transition-name: mc-header;
 }
 
 .loading-skeleton__header-placeholder {
@@ -218,15 +225,26 @@ body {
   align-items: center;
   grid-row: 3 / 4;
   grid-column: 2 / 3;
+
+  /* Matches the React <MainContainer> on the outgoing page, so the content
+     area is the only region that visibly transitions. */
+  view-transition-name: mc-content;
 }
 
 /* ==========================================================================
    Cross-document view transitions
 
    Opts the document in so cross-app navigation crossfades instead of flashing
-   a blank page. No `view-transition-name` here: a name must exist on both the
-   outgoing and incoming documents to morph an element, and the skeleton is
-   already gone by the time the outgoing page navigates away.
+   a blank page.
+
+   A name must exist on both the outgoing and incoming documents for the
+   browser to morph an element rather than crossfade it. The outgoing page has
+   already replaced this skeleton with the React chrome by the time it
+   navigates away, so the names are paired across the two: the skeleton regions
+   above carry `mc-sidebar`, `mc-header` and `mc-content`, and the matching
+   React components (`<NavBar>`, `<AppBar>`, `<MainContainer>`) carry the same
+   names in `application-shell`. Renaming one side without the other silently
+   falls back to a whole-page crossfade.
    ========================================================================== */
 
 @view-transition {
