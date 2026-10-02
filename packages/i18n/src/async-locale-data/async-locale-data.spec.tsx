@@ -76,6 +76,31 @@ describe('rendering', () => {
       });
       expect(results[results.length - 1].locale).toBe('en-US');
     });
+
+    // A loader rejecting with something that is not an `Error` used to set no
+    // state at all, so the hook stayed loading for good and the shell never
+    // painted.
+    it('should settle on a rejection that is not an Error', async () => {
+      mocked(loadI18n).mockImplementation(
+        jest.fn(() => Promise.reject('just a string'))
+      );
+      const results: TRenderFunctionResult[] = [];
+      render(
+        <AsyncLocaleData
+          {...createTestProps({
+            children: (result: TRenderFunctionResult) => {
+              results.push(result);
+              return null;
+            },
+          })}
+        />
+      );
+
+      await waitFor(() => {
+        expect(results[results.length - 1].isLoading).toBe(false);
+      });
+      expect(results[results.length - 1].locale).toBe('en-US');
+    });
   });
 
   describe('if there is no error', () => {
