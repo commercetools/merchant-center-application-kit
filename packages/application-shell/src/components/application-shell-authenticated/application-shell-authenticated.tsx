@@ -4,6 +4,7 @@ import {
   type RefObject,
   type SyntheticEvent,
   useRef,
+  useState,
 } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -132,27 +133,18 @@ export const ApplicationShellAuthenticated = (
     `user.language`, so the i18n load can start without waiting for it.
 
     The last language this browser saw wins over `navigator.language`: a
-    returning user's own setting is a far better predictor than their browser
-    chrome, and it is the difference between hitting the guess and paying for a
+    returning user's own setting predicts it far better than their browser
+    chrome, which is the difference between hitting the guess and paying for a
     second catalogue load. Falls back to the browser tag on a first visit or a
     blocked store.
 
-    Mapped from the raw tag directly rather than through `getBrowserLocale`:
-    that helper runs `getSupportedLocale`, which tests
-    `browserLocale.startsWith(supportedLocale)`, and the supported list carries
-    `fr-FR` — so `fr`, `fr-CA`, `fr-CH` and `fr-BE` all fail it and come back
-    as `en`. Mapping its output would hint the English catalogue to French
-    browsers and count them as misses in the hit/miss marks.
-
-    Mapping is required either way: an unmapped tag (`en-US`) reported next to
-    the catalogue it resolves to (`en`) makes react-intl miss every message.
-
-    Computed per render rather than at module scope: it is two string
-    operations, and a module-scope constant is evaluated at import, which no
-    test can set up for.
+    Resolved once per mount. Re-reading it per render would let a stored value
+    written mid-session move the hint out from under a load already in flight.
   */
-  const localeHint = mapLocaleToIntlLocale(
-    readLastUserLanguage() ?? window.navigator?.language ?? 'en'
+  const [localeHint] = useState(() =>
+    mapLocaleToIntlLocale(
+      readLastUserLanguage() ?? window.navigator?.language ?? 'en'
+    )
   );
   /*
     The first paint waits for the user's own catalogue, so a wrong guess never

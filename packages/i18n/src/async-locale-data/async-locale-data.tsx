@@ -89,8 +89,15 @@ const useAsyncLocaleData = ({
   }
 
   return {
+    // Reports the *first* load only. On a later locale change it stays
+    // `false`, because `locale` and `messages` keep serving the previous
+    // consistent pair until the new one resolves — withholding them instead
+    // would blank the consumer's tree mid-session. To tell that a change is in
+    // flight, compare `locale` against the one you asked for.
     isLoading:
       messagesFromKitResult.isLoading || applicationMessagesResult.isLoading,
+    // The locale `messages` belong to, which during a change is still the
+    // previous one rather than the locale you passed in.
     locale: lastConsistentPair.current.locale,
     messages: lastConsistentPair.current.messages ?? {},
     error: messagesFromKitResult.error ?? applicationMessagesResult.error,
