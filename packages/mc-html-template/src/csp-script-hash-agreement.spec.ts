@@ -94,6 +94,8 @@ describe('CSP hash agreement guard', () => {
     );
   });
 
+  // The control for the case above: it proves that assertion fails because the
+  // two envs differ, not because the diverged env broke one of the helpers.
   it('lists it again once both sides use the same env', () => {
     const config = {
       ...applicationConfig,
