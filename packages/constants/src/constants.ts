@@ -273,6 +273,19 @@ export type ApplicationRuntimeEnvironment = {
   // Optional properties. To use them, pass them to the `additionalEnv` object of the application config.
   ldClientSideId?: string;
   trackingSentry?: string;
+  /**
+   * Renders the shell chrome (grid, AppBar, NavBar) before the locale data is
+   * available, instead of holding it behind `ConfigureIntlProvider`.
+   *
+   * Read from `window.app` rather than a feature flag on purpose: the flag
+   * provider (`SetupFlopFlipProvider`) is mounted below the locale boundary
+   * this switch decides, so no flag is readable at that point.
+   *
+   * Keep this off until the proxy prefetch endpoints are deployed. Without
+   * prefetched `user.language`, non-English users see a brief English flash
+   * before the real locale resolves.
+   */
+  enableEarlyShellRendering?: boolean;
   // Development-only configuration
   __DEVELOPMENT__?: ApplicationRuntimeEnvironmentForDevelopment;
 };
