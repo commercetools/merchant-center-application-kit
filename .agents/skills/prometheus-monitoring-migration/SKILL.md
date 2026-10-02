@@ -103,7 +103,6 @@ This static `job` relabeling is a bridge — it keeps existing recording rules a
 ```yaml
 groups:
   - name: <service>-<concern>
-    partial_response_strategy: abort
     rules:
       - alert: AlertName
         expr: <promql>
@@ -116,7 +115,7 @@ groups:
           summary: 'Short description'
           description: 'Detailed description with {{ $value }}'
           runbook: 'https://...'
-          dashboardUrl: 'https://...'
+          dashboard: 'https://...'
 ```
 
 3. **Template the PrometheusRule** — the Helm template globs all rule files:
