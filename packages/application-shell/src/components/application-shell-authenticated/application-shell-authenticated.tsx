@@ -296,11 +296,15 @@ export const ApplicationShellAuthenticated = (
                   also renders on the unauthenticated, Custom View and error
                   surfaces. */}
                     <PerformanceMark mark={PERFORMANCE_MARKS.INTL_READY} />
-                    {normalizedUser?.language ? (
+                    {/* Measured against `user.language`, not
+                    `normalizedUser.language`: the latter carries the staff-bar
+                    override, so every commercetools staff member using it would
+                    register as a miss and skew a metric that is about real
+                    users. */}
+                    {user?.language ? (
                       <PerformanceMark
                         mark={
-                          localeHint ===
-                          mapLocaleToIntlLocale(normalizedUser.language)
+                          localeHint === mapLocaleToIntlLocale(user.language)
                             ? PERFORMANCE_MARKS.LOCALE_HINT_HIT
                             : PERFORMANCE_MARKS.LOCALE_HINT_MISS
                         }

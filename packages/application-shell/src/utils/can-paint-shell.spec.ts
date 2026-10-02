@@ -64,6 +64,22 @@ describe('canPaintShell', () => {
       ).toBe(true);
     });
 
+    // `user.language` is a free string in the schema, so a regional tag is
+    // possible. `de-AT` resolves to the `de` catalogue the hint already
+    // loaded: holding here would force a second load of the catalogue that is
+    // already on screen, and the hit/miss mark would still call it a hit.
+    it('paints when a regional tag resolves to the catalogue already loaded', () => {
+      expect(
+        canPaintShell({ ...loaded, loadedLocale: 'de', userLanguage: 'de-AT' })
+      ).toBe(true);
+    });
+
+    it('still holds when a regional tag resolves to a different catalogue', () => {
+      expect(
+        canPaintShell({ ...loaded, loadedLocale: 'en', userLanguage: 'de-AT' })
+      ).toBe(false);
+    });
+
     it('paints when the user has no language at all', () => {
       expect(
         canPaintShell({
