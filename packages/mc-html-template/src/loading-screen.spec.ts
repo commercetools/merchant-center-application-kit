@@ -597,3 +597,34 @@ describe('onAppLoaded reveal gate', () => {
     expect(appLoader()).toBeNull();
   });
 });
+
+describe('named view transitions', () => {
+  const skeletonStyles = fs.readFileSync(
+    path.join(__dirname, '../html-styles/loading-screen.css'),
+    'utf8'
+  );
+
+  // The browser only morphs an element when the same `view-transition-name`
+  // exists on both the outgoing and the incoming document. The outgoing page
+  // is React chrome, the incoming page is this skeleton, so the names live in
+  // two packages and nothing links them at build time. These assertions are
+  // the link: renaming one side without the other fails here rather than
+  // silently degrading to a whole-page crossfade.
+  it.each([
+    ['sidebar', 'mc-sidebar'],
+    ['header', 'mc-header'],
+    ['content', 'mc-content'],
+  ])('names the skeleton %s region "%s"', (region, name) => {
+    const rule = skeletonStyles
+      .split('}')
+      .find((chunk) => chunk.includes(`.loading-skeleton__${region} {`));
+
+    expect(rule).toBeDefined();
+    expect(rule).toContain(`view-transition-name: ${name};`);
+  });
+
+  it('still opts the document into cross-document transitions', () => {
+    expect(skeletonStyles).toContain('@view-transition');
+    expect(skeletonStyles).toContain('navigation: auto;');
+  });
+});

@@ -41,6 +41,11 @@ const AppBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        /* Matches '.loading-skeleton__header' in the 'mc-html-template'
+           skeleton, so the header morphs in place across a cross-app
+           navigation. See the sidebar note in 'menu-items.styles.ts'. */
+        view-transition-name: mc-header;
       `}
       data-test="top-navigation"
     >
