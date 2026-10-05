@@ -40,8 +40,8 @@ minimumReleaseAgeExclude:
   - postcss@8.5.10 || 8.5.12 || 8.5.18 || 8.5.23
   # Renovate security update: sharp@0.35.0
   - sharp@0.35.0
-  # Renovate security update: qs@6.15.2
-  - qs@6.15.2
+  # Renovate security update: qs@6.15.2 || 6.16.0
+  - qs@6.15.2 || 6.16.0
   # Renovate security update: vite@6.4.3
   - vite@6.4.3
   # Renovate security update: yaml@2.8.3
@@ -292,7 +292,7 @@ catalogs:
     '@vercel/node': 5.9.7
     dotenv-flow: 4.1.0
     graphql-anywhere: 4.2.8
-    qs: 6.15.3
+    qs: 6.16.0
     vercel: 24.2.5
 
   apollo:
