@@ -4,12 +4,23 @@ name: Publish Release
 # - Creates GitHub releases
 # - Publishes canary releases if no official release was created
 # - Builds playground application
+# - Publishes preview releases from PR branches when called with `mode: preview`
+#
+# Previews live in this file on purpose. npm trusted publishing is configured
+# per workflow file, and official releases already publish from here, so a
+# preview publish from another file may not match that configuration.
 
 on:
   workflow_call:
+    inputs:
+      mode:
+        description: "`release` (default) for official releases, `preview` for PR preview publishes"
+        type: string
+        default: release
 
 jobs:
   publish-release:
+    if: inputs.mode != 'preview'
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -110,3 +121,124 @@ jobs:
           MC_API_URL: ${{ secrets.MC_API_URL }}
           CTP_INITIAL_PROJECT_KEY: ${{ secrets.CYPRESS_PROJECT_KEY }}
           HOST_GCP_STAGING: ${{ secrets.HOST_GCP_STAGING }}
+
+  publish-preview:
+    if: inputs.mode == 'preview'
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      # Get GitHub token via the CT Changesets App
+      - name: Generate GitHub token (via CT Changesets App)
+        id: generate_github_token
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+        with:
+          app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
+          private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
+
+      - name: Get PR branch
+        id: pr
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const branch = pr.data.head.ref;
+            const sanitized = branch.replace(/[^a-zA-Z0-9-]/g, '-').slice(0, 40);
+            core.setOutput('ref', branch);
+            core.setOutput('sha', pr.data.head.sha);
+            core.setOutput('tag', sanitized);
+
+      - name: React to comment
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket',
+            });
+
+      - name: Checkout PR branch
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ steps.pr.outputs.ref }}
+          token: ${{ steps.generate_github_token.outputs.token }}
+
+      # Ensure we are using valid node version for npm trusted publishing AFTER checkout
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24.19.0"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm >=11.5.1 for OIDC support (npm@12 has a broken sigstore dependency)
+      - name: Update npm
+        run: npm install -g npm@11
+
+      - name: Verify npm version
+        run: npm --version
+
+      - name: Installing dependencies and building packages
+        uses: ./.github/actions/ci
+
+      # Configure npm registry for trusted publishing (OIDC)
+      # This must run AFTER the CI action to override the Node setup with registry config
+      # https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - name: Setup npm registry for publishing
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24.19.0"
+          registry-url: "https://registry.npmjs.org"
+
+      # Publish logic lives in scripts/preview-publish.sh (not inline) so
+      # that changes are picked up from the checked-out PR branch.  GitHub
+      # resolves issue_comment-triggered workflow YAML from the default
+      # branch, but scripts come from the checkout.
+      - name: Publishing preview releases to npm registry
+        id: publish
+        run: ./scripts/preview-publish.sh
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          BRANCH_NAME: ${{ steps.pr.outputs.ref }}
+
+      - name: Comment with install instructions
+        if: success()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            const version = '${{ steps.publish.outputs.version }}';
+            const sha = '${{ steps.pr.outputs.sha }}'.slice(0, 7);
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                `### 🚀 Preview published`,
+                '',
+                `**Version:** \`${version}\``,
+                `**Commit:** \`${sha}\``,
+                '',
+                '```bash',
+                `pnpm add @commercetools-frontend/application-shell@${version}`,
+                `pnpm add @commercetools-frontend/mc-scripts@${version}`,
+                '```',
+              ].join('\n'),
+            });
+
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `### ❌ Preview publish failed\n\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
+            });
