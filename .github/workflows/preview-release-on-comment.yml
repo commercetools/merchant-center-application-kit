@@ -8,7 +8,11 @@ on:
   workflow_call:
 
 jobs:
-  publish-preview:
+  # The job ID is `release` on purpose: it is what the last working preview
+  # publishes ran with (2026-09-08). Renaming it to `publish-preview` in #4148
+  # coincided with every npm publish since failing with E404, so it is
+  # restored while that is investigated.
+  release:
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
