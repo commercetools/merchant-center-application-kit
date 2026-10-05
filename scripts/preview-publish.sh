@@ -21,6 +21,42 @@ set -euo pipefail
 # ── Guard: prevent preconstruct dev from clobbering builds ───────────
 export SKIP_POSTINSTALL_DEV_SETUP=1
 
+# ── TEMPORARY diagnostics: why does the npm publish 404? ─────────────
+# A 404 on PUT is how npm reports an unauthorized write. When the OIDC token
+# exchange fails, npm only says why at verbose level, and `changeset publish`
+# hides that output, so print the relevant lines of npm's debug log on exit.
+export NPM_CONFIG_LOGLEVEL=verbose
+
+dump_npm_logs() {
+  for f in "${HOME}"/.npm/_logs/*.log; do
+    [ -f "$f" ] || continue
+    echo "::group::npm debug log (filtered): $f"
+    grep -iE 'oidc|trusted|provenance|sigstore|id.token|exchange|http fetch (PUT|POST)|404|403|401|unauthor|auth' "$f" \
+      | sed -E 's/eyJ[A-Za-z0-9._-]+/[jwt-redacted]/g; s/([Bb]earer) [^ ]+/\1 [redacted]/g' \
+      | head -80 || true
+    echo "::endgroup::"
+  done
+}
+trap dump_npm_logs EXIT
+
+# Print the non-secret claims of the OIDC token npm would use.
+if [ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]; then
+  OIDC_TOKEN=$(curl -sS -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+    "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org" \
+    | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>process.stdout.write(JSON.parse(s).value))')
+  echo "::add-mask::${OIDC_TOKEN}"
+  echo "::group::OIDC token claims"
+  echo "${OIDC_TOKEN}" | node -e '
+    let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
+      const c=JSON.parse(Buffer.from(s.trim().split(".")[1],"base64url").toString());
+      const keys=["sub","aud","ref","ref_type","event_name","repository","workflow","workflow_ref","job_workflow_ref","environment","runner_environment","repository_visibility"];
+      console.log(JSON.stringify(Object.fromEntries(keys.map(k=>[k,c[k]])),null,2));
+    })'
+  echo "::endgroup::"
+else
+  echo "ACTIONS_ID_TOKEN_REQUEST_URL is NOT set: no OIDC token is available to this step"
+fi
+
 # ── Compute preview tag from branch name ─────────────────────────────
 PREVIEW_TAG=$(echo "$BRANCH_NAME" | sed -e 's/^preview\///' | sed -e 's/[^a-zA-Z0-9-]/-/g')
 echo "Preview tag: ${PREVIEW_TAG}"
