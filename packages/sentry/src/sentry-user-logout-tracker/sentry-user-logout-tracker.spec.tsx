@@ -6,17 +6,17 @@ import SentryUserLogoutTracker from './sentry-user-logout-tracker';
 
 declare let window: ApplicationWindow;
 
-jest.mock('@sentry/react');
+// An explicit factory: the v10 package exports are not reassignable, so the
+// mock has to be in place before the module is imported.
+jest.mock('@sentry/react', () => ({
+  getCurrentScope: jest.fn(),
+}));
 
 describe('SentryUserLogoutTracker', () => {
   beforeEach(() => {
     // Reset mocks and window state before each test
     jest.clearAllMocks();
     delete window.app?.trackingSentry;
-    // Mock getCurrentScope to return an object with a clear method
-    (Sentry.getCurrentScope as jest.Mock) = jest.fn(() => ({
-      clear: jest.fn(),
-    }));
   });
 
   describe('when Sentry tracking is enabled', () => {

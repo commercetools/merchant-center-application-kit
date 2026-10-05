@@ -1,12 +1,17 @@
-import * as Sentry from '@sentry/react';
-// eslint-disable-next-line import/order
-import { globalHandlersIntegration } from '@sentry/browser'; // Must import after `@sentry/react`
 import type {
+  Breadcrumb,
   Extra,
   Extras,
   Event,
   ErrorEvent as SentryErrorEvent,
-} from '@sentry/types';
+  TransactionEvent,
+} from '@sentry/core';
+import * as Sentry from '@sentry/react';
+// eslint-disable-next-line import/order
+import {
+  globalHandlersIntegration,
+  graphqlClientIntegration,
+} from '@sentry/browser'; // Must import after `@sentry/react`
 import history from '@commercetools-frontend/browser-history';
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { addPerformanceMeasurementsToTransaction } from './report-performance-marks';
@@ -79,6 +84,47 @@ export const redactUnsafeEventFields = (event: Event) => {
   });
 };
 
+// The v8 SDK sent no IP itself; Sentry inferred it server-side (it feeds the
+// geography shown on events). v10 tells Sentry `infer_ip: 'never'` unless
+// `sendDefaultPii` is set, which would also send cookies, headers and bodies.
+// So we opt into the inference on its own, as the SDK does for `userInfo`.
+const AUTO_IP_ADDRESS = '{{auto}}';
+
+// `graphqlClientIntegration` attaches the query text to breadcrumbs and spans
+// by default, even without `sendDefaultPii`. A query with an inline literal
+// could carry personal data, so we keep the operation name and drop the text.
+const GRAPHQL_DOCUMENT = 'graphql.document';
+
+const omitGraphqlDocument = <T extends Record<string, unknown> | undefined>(
+  data: T
+): T => {
+  if (!data || !(GRAPHQL_DOCUMENT in data)) return data;
+  const { [GRAPHQL_DOCUMENT]: _document, ...rest } = data;
+  return rest as T;
+};
+
+const removeGraphqlDocumentFromBreadcrumb = (breadcrumb: Breadcrumb) =>
+  breadcrumb.data
+    ? { ...breadcrumb, data: omitGraphqlDocument(breadcrumb.data) }
+    : breadcrumb;
+
+const removeGraphqlDocumentFromTransaction = (event: TransactionEvent) => {
+  const trace = event.contexts?.trace;
+  return {
+    ...event,
+    contexts: trace
+      ? {
+          ...event.contexts,
+          trace: { ...trace, data: omitGraphqlDocument(trace.data) },
+        }
+      : event.contexts,
+    spans: event.spans?.map((span) => ({
+      ...span,
+      data: omitGraphqlDocument(span.data),
+    })),
+  };
+};
+
 export const boot = () => {
   if (window.app.trackingSentry && window.app.trackingSentry !== 'null') {
     Sentry.init({
@@ -102,6 +148,9 @@ export const boot = () => {
         Sentry.reactRouterV5BrowserTracingIntegration({
           history,
         }),
+        // Names GraphQL `http.client` spans after the operation instead of
+        // `POST https://mc-api.../graphql`.
+        graphqlClientIntegration({ endpoints: [/\/graphql$/] }),
       ],
       // Sending 5% of transactions. We can adjust that as we see a need to.
       // Generally we need to find a balance between performance and data volume.
@@ -114,7 +163,19 @@ export const boot = () => {
       beforeSend(event, _hint) {
         return redactUnsafeEventFields(event) as SentryErrorEvent;
       },
-      beforeSendTransaction: addPerformanceMeasurementsToTransaction,
+      beforeBreadcrumb: removeGraphqlDocumentFromBreadcrumb,
+      beforeSendTransaction: (event) =>
+        removeGraphqlDocumentFromTransaction(
+          addPerformanceMeasurementsToTransaction(event)
+        ),
+      _metadata: { sdk: { settings: { infer_ip: 'auto' } } },
+    });
+    Sentry.getClient()?.on('beforeSendSession', (session) => {
+      if ('aggregates' in session) {
+        session.attrs = { ip_address: AUTO_IP_ADDRESS, ...session.attrs };
+      } else if (session.ipAddress === undefined) {
+        session.ipAddress = AUTO_IP_ADDRESS;
+      }
     });
     const sentryScope = Sentry.getCurrentScope();
     sentryScope.setTag('role', 'frontend');
