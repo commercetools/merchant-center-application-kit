@@ -14,6 +14,7 @@ import type { TApplicationContext } from '@commercetools-frontend/application-sh
 import { STATIC_URL_PATHS } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
+import { setupViewTransitionNames } from '../../utils';
 import version from '../../version';
 import ApplicationShellAuthenticated from '../application-shell-authenticated/application-shell-authenticated';
 import ApplicationShellProvider from '../application-shell-provider';
@@ -71,6 +72,9 @@ const ApplicationShell = (props: TApplicationShellProps) => {
     props.onRegisterErrorListeners?.({
       dispatch: internalReduxStore.dispatch,
     });
+    // Names the shell chrome for cross-document view transitions, but only
+    // while the outgoing page is captured. See `setupViewTransitionNames`.
+    return setupViewTransitionNames();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run only once, when component mounts
 

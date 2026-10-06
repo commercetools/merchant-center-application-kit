@@ -362,7 +362,7 @@ export const ApplicationShellAuthenticated = (
                           {mainContent}
                         </ConfigureIntlProvider>
                       ) : (
-                        <MainContainer role="main">
+                        <MainContainer role="main" data-mc-content>
                           <ApplicationLoader />
                         </MainContainer>
                       ),
