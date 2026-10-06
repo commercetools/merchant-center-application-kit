@@ -96,10 +96,6 @@ body {
   grid-column: 1 / 2;
   width: 80px;
   background: hsl(240, 66%, 19%);
-
-  /* Matches the React <NavBar> on the outgoing page, so the sidebar morphs in
-     place instead of crossfading. See the block at the end of this file. */
-  view-transition-name: mc-sidebar;
 }
 
 .loading-skeleton--menu-expanded .loading-skeleton__sidebar {
@@ -225,10 +221,6 @@ body {
   align-items: center;
   grid-row: 3 / 4;
   grid-column: 2 / 3;
-
-  /* Matches the React <MainContainer> on the outgoing page, so the content
-     area is the only region that visibly transitions. */
-  view-transition-name: mc-content;
 }
 
 /* ==========================================================================
@@ -240,15 +232,26 @@ body {
    A name must exist on both the outgoing and incoming documents for the
    browser to morph an element rather than crossfade it. The outgoing page has
    already replaced this skeleton with the React chrome by the time it
-   navigates away, so the names are paired across the two: the skeleton regions
-   above carry `mc-sidebar`, `mc-header` and `mc-content`, and the matching
-   React components (`<NavBar>`, `<AppBar>`, `<MainContainer>`) carry the same
-   names in `application-shell`. Renaming one side without the other silently
-   falls back to a whole-page crossfade.
+   navigates away, so the name is paired across the two: the header region
+   above carries `mc-header`, and so does `<AppBar>` in `application-shell`.
+   Renaming one side without the other silently falls back to a whole-page
+   crossfade.
+
+   Only the header is named. `view-transition-name` makes an element a
+   stacking context, and naming the sidebar and content area trapped the
+   navbar's fly-out submenus and the content portals inside them. The header
+   already carried `z-index: 20000`, so naming it changes no layering.
    ========================================================================== */
 
 @view-transition {
   navigation: auto;
+}
+
+/* Snap rather than crossfade. The outgoing page shows the React header and the
+   incoming one shows this skeleton, so animating between them would visibly
+   dissolve one into the other. A zero duration keeps the header anchored. */
+::view-transition-group(mc-header) {
+  animation-duration: 0s;
 }
 
 /* Neutralises the animation, not the transition: switching navigation off

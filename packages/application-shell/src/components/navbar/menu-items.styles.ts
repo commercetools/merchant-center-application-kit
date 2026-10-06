@@ -86,12 +86,6 @@ const LeftNavigation = styled.nav`
   height: 100%;
   grid-template-rows: 56px 1fr;
   transition: ${NAVBAR.leftNavigationTransition};
-
-  /* Matches '.loading-skeleton__sidebar' in the 'mc-html-template' skeleton.
-     The same name on the outgoing React chrome and the incoming skeleton lets
-     the browser morph the sidebar in place across a cross-app navigation,
-     instead of crossfading the whole page. */
-  view-transition-name: mc-sidebar;
 `;
 
 const TextLinkSublistWrapper = styled.div`
