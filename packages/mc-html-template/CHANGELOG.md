@@ -1,5 +1,25 @@
 # @commercetools-frontend/mc-html-template
 
+## 27.13.0
+
+### Patch Changes
+
+- [#4149](https://github.com/commercetools/merchant-center-application-kit/pull/4149) [`cb74ea4`](https://github.com/commercetools/merchant-center-application-kit/commit/cb74ea4573ec203b92a429847ae50307cab385bd) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - Compose the inline application-environment script in one place.
+
+  That script is allowed by a SHA-256 hash in `script-src`, and the hash is
+  computed over its exact bytes. `process-headers` and `replace-html-placeholders`
+  each hand-wrote their own copy of the script body, so any edit had to land in
+  both and a miss would silently CSP-block the only script that defines
+  `window.app`. Both now consume `createApplicationEnvironmentScript`.
+
+  No behaviour change: the CSP snapshot is unchanged, and a new test asserts the
+  hash `process-headers` computes matches the bytes `replace-html-placeholders`
+  injects.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@27.13.0
+  - @commercetools-frontend/constants@27.13.0
+
 ## 27.12.0
 
 ### Patch Changes
