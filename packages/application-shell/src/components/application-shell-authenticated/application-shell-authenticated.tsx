@@ -28,10 +28,7 @@ import {
   isProjectKeylessApplicationEntryPointInProjectContext,
 } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import {
-  AsyncLocaleData,
-  mapLocaleToIntlLocale,
-} from '@commercetools-frontend/i18n';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import {
   reportErrorToSentry,
@@ -43,7 +40,7 @@ import {
   canPaintShell,
   getPreviousProjectKey,
   PERFORMANCE_MARKS,
-  readLastUserLanguage,
+  resolveLocaleHint,
   selectProjectKeyInContext,
 } from '../../utils';
 import AppBar from '../app-bar';
@@ -130,26 +127,14 @@ export const ApplicationShellAuthenticated = (
 ) => {
   /*
     Catalogue locale guessed before `FetchLoggedInUser` resolves
-    `user.language`, so the i18n load can start without waiting for it.
+    `user.language`, so the i18n load can start without waiting for it. Why the
+    remembered language beats the browser tag, and why it is not mapped, is on
+    `resolveLocaleHint`.
 
-    The last language this browser saw wins over `navigator.language`: a
-    returning user's own setting predicts it far better than their browser
-    chrome, which is the difference between hitting the guess and paying for a
-    second catalogue load.
-
-    A remembered language is used verbatim; only the browser tag is mapped.
-    `user.language` is a free string, so it can be a regional tag like `de-AT`,
-    and mapping it to `de` would throw away the precision the second load needs:
-    messages resolve per catalogue, but `loadMomentLocales` loads by the full
-    tag, so `de` and `de-AT` are different moment chunks. Passed through, the
-    hint loads both halves and the gate's exact match holds on arrival — one
-    load, nothing to correct.
+    Resolved once per mount. Re-reading it per render would let a stored value
+    written mid-session move the hint out from under a load already in flight.
   */
-  const [localeHint] = useState(() => {
-    const remembered = readLastUserLanguage();
-    if (remembered) return remembered;
-    return mapLocaleToIntlLocale(window.navigator?.language ?? 'en');
-  });
+  const [localeHint] = useState(resolveLocaleHint);
   /*
     The first paint waits for the user's own catalogue, so a wrong guess never
     shows up as content in the wrong language. On a hit this costs nothing —
