@@ -20,7 +20,7 @@ on:
 
 jobs:
   publish-release:
-    if: inputs.mode != 'preview'
+    if: inputs.mode == 'release'
     runs-on: ubuntu-latest
 
     timeout-minutes: 15
@@ -242,3 +242,12 @@ jobs:
               issue_number: context.issue.number,
               body: `### ❌ Preview publish failed\n\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
             });
+
+  # TEMPORARY: asks npm whether it accepts this run's OIDC identity.
+  oidc-probe:
+    if: inputs.mode == 'probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - run: ./scripts/oidc-probe.sh

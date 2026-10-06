@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - chore/preview-publish-diagnostics
   issue_comment:
     types: [created]
 
@@ -30,3 +31,13 @@ jobs:
       pull-requests: write
       issues: write
     secrets: inherit
+
+  # TEMPORARY: same called workflow as official releases, on a plain `push`.
+  oidc-probe:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/chore/preview-publish-diagnostics'
+    uses: ./.github/workflows/publish-release.yml
+    with:
+      mode: probe
+    permissions:
+      id-token: write
+      contents: read
