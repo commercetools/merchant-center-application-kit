@@ -35,7 +35,11 @@ for (const pkg of publicPackages) {
     silent: false,
   });
 
-  if (result.code !== 0) {
+  if (result.code !== 0 && result.stderr.includes('E409')) {
+    // `npm view` above can lag behind a publish that just happened, in which
+    // case the registry answers 409 for a version that is already there.
+    console.log(`✓ ${name}@${version} already published`);
+  } else if (result.code !== 0) {
     console.error(`✗ Failed to publish ${name}@${version}`);
   } else {
     console.log(`✓ Published ${name}@${version}`);

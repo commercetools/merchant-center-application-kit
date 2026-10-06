@@ -9,21 +9,28 @@ async function getPublicPackagesNames() {
 }
 
 async function getLatestReleaseCandidate(packageName, distTag) {
-  const response = await fetch(`https://registry.npmjs.org/${packageName}`);
-  const packageDetails = await response.json();
+  // The registry can take a few seconds to show a version that was just
+  // published, so look a few times before giving up.
+  const attempts = 6;
+  for (let attempt = 1; ; attempt++) {
+    const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+    const packageDetails = await response.json();
 
-  const filteredVersions = Object.entries(packageDetails.time)
-    .filter(([version]) => version.includes(distTag))
-    .sort(
-      ([, dateTimeA], [, dateTimeB]) =>
-        new Date(dateTimeB).getTime() - new Date(dateTimeA).getTime()
-    );
+    const filteredVersions = Object.entries(packageDetails.time ?? {})
+      .filter(([version]) => version.includes(distTag))
+      .sort(
+        ([, dateTimeA], [, dateTimeB]) =>
+          new Date(dateTimeB).getTime() - new Date(dateTimeA).getTime()
+      );
 
-  if (filteredVersions.length === 0) {
-    throw new Error(`No release candidate found with dist-tag ${distTag}`);
+    if (filteredVersions.length > 0) {
+      return filteredVersions[0][0];
+    }
+    if (attempt >= attempts) {
+      throw new Error(`No release candidate found with dist-tag ${distTag}`);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 10_000));
   }
-
-  return filteredVersions[0][0];
 }
 
 // Get the NPM dist-tag parameter
