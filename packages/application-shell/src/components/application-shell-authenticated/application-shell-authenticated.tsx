@@ -336,11 +336,11 @@ export const ApplicationShellAuthenticated = (
                         </aside>
 
                         {isLoadingUser || isLoadingLocaleData ? (
-                          <MainContainer role="main">
+                          <MainContainer role="main" data-mc-content>
                             <ApplicationLoader />
                           </MainContainer>
                         ) : (
-                          <MainContainer role="main">
+                          <MainContainer role="main" data-mc-content>
                             <PerformanceMark
                               mark={PERFORMANCE_MARKS.CONTENT_RENDERED}
                             />

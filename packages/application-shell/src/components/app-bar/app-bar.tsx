@@ -41,18 +41,6 @@ const AppBar = (props: Props) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        /* Matches '.loading-skeleton__header' in the 'mc-html-template'
-           skeleton, so the header morphs in place across a cross-app
-           navigation instead of the whole page crossfading.
-
-           Only the header carries a name. 'view-transition-name' makes an
-           element a stacking context, and the navbar and main content were not
-           ones before: naming them trapped the navbar's fly-out submenus and
-           the content area's portals, which could no longer paint above the
-           header. This element already had 'z-index: 20000', so it was a
-           stacking context already and the name changes nothing. */
-        view-transition-name: mc-header;
       `}
       data-test="top-navigation"
     >

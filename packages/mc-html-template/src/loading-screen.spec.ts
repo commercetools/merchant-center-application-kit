@@ -610,29 +610,37 @@ describe('named view transitions', () => {
       .find((chunk) => chunk.includes(`.loading-skeleton__${region} {`));
 
   // The browser only morphs an element when the same `view-transition-name`
-  // exists on both the outgoing and the incoming document. The outgoing page
-  // is React chrome, the incoming page is this skeleton, so the name lives in
-  // two packages and nothing links them at build time. This is the link:
-  // renaming one side without the other fails here rather than silently
-  // degrading to a whole-page crossfade.
-  it('names the skeleton header region "mc-header"', () => {
-    expect(ruleFor('header')).toContain('view-transition-name: mc-header;');
+  // exists on both the outgoing and the incoming document. This file is the
+  // incoming half; the outgoing half is named from a `pageswap` listener in
+  // `application-shell`, whose own spec pins the same three names. Renaming
+  // one side alone degrades to a whole-page crossfade with no test failing.
+  it.each([
+    ['sidebar', 'mc-sidebar'],
+    ['header', 'mc-header'],
+    ['content', 'mc-content'],
+  ])('names the skeleton %s region "%s"', (region, name) => {
+    expect(ruleFor(region)).toContain(`view-transition-name: ${name};`);
   });
 
-  // `view-transition-name` makes an element a stacking context. The navbar and
-  // the content area were not stacking contexts before, so naming them trapped
-  // the navbar's fly-out submenus and the content portals, which could no
-  // longer paint above the header. The header already had `z-index: 20000`.
-  it.each(['sidebar', 'content'])(
-    'leaves the skeleton %s region unnamed, so it stays out of a stacking context',
-    (region) => {
-      expect(ruleFor(region)).not.toContain('view-transition-name');
-    }
-  );
+  // The outgoing page shows the real chrome and this page shows placeholders,
+  // so crossfading between them dissolves real content into grey boxes.
+  it('keeps the outgoing header and sidebar on screen instead of crossfading', () => {
+    expect(skeletonStyles).toContain('::view-transition-old(mc-header)');
+    expect(skeletonStyles).toContain('::view-transition-old(mc-sidebar)');
+    expect(skeletonStyles).toContain('::view-transition-new(mc-header)');
+    expect(skeletonStyles).toContain('::view-transition-new(mc-sidebar)');
+  });
 
-  it('snaps the header instead of crossfading it', () => {
-    expect(skeletonStyles).toContain('::view-transition-group(mc-header)');
-    expect(skeletonStyles).toContain('animation-duration: 0s;');
+  // The named groups animate too, so limiting this to `root` would still move
+  // three regions for someone who asked for less motion.
+  it('reduces motion for every transition group, not just the root', () => {
+    const reducedMotionBlock = skeletonStyles.slice(
+      skeletonStyles.indexOf('prefers-reduced-motion')
+    );
+
+    expect(reducedMotionBlock).toContain('::view-transition-group(*)');
+    expect(reducedMotionBlock).toContain('::view-transition-old(*)');
+    expect(reducedMotionBlock).toContain('::view-transition-new(*)');
   });
 
   it('still opts the document into cross-document transitions', () => {
