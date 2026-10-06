@@ -1,14 +1,15 @@
 name: Release
 # Entry workflow that coordinates release processes:
 # - Publishes official releases when code is pushed to main, adhering to the single workflow, npm trusted publishing/OIDC pattern
-# - Publishes preview releases when triggered via PR comment with [publish-preview]
+# - Publishes preview releases when a branch is pushed whose head commit message
+#   contains [publish-preview]. This is a `push` run on purpose: npm trusted
+#   publishing rejects publishes from `issue_comment` runs (the OIDC token
+#   exchange answers 404 "package not found"), so a PR comment cannot publish.
 
 on:
   push:
     branches:
-      - main
-  issue_comment:
-    types: [created]
+      - "**"
 
 jobs:
   publish-release:
@@ -20,7 +21,7 @@ jobs:
     secrets: inherit
 
   publish-preview:
-    if: github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, '[publish-preview]')
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main' && contains(github.event.head_commit.message, '[publish-preview]')
     uses: ./.github/workflows/publish-release.yml
     with:
       mode: preview
