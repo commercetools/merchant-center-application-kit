@@ -604,23 +604,35 @@ describe('named view transitions', () => {
     'utf8'
   );
 
-  // The browser only morphs an element when the same `view-transition-name`
-  // exists on both the outgoing and the incoming document. The outgoing page
-  // is React chrome, the incoming page is this skeleton, so the names live in
-  // two packages and nothing links them at build time. These assertions are
-  // the link: renaming one side without the other fails here rather than
-  // silently degrading to a whole-page crossfade.
-  it.each([
-    ['sidebar', 'mc-sidebar'],
-    ['header', 'mc-header'],
-    ['content', 'mc-content'],
-  ])('names the skeleton %s region "%s"', (region, name) => {
-    const rule = skeletonStyles
+  const ruleFor = (region: string) =>
+    skeletonStyles
       .split('}')
       .find((chunk) => chunk.includes(`.loading-skeleton__${region} {`));
 
-    expect(rule).toBeDefined();
-    expect(rule).toContain(`view-transition-name: ${name};`);
+  // The browser only morphs an element when the same `view-transition-name`
+  // exists on both the outgoing and the incoming document. The outgoing page
+  // is React chrome, the incoming page is this skeleton, so the name lives in
+  // two packages and nothing links them at build time. This is the link:
+  // renaming one side without the other fails here rather than silently
+  // degrading to a whole-page crossfade.
+  it('names the skeleton header region "mc-header"', () => {
+    expect(ruleFor('header')).toContain('view-transition-name: mc-header;');
+  });
+
+  // `view-transition-name` makes an element a stacking context. The navbar and
+  // the content area were not stacking contexts before, so naming them trapped
+  // the navbar's fly-out submenus and the content portals, which could no
+  // longer paint above the header. The header already had `z-index: 20000`.
+  it.each(['sidebar', 'content'])(
+    'leaves the skeleton %s region unnamed, so it stays out of a stacking context',
+    (region) => {
+      expect(ruleFor(region)).not.toContain('view-transition-name');
+    }
+  );
+
+  it('snaps the header instead of crossfading it', () => {
+    expect(skeletonStyles).toContain('::view-transition-group(mc-header)');
+    expect(skeletonStyles).toContain('animation-duration: 0s;');
   });
 
   it('still opts the document into cross-document transitions', () => {

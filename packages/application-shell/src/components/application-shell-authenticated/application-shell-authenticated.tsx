@@ -111,11 +111,6 @@ export const MainContainer = styled.main`
     set position to relative to layout notifications and modals
   */
   position: relative;
-
-  /* Matches '.loading-skeleton__content' in the 'mc-html-template' skeleton,
-     so the content area is the region that visibly transitions while the
-     sidebar and header morph in place. */
-  view-transition-name: mc-content;
 `;
 
 /**

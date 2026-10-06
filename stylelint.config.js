@@ -31,7 +31,11 @@ module.exports = {
     'selector-pseudo-element-no-unknown': [
       true,
       {
-        ignorePseudoElements: ['view-transition-old', 'view-transition-new'],
+        ignorePseudoElements: [
+          'view-transition-old',
+          'view-transition-new',
+          'view-transition-group',
+        ],
       },
     ],
     'declaration-colon-newline-after': null,
