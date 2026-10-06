@@ -31,7 +31,7 @@ dump_npm_logs() {
   for f in "${HOME}"/.npm/_logs/*.log; do
     [ -f "$f" ] || continue
     echo "::group::npm debug log (filtered): $f"
-    grep -iE 'oidc|trusted|provenance|sigstore|id.token|exchange|http fetch (PUT|POST)|404|403|401|unauthor|auth' "$f" \
+    grep -v 'silly view' "$f" | grep -iE 'oidc|trusted|provenance|sigstore|id.token|exchange|http fetch (PUT|POST)|unauthor' \
       | sed -E 's/eyJ[A-Za-z0-9._-]+/[jwt-redacted]/g; s/([Bb]earer) [^ ]+/\1 [redacted]/g' \
       | head -80 || true
     echo "::endgroup::"
@@ -52,6 +52,26 @@ if [ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]; then
       const keys=["sub","aud","ref","ref_type","event_name","repository","workflow","workflow_ref","job_workflow_ref","environment","runner_environment","repository_visibility"];
       console.log(JSON.stringify(Object.fromEntries(keys.map(k=>[k,c[k]])),null,2));
     })'
+  echo "::endgroup::"
+
+  # Ask npm directly whether it accepts this identity for a few packages: the
+  # same OIDC token exchange the npm CLI performs before publishing. Nothing is
+  # published. The response body is printed only on failure (a success body
+  # contains an npm token).
+  echo "::group::npm OIDC token exchange probe"
+  for PKG in '@commercetools-frontend/constants' '@commercetools-frontend/sentry' '@commercetools-frontend/application-shell'; do
+    ENC=$(node -e 'process.stdout.write(encodeURIComponent(process.argv[1]))' "$PKG")
+    CODE=$(curl -sS -o /tmp/exchange-body.txt -w '%{http_code}' -X POST \
+      -H "Authorization: Bearer ${OIDC_TOKEN}" \
+      "https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${ENC}" || echo "curl-failed")
+    if [[ "$CODE" == 2* ]]; then
+      echo "${PKG}: HTTP ${CODE} (exchange accepted, body not printed)"
+    else
+      echo "${PKG}: HTTP ${CODE}"
+      sed -E 's/eyJ[A-Za-z0-9._-]+/[jwt-redacted]/g' /tmp/exchange-body.txt | head -c 1500
+      echo
+    fi
+  done
   echo "::endgroup::"
 else
   echo "ACTIONS_ID_TOKEN_REQUEST_URL is NOT set: no OIDC token is available to this step"
