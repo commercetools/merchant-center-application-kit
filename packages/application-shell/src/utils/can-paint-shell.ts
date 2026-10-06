@@ -1,5 +1,3 @@
-import { mapLocaleToIntlLocale } from '@commercetools-frontend/i18n';
-
 type TCanPaintShellOptions = {
   isLoadingLocaleData: boolean;
   isLoadingUser: boolean;
@@ -39,15 +37,13 @@ const canPaintShell = ({
   // No language on the user (or a failed load) must still paint, or the shell
   // would hang on the skeleton forever.
   if (!userLanguage) return true;
-  // Compared as catalogue buckets, not as raw tags, and for the same reason
-  // the hit/miss marks are: `user.language` is typed as a free string, so a
-  // regional tag like `de-AT` resolves to the `de` catalogue the hint already
-  // loaded. An exact match would hold the paint for a second load of the very
-  // catalogue on screen, and record a hit for a user who got no speedup.
-  return (
-    mapLocaleToIntlLocale(loadedLocale ?? '') ===
-    mapLocaleToIntlLocale(userLanguage)
-  );
+  // Exact, not by catalogue bucket. Messages resolve per catalogue, but
+  // `loadMomentLocales` loads by the full tag, so `de` and `de-AT` are
+  // different moment chunks: matching buckets would paint with the parent
+  // locale's date formatting while the regional one is still loading. The hint
+  // carries a remembered `user.language` verbatim, so for a returning user
+  // this is already equal on arrival.
+  return loadedLocale === userLanguage;
 };
 
 export default canPaintShell;

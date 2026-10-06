@@ -135,17 +135,21 @@ export const ApplicationShellAuthenticated = (
     The last language this browser saw wins over `navigator.language`: a
     returning user's own setting predicts it far better than their browser
     chrome, which is the difference between hitting the guess and paying for a
-    second catalogue load. Falls back to the browser tag on a first visit or a
-    blocked store.
+    second catalogue load.
 
-    Resolved once per mount. Re-reading it per render would let a stored value
-    written mid-session move the hint out from under a load already in flight.
+    A remembered language is used verbatim; only the browser tag is mapped.
+    `user.language` is a free string, so it can be a regional tag like `de-AT`,
+    and mapping it to `de` would throw away the precision the second load needs:
+    messages resolve per catalogue, but `loadMomentLocales` loads by the full
+    tag, so `de` and `de-AT` are different moment chunks. Passed through, the
+    hint loads both halves and the gate's exact match holds on arrival — one
+    load, nothing to correct.
   */
-  const [localeHint] = useState(() =>
-    mapLocaleToIntlLocale(
-      readLastUserLanguage() ?? window.navigator?.language ?? 'en'
-    )
-  );
+  const [localeHint] = useState(() => {
+    const remembered = readLastUserLanguage();
+    if (remembered) return remembered;
+    return mapLocaleToIntlLocale(window.navigator?.language ?? 'en');
+  });
   /*
     The first paint waits for the user's own catalogue, so a wrong guess never
     shows up as content in the wrong language. On a hit this costs nothing —
@@ -296,7 +300,12 @@ export const ApplicationShellAuthenticated = (
                     {user?.language ? (
                       <PerformanceMark
                         mark={
-                          localeHint === mapLocaleToIntlLocale(user.language)
+                          // Compared exactly, the same way the paint gate is:
+                          // a bucket match would count `de` against `de-AT` as
+                          // a hit while the gate still waits for the regional
+                          // moment locale, inflating the number the cookie
+                          // decision rests on.
+                          localeHint === user.language
                             ? PERFORMANCE_MARKS.LOCALE_HINT_HIT
                             : PERFORMANCE_MARKS.LOCALE_HINT_MISS
                         }

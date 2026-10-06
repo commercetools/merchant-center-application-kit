@@ -65,19 +65,26 @@ describe('canPaintShell', () => {
     });
 
     // `user.language` is a free string in the schema, so a regional tag is
-    // possible. `de-AT` resolves to the `de` catalogue the hint already
-    // loaded: holding here would force a second load of the catalogue that is
-    // already on screen, and the hit/miss mark would still call it a hit.
-    it('paints when a regional tag resolves to the catalogue already loaded', () => {
+    // possible. The parent catalogue is not close enough: messages resolve per
+    // catalogue but `loadMomentLocales` loads by the full tag, so painting on
+    // `de` would show the parent locale's date formatting while `de-AT` is
+    // still loading.
+    it('holds when only the parent catalogue of a regional tag has loaded', () => {
       expect(
         canPaintShell({ ...loaded, loadedLocale: 'de', userLanguage: 'de-AT' })
-      ).toBe(true);
+      ).toBe(false);
     });
 
-    it('still holds when a regional tag resolves to a different catalogue', () => {
+    // A returning `de-AT` user is hinted `de-AT` verbatim, so this is the
+    // ordinary hit for them rather than a special case.
+    it('paints once the regional tag itself has loaded', () => {
       expect(
-        canPaintShell({ ...loaded, loadedLocale: 'en', userLanguage: 'de-AT' })
-      ).toBe(false);
+        canPaintShell({
+          ...loaded,
+          loadedLocale: 'de-AT',
+          userLanguage: 'de-AT',
+        })
+      ).toBe(true);
     });
 
     it('paints when the user has no language at all', () => {
