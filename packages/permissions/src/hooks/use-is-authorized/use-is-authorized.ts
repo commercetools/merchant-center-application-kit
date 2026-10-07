@@ -8,11 +8,10 @@ import type {
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
-  hasSomePermissions,
-  hasEveryPermissions,
   hasEveryActionRight,
   hasSomeDataFence,
   getImpliedPermissions,
+  isAuthorizedForDemandedPermissions,
 } from '../../utils/has-permissions';
 
 // Permissions
@@ -122,11 +121,19 @@ const useIsAuthorized = ({
       projectPermissions?.dataFences ?? applicationContext.dataFences
   );
 
-  if (hasDemandedAdministratorPermission) {
-    return isAdminOfAnyOrganization;
-  }
-  if (hasDemandedAdministratorOfCurrentProjectPermission) {
-    return isUserAdminOfCurrentProject ?? false;
+  const hasDemandedPermissions = isAuthorizedForDemandedPermissions({
+    demandedPermissions,
+    actualPermissions,
+    isAdminOfAnyOrganization,
+    isUserAdminOfCurrentProject,
+    shouldMatchSomePermissions,
+  });
+
+  if (
+    hasDemandedAdministratorPermission ||
+    hasDemandedAdministratorOfCurrentProjectPermission
+  ) {
+    return hasDemandedPermissions;
   }
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized
@@ -148,10 +155,6 @@ const useIsAuthorized = ({
       selectDataFenceData,
     });
   }
-
-  const hasDemandedPermissions = shouldMatchSomePermissions
-    ? hasSomePermissions(demandedPermissions, actualPermissions)
-    : hasEveryPermissions(demandedPermissions, actualPermissions);
 
   const hasDemandedActionRights = hasEveryActionRight(
     demandedActionRights || [],

@@ -1,13 +1,22 @@
 import styled from '@emotion/styled';
 import { Badge, NimbusProvider } from '@commercetools/nimbus';
 import { useIntl } from 'react-intl';
+import type { TNormalizedPermissions } from '@commercetools-frontend/application-shell-connectors';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { isAuthorizedForDemandedPermissions } from '@commercetools-frontend/permissions';
 import { designTokens as uiKitDesignTokens } from '@commercetools-uikit/design-system';
 import { NAVBAR } from '../../constants';
+import type { TNavbarMenu } from '../../types/generated/proxy';
 import messages from './messages';
 
 type NavbarGroupHeaderProps = {
   label: string;
   isNew?: boolean;
+  menuItems: Array<Pick<TNavbarMenu, 'permissions'>>;
+  projectPermissions: {
+    permissions: TNormalizedPermissions | null;
+  };
+  isUserAdminOfCurrentProject?: boolean | null;
 };
 
 const GroupLabel = styled.div`
@@ -35,8 +44,36 @@ const GroupLabel = styled.div`
  */
 const hasNimbus = typeof NimbusProvider !== 'undefined';
 
-const NavbarGroupHeader = ({ label, isNew }: NavbarGroupHeaderProps) => {
+const NavbarGroupHeader = ({
+  label,
+  isNew,
+  menuItems,
+  projectPermissions,
+  isUserAdminOfCurrentProject,
+}: NavbarGroupHeaderProps) => {
   const intl = useIntl();
+  const isAdminOfAnyOrganization = useApplicationContext(
+    (applicationContext) =>
+      applicationContext.user?.isAdminOfAnyOrganization ?? false
+  );
+
+  const hasVisibleMenu = menuItems.some((menu) => {
+    // Same as RestrictedMenuItem: no demanded permissions means always visible.
+    if (!Array.isArray(menu.permissions) || menu.permissions.length === 0) {
+      return true;
+    }
+    return isAuthorizedForDemandedPermissions({
+      demandedPermissions: menu.permissions,
+      actualPermissions: projectPermissions.permissions,
+      isAdminOfAnyOrganization,
+      isUserAdminOfCurrentProject,
+      shouldMatchSomePermissions: true,
+    });
+  });
+
+  if (!hasVisibleMenu) {
+    return null;
+  }
 
   return (
     <GroupLabel>
