@@ -22,10 +22,16 @@
  * */
 const replace = (url: string): void => window.location.replace(url);
 const reload = (): void => window.location.reload();
+// Loads the current URL again as a `replace` navigation. Unlike `reload`,
+// this keeps the navigation eligible for cross-document view transitions,
+// which browsers never run on reloads.
+const reloadWithReplace = (): void =>
+  window.location.replace(window.location.href);
 
 const location = {
   replace,
   reload,
+  reloadWithReplace,
 };
 
 export default location;
