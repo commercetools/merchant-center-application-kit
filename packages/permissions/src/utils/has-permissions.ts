@@ -206,6 +206,41 @@ export const hasSomePermissions = (
     hasPermission(permission, actualPermissions)
   );
 
+type TIsAuthorizedForDemandedPermissionsOptions = {
+  demandedPermissions: TPermissionName[];
+  actualPermissions: TPermissions | null;
+  isAdminOfAnyOrganization?: boolean;
+  isUserAdminOfCurrentProject?: boolean | null;
+  shouldMatchSomePermissions?: boolean;
+};
+
+/**
+ * Pure permission check shared by `useIsAuthorized` and callers that cannot use
+ * the hook (e.g. OR-ing visibility across many navbar menus).
+ *
+ * Handles virtual permissions first:
+ * - `Administrator` → `isAdminOfAnyOrganization`
+ * - `AdministratorOfCurrentProject` → `isUserAdminOfCurrentProject`
+ * Then falls back to `hasSomePermissions` / `hasEveryPermissions`.
+ */
+export const isAuthorizedForDemandedPermissions = ({
+  demandedPermissions,
+  actualPermissions,
+  isAdminOfAnyOrganization = false,
+  isUserAdminOfCurrentProject = false,
+  shouldMatchSomePermissions = false,
+}: TIsAuthorizedForDemandedPermissionsOptions) => {
+  if (demandedPermissions.includes('Administrator')) {
+    return isAdminOfAnyOrganization;
+  }
+  if (demandedPermissions.includes('AdministratorOfCurrentProject')) {
+    return Boolean(isUserAdminOfCurrentProject);
+  }
+  return shouldMatchSomePermissions
+    ? hasSomePermissions(demandedPermissions, actualPermissions)
+    : hasEveryPermissions(demandedPermissions, actualPermissions);
+};
+
 type TGetHasDemandedDataFenceOptions = {
   actualDataFence: TActualDataFence;
   demandedDataFence: TDemandedDataFence;

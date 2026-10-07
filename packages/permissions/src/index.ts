@@ -10,4 +10,5 @@ export { default as useIsAuthorized } from './hooks/use-is-authorized';
 export {
   hasEveryPermissions,
   hasSomePermissions,
+  isAuthorizedForDemandedPermissions,
 } from './utils/has-permissions';

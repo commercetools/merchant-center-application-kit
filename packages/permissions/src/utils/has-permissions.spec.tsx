@@ -6,6 +6,7 @@ import {
   hasSomePermissions,
   hasSomeDataFence,
   getImpliedPermissions,
+  isAuthorizedForDemandedPermissions,
 } from './has-permissions';
 
 type TPermissionName = string;
@@ -477,6 +478,90 @@ describe('getImpliedPermissions', () => {
           'ManageProjectSettings',
         ])
       ).toHaveLength(0);
+    });
+  });
+});
+
+describe('isAuthorizedForDemandedPermissions', () => {
+  describe('when demanding Administrator', () => {
+    it('should authorize when the user is an admin of any organization', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['Administrator'],
+          actualPermissions: {},
+          isAdminOfAnyOrganization: true,
+        })
+      ).toBe(true);
+    });
+    it('should not authorize when the user is not an admin of any organization', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['Administrator'],
+          actualPermissions: {},
+          isAdminOfAnyOrganization: false,
+        })
+      ).toBe(false);
+    });
+  });
+  describe('when demanding AdministratorOfCurrentProject', () => {
+    it('should authorize when the user is an admin of the current project', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['AdministratorOfCurrentProject'],
+          actualPermissions: {},
+          isUserAdminOfCurrentProject: true,
+        })
+      ).toBe(true);
+    });
+    it('should not authorize when the user is not an admin of the current project', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['AdministratorOfCurrentProject'],
+          actualPermissions: {},
+          isUserAdminOfCurrentProject: false,
+        })
+      ).toBe(false);
+    });
+  });
+  describe('when matching some permissions', () => {
+    it('should authorize when at least one permission matches', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['ViewProducts', 'ViewOrders'],
+          actualPermissions: { canViewOrders: true },
+          shouldMatchSomePermissions: true,
+        })
+      ).toBe(true);
+    });
+    it('should not authorize when no permission matches', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['ViewProducts'],
+          actualPermissions: { canViewOrders: true },
+          shouldMatchSomePermissions: true,
+        })
+      ).toBe(false);
+    });
+  });
+  describe('when matching every permission', () => {
+    it('should authorize when all permissions match', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['ViewProducts', 'ViewOrders'],
+          actualPermissions: {
+            canViewProducts: true,
+            canViewOrders: true,
+          },
+        })
+      ).toBe(true);
+    });
+    it('should not authorize when only some permissions match', () => {
+      expect(
+        isAuthorizedForDemandedPermissions({
+          demandedPermissions: ['ViewProducts', 'ViewOrders'],
+          actualPermissions: { canViewOrders: true },
+        })
+      ).toBe(false);
     });
   });
 });

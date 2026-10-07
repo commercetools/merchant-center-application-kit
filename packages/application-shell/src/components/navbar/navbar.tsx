@@ -519,6 +519,11 @@ const NavBar = (props: TNavbarProps) => {
                     <NavbarGroupHeader
                       label={navbarMenuGroup.label}
                       isNew={navbarMenuGroup.isNew ?? undefined}
+                      menuItems={navbarMenuGroup.items}
+                      projectPermissions={projectPermissions}
+                      isUserAdminOfCurrentProject={
+                        props.project?.isUserAdminOfCurrentProject
+                      }
                     />
                   )}
                   {navbarMenuGroup.items.map((menu) => {
