@@ -597,3 +597,54 @@ describe('onAppLoaded reveal gate', () => {
     expect(appLoader()).toBeNull();
   });
 });
+
+describe('named view transitions', () => {
+  const skeletonStyles = fs.readFileSync(
+    path.join(__dirname, '../html-styles/loading-screen.css'),
+    'utf8'
+  );
+
+  const ruleFor = (region: string) =>
+    skeletonStyles
+      .split('}')
+      .find((chunk) => chunk.includes(`.loading-skeleton__${region} {`));
+
+  // The browser only morphs an element when the same `view-transition-name`
+  // exists on both the outgoing and the incoming document. This file is the
+  // incoming half; the outgoing half is named from a `pageswap` listener in
+  // `application-shell`, whose own spec pins the same three names. Renaming
+  // one side alone degrades to a whole-page crossfade with no test failing.
+  it.each([
+    ['sidebar', 'mc-sidebar'],
+    ['header', 'mc-header'],
+    ['content', 'mc-content'],
+  ])('names the skeleton %s region "%s"', (region, name) => {
+    expect(ruleFor(region)).toContain(`view-transition-name: ${name};`);
+  });
+
+  // The outgoing page shows the real chrome and this page shows placeholders,
+  // so crossfading between them dissolves real content into grey boxes.
+  it('keeps the outgoing header and sidebar on screen instead of crossfading', () => {
+    expect(skeletonStyles).toContain('::view-transition-old(mc-header)');
+    expect(skeletonStyles).toContain('::view-transition-old(mc-sidebar)');
+    expect(skeletonStyles).toContain('::view-transition-new(mc-header)');
+    expect(skeletonStyles).toContain('::view-transition-new(mc-sidebar)');
+  });
+
+  // The named groups animate too, so limiting this to `root` would still move
+  // three regions for someone who asked for less motion.
+  it('reduces motion for every transition group, not just the root', () => {
+    const reducedMotionBlock = skeletonStyles.slice(
+      skeletonStyles.indexOf('prefers-reduced-motion')
+    );
+
+    expect(reducedMotionBlock).toContain('::view-transition-group(*)');
+    expect(reducedMotionBlock).toContain('::view-transition-old(*)');
+    expect(reducedMotionBlock).toContain('::view-transition-new(*)');
+  });
+
+  it('still opts the document into cross-document transitions', () => {
+    expect(skeletonStyles).toContain('@view-transition');
+    expect(skeletonStyles).toContain('navigation: auto;');
+  });
+});

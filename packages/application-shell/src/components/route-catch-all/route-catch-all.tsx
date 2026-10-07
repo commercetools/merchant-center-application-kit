@@ -6,7 +6,9 @@ import { location } from '../../utils/location';
 
 const ForcePageReload = () => {
   useEffect(() => {
-    location.reload();
+    // A `replace` navigation rather than `location.reload()` so the shell
+    // chrome can morph into the next application via a view transition.
+    location.reloadWithReplace();
   }, []);
   return null;
 };
@@ -20,7 +22,7 @@ const RouteCatchAll = () => {
   // For example, if the current "loaded" app is products and I click
   // on a link to discounts, the products app does not know about the
   // discount routes, thus falling back to this "catch all route" component.
-  // At this point we force a page reload, effectively handing the
+  // At this point we force a page load, effectively handing the
   // route control logic to the reverse proxy in our cluster. There,
   // the router mapping will match the discounts route and it will forward
   // the request to the discounts app.

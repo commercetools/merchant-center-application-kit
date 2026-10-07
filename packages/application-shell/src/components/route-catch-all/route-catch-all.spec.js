@@ -7,10 +7,10 @@ jest.mock('../../utils/location');
 
 describe('rendering', () => {
   beforeEach(() => {
-    mocked(location.reload).mockClear();
+    mocked(location.reloadWithReplace).mockClear();
   });
   describe('when "servedByProxy" is "true"', () => {
-    it('should force a page reload', async () => {
+    it('should force a page load of the current URL', async () => {
       renderApp(<RouteCatchAll />, {
         disableRoutePermissionCheck: true,
         environment: {
@@ -18,7 +18,8 @@ describe('rendering', () => {
         },
       });
       await waitFor(() => {
-        expect(location.reload).toHaveBeenCalled();
+        expect(location.reloadWithReplace).toHaveBeenCalled();
+        expect(location.reload).not.toHaveBeenCalled();
       });
     });
   });

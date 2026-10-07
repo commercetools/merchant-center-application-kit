@@ -325,7 +325,7 @@ describe.each`
             history.push('/account');
           });
           await waitFor(() => {
-            expect(location.reload).toHaveBeenCalled();
+            expect(location.reloadWithReplace).toHaveBeenCalled();
           });
         });
       } else {
@@ -339,7 +339,7 @@ describe.each`
             history.push('/account');
           });
           await screen.findByText('OK');
-          expect(location.reload).not.toHaveBeenCalled();
+          expect(location.reloadWithReplace).not.toHaveBeenCalled();
         });
       }
     });
@@ -357,7 +357,7 @@ describe.each`
             history.push('/agent-sphere');
           });
           await waitFor(() => {
-            expect(location.reload).toHaveBeenCalled();
+            expect(location.reloadWithReplace).toHaveBeenCalled();
           });
         });
         it('should render the application when this is the agent-sphere application', async () => {
@@ -370,7 +370,7 @@ describe.each`
             history.push('/agent-sphere');
           });
           await screen.findByText('OK');
-          expect(location.reload).not.toHaveBeenCalled();
+          expect(location.reloadWithReplace).not.toHaveBeenCalled();
         });
       } else {
         it('should render using the "render" prop', async () => {
@@ -383,7 +383,7 @@ describe.each`
             history.push('/agent-sphere');
           });
           await screen.findByText('OK');
-          expect(location.reload).not.toHaveBeenCalled();
+          expect(location.reloadWithReplace).not.toHaveBeenCalled();
         });
       }
     });
