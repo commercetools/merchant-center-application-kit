@@ -220,9 +220,10 @@ jobs:
                 `**Version:** \`${version}\``,
                 `**Commit:** \`${context.sha.slice(0, 7)}\``,
                 '',
+                'Update every kit package your workspace already uses:',
+                '',
                 '```bash',
-                `pnpm add @commercetools-frontend/application-shell@${version}`,
-                `pnpm add @commercetools-frontend/mc-scripts@${version}`,
+                `pnpm -r update "@commercetools-frontend/*@${version}" "@commercetools-backend/*@${version}"`,
                 '```',
               ].join('\n'),
             });
