@@ -1,5 +1,59 @@
 # @commercetools-frontend/mc-scripts
 
+## 27.13.0
+
+### Minor Changes
+
+- [#4145](https://github.com/commercetools/merchant-center-application-kit/pull/4145) [`0478ce7`](https://github.com/commercetools/merchant-center-application-kit/commit/0478ce7986658e97bc8c4c3320611812f979122e) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - Emit `<link rel="modulepreload">` for the authenticated shell chunks in the
+  built `index.html`, so they are fetched alongside the entry instead of waiting
+  for it to execute and discover them. Measured on a Vite-built Merchant Center
+  app, the shell chunks finished 455ms after the boot locale chunks, which is the
+  delay this targets. The after measurement is still to come.
+
+  Vite's `build.modulePreload` was already enabled by default, but it only
+  preloads the entry's _static_ cross-chunk imports and our entry has none, so no
+  tags were emitted. This resolves a small set of shell chunk-name prefixes plus
+  their transitive static imports and injects them through
+  `modulePreload.resolveDependencies`.
+
+  `application-shell-splitter` is deliberately excluded even though it belongs to
+  the same wave: it alone is ~1.2MB and pulls a further ~172KB, which would put
+  ~1.5MB of high-priority preload in parallel with the 2.3MB entry that is the
+  real critical path. Including it needs a throttled measurement first. With it
+  out, the preload set is ~128KB.
+
+  Custom Views skip this entirely. They import from the same package, so their
+  builds emit these chunks too, but `CustomViewShell` never renders the navbar or
+  project container — the hints would be ~128KB of preload for modules the page
+  does not use. The build decides from which configuration file is present, so
+  nothing is needed on your side.
+
+  If a shell chunk is renamed or de-lazied so that only _some_ prefixes resolve,
+  the build logs a warning and continues with a smaller preload set. Those
+  modules then load a round trip later, as they did before this change — nothing
+  breaks at runtime.
+
+### Patch Changes
+
+- [#4181](https://github.com/commercetools/merchant-center-application-kit/pull/4181) [`2349e54`](https://github.com/commercetools/merchant-center-application-kit/commit/2349e545deac80ebce7ce0a64a72f8c5f2bc5791) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - Fix the Content-Security-Policy hash for the injected application environment
+  script on the local dev server. The plugin hashed the app config's own `env`
+  while injecting a copy overridden from `MC_API_URL`, so `script-src` listed a
+  hash for a script that was never served and the browser blocked the only script
+  that defines `window.app`.
+
+  Only reachable when the dev server runs outside `env: 'development'` — where
+  the CSP carries real hashes rather than `'unsafe-inline'` — so in practice the
+  prod-local dev server with `MC_API_URL` set.
+
+- Updated dependencies [[`cb74ea4`](https://github.com/commercetools/merchant-center-application-kit/commit/cb74ea4573ec203b92a429847ae50307cab385bd)]:
+  - @commercetools-frontend/mc-html-template@27.13.0
+  - @commercetools-frontend/application-components@27.13.0
+  - @commercetools-frontend/application-config@27.13.0
+  - @commercetools-frontend/assets@27.13.0
+  - @commercetools-frontend/babel-preset-mc-app@27.13.0
+  - @commercetools-frontend/constants@27.13.0
+  - @commercetools-frontend/mc-dev-authentication@27.13.0
+
 ## 27.12.0
 
 ### Patch Changes
