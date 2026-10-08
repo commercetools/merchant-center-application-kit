@@ -23,18 +23,24 @@ type ExtraErrorExtensionsFields = {
       };
 };
 
-export type ExtraErrorFields = ExtraErrorExtensionsFields & {
+// Fields an API Extension adds when it rejects a request. REST returns them at
+// the top level of the error, GraphQL nests them under `extensions`.
+type ApiExtensionErrorFields = {
   errorByExtension?: {
     id: string;
     key?: string;
   };
   localizedMessage?: { [locale: string]: string };
-  detailedErrorMessage?: string;
-  attribute?: {
-    name: string;
-  };
-  extensions?: ExtraErrorExtensionsFields;
 };
+
+export type ExtraErrorFields = ExtraErrorExtensionsFields &
+  ApiExtensionErrorFields & {
+    detailedErrorMessage?: string;
+    attribute?: {
+      name: string;
+    };
+    extensions?: ExtraErrorExtensionsFields & ApiExtensionErrorFields;
+  };
 type Props = {
   error: TAppNotificationApiError<ExtraErrorFields>;
 };
@@ -137,12 +143,13 @@ function getSpecialFormattedMessageByErrorCode(
 ) {
   const extensionErrorCode = error.extensions?.code ?? error.code;
 
-  if (error.errorByExtension) {
-    let extensionMessage;
-    if (error.localizedMessage) {
-      extensionMessage = error.localizedMessage[intl.locale];
-    }
-    return extensionMessage || error.message;
+  const errorByExtension =
+    error.errorByExtension ?? error.extensions?.errorByExtension;
+
+  if (errorByExtension) {
+    const localizedMessage =
+      error.localizedMessage ?? error.extensions?.localizedMessage;
+    return localizedMessage?.[intl.locale] || error.message;
   }
 
   if (!extensionErrorCode || extensionErrorCode === 'InvalidInput')
