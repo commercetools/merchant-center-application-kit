@@ -1,5 +1,36 @@
 # @commercetools-frontend/application-shell
 
+## 27.14.0
+
+### Minor Changes
+
+- [#4160](https://github.com/commercetools/merchant-center-application-kit/pull/4160) [`787b02c`](https://github.com/commercetools/merchant-center-application-kit/commit/787b02c52a2d8850ead2f28c1d0ede241dec8e81) Thanks [@ismaelocaramelo](https://github.com/ismaelocaramelo)! - The translation catalogue now starts loading as soon as the app boots instead of waiting for the logged-in user query to resolve `user.language`, so the shell renders sooner. The guess comes from the last language this browser saw, falling back to the browser's own locale on a first visit, and the user's real language always wins once it arrives.
+
+  The first render still waits for the user's own catalogue, so a wrong guess never shows content in the wrong language. On a wrong guess you get the same timing as before, never worse.
+
+  If you consume `AsyncLocaleData` or `useAsyncLocaleData` directly, note one contract change: `locale` now reports the locale of the messages you were handed, not the one you asked for. Previously the two could disagree during a language switch, so you could render the new locale's name next to the previous locale's strings.
+
+### Patch Changes
+
+- [#4192](https://github.com/commercetools/merchant-center-application-kit/pull/4192) [`2f37eb6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f37eb6f083da1decc81034c09c10a1f4987ff96) Thanks [@emmenko](https://github.com/emmenko)! - Fix menu group label visibility if none of the menu items are visible
+
+- Updated dependencies [[`2f37eb6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f37eb6f083da1decc81034c09c10a1f4987ff96), [`787b02c`](https://github.com/commercetools/merchant-center-application-kit/commit/787b02c52a2d8850ead2f28c1d0ede241dec8e81)]:
+  - @commercetools-frontend/permissions@27.14.0
+  - @commercetools-frontend/constants@27.14.0
+  - @commercetools-frontend/i18n@27.14.0
+  - @commercetools-frontend/actions-global@27.14.0
+  - @commercetools-frontend/application-components@27.14.0
+  - @commercetools-frontend/application-config@27.14.0
+  - @commercetools-frontend/application-shell-connectors@27.14.0
+  - @commercetools-frontend/assets@27.14.0
+  - @commercetools-frontend/browser-history@27.14.0
+  - @commercetools-frontend/l10n@27.14.0
+  - @commercetools-frontend/notifications@27.14.0
+  - @commercetools-frontend/react-notifications@27.14.0
+  - @commercetools-frontend/sdk@27.14.0
+  - @commercetools-frontend/sentry@27.14.0
+  - @commercetools-frontend/url-utils@27.14.0
+
 ## 27.13.0
 
 ### Patch Changes
