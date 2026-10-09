@@ -1,4 +1,4 @@
-import { useEffect, ReactNode, useCallback } from 'react';
+import { useEffect, ReactNode, useCallback, useRef } from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TMessageTranslations } from '../export-types';
 import loadI18n from '../load-i18n';
@@ -61,20 +61,51 @@ const useAsyncLocaleData = ({
     loader: loadApplicationMessages,
   });
 
-  // Merge the loaded messages into one
+  // Both loaders must have settled on the locale currently being asked for.
+  // Comparing them to each other instead would also accept two loaders that
+  // agree on a locale nobody asked for any more, and would never recover once
+  // one of them stopped advancing.
+  const isPairConsistent =
+    Boolean(locale) &&
+    messagesFromKitResult.loadedLocale === locale &&
+    applicationMessagesResult.loadedLocale === locale;
+
+  // Keep serving the previous pair during a locale change. Reporting "loading"
+  // instead would withhold the locale from `ConfigureIntlProvider`, which
+  // returns null and would unmount the shell behind a blank page.
+  const lastConsistentPair = useRef<{
+    locale?: string;
+    messages?: TMessageTranslations;
+  }>({});
+
+  if (isPairConsistent) {
+    lastConsistentPair.current = {
+      locale,
+      messages: mergeMessages(
+        messagesFromKitResult.messages ?? {},
+        applicationMessagesResult.messages ?? {}
+      ),
+    };
+  }
+
   return {
+    // Reports the *first* load only. On a later locale change it stays
+    // `false`, because `locale` and `messages` keep serving the previous
+    // consistent pair until the new one resolves — withholding them instead
+    // would blank the consumer's tree mid-session. To tell that a change is in
+    // flight, compare `locale` against the one you asked for.
     isLoading:
       messagesFromKitResult.isLoading || applicationMessagesResult.isLoading,
-    messages: mergeMessages(
-      messagesFromKitResult.messages ?? {},
-      applicationMessagesResult.messages ?? {}
-    ),
+    // The locale `messages` belong to, which during a change is still the
+    // previous one rather than the locale you passed in.
+    locale: lastConsistentPair.current.locale,
+    messages: lastConsistentPair.current.messages ?? {},
     error: messagesFromKitResult.error ?? applicationMessagesResult.error,
   };
 };
 
 const AsyncLocaleData = (props: Props) => {
-  const { isLoading, messages, error } = useAsyncLocaleData(props);
+  const { isLoading, locale, messages, error } = useAsyncLocaleData(props);
 
   useEffect(() => {
     if (error) reportErrorToSentry(error, {});
@@ -84,7 +115,7 @@ const AsyncLocaleData = (props: Props) => {
     <>
       {props.children({
         isLoading,
-        locale: isLoading ? undefined : props.locale,
+        locale,
         messages: error ? undefined : messages,
       })}
     </>

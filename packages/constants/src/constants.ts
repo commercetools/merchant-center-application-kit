@@ -370,6 +370,10 @@ export const STORAGE_KEYS = {
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   LOGIN_STRATEGY: 'loginStrategy',
   ACTIVE_USER_LANGUAGE: 'activeUserLanguage',
+  // Last known `user.language`, used only to guess the locale before
+  // `FetchLoggedInUser` resolves. Distinct from ACTIVE_USER_LANGUAGE, which is
+  // the staff-bar override.
+  LAST_USER_LANGUAGE: 'lastUserLanguage',
 } as const;
 
 export const HTTP_SECURITY_HEADER_KEYS = {
@@ -429,6 +433,11 @@ export const PERFORMANCE_MARKS = {
   CONTENT_RENDERED: `${PERFORMANCE_MARK_PREFIX}content-rendered`,
   HYDRATION_USER: `${PERFORMANCE_MARK_PREFIX}hydration-user`,
   HYDRATION_PROJECT: `${PERFORMANCE_MARK_PREFIX}hydration-project`,
+  // Whether the parse-time locale hint resolved to the same catalogue as
+  // `user.language`. Both map through `mapLocaleToIntlLocale`, so only a
+  // bucket crossing counts as a miss.
+  LOCALE_HINT_HIT: `${PERFORMANCE_MARK_PREFIX}locale-hint-hit`,
+  LOCALE_HINT_MISS: `${PERFORMANCE_MARK_PREFIX}locale-hint-miss`,
 } as const;
 
 export type TPerformanceMark =
