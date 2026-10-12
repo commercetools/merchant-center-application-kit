@@ -3,11 +3,13 @@ import {
   type ReactNode,
   type RefObject,
   type SyntheticEvent,
+  useEffect,
   useRef,
   useState,
 } from 'react';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
+import { IntlProvider } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
   ApplicationContextProvider,
@@ -22,13 +24,17 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import {
   canPaintShell,
+  isEarlyShellRenderingEnabled,
   PERFORMANCE_MARKS,
   resolveLocaleHint,
   selectProjectKeyInContext,
 } from '../../utils';
+import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShellSplitter from '../application-shell-splitter/application-shell-splitter.async';
-import ConfigureIntlProvider from '../configure-intl-provider';
+import ConfigureIntlProvider, {
+  hideAppLoader,
+} from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
 import FetchUser from '../fetch-user';
 import PerformanceMark from '../performance-mark';
@@ -64,6 +70,15 @@ const getHasUserBeenDeletedError = (
       // NOTE: The CTP API does not provide an error code in this case.
       gqlError.message.includes('was not found.')
   );
+
+// With early shell rendering the chrome replaces the HTML skeleton as soon as
+// it mounts, rather than when the locale data arrives.
+const HideAppLoaderOnMount = () => {
+  useEffect(() => {
+    hideAppLoader();
+  }, []);
+  return null;
+};
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -215,10 +230,8 @@ export const ApplicationShellAuthenticated = (
                 });
                 if (canPaint) hasPaintedShell.current = true;
 
-                return (
-                  <ConfigureIntlProvider
-                    {...(canPaint ? { locale, messages } : {})}
-                  >
+                const intlReady = (
+                  <>
                     <RememberUserLanguage language={user?.language} />
                     {/* Marked here rather than inside the
                   `ConfigureIntlProvider` implementation, because that component
@@ -244,43 +257,100 @@ export const ApplicationShellAuthenticated = (
                         }
                       />
                     ) : null}
-                    <SetupFlopFlipProvider
-                      user={normalizedUser}
-                      projectKey={projectKeyInContext}
-                      ldClientSideId={applicationEnvironment.ldClientSideId}
-                      flags={props.featureFlags}
-                      defaultFlags={props.defaultFeatureFlags}
+                  </>
+                );
+
+                const mainContent = (
+                  <ShellMainContent
+                    isLoadingUser={isLoadingUser}
+                    isLoadingLocaleData={isLoadingLocaleData}
+                    normalizedUser={normalizedUser}
+                    applicationEnvironment={applicationEnvironment}
+                    projectKeyInContext={projectKeyInContext}
+                    notificationsPageRef={notificationsPageRef}
+                    layoutRefs={layoutRefs}
+                    disableRoutePermissionCheck={
+                      props.disableRoutePermissionCheck
+                    }
+                    render={props.render}
+                  >
+                    {props.children}
+                  </ShellMainContent>
+                );
+
+                const renderChrome = (content: ReactNode) => (
+                  <SetupFlopFlipProvider
+                    user={normalizedUser}
+                    projectKey={projectKeyInContext}
+                    ldClientSideId={applicationEnvironment.ldClientSideId}
+                    flags={props.featureFlags}
+                    defaultFlags={props.defaultFeatureFlags}
+                  >
+                    <ApplicationShellSplitter locale={locale ?? 'en'}>
+                      <ShellLayout
+                        isLoadingUser={isLoadingUser}
+                        isLoadingLocaleData={isLoadingLocaleData}
+                        locale={locale}
+                        normalizedUser={normalizedUser}
+                        applicationEnvironment={applicationEnvironment}
+                        projectKeyInContext={projectKeyInContext}
+                        notificationsGlobalRef={notificationsGlobalRef}
+                        onMenuItemClick={props.onMenuItemClick}
+                      >
+                        {content}
+                      </ShellLayout>
+                    </ApplicationShellSplitter>
+                  </SetupFlopFlipProvider>
+                );
+
+                if (!isEarlyShellRenderingEnabled(applicationEnvironment)) {
+                  return (
+                    <ConfigureIntlProvider
+                      {...(canPaint ? { locale, messages } : {})}
                     >
-                      <ApplicationShellSplitter locale={locale ?? 'en'}>
-                        <ShellLayout
-                          isLoadingUser={isLoadingUser}
-                          isLoadingLocaleData={isLoadingLocaleData}
+                      {intlReady}
+                      {renderChrome(mainContent)}
+                    </ConfigureIntlProvider>
+                  );
+                }
+
+                /*
+                  Early shell rendering: the chrome renders on the first pass
+                  instead of waiting behind `ConfigureIntlProvider`, and only the
+                  routed content waits for the paint gate.
+
+                  The chrome reads whatever catalogue `AsyncLocaleData` has. Until
+                  the first one arrives that is none, so the chrome falls back to
+                  English default messages; it shows mostly loading placeholders
+                  in that window. The pair stays consistent because
+                  `AsyncLocaleData` only reports a locale next to its own
+                  messages.
+
+                  The chrome stays mounted when the gate opens: only the content
+                  below `ShellLayout` swaps from the loader to the routes.
+                */
+                return (
+                  <IntlProvider
+                    locale={messages && locale ? locale : 'en'}
+                    messages={messages}
+                  >
+                    <HideAppLoaderOnMount />
+                    {renderChrome(
+                      canPaint ? (
+                        <ConfigureIntlProvider
                           locale={locale}
-                          normalizedUser={normalizedUser}
-                          applicationEnvironment={applicationEnvironment}
-                          projectKeyInContext={projectKeyInContext}
-                          notificationsGlobalRef={notificationsGlobalRef}
-                          onMenuItemClick={props.onMenuItemClick}
+                          messages={messages}
                         >
-                          <ShellMainContent
-                            isLoadingUser={isLoadingUser}
-                            isLoadingLocaleData={isLoadingLocaleData}
-                            normalizedUser={normalizedUser}
-                            applicationEnvironment={applicationEnvironment}
-                            projectKeyInContext={projectKeyInContext}
-                            notificationsPageRef={notificationsPageRef}
-                            layoutRefs={layoutRefs}
-                            disableRoutePermissionCheck={
-                              props.disableRoutePermissionCheck
-                            }
-                            render={props.render}
-                          >
-                            {props.children}
-                          </ShellMainContent>
-                        </ShellLayout>
-                      </ApplicationShellSplitter>
-                    </SetupFlopFlipProvider>
-                  </ConfigureIntlProvider>
+                          {intlReady}
+                          {mainContent}
+                        </ConfigureIntlProvider>
+                      ) : (
+                        <MainContainer role="main">
+                          <ApplicationLoader />
+                        </MainContainer>
+                      )
+                    )}
+                  </IntlProvider>
                 );
               }}
             </AsyncLocaleData>

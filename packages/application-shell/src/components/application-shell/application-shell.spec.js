@@ -1659,3 +1659,55 @@ describe('FEC-1297 loading performance marks', () => {
     expect(duplicated).toEqual([]);
   });
 });
+
+describe('FEC-1299 early shell rendering', () => {
+  // Application messages that never arrive keep `AsyncLocaleData` loading, so
+  // the paint gate stays closed for the whole test.
+  const pendingApplicationMessages = () => new Promise(() => {});
+  // The chrome's `<header>`, which wraps the AppBar.
+  const queryAppBar = () => screen.queryByRole('banner');
+
+  beforeEach(() => {
+    window.onAppLoaded = jest.fn();
+  });
+  afterEach(() => {
+    delete window.onAppLoaded;
+  });
+
+  describe('when "enableEarlyShellRendering" is off', () => {
+    it('should hold the chrome until the locale data is available', async () => {
+      renderApp(null, {
+        applicationMessages: pendingApplicationMessages,
+      });
+      // Give the user query time to resolve, so only the locale gate is left.
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 200));
+      });
+      expect(queryAppBar()).toBeNull();
+      expect(window.onAppLoaded).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when "enableEarlyShellRendering" is on', () => {
+    it('should render the chrome before the locale data is available', async () => {
+      renderApp(null, {
+        environment: { enableEarlyShellRendering: 'true' },
+        applicationMessages: pendingApplicationMessages,
+      });
+      await waitFor(() => {
+        expect(queryAppBar()).not.toBeNull();
+      });
+      expect(window.onAppLoaded).toHaveBeenCalled();
+      // The routed content still waits for the locale data.
+      expect(screen.queryByText('OK')).not.toBeInTheDocument();
+    });
+
+    it('should render the routed content once the locale data is available', async () => {
+      const { waitForLeftNavigationToBeLoaded } = renderApp(null, {
+        environment: { enableEarlyShellRendering: true },
+      });
+      await waitForLeftNavigationToBeLoaded();
+      await screen.findByText('OK');
+    });
+  });
+});

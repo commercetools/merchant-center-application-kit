@@ -5,6 +5,7 @@ export { default as selectProjectKeyInContext } from './select-project-key-in-co
 export { default as markOnce, PERFORMANCE_MARKS } from './performance-marks';
 export { default as canPaintShell } from './can-paint-shell';
 export { default as resolveLocaleHint } from './resolve-locale-hint';
+export { default as isEarlyShellRenderingEnabled } from './is-early-shell-rendering-enabled';
 export {
   readLastUserLanguage,
   writeLastUserLanguage,

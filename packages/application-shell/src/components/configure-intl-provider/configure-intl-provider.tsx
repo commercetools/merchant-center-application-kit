@@ -14,7 +14,7 @@ type Props = {
   children: ReactNode;
 };
 
-const hideAppLoader = () => {
+export const hideAppLoader = () => {
   /**
    * NOTE:
    *   This function is defined in the `index.html` in a script-tag

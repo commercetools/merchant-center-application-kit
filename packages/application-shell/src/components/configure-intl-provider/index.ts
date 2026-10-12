@@ -1,1 +1,1 @@
-export { default } from './configure-intl-provider';
+export { default, hideAppLoader } from './configure-intl-provider';
