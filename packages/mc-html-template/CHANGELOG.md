@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-html-template
 
+## 27.14.0
+
+### Patch Changes
+
+- [#4184](https://github.com/commercetools/merchant-center-application-kit/pull/4184) [`9764bf3`](https://github.com/commercetools/merchant-center-application-kit/commit/9764bf3d2468549fadac9bc9edca86b358e57165) Thanks [@ByronDWall](https://github.com/ByronDWall)! - Make the loading skeleton's header placeholder a circle, so it matches the user avatar dropdown it stands in for.
+
+- Updated dependencies [[`787b02c`](https://github.com/commercetools/merchant-center-application-kit/commit/787b02c52a2d8850ead2f28c1d0ede241dec8e81)]:
+  - @commercetools-frontend/constants@27.14.0
+  - @commercetools-frontend/application-config@27.14.0
+
 ## 27.13.0
 
 ### Patch Changes

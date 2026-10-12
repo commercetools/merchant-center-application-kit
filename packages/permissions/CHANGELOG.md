@@ -1,5 +1,15 @@
 # @commercetools-frontend/permissions
 
+## 27.14.0
+
+### Patch Changes
+
+- [#4192](https://github.com/commercetools/merchant-center-application-kit/pull/4192) [`2f37eb6`](https://github.com/commercetools/merchant-center-application-kit/commit/2f37eb6f083da1decc81034c09c10a1f4987ff96) Thanks [@emmenko](https://github.com/emmenko)! - Fix menu group label visibility if none of the menu items are visible
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-shell-connectors@27.14.0
+  - @commercetools-frontend/sentry@27.14.0
+
 ## 27.13.0
 
 ### Patch Changes
