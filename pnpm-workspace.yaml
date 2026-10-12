@@ -38,8 +38,8 @@ minimumReleaseAgeExclude:
   - '@commercetools*'
   # Renovate security update: postcss@8.5.10 || 8.5.12 || 8.5.18 || 8.5.23
   - postcss@8.5.10 || 8.5.12 || 8.5.18 || 8.5.23
-  # Renovate security update: sharp@0.35.0
-  - sharp@0.35.0
+  # Renovate security update: sharp@0.35.0 || 0.35.4
+  - sharp@0.35.0 || 0.35.4
   # Renovate security update: qs@6.15.2
   - qs@6.15.2
   # Renovate security update: vite@6.4.3
