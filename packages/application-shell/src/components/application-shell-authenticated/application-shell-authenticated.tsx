@@ -278,7 +278,14 @@ export const ApplicationShellAuthenticated = (
                   </ShellMainContent>
                 );
 
-                const renderChrome = (content: ReactNode) => (
+                const renderChrome = (
+                  content: ReactNode,
+                  {
+                    isChromeReady,
+                  }: {
+                    isChromeReady: boolean;
+                  }
+                ) => (
                   <SetupFlopFlipProvider
                     user={normalizedUser}
                     projectKey={projectKeyInContext}
@@ -289,9 +296,13 @@ export const ApplicationShellAuthenticated = (
                     <ApplicationShellSplitter locale={locale ?? 'en'}>
                       <ShellLayout
                         isLoadingUser={isLoadingUser}
-                        isLoadingLocaleData={isLoadingLocaleData}
+                        isLoadingLocaleData={
+                          isLoadingLocaleData || !isChromeReady
+                        }
                         locale={locale}
-                        normalizedUser={normalizedUser}
+                        normalizedUser={
+                          isChromeReady ? normalizedUser : undefined
+                        }
                         applicationEnvironment={applicationEnvironment}
                         projectKeyInContext={projectKeyInContext}
                         notificationsGlobalRef={notificationsGlobalRef}
@@ -309,7 +320,7 @@ export const ApplicationShellAuthenticated = (
                       {...(canPaint ? { locale, messages } : {})}
                     >
                       {intlReady}
-                      {renderChrome(mainContent)}
+                      {renderChrome(mainContent, { isChromeReady: true })}
                     </ConfigureIntlProvider>
                   );
                 }
@@ -328,6 +339,12 @@ export const ApplicationShellAuthenticated = (
 
                   The chrome stays mounted when the gate opens: only the content
                   below `ShellLayout` swaps from the loader to the routes.
+
+                  Until the gate opens the chrome keeps its loading placeholders
+                  (no user in the AppBar, `NavBarSkeleton`). On a locale-hint
+                  miss, `AsyncLocaleData` serves the guessed catalogue until the
+                  user's own arrives, and rendering the user's header and menu
+                  with it would show them in a language they never chose.
                 */
                 return (
                   <IntlProvider
@@ -348,7 +365,8 @@ export const ApplicationShellAuthenticated = (
                         <MainContainer role="main">
                           <ApplicationLoader />
                         </MainContainer>
-                      )
+                      ),
+                      { isChromeReady: canPaint }
                     )}
                   </IntlProvider>
                 );
