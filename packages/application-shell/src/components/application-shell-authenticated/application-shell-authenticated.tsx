@@ -3,65 +3,46 @@ import {
   type ReactNode,
   type RefObject,
   type SyntheticEvent,
+  useEffect,
   useRef,
   useState,
 } from 'react';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import type { ApolloError } from '@apollo/client/errors';
 import type { TFlags } from '@flopflip/types';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import { PortalsContainer } from '@commercetools-frontend/application-components';
+import { IntlProvider } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 import {
   ApplicationContextProvider,
   useApplicationContext,
   selectUserLanguageFromStorage,
   type TApplicationContext,
 } from '@commercetools-frontend/application-shell-connectors';
-import {
-  DOMAINS,
-  LOGOUT_REASONS,
-  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS,
-  PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT,
-  STATIC_URL_PATHS,
-  isProjectKeylessApplicationEntryPoint,
-  isProjectKeylessApplicationEntryPointInProjectContext,
-} from '@commercetools-frontend/constants';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import {
-  reportErrorToSentry,
-  SentryUserTracker,
-} from '@commercetools-frontend/sentry';
-import { DIMENSIONS, NAVBAR } from '../../constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import {
   canPaintShell,
-  getPreviousProjectKey,
+  isEarlyShellRenderingEnabled,
   PERFORMANCE_MARKS,
   resolveLocaleHint,
   selectProjectKeyInContext,
 } from '../../utils';
-import AppBar from '../app-bar';
-import ApplicationEntryPoint from '../application-entry-point';
 import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShellSplitter from '../application-shell-splitter/application-shell-splitter.async';
-import ConfigureIntlProvider from '../configure-intl-provider';
+import ConfigureIntlProvider, {
+  hideAppLoader,
+} from '../configure-intl-provider';
 import ErrorApologizer from '../error-apologizer';
-import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
-import NavBar from '../navbar';
 import PerformanceMark from '../performance-mark';
-import ProjectContainer from '../project-container';
 import RedirectToLogout from '../redirect-to-logout';
-import RedirectToProjectCreate from '../redirect-to-project-create';
 import RememberUserLanguage from '../remember-user-language';
-import RequestsInFlightLoader from '../requests-in-flight-loader';
-import RouteCatchAll from '../route-catch-all';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
-import ThemeSwitcher from '../theme-switcher';
+import ShellLayout from './shell-layout';
+import ShellMainContent, { MainContainer } from './shell-main-content';
 
 type TApplicationShellAuthenticationProps = {
   featureFlags?: TFlags;
@@ -90,32 +71,14 @@ const getHasUserBeenDeletedError = (
       gqlError.message.includes('was not found.')
   );
 
-export const MainContainer = styled.main`
-  grid-column: 2/3;
-  grid-row: 3/4;
-
-  /*
-    Allow the this flex child to grow smaller than its smallest content.
-    This is needed when there is a really wide text inside that would stretch
-    this node to be wider than the parent.
-  */
-  min-width: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-
-  /*
-    layout the children. There will always be the page and side notification
-    about the actual content. The content should stretch to fill the rest of
-    the page.
-  */
-  display: flex;
-  flex-direction: column;
-
-  /*
-    set position to relative to layout notifications and modals
-  */
-  position: relative;
-`;
+// With early shell rendering the chrome replaces the HTML skeleton as soon as
+// it mounts, rather than when the locale data arrives.
+const HideAppLoaderOnMount = () => {
+  useEffect(() => {
+    hideAppLoader();
+  }, []);
+  return null;
+};
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -267,10 +230,8 @@ export const ApplicationShellAuthenticated = (
                 });
                 if (canPaint) hasPaintedShell.current = true;
 
-                return (
-                  <ConfigureIntlProvider
-                    {...(canPaint ? { locale, messages } : {})}
-                  >
+                const intlReady = (
+                  <>
                     <RememberUserLanguage language={user?.language} />
                     {/* Marked here rather than inside the
                   `ConfigureIntlProvider` implementation, because that component
@@ -296,297 +257,118 @@ export const ApplicationShellAuthenticated = (
                         }
                       />
                     ) : null}
-                    <SetupFlopFlipProvider
-                      user={normalizedUser}
-                      projectKey={projectKeyInContext}
-                      ldClientSideId={applicationEnvironment.ldClientSideId}
-                      flags={props.featureFlags}
-                      defaultFlags={props.defaultFeatureFlags}
+                  </>
+                );
+
+                const mainContent = (
+                  <ShellMainContent
+                    isLoadingUser={isLoadingUser}
+                    isLoadingLocaleData={isLoadingLocaleData}
+                    normalizedUser={normalizedUser}
+                    applicationEnvironment={applicationEnvironment}
+                    projectKeyInContext={projectKeyInContext}
+                    notificationsPageRef={notificationsPageRef}
+                    layoutRefs={layoutRefs}
+                    disableRoutePermissionCheck={
+                      props.disableRoutePermissionCheck
+                    }
+                    render={props.render}
+                  >
+                    {props.children}
+                  </ShellMainContent>
+                );
+
+                const renderChrome = (
+                  content: ReactNode,
+                  {
+                    isChromeReady,
+                  }: {
+                    isChromeReady: boolean;
+                  }
+                ) => (
+                  <SetupFlopFlipProvider
+                    user={normalizedUser}
+                    projectKey={projectKeyInContext}
+                    ldClientSideId={applicationEnvironment.ldClientSideId}
+                    flags={props.featureFlags}
+                    defaultFlags={props.defaultFeatureFlags}
+                  >
+                    <ApplicationShellSplitter locale={locale ?? 'en'}>
+                      <ShellLayout
+                        isLoadingUser={isLoadingUser}
+                        isLoadingLocaleData={
+                          isLoadingLocaleData || !isChromeReady
+                        }
+                        locale={locale}
+                        normalizedUser={
+                          isChromeReady ? normalizedUser : undefined
+                        }
+                        applicationEnvironment={applicationEnvironment}
+                        projectKeyInContext={projectKeyInContext}
+                        notificationsGlobalRef={notificationsGlobalRef}
+                        onMenuItemClick={props.onMenuItemClick}
+                      >
+                        {content}
+                      </ShellLayout>
+                    </ApplicationShellSplitter>
+                  </SetupFlopFlipProvider>
+                );
+
+                if (!isEarlyShellRenderingEnabled(applicationEnvironment)) {
+                  return (
+                    <ConfigureIntlProvider
+                      {...(canPaint ? { locale, messages } : {})}
                     >
-                      <ApplicationShellSplitter locale={locale ?? 'en'}>
-                        {/* The splitter's Suspense fallback renders these same
-                      children, so this mark is written on the fallback pass and
-                      does not wait for the lazy chunk to download. */}
-                        <PerformanceMark
-                          mark={PERFORMANCE_MARKS.SHELL_CHROME_MOUNTED}
-                        />
-                        <ThemeSwitcher />
-                        {/* NOTE: the requests in flight loader will render a loading
-                      spinner into the AppBar. */}
-                        <RequestsInFlightLoader />
-                        <SentryUserTracker user={normalizedUser} />
-                        <div
-                          css={css`
-                            height: 100vh;
-                            display: grid;
-                            grid-template-rows: auto ${DIMENSIONS.header} 1fr;
-                            grid-template-columns: min-content 1fr;
-                          `}
+                      {intlReady}
+                      {renderChrome(mainContent, { isChromeReady: true })}
+                    </ConfigureIntlProvider>
+                  );
+                }
+
+                /*
+                  Early shell rendering: the chrome renders on the first pass
+                  instead of waiting behind `ConfigureIntlProvider`, and only the
+                  routed content waits for the paint gate.
+
+                  The chrome reads whatever catalogue `AsyncLocaleData` has. Until
+                  the first one arrives that is none, so the chrome falls back to
+                  English default messages; it shows mostly loading placeholders
+                  in that window. The pair stays consistent because
+                  `AsyncLocaleData` only reports a locale next to its own
+                  messages.
+
+                  The chrome stays mounted when the gate opens: only the content
+                  below `ShellLayout` swaps from the loader to the routes.
+
+                  Until the gate opens the chrome keeps its loading placeholders
+                  (no user in the AppBar, `NavBarSkeleton`). On a locale-hint
+                  miss, `AsyncLocaleData` serves the guessed catalogue until the
+                  user's own arrives, and rendering the user's header and menu
+                  with it would show them in a language they never chose.
+                */
+                return (
+                  <IntlProvider
+                    locale={messages && locale ? locale : 'en'}
+                    messages={messages}
+                  >
+                    <HideAppLoaderOnMount />
+                    {renderChrome(
+                      canPaint ? (
+                        <ConfigureIntlProvider
+                          locale={locale}
+                          messages={messages}
                         >
-                          <div
-                            ref={notificationsGlobalRef}
-                            role="region"
-                            aria-live="polite"
-                            css={css`
-                              grid-row: 1;
-                              grid-column: 1/3;
-                            `}
-                          >
-                            <div id="above-top-navigation" />
-                            <NotificationsList domain={DOMAINS.GLOBAL} />
-                          </div>
-
-                          <header
-                            css={css`
-                              grid-row: '2/3';
-                              grid-column: '2/3';
-                            `}
-                          >
-                            <AppBar
-                              user={normalizedUser}
-                              projectKey={projectKeyInContext}
-                            />
-                          </header>
-
-                          <aside
-                            css={css`
-                              grid-column: 1/2;
-                              grid-row: 2/4;
-                              overflow: hidden;
-                            `}
-                          >
-                            {(() => {
-                              // The <NavBar> should only be rendered within a project
-                              // context, therefore when there is a `projectKey`.
-                              // On `/account` routes there is none, so we don't render it.
-                              // NOTE: for paths that run in a project context without
-                              // carrying the `projectKey` in the URL (e.g. `/agent-sphere`),
-                              // the key is resolved from the previously used project.
-                              if (!projectKeyInContext) return null;
-                              return (
-                                <FetchProject projectKey={projectKeyInContext}>
-                                  {({
-                                    isLoading: isLoadingProject,
-                                    project,
-                                  }) => {
-                                    const isLoading =
-                                      isLoadingUser ||
-                                      isLoadingLocaleData ||
-                                      isLoadingProject ||
-                                      !locale ||
-                                      !project;
-
-                                    return (
-                                      <ApplicationContextProvider
-                                        user={normalizedUser}
-                                        environment={applicationEnvironment}
-                                        // NOTE: do not pass the `project` into the application context.
-                                        // The permissions for the Navbar are resolved separately, within
-                                        // a different React context.
-                                      >
-                                        <NavBar
-                                          applicationLocale={locale}
-                                          projectKey={projectKeyInContext}
-                                          project={project}
-                                          environment={applicationEnvironment}
-                                          onMenuItemClick={
-                                            props.onMenuItemClick
-                                          }
-                                          isLoading={isLoading}
-                                        />
-                                      </ApplicationContextProvider>
-                                    );
-                                  }}
-                                </FetchProject>
-                              );
-                            })()}
-                          </aside>
-
-                          {isLoadingUser || isLoadingLocaleData ? (
-                            <MainContainer role="main">
-                              <ApplicationLoader />
-                            </MainContainer>
-                          ) : (
-                            <MainContainer role="main">
-                              <PerformanceMark
-                                mark={PERFORMANCE_MARKS.CONTENT_RENDERED}
-                              />
-                              <div ref={notificationsPageRef}>
-                                <NotificationsList domain={DOMAINS.PAGE} />
-                              </div>
-                              <NotificationsList domain={DOMAINS.SIDE} />
-                              <div
-                                css={css`
-                                  flex-grow: 1;
-                                  display: flex;
-                                  flex-direction: column;
-                                  position: relative;
-
-                                  /*
-                                This is only necessary because we have an intermediary <div> wrapping the
-                                <View> component that is used to wrap every content-view. This intermediary
-                                <div> is solely used for adding the tracking context to the content-view.
-                                However, this could be done by passing the tracking context to the <View>
-                                and let it do the layout, so we can avoid laying our from the outside as we
-                                do here.
-                              */
-                                  > *:not(:first-of-type) {
-                                    flex-grow: 1;
-                                    display: flex;
-                                    flex-direction: column;
-                                  }
-                                `}
-                              >
-                                <PortalsContainer
-                                  // @ts-ignore
-                                  ref={layoutRefs}
-                                  offsetTop={DIMENSIONS.header}
-                                  offsetLeft={
-                                    projectKeyInContext
-                                      ? NAVBAR.widthLeftNavigation
-                                      : '0px'
-                                  }
-                                  offsetLeftOnExpandedMenu={
-                                    projectKeyInContext
-                                      ? NAVBAR.widthLeftNavigationWhenExpanded
-                                      : '0px'
-                                  }
-                                />
-                                <Switch>
-                                  <Route
-                                    path="/profile"
-                                    render={() => (
-                                      <Redirect
-                                        to={`/${STATIC_URL_PATHS.ACCOUNT}/profile`}
-                                      />
-                                    )}
-                                  />
-
-                                  <Route
-                                    path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS.filter(
-                                      (entryPointUriPath) =>
-                                        !isProjectKeylessApplicationEntryPointInProjectContext(
-                                          entryPointUriPath
-                                        )
-                                    ).map(
-                                      (entryPointUriPath) =>
-                                        `/${entryPointUriPath}`
-                                    )}
-                                  >
-                                    {
-                                      /**
-                                       * In case the AppShell uses the `render` function, we assume it's one of two cases:
-                                       * 1. The application does not use `children` and therefore implements the routes including
-                                       * the <RouteCatchAll> (this is the "legacy" behavior).
-                                       * 2. It's the account application, which always uses `render` and therefore should render as normal.
-                                       *
-                                       * In case the AppShell uses the `children` function, we can always assume that
-                                       * it's a normal Custom Application and that it should trigger a force reload.
-                                       */
-                                      props.render ? (
-                                        <>{props.render()}</>
-                                      ) : (
-                                        <RouteCatchAll />
-                                      )
-                                    }
-                                  </Route>
-                                  <Route
-                                    path={PROJECT_KEYLESS_APPLICATION_ENTRY_POINTS_IN_PROJECT_CONTEXT.map(
-                                      (entryPointUriPath) =>
-                                        `/${entryPointUriPath}`
-                                    )}
-                                  >
-                                    {isProjectKeylessApplicationEntryPointInProjectContext(
-                                      applicationEnvironment.entryPointUriPath
-                                    ) ? (
-                                      <ApplicationEntryPoint
-                                        environment={applicationEnvironment}
-                                        // There is no project in ApplicationContext on this
-                                        // path, so the default View-permission check cannot
-                                        // succeed. Access is gated in the app via a user flag.
-                                        disableRoutePermissionCheck
-                                        render={props.render}
-                                      >
-                                        {props.children}
-                                      </ApplicationEntryPoint>
-                                    ) : props.render ? (
-                                      /**
-                                       * Same as `/account`: a `render` app implements its own
-                                       * catch-all. A `children` Custom Application must reload
-                                       * so the proxy can hand the request to agent-sphere.
-                                       */
-                                      <>{props.render()}</>
-                                    ) : (
-                                      <RouteCatchAll />
-                                    )}
-                                  </Route>
-                                  {/* Project routes */}
-                                  <Route exact={true} path="/">
-                                    {(() => {
-                                      const entryPointUriPath =
-                                        applicationEnvironment.entryPointUriPath;
-                                      const previousProjectKey =
-                                        getPreviousProjectKey(
-                                          normalizedUser?.defaultProjectKey ??
-                                            undefined
-                                        );
-
-                                      /**
-                                       * NOTE:
-                                       *   Given the application does not run on a `/:projectKey` route
-                                       *   (e.g. `agent-sphere`), the application redirects to its own
-                                       *   entry point instead of to a project.
-                                       *   Given the user has not been loaded a loading spinner is shown.
-                                       *   Given the user was not working on a project previously nor has a default
-                                       *   project, the user will be prompted to create one.
-                                       *   Given the user was working on a project previously or has a default
-                                       *   project, the application will redirect to that project.
-                                       */
-                                      if (
-                                        isProjectKeylessApplicationEntryPoint(
-                                          entryPointUriPath
-                                        )
-                                      ) {
-                                        return (
-                                          <Redirect
-                                            to={`/${entryPointUriPath}`}
-                                          />
-                                        );
-                                      }
-                                      if (!normalizedUser)
-                                        return <ApplicationLoader />;
-                                      if (!previousProjectKey)
-                                        return <RedirectToProjectCreate />;
-                                      return (
-                                        <Redirect
-                                          to={`/${previousProjectKey}`}
-                                        />
-                                      );
-                                    })()}
-                                  </Route>
-                                  <Route exact={false} path="/:projectKey">
-                                    <ProjectContainer
-                                      user={normalizedUser}
-                                      environment={applicationEnvironment}
-                                      disableRoutePermissionCheck={
-                                        props.disableRoutePermissionCheck
-                                      }
-                                      // This effectively renders the
-                                      // children, which is the application
-                                      // specific part
-                                      render={props.render}
-                                    >
-                                      {props.children}
-                                    </ProjectContainer>
-                                  </Route>
-                                </Switch>
-                              </div>
-                            </MainContainer>
-                          )}
-                        </div>
-                      </ApplicationShellSplitter>
-                    </SetupFlopFlipProvider>
-                  </ConfigureIntlProvider>
+                          {intlReady}
+                          {mainContent}
+                        </ConfigureIntlProvider>
+                      ) : (
+                        <MainContainer role="main">
+                          <ApplicationLoader />
+                        </MainContainer>
+                      ),
+                      { isChromeReady: canPaint }
+                    )}
+                  </IntlProvider>
                 );
               }}
             </AsyncLocaleData>
@@ -599,3 +381,5 @@ export const ApplicationShellAuthenticated = (
 ApplicationShellAuthenticated.displayName = 'ApplicationShellAuthenticated';
 
 export default ApplicationShellAuthenticated;
+
+export { MainContainer };
