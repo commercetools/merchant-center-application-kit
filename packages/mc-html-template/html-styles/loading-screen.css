@@ -20,16 +20,6 @@
   height: 32px;
 }
 
-.long-loading-notice {
-  color: #999;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-}
-
-.long-loading-notice--hidden {
-  visibility: hidden;
-}
-
 .loading-spinner-circle {
   fill: #213c45;
   opacity: 0.2;
@@ -211,7 +201,7 @@ body {
   background: rgba(0, 0, 0, 0.08);
 }
 
-/* Intentionally empty; centres the reused long-loading notice. */
+/* Intentionally empty; reserves the content area of the grid. */
 .loading-skeleton__content {
   display: flex;
   justify-content: center;
