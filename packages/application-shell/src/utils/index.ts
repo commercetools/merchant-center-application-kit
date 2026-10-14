@@ -10,6 +10,7 @@ export {
   readLastUserLanguage,
   writeLastUserLanguage,
 } from './last-user-language';
+export { default as setupViewTransitionNames } from './view-transition-names';
 export type {
   TPerformanceMark,
   TShellPerformanceMark,

@@ -431,7 +431,7 @@ const NavBarLayout = forwardRef<HTMLElement, TNavBarLayoutProps>(
   (props, ref) => (
     <>
       <Global styles={leftNavigationOpenStyles} />
-      <LeftNavigation ref={ref} data-testid="left-navigation">
+      <LeftNavigation ref={ref} data-testid="left-navigation" data-mc-sidebar>
         {props.children}
       </LeftNavigation>
     </>

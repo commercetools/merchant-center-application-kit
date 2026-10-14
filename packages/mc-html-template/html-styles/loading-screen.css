@@ -96,6 +96,10 @@ body {
   grid-column: 1 / 2;
   width: 80px;
   background: hsl(240, 66%, 19%);
+
+  /* Paired with the React <NavBar> on the outgoing page, which is named from a
+     `pageswap` listener in `application-shell`. */
+  view-transition-name: mc-sidebar;
 }
 
 .loading-skeleton--menu-expanded .loading-skeleton__sidebar {
@@ -202,6 +206,9 @@ body {
   padding: 0 40px;
   background: #fff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+
+  /* Matches the React <AppBar> on the outgoing page. */
+  view-transition-name: mc-header;
 }
 
 .loading-skeleton__header-placeholder {
@@ -218,26 +225,57 @@ body {
   align-items: center;
   grid-row: 3 / 4;
   grid-column: 2 / 3;
+
+  /* Paired with the React <MainContainer> on the outgoing page. */
+  view-transition-name: mc-content;
 }
 
 /* ==========================================================================
    Cross-document view transitions
 
    Opts the document in so cross-app navigation crossfades instead of flashing
-   a blank page. No `view-transition-name` here: a name must exist on both the
-   outgoing and incoming documents to morph an element, and the skeleton is
-   already gone by the time the outgoing page navigates away.
+   a blank page.
+
+   A name must exist on both the outgoing and incoming documents for the
+   browser to morph an element rather than crossfade it. The outgoing page has
+   already replaced this skeleton with the React chrome by the time it
+   navigates away, so the names are paired across the two: the skeleton regions
+   above carry `mc-sidebar`, `mc-header` and `mc-content`, and the matching
+   React elements are named from a `pageswap` listener in `application-shell`.
+   Renaming one side without the other silently falls back to a whole-page
+   crossfade.
+
+   The React side is named only for the moment of the capture rather than
+   statically: `view-transition-name` makes an element a stacking context, and
+   naming the navbar and the content area permanently trapped the navbar's
+   fly-out submenus and the content portals inside them.
    ========================================================================== */
 
 @view-transition {
   navigation: auto;
 }
 
+/* The header and sidebar are the same across apps in a project, so keep the
+   outgoing snapshot on screen instead of crossfading into placeholders. The
+   transition only lasts about a quarter second, so this delays the placeholder
+   flash rather than removing it; caching the last rendered chrome is the way
+   to remove it properly. */
+::view-transition-old(mc-header),
+::view-transition-old(mc-sidebar) {
+  animation: none;
+}
+
+::view-transition-new(mc-header),
+::view-transition-new(mc-sidebar) {
+  display: none;
+}
+
 /* Neutralises the animation, not the transition: switching navigation off
    would bring back the blank screen these users are meant to avoid. */
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation-duration: 1ms;
   }
 }
