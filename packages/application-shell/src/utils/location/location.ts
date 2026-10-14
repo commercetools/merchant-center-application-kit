@@ -25,8 +25,25 @@ const reload = (): void => window.location.reload();
 // Loads the current URL again as a `replace` navigation. Unlike `reload`,
 // this keeps the navigation eligible for cross-document view transitions,
 // which browsers never run on reloads.
-const reloadWithReplace = (): void =>
-  window.location.replace(window.location.href);
+//
+// A URL with a fragment (even a bare trailing `#`) falls back to `reload`:
+// replacing it with itself is a same-document fragment navigation, which only
+// scrolls to the anchor and never requests the page. Those URLs lose the view
+// transition but still load.
+//
+// The location is a parameter only so tests can pass a fake one.
+const reloadWithReplace = (
+  currentLocation: Pick<
+    Location,
+    'href' | 'replace' | 'reload'
+  > = window.location
+): void => {
+  if (currentLocation.href.includes('#')) {
+    currentLocation.reload();
+    return;
+  }
+  currentLocation.replace(currentLocation.href);
+};
 
 const location = {
   replace,

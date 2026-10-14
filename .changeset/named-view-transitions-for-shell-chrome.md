@@ -11,6 +11,6 @@ The React side is named only while the outgoing page is captured, rather than st
 
 The outgoing snapshot of the header and sidebar is kept on screen for the duration instead of crossfading into the skeleton's placeholders. Reduced-motion now covers every transition group rather than only the root.
 
-When an application is served by a proxy, a link to another application now loads the next page with `location.replace(location.href)` instead of `location.reload()`. Browsers never run view transitions on reloads, so the previous behaviour meant navigating through the sidebar never transitioned. The history entry is replaced in place either way, so back and forward behave as before.
+When an application is served by a proxy, a link to another application now loads the next page with `location.replace(location.href)` instead of `location.reload()`. Browsers never run view transitions on reloads, so the previous behaviour meant navigating through the sidebar never transitioned. The history entry is replaced in place either way, so back and forward behave as before. URLs with a fragment still use `location.reload()`, because replacing such a URL with itself only scrolls to the anchor instead of loading the page.
 
 Browsers without cross-document view transition support are unaffected and keep the existing behaviour.
