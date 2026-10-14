@@ -368,37 +368,6 @@ describe('missing User Timing API', () => {
   });
 });
 
-describe('long-loading notice', () => {
-  const noticeIn = (root: HTMLElement) =>
-    root.querySelector('.long-loading-notice') as HTMLElement;
-
-  it('should reveal only the skeleton notice on the authenticated path', () => {
-    window.localStorage.setItem('isAuthenticated', 'true');
-
-    bootLoadingScreen();
-    jest.advanceTimersByTime(2000);
-
-    expect(noticeIn(skeleton()).classList).not.toContain(
-      'long-loading-notice--hidden'
-    );
-    expect(noticeIn(loadingScreen()).classList).toContain(
-      'long-loading-notice--hidden'
-    );
-  });
-
-  it('should reveal only the spinner notice on the unauthenticated path', () => {
-    bootLoadingScreen();
-    jest.advanceTimersByTime(2000);
-
-    expect(noticeIn(loadingScreen()).classList).not.toContain(
-      'long-loading-notice--hidden'
-    );
-    expect(noticeIn(skeleton()).classList).toContain(
-      'long-loading-notice--hidden'
-    );
-  });
-});
-
 describe('stylesheet preload upgrade', () => {
   it('should upgrade a preload once it loads', () => {
     const linkEl = addPreload({

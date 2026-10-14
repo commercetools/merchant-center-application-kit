@@ -73,12 +73,11 @@ describe('replaceHtmlPlaceholders', () => {
       expect(skeleton).toContain('aria-hidden="true"');
     });
 
-    it('should render a long-loading notice in both variants', () => {
+    it('should not render a long-loading notice', () => {
       const html = compile();
 
-      expect(
-        html.match(/long-loading-notice long-loading-notice--hidden/g)
-      ).toHaveLength(2);
+      expect(html).not.toContain('long-loading-notice');
+      expect(html).not.toContain('unusually long time');
     });
 
     it('should preserve the unauthenticated spinner and wordmark', () => {

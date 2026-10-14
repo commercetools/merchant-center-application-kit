@@ -2,7 +2,7 @@
 // this file is inlined into the HTML document verbatim (only minified).
 (function initLoadingScreen() {
   const SPINNER_SHOW_DELAY = 250;
-  const LONG_LOADING_DELAY = 2000;
+  const STYLESHEET_GATE_DEADLINE = 2000;
   // Mirrors WINDOW_SIZES.WIDE in application-shell/src/constants.ts.
   const WIDE_VIEWPORT = 1200;
   // Mirrors `STATIC_URL_PATHS_IN_POSITION_OF_PROJECT_KEY` in
@@ -210,19 +210,6 @@
     }
   }
 
-  function scheduleLongLoadingNotice(containerEl) {
-    setTimeout(function showLongLoadingNotice() {
-      // Scoped to the revealed container: both variants carry a notice, and an
-      // unscoped lookup would always hit the skeleton's copy first.
-      const noticeEl =
-        containerEl && containerEl.querySelector('.long-loading-notice');
-
-      if (noticeEl) {
-        noticeEl.classList.remove('long-loading-notice--hidden');
-      }
-    }, LONG_LOADING_DELAY);
-  }
-
   upgradeStylesheetPreloads();
 
   // Hard deadline so a stylesheet that never resolves can't leave the app
@@ -241,14 +228,13 @@
 
     window.__CSS_REMAINING__ = 0;
     removeAppLoaderWhenReady();
-  }, LONG_LOADING_DELAY);
+  }, STYLESHEET_GATE_DEADLINE);
 
   const variant = selectSkeletonVariant();
   const skeletonEl = variant ? revealSkeleton(variant) : null;
 
   if (skeletonEl) {
     markSkeletonVisible();
-    scheduleLongLoadingNotice(skeletonEl);
     return;
   }
 
@@ -259,6 +245,4 @@
       loadingScreenEl.classList.remove('loading-screen--hidden');
     }
   }, SPINNER_SHOW_DELAY);
-
-  scheduleLongLoadingNotice(document.querySelector('.loading-screen'));
 })();
