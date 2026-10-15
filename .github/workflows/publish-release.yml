@@ -137,37 +137,23 @@ jobs:
           app_id: ${{ secrets.CT_CHANGESETS_APP_ID }}
           private_key: ${{ secrets.CT_CHANGESETS_APP_PEM }}
 
-      - name: Get PR branch
+      # Preview runs are `push` runs, so the branch is the ref that was pushed.
+      - name: Get preview branch
         id: pr
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        env:
+          BRANCH: ${{ github.ref_name }}
         with:
           script: |
-            const pr = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-            });
-            const branch = pr.data.head.ref;
+            const branch = process.env.BRANCH;
             const sanitized = branch.replace(/[^a-zA-Z0-9-]/g, '-').slice(0, 40);
             core.setOutput('ref', branch);
-            core.setOutput('sha', pr.data.head.sha);
             core.setOutput('tag', sanitized);
-
-      - name: React to comment
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
-        with:
-          script: |
-            await github.rest.reactions.createForIssueComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              comment_id: context.payload.comment.id,
-              content: 'rocket',
-            });
 
       - name: Checkout PR branch
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          ref: ${{ steps.pr.outputs.ref }}
+          ref: ${{ github.sha }}
           token: ${{ steps.generate_github_token.outputs.token }}
 
       # Ensure we are using valid node version for npm trusted publishing AFTER checkout
@@ -207,26 +193,37 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
           BRANCH_NAME: ${{ steps.pr.outputs.ref }}
 
+      # The comments go on the open PR for the pushed branch, if there is one.
       - name: Comment with install instructions
         if: success()
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        env:
+          BRANCH: ${{ steps.pr.outputs.ref }}
+          VERSION: ${{ steps.publish.outputs.version }}
         with:
           script: |
-            const version = '${{ steps.publish.outputs.version }}';
-            const sha = '${{ steps.pr.outputs.sha }}'.slice(0, 7);
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${process.env.BRANCH}`,
+              state: 'open',
+            });
+            if (prs.length === 0) return;
+            const version = process.env.VERSION;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              issue_number: prs[0].number,
               body: [
                 `### 🚀 Preview published`,
                 '',
                 `**Version:** \`${version}\``,
-                `**Commit:** \`${sha}\``,
+                `**Commit:** \`${context.sha.slice(0, 7)}\``,
+                '',
+                'Update every kit package your workspace already uses:',
                 '',
                 '```bash',
-                `pnpm add @commercetools-frontend/application-shell@${version}`,
-                `pnpm add @commercetools-frontend/mc-scripts@${version}`,
+                `pnpm -r update "@commercetools-frontend/*@${version}" "@commercetools-backend/*@${version}"`,
                 '```',
               ].join('\n'),
             });
@@ -234,11 +231,20 @@ jobs:
       - name: Comment on failure
         if: failure()
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        env:
+          BRANCH: ${{ steps.pr.outputs.ref }}
         with:
           script: |
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${process.env.BRANCH}`,
+              state: 'open',
+            });
+            if (prs.length === 0) return;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `### ❌ Preview publish failed\n\nSee details: [Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
+              issue_number: prs[0].number,
+              body: `### ❌ Preview publish failed\n\nSee details: [Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
             });
