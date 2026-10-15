@@ -1,4 +1,4 @@
-import type { TransactionEvent } from '@sentry/types';
+import type { TransactionEvent } from '@sentry/core';
 import {
   PERFORMANCE_MARK_PREFIX,
   PERFORMANCE_MEASURE_SUFFIX,
