@@ -1,5 +1,54 @@
 # @commercetools-frontend/application-shell
 
+## 27.15.0
+
+### Minor Changes
+
+- [#4194](https://github.com/commercetools/merchant-center-application-kit/pull/4194) [`c8d0b8e`](https://github.com/commercetools/merchant-center-application-kit/commit/c8d0b8eca76a95bed0ddd4725a2b3f2b1013f6eb) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Add an opt-in `enableEarlyShellRendering` runtime option that renders the shell chrome (grid, AppBar and NavBar) before the locale data is available.
+
+  Today the whole authenticated shell waits behind `ConfigureIntlProvider`, which renders nothing until both the user and the locale catalogue have loaded, so the HTML skeleton stays up for that whole time. With the option on, the chrome renders on the first pass inside its own `IntlProvider` and replaces the HTML skeleton as soon as it mounts. Until the paint gate opens it shows its loading placeholders (no user in the AppBar, the NavBar skeleton), so a wrongly guessed locale never shows up in the user's header or menu. The routed content shows the application loader until the gate opens. The project query, which the NavBar owns, now starts on the first pass instead of after the locale data.
+
+  The option is off by default. To try it, set it in the application config:
+
+  ```js
+  additionalEnv: {
+    enableEarlyShellRendering: 'true',
+  },
+  ```
+
+  It is read from `window.app` rather than a feature flag because the flag provider is mounted inside the boundary the option decides.
+
+- [#4185](https://github.com/commercetools/merchant-center-application-kit/pull/4185) [`03ea150`](https://github.com/commercetools/merchant-center-application-kit/commit/03ea15071e297f81c3dc7d72cd988070aa11cf84) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Name the shell chrome for cross-document view transitions, so cross-app navigation keeps the sidebar and header anchored instead of crossfading the whole page.
+
+  `@view-transition { navigation: auto; }` alone crossfades the entire document. Holding an element in place additionally requires the same `view-transition-name` on both the outgoing and the incoming document. The outgoing page has already replaced the HTML skeleton with the React chrome by the time it navigates away, so the names are paired across the two: the skeleton regions carry `mc-sidebar`, `mc-header` and `mc-content`, and the matching React elements are named from a `pageswap` listener.
+
+  The React side is named only while the outgoing page is captured, rather than statically. `view-transition-name` makes an element a stacking context for as long as it is set, and neither the navbar nor the main content area was one before — naming them permanently trapped the navbar's fly-out submenus and the content area's portals, which could no longer paint above the header. The names are cleared once the transition settles, so a bfcache restore does not return with stale ones.
+
+  The outgoing snapshot of the header and sidebar is kept on screen for the duration instead of crossfading into the skeleton's placeholders. Reduced-motion now covers every transition group rather than only the root.
+
+  When an application is served by a proxy, a link to another application now loads the next page with `location.replace(location.href)` instead of `location.reload()`. Browsers never run view transitions on reloads, so the previous behaviour meant navigating through the sidebar never transitioned. The history entry is replaced in place either way, so back and forward behave as before. URLs with a fragment still use `location.reload()`, because replacing such a URL with itself only scrolls to the anchor instead of loading the page.
+
+  Browsers without cross-document view transition support are unaffected and keep the existing behaviour.
+
+### Patch Changes
+
+- Updated dependencies [[`c8d0b8e`](https://github.com/commercetools/merchant-center-application-kit/commit/c8d0b8eca76a95bed0ddd4725a2b3f2b1013f6eb)]:
+  - @commercetools-frontend/constants@27.15.0
+  - @commercetools-frontend/actions-global@27.15.0
+  - @commercetools-frontend/application-components@27.15.0
+  - @commercetools-frontend/application-config@27.15.0
+  - @commercetools-frontend/application-shell-connectors@27.15.0
+  - @commercetools-frontend/assets@27.15.0
+  - @commercetools-frontend/browser-history@27.15.0
+  - @commercetools-frontend/i18n@27.15.0
+  - @commercetools-frontend/l10n@27.15.0
+  - @commercetools-frontend/notifications@27.15.0
+  - @commercetools-frontend/permissions@27.15.0
+  - @commercetools-frontend/react-notifications@27.15.0
+  - @commercetools-frontend/sdk@27.15.0
+  - @commercetools-frontend/sentry@27.15.0
+  - @commercetools-frontend/url-utils@27.15.0
+
 ## 27.14.0
 
 ### Minor Changes
