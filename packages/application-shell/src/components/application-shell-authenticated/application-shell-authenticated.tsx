@@ -29,7 +29,6 @@ import {
   resolveLocaleHint,
   selectProjectKeyInContext,
 } from '../../utils';
-import ApplicationLoader from '../application-loader';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShellSplitter from '../application-shell-splitter/application-shell-splitter.async';
 import ConfigureIntlProvider, {
@@ -340,8 +339,11 @@ export const ApplicationShellAuthenticated = (
                   The chrome stays mounted when the gate opens: only the content
                   below `ShellLayout` swaps from the loader to the routes.
 
-                  Until the gate opens the chrome keeps its loading placeholders
-                  (no user in the AppBar, `NavBarSkeleton`). On a locale-hint
+                  Until the gate opens the content area stays an empty
+                  `MainContainer`, like the HTML skeleton's content block, so no
+                  spinner shows next to the chrome's placeholders. The chrome
+                  keeps its loading placeholders (no user in the AppBar,
+                  `NavBarSkeleton`). On a locale-hint
                   miss, `AsyncLocaleData` serves the guessed catalogue until the
                   user's own arrives, and rendering the user's header and menu
                   with it would show them in a language they never chose.
@@ -362,9 +364,11 @@ export const ApplicationShellAuthenticated = (
                           {mainContent}
                         </ConfigureIntlProvider>
                       ) : (
-                        <MainContainer role="main" data-mc-content>
-                          <ApplicationLoader />
-                        </MainContainer>
+                        <MainContainer
+                          role="main"
+                          data-mc-content
+                          aria-busy={true}
+                        />
                       ),
                       { isChromeReady: canPaint }
                     )}
