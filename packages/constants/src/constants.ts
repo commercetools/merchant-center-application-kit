@@ -190,6 +190,7 @@ export const MC_API_PROXY_TARGETS = {
   EXPORT: 'export',
   STANDALONE_PRICES_SEARCH: 'standalone-prices-search',
   STORES_SEARCGH: 'stores-search',
+  CATEGORY_AUTOCOMPLETE: 'category-autocomplete',
 } as const;
 export type TMcApiProxyTargets =
   (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];
