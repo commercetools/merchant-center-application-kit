@@ -1698,8 +1698,11 @@ describe('FEC-1299 early shell rendering', () => {
         expect(queryAppBar()).not.toBeNull();
       });
       expect(window.onAppLoaded).toHaveBeenCalled();
-      // The routed content still waits for the locale data.
+      // The routed content still waits for the locale data, without a spinner
+      // next to the chrome's own placeholders.
       expect(screen.queryByText('OK')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('application-loader')).toBeNull();
+      expect(screen.getByRole('main')).toHaveAttribute('aria-busy', 'true');
     });
 
     it('should render the routed content once the locale data is available', async () => {
