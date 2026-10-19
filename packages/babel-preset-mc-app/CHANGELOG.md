@@ -1,5 +1,7 @@
 # @commercetools-frontend/babel-preset-mc-app
 
+## 27.15.0
+
 ## 27.14.0
 
 ## 27.13.0

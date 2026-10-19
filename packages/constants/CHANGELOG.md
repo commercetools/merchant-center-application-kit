@@ -1,5 +1,25 @@
 # @commercetools-frontend/constants
 
+## 27.15.0
+
+### Minor Changes
+
+- [#4197](https://github.com/commercetools/merchant-center-application-kit/pull/4197) [`b5c257f`](https://github.com/commercetools/merchant-center-application-kit/commit/b5c257f2e43fd5f129a77e708b64531a7861ecae) Thanks [@ct-brunoqueiroz](https://github.com/ct-brunoqueiroz)! - Add `CATEGORY_AUTOCOMPLETE` to `MC_API_PROXY_TARGETS`, to reach the Merchant Center category autocomplete proxy route.
+
+- [#4194](https://github.com/commercetools/merchant-center-application-kit/pull/4194) [`c8d0b8e`](https://github.com/commercetools/merchant-center-application-kit/commit/c8d0b8eca76a95bed0ddd4725a2b3f2b1013f6eb) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Add an opt-in `enableEarlyShellRendering` runtime option that renders the shell chrome (grid, AppBar and NavBar) before the locale data is available.
+
+  Today the whole authenticated shell waits behind `ConfigureIntlProvider`, which renders nothing until both the user and the locale catalogue have loaded, so the HTML skeleton stays up for that whole time. With the option on, the chrome renders on the first pass inside its own `IntlProvider` and replaces the HTML skeleton as soon as it mounts. Until the paint gate opens it shows its loading placeholders (no user in the AppBar, the NavBar skeleton), so a wrongly guessed locale never shows up in the user's header or menu. The routed content shows the application loader until the gate opens. The project query, which the NavBar owns, now starts on the first pass instead of after the locale data.
+
+  The option is off by default. To try it, set it in the application config:
+
+  ```js
+  additionalEnv: {
+    enableEarlyShellRendering: 'true',
+  },
+  ```
+
+  It is read from `window.app` rather than a feature flag because the flag provider is mounted inside the boundary the option decides.
+
 ## 27.14.0
 
 ### Minor Changes
