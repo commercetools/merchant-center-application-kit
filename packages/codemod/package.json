@@ -41,6 +41,6 @@
     "typescript": "catalog:build"
   },
   "engines": {
-    "node": "18.x || 20.x || >=22.0.0"
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   }
 }

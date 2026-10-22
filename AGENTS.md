@@ -171,7 +171,7 @@ for Storybook, `docs/chromatic-e2e-playground.md` for the Cypress playground.
 
 ## Conventions
 
-- **Node version**: pinned in `.nvmrc` (currently Node 22). Use `nvm use` or
+- **Node version**: pinned in `.nvmrc` (currently Node 24). Use `nvm use` or
   equivalent before running commands.
 - Test files use `*.spec.{js,jsx,ts,tsx}` — not `*.test.*`.
 - i18n message definitions go in files named `*messages.ts`.
