@@ -9,7 +9,7 @@ ESLint flat config (v9+) for Merchant Center customizations.
 ## Requirements
 
 - ESLint 9.x or higher
-- Node.js 18.x, 20.x, or >=22.0.0
+- Node.js ^22.23.4, ^24.22.1, or >=26.12.1
 
 ## Migrations
 
