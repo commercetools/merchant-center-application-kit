@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 27.16.0
+
+### Minor Changes
+
+- [#4201](https://github.com/commercetools/merchant-center-application-kit/pull/4201) [`d116794`](https://github.com/commercetools/merchant-center-application-kit/commit/d1167945f576230952aad7b3cf64c35d72042d2b) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Raise the minimum supported Node.js version to `^22.23.4 || ^24.22.1 || >=26.12.1`.
+
+  These are the first Node.js releases that remove the compromised `emSign ECC Root CA - G3`, `emSign Root CA - C1` and `emSign ECC Root CA - C3` certificates from the bundled root store. Node.js 18, 20, 21 and 25 do not receive a fix and are no longer supported.
+
+  This is released as a minor version as a security exception. If you run Custom Applications or Custom Views on an older Node.js version, upgrade Node.js to one of the versions above and rebuild your images.
+
 ## 27.15.0
 
 ## 27.14.0
