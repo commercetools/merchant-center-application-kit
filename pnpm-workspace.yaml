@@ -42,8 +42,8 @@ minimumReleaseAgeExclude:
   - sharp@0.35.0
   # Renovate security update: qs@6.15.2
   - qs@6.15.2
-  # Renovate security update: vite@6.4.3
-  - vite@6.4.3
+  # Renovate security update: vite@6.4.3 || 6.4.4
+  - vite@6.4.3 || 6.4.4
   # Renovate security update: yaml@2.8.3
   - yaml@2.8.3
   # Renovate security update: webpack-dev-server@5.2.6
