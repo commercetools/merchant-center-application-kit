@@ -1,5 +1,36 @@
 # @commercetools-frontend/application-shell
 
+## 27.16.0
+
+### Minor Changes
+
+- [#4201](https://github.com/commercetools/merchant-center-application-kit/pull/4201) [`d116794`](https://github.com/commercetools/merchant-center-application-kit/commit/d1167945f576230952aad7b3cf64c35d72042d2b) Thanks [@Rombelirk](https://github.com/Rombelirk)! - Raise the minimum supported Node.js version to `^22.23.4 || ^24.22.1 || >=26.12.1`.
+
+  These are the first Node.js releases that remove the compromised `emSign ECC Root CA - G3`, `emSign Root CA - C1` and `emSign ECC Root CA - C3` certificates from the bundled root store. Node.js 18, 20, 21 and 25 do not receive a fix and are no longer supported.
+
+  This is released as a minor version as a security exception. If you run Custom Applications or Custom Views on an older Node.js version, upgrade Node.js to one of the versions above and rebuild your images.
+
+### Patch Changes
+
+- [#4198](https://github.com/commercetools/merchant-center-application-kit/pull/4198) [`0a09ec4`](https://github.com/commercetools/merchant-center-application-kit/commit/0a09ec47827f1a6b1680fc916294d0a47de68d07) Thanks [@Rombelirk](https://github.com/Rombelirk)! - With `enableEarlyShellRendering` on, show an empty content area instead of the application loader spinner until the routed content renders. The spinner appeared next to the chrome's grey placeholders, which made the loading sequence inconsistent.
+
+- Updated dependencies [[`d116794`](https://github.com/commercetools/merchant-center-application-kit/commit/d1167945f576230952aad7b3cf64c35d72042d2b)]:
+  - @commercetools-frontend/application-config@27.16.0
+  - @commercetools-frontend/application-shell-connectors@27.16.0
+  - @commercetools-frontend/actions-global@27.16.0
+  - @commercetools-frontend/application-components@27.16.0
+  - @commercetools-frontend/assets@27.16.0
+  - @commercetools-frontend/browser-history@27.16.0
+  - @commercetools-frontend/constants@27.16.0
+  - @commercetools-frontend/i18n@27.16.0
+  - @commercetools-frontend/l10n@27.16.0
+  - @commercetools-frontend/notifications@27.16.0
+  - @commercetools-frontend/permissions@27.16.0
+  - @commercetools-frontend/react-notifications@27.16.0
+  - @commercetools-frontend/sdk@27.16.0
+  - @commercetools-frontend/sentry@27.16.0
+  - @commercetools-frontend/url-utils@27.16.0
+
 ## 27.15.0
 
 ### Minor Changes
