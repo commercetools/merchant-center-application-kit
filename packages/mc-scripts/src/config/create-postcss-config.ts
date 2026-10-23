@@ -35,17 +35,23 @@ function createPostcssConfig({
        * Plugin to parse CSS and add vendor prefixes to CSS rules
        * using values from "[Can I Use](https://caniuse.com/)".
        * https://github.com/postcss/autoprefixer
+       *
+       * Only used for production builds. The `development` browser targets
+       * (the latest Chrome and Firefox versions) need no prefixes, so the plugin
+       * would change nothing and log "You do not need Autoprefixer anymore".
+       * If you add older browsers to the `development` targets, enable it there too.
        */
-      require('autoprefixer')({
-        // Enables `-ms-` prefixes for Grid Layout including some
-        // limited autoplacement support.
-        // https://github.com/postcss/autoprefixer#grid-autoplacement-support-in-ie
-        grid: 'autoplace',
-        overrideBrowserslist:
-          process.env.NODE_ENV === 'production'
-            ? pkgJson.browserslist.production
-            : pkgJson.browserslist.development,
-      }),
+      ...(process.env.NODE_ENV === 'production'
+        ? [
+            require('autoprefixer')({
+              // Enables `-ms-` prefixes for Grid Layout including some
+              // limited autoplacement support.
+              // https://github.com/postcss/autoprefixer#grid-autoplacement-support-in-ie
+              grid: 'autoplace',
+              overrideBrowserslist: pkgJson.browserslist.production,
+            }),
+          ]
+        : []),
       /**
        * Plugin to enable Custom Media Queries in CSS, following
        * the [CSS Media Queries](https://drafts.csswg.org/mediaqueries-5/#custom-mq) specification.
