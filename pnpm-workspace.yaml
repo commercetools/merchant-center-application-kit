@@ -65,6 +65,7 @@ strictDepBuilds: true
 # build scripts and add it here before merging.
 allowBuilds:
   '@commercetools/nimbus': true
+  '@parcel/watcher': true
   '@swc/core': true
   core-js: true
   core-js-pure: true
@@ -91,6 +92,11 @@ overrides:
   '@typescript-eslint/eslint-plugin': ^8.0.0
   '@typescript-eslint/parser': ^8.0.0
   browserslist: ^4.28.1
+  # autoprefixer has its own caniuse-lite dependency. Two versions in the
+  # lockfile make autoprefixer mix browser versions from one release with
+  # feature data from another, and jest-stylelint-runner then fails with
+  # "Autoprefixer target browsers do not need any prefixes". Keep one version.
+  caniuse-lite: ^1.0.30001819
   diff: 4.0.4
   js-yaml: 3.15.1
   node-forge: 1.4.0
@@ -582,8 +588,8 @@ catalogs:
     jest-each: 30.4.1
     jest-environment-jsdom: 30.4.1
     jest-mock: 30.4.1
-    babel-jest: 30.4.1
-    babel-preset-jest: 30.4.0
+    babel-jest: 30.5.2
+    babel-preset-jest: 30.5.0
     '@jest/types': 29.6.3
     '@types/jest': ^29.5.14
 
