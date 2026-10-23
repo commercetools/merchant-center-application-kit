@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react';
+import { fireEvent } from '@testing-library/react';
 import type { RouteComponentProps } from 'react-router-dom';
 import { renderApp, screen } from '../../test-utils';
 import type { TNavbarMenu } from '../../types/generated/proxy';
@@ -170,5 +171,59 @@ describe('when the menu item belongs to a project-keyless application', () => {
       'href',
       '/agent-sphere/registry/details'
     );
+  });
+});
+
+describe('when the mouse wheel is used over the submenu', () => {
+  it('should scroll the navbar scroll container and cancel the native scroll', async () => {
+    const testProps = createTestProps();
+    renderApp(
+      <div data-scrollable-menu data-testid="scroll-container">
+        <ApplicationMenu {...testProps} />
+      </div>,
+      {
+        disableAutomaticEntryPointRoutes: true,
+        route: '/test-project/products',
+      }
+    );
+    await findSubmenuLink('Add product');
+
+    const scrollBy = jest.fn();
+    screen.getByTestId('scroll-container').scrollBy = scrollBy;
+
+    // `fireEvent` returns `false` when the event was cancelled, which stops
+    // the browser from also scrolling natively (that would double the scroll).
+    const wasNotCancelled = fireEvent.wheel(
+      screen.getByTestId('group-group-products'),
+      { deltaX: 0, deltaY: 120 }
+    );
+
+    expect(wasNotCancelled).toBe(false);
+    expect(scrollBy).toHaveBeenCalledWith({ left: 0, top: 120 });
+  });
+
+  it('should not interfere with zooming (ctrl + wheel)', async () => {
+    const testProps = createTestProps();
+    renderApp(
+      <div data-scrollable-menu data-testid="scroll-container">
+        <ApplicationMenu {...testProps} />
+      </div>,
+      {
+        disableAutomaticEntryPointRoutes: true,
+        route: '/test-project/products',
+      }
+    );
+    await findSubmenuLink('Add product');
+
+    const scrollBy = jest.fn();
+    screen.getByTestId('scroll-container').scrollBy = scrollBy;
+
+    const wasNotCancelled = fireEvent.wheel(
+      screen.getByTestId('group-group-products'),
+      { deltaY: 120, ctrlKey: true }
+    );
+
+    expect(wasNotCancelled).toBe(true);
+    expect(scrollBy).not.toHaveBeenCalled();
   });
 });
