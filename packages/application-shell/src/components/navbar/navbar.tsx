@@ -317,6 +317,8 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     const submenu = submenuRef.current;
     if (!submenu) return;
     const handleWheel = (e: WheelEvent) => {
+      // Ctrl + wheel (and trackpad pinch) zooms the page. Leave it alone.
+      if (e.ctrlKey) return;
       const scrollContainer = submenu.closest('[data-scrollable-menu]');
       if (!scrollContainer) return;
       e.preventDefault();
