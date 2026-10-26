@@ -1,7 +1,11 @@
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import pluginGraphql from '@rollup/plugin-graphql';
 import type { StorybookConfig } from '@storybook/react-vite';
 import react from '@vitejs/plugin-react';
+
+// Storybook 10 loads this file as ESM, where CJS's `__dirname` is not defined.
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
   // Stories live here so the published packages carry no test scaffolding.
