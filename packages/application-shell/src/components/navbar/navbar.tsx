@@ -308,6 +308,32 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isMenuOpen]); // <-- (re)run this only when the all menu expands
 
+  // The submenu (including its safe area) is `position: fixed`, so the browser's
+  // scroll chain skips the navbar scroll container, and whether it scrolls the
+  // list natively over the submenu is inconsistent. Take over the scrolling
+  // there. This needs a non-passive native listener to be able to cancel the
+  // browser's own scroll, which React's `onWheel` can't do.
+  useEffect(() => {
+    const submenu = submenuRef.current;
+    if (!submenu) return;
+    const handleWheel = (e: WheelEvent) => {
+      // Ctrl + wheel (and trackpad pinch) zooms the page. Leave it alone.
+      if (e.ctrlKey) return;
+      const scrollContainer = submenu.closest('[data-scrollable-menu]');
+      if (!scrollContainer) return;
+      e.preventDefault();
+      const unit =
+        e.deltaMode === WheelEvent.DOM_DELTA_LINE
+          ? 16
+          : e.deltaMode === WheelEvent.DOM_DELTA_PAGE
+          ? scrollContainer.clientHeight
+          : 1;
+      scrollContainer.scrollBy({ left: e.deltaX * unit, top: e.deltaY * unit });
+    };
+    submenu.addEventListener('wheel', handleWheel, { passive: false });
+    return () => submenu.removeEventListener('wheel', handleWheel);
+  }, [props.isActive, props.isMenuOpen, hasSubmenu]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
     const currentlyFocusedItem = submenuRef.current?.querySelector(':focus');
 
@@ -510,7 +536,7 @@ const NavBar = (props: TNavbarProps) => {
         {isMenuOpen ? <HeaderTitle>Merchant Center</HeaderTitle> : null}
       </NavigationHeader>
       <MenuGroup id="main" level={1}>
-        <ScrollableMenu>
+        <ScrollableMenu data-scrollable-menu>
           <Spacings.Stack scale="l">
             {allApplicationsNavbarMenuGroups.map((navbarMenuGroup) => {
               return (
