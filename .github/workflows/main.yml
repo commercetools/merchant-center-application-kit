@@ -417,7 +417,7 @@ jobs:
         if:
           steps.changed-files.outputs.any_changed == 'true' && github.head_ref !=
           'changeset-release/main'
-        uses: chromaui/action@14cfaef73576e69f95f47f60058063f46ca38719 # v18.1.0
+        uses: chromaui/action@5bcadb5104b09e360e210c54f95a7437c2d82bab # v18.13.3
         with:
           projectToken: ${{ secrets.CHROMATIC_TOKEN_E2E_PLAYGROUND }}
           cypress: true

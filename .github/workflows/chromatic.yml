@@ -83,7 +83,7 @@ jobs:
         if: (steps.changed-files.outputs.any_changed == 'true' ||
           github.event_name == 'workflow_dispatch') && github.head_ref !=
           'changeset-release/main'
-        uses: chromaui/action@14cfaef73576e69f95f47f60058063f46ca38719 # v18.1.0
+        uses: chromaui/action@5bcadb5104b09e360e210c54f95a7437c2d82bab # v18.13.3
         with:
           # Per-project token; the Cypress project's lives in main.yml's test_playground.
           projectToken: ${{ secrets.CHROMATIC_TOKEN_UI_COMPONENTS }}

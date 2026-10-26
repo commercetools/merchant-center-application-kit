@@ -388,7 +388,7 @@ catalogs:
     moment-locales-webpack-plugin: 1.2.0
     '@pmmmwh/react-refresh-webpack-plugin': 0.6.3
     react-dev-utils: 12.0.1
-    react-refresh: 0.18.0
+    react-refresh: 0.19.0
     serialize-javascript: 7.1.2
     style-loader: 3.3.4
     svg-url-loader: 8.1.0
@@ -626,7 +626,7 @@ catalogs:
     wait-for-expect: 4.0.0
 
     # E2E / visual regression (Cypress + Chromatic)
-    '@chromatic-com/cypress': 0.13.2
+    '@chromatic-com/cypress': 0.14.0
     '@cypress/code-coverage': ^3.14.5
     '@faker-js/faker': 8.4.1
     start-server-and-test: 2.1.5
