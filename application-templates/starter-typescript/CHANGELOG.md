@@ -1,5 +1,26 @@
 # merchant-center-application-template-starter-typescript
 
+## 27.16.0
+
+### Patch Changes
+
+- Updated dependencies [[`0a09ec4`](https://github.com/commercetools/merchant-center-application-kit/commit/0a09ec47827f1a6b1680fc916294d0a47de68d07), [`187310c`](https://github.com/commercetools/merchant-center-application-kit/commit/187310cb53cac688a5b6244a381526a44038a4ab), [`d116794`](https://github.com/commercetools/merchant-center-application-kit/commit/d1167945f576230952aad7b3cf64c35d72042d2b), [`bfa39c5`](https://github.com/commercetools/merchant-center-application-kit/commit/bfa39c50bb08174f419ba55ed9fbc71fc6b80fc8)]:
+  - @commercetools-frontend/application-shell@27.16.0
+  - @commercetools-frontend/actions-global@27.16.0
+  - @commercetools-frontend/application-components@27.16.0
+  - @commercetools-frontend/application-config@27.16.0
+  - @commercetools-frontend/application-shell-connectors@27.16.0
+  - @commercetools-frontend/i18n@27.16.0
+  - @commercetools-frontend/jest-preset-mc-app@27.16.0
+  - @commercetools-frontend/l10n@27.16.0
+  - @commercetools-frontend/mc-scripts@27.16.0
+  - @commercetools-frontend/permissions@27.16.0
+  - @commercetools-frontend/babel-preset-mc-app@27.16.0
+  - @commercetools-frontend/eslint-config-mc-app@27.16.0
+  - @commercetools-frontend/mc-dev-authentication@27.16.0
+  - @commercetools-frontend/assets@27.16.0
+  - @commercetools-frontend/constants@27.16.0
+
 ## 27.15.0
 
 ### Patch Changes
