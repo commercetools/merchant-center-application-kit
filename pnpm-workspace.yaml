@@ -56,6 +56,8 @@ minimumReleaseAgeExclude:
   - serialize-javascript@7.1.3
   # Renovate security update: @faker-js/faker@10.5.0
   - "@faker-js/faker@10.5.0"
+  # Renovate security update: storybook@10.6.2
+  - storybook@10.6.2
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -147,6 +149,8 @@ overrides:
   'semver@^6': ^7.8.5
   # Security floor that spans majors: the lockfile resolves 4.x, so ^2.8.1 would downgrade.
   svgo: '>=2.8.1'
+  # @chromatic-com/cypress pins storybook to exactly 10.2.13 (GHSA-f2ph-cmg5-wxc8, fixed in 10.6.2).
+  'storybook@^10': ^10.6.2
   systeminformation: ^5.31.0
   tar-fs: ^3.1.1
   undici: ^8.12.2
