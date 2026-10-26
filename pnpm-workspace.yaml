@@ -33,31 +33,11 @@ cleanupUnusedCatalogs: true
 
 # Explicit cooldown — pins the v11 default so local installs and future pnpm upgrades
 # can't silently bypass the 24h publish window. First-party scopes are excluded.
+# Version entries (e.g. added by Renovate for a security fix) are temporary:
+# remove an entry once that version is older than 24 hours.
 minimumReleaseAge: 1440
 minimumReleaseAgeExclude:
   - '@commercetools*'
-  # Renovate security update: postcss@8.5.10 || 8.5.12 || 8.5.18 || 8.5.23
-  - postcss@8.5.10 || 8.5.12 || 8.5.18 || 8.5.23
-  # Renovate security update: sharp@0.35.0
-  - sharp@0.35.0
-  # Renovate security update: qs@6.15.2
-  - qs@6.15.2
-  # Renovate security update: vite@6.4.3
-  - vite@6.4.3
-  # Renovate security update: yaml@2.8.3
-  - yaml@2.8.3
-  # Renovate security update: webpack-dev-server@5.2.6
-  - webpack-dev-server@5.2.6
-  # Renovate security update: @babel/core@7.29.6
-  - "@babel/core@7.29.6"
-  # Renovate security update: js-yaml@3.15.0 || 3.15.1 || 3.15.2
-  - js-yaml@3.15.0 || 3.15.1 || 3.15.2
-  # Security update: serialize-javascript@7.1.3
-  - serialize-javascript@7.1.3
-  # Renovate security update: @faker-js/faker@10.5.0
-  - "@faker-js/faker@10.5.0"
-  # Renovate security update: storybook@10.6.2
-  - storybook@10.6.2
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
