@@ -466,7 +466,7 @@ catalogs:
     prettier: 2.8.8
 
     # Pre-commit / type-check orchestrator
-    lint-staged: 11.2.6
+    lint-staged: 17.6.0
     tsc-files: 1.1.4
 
   peer:
@@ -535,9 +535,9 @@ catalogs:
     '@commercetools/github-labels': 1.1.0
 
     # Git hooks / commit policy
-    husky: 7.0.4
-    '@commitlint/cli': 17.8.1
-    '@commitlint/config-conventional': 17.8.1
+    husky: 9.1.7
+    '@commitlint/cli': 21.2.4
+    '@commitlint/config-conventional': 21.2.4
 
     # Publish-shape gatekeepers
     '@arethetypeswrong/cli': ^0.18.2
