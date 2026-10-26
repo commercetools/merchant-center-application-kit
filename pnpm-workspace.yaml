@@ -54,6 +54,8 @@ minimumReleaseAgeExclude:
   - js-yaml@3.15.0 || 3.15.1 || 3.15.2
   # Security update: serialize-javascript@7.1.3
   - serialize-javascript@7.1.3
+  # Renovate security update: @faker-js/faker@10.5.0
+  - "@faker-js/faker@10.5.0"
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -640,7 +642,7 @@ catalogs:
     # E2E / visual regression (Cypress + Chromatic)
     '@chromatic-com/cypress': 0.13.2
     '@cypress/code-coverage': ^3.14.5
-    '@faker-js/faker': 8.4.1
+    '@faker-js/faker': ^10.5.0
     start-server-and-test: 2.1.5
 
   nimbus:
