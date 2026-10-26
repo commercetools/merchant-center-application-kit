@@ -1,5 +1,7 @@
 # @commercetools-frontend/constants
 
+## 27.16.0
+
 ## 27.15.0
 
 ### Minor Changes

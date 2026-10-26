@@ -1,5 +1,38 @@
 # @commercetools-frontend/cypress
 
+## 27.16.0
+
+### Patch Changes
+
+- [#4207](https://github.com/commercetools/merchant-center-application-kit/pull/4207) [`187310c`](https://github.com/commercetools/merchant-center-application-kit/commit/187310cb53cac688a5b6244a381526a44038a4ab) Thanks [@misama-ct](https://github.com/misama-ct)! - Update dependencies to the latest minor and patch versions.
+
+  Runtime dependencies with a new pinned version:
+
+  - `@commercetools/nimbus` 3.5.1 → 3.8.0
+  - `@flopflip/*` 15.1.12 → 15.1.14
+  - `@pmmmwh/react-refresh-webpack-plugin` 0.6.2 → 0.6.3
+  - `@radix-ui/react-dialog` 1.1.23 → 1.3.1
+  - `@reduxjs/toolkit` 2.12.0 → 2.13.0
+  - `@rollup/pluginutils` 5.4.0 → 5.5.1
+  - `babel-jest` 30.4.1 → 30.5.2
+  - `babel-preset-jest` 30.4.0 → 30.5.0
+  - `fs-extra` 11.4.0 → 11.4.1
+  - `jest-environment-jsdom` 30.4.1 → 30.5.2
+  - `jest-mock` 30.4.1 → 30.5.2
+  - `postcss` 8.5.26 → 8.5.31
+  - `reselect` 5.2.0 → 5.3.0
+  - `serialize-javascript` 7.1.0 → 7.1.2
+  - `uuid` 14.0.1 → 14.0.3
+  - `webpack` 5.109.2 → 5.112.0
+  - `webpack-dev-server` 5.2.6 → 5.2.7
+
+  The browser data (`caniuse-lite`, `browserslist`) used by the build is refreshed, so the compiled output of the packages can use more modern syntax for the same browserslist queries.
+
+- Updated dependencies [[`0a09ec4`](https://github.com/commercetools/merchant-center-application-kit/commit/0a09ec47827f1a6b1680fc916294d0a47de68d07), [`187310c`](https://github.com/commercetools/merchant-center-application-kit/commit/187310cb53cac688a5b6244a381526a44038a4ab), [`d116794`](https://github.com/commercetools/merchant-center-application-kit/commit/d1167945f576230952aad7b3cf64c35d72042d2b), [`bfa39c5`](https://github.com/commercetools/merchant-center-application-kit/commit/bfa39c50bb08174f419ba55ed9fbc71fc6b80fc8)]:
+  - @commercetools-frontend/application-shell@27.16.0
+  - @commercetools-frontend/application-config@27.16.0
+  - @commercetools-frontend/constants@27.16.0
+
 ## 27.15.0
 
 ### Patch Changes
