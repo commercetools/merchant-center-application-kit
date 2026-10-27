@@ -1,10 +1,13 @@
-import { graphql } from 'msw';
+import { graphql, rest } from 'msw';
 import { setupServer } from 'msw/node';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import type { TUserGraphql } from '../../../../../test-data/user';
 import * as UserMock from '../../../../../test-data/user';
 import { renderApp, screen, waitForElementToBeRemoved } from '../../test-utils';
 import FetchUser from './fetch-user';
+
+declare let window: ApplicationWindow;
 
 jest.mock('@commercetools-frontend/sentry');
 
@@ -128,5 +131,114 @@ describe('rendering', () => {
       ).toBeInTheDocument();
       expect(reportErrorToSentry).toHaveBeenCalled();
     });
+  });
+});
+
+describe('with a user prefetched by the proxy', () => {
+  // A unique application identifier per test, so that each test has its own
+  // preload URL (each URL is only used once).
+  let testCount = 0;
+  let applicationIdentifier: string;
+  let originalApplicationIdentifier: string | undefined;
+
+  beforeEach(() => {
+    testCount += 1;
+    applicationIdentifier = `__internal:test-app-${testCount}`;
+    originalApplicationIdentifier = window.app.applicationIdentifier;
+    window.app.applicationIdentifier = applicationIdentifier;
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.setAttribute('as', 'fetch');
+    link.setAttribute('crossorigin', 'use-credentials');
+    link.href = `/__prefetch/user?applicationId=${encodeURIComponent(
+      applicationIdentifier
+    )}`;
+    document.head.appendChild(link);
+  });
+  afterEach(() => {
+    window.app.applicationIdentifier = originalApplicationIdentifier!;
+    document.head.innerHTML = '';
+  });
+
+  it('should use the prefetched user without sending the query', async () => {
+    const queryHandler = jest.fn((_req, res, ctx) =>
+      res(
+        ctx.data({
+          user: UserMock.random()
+            .firstName('Network')
+            .buildGraphql<TUserGraphql>(),
+        })
+      )
+    );
+    mockServer.use(
+      rest.get('*/__prefetch/user', (_req, res, ctx) =>
+        res(
+          ctx.json({
+            data: {
+              user: UserMock.random()
+                .firstName('Prefetched')
+                .buildGraphql<TUserGraphql>(),
+            },
+          })
+        )
+      ),
+      graphql.query('FetchLoggedInUser', queryHandler)
+    );
+
+    renderUser();
+
+    await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
+
+    expect(screen.getByText(/Prefetched/i)).toBeInTheDocument();
+    expect(queryHandler).not.toHaveBeenCalled();
+  });
+
+  it('should fall back to the query if the prefetched response has errors', async () => {
+    mockServer.use(
+      rest.get('*/__prefetch/user', (_req, res, ctx) =>
+        res(
+          ctx.json({
+            errors: [{ extensions: { code: 'UNAUTHENTICATED' } }],
+            data: { user: null },
+          })
+        )
+      ),
+      graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
+        res(
+          ctx.data({
+            user: UserMock.random()
+              .firstName('Network')
+              .buildGraphql<TUserGraphql>(),
+          })
+        )
+      )
+    );
+
+    renderUser();
+
+    await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
+
+    expect(screen.getByText(/Network/i)).toBeInTheDocument();
+  });
+
+  it('should fall back to the query if the prefetch fails', async () => {
+    mockServer.use(
+      rest.get('*/__prefetch/user', (_req, res, ctx) => res(ctx.status(504))),
+      graphql.query('FetchLoggedInUser', (_req, res, ctx) =>
+        res(
+          ctx.data({
+            user: UserMock.random()
+              .firstName('Network')
+              .buildGraphql<TUserGraphql>(),
+          })
+        )
+      )
+    );
+
+    renderUser();
+
+    await waitForElementToBeRemoved(() => screen.queryByText('loading...'));
+
+    expect(screen.getByText(/Network/i)).toBeInTheDocument();
   });
 });
