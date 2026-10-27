@@ -184,12 +184,12 @@ catalog:
   '@commercetools/sdk-middleware-correlation-id': 3.0.0
   '@commercetools/sdk-middleware-http': 7.0.4
   '@commercetools/sync-actions': ^5.14.0
-  '@graphql-codegen/add': 3.2.3
-  '@graphql-codegen/cli': 2.16.5
-  '@graphql-codegen/introspection': 2.2.3
-  '@graphql-codegen/typescript': 2.8.8
-  '@graphql-codegen/typescript-graphql-files-modules': 2.2.1
-  '@graphql-codegen/typescript-operations': 2.5.13
+  '@graphql-codegen/add': 7.1.1
+  '@graphql-codegen/cli': 7.4.6
+  '@graphql-codegen/introspection': 6.1.0
+  '@graphql-codegen/typescript': 6.1.2
+  '@graphql-codegen/typescript-graphql-files-modules': 4.0.1
+  '@graphql-codegen/typescript-operations': 6.1.10
   '@sentry/browser': 8.55.2
   '@sentry/react': 8.55.2
   '@sentry/types': 8.55.2
