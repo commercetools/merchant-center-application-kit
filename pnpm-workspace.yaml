@@ -96,7 +96,7 @@ overrides:
   js-yaml: ^3.15.2
   react: ^19.2.8
   react-dom: ^19.2.8
-  tar: ^7.5.11
+  tar: ^7.5.21
   test-exclude: ^8.0.0
   flat-cache>rimraf: ^5.0.10
   webpack-dev-server>rimraf: ^5.0.10
@@ -108,17 +108,17 @@ overrides:
   'picomatch@^2': ^4.0.5
   flatted: ^3.4.2
   serialize-javascript: ^7.1.3
-  axios: ^1.15.2
-  basic-ftp: ^5.2.2
-  dompurify: ^3.4.0
-  follow-redirects: ^1.16.0
-  '@remix-run/router': ^1.23.2
-  # Security floor that spans majors: the lockfile resolves 0.9.x, so ^0.8.13 would downgrade.
-  '@xmldom/xmldom': '>=0.8.13'
+  axios: ^1.20.0
+  basic-ftp: ^5.3.1
+  dompurify: ^3.4.17
+  follow-redirects: ^1.16.1
+  '@remix-run/router': ^1.23.3
+  # @mswjs/interceptors 0.17 and cldr ask for ^0.8.3; this keeps them on 0.9.x.
+  '@xmldom/xmldom': ^0.9.12
   fflate: ^0.8.3
-  # Security floor that spans majors: the lockfile resolves 5.x, so ^3.8.3 would downgrade.
-  immutable: '>=3.8.3'
-  lodash-es: ^4.17.21
+  # @ardatan/relay-compiler asks for ~3.7.6; this keeps it on 5.x.
+  immutable: ^5.1.8
+  lodash-es: ^4.18.0
   'minimatch@^3': ^3.1.4
   'minimatch@^4': ^4.2.5
   'minimatch@^9': ^9.0.7
@@ -127,14 +127,49 @@ overrides:
   'picomatch@^4': ^4.0.4
   'rollup@^4': ^4.59.0
   'semver@^6': ^7.8.5
-  # Security floor that spans majors: the lockfile resolves 4.x, so ^2.8.1 would downgrade.
-  svgo: '>=2.8.1'
+  # @svgr/plugin-svgo 6 and 8 ask for svgo 2 and 3; this keeps them on 4.x.
+  svgo: ^4.1.0
   # @chromatic-com/cypress pins storybook to exactly 10.2.13 (GHSA-f2ph-cmg5-wxc8,
   # fixed in 10.6.2). Parent-scoped so it doesn't replace our own catalog range.
   '@chromatic-com/cypress>storybook': ^10.6.3
-  systeminformation: ^5.31.0
+  systeminformation: ^5.31.7
   tar-fs: ^3.1.1
   undici: ^8.12.2
+  # Security floors for transitive dependencies whose parents still allow a
+  # vulnerable version. Keyed by major where several majors are installed.
+  '@tootallnate/once': ^2.0.1
+  body-parser: ^1.20.9
+  'brace-expansion@^1': ^1.1.21
+  'brace-expansion@^2': ^2.1.7
+  'brace-expansion@^5': ^5.0.12
+  colord: ^2.9.4
+  compression: ^1.8.2
+  fast-uri: ^3.1.9
+  'form-data@^3': ^3.0.5
+  'form-data@^4': ^4.0.6
+  http-proxy-middleware: ^2.0.10
+  ip-address: ^10.7.4
+  joi: ^18.2.9
+  launch-editor: ^2.14.2
+  'postcss-selector-parser@^6': ^6.1.3
+  'postcss-selector-parser@^7': ^7.1.3
+  shell-quote: ^1.11.0
+  tmp: ^0.2.6
+  websocket-driver: ^0.7.5
+  'ws@^7': ^7.5.11
+  'ws@^8': ^8.21.0
+  'yaml@^1': ^1.10.3
+  # qs and ajv also have catalog entries, so these are parent-scoped and don't
+  # replace the catalog range.
+  url>qs: ^6.16.0
+  '@vercel/static-config>ajv': ^8.18.0
+  '@commercetools-frontend/application-config@24>ajv': ^8.18.0
+  # tsx 4.21 (pinned by @vercel/node) asks for esbuild ~0.27 (GHSA-g7r4-m6w7-qqqr,
+  # fixed in 0.28.1). tsx 4.23 asks for esbuild ~0.28.
+  tsx: ^4.23.15
+  # msw 1 and @remix-run/server-runtime 1 ask for cookie ^0.4 (GHSA-pxg6-pf52-xh8x,
+  # fixed in 0.7.0). They only call cookie.parse and cookie.serialize, which 0.7 keeps.
+  'cookie@^0.4': ^0.7.0
 
 # Single source of truth for external dep versions across the workspace.
 # Workspace package.json files reference catalog entries via the catalog protocol:
@@ -236,7 +271,7 @@ catalog:
   cypress: 15.21.1
   debounce-async: 0.0.2
   deep-diff: 1.0.2
-  dompurify: ^3.0.0
+  dompurify: ^3.4.17
   dotenv: 17.4.2
   execa: 5.1.1
   express: ^4.21.2
