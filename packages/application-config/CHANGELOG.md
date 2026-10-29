@@ -1,5 +1,14 @@
 # @commercetools-frontend/application-config
 
+## 27.17.0
+
+### Patch Changes
+
+- [#4209](https://github.com/commercetools/merchant-center-application-kit/pull/4209) [`e9d468b`](https://github.com/commercetools/merchant-center-application-kit/commit/e9d468b08996834c54b0784487344efab5b81436) Thanks [@misama-ct](https://github.com/misama-ct)! - Raise the minimum version of dependency `dompurify` from `^3.0.0` to `^3.4.17`, so that installs no longer resolve a version affected by the DOMPurify security advisories fixed up to 3.4.17. The newest of them ([GHSA-55q2-fjhq-7xh7](https://github.com/advisories/GHSA-55q2-fjhq-7xh7), [GHSA-6688-9rhm-gjv2](https://github.com/advisories/GHSA-6688-9rhm-gjv2), [GHSA-mrv2-3pqr-j5jr](https://github.com/advisories/GHSA-mrv2-3pqr-j5jr), [GHSA-c6gr-qvv4-5v3f](https://github.com/advisories/GHSA-c6gr-qvv4-5v3f)) concern the `IN_PLACE` mode, hooks, and the `application/xhtml+xml` parser type, which the SVG sanitizer of `application-config` does not use.
+
+- Updated dependencies []:
+  - @commercetools-frontend/constants@27.17.0
+
 ## 27.16.0
 
 ### Minor Changes
