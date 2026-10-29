@@ -1,5 +1,30 @@
 # @commercetools-frontend/application-shell
 
+## 27.17.0
+
+### Minor Changes
+
+- [#4216](https://github.com/commercetools/merchant-center-application-kit/pull/4216) [`4f0331d`](https://github.com/commercetools/merchant-center-application-kit/commit/4f0331d7ec11459a677dc4681fb2302beb37d318) Thanks [@Rombelirk](https://github.com/Rombelirk)! - `FetchUser` and `FetchProject` now use the user and project data prefetched by the Merchant Center proxy, if the page has a `<link rel="preload">` tag for it (`/__prefetch/user`, `/__prefetch/project`). The data is written to the Apollo cache, so the queries are served without a network request. If there is no preload tag, or the prefetched response is incomplete or failed, the queries run as before.
+
+### Patch Changes
+
+- Updated dependencies [[`e9d468b`](https://github.com/commercetools/merchant-center-application-kit/commit/e9d468b08996834c54b0784487344efab5b81436)]:
+  - @commercetools-frontend/application-config@27.17.0
+  - @commercetools-frontend/actions-global@27.17.0
+  - @commercetools-frontend/application-components@27.17.0
+  - @commercetools-frontend/application-shell-connectors@27.17.0
+  - @commercetools-frontend/assets@27.17.0
+  - @commercetools-frontend/browser-history@27.17.0
+  - @commercetools-frontend/constants@27.17.0
+  - @commercetools-frontend/i18n@27.17.0
+  - @commercetools-frontend/l10n@27.17.0
+  - @commercetools-frontend/notifications@27.17.0
+  - @commercetools-frontend/permissions@27.17.0
+  - @commercetools-frontend/react-notifications@27.17.0
+  - @commercetools-frontend/sdk@27.17.0
+  - @commercetools-frontend/sentry@27.17.0
+  - @commercetools-frontend/url-utils@27.17.0
+
 ## 27.16.0
 
 ### Minor Changes
