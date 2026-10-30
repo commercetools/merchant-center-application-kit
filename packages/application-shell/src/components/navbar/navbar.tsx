@@ -224,8 +224,15 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     const safeX = Number.isFinite(percentageX) ? percentageX : 0;
     const safeY = Number.isFinite(percentageY) ? percentageY : 100;
 
-    submenuRef.current.style.setProperty('--safe-start', `${safeX}% ${safeY}%`);
-  }, [percentageX, percentageY]);
+    // Keep the tip of the safe area 2px off the pointer, on the side away from
+    // the submenu. A tip right under the pointer takes the release of a click
+    // on the menu item, so the click never reaches its link. Moving the tip
+    // towards the submenu instead would make the path to its far end steeper.
+    submenuRef.current.style.setProperty(
+      '--safe-start',
+      `${safeX}% calc(${safeY}% ${isSubmenuAboveMenuItem ? '-' : '+'} 2px)`
+    );
+  }, [percentageX, percentageY, isSubmenuAboveMenuItem]);
 
   const callbackFn: IntersectionObserverCallback = useCallback(
     (entries) => {
