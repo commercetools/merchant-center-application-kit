@@ -174,6 +174,55 @@ describe('when the menu item belongs to a project-keyless application', () => {
   });
 });
 
+describe('when the mouse moves over a menu item with a submenu', () => {
+  beforeEach(() => {
+    // jsdom does no layout, so give the safe area a size to place the pointer in.
+    jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 200,
+      height: 400,
+    } as DOMRect);
+  });
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  // The safe area's tip must not sit under the pointer, or it takes the
+  // release of a click on the menu item's label.
+  it('should start the safe area 2px below the pointer when the submenu opens downward', async () => {
+    renderApplicationMenu({}, '/test-project/products');
+    await findSubmenuLink('Add product');
+    const submenu = screen.getByTestId('group-group-products');
+
+    fireEvent.mouseMove(window, { clientX: 50, clientY: 100 });
+
+    expect(submenu.style.getPropertyValue('--safe-start')).toBe(
+      '25% calc(25% + 2px)'
+    );
+  });
+
+  it('should start the safe area 2px above the pointer when the submenu opens upward', async () => {
+    // The submenu is taller than the room below the menu item, so it flips up.
+    window.IntersectionObserver = jest.fn((callback) => ({
+      observe: jest.fn(() =>
+        callback([{ boundingClientRect: { height: 1000 } }])
+      ),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    })) as unknown as typeof window.IntersectionObserver;
+    renderApplicationMenu({}, '/test-project/products');
+    await findSubmenuLink('Add product');
+    const submenu = screen.getByTestId('group-group-products');
+
+    fireEvent.mouseMove(window, { clientX: 50, clientY: 100 });
+
+    expect(submenu.style.getPropertyValue('--safe-start')).toBe(
+      '25% calc(25% - 2px)'
+    );
+  });
+});
+
 describe('when the mouse wheel is used over the submenu', () => {
   it('should scroll the navbar scroll container and cancel the native scroll', async () => {
     const testProps = createTestProps();
