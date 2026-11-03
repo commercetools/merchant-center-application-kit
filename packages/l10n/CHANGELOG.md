@@ -1,5 +1,12 @@
 # @commercetools-frontend/l10n
 
+## 27.17.0
+
+### Patch Changes
+
+- Updated dependencies [[`26efa84`](https://github.com/commercetools/merchant-center-application-kit/commit/26efa84f651763d524d12debc4c5827d77008777)]:
+  - @commercetools-frontend/sentry@27.17.0
+
 ## 27.16.0
 
 ### Patch Changes
