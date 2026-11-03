@@ -221,6 +221,18 @@ describe('when the mouse moves over a menu item with a submenu', () => {
       '25% calc(25% - 2px)'
     );
   });
+
+  // In the collapsed navbar the submenu opens below the menu item, so the
+  // pointer is above the safe area and an offset would open a gap under it.
+  it('should start the safe area at its edge, without an offset, when the pointer is above it', async () => {
+    renderApplicationMenu({}, '/test-project/products');
+    await findSubmenuLink('Add product');
+    const submenu = screen.getByTestId('group-group-products');
+
+    fireEvent.mouseMove(window, { clientX: 50, clientY: -20 });
+
+    expect(submenu.style.getPropertyValue('--safe-start')).toBe('25% 0%');
+  });
 });
 
 describe('when the mouse wheel is used over the submenu', () => {

@@ -228,10 +228,13 @@ export const ApplicationMenu = (props: ApplicationMenuProps) => {
     // the submenu. A tip right under the pointer takes the release of a click
     // on the menu item, so the click never reaches its link. Moving the tip
     // towards the submenu instead would make the path to its far end steeper.
-    submenuRef.current.style.setProperty(
-      '--safe-start',
-      `${safeX}% calc(${safeY}% ${isSubmenuAboveMenuItem ? '-' : '+'} 2px)`
-    );
+    // When the pointer is above or below the safe area (collapsed navbar), Y is
+    // clamped to 0% or 100%. An offset there would open a gap along that edge.
+    const isPointerInsideSafeArea = safeY > 0 && safeY < 100;
+    const startY = isPointerInsideSafeArea
+      ? `calc(${safeY}% ${isSubmenuAboveMenuItem ? '-' : '+'} 2px)`
+      : `${safeY}%`;
+    submenuRef.current.style.setProperty('--safe-start', `${safeX}% ${startY}`);
   }, [percentageX, percentageY, isSubmenuAboveMenuItem]);
 
   const callbackFn: IntersectionObserverCallback = useCallback(
