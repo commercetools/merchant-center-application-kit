@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import type { ListrTask } from 'listr2';
+import semver from 'semver';
 import { parse as parseYaml } from 'yaml';
 import type { TCliTaskOptions } from '../types';
 import { getPreferredPackageManager, slugify } from '../utils';
@@ -166,10 +167,27 @@ function buildUpdatedPackageJson(
   };
 }
 
-function updatePackageJson(
-  options: TCliTaskOptions,
-  releaseVersion: string
-): ListrTask {
+/**
+ * The version that `workspace:` specifiers are rewritten to. Templates and
+ * App Kit packages are released as one fixed changeset group, so the cloned
+ * template's own version is the App Kit release it was written against —
+ * including when `--template-version` selects an older tag.
+ *
+ * @throws {Error} when the template's `version` is not a valid semver
+ *   version. The scaffold cannot produce a valid `package.json` without it
+ *   and is unrecoverable — let it propagate.
+ */
+function getTemplateVersion(appPackageJson: TAppPackageJson): string {
+  const version = semver.valid(String(appPackageJson.version));
+  if (!version) {
+    throw new Error(
+      `Unable to resolve "workspace:" dependencies: the template's package.json has no valid version (got "${appPackageJson.version}").`
+    );
+  }
+  return version;
+}
+
+function updatePackageJson(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating package.json',
     task: () => {
@@ -184,7 +202,7 @@ function updatePackageJson(
       const updatedAppPackageJson = buildUpdatedPackageJson(
         appPackageJson,
         options,
-        releaseVersion,
+        getTemplateVersion(appPackageJson),
         catalogs
       );
       fs.writeFileSync(

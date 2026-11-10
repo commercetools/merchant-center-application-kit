@@ -15,7 +15,13 @@ CLI (`npx @commercetools-frontend/create-mc-app`) that scaffolds new Custom Appl
 
 ## How To Work Here
 
-No unit tests exist in this package. Verify changes by running the CLI manually:
+Unit tests sit next to their source (`*.spec.ts`). This package has no `test` script, so run them through the root Jest config:
+
+```sh
+pnpm jest --config jest.test.config.js packages/create-mc-app
+```
+
+They cover parsing and `package.json` rewriting only. Verify the full scaffold by running the CLI manually:
 
 ```sh
 node packages/create-mc-app/bin/cli.js my-app

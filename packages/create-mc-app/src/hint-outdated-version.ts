@@ -1,6 +1,12 @@
 import semver from 'semver';
 
-function hintOutdatedVersion(currentVersion: string, releaseVersion: string) {
+function hintOutdatedVersion(
+  currentVersion: string,
+  releaseVersion: string | undefined
+) {
+  // The hint is informational: when npm gives no usable version, skip it.
+  if (!releaseVersion) return;
+
   const hasBeenReleastedInLatestTag = semver.gt(releaseVersion, currentVersion);
 
   const hintNewerVersions = [hasBeenReleastedInLatestTag && `${releaseVersion}`]
