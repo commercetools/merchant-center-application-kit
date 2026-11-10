@@ -1,5 +1,14 @@
 # @commercetools-frontend/create-mc-app
 
+## 27.17.1
+
+### Patch Changes
+
+- [#4229](https://github.com/commercetools/merchant-center-application-kit/pull/4229) [`0028a19`](https://github.com/commercetools/merchant-center-application-kit/commit/0028a196a36fb773fd4f8e98c695022a887f1452) Thanks [@fparadelact](https://github.com/fparadelact)! - Fix `create-mc-app` crashing with `Invalid version` when run with npm 12, whose `npm view --json` always returns an array. The latest-version lookup now only drives the "new version available" hint and never stops the CLI. Dependencies declared as `workspace:` in the template are now pinned to the cloned template's own version, so `--template-version` also gets matching App Kit packages.
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-config@27.17.1
+
 ## 27.17.0
 
 ### Patch Changes
