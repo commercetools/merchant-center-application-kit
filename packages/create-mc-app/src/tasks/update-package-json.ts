@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import type { ListrTask } from 'listr2';
+import semver from 'semver';
 import { parse as parseYaml } from 'yaml';
 import type { TCliTaskOptions } from '../types';
 import { getPreferredPackageManager, slugify } from '../utils';
@@ -33,10 +34,10 @@ function parseCatalogs(yamlText: string): Catalogs {
   return out;
 }
 
-// `workspace:` specifier → rewriter that takes the release version and
+// `workspace:` specifier → rewriter that takes the template version and
 // returns the concrete spec. The supported set is data, not branching
 // logic — extend the table to handle new protocol additions.
-const WORKSPACE_REWRITERS: Record<string, (releaseVersion: string) => string> =
+const WORKSPACE_REWRITERS: Record<string, (templateVersion: string) => string> =
   {
     'workspace:*': (v) => v,
     'workspace:^': (v) => `^${v}`,
@@ -82,11 +83,11 @@ function resolveCatalogRef(
 function resolveSpec(
   depName: string,
   spec: string,
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): string {
   const workspaceRewriter = WORKSPACE_REWRITERS[spec];
-  if (workspaceRewriter) return workspaceRewriter(releaseVersion);
+  if (workspaceRewriter) return workspaceRewriter(templateVersion);
   if (spec.startsWith('catalog:'))
     return resolveCatalogRef(spec, depName, catalogs);
   return spec;
@@ -94,12 +95,12 @@ function resolveSpec(
 
 function resolveDependencies(
   dependencies: Record<string, string> = {},
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): Record<string, string> {
   const out: Record<string, string> = {};
   for (const [name, spec] of Object.entries(dependencies)) {
-    out[name] = resolveSpec(name, spec, releaseVersion, catalogs);
+    out[name] = resolveSpec(name, spec, templateVersion, catalogs);
   }
   return out;
 }
@@ -130,7 +131,7 @@ type TAppPackageJson = {
 function buildUpdatedPackageJson(
   appPackageJson: TAppPackageJson,
   options: TCliTaskOptions,
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): TAppPackageJson {
   const packageManager = getPreferredPackageManager(options);
@@ -138,7 +139,7 @@ function buildUpdatedPackageJson(
   // every dependency section — the scaffolded app is not part of any pnpm
   // workspace and would otherwise fail to install.
   const resolve = (deps?: Record<string, string>) =>
-    resolveDependencies(deps, releaseVersion, catalogs);
+    resolveDependencies(deps, templateVersion, catalogs);
   return {
     ...appPackageJson,
     version: '1.0.0',
@@ -166,10 +167,27 @@ function buildUpdatedPackageJson(
   };
 }
 
-function updatePackageJson(
-  options: TCliTaskOptions,
-  releaseVersion: string
-): ListrTask {
+/**
+ * The version that `workspace:` specifiers are rewritten to. Templates and
+ * App Kit packages are released as one fixed changeset group, so the cloned
+ * template's own version is the App Kit release it was written against —
+ * including when `--template-version` selects an older tag.
+ *
+ * @throws {Error} when the template's `version` is not a valid semver
+ *   version. The scaffold cannot produce a valid `package.json` without it
+ *   and is unrecoverable — let it propagate.
+ */
+function getTemplateVersion(appPackageJson: TAppPackageJson): string {
+  const version = semver.valid(String(appPackageJson.version));
+  if (!version) {
+    throw new Error(
+      `Unable to resolve "workspace:" dependencies: the template's package.json has no valid version (got "${appPackageJson.version}").`
+    );
+  }
+  return version;
+}
+
+function updatePackageJson(options: TCliTaskOptions): ListrTask {
   return {
     title: 'Updating package.json',
     task: () => {
@@ -184,7 +202,7 @@ function updatePackageJson(
       const updatedAppPackageJson = buildUpdatedPackageJson(
         appPackageJson,
         options,
-        releaseVersion,
+        getTemplateVersion(appPackageJson),
         catalogs
       );
       fs.writeFileSync(

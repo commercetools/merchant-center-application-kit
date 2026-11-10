@@ -102,7 +102,7 @@ const run = () => {
       const taskList = new Listr(
         [
           tasks.downloadTemplate(taskOptions),
-          tasks.updatePackageJson(taskOptions, releaseVersion),
+          tasks.updatePackageJson(taskOptions),
           tasks.updateApplicationConfig(taskOptions),
           tasks.updateApplicationConstants(taskOptions),
           shouldInstallDependencies && tasks.installDependencies(taskOptions),
