@@ -1,5 +1,27 @@
 # @commercetools-frontend/react-notifications
 
+## 27.17.1
+
+### Patch Changes
+
+- [#4177](https://github.com/commercetools/merchant-center-application-kit/pull/4177) [`8102769`](https://github.com/commercetools/merchant-center-application-kit/commit/8102769104e4e0f4f27d41ea8f3258751953da32) Thanks [@fparadelact](https://github.com/fparadelact)! - `ApiErrorMessage` now reads `errorByExtension` and `localizedMessage` from `error.extensions` as
+  well as from the top level of the error. REST responses carry these fields at the top level,
+  GraphQL responses nest them under `extensions`, and only the REST shape was handled — so an API
+  Extension that rejected a create or update with a `localizedMessage` had its message dropped on
+  every Merchant Center screen that uses GraphQL, replaced by the generic `InvalidInput` or
+  `InvalidField` text.
+
+  The locale lookup is unchanged: `localizedMessage[intl.locale]`, falling back to the error's plain
+  `message` when the user's interface language is not among the translations supplied by the
+  extension.
+
+- Updated dependencies []:
+  - @commercetools-frontend/actions-global@27.17.1
+  - @commercetools-frontend/application-components@27.17.1
+  - @commercetools-frontend/constants@27.17.1
+  - @commercetools-frontend/notifications@27.17.1
+  - @commercetools-frontend/sentry@27.17.1
+
 ## 27.17.0
 
 ### Patch Changes
