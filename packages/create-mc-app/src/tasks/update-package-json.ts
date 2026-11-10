@@ -34,10 +34,10 @@ function parseCatalogs(yamlText: string): Catalogs {
   return out;
 }
 
-// `workspace:` specifier → rewriter that takes the release version and
+// `workspace:` specifier → rewriter that takes the template version and
 // returns the concrete spec. The supported set is data, not branching
 // logic — extend the table to handle new protocol additions.
-const WORKSPACE_REWRITERS: Record<string, (releaseVersion: string) => string> =
+const WORKSPACE_REWRITERS: Record<string, (templateVersion: string) => string> =
   {
     'workspace:*': (v) => v,
     'workspace:^': (v) => `^${v}`,
@@ -83,11 +83,11 @@ function resolveCatalogRef(
 function resolveSpec(
   depName: string,
   spec: string,
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): string {
   const workspaceRewriter = WORKSPACE_REWRITERS[spec];
-  if (workspaceRewriter) return workspaceRewriter(releaseVersion);
+  if (workspaceRewriter) return workspaceRewriter(templateVersion);
   if (spec.startsWith('catalog:'))
     return resolveCatalogRef(spec, depName, catalogs);
   return spec;
@@ -95,12 +95,12 @@ function resolveSpec(
 
 function resolveDependencies(
   dependencies: Record<string, string> = {},
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): Record<string, string> {
   const out: Record<string, string> = {};
   for (const [name, spec] of Object.entries(dependencies)) {
-    out[name] = resolveSpec(name, spec, releaseVersion, catalogs);
+    out[name] = resolveSpec(name, spec, templateVersion, catalogs);
   }
   return out;
 }
@@ -131,7 +131,7 @@ type TAppPackageJson = {
 function buildUpdatedPackageJson(
   appPackageJson: TAppPackageJson,
   options: TCliTaskOptions,
-  releaseVersion: string,
+  templateVersion: string,
   catalogs: Catalogs
 ): TAppPackageJson {
   const packageManager = getPreferredPackageManager(options);
@@ -139,7 +139,7 @@ function buildUpdatedPackageJson(
   // every dependency section — the scaffolded app is not part of any pnpm
   // workspace and would otherwise fail to install.
   const resolve = (deps?: Record<string, string>) =>
-    resolveDependencies(deps, releaseVersion, catalogs);
+    resolveDependencies(deps, templateVersion, catalogs);
   return {
     ...appPackageJson,
     version: '1.0.0',
