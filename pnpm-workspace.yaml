@@ -38,6 +38,8 @@ cleanupUnusedCatalogs: true
 minimumReleaseAge: 1440
 minimumReleaseAgeExclude:
   - '@commercetools*'
+  # Renovate security update: glob@14.0.2
+  - glob@14.0.2
 
 # Explicit block — same v11-default-pinning rationale as minimumReleaseAge.
 blockExoticSubdeps: true
@@ -281,7 +283,7 @@ catalog:
   find-up: 5.0.0
   fs-extra: 11.4.1
   fuse.js: 7.5.0
-  glob: ^13.0.6
+  glob: ^14.0.0
   graphql-request: 5.2.0
   history-query-enhancer: 1.0.4
   is-retina: 1.0.3
