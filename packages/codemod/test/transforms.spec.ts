@@ -35,7 +35,7 @@ describe.each`
     switch (transformName) {
       case 'rename-js-to-jsx':
         if (!doesFileExist(inputPath)) {
-          fs.writeFileSync(inputPath, '/* Generated */\nexport {};');
+          fs.writeFileSync(inputPath, '/* Generated */\nexport {};\n');
         }
         break;
       case 'rename-mod-css-to-module-css':
