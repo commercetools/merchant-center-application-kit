@@ -1,3 +1,7 @@
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+
 function mockNimbusNotInstalled(entry: string) {
   jest.mock(
     entry,
@@ -86,6 +90,51 @@ describe('loadNimbusWebpackPlugin', () => {
       expect(regex.test('@commercetools/nimbus-icons')).toBe(false);
       expect(regex.test('react')).toBe(false);
       expect(applyToCompiler).toHaveBeenCalledWith(compiler);
+    });
+
+    it('builds named imports of the stub with strictExportPresence', async () => {
+      mockNimbusNotInstalled('@commercetools/nimbus/plugins/webpack');
+
+      const { loadNimbusWebpackPlugin } = require('./try-load-nimbus-plugins');
+      const webpack = jest.requireActual('webpack');
+      const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'nimbus-stub-'));
+      try {
+        fs.writeFileSync(
+          path.join(tmpDir, 'entry.js'),
+          "import { Splitter } from '@commercetools/nimbus';\n" +
+            "export const hasNimbus = typeof Splitter !== 'undefined';\n"
+        );
+        const stats = await new Promise<{
+          hasErrors: () => boolean;
+          toString: (options: string) => string;
+        }>((resolve, reject) => {
+          webpack(
+            {
+              mode: 'production',
+              context: tmpDir,
+              entry: './entry.js',
+              output: {
+                path: tmpDir,
+                filename: 'bundle.js',
+                library: { type: 'commonjs2' },
+              },
+              module: { strictExportPresence: true },
+              optimization: { minimize: false },
+              plugins: [loadNimbusWebpackPlugin()],
+            },
+            (error: Error | null, result: typeof stats) =>
+              error ? reject(error) : resolve(result)
+          );
+        });
+
+        expect(stats.toString('errors-only')).toBe('');
+        expect(stats.hasErrors()).toBe(false);
+        expect(
+          jest.requireActual(path.join(tmpDir, 'bundle.js')).hasNimbus
+        ).toBe(false);
+      } finally {
+        fs.rmSync(tmpDir, { recursive: true, force: true });
+      }
     });
 
     it('throws a clear error on webpack 4 (no compiler.webpack)', () => {
