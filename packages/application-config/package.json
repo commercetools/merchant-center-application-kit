@@ -16,6 +16,25 @@
   },
   "main": "dist/commercetools-frontend-application-config.cjs.js",
   "module": "dist/commercetools-frontend-application-config.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/commercetools-frontend-application-config.cjs.d.ts",
+      "node": "./dist/commercetools-frontend-application-config.cjs.js",
+      "import": "./dist/commercetools-frontend-application-config.esm.js",
+      "require": "./dist/commercetools-frontend-application-config.cjs.js"
+    },
+    "./ssr": {
+      "types": "./ssr/dist/commercetools-frontend-application-config-ssr.cjs.d.ts",
+      "node": "./ssr/dist/commercetools-frontend-application-config-ssr.cjs.js",
+      "import": "./ssr/dist/commercetools-frontend-application-config-ssr.esm.js",
+      "require": "./ssr/dist/commercetools-frontend-application-config-ssr.cjs.js"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
   "preconstruct": {
     "entrypoints": ["./index.ts", "./ssr.ts"]
   },
