@@ -29,6 +29,9 @@
       "import": "./ssr/dist/commercetools-frontend-application-config-ssr.esm.js",
       "require": "./ssr/dist/commercetools-frontend-application-config-ssr.cjs.js"
     },
+    "./client": {
+      "types": "./client.d.ts"
+    },
     "./package.json": "./package.json",
     "./*": "./*"
   },
