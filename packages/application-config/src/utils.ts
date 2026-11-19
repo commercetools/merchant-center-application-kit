@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'path';
-import uniq from 'lodash/uniq';
+import uniq from 'lodash/uniq.js';
 import { CLOUD_IDENTIFIERS, MC_API_URLS } from './constants';
 
 const mapCloudIdentifierToApiUrl = (

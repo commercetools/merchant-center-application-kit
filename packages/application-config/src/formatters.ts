@@ -1,4 +1,4 @@
-import upperFirst from 'lodash/upperFirst';
+import upperFirst from 'lodash/upperFirst.js';
 import { CUSTOM_VIEW_HOST_ENTRY_POINT_URI_PATH } from '@commercetools-frontend/constants';
 import type { CamelCase } from './types';
 
