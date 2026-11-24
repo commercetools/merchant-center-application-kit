@@ -592,7 +592,7 @@ catalogs:
     '@commercetools-uikit/hooks': ^20.6.7
     '@commercetools-uikit/i18n': ^20.6.7
     '@commercetools-uikit/icon-button': ^20.6.7
-    '@commercetools-uikit/icons': ^20.6.7
+    '@commercetools-uikit/icons': ^20.6.8
     '@commercetools-uikit/label': ^20.6.7
     '@commercetools-uikit/link': ^20.6.7
     '@commercetools-uikit/loading-spinner': ^20.6.7

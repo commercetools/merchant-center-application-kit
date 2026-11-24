@@ -835,8 +835,8 @@ catalogs:
       specifier: ^20.6.7
       version: 20.6.7
     '@commercetools-uikit/icons':
-      specifier: ^20.6.7
-      version: 20.6.7
+      specifier: ^20.6.8
+      version: 20.6.8
     '@commercetools-uikit/label':
       specifier: ^20.6.7
       version: 20.6.7
@@ -1442,7 +1442,7 @@ importers:
         version: 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -1650,7 +1650,7 @@ importers:
         version: 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -1855,7 +1855,7 @@ importers:
         version: 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -2063,7 +2063,7 @@ importers:
         version: 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -2434,7 +2434,7 @@ importers:
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/label':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
@@ -2682,7 +2682,7 @@ importers:
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/loading-spinner':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
@@ -3927,7 +3927,7 @@ importers:
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/secondary-icon-button':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
@@ -4222,7 +4222,7 @@ importers:
         version: 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/label':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
@@ -4379,7 +4379,7 @@ importers:
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -4484,7 +4484,7 @@ importers:
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/icons':
         specifier: catalog:repo
-        version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+        version: 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/link':
         specifier: catalog:repo
         version: 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -5627,6 +5627,11 @@ packages:
     peerDependencies:
       react: ^19.2.8
 
+  '@commercetools-uikit/design-system@20.6.8':
+    resolution: {integrity: sha512-uOifIfDCY1SeJVMVvnbLczcmrDBY21L462ctYNvBrUuDve6UPWHipHXI2g+KKEdCPtkCDUvkWHwLcaJEpnkE6g==}
+    peerDependencies:
+      react: ^19.2.8
+
   '@commercetools-uikit/dropdown-menu@20.6.7':
     resolution: {integrity: sha512-BeD1Fh55cTpB5cuktjimH3YYxg+s5RuWlkVYz+hVB9958IZKw358pRsTkgdFbgNcfbcpMYT3Dndf23ywyuDFkg==}
     peerDependencies:
@@ -5676,6 +5681,12 @@ packages:
       react: ^19.2.8
       react-dom: ^19.2.8
 
+  '@commercetools-uikit/hooks@20.6.8':
+    resolution: {integrity: sha512-j2OjOLPXhmCLRsozljBlzMWpJtbXuzucIq7FQ8Ip/mCmzsG2rgVK3t/DRmADdRicr5z9prZwH7+vO9xFk+uiaw==}
+    peerDependencies:
+      react: ^19.2.8
+      react-dom: ^19.2.8
+
   '@commercetools-uikit/i18n@20.6.7':
     resolution: {integrity: sha512-22SQVoYPZC2gksy4eCgdXZ9vJ+4ndp5TywDgo8hOnxlCbnhMdFEBU0UGR8f/U/g5bON8w+kd6zX+4bTab6GoHg==}
 
@@ -5689,8 +5700,8 @@ packages:
     peerDependencies:
       react: ^19.2.8
 
-  '@commercetools-uikit/icons@20.6.7':
-    resolution: {integrity: sha512-QsaIr8Oj6HE/hazKbx9ZatT9UEy9DX4gkrMDlvYcO5mmGPa+FktAbOhW4GmRzLyLnW3/6InOYYcv0KZF5bG4Ew==}
+  '@commercetools-uikit/icons@20.6.8':
+    resolution: {integrity: sha512-lmfhh6U4uVSJgTM0nMHd01PemYsUJ13i3bwKtpsvV5Z66TPk/8F3+nxiLPWkf55Rw/ILfpuI2gWRddWgukZ6iA==}
     peerDependencies:
       react: ^19.2.8
 
@@ -5928,6 +5939,11 @@ packages:
 
   '@commercetools-uikit/utils@20.6.7':
     resolution: {integrity: sha512-51y9Y+il0cucTPELhT3vAnylpxRNAcbOVsYW8OW9KU78kVBPB7hAemWp2imreIP8OnZNK+P8XhvM6dC8kRwEsQ==}
+    peerDependencies:
+      react: ^19.2.8
+
+  '@commercetools-uikit/utils@20.6.8':
+    resolution: {integrity: sha512-4d3/kvT1xsaj/MruKcaPeh+IsjE7RsgHd6Ovn5cblkMBDKrHbXtCZMpH4UYz1tyQBbmZtiez6F9LE8HrB+YIag==}
     peerDependencies:
       react: ^19.2.8
 
@@ -20769,7 +20785,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/loading-spinner': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/select-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -20818,7 +20834,7 @@ snapshots:
       '@commercetools-uikit/accessible-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/input-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -20879,7 +20895,7 @@ snapshots:
       '@babel/runtime': 7.29.10
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/input-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
@@ -20951,7 +20967,7 @@ snapshots:
       '@commercetools-uikit/grid': 20.6.7(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@commercetools-uikit/icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/primary-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/radio-input': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/secondary-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -20985,7 +21001,7 @@ snapshots:
       '@commercetools-uikit/data-table-manager': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react-router-dom@5.3.4(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
@@ -21010,7 +21026,7 @@ snapshots:
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/select-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -21051,6 +21067,19 @@ snapshots:
       '@babel/runtime': 7.29.7
       '@babel/runtime-corejs3': 7.29.0
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
+      lodash: 4.18.1
+      react: 19.2.8
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+      - supports-color
+
+  '@commercetools-uikit/design-system@20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)':
+    dependencies:
+      '@babel/runtime': 7.29.10
+      '@babel/runtime-corejs3': 7.29.10
+      '@commercetools-uikit/hooks': 20.6.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       lodash: 4.18.1
       react: 19.2.8
@@ -21104,7 +21133,7 @@ snapshots:
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/label': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -21210,6 +21239,17 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
+  '@commercetools-uikit/hooks@20.6.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+    dependencies:
+      '@babel/runtime': 7.29.10
+      '@babel/runtime-corejs3': 7.29.10
+      '@commercetools-uikit/utils': 20.6.8(react@19.2.8)
+      '@types/raf-schd': 4.0.3
+      lodash: 4.18.1
+      raf-schd: 4.0.3
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+
   '@commercetools-uikit/i18n@20.6.7':
     dependencies:
       '@babel/runtime': 7.29.10
@@ -21253,12 +21293,12 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@commercetools-uikit/icons@20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)':
+  '@commercetools-uikit/icons@20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)':
     dependencies:
-      '@babel/runtime': 7.29.7
+      '@babel/runtime': 7.29.10
       '@babel/runtime-corejs3': 7.29.10
-      '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
+      '@commercetools-uikit/design-system': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/utils': 20.6.8(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1))(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       '@types/dompurify': 2.4.0
@@ -21276,7 +21316,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/flat-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       react: 19.2.8
@@ -21309,7 +21349,7 @@ snapshots:
       '@babel/runtime': 7.29.7
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
@@ -21390,7 +21430,7 @@ snapshots:
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/flat-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/input-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/localized-utils': 20.6.7(react@19.2.8)
       '@commercetools-uikit/messages': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
@@ -21463,7 +21503,7 @@ snapshots:
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/flat-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/hooks': 20.6.7(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/input-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -21488,7 +21528,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/accessible-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/react': 11.14.0(@types/react@19.2.4)(react@19.2.8)(supports-color@8.1.1)
       react: 19.2.8
@@ -21522,7 +21562,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/label': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/number-input': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/secondary-icon-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
@@ -21589,7 +21629,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/input-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/spacings-inline': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/spacings-inset': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
@@ -21717,7 +21757,7 @@ snapshots:
       '@babel/runtime-corejs3': 7.29.10
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/select-utils': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
       '@emotion/is-prop-valid': 1.4.0
@@ -21740,7 +21780,7 @@ snapshots:
       '@commercetools-uikit/accessible-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/checkbox-input': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)(typescript@5.9.3)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/spacings': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/text': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
@@ -21915,7 +21955,7 @@ snapshots:
       '@commercetools-uikit/accessible-button': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/constraints': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/design-system': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
-      '@commercetools-uikit/icons': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
+      '@commercetools-uikit/icons': 20.6.8(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/spacings': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/text': 20.6.7(@types/react@19.2.4)(react-dom@19.2.8(react@19.2.8))(react-intl@7.1.14(react@19.2.8)(typescript@5.9.3))(react@19.2.8)(supports-color@8.1.1)
       '@commercetools-uikit/utils': 20.6.7(react@19.2.8)
@@ -22053,6 +22093,13 @@ snapshots:
       react: 19.2.8
 
   '@commercetools-uikit/utils@20.6.7(react@19.2.8)':
+    dependencies:
+      '@babel/runtime': 7.29.10
+      '@babel/runtime-corejs3': 7.29.10
+      '@emotion/is-prop-valid': 1.4.0
+      react: 19.2.8
+
+  '@commercetools-uikit/utils@20.6.8(react@19.2.8)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@babel/runtime-corejs3': 7.29.10
